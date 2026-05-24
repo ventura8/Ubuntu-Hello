@@ -1,0 +1,66 @@
+Source: ubuntu-hello
+Section: misc
+Priority: optional
+Standards-Version: 4.6.2
+Build-Depends:
+ debhelper-compat (= 13),
+ meson (>= 0.64),
+ ninja-build,
+ python3,
+ python3-dev,
+ pkg-config,
+ libpam0g-dev,
+ libinih-dev,
+ libevdev-dev,
+ libboost-all-dev,
+ cmake,
+ g++
+Maintainer: ventura8 <alexandrescu.sergiu@gmail.com>
+Vcs-Git: https://github.com/ventura8/ubuntu-hello
+Vcs-Browser: https://github.com/ventura8/ubuntu-hello
+Homepage: https://github.com/ventura8/ubuntu-hello
+
+Package: ubuntu-hello
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ python3,
+ python3-numpy,
+ python3-opencv,
+ curl | wget,
+ bzip2,
+ libinih-dev
+Recommends:
+  ubuntu-hello-gtk,
+  libopenblas-dev | liblapack-dev,
+  v4l-utils,
+  tpm2-tools,
+  python3-pip,
+  cmake,
+  g++,
+  libboost-all-dev
+Suggests:
+ nvidia-cuda-dev (>= 7.5)
+Description: Windows Hello style facial authentication for Linux
+ Ubuntu Hello provides Windows Hello™ style authentication for Linux.
+ Use your built-in IR emitters and camera in combination with facial
+ recognition to prove who you are.
+ .
+ Using the central authentication system (PAM), this works everywhere you
+ would otherwise need your password: login, lock screen, sudo, su, etc.
+
+Package: ubuntu-hello-gtk
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ubuntu-hello (>= ${source:Version}),
+ python3,
+ python3-gi,
+ python3-gi-cairo,
+ python3-opencv,
+ gir1.2-gtk-3.0
+Description: GTK configuration GUI for Ubuntu Hello
+ Optional graphical interface for Ubuntu Hello facial authentication.
+ Provides a settings window to configure cameras, manage face models,
+ and set up keyring integration.

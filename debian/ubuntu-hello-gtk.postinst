@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    configure)
+        # Try to run the GUI as the non-root user who ran sudo/apt (or fallback to active GUI user)
+        REAL_USER="${SUDO_USER:-$USER}"
+
+        if [ "$REAL_USER" = "root" ]; then
+            REAL_USER=$(loginctl list-sessions 2>/dev/null | awk 'NR>1 && $3 != "" && $3 != "root" {print $3; exit}' || true)
+        fi
+
+        # Only launch on fresh installation, not on upgrade
+        if [ -z "$2" ]; then
+            if [ -n "$REAL_USER" ] && [ "$REAL_USER" != "root" ]; then
+                USER_HOME=$(eval echo "~$REAL_USER")
+                (
+                    export DISPLAY="${DISPLAY:-:0}"
+                    export XAUTHORITY="${XAUTHORITY:-$USER_HOME/.Xauthority}"
+                    # Launch the GUI in the background as the active GUI user
+                    sudo -u "$REAL_USER" env DISPLAY="$DISPLAY" XAUTHORITY="$XAUTHORITY" ubuntu-hello-gtk &
+                ) 2>/dev/null || true
+            fi
+        fi
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

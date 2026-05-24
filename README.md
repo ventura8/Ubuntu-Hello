@@ -1,133 +1,127 @@
-![](https://boltgolt.nl/howdy/banner.png)
+![](.github/banner.png)
 
 <p align="center">
-	<a href="https://github.com/boltgolt/howdy/releases">
-		<img src="https://img.shields.io/github/release/boltgolt/howdy.svg?colorB=4c1">
+	<a href="https://github.com/ventura8/ubuntu-hello/releases">
+		<img src="https://img.shields.io/github/release/ventura8/ubuntu-hello.svg?colorB=4c1">
 	</a>
-	<a href="https://github.com/boltgolt/howdy/graphs/contributors">
-		<img src="https://img.shields.io/github/contributors/boltgolt/howdy.svg?style=flat">
+	<a href="https://github.com/ventura8/ubuntu-hello/graphs/contributors">
+		<img src="https://img.shields.io/github/contributors/ventura8/ubuntu-hello.svg?style=flat">
 	</a>
-	<a href="https://www.buymeacoffee.com/boltgolt">
-		<img src="https://img.shields.io/badge/endpoint.svg?url=https://boltgolt.nl/howdy/shield.json">
-	</a>
-	<a href="https://actions-badge.atrox.dev/boltgolt/howdy/goto?ref=beta">
-		<img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fboltgolt%2Fhowdy%2Fbadge%3Fref%3Dbeta&style=flat&label=build&logo=none">
-	</a>
-	<a href="https://aur.archlinux.org/packages/howdy">
-		<img src="https://img.shields.io/aur/votes/howdy?color=4c1&label=aur%20votes">
-	</a>
+	<img src="docs/badges/linting.svg" alt="Linting Status">
+	<img src="docs/badges/coverage.svg" alt="Coverage Status">
 </p>
 
-Howdy provides Windows Hello™ style authentication for Linux. Use your built-in IR emitters and camera in combination with facial recognition to prove who you are.
+Ubuntu Hello provides Windows Hello™ style authentication for Linux. Use your built-in IR emitters and camera in combination with facial recognition to prove who you are.
 
 Using the central authentication system (PAM), this works everywhere you would otherwise need your password: Login, lock screen, sudo, su, etc.
 
-## Installation
+## ⚡ Quick Install
 
-Howdy is currently available and packaged for Debian/Ubuntu, Arch Linux, Fedora and openSUSE. If you’re interested in packaging Howdy for your distro, don’t hesitate to open an issue.
+Open a terminal and run:
 
-**Note:** The build of dlib can hang on 100% for over a minute, give it time.
-
-### Ubuntu or Linux Mint
-
-Run the installer by pasting (`ctrl+shift+V`) the following commands into the terminal one at a time:
-
+```bash
+curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/install.sh | sudo bash
 ```
-sudo add-apt-repository ppa:boltgolt/howdy
+
+That's it! The installer will automatically:
+- ✅ Install all required system dependencies
+- ✅ Build and install Ubuntu Hello from source
+- ✅ Download face recognition AI models (~100 MB)
+- ✅ Configure PAM for system-wide facial authentication
+- ✅ Set up Polkit for App Center face auth
+- ✅ Open the configuration GUI when finished
+
+> **After installation**, run `ubuntu-hello-gtk` to start the setup wizard and register your face!
+
+### Uninstall
+
+To completely remove Ubuntu Hello from your system:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/uninstall.sh | sudo bash
+```
+
+Or if you have the repo cloned:
+
+```bash
+sudo bash uninstall.sh
+```
+
+## Installation (alternative methods)
+
+### Ubuntu or Linux Mint (PPA)
+
+```bash
+sudo add-apt-repository ppa:ventura8/ubuntu-hello
 sudo apt update
-sudo apt install howdy
+sudo apt install ubuntu-hello
 ```
-
-This will guide you through the installation.
 
 ### Debian
 
-Download the .deb file from the [Releases page](https://github.com/boltgolt/howdy/releases) and install with gdebi.
+Download the `.deb` file from the [Releases page](https://github.com/ventura8/ubuntu-hello/releases) and install with `gdebi`.
 
-### Arch Linux
+### Building from source manually
 
-_Maintainer wanted._
-
-Install the `howdy` package from the AUR. For AUR installation instructions, take a look at this [wiki page](https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages).
-
-You will need to do some additional configuration steps. Please read the [ArchWiki entry](https://wiki.archlinux.org/index.php/Howdy) for more information.
-
-### Fedora
-
-_Maintainer: [@luyatshimbalanga](https://github.com/luyatshimbalanga)_
-
-The `howdy` package is available as a [Fedora COPR repository](https://copr.fedorainfracloud.org/coprs/principis/howdy/), install it by simply executing the following commands in a terminal:
-
-```
-sudo dnf copr enable principis/howdy
-sudo dnf --refresh install howdy
-```
-
-*Note:* Fedora 41 [removed support for Python2](https://fedoraproject.org/wiki/Changes/RetirePython2.7), but at this point in time Howdy still depends on it. If the install fails, you can fix this by installing the beta Repository and removing the release version:
-
-```
-sudo dnf copr remove principis/howdy
-sudo dnf copr enable principis/howdy-beta
-sudo dnf --refresh install howdy
-```
-
-See the link to the COPR repository for detailed configuration steps.
-
-### openSUSE
-
-_Maintainer: [@dmafanasyev](https://github.com/dmafanasyev)_
-
-Go to the [openSUSE wiki page](https://en.opensuse.org/SDB:Facial_authentication) for detailed installation instructions.
-
-### Building from source
-
-If you want to build Howdy from source, a few dependencies are required.
+<details>
+<summary>Click to expand manual build instructions</summary>
 
 #### Dependencies
 
-- Python 3.6 or higher
-  * pip
-  * setuptools
-  * wheel
-- meson version 0.64 or higher
+- Python 3.6 or higher (with pip, setuptools, wheel)
+- meson ≥ 0.64
 - ninja
-- INIReader (can be pulled from git automatically if not found)
+- dlib (compiled via pip)
+- INIReader (pulled from git automatically if not found)
 - libevdev
 
-To install them on Debian/Ubuntu for example:
+Install dependencies on Ubuntu/Debian:
 
-```
+```bash
 sudo apt-get update && sudo apt-get install -y \
-python3 python3-pip python3-setuptools python3-wheel \
-cmake make build-essential \
-libpam0g-dev libinih-dev libevdev-dev python3-opencv \
-python3-dev libopencv-dev
+  python3 python3-pip python3-dev python3-setuptools python3-wheel \
+  python3-numpy python3-opencv python3-gi python3-gi-cairo \
+  gir1.2-gtk-3.0 \
+  cmake make build-essential g++ \
+  libpam0g-dev libinih-dev libevdev-dev libopencv-dev \
+  libboost-all-dev pkg-config \
+  meson ninja-build git curl wget bzip2 \
+  v4l-utils libopenblas-dev liblapack-dev
 ```
 
-#### Build
+Install dlib:
 
-```sh
-meson setup build
-meson compile -C build
+```bash
+pip3 install dlib --break-system-packages
 ```
 
-You can also install Howdy to your system with `meson install -C build`.
+#### Build & Install
+
+```bash
+meson setup builddir -Dprefix=/usr -Dsysconfdir=/etc -Dlibdir=lib \
+  -Dinstall_pam_config=true -Dwith_polkit=true -Dfetch_dlib_data=true \
+  -Dinih:with_INIReader=true
+meson compile -C builddir
+sudo meson install -C builddir
+```
+
+</details>
 
 ## Setup
 
-After installation, Howdy needs to learn what you look like so it can recognise you later. Run `sudo howdy add` to add a face model.
+After installation, Ubuntu Hello needs to learn what you look like so it can recognise you later. Run the `ubuntu-hello-gtk` configuration GUI to start the setup wizard and register your face.
 
-If nothing went wrong we should be able to run sudo by just showing your face. Open a new terminal and run `sudo -i` to see it in action. Please check [this wiki page](https://github.com/boltgolt/howdy/wiki/Common-issues) if you're experiencing problems or [search](https://github.com/boltgolt/howdy/issues) for similar issues.
+If nothing went wrong we should be able to run sudo by just showing your face. Open a new terminal and run `sudo -i` to see it in action. Please check [this wiki page](https://github.com/ventura8/ubuntu-hello/wiki/Common-issues) if you're experiencing problems or [search](https://github.com/ventura8/ubuntu-hello/issues) for similar issues.
 
-If you're curious you can run `sudo howdy config` to open the central config file and see the options Howdy has to offer. On most systems this will open the nano editor, where you have to press `ctrl`+`x` to save your changes.
+If you're curious you can run `sudo ubuntu-hello config` to open the central config file and see the options Ubuntu Hello has to offer. On most systems this will open the nano editor, where you have to press `ctrl`+`x` to save your changes.
 
 ## CLI
 
-The installer adds a `howdy` command to manage face models for the current user. Use `howdy --help` or `man howdy` to list the available options.
+The installer adds a `ubuntu-hello` command to manage face models for the current user. Use `ubuntu-hello --help` or `man ubuntu-hello` to list the available options.
 
 Usage:
 ```
-howdy [-U user] [-y] command [argument]
+ubuntu-hello [-U user] [-y] command [argument]
 ```
 
 | Command   | Description                                   |
@@ -135,30 +129,38 @@ howdy [-U user] [-y] command [argument]
 | `add`     | Add a new face model for a user               |
 | `clear`   | Remove all face models for a user             |
 | `config`  | Open the config file in your default editor   |
-| `disable` | Disable or enable howdy                       |
+| `disable` | Disable or enable ubuntu-hello                       |
+| `keyring` | Manage automatic keyring unlocking (enable/disable) |
 | `list`    | List all saved face models for a user         |
 | `remove`  | Remove a specific model for a user            |
+| `set`     | Change a configuration option directly        |
 | `snapshot`| Take a snapshot of your camera input          |
 | `test`    | Test the camera and recognition methods       |
 | `version` | Print the current version number              |
 
-## Contributing [![](https://img.shields.io/travis/boltgolt/howdy/dev.svg?label=dev%20build)](https://github.com/boltgolt/howdy/tree/dev) [![](https://img.shields.io/github/issues-raw/boltgolt/howdy/enhancement.svg?label=feature+requests&colorB=4c1)](https://github.com/boltgolt/howdy/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+## Contributing [![](https://img.shields.io/travis/ventura8/ubuntu-hello/dev.svg?label=dev%20build)](https://github.com/ventura8/ubuntu-hello/tree/dev) [![](https://img.shields.io/github/issues-raw/ventura8/ubuntu-hello/enhancement.svg?label=feature+requests&colorB=4c1)](https://github.com/ventura8/ubuntu-hello/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
 
-The easiest ways to contribute to Howdy is by starring the repository and opening GitHub issues for features you'd like to see. If you want to do more, you can also [buy me a coffee](https://www.buymeacoffee.com/boltgolt).
+The easiest ways to contribute to Ubuntu Hello is by starring the repository and opening GitHub issues for features you'd like to see.
 
-Code contributions are also very welcome. If you want to port Howdy to another distro, feel free to open an issue for that too.
+Code contributions are also very welcome. If you want to port Ubuntu Hello to another distro, feel free to open an issue for that too.
 
 ## Troubleshooting
 
 Any Python errors get logged directly into the console and should indicate what went wrong. If authentication still fails but no errors are printed, you could take a look at the last lines in `/var/log/auth.log` to see if anything has been reported there.
 
-Please first check the [wiki on common issues](https://github.com/boltgolt/howdy/wiki/Common-issues) and 
+Please first check the [wiki on common issues](https://github.com/ventura8/ubuntu-hello/wiki/Common-issues) and 
 if you encounter an error that hasn't been reported yet, don't be afraid to open a new issue.
+
+## 🤖 AI Assistance
+
+If you are developing or modifying this codebase using an AI coding assistant, please refer to the following guidebooks:
+* [agent.md](agent.md) — General workspace guidelines, tech stack overview, architecture details, and coding standards.
+* [skills.md](skills.md) — Functional recipes and runbooks for building, testing, troubleshooting, and extending the application.
 
 ## A note on security
 
-This package is in no way as secure as a password and will never be. Although it's harder to fool than normal face recognition, a person who looks similar to you, or a well-printed photo of you could be enough to do it. Howdy is a more quick and convenient way of logging in, not a more secure one.
+This package is in no way as secure as a password and will never be. Although it's harder to fool than normal face recognition, a person who looks similar to you, or a well-printed photo of you could be enough to do it. Ubuntu Hello is a more quick and convenient way of logging in, not a more secure one.
 
-To minimize the chance of this program being compromised, it's recommended to leave Howdy in `/lib/security` and to keep it read-only.
+To minimize the chance of this program being compromised, it's recommended to leave Ubuntu Hello in `/lib/security` and to keep it read-only.
 
-DO NOT USE HOWDY AS THE SOLE AUTHENTICATION METHOD FOR YOUR SYSTEM.
+DO NOT USE UBUNTU_HELLO AS THE SOLE AUTHENTICATION METHOD FOR YOUR SYSTEM.

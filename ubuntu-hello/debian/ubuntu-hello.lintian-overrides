@@ -1,0 +1,7 @@
+# W: Don't require ugly linebreaks in last 5 chars
+ubuntu-hello: debian-changelog-line-too-long
+
+# E: Allows the name Ubuntu Hello to show up in Ubuntu updater
+ubuntu-hello: description-starts-with-package-name
+# E: Allows python for installation scripts
+ubuntu-hello: unknown-control-interpreter

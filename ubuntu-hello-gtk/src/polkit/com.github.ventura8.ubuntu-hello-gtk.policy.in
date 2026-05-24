@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD polkit Policy Configuration 1.0//EN"
+  "https://specifications.freedesktop.org/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <vendor>ventura8</vendor>
+  <vendor_url>https://github.com/ventura8/ubuntu-hello</vendor_url>
+  <icon_name>ubuntu-hello-gtk</icon_name>
+  <action id="com.github.ventura8.ubuntu-hello-gtk">
+    <description>Ubuntu Hello interface</description>
+    <message>Authentication is required to run ubuntu-hello-gtk</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">@python_path@</annotate>
+    <annotate key="org.freedesktop.policykit.exec.argv1">@script_path@</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

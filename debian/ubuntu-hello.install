@@ -1,0 +1,27 @@
+# PAM module
+usr/lib/*/security/pam_ubuntu_hello.so
+
+# Python sources
+usr/lib/*/ubuntu-hello/
+
+# CLI binary
+usr/bin/ubuntu-hello
+
+# Configuration
+etc/ubuntu-hello/
+
+# Bash completion
+usr/share/bash-completion/completions/ubuntu-hello
+
+# PAM config
+usr/share/pam-configs/ubuntu-hello
+etc/pam.d/ubuntu-hello-verify
+
+# Man page
+usr/share/man/man1/ubuntu-hello.1
+
+# Data files
+usr/share/ubuntu-hello/
+
+# Polkit systemd override for camera access
+etc/systemd/system/polkit-agent-helper@.service.d/override.conf

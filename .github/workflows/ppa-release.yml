@@ -1,0 +1,160 @@
+name: PPA Release
+
+# Trigger on version tags like v1.0.0, v1.2.3, etc.
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  PPA_NAME: "ppa:ventura8/ubuntu-hello"
+  MAINTAINER_NAME: "ventura8"
+  MAINTAINER_EMAIL: "alexandrescu.sergiu@gmail.com"
+
+jobs:
+  upload-to-ppa:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Target Ubuntu releases — add/remove as needed
+        distro: [noble, resolute]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential debhelper meson ninja-build \
+            python3 python3-dev \
+            pkg-config libpam0g-dev libinih-dev libevdev-dev \
+            libboost-all-dev cmake g++ \
+            devscripts dput gpg dpkg-dev
+
+      - name: Import GPG key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          # Write key to a temp file to avoid stdin parsing issues
+          GPG_KEY_FILE=$(mktemp)
+          echo "$GPG_PRIVATE_KEY" > "$GPG_KEY_FILE"
+          gpg --batch --import "$GPG_KEY_FILE"
+          rm -f "$GPG_KEY_FILE"
+          # Trust the key ultimately (ownertrust needs full 40-char fingerprint)
+          GPG_FINGERPRINT=$(gpg --list-secret-keys --with-colons | awk -F: '/^fpr:/ {print $10; exit}')
+          echo "${GPG_FINGERPRINT}:6:" | gpg --import-ownertrust
+          # Extract key ID for signing
+          GPG_KEY_ID=$(gpg --list-secret-keys --with-colons --keyid-format long | awk -F: '/^sec:/ {print $5; exit}')
+          echo "GPG_KEY_ID=$GPG_KEY_ID" >> $GITHUB_ENV
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          # Strip 'v' prefix from tag: v1.0.0 → 1.0.0
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Extracted version: $VERSION"
+
+      - name: Update debian/changelog for target release
+        run: |
+          # Generate a PPA version string: 1.0.0-1ppa7~noble1
+          PPA_VERSION="${VERSION}-1ppa7~${{ matrix.distro }}1"
+
+          cat > debian/changelog <<EOF
+          ubuntu-hello (${PPA_VERSION}) ${{ matrix.distro }}; urgency=medium
+
+            * Release ${VERSION}
+            * See https://github.com/ventura8/ubuntu-hello/releases/tag/${GITHUB_REF_NAME}
+
+           -- ${MAINTAINER_NAME} <${MAINTAINER_EMAIL}>  $(date -R)
+          EOF
+
+          # Fix indentation (debian/changelog is whitespace-sensitive)
+          sed -i 's/^          //' debian/changelog
+          echo "--- debian/changelog ---"
+          cat debian/changelog
+
+      - name: Build source package
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          # Create a custom sign command wrapper script to pass passphrase securely and handle args
+          cat << 'EOF' | sed 's/^[[:space:]]*//' > sign-code.sh
+          #!/bin/sh
+          exec gpg --batch --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" "$@"
+          EOF
+          chmod +x sign-code.sh
+
+          # Build a signed source-only package
+          dpkg-buildpackage -S -sa -k"$GPG_KEY_ID" \
+            --sign-command=./sign-code.sh
+
+      - name: Upload to PPA
+        run: |
+          # Configure dput for Launchpad PPA
+          cat > ~/.dput.cf <<EOF
+          [ubuntu-hello-ppa]
+          fqdn = ppa.launchpad.net
+          method = ftp
+          incoming = ~ventura8/ubuntu-hello/ubuntu/
+          login = anonymous
+          allow_unsigned_uploads = 0
+          EOF
+
+          # Upload the .changes file
+          CHANGES_FILE=$(ls ../*.changes | head -1)
+          echo "Uploading: $CHANGES_FILE"
+          dput ubuntu-hello-ppa "$CHANGES_FILE"
+
+      - name: Summary
+        run: |
+          echo "## ✅ PPA Upload Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version:** ${VERSION}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target:** ${{ matrix.distro }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **PPA:** ${PPA_NAME}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Install with:" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "sudo add-apt-repository ${PPA_NAME}" >> $GITHUB_STEP_SUMMARY
+          echo "sudo apt update" >> $GITHUB_STEP_SUMMARY
+          echo "sudo apt install ubuntu-hello" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+  # Also create a GitHub Release with the .deb artifacts
+  github-release:
+    runs-on: ubuntu-latest
+    needs: upload-to-ppa
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential debhelper meson ninja-build \
+            python3 python3-dev \
+            pkg-config libpam0g-dev libinih-dev libevdev-dev \
+            libboost-all-dev cmake g++
+
+      - name: Build binary packages
+        run: |
+          dpkg-buildpackage -b -us -uc
+          mkdir -p artifacts
+          cp ../*.deb artifacts/ 2>/dev/null || true
+          ls -la artifacts/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: artifacts/*.deb
+          generate_release_notes: true
+          draft: false
+          prerelease: false

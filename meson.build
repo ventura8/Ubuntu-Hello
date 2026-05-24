@@ -1,7 +1,7 @@
-project('howdy', 'cpp', license: 'MIT', version: 'beta', meson_version: '>= 0.64.0')
+project('ubuntu-hello', 'cpp', license: 'MIT', version: '1.0.0', meson_version: '>= 0.64.0')
 
 dlibdatadir = get_option('dlib_data_dir') != '' ? get_option('dlib_data_dir') : join_paths(get_option('prefix'), get_option('datadir'), 'dlib-data')
-confdir = get_option('config_dir') != '' ? get_option('config_dir') : join_paths(get_option('prefix'), get_option('sysconfdir'), 'howdy')
+confdir = get_option('config_dir') != '' ? get_option('config_dir') : join_paths(get_option('prefix'), get_option('sysconfdir'), 'ubuntu-hello')
 usermodelsdir = get_option('user_models_dir') != '' ? get_option('user_models_dir') : join_paths(confdir, 'models')
 logpath = get_option('log_path')
 pythonpath = get_option('python_path')
@@ -16,6 +16,6 @@ paths_dict = {
     'python_path': pythonpath
 }
 
-# We need to keep this order beause howdy-gtk defines the gtk script path which is used later in howdy
-subdir('howdy-gtk')
-subdir('howdy')
+# We need to keep this order beause ubuntu-hello-gtk defines the gtk script path which is used later in ubuntu-hello
+subdir('ubuntu-hello-gtk')
+subdir('ubuntu-hello')

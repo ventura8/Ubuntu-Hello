@@ -1,0 +1,77 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    configure)
+        # ── Install dlib via pip ──────────────────────────────────────
+        echo ">>> Installing dlib (this may take a few minutes)..."
+        PIP_FLAGS=""
+        if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)" 2>/dev/null; then
+            PIP_FLAGS="--break-system-packages"
+        fi
+        if ! python3 -c "import dlib" 2>/dev/null; then
+            pip3 install dlib $PIP_FLAGS || echo "WARNING: dlib installation failed. Please install manually: pip3 install dlib $PIP_FLAGS"
+        fi
+
+        # ── Download dlib face recognition models ─────────────────────
+        echo ">>> Downloading face recognition models..."
+        MODELS_DIR="/etc/ubuntu-hello/dlib-data"
+        mkdir -p "$MODELS_DIR"
+
+        MODELS=(
+            "dlib_face_recognition_resnet_model_v1.dat"
+            "mmod_human_face_detector.dat"
+            "shape_predictor_5_face_landmarks.dat"
+        )
+        BASE_URL="https://github.com/davisking/dlib-models/raw/master"
+
+        for model in "${MODELS[@]}"; do
+            if [ -f "$MODELS_DIR/$model" ]; then
+                echo "  $model already exists, skipping."
+                continue
+            fi
+            echo "  Downloading $model..."
+            ARCHIVE="$MODELS_DIR/${model}.bz2"
+            if command -v wget &>/dev/null; then
+                wget -q --tries=5 -O "$ARCHIVE" "${BASE_URL}/${model}.bz2" || true
+            elif command -v curl &>/dev/null; then
+                curl -fsSL --retry 5 -o "$ARCHIVE" "${BASE_URL}/${model}.bz2" || true
+            fi
+            if [ -f "$ARCHIVE" ]; then
+                bunzip2 -f "$ARCHIVE" && echo "  ✔ $model" || echo "  WARNING: Failed to extract $model"
+            else
+                echo "  WARNING: Failed to download $model"
+            fi
+        done
+
+        # ── Set permissions ───────────────────────────────────────────
+        chmod 755 /etc/ubuntu-hello 2>/dev/null || true
+        chmod 755 /etc/ubuntu-hello/dlib-data 2>/dev/null || true
+        mkdir -p /etc/ubuntu-hello/models
+        chmod 755 /etc/ubuntu-hello/models
+        mkdir -p /var/log/ubuntu-hello
+        chmod 755 /var/log/ubuntu-hello
+
+        # ── Configure PAM ─────────────────────────────────────────────
+        echo ">>> Configuring PAM..."
+        pam-auth-update --package 2>/dev/null || true
+
+        # ── Configure Polkit ──────────────────────────────────────────
+        OVERRIDE_DIR="/etc/systemd/system/polkit-agent-helper@.service.d"
+        mkdir -p "$OVERRIDE_DIR"
+        cat > "$OVERRIDE_DIR/override.conf" <<POLKIT_EOF
+[Service]
+PrivateDevices=no
+DeviceAllow=char-video4linux rw
+DeviceAllow=/dev/uinput rw
+POLKIT_EOF
+        chmod 644 "$OVERRIDE_DIR/override.conf"
+        systemctl daemon-reload 2>/dev/null || true
+
+        echo ">>> Ubuntu Hello installation complete!"
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

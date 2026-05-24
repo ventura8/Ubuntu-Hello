@@ -1,0 +1,3 @@
+# PAM configuration for Ubuntu Hello setup wizard password verification
+auth    required    pam_unix.so nullok_secure
+account required    pam_unix.so
