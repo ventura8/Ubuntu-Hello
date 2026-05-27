@@ -56,4 +56,19 @@ auto checkenv(const char *name) -> bool {
   return false;
 }
 
+inline auto is_safe_username(const char *user) -> bool {
+  if (user == nullptr || *user == '\0') {
+    return false;
+  }
+  // Check that it only contains a-z, A-Z, 0-9, _, -, .
+  for (const char *ptr = user; *ptr != '\0'; ptr++) {
+    char chr = *ptr;
+    if ((chr < 'a' || chr > 'z') && (chr < 'A' || chr > 'Z') && (chr < '0' || chr > '9') &&
+        chr != '_' && chr != '-' && chr != '.' && (chr != '$' || *(ptr + 1) != '\0')) {
+      return false;
+    }
+  }
+  return true;
+}
+
 #endif // MAIN_H_

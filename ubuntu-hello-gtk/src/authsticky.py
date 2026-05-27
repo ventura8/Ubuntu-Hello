@@ -20,6 +20,7 @@ from gi.repository import Gio
 
 
 def get_real_user():
+	import re
 	user = os.environ.get("SUDO_USER")
 	if not user or user == "root":
 		pkexec_uid = os.environ.get("PKEXEC_UID")
@@ -39,7 +40,7 @@ def get_real_user():
 	if not user or user == "root":
 		try:
 			import subprocess
-			out = subprocess.check_output("loginctl list-sessions --no-legend", shell=True, text=True)
+			out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
 			for line in out.strip().split("\n"):
 				parts = line.split()
 				if len(parts) >= 3 and parts[2] != "root":
@@ -47,7 +48,9 @@ def get_real_user():
 					break
 		except Exception:
 			pass
-	return user
+	if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+		return user
+	return "root"
 
 
 def get_theme_preference():
@@ -59,8 +62,8 @@ def get_theme_preference():
 
 			import subprocess
 			try:
-				cmd = f"sudo -u {user} env HOME=/home/{user} dconf read /org/gnome/desktop/interface/color-scheme"
-				color_scheme = subprocess.check_output(cmd, shell=True, text=True).strip().strip("'\"")
+				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/color-scheme"]
+				color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
 				if color_scheme == "prefer-dark":
 					return "dark"
 				elif color_scheme == "prefer-light":
@@ -69,16 +72,16 @@ def get_theme_preference():
 				pass
 
 			try:
-				cmd = f"sudo -u {user} env HOME=/home/{user} dconf read /org/gnome/desktop/interface/gtk-theme"
-				gtk_theme = subprocess.check_output(cmd, shell=True, text=True).strip().strip("'\"")
+				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/gtk-theme"]
+				gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
 				if "dark" in gtk_theme.lower():
 					return "dark"
 			except Exception:
 				pass
 
 			try:
-				cmd = f"sudo -u {user} env HOME=/home/{user} gsettings get org.gnome.desktop.interface color-scheme"
-				color_scheme = subprocess.check_output(cmd, shell=True, text=True).strip().strip("'\"")
+				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "color-scheme"]
+				color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
 				if color_scheme == "prefer-dark":
 					return "dark"
 				elif color_scheme == "prefer-light":
@@ -87,8 +90,8 @@ def get_theme_preference():
 				pass
 
 			try:
-				cmd = f"sudo -u {user} env HOME=/home/{user} gsettings get org.gnome.desktop.interface gtk-theme"
-				gtk_theme = subprocess.check_output(cmd, shell=True, text=True).strip().strip("'\"")
+				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "gtk-theme"]
+				gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
 				if "dark" in gtk_theme.lower():
 					return "dark"
 			except Exception:

@@ -1,3 +1,13 @@
+ubuntu-hello (1.0.1-1ppa1) noble; urgency=medium
+
+  * Security Hardening: Relocate keyring context files to root-only /etc/ubuntu-hello/tpm-keys/
+  * Hardened admin GUI process executions against command injection and local privilege escalation
+  * Secure permissions (0700/0600) on user face models and key storage
+  * Fixed math averaging bug in nod liveness checks
+  * Removed legacy debian packaging directories
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Wed, 27 May 2026 19:16:00 +0200
+
 ubuntu-hello (1.0.0-1ppa7) noble; urgency=medium
 
   * Initial PPA release

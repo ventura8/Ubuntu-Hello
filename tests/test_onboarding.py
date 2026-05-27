@@ -852,7 +852,11 @@ def test_run_add_failure():
         ob.dialog = MagicMock()
         ob.go_next_slide = MagicMock()
         
-        with patch("subprocess.getstatusoutput", return_value=(1, "failed to save model")):
+        mock_result = MagicMock()
+        mock_result.returncode = 1
+        mock_result.stdout = ""
+        mock_result.stderr = "failed to save model"
+        with patch("subprocess.run", return_value=mock_result):
             ob.run_add()
             mock_show_error.assert_called_once_with("Can't save face model", "failed to save model")
 
@@ -1070,7 +1074,8 @@ def test_execute_slide7_errors():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_error") as mock_show_error, \
-         patch("onboarding.gtk.MessageDialog"):
+         patch("onboarding.gtk.MessageDialog"), \
+         patch("onboarding.subprocess.Popen"):
         ob = onboarding.OnboardingWindow()
         
         # 1. radio_selected is False
@@ -1092,7 +1097,8 @@ def test_execute_slide7_errors():
 def test_execute_slide7_balanced_and_secure():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.MessageDialog"):
+         patch("onboarding.gtk.MessageDialog"), \
+         patch("onboarding.subprocess.Popen"):
         ob = onboarding.OnboardingWindow()
         
         # Test radiobalanced

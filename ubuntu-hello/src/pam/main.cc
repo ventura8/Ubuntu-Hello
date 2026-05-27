@@ -192,8 +192,8 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
   if (stat(tpm_pub.c_str(), &pub_stat) == 0 && stat(tpm_priv.c_str(), &priv_stat) == 0) {
     // TPM keys exist, unseal password from TPM
     pid_t pid = getpid();
-    std::string p_ctx = "/tmp/p_" + std::to_string(pid) + ".ctx";
-    std::string s_ctx = "/tmp/s_" + std::to_string(pid) + ".ctx";
+    std::string p_ctx = "/etc/ubuntu-hello/tpm-keys/p_" + std::to_string(pid) + ".ctx";
+    std::string s_ctx = "/etc/ubuntu-hello/tpm-keys/s_" + std::to_string(pid) + ".ctx";
     
     std::string cmd = "tpm2_createprimary -C o -c " + p_ctx + " 2>/dev/null && "
                       "tpm2_load -C " + p_ctx + " -u " + tpm_pub + " -r " + tpm_priv + " -c " + s_ctx + " 2>/dev/null && "
@@ -363,9 +363,15 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   // Get the username from PAM, needed to match correct face model
   char *username = nullptr;
   pam_res = pam_get_user(pamh, const_cast<const char **>(&username), nullptr);
-  if (pam_res != PAM_SUCCESS) {
+  if (pam_res != PAM_SUCCESS || username == nullptr) {
     syslog(LOG_ERR, "Failed to get username");
-    return pam_res;
+    return pam_res == PAM_SUCCESS ? PAM_USER_UNKNOWN : pam_res;
+  }
+
+  // Validate username format
+  if (!is_safe_username(username)) {
+    syslog(LOG_ERR, "Invalid username format: %s", username);
+    return PAM_AUTH_ERR;
   }
 
   // Check if we should continue
@@ -616,6 +622,12 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
                                const char **argv) -> int {
   const char *username = nullptr;
   if (pam_get_user(pamh, &username, nullptr) != PAM_SUCCESS || username == nullptr) {
+    return PAM_IGNORE;
+  }
+
+  // Validate username format
+  if (!is_safe_username(username)) {
+    syslog(LOG_ERR, "Invalid username format in pam_sm_setcred: %s", username);
     return PAM_IGNORE;
   }
   

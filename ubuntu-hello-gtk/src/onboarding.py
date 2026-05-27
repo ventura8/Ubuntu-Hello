@@ -77,15 +77,16 @@ class OnboardingWindow(gtk.Window):
 		]
 
 		self.preview_image = self.builder.get_object("preview_image")
-		self.preview_image.set_size_request(160, 120)
+		self.preview_image.set_size_request(400, 300)
 		self.slide4_preview_image = self.builder.get_object("slide4_preview_image")
-		self.slide4_preview_image.set_size_request(160, 120)
+		self.slide4_instruction_label = self.builder.get_object("slide4_instruction_label")
 		self.preview_capture = None
 		self.current_preview_path = None
 		self.preview_thread = None
 
+		self.window.set_position(gtk.WindowPosition.CENTER)
+		self.window.resize(800, 680)
 		self.window.show_all()
-		self.window.resize(500, 480)
 
 		# Hide the finish button initially
 		self.builder.get_object("finishbutton").hide()
@@ -139,7 +140,7 @@ class OnboardingWindow(gtk.Window):
 			self.enable_next()
 			return
 
-		self.proc = subprocess.Popen("./install.sh", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, cwd=paths_factory.dlib_data_dir_path())
+		self.proc = subprocess.Popen(["./install.sh"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=paths_factory.dlib_data_dir_path())
 
 		self.download_lines = []
 		import queue
@@ -215,7 +216,7 @@ class OnboardingWindow(gtk.Window):
 
 			# Get the udevadm details to try to get a better name
 			try:
-				udevadm = subprocess.check_output(["udevadm info -r --query=all -n " + device_path], shell=True).decode("utf-8")
+				udevadm = subprocess.check_output(["udevadm", "info", "-r", "--query=all", "-n", device_path]).decode("utf-8")
 
 				# Loop though udevadm to search for a better name
 				for line in udevadm.split("\n"):
@@ -359,7 +360,7 @@ class OnboardingWindow(gtk.Window):
 			return
 
 		device_path = model.get_value(treeiter, 2)
-		self.proc = subprocess.Popen("ubuntu-hello set device_path " + device_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+		self.proc = subprocess.Popen(["ubuntu-hello", "set", "device_path", device_path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 		self.window.set_focus(self.builder.get_object("scanbutton"))
 
@@ -372,34 +373,37 @@ class OnboardingWindow(gtk.Window):
 		self.preview_thread.start()
 
 	def on_scanbutton_click(self, button):
-		# Stop camera preview to avoid device-busy conflict during face scan
-		self.stop_preview()
+		# Stop camera preview to avoid device-busy conflict during face scan, but keep the image visible
+		self.stop_preview(clear_image=False)
 
 		status = self.proc.wait(2)
 
-		# if status != 0:
-		# 	self.show_error(_("Error setting camera path"), _("Please set the camera path manually"))
+		# Change button label to instruction text and disable it
+		scanbutton = button or self.builder.get_object("scanbutton")
+		if scanbutton:
+			scanbutton.set_label(_("Please look directly into the camera"))
+			scanbutton.set_sensitive(False)
 
-		self.dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL)
-		self.dialog.set_title(_("Creating Model"))
-		self.dialog.props.text = _("Please look directly into the camera")
-		self.dialog.show_all()
-
-		# Wait a bit to allow the user to read the dialog
+		# Wait a bit to allow the user to read the message
 		gobject.timeout_add(600, self.run_add)
 
 	def run_add(self):
-		status, output = subprocess.getstatusoutput(["ubuntu-hello add -y"])
+		res = subprocess.run(["ubuntu-hello", "add", "-y"], capture_output=True, text=True)
+		status, output = res.returncode, res.stdout + res.stderr
 
 		print("ubuntu-hello add output:")
 		print(output)
 
-		self.dialog.destroy()
-
 		if status != 0:
+			# Restore button state in case of error (though exit will close the app)
+			scanbutton = self.builder.get_object("scanbutton")
+			if scanbutton:
+				scanbutton.set_label(_("Start face scan"))
+				scanbutton.set_sensitive(True)
 			self.show_error(_("Can't save face model"), output)
 
 		gobject.timeout_add(10, self.go_next_slide)
+		return False
 
 	def execute_slide5(self):
 		self.enable_next()
@@ -448,6 +452,7 @@ class OnboardingWindow(gtk.Window):
 		pass
 
 	def get_real_user(self):
+		import re
 		user = os.environ.get("SUDO_USER")
 		if not user or user == "root":
 			pkexec_uid = os.environ.get("PKEXEC_UID")
@@ -467,7 +472,7 @@ class OnboardingWindow(gtk.Window):
 		if not user or user == "root":
 			try:
 				import subprocess
-				out = subprocess.check_output("loginctl list-sessions --no-legend", shell=True, text=True)
+				out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
 				for line in out.strip().split("\n"):
 					parts = line.split()
 					if len(parts) >= 3 and parts[2] != "root":
@@ -475,7 +480,9 @@ class OnboardingWindow(gtk.Window):
 						break
 			except Exception:
 				pass
-		return user
+		if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+			return user
+		return "root"
 
 	def validate_and_save_keyring(self):
 		checkbox = self.builder.get_object("keyring_checkbox")
@@ -532,11 +539,11 @@ class OnboardingWindow(gtk.Window):
 						if os.path.exists(path):
 							os.unlink(path)
 							
-					primary_ctx = "/tmp/primary.ctx"
-					subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-					
 					os.makedirs(tpm_keys_dir, exist_ok=True)
 					os.chmod(tpm_keys_dir, 0o700)
+
+					primary_ctx = os.path.join(tpm_keys_dir, f"primary_{os.getpid()}.ctx")
+					subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 					
 					p = subprocess.Popen(["tpm2_create", "-C", primary_ctx, "-i", "-", "-u", pub_file, "-r", priv_file],
 										 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
@@ -624,7 +631,7 @@ class OnboardingWindow(gtk.Window):
 		elif radio_selected == "radiosecure":
 			radio_certanty = 2.2
 
-		self.proc = subprocess.Popen("ubuntu-hello set certainty " + str(radio_certanty), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+		self.proc = subprocess.Popen(["ubuntu-hello", "set", "certainty", str(radio_certanty)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 		self.nextbutton.hide()
 		self.builder.get_object("cancelbutton").hide()
@@ -720,8 +727,12 @@ class OnboardingWindow(gtk.Window):
 			height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 1
 			width = cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 1
 
-			preview_max_height = 120
-			preview_max_width = 160
+			if self.preview_image == self.slide4_preview_image:
+				preview_max_height = 580
+				preview_max_width = 780
+			else:
+				preview_max_height = 300
+				preview_max_width = 400
 
 			scaling_factor = (preview_max_height / height) or 1
 			if width * scaling_factor > preview_max_width:
@@ -757,10 +768,10 @@ class OnboardingWindow(gtk.Window):
 			self.preview_image.set_from_pixbuf(pix)
 		return False
 
-	def stop_preview(self):
+	def stop_preview(self, clear_image=True):
 		self.current_preview_path = None
 		self.preview_capture = None
-		if hasattr(self, 'preview_image') and self.preview_image is not None:
+		if clear_image and hasattr(self, 'preview_image') and self.preview_image is not None:
 			self.preview_image.clear()
 		if hasattr(self, 'preview_thread') and self.preview_thread is not None:
 			try:

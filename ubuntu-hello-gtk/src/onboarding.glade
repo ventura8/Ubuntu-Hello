@@ -33,8 +33,7 @@
     <property name="title" translatable="yes">Welcome to Ubuntu Hello</property>
     <property name="window-position">center</property>
     <property name="icon">logo.png</property>
-    <property name="type-hint">menu</property>
-    <property name="gravity">center</property>
+    <property name="type-hint">normal</property>
     <child>
       <object class="GtkBox" id="slidecontainer">
         <property name="visible">True</property>
@@ -464,19 +463,36 @@ but will take much longer to authenticate you</property>
               <object class="GtkImage" id="slide4_preview_image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="slide4_instruction_label">
+                <property name="visible">False</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">4</property>
+                <property name="label" translatable="yes">Please look directly into the camera</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
               <object class="GtkBox" id="box1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">10</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -509,12 +525,12 @@ but will take much longer to authenticate you</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">4</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">2</property>
           </packing>

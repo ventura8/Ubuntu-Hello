@@ -66,12 +66,11 @@ if action == "enable":
             if os.path.exists(key_file):
                 os.unlink(key_file)
                 
-            primary_ctx = "/tmp/primary.ctx"
-            subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            
             os.makedirs(tpm_keys_dir, exist_ok=True)
-			# Explicit python-based chmod logic for safety
             os.chmod(tpm_keys_dir, 0o700)
+
+            primary_ctx = os.path.join(tpm_keys_dir, f"primary_{os.getpid()}.ctx")
+            subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             
             p = subprocess.Popen(["tpm2_create", "-C", primary_ctx, "-i", "-", "-u", pub_file, "-r", priv_file],
                                  stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)

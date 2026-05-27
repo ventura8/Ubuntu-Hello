@@ -48,7 +48,9 @@ case "$1" in
         chmod 755 /etc/ubuntu-hello 2>/dev/null || true
         chmod 755 /etc/ubuntu-hello/dlib-data 2>/dev/null || true
         mkdir -p /etc/ubuntu-hello/models
-        chmod 755 /etc/ubuntu-hello/models
+        chmod 700 /etc/ubuntu-hello/models
+        mkdir -p /etc/ubuntu-hello/tpm-keys
+        chmod 700 /etc/ubuntu-hello/tpm-keys
         mkdir -p /var/log/ubuntu-hello
         chmod 755 /var/log/ubuntu-hello
 
