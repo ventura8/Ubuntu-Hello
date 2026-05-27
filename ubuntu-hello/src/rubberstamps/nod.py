@@ -48,7 +48,7 @@ class nod(RubberStamp):
 			# Calculate the relative distance between the 2 eyes
 			reldist = face_landmarks.part(0).x - face_landmarks.part(2).x
 			# Average this out with the distance found in the last frame to smooth it out
-			avg_reldist = (last_reldist + reldist) / 2
+			avg_reldist = reldist if last_reldist == -1 else (last_reldist + reldist) / 2
 
 			# Calculate horizontal movement (shaking head) and vertical movement (nodding)
 			for axis in ["x", "y"]:

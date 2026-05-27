@@ -132,11 +132,11 @@ def on_keyring_enable(self, button):
 				if os.path.exists(path):
 					os.unlink(path)
 				
-			primary_ctx = "/tmp/primary.ctx"
-			subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-			
 			os.makedirs(tpm_keys_dir, exist_ok=True)
 			os.chmod(tpm_keys_dir, 0o700)
+
+			primary_ctx = os.path.join(tpm_keys_dir, f"primary_{os.getpid()}.ctx")
+			subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 			
 			p = subprocess.Popen(["tpm2_create", "-C", primary_ctx, "-i", "-", "-u", pub_file, "-r", priv_file],
 								 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)

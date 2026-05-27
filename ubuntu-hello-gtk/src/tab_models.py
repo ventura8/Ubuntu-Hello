@@ -84,7 +84,8 @@ def on_model_add(self, button):
 
 def execute_add(box, dialog, entered_name):
 
-	status, output = subprocess.getstatusoutput(["ubuntu-hello add '" + entered_name + "' -y -U " + box.active_user])
+	res = subprocess.run(["ubuntu-hello", "add", entered_name, "-y", "-U", box.active_user], capture_output=True, text=True)
+	status, output = res.returncode, res.stdout + res.stderr
 
 	dialog.destroy()
 
@@ -113,7 +114,8 @@ def on_model_delete(self, button):
 		dialog.destroy()
 
 		if response == gtk.ResponseType.OK:
-			status, output = subprocess.getstatusoutput(["ubuntu-hello remove " + id + " -y -U " + self.active_user])
+			res = subprocess.run(["ubuntu-hello", "remove", str(id), "-y", "-U", self.active_user], capture_output=True, text=True)
+			status, output = res.returncode, res.stdout + res.stderr
 
 			if status != 0:
 				dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)

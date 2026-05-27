@@ -61,8 +61,8 @@ jobs:
 
       - name: Update debian/changelog for target release
         run: |
-          # Generate a PPA version string: 1.0.0-1ppa7~noble1
-          PPA_VERSION="${VERSION}-1ppa7~${{ matrix.distro }}1"
+          # Generate a PPA version string: 1.0.0-1ppa1~noble1
+          PPA_VERSION="${VERSION}-1ppa1~${{ matrix.distro }}1"
 
           cat > debian/changelog <<EOF
           ubuntu-hello (${PPA_VERSION}) ${{ matrix.distro }}; urgency=medium

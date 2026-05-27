@@ -154,17 +154,28 @@ class TestTabModels:
         box.active_user = "testuser"
         dialog = MagicMock()
 
-        with patch("subprocess.getstatusoutput", return_value=(0, "ok")):
+        mock_result = MagicMock()
+        mock_result.returncode = 0
+        mock_result.stdout = "ok"
+        mock_result.stderr = ""
+
+        with patch("subprocess.run", return_value=mock_result) as mock_run:
             tab_models.execute_add(box, dialog, "model1")
             dialog.destroy.assert_called_once()
             box.load_model_list.assert_called_once()
+            mock_run.assert_called_once_with(["ubuntu-hello", "add", "model1", "-y", "-U", "testuser"], capture_output=True, text=True)
 
     def test_execute_add_failure(self):
         box = MagicMock()
         box.active_user = "testuser"
         dialog = MagicMock()
 
-        with patch("subprocess.getstatusoutput", return_value=(1, "error")), \
+        mock_result = MagicMock()
+        mock_result.returncode = 1
+        mock_result.stdout = ""
+        mock_result.stderr = "error"
+
+        with patch("subprocess.run", return_value=mock_result), \
              patch("tab_models.gtk.MessageDialog") as mock_err:
             err_dialog = mock_err.return_value
             tab_models.execute_add(box, dialog, "model1")
@@ -476,7 +487,7 @@ class TestKeyringDetails:
         mock.window = MagicMock()
 
         def exists_side_effect(path):
-            return path in ["/dev/tpmrm0", "/dev/tpm0", "/tmp/primary.ctx"]
+            return path in ["/dev/tpmrm0", "/dev/tpm0"] or "primary_" in path
 
         mock_popen = MagicMock()
         mock_popen.communicate.return_value = (b"", b"tpm error")
@@ -498,7 +509,8 @@ class TestKeyringDetails:
             dialog.entry1.get_text.return_value = "correctpass"
 
             tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_unlink.assert_any_call("/tmp/primary.ctx")
+            unlinked_paths = [call[0][0] for call in mock_unlink.call_args_list]
+            assert any("primary_" in path for path in unlinked_paths)
             mock_msg_dialog_cls.assert_called_once()
 
     def test_on_keyring_enable_tpm_install_tools(self):
@@ -774,11 +786,16 @@ class TestTabModelsDetails:
         mock_dialog = MagicMock()
         mock_dialog.run.return_value = 1  # ResponseType.OK
 
+        mock_result = MagicMock()
+        mock_result.returncode = 0
+        mock_result.stdout = "success"
+        mock_result.stderr = ""
+
         with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("subprocess.getstatusoutput", return_value=(0, "success")) as mock_sub:
+             patch("subprocess.run", return_value=mock_result) as mock_run:
             
             tab_models.on_model_delete(mock, MagicMock())
-            mock_sub.assert_called_once_with(["ubuntu-hello remove 123 -y -U testuser"])
+            mock_run.assert_called_once_with(["ubuntu-hello", "remove", "123", "-y", "-U", "testuser"], capture_output=True, text=True)
             mock.load_model_list.assert_called_once()
 
     def test_on_model_delete_failure(self):
@@ -793,9 +810,14 @@ class TestTabModelsDetails:
         mock_confirm = MagicMock()
         mock_confirm.run.return_value = 1
         mock_error = MagicMock()
+
+        mock_result = MagicMock()
+        mock_result.returncode = 1
+        mock_result.stdout = ""
+        mock_result.stderr = "some error"
         
         with patch("tab_models.gtk.MessageDialog", side_effect=[mock_confirm, mock_error]), \
-             patch("subprocess.getstatusoutput", return_value=(1, "some error")):
+             patch("subprocess.run", return_value=mock_result):
             
             tab_models.on_model_delete(mock, MagicMock())
             mock_error.run.assert_called_once()

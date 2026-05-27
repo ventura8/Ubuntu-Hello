@@ -79,6 +79,12 @@ if len(sys.argv) < 2:
 # Parse all arguments above
 args = parser.parse_args()
 
+# Validate the username format
+import re
+if not re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", args.user):
+	print(_("Invalid username format"))
+	sys.exit(1)
+
 # Save the args and user as builtins which can be accessed by the imports
 builtins.ubuntu_hello_args = args
 builtins.ubuntu_hello_user = args.user
@@ -117,4 +123,4 @@ elif args.command == "snapshot":
 elif args.command == "test":
 	import cli.test
 else:
-	print("Ubuntu Hello 1.0.0")
+	print("Ubuntu Hello 1.0.1")

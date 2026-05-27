@@ -141,7 +141,7 @@ if [ -f "meson.build" ] && grep -q "ubuntu-hello" meson.build 2>/dev/null; then
     SOURCE_DIR="$(pwd)"
     success "Using existing source directory: $SOURCE_DIR"
 else
-    SOURCE_DIR="/tmp/ubuntu-hello-build-$$"
+    SOURCE_DIR=$(mktemp -d /tmp/ubuntu-hello-build-XXXXXX)
     echo -e "  Cloning repository..."
     git clone --depth 1 "$REPO_URL" "$SOURCE_DIR" 2>&1 | tail -1
     INSTALL_FROM_CLONE=true
@@ -276,7 +276,11 @@ chmod 755 /etc/ubuntu-hello/dlib-data 2>/dev/null || true
 
 # Ensure models directory exists
 mkdir -p /etc/ubuntu-hello/models
-chmod 755 /etc/ubuntu-hello/models
+chmod 700 /etc/ubuntu-hello/models
+
+# Ensure tpm keys directory exists
+mkdir -p /etc/ubuntu-hello/tpm-keys
+chmod 700 /etc/ubuntu-hello/tpm-keys
 
 # Ensure log directory exists
 mkdir -p /var/log/ubuntu-hello

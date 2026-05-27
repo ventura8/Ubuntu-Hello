@@ -208,6 +208,7 @@ encodings.append(insert_model)
 # Save the new encodings to disk
 with open(enc_file, "w") as datafile:
 	json.dump(encodings, datafile)
+os.chmod(enc_file, 0o600)
 
 # Give let the user know how it went
 print(_("""\nScan complete
