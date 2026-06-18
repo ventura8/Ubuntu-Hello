@@ -201,7 +201,7 @@ class TestTabVideo:
     def test_capture_frame_none(self):
         mock = MagicMock()
         mock.capture = None
-        assert tab_video.capture_frame(mock) is None
+        assert tab_video.capture_frame(mock) is False
 
     def test_on_camera_change_exception(self):
         mock = MagicMock()
@@ -256,6 +256,7 @@ class TestTabVideo:
 
     def test_on_page_switch_1_success(self):
         mock = MagicMock()
+        mock.video_loop_active = False
         mock.capture = None
         
         mock_capture = MagicMock()
@@ -296,6 +297,7 @@ class TestTabVideo:
 
     def test_on_page_switch_1_opencv_import_fail(self):
         mock = MagicMock()
+        mock.video_loop_active = False
         mock.capture = MagicMock()
         mock.capture.get.return_value = 100
         mock.cv2 = MagicMock()

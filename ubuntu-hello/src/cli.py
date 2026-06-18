@@ -3,6 +3,9 @@
 # Import required modules
 import sys
 import os
+# Set secure umask for all created files/directories (0o077 ensures only owner has access)
+os.umask(0o077)
+
 import pwd
 import getpass
 import argparse
@@ -123,4 +126,25 @@ elif args.command == "snapshot":
 elif args.command == "test":
 	import cli.test
 else:
-	print("Ubuntu Hello 1.0.2")
+	version = "unknown"
+	try:
+		import paths
+		if hasattr(paths, "version") and paths.version and not paths.version.startswith("@"):
+			version = paths.version
+	except Exception:
+		pass
+
+	if version == "unknown":
+		try:
+			current_dir = os.path.dirname(os.path.abspath(__file__))
+			meson_file = os.path.join(current_dir, "..", "..", "meson.build")
+			if os.path.exists(meson_file):
+				import re
+				with open(meson_file, "r") as f:
+					meson_content = f.read()
+				match = re.search(r"version\s*:\s*['\"]([^'\"]+)['\"]", meson_content)
+				if match:
+					version = match.group(1)
+		except Exception:
+			pass
+	print(f"Ubuntu Hello {version}")

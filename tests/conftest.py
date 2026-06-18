@@ -24,6 +24,7 @@ mock_paths.dlib_data_dir = PurePath("/usr/share/ubuntu-hello/dlib-data")
 mock_paths.user_models_dir = PurePath("/etc/ubuntu-hello/models")
 mock_paths.log_path = PurePath("/var/log/ubuntu-hello")
 mock_paths.data_dir = PurePath("/usr/share/ubuntu-hello")
+mock_paths.version = "1.0.3-dev"
 sys.modules['paths'] = mock_paths
 
 # Create mock for keyboard module
