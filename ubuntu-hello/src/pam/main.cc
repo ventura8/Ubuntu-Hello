@@ -199,6 +199,10 @@ auto popen_as_root(const std::string &cmd, const char *type) -> FILE * {
   if (altered) {
     if (setreuid(ruid, euid) != 0) {
       syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
+      if (file_pipe != nullptr) {
+        pclose(file_pipe);
+      }
+      return nullptr;
     }
   }
 
@@ -442,8 +446,9 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     }
   }
 
-  const char *const args[] = {PYTHON_EXECUTABLE_PATH, // NOLINT
-                              COMPARE_PROCESS_PATH, username, nullptr};
+  std::array<char *, 4> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
+                                const_cast<char *>(COMPARE_PROCESS_PATH),
+                                username, nullptr};
   pid_t child_pid;
 
   posix_spawn_file_actions_t actions;
@@ -453,7 +458,7 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
 
   // Start the python subprocess
   int spawn_err = posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, nullptr,
-                               const_cast<char *const *>(args), nullptr);
+                               args.data(), nullptr);
   posix_spawn_file_actions_destroy(&actions);
 
   if (spawn_err != 0) {

@@ -3,6 +3,9 @@ import gi
 import signal
 import sys
 import os
+# Set secure umask for all created files/directories (0o077 ensures only owner has access)
+os.umask(0o077)
+
 import subprocess
 
 from i18n import _
@@ -45,6 +48,10 @@ class MainWindow(gtk.Window):
 		self.keyring_status_label = self.builder.get_object("keyring_status_label")
 		self.keyring_enable_button = self.builder.get_object("keyring_enable_button")
 		self.keyring_disable_button = self.builder.get_object("keyring_disable_button")
+
+		self.version_label = self.builder.get_object("version_label")
+		if self.version_label:
+			self.version_label.set_text(self.get_display_version())
 
 		self.window.connect("destroy", self.exit)
 		self.window.connect("delete_event", self.exit)
@@ -175,6 +182,63 @@ class MainWindow(gtk.Window):
 
 		gtk.main_quit()
 		sys.exit(0)
+
+	def get_display_version(self):
+		"""Determine if running a dev version or release version, and return formatted version string"""
+		version = "unknown"
+		try:
+			import paths
+			if hasattr(paths, "version") and paths.version and not paths.version.startswith("@"):
+				version = paths.version
+		except Exception:
+			pass
+
+		if "(Development)" in version or "-dev" in version or "dirty" in version:
+			if version.startswith("v"):
+				return version
+			return f"v{version}"
+
+		try:
+			current_dir = os.path.dirname(os.path.abspath(__file__))
+			res = subprocess.run(
+				["git", "-C", current_dir, "rev-parse", "--is-inside-work-tree"],
+				capture_output=True,
+				text=True
+			)
+			if res.returncode == 0 and res.stdout.strip() == "true":
+				root_res = subprocess.run(
+					["git", "-C", current_dir, "rev-parse", "--show-toplevel"],
+					capture_output=True,
+					text=True
+				)
+				if root_res.returncode == 0:
+					root_dir = root_res.stdout.strip()
+					meson_file = os.path.join(root_dir, "meson.build")
+					if os.path.exists(meson_file):
+						import re
+						with open(meson_file, "r") as f:
+							meson_content = f.read()
+						match = re.search(r"version\s*:\s*['\"]([^'\"]+)['\"]", meson_content)
+						if match:
+							version = match.group(1)
+
+				commit_res = subprocess.run(
+					["git", "-C", current_dir, "describe", "--tags", "--always", "--dirty"],
+					capture_output=True,
+					text=True
+				)
+				if commit_res.returncode == 0:
+					git_ver = commit_res.stdout.strip()
+					if git_ver.startswith("v"):
+						return f"{git_ver} (Development)"
+					return f"v{version}-dev ({git_ver})"
+				return f"v{version}-dev"
+		except Exception:
+			pass
+
+		if version.startswith("v"):
+			return f"{version} (Release)"
+		return f"v{version} (Release)"
 
 
 # Make sure we quit on a SIGINT

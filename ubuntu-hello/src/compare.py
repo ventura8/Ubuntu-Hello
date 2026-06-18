@@ -12,6 +12,9 @@ timings = {
 # Import required modules
 import sys
 import os
+# Set secure umask for all created files/directories (0o077 ensures only owner has access)
+os.umask(0o077)
+
 import json
 import configparser
 import dlib
@@ -102,6 +105,12 @@ if len(sys.argv) < 2:
 
 # The username of the user being authenticated
 user = sys.argv[1]
+
+# Validate username format to prevent path traversal or malicious inputs
+import re
+if not re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+	print("Invalid username format")
+	exit(12)
 # The model file contents
 models = []
 # Encoded face models

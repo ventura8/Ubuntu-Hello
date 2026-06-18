@@ -1,3 +1,12 @@
+ubuntu-hello (1.0.3-1ppa1) noble; urgency=medium
+
+  * Dynamic build-time Git version resolution to correctly track development vs release environments.
+  * Hardened file creation permissions using secure umask 077 across python executables.
+  * Added defense-in-depth username format validation to face comparison subprocess.
+  * Restructured security documentation with umask and input validation mitigations.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Thu, 18 Jun 2026 17:30:00 +0300
+
 ubuntu-hello (1.0.2-1ppa1) noble; urgency=medium
 
   * Prevented privilege dropping in setuid/PAM environments by temporarily setting RUID to 0 during subprocess execution.

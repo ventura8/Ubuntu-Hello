@@ -30,6 +30,9 @@ def get_camera_devices():
 
 def on_page_switch(self, notebook, page, page_num):
 	if page_num == 1:
+		if getattr(self, "video_loop_active", False):
+			return
+		self.video_loop_active = True
 
 		try:
 			self.config = configparser.ConfigParser()
@@ -95,9 +98,11 @@ def on_page_switch(self, notebook, page, page_num):
 
 		gobject.timeout_add(10, self.capture_frame)
 
-	elif self.capture is not None:
-		self.capture.release()
-		self.capture = None
+	else:
+		self.video_loop_active = False
+		if self.capture is not None:
+			self.capture.release()
+			self.capture = None
 
 
 def on_camera_change(self, combo):
@@ -138,13 +143,13 @@ def on_camera_change(self, combo):
 
 
 def capture_frame(self):
-	if self.capture is None:
-		return
+	if not getattr(self, "video_loop_active", False) or self.capture is None:
+		return False
 
 	ret, frame = self.capture.read()
 	if not ret or frame is None:
 		gobject.timeout_add(20, self.capture_frame)
-		return
+		return False
 
 	frame = self.cv2.resize(frame, None, fx=self.scaling_factor, fy=self.scaling_factor, interpolation=self.cv2.INTER_AREA)
 
@@ -158,3 +163,4 @@ def capture_frame(self):
 	self.opencvimage.set_from_pixbuf(buffer)
 
 	gobject.timeout_add(20, self.capture_frame)
+	return False

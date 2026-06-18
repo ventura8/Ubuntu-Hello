@@ -19,6 +19,14 @@ shared_library(
 	'pam_ubuntu_hello',
 	'main.cc',
 	'enter_device.cc',
+	cpp_args: [
+		'-fstack-protector-strong',
+		'-D_FORTIFY_SOURCE=2',
+	],
+	link_args: [
+		'-Wl,-z,relro',
+		'-Wl,-z,now',
+	],
 	dependencies: [
 		libpam,
 		inih_cpp,
