@@ -52,6 +52,9 @@ class KeyringPasswordDialog(gtk.Dialog):
 class OnboardingWindow(gtk.Window):
 	def __init__(self):
 		"""Initialize the sticky window"""
+		# Load the custom CSS theme stylesheet
+		paths_factory.load_custom_css()
+
 		# Make the class a GTK window
 		gtk.Window.__init__(self)
 
@@ -83,16 +86,33 @@ class OnboardingWindow(gtk.Window):
 		]
 
 		self.preview_image = self.builder.get_object("preview_image")
-		self.preview_image.set_size_request(400, 300)
+		self.preview_image.set_size_request(400, 200)
 		self.slide4_preview_image = self.builder.get_object("slide4_preview_image")
+		self.slide4_preview_image.set_size_request(600, 350)
 		self.slide4_instruction_label = self.builder.get_object("slide4_instruction_label")
 		self.preview_capture = None
 		self.current_preview_path = None
 		self.preview_thread = None
 
+		self.window.set_default_size(800, 680)
 		self.window.set_position(gtk.WindowPosition.CENTER)
-		self.window.resize(800, 680)
 		self.window.show_all()
+
+		try:
+			screen = self.window.get_screen()
+			display = screen.get_display() if screen else gdk.Display.get_default()
+			monitor = display.get_primary_monitor() if display else None
+			if monitor:
+				geometry = monitor.get_geometry()
+				x = geometry.x + (geometry.width - 800) // 2
+				y = geometry.y + (geometry.height - 680) // 2
+				self.window.move(x, y)
+			elif screen:
+				x = (screen.get_width() - 800) // 2
+				y = (screen.get_height() - 680) // 2
+				self.window.move(x, y)
+		except Exception as e:
+			print("Error centering window:", e)
 
 		# Hide the finish button initially
 		self.builder.get_object("finishbutton").hide()
@@ -138,7 +158,6 @@ class OnboardingWindow(gtk.Window):
 	def execute_slide1(self):
 		self.downloadoutputlabel = self.builder.get_object("downloadoutputlabel")
 		eventbox = self.builder.get_object("downloadeventbox")
-		eventbox.modify_bg(gtk.StateType.NORMAL, gdk.Color(red=0, green=0, blue=0))
 
 		# TODO: Better way to do this?
 		if os.path.exists(paths_factory.dlib_data_dir_path() / "shape_predictor_5_face_landmarks.dat"):
@@ -655,7 +674,7 @@ class OnboardingWindow(gtk.Window):
 
 		if status != 0:
 			# Non-fatal warning instead of exiting the wizard. Show dialog but do not call self.show_error which exits!
-			dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.WARNING, buttons=gtk.ButtonsType.CLOSE)
+			dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.WARNING, buttons=gtk.ButtonsType.CLOSE)
 			dialog.set_title(_("Ubuntu Hello Setup Warning"))
 			dialog.props.text = _("Could not save certainty preference, but setup is otherwise complete.")
 			dialog.run()
@@ -671,7 +690,7 @@ class OnboardingWindow(gtk.Window):
 		self.window.set_focus(self.nextbutton)
 
 	def show_error(self, error, secon=""):
-		dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
+		dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
 		dialog.set_title(_("Ubuntu Hello Error"))
 		dialog.props.text = error
 		dialog.format_secondary_text(secon)
@@ -734,11 +753,11 @@ class OnboardingWindow(gtk.Window):
 			width = cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 1
 
 			if self.preview_image == self.slide4_preview_image:
-				preview_max_height = 580
+				preview_max_height = 350
 				preview_max_width = 780
 			else:
-				preview_max_height = 300
-				preview_max_width = 400
+				preview_max_height = 200
+				preview_max_width = 780
 
 			scaling_factor = (preview_max_height / height) or 1
 			if width * scaling_factor > preview_max_width:

@@ -1,5 +1,5 @@
 if meson.is_subproject()
-project('ubuntu-hello-gtk', license: 'MIT', version: '1.0.3', meson_version: '>= 0.64.0')
+project('ubuntu-hello-gtk', license: 'MIT', version: '1.0.4', meson_version: '>= 0.64.0')
 endif
 
 datadir = get_option('prefix') / get_option('datadir') / 'ubuntu-hello-gtk'
@@ -76,6 +76,7 @@ install_data(
 interface_files = files(
     'src/main.glade',
     'src/onboarding.glade',
+    'src/style.css',
 )
 install_data(interface_files, install_dir: datadir)
 

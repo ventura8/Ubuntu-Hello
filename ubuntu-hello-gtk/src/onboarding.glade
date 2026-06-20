@@ -27,13 +27,23 @@
     <property name="stock">gtk-media-play</property>
   </object>
   <object class="GtkWindow" id="onboardingwindow">
-    <property name="width-request">500</property>
-    <property name="height-request">400</property>
-    <property name="can-focus">False</property>
+    <property name="width_request">800</property>
+    <property name="height_request">680</property>
+    <property name="default_width">800</property>
+    <property name="default_height">680</property>
+    <property name="can_focus">False</property>
     <property name="title" translatable="yes">Welcome to Ubuntu Hello</property>
-    <property name="window-position">center</property>
+    <property name="window_position">center</property>
     <property name="icon">logo.png</property>
-    <property name="type-hint">normal</property>
+    <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="headerbar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Welcome to Ubuntu Hello</property>
+        <property name="show_close_button">True</property>
+      </object>
+    </child>
     <child>
       <object class="GtkBox" id="slidecontainer">
         <property name="visible">True</property>
@@ -463,6 +473,9 @@ but will take much longer to authenticate you</property>
               <object class="GtkImage" id="slide4_preview_image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <style>
+                  <class name="preview-frame"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -511,6 +524,9 @@ but will take much longer to authenticate you</property>
                     <property name="image-position">right</property>
                     <property name="always-show-image">True</property>
                     <signal name="clicked" handler="on_scanbutton_click" swapped="no"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -585,6 +601,9 @@ but will take much longer to authenticate you</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="slide3_button_yes" swapped="no"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -599,6 +618,9 @@ but will take much longer to authenticate you</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="slide3_button_no" swapped="no"/>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -689,6 +711,9 @@ but will take much longer to authenticate you</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
+                    <style>
+                      <class name="preview-frame"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -751,7 +776,7 @@ but will take much longer to authenticate you</property>
               </packing>
             </child>
             <child>
-              <object class="GtkEventBox" id="downloadeventbox">
+               <object class="GtkEventBox" id="downloadeventbox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
@@ -763,12 +788,14 @@ but will take much longer to authenticate you</property>
                     <property name="margin-top">10</property>
                     <property name="label" translatable="yes">Starting download...</property>
                     <property name="justify">center</property>
-                    <attributes>
-                      <attribute name="foreground" value="#f3f3f3f3f3f3"/>
-                      <attribute name="background" value="#000000000000"/>
-                    </attributes>
+                    <style>
+                      <class name="terminal-label"/>
+                    </style>
                   </object>
                 </child>
+                <style>
+                  <class name="terminal-box"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -901,6 +928,9 @@ but will take much longer to authenticate you</property>
                 <property name="image-position">right</property>
                 <property name="always-show-image">True</property>
                 <signal name="clicked" handler="go_next_slide" swapped="no"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -921,6 +951,9 @@ but will take much longer to authenticate you</property>
                 <property name="relief">none</property>
                 <property name="always-show-image">True</property>
                 <signal name="clicked" handler="on_finishbutton_click" swapped="no"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">False</property>

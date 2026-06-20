@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    purge|remove)
+        # Find and remove any leftover __pycache__ directories and .pyc files
+        # in the python source directories to prevent empty directory warnings
+        for libdir in /usr/lib/*/ubuntu-hello; do
+            if [ -d "$libdir" ]; then
+                find "$libdir" -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
+                find "$libdir" -name "*.pyc" -type f -delete 2>/dev/null || true
+                find "$libdir" -depth -type d -empty -delete 2>/dev/null || true
+            fi
+        done
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

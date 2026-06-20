@@ -1,0 +1,163 @@
+/* Style sheet for modernizing Ubuntu Hello GTK application to Ubuntu 26.04 (Yaru) aesthetics */
+
+* {
+    font-family: "Ubuntu", "Ubuntu Sans", "Liberation Sans", sans-serif;
+}
+
+/* Primary suggested actions (e.g. Next, Finish, Scan, Add buttons) */
+.suggested-action,
+button.suggested-action {
+    background-image: none;
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    border: 1px solid shade(@theme_selected_bg_color, 0.85);
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 6px 16px;
+    text-shadow: none;
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.suggested-action:hover,
+button.suggested-action:hover {
+    background-color: shade(@theme_selected_bg_color, 1.1);
+}
+
+.suggested-action:active,
+button.suggested-action:active {
+    background-color: shade(@theme_selected_bg_color, 0.9);
+}
+
+.suggested-action:disabled,
+button.suggested-action:disabled {
+    background-color: alpha(@theme_selected_bg_color, 0.3);
+    color: alpha(@theme_selected_fg_color, 0.6);
+    border-color: transparent;
+}
+
+/* Destructive actions (e.g. Delete, Cancel buttons) */
+.destructive-action,
+button.destructive-action {
+    background-image: none;
+    background-color: @error_color;
+    color: @theme_selected_fg_color;
+    border: 1px solid shade(@error_color, 0.85);
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 6px 16px;
+    text-shadow: none;
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.destructive-action:hover,
+button.destructive-action:hover {
+    background-color: shade(@error_color, 1.1);
+}
+
+.destructive-action:active,
+button.destructive-action:active {
+    background-color: shade(@error_color, 0.9);
+}
+
+/* Secondary normal buttons (excluding window control buttons on the headerbar) */
+button:not(.titlebutton) {
+    border-radius: 6px;
+    padding: 6px 12px;
+    transition: all 0.15s ease;
+}
+
+/* Modern HeaderBar Titlebar CSD */
+headerbar {
+    background-color: transparent;
+    padding: 8px 12px;
+    border-bottom: 1px solid @borders;
+}
+
+headerbar .title {
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+/* Styling vertical tabs of the settings app notebook to look like a sidebar */
+notebook {
+    background-color: transparent;
+}
+
+notebook > header.left {
+    background-color: shade(@theme_bg_color, 0.97);
+    border-right: 1px solid @borders;
+    padding: 10px 0;
+}
+
+notebook > header.left > tabs > tab {
+    padding: 12px 18px;
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    color: inherit;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+notebook > header.left > tabs > tab:hover {
+    background-color: alpha(@theme_selected_bg_color, 0.08);
+    color: @theme_selected_bg_color;
+}
+
+notebook > header.left > tabs > tab:checked,
+notebook > header.left > tabs > tab:active {
+    background-color: alpha(@theme_selected_bg_color, 0.15);
+    color: @theme_selected_bg_color;
+    border-left: 3px solid @theme_selected_bg_color;
+    font-weight: bold;
+}
+
+/* Dimmed details label style */
+.dim-label {
+    opacity: 0.65;
+    font-size: 0.9em;
+}
+
+/* Sleek dark terminal style for download output logs */
+.terminal-box {
+    background-color: @theme_base_color;
+    border-radius: 8px;
+    border: 1px solid @borders;
+}
+
+.terminal-label {
+    font-family: "Ubuntu Mono", "Courier New", monospace;
+    color: @theme_text_color;
+    font-size: 13px;
+    padding: 14px;
+}
+
+/* Modern styling for the webcam preview frames */
+.preview-frame {
+    border-radius: 12px;
+    border: 3px solid @borders;
+    background-color: #000000;
+}
+
+/* Keyring and password info boxes */
+.keyring-password-box entry {
+    border-radius: 6px;
+    padding: 8px;
+}
+
+/* General spacings and margins */
+label {
+    margin: 4px;
+}
+
+/* Treeview/lists header styling */
+treeview header button {
+    font-weight: bold;
+    padding: 6px;
+}
+
+treeview {
+    border-radius: 6px;
+}
