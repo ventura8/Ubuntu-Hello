@@ -73,36 +73,55 @@ def on_page_switch(self, notebook, page, page_num):
 
 		self.populating_cameras = False
 
-		try:
-			self.capture = self.cv2.VideoCapture(path)
-		except Exception:
-			print(_("Can't open camera"))
-
-		opencvbox = self.builder.get_object("opencvbox")
-		opencvbox.modify_bg(gtk.StateType.NORMAL, gdk.Color(red=0, green=0, blue=0))
-
-		height = self.capture.get(self.cv2.CAP_PROP_FRAME_HEIGHT) or 1
-		width = self.capture.get(self.cv2.CAP_PROP_FRAME_WIDTH) or 1
-
-		self.scaling_factor = (MAX_HEIGHT / height) or 1
-
-		if width * self.scaling_factor > MAX_WIDTH:
-			self.scaling_factor = (MAX_WIDTH / width) or 1
-
-		config_height = self.config.getfloat("video", "max_height", fallback=320.0)
-		config_scaling = (config_height / height) or 1
-
-		self.builder.get_object("videores").set_text(str(int(width)) + "x" + str(int(height)))
-		self.builder.get_object("videoresused").set_text(str(int(width * config_scaling)) + "x" + str(int(height * config_scaling)))
-		self.builder.get_object("videorecorder").set_text(self.config.get("video", "recording_plugin", fallback=_("Unknown")))
-
-		gobject.timeout_add(10, self.capture_frame)
+		import threading
+		threading.Thread(target=open_camera_background, args=(self, path), daemon=True).start()
 
 	else:
 		self.video_loop_active = False
 		if self.capture is not None:
-			self.capture.release()
+			cap = self.capture
 			self.capture = None
+			import threading
+			threading.Thread(target=cap.release, daemon=True).start()
+
+
+def open_camera_background(self, path):
+	try:
+		capture = self.cv2.VideoCapture(path)
+		if not capture.isOpened():
+			capture.release()
+			return
+	except Exception as e:
+		print("Error in background camera open:", e)
+		return
+
+	if not getattr(self, "video_loop_active", False):
+		capture.release()
+		return
+
+	self.capture = capture
+
+	height = self.capture.get(self.cv2.CAP_PROP_FRAME_HEIGHT) or 1
+	width = self.capture.get(self.cv2.CAP_PROP_FRAME_WIDTH) or 1
+
+	self.scaling_factor = (MAX_HEIGHT / height) or 1
+	if width * self.scaling_factor > MAX_WIDTH:
+		self.scaling_factor = (MAX_WIDTH / width) or 1
+
+	config_height = self.config.getfloat("video", "max_height", fallback=320.0)
+	config_scaling = (config_height / height) or 1
+
+	from gi.repository import GLib
+	GLib.idle_add(update_camera_specs_ui, self, width, height, config_scaling)
+
+
+def update_camera_specs_ui(self, width, height, config_scaling):
+	if getattr(self, "video_loop_active", False):
+		self.builder.get_object("videores").set_text(str(int(width)) + "x" + str(int(height)))
+		self.builder.get_object("videoresused").set_text(str(int(width * config_scaling)) + "x" + str(int(height * config_scaling)))
+		self.builder.get_object("videorecorder").set_text(self.config.get("video", "recording_plugin", fallback=_("Unknown")))
+		gobject.timeout_add(10, self.capture_frame)
+	return False
 
 
 def on_camera_change(self, combo):
@@ -124,22 +143,8 @@ def on_camera_change(self, combo):
 	except Exception as e:
 		print("Error saving config:", e)
 
-	try:
-		self.capture = self.cv2.VideoCapture(path)
-		height = self.capture.get(self.cv2.CAP_PROP_FRAME_HEIGHT) or 1
-		width = self.capture.get(self.cv2.CAP_PROP_FRAME_WIDTH) or 1
-
-		self.scaling_factor = (MAX_HEIGHT / height) or 1
-		if width * self.scaling_factor > MAX_WIDTH:
-			self.scaling_factor = (MAX_WIDTH / width) or 1
-
-		config_height = self.config.getfloat("video", "max_height", fallback=320.0)
-		config_scaling = (config_height / height) or 1
-
-		self.builder.get_object("videores").set_text(str(int(width)) + "x" + str(int(height)))
-		self.builder.get_object("videoresused").set_text(str(int(width * config_scaling)) + "x" + str(int(height * config_scaling)))
-	except Exception as e:
-		print("Error opening camera:", e)
+	import threading
+	threading.Thread(target=open_camera_background, args=(self, path), daemon=True).start()
 
 
 def capture_frame(self):

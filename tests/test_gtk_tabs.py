@@ -184,6 +184,15 @@ class TestTabModels:
 
 # ── tab_video functions ─────────────────────────────────────────────
 
+class SyncThread:
+    def __init__(self, target, args=(), kwargs=None, daemon=True):
+        self.target = target
+        self.args = args
+        self.kwargs = kwargs or {}
+    def start(self):
+        self.target(*self.args, **self.kwargs)
+
+
 class TestTabVideo:
     def test_get_camera_devices_no_dir(self):
         with patch("os.path.exists", return_value=False), \
@@ -250,9 +259,11 @@ class TestTabVideo:
         mock = MagicMock()
         old_capture = MagicMock()
         mock.capture = old_capture
-        tab_video.on_page_switch(mock, MagicMock(), MagicMock(), 2)
-        old_capture.release.assert_called_once()
-        assert mock.capture is None
+        with patch("threading.Thread") as mock_thread:
+            tab_video.on_page_switch(mock, MagicMock(), MagicMock(), 2)
+            mock_thread.assert_called_once_with(target=old_capture.release, daemon=True)
+            mock_thread.return_value.start.assert_called_once()
+            assert mock.capture is None
 
     def test_on_page_switch_1_success(self):
         mock = MagicMock()
@@ -284,7 +295,9 @@ class TestTabVideo:
         with patch("tab_video.configparser.ConfigParser", return_value=mock_config), \
              patch("tab_video.paths_factory.config_file_path", return_value="/mock/config.ini"), \
              patch("tab_video.get_camera_devices", return_value=["/dev/video0", "/dev/video1"]), \
-             patch("tab_video.gobject.timeout_add") as mock_timeout:
+             patch("tab_video.gobject.timeout_add") as mock_timeout, \
+             patch("threading.Thread", SyncThread), \
+             patch("gi.repository.GLib.idle_add", side_effect=lambda func, *args, **kwargs: func(*args, **kwargs)):
             
             tab_video.on_page_switch(mock, MagicMock(), MagicMock(), 1)
             mock_widgets["cameraselect"].remove_all.assert_called_once()
@@ -343,7 +356,8 @@ class TestTabVideo:
 
         mock_widgets = {
             "videores": MagicMock(),
-            "videoresused": MagicMock()
+            "videoresused": MagicMock(),
+            "videorecorder": MagicMock()
         }
         mock.builder.get_object.side_effect = lambda name: mock_widgets[name]
 
@@ -356,7 +370,9 @@ class TestTabVideo:
         open_mock = mock_open()
 
         with patch("builtins.open", open_mock), \
-             patch("tab_video.paths_factory.config_file_path", return_value="/mock/config.ini"):
+             patch("tab_video.paths_factory.config_file_path", return_value="/mock/config.ini"), \
+             patch("threading.Thread", SyncThread), \
+             patch("gi.repository.GLib.idle_add", side_effect=lambda func, *args, **kwargs: func(*args, **kwargs)):
             
             tab_video.on_camera_change(mock, mock_combo)
             old_capture.release.assert_called_once()

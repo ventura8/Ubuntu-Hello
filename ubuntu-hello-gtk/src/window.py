@@ -33,6 +33,9 @@ from gi.repository import Gio
 class MainWindow(gtk.Window):
 	def __init__(self):
 		"""Initialize the sticky window"""
+		# Load the custom CSS theme stylesheet
+		paths_factory.load_custom_css()
+
 		# Make the class a GTK window
 		gtk.Window.__init__(self)
 
@@ -344,13 +347,38 @@ def get_user_theme_preference():
 	return "light"
 
 
+def get_user_animations_preference():
+	user = get_real_user()
+	if not user or user == "root":
+		return True
+
+	import subprocess
+	try:
+		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "enable-animations"]
+		val = subprocess.check_output(cmd, text=True).strip()
+		return val.lower() == "true"
+	except Exception:
+		pass
+
+	try:
+		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/enable-animations"]
+		val = subprocess.check_output(cmd, text=True).strip()
+		return val.lower() == "true"
+	except Exception:
+		pass
+
+	return True
+
+
 def setup_theme():
 	try:
 		if os.geteuid() == 0:
 			prefer_dark = (get_user_theme_preference() == "dark")
+			enable_animations = get_user_animations_preference()
 			gtk_settings = gtk.Settings.get_default()
 			if gtk_settings:
 				gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
+				gtk_settings.set_property("gtk-enable-animations", enable_animations)
 		else:
 			# Check if the schema exists
 			schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
@@ -380,9 +408,16 @@ def setup_theme():
 					elif gtk_theme and "dark" in gtk_theme.lower():
 						prefer_dark = True
 
+					enable_animations = True
+					try:
+						enable_animations = settings.get_boolean("enable-animations")
+					except Exception:
+						pass
+
 					gtk_settings = gtk.Settings.get_default()
 					if gtk_settings:
 						gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
+						gtk_settings.set_property("gtk-enable-animations", enable_animations)
 				except Exception as e:
 					print(f"Error updating theme: {e}", file=sys.stderr)
 
