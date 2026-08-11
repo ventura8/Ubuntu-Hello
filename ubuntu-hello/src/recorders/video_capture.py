@@ -6,6 +6,7 @@ import configparser
 import cv2
 import os
 import sys
+import time
 
 from i18n import _
 
@@ -16,132 +17,145 @@ from i18n import _
 
 
 class VideoCapture:
-	def __init__(self, config):
-		"""
-		Creates a new VideoCapture instance depending on the settings in the
-		provided config file.
+    def __init__(self, config):
+        """
+        Creates a new VideoCapture instance depending on the settings in the
+        provided config file.
 
-		Config can either be a string to the path, or a pre-setup configparser.
-		"""
+        Config can either be a string to the path, or a pre-setup configparser.
+        """
 
-		# Parse config from string if needed
-		if isinstance(config, str):
-			self.config = configparser.ConfigParser()
-			self.config.read(config)
-		else:
-			self.config = config
+        # Parse config from string if needed
+        if isinstance(config, str):
+            self.config = configparser.ConfigParser()
+            self.config.read(config)
+        else:
+            self.config = config
 
-		# Check device path
-		if not os.path.exists(self.config.get("video", "device_path")):
-			if self.config.getboolean("video", "warn_no_device", fallback=True):
-				print(_("Ubuntu Hello could not find a camera device at the path specified in the config file."))
-				print(_("It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:"))
-				print("\n\tsudo ubuntu-hello config\n")
-			sys.exit(14)
+        # Check device path
+        if not os.path.exists(self.config.get("video", "device_path")):
+            if self.config.getboolean("video", "warn_no_device", fallback=True):
+                print(_("Ubuntu Hello could not find a camera device at the path specified in the config file."))
+                print(_("It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:"))
+                print("\n\tsudo ubuntu-hello config\n")
+            sys.exit(14)
 
-		# Create reader
-		# The internal video recorder
-		self.internal = None
-		# The frame width
-		self.fw = None
-		# The frame height
-		self.fh = None
-		self._create_reader()
+        # Create reader with short retries — exclusive V4L opens often fail
+        # immediately after a previous compare/GTK release (lock-screen Esc).
+        self.internal = None
+        self.fw = None
+        self.fh = None
+        last_err = None
+        for attempt in range(6):
+            try:
+                self._create_reader()
+                # Request a frame to wake the camera up
+                if self.internal is not None and self.internal.grab():
+                    return
+                self.release()
+            except Exception as err:
+                last_err = err
+                self.release()
+            time.sleep(0.25 * (attempt + 1))
+        if last_err is not None:
+            raise last_err
+        sys.exit(14)
 
-		# Request a frame to wake the camera up
-		self.internal.grab()
+    def __del__(self):
+        """
+        Frees resources when destroyed
+        """
+        if self is not None:
+            try:
+                self.internal.release()
+            except AttributeError as err:
+                pass
 
-	def __del__(self):
-		"""
-		Frees resources when destroyed
-		"""
-		if self is not None:
-			try:
-				self.internal.release()
-			except AttributeError as err:
-				pass
+    def release(self):
+        """
+        Release cameras
+        """
+        if self is not None and getattr(self, "internal", None) is not None:
+            try:
+                self.internal.release()
+            except Exception:
+                pass
+            self.internal = None
 
-	def release(self):
-		"""
-		Release cameras
-		"""
-		if self is not None:
-			self.internal.release()
+    def read_frame(self):
+        """
+        Reads a frame, returns the frame and an attempted grayscale conversion of
+        the frame in a tuple:
 
-	def read_frame(self):
-		"""
-		Reads a frame, returns the frame and an attempted grayscale conversion of
-		the frame in a tuple:
+        (frame, grayscale_frame)
 
-		(frame, grayscale_frame)
+        If the grayscale conversion fails, both items in the tuple are identical.
+        """
 
-		If the grayscale conversion fails, both items in the tuple are identical.
-		"""
+        # Grab a single frame of video
+        # Don't remove ret, it doesn't work without it
+        ret, frame = self.internal.read()
+        if not ret:
+            print(_("Failed to read camera specified in the 'device_path' config option, aborting"))
+            sys.exit(14)
 
-		# Grab a single frame of video
-		# Don't remove ret, it doesn't work without it
-		ret, frame = self.internal.read()
-		if not ret:
-			print(_("Failed to read camera specified in the 'device_path' config option, aborting"))
-			sys.exit(14)
+        try:
+            # Convert from color to grayscale
+            # First processing of frame, so frame errors show up here
+            gsframe = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        except RuntimeError:
+            gsframe = frame
+        except cv2.error:
+            print("\nAn error occurred in OpenCV\n")
+            raise
+        return frame, gsframe
 
-		try:
-			# Convert from color to grayscale
-			# First processing of frame, so frame errors show up here
-			gsframe = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-		except RuntimeError:
-			gsframe = frame
-		except cv2.error:
-			print("\nAn error occurred in OpenCV\n")
-			raise
-		return frame, gsframe
+    def _create_reader(self):
+        """
+        Sets up the video reader instance
+        """
+        recording_plugin = self.config.get("video", "recording_plugin", fallback="opencv")
 
-	def _create_reader(self):
-		"""
-		Sets up the video reader instance
-		"""
-		recording_plugin = self.config.get("video", "recording_plugin", fallback="opencv")
+        if recording_plugin == "ffmpeg":
+            # Set the capture source for ffmpeg
+            from recorders.ffmpeg_reader import ffmpeg_reader
+            self.internal = ffmpeg_reader(
+                self.config.get("video", "device_path"),
+                self.config.get("video", "device_format", fallback="v4l2")
+            )
 
-		if recording_plugin == "ffmpeg":
-			# Set the capture source for ffmpeg
-			from recorders.ffmpeg_reader import ffmpeg_reader
-			self.internal = ffmpeg_reader(
-				self.config.get("video", "device_path"),
-				self.config.get("video", "device_format", fallback="v4l2")
-			)
+        elif recording_plugin == "pyv4l2":
+            # Set the capture source for pyv4l2
+            from recorders.pyv4l2_reader import pyv4l2_reader
+            self.internal = pyv4l2_reader(
+                self.config.get("video", "device_path"),
+                self.config.get("video", "device_format", fallback="v4l2")
+            )
 
-		elif recording_plugin == "pyv4l2":
-			# Set the capture source for pyv4l2
-			from recorders.pyv4l2_reader import pyv4l2_reader
-			self.internal = pyv4l2_reader(
-				self.config.get("video", "device_path"),
-				self.config.get("video", "device_format", fallback="v4l2")
-			)
+        else:
+            # Start video capture on the IR camera through OpenCV
+            device_path = self.config.get("video", "device_path")
+            real_path = os.path.realpath(device_path)
+            self.internal = cv2.VideoCapture(
+                real_path,
+                cv2.CAP_V4L
+            )
+            # Set the capture frame rate
+            # Without this the first detected (and possibly lower) frame rate is used, -1 seems to select the highest
+            # Use 0 as a fallback to avoid breaking an existing setup, new installs should default to -1
+            self.fps = self.config.getint("video", "device_fps", fallback=0)
+            if self.fps != 0:
+                self.internal.set(cv2.CAP_PROP_FPS, self.fps)
 
-		else:
-			# Start video capture on the IR camera through OpenCV
-			device_path = self.config.get("video", "device_path")
-			real_path = os.path.realpath(device_path)
-			self.internal = cv2.VideoCapture(
-				real_path,
-				cv2.CAP_V4L
-			)
-			# Set the capture frame rate
-			# Without this the first detected (and possibly lower) frame rate is used, -1 seems to select the highest
-			# Use 0 as a fallback to avoid breaking an existing setup, new installs should default to -1
-			self.fps = self.config.getint("video", "device_fps", fallback=0)
-			if self.fps != 0:
-				self.internal.set(cv2.CAP_PROP_FPS, self.fps)
+        # Force MJPEG decoding if true
+        if self.config.getboolean("video", "force_mjpeg", fallback=False):
+            # Set a magic number, will enable MJPEG but is badly documentated
+            self.internal.set(cv2.CAP_PROP_FOURCC, 1196444237)
 
-		# Force MJPEG decoding if true
-		if self.config.getboolean("video", "force_mjpeg", fallback=False):
-			# Set a magic number, will enable MJPEG but is badly documentated
-			self.internal.set(cv2.CAP_PROP_FOURCC, 1196444237)
-
-		# Set the frame width and height if requested
-		self.fw = self.config.getint("video", "frame_width", fallback=-1)
-		self.fh = self.config.getint("video", "frame_height", fallback=-1)
-		if self.fw != -1:
-			self.internal.set(cv2.CAP_PROP_FRAME_WIDTH, self.fw)
-		if self.fh != -1:
-			self.internal.set(cv2.CAP_PROP_FRAME_HEIGHT, self.fh)
+        # Set the frame width and height if requested
+        self.fw = self.config.getint("video", "frame_width", fallback=-1)
+        self.fh = self.config.getint("video", "frame_height", fallback=-1)
+        if self.fw != -1:
+            self.internal.set(cv2.CAP_PROP_FRAME_WIDTH, self.fw)
+        if self.fh != -1:
+            self.internal.set(cv2.CAP_PROP_FRAME_HEIGHT, self.fh)

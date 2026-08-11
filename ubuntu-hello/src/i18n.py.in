@@ -1,0 +1,112 @@
+# Support file for translations (Automatic = system locale; optional preferences.ini override).
+# PAM does not read preferences.ini — only Python CLI / compare / GTK honor the override.
+
+import gettext
+import locale
+import os
+
+DOMAIN = "@gettext_package@"
+LOCALEDIR = "@localedir@"
+
+_KNOWN_LANGS = frozenset({
+	"en",
+	"af", "am", "ar", "as", "az", "ba", "be", "bg", "bn", "bo", "br", "bs", "ca",
+	"cs", "cy", "da", "de", "el", "es", "et", "eu", "fa", "fi", "fo", "fr", "gl",
+	"gu", "ha", "haw", "he", "hi", "hr", "ht", "hu", "hy", "id", "is", "it", "ja",
+	"jw", "ka", "kk", "km", "kn", "ko", "la", "lb", "ln", "lo", "lt", "lv", "mg",
+	"mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "ne", "nl", "nn", "no", "oc",
+	"pa", "pl", "ps", "pt", "ro", "ru", "sa", "sd", "si", "sk", "sl", "sn", "so",
+	"sq", "sr", "su", "sv", "sw", "ta", "te", "tg", "th", "tk", "tl", "tr", "tt",
+	"uk", "ur", "uz", "vi", "yi", "yo", "zh",
+})
+
+_ORIG_LANG = os.environ.get("LANG")
+_ORIG_LANGUAGE = os.environ.get("LANGUAGE")
+
+
+def _preferences_path():
+	override = os.environ.get("UH_PREFERENCES_FILE")
+	if override:
+		return override
+	home = None
+	try:
+		import pwd
+		user = os.environ.get("SUDO_USER")
+		if user and user != "root":
+			home = pwd.getpwnam(user).pw_dir
+		elif os.environ.get("PKEXEC_UID"):
+			home = pwd.getpwuid(int(os.environ["PKEXEC_UID"])).pw_dir
+	except (ImportError, KeyError, ValueError, OverflowError, OSError):
+		home = None
+	if home:
+		return os.path.join(home, ".config", "ubuntu-hello", "preferences.ini")
+	xdg = os.environ.get("XDG_CONFIG_HOME")
+	if xdg:
+		return os.path.join(xdg, "ubuntu-hello", "preferences.ini")
+	return os.path.join(os.path.expanduser("~"), ".config", "ubuntu-hello", "preferences.ini")
+
+
+def _read_language_preference():
+	path = _preferences_path()
+	if not os.path.isfile(path):
+		return "auto"
+	try:
+		from configparser import ConfigParser
+		parser = ConfigParser()
+		parser.read(path, encoding="utf-8")
+		value = parser.get("ui", "language", fallback="auto").strip().lower()
+	except Exception:
+		return "auto"
+	if not value or value == "auto":
+		return "auto"
+	if value not in _KNOWN_LANGS:
+		return "auto"
+	return value
+
+
+def _apply_locale_env(code=None):
+	if code is None:
+		code = _read_language_preference()
+	if code == "auto":
+		if _ORIG_LANGUAGE is None:
+			os.environ.pop("LANGUAGE", None)
+		else:
+			os.environ["LANGUAGE"] = _ORIG_LANGUAGE
+		if _ORIG_LANG is None:
+			os.environ.pop("LANG", None)
+		else:
+			os.environ["LANG"] = _ORIG_LANG
+	else:
+		os.environ["LANGUAGE"] = code
+		lang = os.environ.get("LANG", "")
+		if not lang.lower().startswith(code.lower()):
+			os.environ["LANG"] = f"{code}.UTF-8"
+	try:
+		locale.setlocale(locale.LC_ALL, "")
+	except locale.Error:
+		pass
+	return code
+
+
+def _install_translation():
+	global translation, _, ngettext
+	gettext.bindtextdomain(DOMAIN, LOCALEDIR)
+	try:
+		gettext.bind_textdomain_codeset(DOMAIN, "UTF-8")
+	except (AttributeError, OSError):
+		pass
+	translation = gettext.translation(DOMAIN, localedir=LOCALEDIR, fallback=True)
+	translation.install()
+	_ = translation.gettext
+	ngettext = translation.ngettext
+	return translation
+
+
+def reload_from_preferences():
+	"""Re-read preferences.ini and reinstall gettext (next process / rare mid-session)."""
+	_apply_locale_env()
+	return _install_translation()
+
+
+_apply_locale_env()
+_install_translation()

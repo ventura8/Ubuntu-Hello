@@ -1,0 +1,722 @@
+# ubuntu-hello translation for ta.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "தோல்வி, காலக்கெடுவை அடைந்தது"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "முகம் கண்டறிதல் படம் மிகவும் இருட்டாக உள்ளது"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "அறியப்படாத பிழை:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s என அடையாளம் காணப்பட்ட முகம்"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter விசையை அனுப்ப போதுமான அனுமதிகள் இல்லை, அதற்கு பதிலாக பயனர் அதை அழுத்தும் வரை "
+"காத்திருக்கிறது"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Enter விசையை அனுப்புவதில் தோல்வி, அதற்கு பதிலாக பயனர் அதை அழுத்தும் வரை "
+"காத்திருக்கிறது"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "முக அங்கீகரிப்பு முயற்சி"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "பயனரைத் தீர்மானிக்க முடியவில்லை, தயவுசெய்து --user கொடியைப் பயன்படுத்தவும்"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello முக அங்கீகாரத்திற்கான கட்டளை வரி இடைமுகம்."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "கட்டளை"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "வாதங்கள்"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"ஆதரவிற்கு தயவுசெய்து பார்வையிடவும்\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"இயக்குவதற்கான கட்டளை விருப்பமானது பின்வருவனவற்றில் ஒன்றாக இருக்கலாம்: சேர், தெளிவு, "
+"கட்டமைப்பு, முடக்கு, கீரிங், பட்டியல், நீக்குதல், ஸ்னாப்ஷாட், செட், டெஸ்ட் அல்லது பதிப்பு."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "கட்டளைகளைச் சேர், முடக்கு, அகற்று மற்றும் அமைவுக்கான விருப்ப வாதங்கள்."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "பயன்படுத்த பயனர் கணக்கை அமைக்கவும்."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "எல்லா கேள்விகளையும் தவிர்க்கவும்."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "அச்சு இயந்திரத்திற்கு ஏற்ற வெளியீடு."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "இந்த உதவி செய்தியைக் காட்டி வெளியேறவும்."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "தற்போதைய செயலில் உள்ள பயனர்:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "தவறான பயனர்பெயர் வடிவம்"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "இந்த கட்டளையை ரூட்டாக இயக்கவும்:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"ubuntu-hello கட்டளைகளை ரூட்டாக இயக்க முடியாது, தயவுசெய்து இந்த கட்டளையை --user "
+"கொடியுடன் இயக்கவும்"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"தரவு கோப்புகள் பதிவிறக்கம் செய்யப்படவில்லை, தயவுசெய்து பின்வரும் கட்டளைகளை இயக்கவும்:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "உள்நுழைக"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "தேதி:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "ஸ்கேன் நேரம்:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "சட்டங்கள்:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "ஹோஸ்ட் பெயர்:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "சிறந்த உறுதி மதிப்பு:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "துவங்குகிறது..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "உன்னை அடையாளம் கண்டுகொள்வது..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "தோல்வியடைந்தது"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"அனைத்து பிரேம்களும் மிகவும் இருட்டாக இருந்தன, தயவுசெய்து config இல் dark_threshold "
+"ஐச் சரிபார்க்கவும்"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "சராசரி இருள்: {avg}, வரம்பு: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "செலவழித்த நேரம்"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "தொடங்குதல்"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "கேம் + லோட் லிப்களைத் திற: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "கேமராவைத் திறக்கிறது"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "அங்கீகார லிப்களை இறக்குமதி செய்கிறது"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "தெரிந்த முகத்தைத் தேடுகிறது"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "மொத்த நேரம்"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"தீர்மானம்"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "பூர்வீகம்: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "பயன்படுத்தப்பட்டது: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"தேடப்பட்ட பிரேம்கள்: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "கருப்பு சட்டங்கள் புறக்கணிக்கப்பட்டது: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "டார்க் பிரேம்கள் புறக்கணிக்கப்பட்டது: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "வெற்றி பெறும் சட்டத்தின் உறுதி: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "வென்ற மாதிரி: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "வெற்றிகரமானது"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "உள்நுழைவு கீரிங்"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "உள்நுழைவு விசை அல்லது KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib தொகுதியை இறக்குமதி செய்ய முடியவில்லை, இதன் வெளியீட்டைச் சரிபார்க்கவும்"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "முக மாதிரி கோப்புறை எதுவும் இல்லை, ஒன்றை உருவாக்குகிறது"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"அறிவிப்பு: ஒவ்வொரு கூடுதல் மாடலும் முகம் அடையாளம் காணும் இயந்திரத்தை சிறிது குறைக்கிறது"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "ரத்து செய்ய Ctrl+C ஐ அழுத்தவும்\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "பயனருக்கான முக மாதிரியைச் சேர்க்கிறது"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "மாதிரி #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y கொடியின் காரணமாக \"%s\" என்ற இயல்புநிலை லேபிளைப் பயன்படுத்துகிறது"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "இந்த புதிய மாடலுக்கான லேபிளை உள்ளிடவும் [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "அறிவிப்பு: மாதிரிப் பெயரிலிருந்து \",\" என்ற சட்டவிரோத எழுத்தை அகற்றுதல்"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"தயவுசெய்து கேமராவை நேராகப் பாருங்கள்"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "கேமரா கருப்பு பிரேம்களை மட்டுமே பார்த்தது - ஐஆர் எமிட்டர் வேலை செய்கிறதா?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "முகம் கண்டறியப்படவில்லை, கருக்கலைப்பு"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "பல முகங்கள் கண்டறியப்பட்டன, கருக்கலைப்பு"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"ஸ்கேன் முடிந்தது\n"
+"ஒரு புதிய மாடல் சேர்க்கப்பட்டது"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"இதுவரை எந்த மாதிரியும் உருவாக்கப்படவில்லை, அவை இல்லாவிட்டால் அவற்றை அழிக்க முடியாது"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{}க்கு மாதிரிகள் இல்லை அல்லது அவை ஏற்கனவே அழிக்கப்பட்டுவிட்டன"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "இது அனைத்து மாடல்களையும் அழிக்கும்"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "[y/N] தொடர விரும்புகிறீர்களா:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"இல்லை\" என விளக்குவது, கருக்கலைப்பு"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"மாதிரிகள் அழிக்கப்பட்டன"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "config.ini ஐ {editor} இல் திறக்கிறது"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "எடிட்டரைத் திறக்க முடியவில்லை: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "பிழை: பொருத்தமான உரை திருத்தியைக் கண்டுபிடிக்க முடியவில்லை."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"தயவுசெய்து 'nano' அல்லது 'vi' ஐ நிறுவவும் அல்லது EDITOR சூழல் மாறியை அமைக்கவும்."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"நீங்கள் இந்த கட்டளையை sudo உடன் இயக்கினால், உங்கள் எடிட்டர் மாறியைப் பாதுகாக்க 'sudo -E "
+"ubuntu-hello config' ஐ முயற்சிக்கவும்."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "0 (இயக்க) அல்லது 1 (முடக்கு) ஐ ஒரு வாதமாகச் சேர்க்கவும்"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "0 (இயக்கு) அல்லது 1 (முடக்கு) ஐ மட்டும் வாதமாகப் பயன்படுத்தவும்"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "முடக்கு விருப்பம் ஏற்கனவே அமைக்கப்பட்டுள்ளது"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello முடக்கப்பட்டுள்ளது"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello இயக்கப்பட்டது"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "பயன்பாடு: கீரிங் [இயக்கு|முடக்கு]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({})ஐத் திறக்க, பயனரின் கடவுச்சொல்லை உள்ளிடவும் {}:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "கடவுச்சொல் காலியாக இருக்கக்கூடாது"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "கடவுச்சொற்கள் பொருந்தவில்லை"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM வன்பொருள் கண்டறியப்பட்டது. தானாக நிறுவுகிறது tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM வன்பொருள் செயலில் உள்ளது. TPM இல் கடவுச்சொல்லை சீல் செய்கிறது..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM (வாலட்: {}) ஐப் பயன்படுத்தி {} பயனருக்கு கீரிங்/KWallet திறத்தல் வெற்றிகரமாக "
+"இயக்கப்பட்டது."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPMக்கான கடவுச்சொல்லை சீல் செய்ய முடியவில்லை: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"TPM செயலில் இல்லை. மென்பொருள் அடிப்படையிலான நற்சான்றிதழ் தேக்ககத்தைப் பயன்படுத்துதல்..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"பயனருக்கு கீரிங்/KWallet திறத்தல் வெற்றிகரமாக இயக்கப்பட்டது {} (மென்பொருள் கேச்சிங், "
+"வாலட்: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "கீரிங் திறப்பதை இயக்குவதில் தோல்வி: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "கீரிங் திறப்பதை முடக்குவதில் தோல்வி: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "பயனருக்கு கீரிங்/KWallet திறப்பது முடக்கப்பட்டுள்ளது {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "{} பயனருக்கு கீரிங்/KWallet திறத்தல் இயக்கப்படவில்லை."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "தவறான செயல். 'இயக்கு' அல்லது 'முடக்கு' என்பதைப் பயன்படுத்தவும்."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "முக மாதிரிகள் இன்னும் தொடங்கப்படவில்லை, தயவுசெய்து இயக்கவும்:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "{} பயனருக்கு முகம் மாதிரி தெரியவில்லை, தயவுசெய்து இயக்கவும்:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{}க்கு தெரிந்த முகம் மாதிரிகள்:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ஐடி தேதி லேபிள் [0மீ"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "நீங்கள் அகற்ற விரும்பும் மாதிரியின் ஐடியை வாதமாகச் சேர்க்கவும்"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "உதாரணமாக:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "ஐடிகளை இயக்குவதன் மூலம் கண்டறியலாம்:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "இது {user}க்கான \"{label}\" மாதிரியை அகற்றும்"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} ஐடி {id} உடன் எந்த மாதிரியும் இல்லை"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "கடைசி மாதிரி அகற்றப்பட்டது, பயனருக்கு ubuntu-hello முடக்கப்பட்டது"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "அகற்றப்பட்ட மாதிரி {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "நீங்கள் மாற்ற விரும்பும் அமைப்பையும் அதை அமைக்க வேண்டிய மதிப்பையும் சேர்க்கவும்"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "அமைக்க \"{}\" கட்டமைப்பு விருப்பத்தை கண்டுபிடிக்க முடியவில்லை"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "கட்டமைப்பு விருப்பம் புதுப்பிக்கப்பட்டது"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "உருவாக்கப்பட்ட ஸ்னாப்ஷாட்"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "இருண்ட வாசல் கட்டமைப்பு:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "உறுதியான கட்டமைப்பு:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "உருவாக்கப்பட்ட ஸ்னாப்ஷாட் இவ்வாறு சேமிக்கப்பட்டது"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello சோதனைக் கட்டளையை இன்னும் ஆதரிக்காத ரெக்கார்டரைப் பயன்படுத்த "
+"உள்ளமைக்கப்பட்டுள்ளது."
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"சோதனை ஊட்டத்துடன் ஒரு சாளரத்தைத் திறக்கிறது\n"
+"\n"
+"வெளியேற, இந்த டெர்மினலில் ctrl+C அழுத்தவும்\n"
+"மெதுவான பயன்முறையை இயக்க அல்லது முடக்க படத்தின் மீது கிளிக் செய்யவும்\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "தீர்மானம்: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "பிரேம்கள்: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "அங்கீகாரம்: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "ஸ்லோ மோட்"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "இருண்ட சட்டகம்"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ஃபிரேமை ஸ்கேன் செய்யவும்"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"சாளரத்தை மூடுகிறது"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "ரப்பர்ஸ்டாம்ப் விதியை அலசுவதில் பிழை: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "முத்திரை நிறுவப்படவில்லை: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "முத்திரை பிழை: வகுப்பு {} கண்டறியப்படவில்லை"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "ரப்பர்ஸ்டாம்ப் உள்ளமைவு அறிவிப்பில் உள்ளகப் பிழை:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "ரப்பர்ஸ்டாம்பில் உள் பிழை:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} இல் அங்கீகாரத்தை நிறுத்துகிறது"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} இல் அங்கீகாரம்"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "நிறுத்துவதற்கு {abort_key}ஐயும், அங்கீகரிக்க {confirm_key}ஐ அழுத்தவும்"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "அங்கீகாரம் நிறுத்தப்பட்டது"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "உறுதிப்படுத்த தலையசைக்கவும்"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "கருக்கலைப்பு செய்ய உங்கள் தலையை அசைக்கவும்"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "உறுதிப்படுத்தப்பட்ட அங்கீகாரம்"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "நிறுத்தப்பட்ட அங்கீகாரம்"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg தொகுதி காணவில்லை, தயவுசெய்து இயக்கவும்:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "pyv4l2 தொகுதி இல்லை, தயவுசெய்து இயக்கவும்:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"கட்டமைப்பு கோப்பில் குறிப்பிடப்பட்டுள்ள பாதையில் Ubuntu Hello கேமரா சாதனத்தைக் கண்டறிய "
+"முடியவில்லை."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"பாதை சரியாக உள்ளமைக்கப்படவில்லை, இயக்குவதன் மூலம் 'device_path' கட்டமைப்பு மதிப்பைத் "
+"திருத்தவும்:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"'device_path' config விருப்பத்தில் குறிப்பிடப்பட்ட கேமராவைப் படிப்பதில் தோல்வி, "
+"நிறுத்தப்படுகிறது"

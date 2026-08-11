@@ -24,6 +24,7 @@ EnterDevice::EnterDevice()
   raw_uinput_device.reset(uinput_dev_ptr);
 };
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 void EnterDevice::send_enter_press() const {
   auto *uinput_dev_ptr = raw_uinput_device.get();
 

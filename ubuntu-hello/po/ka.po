@@ -1,0 +1,724 @@
+# ubuntu-hello translation for ka.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "წარუმატებლობა, ვადაა მიღწეული"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "სახის ამოცნობის სურათი ძალიან ბნელია"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "უცნობი შეცდომა:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "იდენტიფიცირებული სახე, როგორც %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter-ის გასაგზავნად არასაკმარისი ნებართვებია, ელოდება მომხმარებლის დაჭერას "
+"მის ნაცვლად"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Enter-ის გაგზავნა ვერ მოხერხდა, ელოდება მომხმარებლის დაჭერას მის ნაცვლად"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "სახის ავთენტიფიკაციის მცდელობა"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "მომხმარებლის დადგენა ვერ მოხერხდა, გთხოვთ გამოიყენოთ --user დროშა"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "ბრძანების ხაზის ინტერფეისი Ubuntu Hello სახის ავთენტიფიკაციისთვის."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "ბრძანება"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "არგუმენტები"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"მხარდაჭერისთვის გთხოვთ ეწვიოთ\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"შესასრულებელი ბრძანების ვარიანტი შეიძლება იყოს ერთ-ერთი შემდეგი: დამატება, "
+"გასუფთავება, კონფიგურაცია, გამორთვა, კლავიშების დაჭერა, სია, წაშლა, "
+"სნეპშოტი, დაყენება, ტესტირება ან ვერსია."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"არჩევითი არგუმენტები დამატება, გამორთვა, წაშლა და დაყენების ბრძანებები."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "დააყენეთ მომხმარებლის ანგარიში გამოსაყენებლად."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "გამოტოვეთ ყველა კითხვა."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "ბეჭდვა მანქანა-მეგობრული გამომავალი."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "აჩვენეთ ეს დახმარების შეტყობინება და გამოდით."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "მიმდინარე აქტიური მომხმარებელი:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "მომხმარებლის სახელის ფორმატი არასწორია"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "გთხოვთ, გაუშვათ ეს ბრძანება root-ის სახით:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"არ შეიძლება ubuntu-hello ბრძანებების გაშვება root, გთხოვთ, გაუშვათ ეს "
+"ბრძანება --user დროშით"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"მონაცემთა ფაილები არ არის ჩამოტვირთული, გთხოვთ, შეასრულოთ შემდეგი ბრძანებები:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "შესვლა"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "თარიღი:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "სკანირების დრო:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "ჩარჩოები:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "მასპინძლის სახელი:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "საუკეთესო სიზუსტის ღირებულება:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "იწყება..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "იდენტიფიცირება..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "ვერ მოხერხდა"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"ყველა ჩარჩო ძალიან მუქი იყო, გთხოვთ, შეამოწმოთ dark_threshold კონფიგურაციაში"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "საშუალო სიბნელე: {avg}, ბარიერი: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "გატარებული დრო"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "გაშვება"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "გახსენით კამერა + ჩატვირთვა: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "კამერის გახსნა"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "ამოცნობის ლიბების იმპორტი"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "ეძებს ცნობილ სახეს"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "სულ დრო"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"რეზოლუცია"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "მშობლიური: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "მეორადი: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"მოძიებული ჩარჩოები: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "შავი ჩარჩოები იგნორირებულია: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "მუქი ჩარჩოები იგნორირებულია: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "გამარჯვების ჩარჩოს გარკვევა: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "გამარჯვებული მოდელი: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "წარმატებული"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "შესვლის გასაღები"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "შესვლის გასაღები ან KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib მოდულის იმპორტი შეუძლებელია, შეამოწმეთ გამომავალი"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "სახის მოდელის საქაღალდე ვერ მოიძებნა, იქმნება ერთი"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"შენიშვნა: ყოველი დამატებითი მოდელი ოდნავ ანელებს სახის ამოცნობის ძრავას"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "გასაუქმებლად დააჭირეთ Ctrl+C\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "მომხმარებლისთვის სახის მოდელის დამატება"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "მოდელი #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "ნაგულისხმევი ლეიბლის \"%s\" გამოყენება -y დროშის გამო"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "შეიყვანეთ ლეიბლი ამ ახალი მოდელისთვის [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "შენიშვნა: ამოღებულია არალეგალური სიმბოლო \",\" მოდელის სახელიდან"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"გთხოვთ შეხედეთ პირდაპირ კამერას"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "კამერა დაინახა მხოლოდ შავი ჩარჩოები - მუშაობს IR ემიტერი?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "სახე არ არის აღმოჩენილი, აბორტი"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "აღმოჩენილია მრავალი სახე, აბორტი"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"სკანირება დასრულდა\n"
+"დაამატა ახალი მოდელი"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "მოდელები ჯერ არ არის შექმნილი, ვერ გავასუფთავებთ თუ არ არსებობენ"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} არ აქვს მოდელები ან ისინი უკვე გასუფთავებულია"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "ეს გაასუფთავებს ყველა მოდელს"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "გსურთ გააგრძელოთ [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"ინტერპრეტაცია, როგორც \"არა\", აბორტი"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"მოდელები გასუფთავებულია"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "იხსნება config.ini {editor}-ში"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "რედაქტორის გახსნა ვერ მოხერხდა: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "შეცდომა: ვერ ვიპოვე შესაფერისი ტექსტური რედაქტორი."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"გთხოვთ დააინსტალიროთ 'nano' ან 'vi', ან დააყენოთ EDITOR გარემოს ცვლადი."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"თუ ამ ბრძანებას აწარმოებთ sudo-ით, სცადეთ 'sudo -E ubuntu-hello config' "
+"თქვენი EDITOR ცვლადის შესანარჩუნებლად."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "გთხოვთ, არგუმენტად დაამატოთ 0 (ჩართვა) ან 1 (გამორთვა)."
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "გთხოვთ, არგუმენტად გამოიყენოთ მხოლოდ 0 (ჩართვა) ან 1 (გამორთვა)."
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "გამორთვის ვარიანტი უკვე დაყენებულია"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello გამორთულია"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello ჩართულია"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "გამოყენება: გასაღებები [ჩართვა|გამორთვა]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "შეიყვანეთ მომხმარებლის პაროლი {} {} ({}) განბლოკვისთვის:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "პაროლი არ შეიძლება იყოს ცარიელი"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "პაროლის დადასტურება:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "პაროლები არ ემთხვევა"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "აღმოჩენილია TPM აპარატურა. tpm2-tools ავტომატური ინსტალაცია..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM აპარატურა აქტიურია. პაროლის დალუქვა TPM-ში..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"გასაღების/KWallet განბლოკვა წარმატებით ჩართულია მომხმარებლისთვის {} TPM-ის "
+"გამოყენებით (საფულე: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM-ზე პაროლის დალუქვა ვერ მოხერხდა: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"TPM აქტიური არ არის. პროგრამულ უზრუნველყოფაზე დაფუძნებული სერთიფიკატების "
+"ქეშირების გამოყენება..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"გასაღების/KWallet განბლოკვა წარმატებით ჩართულია მომხმარებლისთვის {} "
+"(პროგრამული ქეშირება, საფულე: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "გასაღების განბლოკვის ჩართვა ვერ მოხერხდა: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "გასაღების განბლოკვის გამორთვა ვერ მოხერხდა: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "გასაღების/KWallet განბლოკვა გამორთულია მომხმარებლისთვის {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "გასაღების/KWallet განბლოკვა არ იყო ჩართული მომხმარებლის {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "არასწორი ქმედება. გამოიყენეთ \"ჩართვა\" ან \"გამორთვა\"."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "სახის მოდელები ჯერ არ დაწყებულა, გთხოვთ გაუშვათ:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "{} მომხმარებლისთვის ცნობილი სახის მოდელი არ არის, გთხოვთ, გაუშვათ:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "სახის ცნობილი მოდელები {}-ისთვის:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID თარიღის ეტიკეტი [0მ"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "გთხოვთ, არგუმენტად დაამატოთ იმ მოდელის ID, რომლის წაშლა გსურთ"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "მაგალითად:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "თქვენ შეგიძლიათ იპოვოთ პირადობის მოწმობები გაშვებით:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "ეს წაშლის მოდელს სახელწოდებით \"{label}\" {user}-ისთვის"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "ID {id} მოდელი არ არსებობს {user}-ისთვის"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "ბოლო მოდელი ამოღებულია, მომხმარებლისთვის ubuntu-hello გამორთულია"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "ამოღებულია მოდელი {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"გთხოვთ, დაამატოთ პარამეტრი, რომლის შეცვლაც გსურთ და მნიშვნელობა, რომლის "
+"დაყენებაც გსურთ"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "„{}“ კონფიგურაციის პარამეტრის დაყენება ვერ მოხერხდა"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "კონფიგურაციის ვარიანტი განახლებულია"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "გენერირებული SNAPSHOT"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "მუქი ბარიერის კონფიგურაცია:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "გარკვეული კონფიგურაცია:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "გენერირებული სნეპშოტი შენახულია როგორც"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello კონფიგურირებულია ჩამწერის გამოსაყენებლად, რომელიც ჯერ არ უჭერს "
+"მხარს სატესტო ბრძანებას, წყვეტს"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"ფანჯრის გახსნა სატესტო არხით\n"
+"\n"
+"გასასვლელად დააჭირეთ Ctrl+C ამ ტერმინალში\n"
+"დააწკაპუნეთ სურათზე, რათა ჩართოთ ან გამორთოთ ნელი რეჟიმი\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "რეზოლუცია: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "ჩარჩოები: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "ამოცნობა: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "ნელი რეჟიმი"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "მუქი ჩარჩო"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "სკანირების ჩარჩო"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"ფანჯრის დახურვა"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "შეცდომა რეზინის ბეჭდის წესის გაანალიზებისას: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "ბეჭედი არ არის დაინსტალირებული: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "მარკის შეცდომა: კლასი {} ვერ მოიძებნა"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "შიდა შეცდომა რეზინის კონფიგურაციის დეკლარაციაში:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "შიდა შეცდომა რეზინის შტამპში:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "ავტორიზაციის შეწყვეტა {}-ში"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "ავტორიზაცია {}-ში"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "დააჭირეთ {abort_key} შეწყვეტის მიზნით, {confirm_key} ავტორიზაციისთვის"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "ავთენტიფიკაცია შეწყდა"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "თავი დაუქნია დასადასტურებლად"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "თავი გააქნიეთ, რომ გააჩეროთ"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "დადასტურებული ავთენტიფიკაცია"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "ავტორიზაცია შეწყვეტილია"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "აკლია ffmpeg მოდული, გთხოვთ გაუშვათ:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "გამოტოვებულია pyv4l2 მოდული, გთხოვთ გაუშვათ:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello ვერ იპოვა კამერის მოწყობილობა კონფიგურაციის ფაილში მითითებულ "
+"გზაზე."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"ძალიან სავარაუდოა, რომ ბილიკი არასწორად არის კონფიგურირებული, გთხოვთ, "
+"შეცვალოთ 'device_path' კონფიგურაციის მნიშვნელობა გაშვებით:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"„device_path“ კონფიგურაციის პარამეტრში მითითებული კამერის წაკითხვა ვერ "
+"მოხერხდა, შეწყვეტილია"

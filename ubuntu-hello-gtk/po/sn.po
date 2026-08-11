@@ -1,0 +1,694 @@
+# ubuntu-hello-gtk translation for sn.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: sn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "Created"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Label"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "Otomatiki"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Gonesa Keyring/KWallet Kuvhura"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Isa password yemushandisi <b>{}</b> kuti uvhure {} ({}):"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Pasiwedhi"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Datafiles dzakatodhaunirodwa!\n"
+"Dzvanya Next kuti uenderere mberi"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Pane zvatadza pakudhaunirodha mafaira edata"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Ndapedza!\n"
+"Dzvanya Next kuti uenderere mberi"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Kukanganisa pakuunza kunze OpenCV2"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Edza kuisazve cv2"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Hapana mawebcams awanikwa pasystem"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Ndokumbira ugadzirise kamera yako pachako kana uine chokwadi chekuti kamera "
+"inoenderana yakabatana"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Kwete, kamera haigoni kuvhurwa"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Kwete, kwete infrared kamera"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Ehe, inoenderana infrared kamera"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Kamera identifier kana nzira"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "Recommended"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Patadza kusarudza kamera"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "Kamera yakasarudzwa haigone kuvhurwa"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Edza kusarudza imwe"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Ndapota shanya\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"kugonesa emitter yako"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Ndokumbira utarise mukamera"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Tanga face scan"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Haikwanisi kuchengetedza chimiro chechiso"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki {} yako uchishandisa huchokwadi "
+"hwechiso (wallet yakawanikwa: {}).\n"
+"\n"
+"<b>TPM Status:</b> Kutarisa TPM hardware uye maturusi..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki {} yako uchishandisa huchokwadi "
+"hwechiso (wallet yakawanikwa: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware yaonekwa. Kuisa <i>tpm2-tools</i> "
+"otomatiki..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki {} yako uchishandisa huchokwadi "
+"hwechiso (wallet yakawanikwa: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 inoshanda. Password yako ichavharwa "
+"zvakachengeteka mukati meTPM."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki {} yako uchishandisa huchokwadi "
+"hwechiso (wallet yakawanikwa: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware yaonekwa, asi kuiswa kwe<i>tpm2-tools</i> "
+"otomatiki kwatadza. Mhanya <code>sudo apt install tpm2-tools</code>. "
+"Kudzokera kune software-based credential caching."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki {} yako uchishandisa huchokwadi "
+"hwechiso (wallet yakawanikwa: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hapana TPM hardware yaonekwa. Kushandisa software-based "
+"credential caching (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "Hatina kukwanisa kuona asiri-midzi system mushandisi wekuvhura keyring"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Pasiwedhi haigone kuve isina chinhu"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "password isiriyo yemushandisi {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "kukanganisa kusingazivikanwe"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Yatadza kugonesa kuvhura keyring: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Yatadza kudzima kuvhura keyring: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Kanganiso yekuvhura Keyring"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Kutadza kuverenga mabhatani eredhiyo"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Setup Yambiro"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr "Hatina kukwanisa kuchengetedza zvinodiwa, asi kuseta kwakapera."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Kukanganisa"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Loading..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Kusimbiswa"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Simbisa Mushandisi Kugadzira"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr "Ndokumbira uise zita remushandisi waunoda kuwedzera kune Ubuntu Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Username"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Simbisa Model Kusika"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "Ndokumbira uise zita remhando itsva, mavara makumi maviri nemana"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Zita remuenzaniso:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Kugadzira Model"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Kukanganisa pakuwedzera modhi, kodhi yekukanganisa {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Simbisa Model Deletion"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Une chokwadi chekuti unoda kudzima modhi {id} ({name})?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Kukanganisa pakudzima modhi, kodhi yekukanganisa {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Kamera haikwanise kuvhura"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Haikwanise kuunza kunze OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "Hazvizivikanwe"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Hapana mushandisi akasarudzwa</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Yakabatidzwa (TPM Hardware)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Yabatidzwa (Software Caching)</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>Yaitwa (Pending Password Entry)</b></span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>Yakaremara</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "Error"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "Success"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "Keyring/KWallet kuvhura kunogoneswa zvinobudirira kumushandisi {}."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Dzima Keyring/KWallet Kuvhura"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Une chokwadi chekuti unoda kudzima keyring/KWallet kuvhura yemushandisi {}?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Keyring/KWallet kuvhura kwakaremara kumushandisi {}."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuration"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuration"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Tsvaga marongero"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Kuratidza mhando dzakachengetwa dze:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Wedzera mushandisi mutsva"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "Wedzera"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Delete"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "Models"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "Kamera ID:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "Real resolution:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Yakashandiswa resolution:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Recorder:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Vhidhiyo"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Keyring / KWallet Auto-Vhura"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Ita kuti huchokwadi hwechiso kuti uvhure otomatiki kiyi yako yekupinda kana "
+"KWallet paunopinda. Izvi zvinochengetedza password yako yakavharwa muTPM "
+"kana iripo, kana yakavharidzirwa ne AES-256-GCM uchishandisa midzi-chete "
+"master kiyi. Face auth set PAM_AUTHTOK ye pam_gnome_keyring kana "
+"pam_kwallet5 zvichienderana nedesktop yako."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Mamiriro Azvino:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Kutarisa..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Bvisa Auto-Unlock"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Dzima Auto-Unlock"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Keyring"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Mutauro wekuratidza"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Mutauro"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Otomatiki inotevera mutauro wehurongwa. Shanduko dzinoshandiswa pakarepo."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Facial authentication yeLinux"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Shanduro isingazivikanwe"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Vhura GitHub link</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "About"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Kugamuchirwa ku Ubuntu Hello"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Setup yaitwa!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Tapedza! Ubuntu Hello yave kushanda pakombuta iyi. Edza kuita chero chinhu "
+"chaungawanzo nyora password yako kuti iite chokwadi, sekumhanyisa rairo ne "
+"sudo. Kana iwe wakagonesa keyring auto-unlock, kiyi yako yekupinda kana "
+"KWallet inozovhurwa otomatiki pakupinda.\n"
+"\n"
+"Unogona kuvhura iyo Ubuntu Hello Configurator gare gare kuti uchinje mamwe "
+"magadzirirwo epamberi kana kuwedzera mamwe mamodheru. Dzvanya Pedzisa pazasi "
+"kuvhara iyi hwindo uye wovhura iyo Ubuntu Hello Configurator."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello inogona kuvhura otomatiki kiyi yako yekupinda kana KWallet "
+"uchishandisa humbowo hwechokwadi, kudzivirira password yekukurudzira mushure "
+"mekupinda mukati."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Gonesa otomatiki keyring/KWallet kuvhura"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Tsigira pasiwedhi"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Kuisa mutemo wechokwadi"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Nekuda kweshanduko mumakona, chinhambwe, uye zvimwe zvinhu kuenzaniswa "
+"kwechiso hakuna kumbobvira kwakafanana neyakachengetwa modhi yechiso. Pane "
+"ino peji unogona kuseta kuti Ubuntu Hello inofanira kuomesesa sei."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "Fast"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Inobvumira mimwe mitambo isina kujeka, \n"
+"asi inomhanyisa maitiro ekuongorora zvakanyanya."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "Balanced"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Zvichiri kukurumidza kuona, \n"
+"asi inogona kusakupinza iwe kana uri kure."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "Secure"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"Iyo yakachengeteka zvishoma sarudzo, \n"
+"asi zvinotora nguva yakareba kuti ndikuratidze"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Kuwedzera mufananidzo wechiso"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Kukutendesa iwe Ubuntu Hello inoda kuchengetedza modhi yechiso chako kuti "
+"ikuzive. Dzvanya bhatani reScan pazasi kuti utange kutarisisa kumeso."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Kugadzirisa webcam"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Iyo infrared emitter inopenya here?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "Ehe"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "Aihwa"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello ichatsvaga yako system otomatiki kune chero anowanikwa kamera, "
+"saka ita shuwa kuti webcam yako yakabatana. Mushure mekuona runyoro "
+"rwemawebcams anoshanda acharatidzwa. Sarudza yaunoda kushandisa uye tinya "
+"Next."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Kuongorora mawebhucamera ako, ndapota mira..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Kurodha mafaira edata"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello inoda matatu akafanodzidziswa ekuziva kumeso dhata kuti "
+"akwanise kukuziva, ayo anozodhaunirodwa izvozvi. Unogona kuona kurodha "
+"kufambira mberi pazasi."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Kutanga kudhaunirodha..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Kugamuchirwa ku Ubuntu Hello!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Version"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Iyi wizard inokufambisa iwe kuburikidza nekuseta uye kugadzirisa otomatiki "
+"Ubuntu Hello yako. Dzvanya inotevera kuti uenderere mberi."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Next"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Pedzisa kuseta"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello chimiro chechokwadi chechiso"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "chiso;kuzivikanwa;kusimbisa;chengetedzo;kiya;"

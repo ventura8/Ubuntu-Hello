@@ -1,0 +1,34 @@
+# syntax=docker/dockerfile:1.26.0
+# CI image for Ubuntu Hello — Ubuntu 26.04 (resolute) baseline / compat stage
+# Image tag: ubuntu-hello-ci-baseline:26.04
+# Used by UH_CI_STAGE=compat UH_CI_DE=baseline (not lint/coverage).
+# Source is bind-mounted at /src by scripts/ci-docker.sh (no COPY).
+FROM ubuntu:26.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+# Apt packages are distro-locked by ubuntu:26.04 (no floating apt versions).
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    python3 python3-pip python3-dev python3-setuptools python3-wheel \
+    python3-numpy python3-opencv python3-babel python3-gi python3-gi-cairo python3-cryptography \
+    gir1.2-gtk-3.0 \
+    xvfb \
+    cmake make build-essential clang clang-tidy g++ \
+    libstdc++-15-dev \
+    libpam0g-dev libinih-dev libevdev-dev libssl-dev libboost-all-dev \
+    pkg-config libopencv-dev \
+    meson ninja-build gettext
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip3 install --break-system-packages \
+    pytest==9.1.1 \
+    pytest-cov==7.1.0 \
+    coverage==7.15.4 \
+    keyboard==0.13.5
+
+WORKDIR /src
+CMD ["./scripts/ci-docker.sh", "--inside"]

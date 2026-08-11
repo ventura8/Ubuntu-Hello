@@ -15,6 +15,22 @@ Ubuntu Hello provides Windows Hello™ style authentication for Linux. Use your 
 
 Using the central authentication system (PAM), this works everywhere you would otherwise need your password: Login, lock screen, sudo, su, etc.
 
+## Supported desktops
+
+Face authentication via PAM (`common-auth`) is **desktop-agnostic** and works with GDM, SDDM, LightDM, and similar display managers.
+
+| Desktop | Theme follow | Wallet auto-unlock (PAM_AUTHTOK) |
+|---------|--------------|----------------------------------|
+| GNOME / Ubuntu | Yes | GNOME Keyring (`pam_gnome_keyring`) |
+| KDE Plasma | Yes | KWallet (`pam_kwallet5`, package `libpam-kwallet5`) |
+| XFCE | Yes | GNOME Keyring when present |
+| Cinnamon | Yes | GNOME Keyring when present |
+| MATE | Yes | GNOME Keyring when present |
+| Budgie | Yes | GNOME Keyring when present |
+| LXQt | Yes (best-effort) | GNOME Keyring when present |
+
+Auto-unlock after face login reuses the same sealed password blob and sets `PAM_AUTHTOK` for whichever wallet PAM module is in the stack. There is no separate KWallet credential format.
+
 ## ⚡ Quick Install
 
 Open a terminal and run:
@@ -31,7 +47,7 @@ That's it! The installer will automatically:
 - ✅ Set up Polkit for App Center face auth
 - ✅ Open the configuration GUI when finished
 
-> **After installation**, run `ubuntu-hello-gtk` to start the setup wizard and register your face!
+> **After installation**, the setup wizard should open automatically (approve the polkit prompt if asked). If it does not, run `ubuntu-hello-gtk --force-onboarding`.
 
 ### Uninstall
 
@@ -109,7 +125,7 @@ sudo meson install -C builddir
 
 ## Setup
 
-After installation, Ubuntu Hello needs to learn what you look like so it can recognise you later. Run the `ubuntu-hello-gtk` configuration GUI to start the setup wizard and register your face.
+After installation, Ubuntu Hello needs to learn what you look like so it can recognise you later. The installer launches the setup wizard automatically (Wayland/X11 session-aware). If it does not appear, check `/tmp/ubuntu-hello-postinstall.log` or run `ubuntu-hello-gtk --force-onboarding`.
 
 If nothing went wrong we should be able to run sudo by just showing your face. Open a new terminal and run `sudo -i` to see it in action. Please check [this wiki page](https://github.com/ventura8/ubuntu-hello/wiki/Common-issues) if you're experiencing problems or [search](https://github.com/ventura8/ubuntu-hello/issues) for similar issues.
 
@@ -130,7 +146,7 @@ ubuntu-hello [-U user] [-y] command [argument]
 | `clear`   | Remove all face models for a user             |
 | `config`  | Open the config file in your default editor   |
 | `disable` | Disable or enable ubuntu-hello                       |
-| `keyring` | Manage automatic keyring unlocking (enable/disable) |
+| `keyring` | Manage automatic login keyring / KWallet unlocking (enable/disable) |
 | `list`    | List all saved face models for a user         |
 | `remove`  | Remove a specific model for a user            |
 | `set`     | Change a configuration option directly        |
@@ -153,9 +169,14 @@ if you encounter an error that hasn't been reported yet, don't be afraid to open
 
 ## 🤖 AI Assistance
 
-If you are developing or modifying this codebase using an AI coding assistant, please refer to the following guidebooks:
-* [agent.md](agent.md) — General workspace guidelines, tech stack overview, architecture details, and coding standards.
-* [skills.md](skills.md) — Functional recipes and runbooks for building, testing, troubleshooting, and extending the application.
+If you are developing or modifying this codebase using an AI coding assistant, start from the canonical rules and skills:
+
+* [AGENTS.md](AGENTS.md) — Workspace guidelines, architecture summary, coding standards, CI/Docker matrix rules (shared across tools).
+* [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md) — Build, install, extend, and debug.
+* [docs/architecture/README.md](docs/architecture/README.md) — Component deep dive.
+* [`.agents/skills/`](.agents/skills/) — Focused runbooks (`SKILL.md` per workflow).
+
+Thin tool entrypoints (point at `AGENTS.md`, do not fork rules): [CLAUDE.md](CLAUDE.md), [GEMINI.md](GEMINI.md), [`.github/copilot-instructions.md`](.github/copilot-instructions.md). Legacy stubs: [agent.md](agent.md), [skills.md](skills.md).
 
 ## A note on security
 

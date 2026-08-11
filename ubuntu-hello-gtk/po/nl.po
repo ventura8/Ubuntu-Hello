@@ -1,0 +1,709 @@
+# ubuntu-hello-gtk translation for nl.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "Gemaakt"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Label"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "Automatisch"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Schakel Sleutelring/KWallet Ontgrendeling in"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr ""
+"Voer het wachtwoord in voor gebruiker <b>{}</b> om {} ({}) te ontgrendelen:"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Gegevensbestanden zijn al gedownload!\n"
+"Klik op Volgende om door te gaan"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Fout tijdens het downloaden van gegevensbestanden"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Klaar!\n"
+"Klik op Volgende om door te gaan"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Fout tijdens het importeren van OpenCV2"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Probeer cv2 opnieuw te installeren"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Geen webcams gevonden op het systeem"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Configureer uw camera zelf als u zeker weet dat er een compatibele camera is "
+"aangesloten"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Nee, de camera kan niet worden geopend"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Nee, geen infraroodcamera"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Ja, compatibele infraroodcamera"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Camera-ID of pad"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "Aanbevolen"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Fout bij het selecteren van de camera"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "De geselecteerde camera kan niet worden geopend"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Probeer een andere te selecteren"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Bezoek alsjeblieft\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"om uw IR-zender in te schakelen"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Kijk alstublieft rechtstreeks in de camera"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Gezichtsscan starten"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Kan gezichtsmodel niet opslaan"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello kan uw {} automatisch ontgrendelen met behulp van "
+"gezichtsauthenticatie (gedetecteerde portemonnee: {}).\n"
+"\n"
+"<b>TPM-status:</b> TPM-hardware en -tools controleren..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello kan uw {} automatisch ontgrendelen met behulp van "
+"gezichtsauthenticatie (gedetecteerde portemonnee: {}).\n"
+"\n"
+"<b>TPM-status:</b> TPM-hardware gedetecteerd. <i>tpm2-tools</i> automatisch "
+"installeren..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello kan uw {} automatisch ontgrendelen met behulp van "
+"gezichtsauthenticatie (gedetecteerde portemonnee: {}).\n"
+"\n"
+"<b>TPM-status:</b> Hardware-TPM 2.0 actief. Uw wachtwoord wordt veilig "
+"verzegeld in de TPM."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello kan uw {} automatisch ontgrendelen met behulp van "
+"gezichtsauthenticatie (gedetecteerde portemonnee: {}).\n"
+"\n"
+"<b>TPM-status:</b> TPM-hardware gedetecteerd, maar automatische installatie "
+"van <i>tpm2-tools</i> is mislukt. Voer <code>sudo apt install tpm2-tools</"
+"code> uit. Terugvallen op op software gebaseerde caching van inloggegevens."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello kan uw {} automatisch ontgrendelen met behulp van "
+"gezichtsauthenticatie (gedetecteerde portemonnee: {}).\n"
+"\n"
+"<b>TPM-status:</b> Er is geen TPM-hardware gedetecteerd. Met behulp van "
+"softwaregebaseerde inloggegevenscaching (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Kon geen gebruiker van een niet-rootsysteem identificeren voor het "
+"ontgrendelen van de sleutelring"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Wachtwoord mag niet leeg zijn"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Onjuist wachtwoord voor gebruiker {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "onbekende fout"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Kan sleutelringontgrendeling niet inschakelen: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Kan sleutelringontgrendeling niet uitschakelen: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Ontgrendelingsfout sleutelhanger"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Fout bij het lezen van keuzerondjes"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Installatiewaarschuwing"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr ""
+"Kan de zekerheidsvoorkeur niet opslaan, maar de installatie is verder "
+"voltooid."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Fout"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Laden..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Authenticatie"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Bevestig het aanmaken van een gebruiker"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr ""
+"Voer de gebruikersnaam in van de gebruiker die u wilt toevoegen aan Ubuntu "
+"Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Bevestig het maken van het model"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "Voer een naam in voor het nieuwe model, maximaal 24 tekens"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Modelnaam:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Model maken"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Fout bij het toevoegen van model, foutcode {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Bevestig de verwijdering van het model"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Weet u zeker dat u model {id} ({name}) wilt verwijderen?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Fout bij het verwijderen van model, foutcode {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Kan camera niet openen"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Kan OpenCV2 niet importeren"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Geen gebruiker geselecteerd</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span voorgrond='green'><b>Ingeschakeld (TPM-hardware)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span voorgrond='green'><b>Ingeschakeld (softwarecaching)</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span voorgrond='orange'><b>Ingeschakeld (wachtwoordinvoer in behandeling)</"
+"b></span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span voorgrond='red'><b>Uitgeschakeld</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "Fout"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "Succes"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr ""
+"Ontgrendeling van sleutelring/KWallet succesvol ingeschakeld voor gebruiker "
+"{}."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Schakel Sleutelring/KWallet Ontgrendeling uit"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Weet u zeker dat u de ontgrendeling van de sleutelhanger/KWallet voor "
+"gebruiker {} wilt uitschakelen?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr ""
+"Ontgrendeling van sleutelhanger/KWallet uitgeschakeld voor gebruiker {}."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuratie"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuratie"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Zoekinstellingen"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Opgeslagen modellen tonen voor:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Nieuwe gebruiker toevoegen"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "Toevoegen"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "Modellen"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "Camera-ID:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "Echte resolutie:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Gebruikte resolutie:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Recorder:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Video"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Sleutelhanger / KWallet Automatische ontgrendeling"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Schakel gezichtsauthenticatie in om uw login-sleutelhanger of KWallet "
+"automatisch te ontgrendelen bij het inloggen. Hiermee wordt uw wachtwoord "
+"veilig opgeslagen in de TPM, indien beschikbaar, of gecodeerd met AES-256-"
+"GCM met behulp van een hoofdsleutel die alleen root is. "
+"Gezichtsauthenticatie stelt PAM_AUTHTOK in voor pam_gnome_keyring of "
+"pam_kwallet5, afhankelijk van uw bureaublad."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Huidige status:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Controleren..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Schakel automatisch ontgrendelen in"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Schakel automatisch ontgrendelen uit"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Sleutelhanger"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Weergavetaal"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Taal"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automatisch volgt de systeemtaal. Wijzigingen worden meteen toegepast."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Gezichtsauthenticatie voor Linux"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Versie onbekend"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub-link openen</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "Over"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Welkom bij Ubuntu Hello"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Het instellen is voltooid!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"We zijn klaar! Ubuntu Hello is nu actief op deze computer. Probeer alles te "
+"doen waarvoor u normaal gesproken uw wachtwoord moet typen om te verifiëren, "
+"zoals het uitvoeren van een opdracht met sudo. Als u automatisch "
+"ontgrendelen van de sleutelhanger hebt ingeschakeld, wordt uw "
+"inlogsleutelhanger of KWallet ook automatisch ontgrendeld bij het inloggen.\n"
+"\n"
+"U kunt de Ubuntu Hello Configurator later openen om meer geavanceerde "
+"instellingen te wijzigen of extra modellen toe te voegen. Druk hieronder op "
+"Voltooien om dit venster te sluiten en de Ubuntu Hello Configurator te "
+"openen."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello kan uw login-sleutelhanger automatisch ontgrendelen of KWallet "
+"met behulp van gezichtsauthenticatie, waardoor wachtwoordvragen na het "
+"inloggen worden voorkomen."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Schakel automatische sleutelhanger/KWallet-ontgrendeling in"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Het opzetten van een zekerheidsbeleid"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Vanwege veranderingen in hoeken, afstand en andere factoren is een "
+"gezichtsmatch nooit precies hetzelfde als het opgeslagen gezichtsmodel. Op "
+"deze pagina kun je instellen hoe streng Ubuntu Hello moet zijn."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "Snel"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Maakt meer vage overeenkomsten mogelijk, \n"
+"maar versnelt het scanproces aanzienlijk."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "Evenwichtig"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Nog steeds relatief snelle detectie, \n"
+"maar u kunt mogelijk niet inloggen als u verder weg bent."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "Zeker"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"De iets veiligere optie, \n"
+"maar het duurt veel langer om u te authenticeren"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Een gezichtsmodel toevoegen"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Om u te authenticeren moet Ubuntu Hello een model van uw gezicht opslaan om "
+"u te kunnen herkennen. Druk op de Scanknop hieronder om de gezichtsscan te "
+"starten."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Webcam configureren"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Knippert de infraroodzender?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "Ja"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "Nee"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello zoekt automatisch in uw systeem naar beschikbare camera's, dus "
+"zorg ervoor dat uw webcam is aangesloten. Na detectie wordt een lijst met "
+"bruikbare webcams getoond. Kies degene die u wilt gebruiken en klik op "
+"Volgende."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Je webcams testen, een ogenblik geduld..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Gegevensbestanden downloaden"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello heeft drie vooraf getrainde gegevenssets voor "
+"gezichtsherkenning nodig om u te kunnen herkennen. Deze worden nu "
+"gedownload. Hieronder kunt u de downloadvoortgang zien."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Downloaden starten..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Welkom bij Ubuntu Hello!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Versie"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Deze wizard leidt u door het installatieproces en configureert Ubuntu Hello "
+"automatisch voor u. Druk op volgende om door te gaan."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Volgende"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Voltooi de installatie"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Gezichtsauthenticatie in Windows Hello-stijl"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "gezicht;herkenning;authenticatie;beveiliging;slot;"

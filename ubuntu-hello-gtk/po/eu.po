@@ -1,0 +1,703 @@
+# ubuntu-hello-gtk translation for eu.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "Sortu"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Etiketa"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "Automatikoa"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Gaitu giltza-erraztea/KWallet desblokeatzea"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Sartu <b>{}</b> erabiltzailearen pasahitza {} ({}) desblokeatzeko:"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Pasahitza"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Datu-fitxategiak deskargatu dira dagoeneko!\n"
+"Sakatu Hurrengoa jarraitzeko"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Errore bat gertatu da datu-fitxategiak deskargatzean"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Eginda!\n"
+"Sakatu Hurrengoa jarraitzeko"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Errore bat gertatu da OpenCV2 inportatzean"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Saiatu cv2 berriro instalatzen"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Ez da aurkitu sisteman kamerarik"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Mesedez, konfiguratu kamera zuk zeuk kamera bateragarri bat konektatuta "
+"dagoela ziur bazaude"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Ez, kamera ezin da ireki"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Ez, ez infragorri kamera bat"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Bai, kamera infragorri bateragarria"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Kameraren identifikatzailea edo bidea"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "Gomendagarria"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Errore bat gertatu da kamera hautatzen"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "Hautatutako kamera ezin da ireki"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Saiatu beste bat hautatzen"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Mesedez, bisitatu\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"zure ir igorlea gaitzeko"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Mesedez, begiratu zuzenean kamerara"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Hasi aurpegia eskaneatzen"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Ezin da aurpegiaren eredua gorde"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure {} aurpegiko "
+"autentifikazioa erabiliz (hautsitako zorroa: {}).\n"
+"\n"
+"<b>TPM egoera:</b> TPM hardwarea eta tresnak egiaztatzen..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure {} aurpegiko "
+"autentifikazioa erabiliz (hautsitako zorroa: {}).\n"
+"\n"
+"<b>TPM egoera:</b> TPM hardwarea detektatu da. <i>tpm2-tools</i> "
+"automatikoki instalatzen..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure {} aurpegiko "
+"autentifikazioa erabiliz (hautsitako zorroa: {}).\n"
+"\n"
+"<b>TPM egoera:</b> Hardware TPM 2.0 aktiboa. Zure pasahitza modu seguruan "
+"itxiko da TPM barruan."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure {} aurpegiko "
+"autentifikazioa erabiliz (hautsitako zorroa: {}).\n"
+"\n"
+"<b>TPM egoera:</b> TPM hardwarea detektatu da, baina <i>tpm2-tools</i>ren "
+"instalazio automatikoak huts egin du. Exekutatu <code>sudo apt install tpm2-"
+"tools</code>. Softwarean oinarritutako kredentzialen cachean itzultzea."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure {} aurpegiko "
+"autentifikazioa erabiliz (hautsitako zorroa: {}).\n"
+"\n"
+"<b>TPM egoera:</b> ez da detektatu TPM hardwarerik. Softwarean oinarritutako "
+"kredentzialen cachea erabiliz (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Ezin izan da erro-sistema ez den erabiltzailea identifikatu giltza-sorta "
+"desblokeatzeko"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Pasahitza ezin da hutsik egon"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Erabiltzailearen pasahitz okerra {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "errore ezezaguna"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Ezin izan da giltza-zerrenda desblokeatzea gaitu: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Ezin izan da giltza-zerrenda desblokeatzea desgaitu: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Gako-errantzia desblokeatzeko errorea"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Errore bat gertatu da irrati-botoiak irakurtzean"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Konfigurazio abisua"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr ""
+"Ezin izan da ziurtasun hobespena gorde, baina bestela konfigurazioa amaituta "
+"dago."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Errorea"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Kargatzen..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Autentifikazioa"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Berretsi erabiltzaileen sorrera"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr "Mesedez, sartu Ubuntu Hello gehitu nahi duzun erabiltzailearen izena"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Erabiltzaile izena:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Berretsi eredua sortzea"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "Mesedez, idatzi eredu berriaren izena, gehienez 24 karaktere"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Ereduaren izena:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Eredua sortzea"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Errorea eredua gehitzean, errore-kodea {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Berretsi eredua ezabatzea"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Ziur {id} ({name}) eredua ezabatu nahi duzula?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Errorea eredua ezabatzean, errore-kodea {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Ezin da kamera ireki"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Ezin da inportatu OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "Ezezaguna"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Ez da erabiltzailerik hautatu</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>Gaituta (TPM Hardwarea)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Gaituta (Softwarearen cachea)</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>Gaituta (Pasahitza sartzeko zain)</b></span> — "
+"{}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>Desgaituta</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "Errorea"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "Arrakasta"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr ""
+"Gako-errantola/KWallet desblokeatzea behar bezala gaitu da {} "
+"erabiltzailearentzat."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Desgaitu giltza-erranda/KWallet desblokeatzea"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Ziur {} erabiltzailearentzat giltza-errantzia/KWallet desblokeatzea desgaitu "
+"nahi duzula?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Giltza/KWallet desblokeatzea desgaituta dago {} erabiltzailearentzat."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigurazioa"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigurazioa"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Bilaketa-ezarpenak"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Honetarako gordetako ereduak erakusten:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Gehitu erabiltzaile berria"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "Gehitu"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "Ereduak"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "Kameraren IDa:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "Benetako ebazpena:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Erabilitako bereizmena:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Grabagailua:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Bideoa"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Giltzarria / KWallet Desblokeo automatikoa"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Gaitu aurpegiko autentifikazioa zure saioa hasteko giltza-jokoa automatikoki "
+"desblokeatzeko edo KWallet saioa hasten denean. Honek modu seguruan "
+"gordetzen du zure pasahitza TPM-n zigilatua erabilgarri dagoenean, edo "
+"AES-256-GCM-rekin enkriptatuta erro-soilik gako nagusi bat erabiliz. "
+"Aurpegiaren autentifikazioa PAM_AUTHTOK pam_gnome_keyring edo pam_kwallet5 "
+"ezartzen du zure mahaigainaren arabera."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Egungo egoera:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Egiaztatzen..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Gaitu desblokeo automatikoa"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Desgaitu desblokeo automatikoa"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Giltzarria"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Pantailako hizkuntza"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Hizkuntza"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automatikoak sistemaren hizkuntza jarraitzen du. Aldaketak berehala aplikatzen dira."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Aurpegiko autentifikazioa Linuxerako"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Bertsio ezezaguna"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Ireki GitHub esteka</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "Buruz"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Ongi etorri Ubuntu Hello-ra"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Konfigurazioa egin da!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Bukatu dugu! Ubuntu Hello aktibo dago orain ordenagailu honetan. Saiatu "
+"normalean pasahitza idatzi beharko zenukeen edozer egiten autentifikatzeko, "
+"adibidez sudo-rekin komando bat exekutatzea. Giltza-sorta desblokeatzeko "
+"automatikoki gaitu baduzu, saioa hasteko giltza-jokoa edo KWallet ere "
+"automatikoki desblokeatuko da saioa hasten denean.\n"
+"\n"
+"Ubuntu Hello Konfiguratzailea geroago ireki dezakezu ezarpen aurreratuagoak "
+"aldatzeko edo eredu gehiago gehitzeko. Sakatu Amaitu behean leiho hau ixteko "
+"eta Ubuntu Hello Konfiguratzailea irekitzeko."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello-k automatikoki desblokea dezake zure saioa hasteko giltza-"
+"errantzia edo KWallet aurpegiko autentifikazioa erabiliz, saioa hasi ondoren "
+"pasahitz-eskaerak saihestuz."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Gaitu giltza-joko automatikoa/KWallet desblokeatzea"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Berretsi pasahitza"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Ziurtasun politika ezartzea"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Angelu, distantzia eta beste faktore batzuen aldaketak direla eta, aurpegien "
+"bat ez da inoiz gordetako aurpegiaren ereduaren berdina. Orri honetan Ubuntu "
+"Hello zein zorrotza izan behar den ezar dezakezu."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "Azkar"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Partidu lausoagoak ahalbidetzen ditu, \n"
+"baina eskaneatzeko prozesua asko bizkortzen du."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "Orekatua"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Detekzio nahiko azkarra oraindik, \n"
+"baina baliteke urrunago dagoenean saioa ez izatea."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "Segurua"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"Aukera apur bat seguruagoa, \n"
+"baina askoz gehiago beharko duzu autentifikatzeko"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Aurpegi-eredu bat gehitzea"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Autentifikatzeko Ubuntu Hello zure aurpegiaren eredu bat gorde behar da zu "
+"ezagutzeko. Sakatu beheko Eskaneatu botoia aurpegiko miaketa hasteko."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Webcam konfiguratzen"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Infragorrien igorlea keinuka ari al da?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "bai"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "ez"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello zure sistema automatikoki bilatuko du erabilgarri dauden "
+"kamerak, beraz, ziurtatu zure webcam konektatuta dagoela. Detektatu ondoren "
+"erabilgarri dauden webcamen zerrenda erakutsiko da. Aukeratu erabili nahi "
+"duzuna eta egin klik Hurrengoa."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Webcamak probatzen, itxaron mesedez..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Datu-fitxategiak deskargatzea"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello aurrez prestatutako hiru datu-multzo behar ditu ezagutu ahal "
+"izateko, eta orain deskargatuko dira. Deskargaren aurrerapena behean ikus "
+"dezakezu."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Deskargatzen hasten..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Ongi etorri Ubuntu Hello-ra!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Bertsioa"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Morroi honek konfigurazio-prozesuan zehar gidatuko zaitu eta automatikoki "
+"konfiguratuko dizu Ubuntu Hello. Sakatu hurrengoa jarraitzeko."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "Utzi"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Hurrengoa"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Amaitu konfigurazioa"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello estiloko aurpegiko autentifikazioa"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "aurpegia;aitorpena;autentifikazioa;segurtasuna;blokeoa;"

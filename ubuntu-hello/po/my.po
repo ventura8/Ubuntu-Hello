@@ -1,0 +1,710 @@
+# ubuntu-hello translation for my.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: my\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "ပျက်ကွက်၊ အချိန်ကုန်သွားပါပြီ။"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "မျက်နှာ ထောက်လှမ်းမှုပုံသည် မှောင်လွန်းသည်။"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "အမည်မသိ အမှား-"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "မျက်နှာကို %s အဖြစ် သတ်မှတ်ခဲ့သည်"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr "Enter နှိပ် ပေးပို့ရန် ခွင့်ပြုချက် မလုံလောက်သဖြင့် ၎င်းအစား အသုံးပြုသူကို နှိပ်ရန် စောင့်ဆိုင်းနေပါသည်။"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "အသုံးပြုသူမှ ၎င်းအစား နှိပ်ရန် စောင့်ဆိုင်းနေစဉ် Enter နှိပ်၍ ပေးပို့ရန် မအောင်မြင်ပါ။"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "မျက်နှာကို စစ်မှန်ကြောင်း သက်သေပြရန် ကြိုးစားနေပါသည်။"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "အသုံးပြုသူကို မဆုံးဖြတ်နိုင်ပါ၊ ကျေးဇူးပြု၍ --user အလံကို အသုံးပြုပါ။"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello မျက်နှာအထောက်အထားစိစစ်ခြင်းအတွက် ကွန်မန်းလိုင်းအင်တာဖေ့စ်။"
+
+#: src/cli.py:35
+msgid "command"
+msgstr "အမိန့်"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "ဆင်ခြေများ"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"ပံ့ပိုးမှုအတွက် ကျေးဇူးပြု၍ သွားရောက်ကြည့်ရှုပါ။\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"လုပ်ဆောင်ရန် အမိန့်ပေးရွေးချယ်မှုသည် အောက်ပါတို့အနက်မှတစ်ခု ဖြစ်နိုင်သည်- ထည့်ရန်၊ ရှင်းလင်းရန်၊ "
+"ပြင်ဆင်သတ်မှတ်ရန်၊ ပိတ်ရန်၊ သော့ချိတ်၊ စာရင်း၊ ဖယ်ရှားရန်၊ လျှပ်တစ်ပြက်ရိုက်ချက်၊ သတ်မှတ်၊ စမ်းသပ်မှု သို့မဟုတ် "
+"ဗားရှင်း။"
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "ပေါင်းထည့်ရန်၊ ပိတ်ရန်၊ ဖယ်ရှားရန်နှင့် အမိန့်ပေးရန်အတွက် ရွေးချယ်နိုင်သော အကြောင်းပြချက်များ။"
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "အသုံးပြုရန် အသုံးပြုသူအကောင့်ကို သတ်မှတ်ပါ။"
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "မေးခွန်းအားလုံးကို ကျော်လိုက်ပါ။"
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "ပရင့်ထုတ်စက်နှင့် လိုက်ဖက်သော အထွက်။"
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "ဤအကူအညီမက်ဆေ့ဂျ်ကို ပြပြီး ထွက်လိုက်ပါ။"
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "လက်ရှိအသုံးပြုသူ-"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "မမှန်ကန်သော အသုံးပြုသူအမည်ဖော်မတ်"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "ကျေးဇူးပြု၍ ဤ command ကို root အဖြစ် run ပါ။\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"ubuntu-hello ညွှန်ကြားချက်များကို root အဖြစ် မလုပ်ဆောင်နိုင်ပါ၊ ကျေးဇူးပြု၍ ဤအမိန့်ကို --user "
+"အလံဖြင့် လုပ်ဆောင်ပါ။"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "ဒေတာဖိုင်များကို ဒေါင်းလုဒ်မလုပ်ရသေးပါ၊ ကျေးဇူးပြု၍ အောက်ပါ command များကို လုပ်ဆောင်ပါ။"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "လော့ဂ်အင်"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "ရက်စွဲ-"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "စကင်န်ဖတ်ချိန်-"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "ဘောင်များ-"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "လက်ခံသူအမည်-"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "အကောင်းဆုံးသေချာမှုတန်ဖိုး-"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "စတင်နေသည်..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "သင့်ကို ခွဲခြားသိမြင်ခြင်း..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "မအောင်မြင်ပါ။"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "ဖရိမ်များအားလုံး မှောင်လွန်းသည်၊ ကျေးဇူးပြု၍ config တွင် dark_threshold ကိုစစ်ဆေးပါ။"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "ပျမ်းမျှအမှောင်- {avg}၊ အဆင့်သတ်မှတ်ချက်- {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "အချိန်ကုန်တယ်။"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "စတင်ခြင်း။"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "cam ကိုဖွင့် + load libs- %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "ကင်မရာဖွင့်ခြင်း။"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "အသိအမှတ်ပြု libs တင်သွင်းခြင်း။"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "လူသိများသောမျက်နှာကိုရှာဖွေခြင်း။"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "စုစုပေါင်းအချိန်"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"ဆုံးဖြတ်ချက်"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "မူရင်း- %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "အသုံးပြုထားသည်- %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"ရှာဖွေထားသောဘောင်များ- %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "အနက်ရောင်ဘောင်များကို လျစ်လျူရှုထားသည်- %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "အမှောင်ဘောင်များကို လျစ်လျူရှုထားသည်- %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "အနိုင်ရဘောင်သေချာမှု- %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "အနိုင်ရမော်ဒယ်- %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "အောင်မြင်ပါစေ။"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "လော့ဂ်အင်သော့ချိတ်"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "အကောင့်ဝင်သော့ချိတ် သို့မဟုတ် KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib module ကို မတင်သွင်းနိုင်ပါ၊ ၏ output ကိုစစ်ဆေးပါ။"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "မျက်နှာပုံစံ ဖိုင်တွဲကို ရှာမတွေ့ပါ၊ တစ်ခုဖန်တီးပါ။"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "သတိပေးချက်- နောက်ထပ်မော်ဒယ်တစ်ခုစီသည် မျက်နှာမှတ်မိခြင်းအင်ဂျင်ကို အနည်းငယ်နှေးကွေးစေသည်။"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "ပယ်ဖျက်ရန် Ctrl+C ကိုနှိပ်ပါ။\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "အသုံးပြုသူအတွက် မျက်နှာပုံစံကို ထည့်သွင်းခြင်း။"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "မော်ဒယ် #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y အလံကြောင့် မူရင်းအညွှန်း \"%s\" ကို အသုံးပြုခြင်း။"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "ဤမော်ဒယ်သစ် [{}] အတွက် အညွှန်းတစ်ခု ထည့်ပါ-"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "သတိပေးချက်- မော်ဒယ်အမည်မှ တရားမဝင် စာလုံး \"\" ကို ဖယ်ရှားခြင်း။"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"ကျေးဇူးပြု၍ ကင်မရာကို တည့်တည့်ကြည့်ပေးပါ။"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "ကင်မရာသည် အနက်ရောင်ဘောင်များကိုသာ မြင်သည် - IR emitter အလုပ်လုပ်ပါသလား။"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "မျက်နှာကို မတွေ့ပါ၊ ဖျက်ပစ်ပါ။"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "မျက်နှာများစွာကို တွေ့ရှိပြီး ပျက်သွားသည်"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"စကင်န်ဖတ်ပြီးပါပြီ။\n"
+"မော်ဒယ်အသစ်ကို ထပ်ထည့်လိုက်ပါတယ်။"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "မော်ဒယ်များ မဖန်တီးရသေးပါ၊ မရှိလျှင် ၎င်းတို့ကို ရှင်းလင်း၍ မရပါ။"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{}တွင် မော်ဒယ်များ မရှိပါ သို့မဟုတ် ၎င်းတို့ကို ရှင်းလင်းပြီးဖြစ်ပါသည်။"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "၎င်းသည် မော်ဒယ်အားလုံးကို ရှင်းလင်းမည်ဖြစ်သည်။"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "ဆက်လုပ်လိုပါသလား [y/N]-"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"NO\" အဖြစ် ဘာသာပြန်ခြင်းကို ပျက်သွားစေသည်။"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"မော်ဒယ်များကို ရှင်းလင်းထားသည်။"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "{editor} တွင် config.ini ကိုဖွင့်နေသည်"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "တည်းဖြတ်သူကိုဖွင့်၍မရပါ- {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "အမှား- သင့်လျော်သော စာသားတည်းဖြတ်သူကို ရှာမတွေ့ပါ။"
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"ကျေးဇူးပြု၍ 'nano' သို့မဟုတ် 'vi' ကို ထည့်သွင်းပါ၊ သို့မဟုတ် EDITOR ပတ်၀န်းကျင် ပြောင်းလဲနိုင်သော "
+"အမျိုးအစားကို သတ်မှတ်ပါ။"
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"သင်သည် ဤအမိန့်ကို sudo ဖြင့် လုပ်ဆောင်နေပါက၊ သင်၏ EDITOR variable ကို ထိန်းသိမ်းရန် 'sudo -E "
+"ubuntu-hello config' ကို စမ်းကြည့်ပါ။"
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "အငြင်းအခုံအဖြစ် 0 (ဖွင့်ရန်) သို့မဟုတ် 1 (ပိတ်ရန်) ကို ကျေးဇူးပြု၍ ထည့်ပါ။"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "အငြင်းအခုံအဖြစ် 0 (ဖွင့်ရန်) သို့မဟုတ် 1 (ပိတ်ရန်) ကိုသာ အသုံးပြုပါ။"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "disable option ကိုသတ်မှတ်ထားပြီးဖြစ်သည်။"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello ကို ပိတ်ထားသည်။"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello ဖွင့်ပြီးပါပြီ။"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "အသုံးပြုမှု- သော့ချိတ် [enable|disable]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) လော့ခ်ဖွင့်ရန် အသုံးပြုသူ {} စကားဝှက်ကို ရိုက်ထည့်ပါ။"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "စကားဝှက်သည် ဗလာမဖြစ်ရပါ။"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "စကားဝှက်အတည်ပြုခြင်း:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "စကားဝှက်များ မတိုက်ဆိုင်ပါ။"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM ဟာ့ဒ်ဝဲကို တွေ့ရှိခဲ့သည်။ tpm2-tools အလိုအလျောက် ထည့်သွင်းနေသည်..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM ဟာ့ဒ်ဝဲ အသုံးပြုနေပါသည်။ TPM တွင် စကားဝှက်ကို ပိတ်နေသည်..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM (ပိုက်ဆံအိတ်- {}) ကို အသုံးပြု၍ အသုံးပြုသူ {} သော့ခတ်ခြင်း/KWallet လော့ခ်ဖွင့်ခြင်းကို အောင်မြင်စွာ "
+"ဖွင့်ထားသည်။"
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "စကားဝှက်ကို TPM သို့တံဆိပ်ခတ်၍မရပါ- {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "TPM တက်ကြွမှုမရှိပါ။ ဆော့ဖ်ဝဲအခြေခံ အထောက်အထား ကက်ရှ်ကို အသုံးပြုခြင်း..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"သော့ခတ်ခြင်း/KWallet အသုံးပြုသူ {} (ဆော့ဖ်ဝဲလ် Caching၊ ပိုက်ဆံအိတ်- {}) အတွက် "
+"အောင်မြင်စွာသော့ဖွင့်ခြင်းကို ဖွင့်ထားသည်။"
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "သော့ခတ်သော့ဖွင့်ခြင်းကို ဖွင့်၍မရပါ- {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "သော့ခတ်သော့ဖွင့်ခြင်းကို ပိတ်ရန် မအောင်မြင်ပါ- {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "{} အသုံးပြုသူအတွက် သော့ချိတ်/KWallet လော့ခ်ဖွင့်ခြင်းကို ပိတ်ထားသည်။"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "သော့ခတ်ခြင်း/KWallet လော့ခ်ဖွင့်ခြင်းကို အသုံးပြုသူ {} အတွက် ဖွင့်မထားပါ။"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "မမှန်ကန်သောလုပ်ဆောင်ချက်။ 'enable' သို့မဟုတ် 'disable' ကိုသုံးပါ။"
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "မျက်နှာပုံစံများကို မစတင်ရသေးပါ၊ ကျေးဇူးပြု၍ လုပ်ဆောင်ပါ။"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "{} အသုံးပြုသူအတွက် လူသိများသော မျက်နှာပုံစံ မရှိပါ၊ ကျေးဇူးပြု၍ လုပ်ဆောင်ပါ။"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{}အတွက် လူသိများသော မျက်နှာပုံစံများ"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID ရက်စွဲ အညွှန်း [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "အငြင်းအခုံအဖြစ် သင်ဖယ်ရှားလိုသော မော်ဒယ်၏ ID ကို ထည့်ပါ။"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "ဥပမာအားဖြင့်:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Run ခြင်းဖြင့် ID များကို သင်ရှာဖွေနိုင်သည်-"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "၎င်းသည် {user} အတွက် \"{label}\" ဟုခေါ်သော မော်ဒယ်ကို ဖယ်ရှားပါမည်"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user}အတွက် ID {id} မပါရှိပါ။"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "နောက်ဆုံးမော်ဒယ်ကို ဖယ်ရှားလိုက်သည်၊ အသုံးပြုသူအတွက် ubuntu-hello ကို ပိတ်ထားသည်။"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "မော်ဒယ် {} ဖယ်ရှားထားသည်"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "သင်ပြောင်းလဲလိုသော ဆက်တင်တစ်ခုနှင့် ၎င်းကို သတ်မှတ်ရန် တန်ဖိုးကို ထည့်ပါ။"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "သတ်မှတ်ရန် \"{}\" config option ကို ရှာမတွေ့ပါ။"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Config option ကို အပ်ဒိတ်လုပ်ထားသည်။"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "လျှပ်တစ်ပြက်ကို ထုတ်လုပ်သည်။"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "အမှောင်အဆင့် သတ်မှတ်မှု-"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "သေချာသတ်မှတ်မှု-"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "ဖန်တီးထားသော လျှပ်တစ်ပြက်ရိုက်ချက်အဖြစ် သိမ်းဆည်းထားသည်။"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello စမ်းသပ်မှုအမိန့်ကို မပံ့ပိုးရသေးသော အသံဖမ်းစက်ကို အသုံးပြုရန် ပြင်ဆင်သတ်မှတ်ထားပြီး၊ "
+"ပျက်သွားသည်"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"စမ်းသပ်ဖိဒ်ဖြင့် ပြတင်းပေါက်ကိုဖွင့်ခြင်း။\n"
+"\n"
+"ထွက်ရန် ဤterminal ရှိ ctrl+C ကိုနှိပ်ပါ။\n"
+"အနှေးမုဒ်ကို ဖွင့်ရန် သို့မဟုတ် ပိတ်ရန် ပုံကို နှိပ်ပါ။\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "ဆုံးဖြတ်ချက်- %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS- %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "ဘောင်များ- %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "အသိအမှတ်ပြုမှု- %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "နှေးကွေးသောမုဒ်"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "အမှောင်ဘောင်"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "စကင်န်ဘောင်"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"ပြတင်းပေါက်ပိတ်"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "လက်ညှိုးထောင်ခေါင်းစည်းစည်းမျဉ်းကို ပိုင်းခြားစိတ်ဖြာရာတွင် အမှားအယွင်းရှိသည်- {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "တံဆိပ်ခေါင်းမတပ်ဆင်ပါ- {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "တံဆိပ်ခေါင်းအမှား- အတန်း {} ရှာမတွေ့ပါ။"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "တံဆိပ်ခေါင်းပုံစံဖွဲ့စည်းမှု ကြေငြာချက်တွင် အတွင်းပိုင်း အမှားအယွင်း"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "လက်စွပ်တံဆိပ်ခေါင်းအတွင်းပိုင်း အမှားအယွင်း-"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} တွင် ခွင့်ပြုချက်ကို ပယ်ဖျက်ခြင်း"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} တွင် အခွင့်အာဏာပေးခြင်း"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "ဖျက်ရန် {abort_key} ကို နှိပ်ပါ၊ ခွင့်ပြုရန် {confirm_key}"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "အထောက်အထားစိစစ်ခြင်းကို ဖျက်သိမ်းလိုက်ပါပြီ။"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "အတည်ပြုရန် ခေါင်းညိတ်သည်။"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "ကိုယ်ဝန်ဖျက်ရန် ခေါင်းခါပါ။"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "စစ်မှန်ကြောင်း အတည်ပြုထားသည်။"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "စစ်မှန်ကြောင်းအထောက်အထားကို ဖျက်သိမ်းလိုက်ပါပြီ။"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg module ပျောက်နေသည်၊ ကျေးဇူးပြု၍ ဖွင့်ပါ-"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "ပျောက်ဆုံးနေသော pyv4l2 မော်ဂျူး၊ ကျေးဇူးပြု၍ ဖွင့်ပါ-"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr "Ubuntu Hello config ဖိုင်တွင် သတ်မှတ်ထားသည့် လမ်းကြောင်းတွင် ကင်မရာကိရိယာကို ရှာမတွေ့ပါ။"
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"လမ်းကြောင်းကို မှန်ကန်စွာ ပြင်ဆင်သတ်မှတ်ခြင်း မပြုပါက ဖြစ်နိုင်ပါသည်၊ ကျေးဇူးပြု၍ 'device_path' "
+"config value ကို လုပ်ဆောင်ခြင်းဖြင့် တည်းဖြတ်ပါ-"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr "'device_path' config option တွင် သတ်မှတ်ထားသော ကင်မရာကို ဖတ်၍မရပါ၊ ပျက်သွားပါသည်။"

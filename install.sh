@@ -30,12 +30,64 @@ CHECKMARK="${GREEN}✔${NC}"
 CROSSMARK="${RED}✘${NC}"
 ARROW="${CYAN}➜${NC}"
 
+# Default clone URL (also used to peek VERSION for curl|bash installs).
+REPO_URL="${UH_REPO_URL:-https://github.com/ventura8/ubuntu-hello.git}"
+REPO_RAW_VERSION_URL="${UH_REPO_RAW_VERSION_URL:-https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/VERSION}"
+
+uh_read_version_file() {
+    local path="$1"
+    if [ ! -f "$path" ]; then
+        return 1
+    fi
+    # First non-empty line from repo-root VERSION (semver SSOT).
+    head -n1 "$path" | tr -d '\r' | awk 'NF { print; exit }'
+}
+
+uh_installer_version() {
+    local ver="" f
+    if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+        f="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/VERSION"
+        ver=$(uh_read_version_file "$f") && [ -n "$ver" ] && { echo "$ver"; return; }
+    fi
+    ver=$(uh_read_version_file "$(pwd)/VERSION") && [ -n "$ver" ] && { echo "$ver"; return; }
+    if [ -n "${SOURCE_DIR:-}" ]; then
+        ver=$(uh_read_version_file "$SOURCE_DIR/VERSION") && [ -n "$ver" ] && { echo "$ver"; return; }
+    fi
+    # Piped curl|bash: VERSION is not on disk yet — peek the published file.
+    if command -v curl >/dev/null 2>&1; then
+        ver=$(curl -fsSL --max-time 5 "$REPO_RAW_VERSION_URL" 2>/dev/null \
+            | tr -d '\r' | awk 'NF { print; exit }') || true
+        if [ -n "${ver:-}" ]; then
+            echo "$ver"
+            return
+        fi
+    fi
+    echo "unknown"
+}
+
+uh_banner_pad() {
+    # Center *text* in a fixed-width banner cell (58 chars between ║ … ║).
+    local text="$1"
+    local width=58
+    local len=${#text}
+    if [ "$len" -ge "$width" ]; then
+        printf '%s' "${text:0:$width}"
+        return
+    fi
+    local left=$(( (width - len) / 2 ))
+    local right=$(( width - len - left ))
+    printf '%*s%s%*s' "$left" '' "$text" "$right" ''
+}
+
 banner() {
+    local ver title
+    ver=$(uh_installer_version)
+    title="Ubuntu Hello — Installer  v${ver}"
     echo ""
     echo -e "${MAGENTA}${BOLD}"
     echo "  ╔══════════════════════════════════════════════════════════╗"
-    echo "  ║              Ubuntu Hello — Installer                   ║"
-    echo "  ║      Facial Authentication for Ubuntu Linux             ║"
+    echo "  ║$(uh_banner_pad "$title")║"
+    echo "  ║$(uh_banner_pad "Facial Authentication for Ubuntu Linux")║"
     echo "  ╚══════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
 }
@@ -104,36 +156,25 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 1: Install system dependencies
-# ─────────────────────────────────────────────────────────────────────
-step "Installing system dependencies"
-
-export DEBIAN_FRONTEND=noninteractive
-
-apt-get update -qq
-
-apt-get install -y -qq \
-    python3 python3-pip python3-dev python3-setuptools python3-wheel \
-    python3-numpy python3-opencv python3-gi python3-gi-cairo \
-    gir1.2-gtk-3.0 \
-    cmake make build-essential g++ \
-    libpam0g-dev libinih-dev libevdev-dev libopencv-dev \
-    libboost-all-dev pkg-config \
-    meson ninja-build \
-    git curl wget bzip2 \
-    v4l-utils \
-    libopenblas-dev liblapack-dev \
-    tpm2-tools \
-    2>&1 | tail -1
-
-success "All system dependencies installed"
-
-# ─────────────────────────────────────────────────────────────────────
-# Step 2: Get the source code
+# Step 1: Bootstrap fetch tools, then get the source code
 # ─────────────────────────────────────────────────────────────────────
 step "Preparing source code"
 
-REPO_URL="https://github.com/ventura8/ubuntu-hello.git"
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -qq
+
+# Bootstrap fetch tools (needed before the shared deps script is available).
+# Record which of these were missing so uninstall can remove them too.
+BOOTSTRAP_PKGS=(ca-certificates curl wget git)
+BOOTSTRAP_ADDED=()
+for _pkg in "${BOOTSTRAP_PKGS[@]}"; do
+    if ! dpkg-query -W -f='${Status}' "$_pkg" 2>/dev/null | grep -q "install ok installed"; then
+        BOOTSTRAP_ADDED+=("$_pkg")
+    fi
+done
+apt-get install -y -qq "${BOOTSTRAP_PKGS[@]}" 2>&1 | tail -1
+
+REPO_URL="${REPO_URL:-https://github.com/ventura8/ubuntu-hello.git}"
 INSTALL_FROM_CLONE=false
 
 # Check if we're already inside the repo
@@ -149,10 +190,27 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────
+# Step 2: Install system dependencies (all DEs / GTK / wallet / build)
+# ─────────────────────────────────────────────────────────────────────
+step "Installing system dependencies"
+
+DEPS_SCRIPT="$SOURCE_DIR/scripts/uh-apt-deps.sh"
+if [ ! -f "$DEPS_SCRIPT" ]; then
+    fail "Missing $DEPS_SCRIPT — cannot install dependencies"
+fi
+# shellcheck source=scripts/uh-apt-deps.sh
+source "$DEPS_SCRIPT"
+uh_apt_install_all
+if [ "${#BOOTSTRAP_ADDED[@]}" -gt 0 ]; then
+    uh_apt_record_added "${BOOTSTRAP_ADDED[@]}"
+fi
+
+success "All system dependencies installed (GTK, Babel, multi-DE theme tools, wallet PAM)"
+
+# ─────────────────────────────────────────────────────────────────────
 # Step 3: Install Python dependencies (dlib)
 # ─────────────────────────────────────────────────────────────────────
 step "Installing Python dependencies (dlib — this may take a few minutes)"
-
 # Determine pip flags for system-managed Python (Ubuntu 23.04+)
 PIP_FLAGS=""
 if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)" 2>/dev/null; then
@@ -307,7 +365,35 @@ systemctl daemon-reload 2>/dev/null || true
 success "Polkit configured for face authentication"
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 10: Clean up build artifacts
+# Step 10: Launch the setup wizard (Wayland/X11 session-aware)
+# ─────────────────────────────────────────────────────────────────────
+step "Starting setup wizard"
+
+# Resolve installer location (empty when piped via curl | sudo bash).
+SCRIPT_DIR=""
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
+
+POSTINSTALL_LAUNCHER=""
+if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
+    POSTINSTALL_LAUNCHER="$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
+elif [ -n "${SOURCE_DIR:-}" ] && [ -f "$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
+    POSTINSTALL_LAUNCHER="$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
+fi
+
+if [ -n "$POSTINSTALL_LAUNCHER" ]; then
+    if python3 "$POSTINSTALL_LAUNCHER"; then
+        success "Setup wizard launch requested (approve the polkit prompt if shown)"
+    else
+        warn "Could not auto-start the setup wizard — run: ubuntu-hello-gtk --force-onboarding"
+    fi
+else
+    warn "Post-install launcher missing — run: ubuntu-hello-gtk --force-onboarding"
+fi
+
+# ─────────────────────────────────────────────────────────────────────
+# Step 11: Clean up build artifacts
 # ─────────────────────────────────────────────────────────────────────
 if [ "$INSTALL_FROM_CLONE" = true ] && [ -d "$SOURCE_DIR" ]; then
     step "Cleaning up"
@@ -316,24 +402,19 @@ if [ "$INSTALL_FROM_CLONE" = true ] && [ -d "$SOURCE_DIR" ]; then
 fi
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 11: Launch the GUI
-# ─────────────────────────────────────────────────────────────────────
-# Note: The GUI is already automatically launched by the meson post-install script run_after_install.py.
-# So we do not need to launch it a second time here.
-
-
-# ─────────────────────────────────────────────────────────────────────
 # Done!
 # ─────────────────────────────────────────────────────────────────────
 echo ""
 echo -e "${GREEN}${BOLD}"
 echo "  ╔══════════════════════════════════════════════════════════╗"
-echo "  ║            ✔ Installation complete!                     ║"
+echo "  ║            ✔ Installation complete!                      ║"
 echo "  ╚══════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
 echo -e "  ${BOLD}Next steps:${NC}"
-echo -e "  ${ARROW} Run ${CYAN}ubuntu-hello-gtk${NC} to open the settings GUI and run the setup wizard"
+echo -e "  ${ARROW} Complete the setup wizard (camera + face enrollment)"
+echo -e "  ${ARROW} If it did not open: ${CYAN}ubuntu-hello-gtk --force-onboarding${NC}"
 echo -e "  ${ARROW} Once setup is complete, try ${CYAN}sudo -i${NC} to test face authentication"
+echo -e "  ${ARROW} Launch log: ${CYAN}/tmp/ubuntu-hello-postinstall.log${NC}"
 echo ""
 echo -e "  ${BOLD}To uninstall:${NC}"
 echo -e "  ${ARROW} ${CYAN}curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/uninstall.sh | sudo bash${NC}"

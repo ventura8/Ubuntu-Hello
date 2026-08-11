@@ -79,7 +79,7 @@
                 <property name="margin-right">10</property>
                 <property name="margin-top">10</property>
                 <property name="margin-bottom">20</property>
-                <property name="label" translatable="yes">We're done! Ubuntu Hello is now active on this computer. Try doing anything you would normally have to type your password for to authenticate, like running a command with sudo. If you enabled keyring auto-unlock, your login keyring will also be unlocked automatically on login.
+                <property name="label" translatable="yes">We're done! Ubuntu Hello is now active on this computer. Try doing anything you would normally have to type your password for to authenticate, like running a command with sudo. If you enabled keyring auto-unlock, your login keyring or KWallet will also be unlocked automatically on login.
 
 You can open the Ubuntu Hello Configurator later on to change more advanced settings or add additional models. Press Finish below to close this window and open the Ubuntu Hello Configurator. </property>
                 <property name="justify">center</property>
@@ -108,7 +108,7 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="margin-top">20</property>
-                <property name="label" translatable="yes">Keyring Auto-Unlock</property>
+                <property name="label" translatable="yes">Keyring / KWallet Auto-Unlock</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -127,7 +127,7 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
                 <property name="margin-right">10</property>
                 <property name="margin-top">10</property>
                 <property name="margin-bottom">20</property>
-                <property name="label" translatable="yes">Ubuntu Hello can automatically unlock your login keyring using face authentication, preventing password prompts after logging in.</property>
+                <property name="label" translatable="yes">Ubuntu Hello can automatically unlock your login keyring or KWallet using face authentication, preventing password prompts after logging in.</property>
                 <property name="justify">center</property>
                 <property name="wrap">True</property>
               </object>
@@ -139,7 +139,7 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
             </child>
             <child>
               <object class="GtkCheckButton" id="keyring_checkbox">
-                <property name="label" translatable="yes">Enable automatic keyring unlocking</property>
+                <property name="label" translatable="yes">Enable automatic keyring/KWallet unlocking</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>

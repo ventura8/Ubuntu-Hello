@@ -1,0 +1,729 @@
+# ubuntu-hello translation for mk.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: mk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Неуспех"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Сликата за откривање лице е премногу темна"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Непозната грешка:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Идентификувано лице како %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Недоволните дозволи за испраќање притиснете Enter, чекајќи корисникот да го "
+"притисне наместо тоа"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Не успеа да се испрати, притиснете Enter, чекајќи корисникот да го притисне "
+"наместо тоа"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Обид за автентикација на лицето"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Не може да се одреди корисникот, ве молиме користете го знамето --user"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Интерфејс на командната линија за автентикација на лице Ubuntu Hello."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "команда"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "аргументи"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"За поддршка ве молиме посетете\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Опцијата за наредба за извршување може да биде една од следниве: додавање, "
+"бришење, конфигурирање, оневозможување, копче, листа, отстранување, слика, "
+"поставување, тестирање или верзија."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Изборни аргументи за наредбите за додавање, оневозможување, отстранување и "
+"поставување."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Поставете ја корисничката сметка да се користи."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Прескокнете ги сите прашања."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Печатете резултати погодни за машината."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Покажете ја оваа порака за помош и излезете."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "моментален активен корисник:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Неважечки формат на корисничко име"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Ве молиме извршете ја оваа команда како root:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Не може да се извршат командите на ubuntu-hello како root, ве молиме "
+"извршете ја оваа команда со знамето --user"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"Датотеките со податоци не се преземени, ве молиме извршете ги следните "
+"команди:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "НАЈАВИ"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Датум:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Време на скенирање:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Рамки:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Име на домаќин:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Најдобра сигурна вредност:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Стартување..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Ви се идентификуваат..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "неуспешно"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Сите рамки беа премногу темни, проверете dark_threshold во конфигурацијата"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Просечна темнина: {avg}, праг: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Потрошено време"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Стартување"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Отворете ја камерата + вчитувајте ги листовите: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Отворање на камерата"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Увезување либи за препознавање"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Во потрага по познато лице"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Вкупно време"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Резолуција"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Мајчин: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Користено: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Пребарани рамки: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Црните рамки се игнорирани: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Темните рамки се игнорирани: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Сигурност за победничка рамка: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Победничкиот модел: %d („%s“)"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "УСПЕШЕН"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "приклучок за најава"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "приклучок за најава или KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Не може да се увезе модулот dlib, проверете го излезот од"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Не е пронајдена папка со модели на лице, се создава"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"ЗАБЕЛЕШКА: Секој дополнителен модел малку го успорува моторот за "
+"препознавање лице"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Притиснете Ctrl+C за да откажете\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Додавање модел на лице за корисникот"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Модел #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Користење на стандардната ознака „%s“ поради знамето -y"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Внесете ознака за овој нов модел [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "ЗАБЕЛЕШКА: Отстранување на нелегалниот знак \",\" од името на моделот"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Ве молиме погледнете директно во камерата"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Камерата пила само црни рамки - работи ли инфрацрвениот емитер?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Не е откриено лице, абортира"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Откриени се повеќе лица, прекинати"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Скенирањето е завршено\n"
+"Додаден нов модел на"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "Сè уште не се создадени модели, не може да се исчистат ако не постојат"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} нема модели или тие се веќе исчистени"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Ова ќе ги исчисти сите модели за"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Дали сакате да продолжите [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Толкување како „НЕ“, абортус"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Моделите се исчистени"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Се отвора config.ini во {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Не успеа да се отвори уредникот: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Грешка: не може да се најде соодветен уредувач на текст."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Инсталирајте „nano“ или „vi“, или поставете ја променливата на околината "
+"EDITOR."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Ако ја извршувате оваа команда со sudo, обидете се со 'sudo -E ubuntu-hello "
+"config' за да ја зачувате вашата променлива EDITOR."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Ве молиме додадете 0 (овозможи) или 1 (оневозможи) како аргумент"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Ве молиме користете само 0 (овозможи) или 1 (оневозможи) како аргумент"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Опцијата за оневозможување е веќе поставена на"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello е оневозможено"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello е овозможено"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Употреба: привезок [овозможи|оневозможи]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Внесете лозинка за корисникот {} за отклучување {} ({}):"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Лозинката не може да биде празна"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Потврдете ја лозинката:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Лозинките не се совпаѓаат"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "Откриен е хардвер TPM. Автоматско инсталирање tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "ТПМ хардверот е активен. Запечатување лозинка во TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Отклучувањето со клучеви/KWallet е овозможено успешно за корисникот {} "
+"користејќи TPM (паричник: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Не успеа да се запечати лозинката за TPM: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"Нема активен TPM. Користење на кеширање акредитиви базирано на софтвер..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Отклучувањето со клучеви/KWallet е овозможено успешно за корисникот {} "
+"(Кеширање на софтвер, паричник: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Не успеа да се овозможи отклучување на клучеви: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Не успеа да се оневозможи отклучувањето на клучеви: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Отклучувањето на клучеви/KWallet е оневозможено за корисникот {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Отклучувањето со клучеви/KWallet не беше овозможено за корисникот {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Неважечко дејство. Користете „овозможи“ или „оневозможи“."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Моделите на лица сè уште не се иницијализирани, ве молиме стартувајте:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Нема познат модел на лице за корисникот {}, ве молиме стартувајте:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Познати модели на лице за {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Етикета за лична карта [0м"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr ""
+"Ве молиме додајте го ID на моделот што сакате да го отстраните како аргумент"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "На пример:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Идентификациите можете да ги најдете со трчање:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Ова ќе го отстрани моделот наречен „{label}“ за {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Не постои модел со ID {id} за {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Отстранет последниот модел, ubuntu-hello е оневозможен за корисникот"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Отстранет модел {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Додадете поставка што сакате да ја промените и вредност на која ќе ја "
+"поставите"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Не може да се најде опцијата за конфигурација „{}“ за поставување"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Опцијата за конфигурација е ажурирана"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "ГЕНЕРИРАНА СНИМКА"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Конфигурација на темниот праг:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Конфигурација на сигурност:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Генерирана слика зачувана како"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello е конфигуриран да користи рекордер кој сè уште не ја поддржува "
+"командата за тестирање, прекинува"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Отворање прозорец со тест напојување\n"
+"\n"
+"Притиснете ctrl+C во овој терминал за да излезете\n"
+"Кликнете на сликата за да го вклучите или исклучите бавниот режим\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "РЕЗОЛУЦИЈА: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "РАМКИ: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "ПРЕПОЗНАВАЊЕ: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "БАВЕН РЕЖИМ"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "ТЕМНА РАМКА"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "СКЕНИРАЈ РАМКА"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Затворање на прозорецот"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Грешка при парсирање на правилото: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Не е инсталиран печат: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Грешка во печат: Класата {} не е пронајдена"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Внатрешна грешка во декларацијата за конфигурација на гумен печат:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Внатрешна грешка во гумениот печат:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Се прекинува овластувањето во {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Се овластува во {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Притиснете {abort_key} за да прекинете, {confirm_key} за да одобрите"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Автентикацијата е прекината"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Кликнете за да потврдите"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Протресете ја главата за да абортирате"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Потврдена автентикација"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Прекината автентикација"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Недостасува ffmpeg модул, ве молиме стартувајте:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Недостасува модул pyv4l2, стартувајте:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello не можеше да најде уред со камера на патеката наведена во "
+"конфигурациската датотека."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Многу е веројатно патеката да не е правилно конфигурирана, изменете ја "
+"конфигурациската вредност „device_path“ со извршување:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Не успеа да ја прочита камерата наведена во опцијата за конфигурација "
+"„патека_уред“, прекинува"

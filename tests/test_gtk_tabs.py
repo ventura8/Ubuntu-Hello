@@ -11,36 +11,43 @@ import auth_helper
 import tab_keyring
 import tab_models
 import tab_video
+import keyring_crypto
 
 
 
-# ── xor_crypt ───────────────────────────────────────────────────────
+# ── keyring_crypto ──────────────────────────────────────────────────
 
-class TestXorCrypt:
-    def test_basic_encryption(self):
-        result = tab_keyring.xor_crypt("abc", "key")
-        assert isinstance(result, str)
-        # Each char produces 2 hex digits
-        assert len(result) == 6
+class TestKeyringCrypto:
+    def test_roundtrip(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(keyring_crypto, "CONFIG_DIR", tmp_path)
+        monkeypatch.setattr(keyring_crypto, "MASTER_KEY_PATH", tmp_path / "keyring-master.key")
+        blob = keyring_crypto.encrypt_password("hello-secret")
+        assert blob.startswith(keyring_crypto.BLOB_PREFIX)
+        assert keyring_crypto.decrypt_password(blob) == "hello-secret"
 
-    def test_roundtrip(self):
-        """XOR with same key twice should give back original (as hex decode)."""
-        key = "mysecretkey"
-        plaintext = "hello"
-        encrypted = tab_keyring.xor_crypt(plaintext, key)
-        # Decrypt: convert hex back to bytes, XOR again
-        decrypted_bytes = bytes.fromhex(encrypted)
-        decrypted = ''.join(chr(b ^ ord(key[i % len(key)])) for i, b in enumerate(decrypted_bytes))
-        assert decrypted == plaintext
+    def test_reject_legacy_xor(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(keyring_crypto, "CONFIG_DIR", tmp_path)
+        monkeypatch.setattr(keyring_crypto, "MASTER_KEY_PATH", tmp_path / "keyring-master.key")
+        with pytest.raises(ValueError, match="UH1"):
+            keyring_crypto.decrypt_password("aabbccddee")
 
-    def test_empty_string(self):
-        result = tab_keyring.xor_crypt("", "key")
-        assert result == ""
+    def test_master_key_created(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(keyring_crypto, "CONFIG_DIR", tmp_path)
+        key_path = tmp_path / "keyring-master.key"
+        monkeypatch.setattr(keyring_crypto, "MASTER_KEY_PATH", key_path)
+        key = keyring_crypto.ensure_master_key()
+        assert len(key) == 32
+        assert key_path.is_file()
+        assert key_path.stat().st_mode & 0o777 == 0o600
+        assert keyring_crypto.ensure_master_key() == key
 
-    def test_single_char(self):
-        result = tab_keyring.xor_crypt("A", "B")
-        expected = f"{ord('A') ^ ord('B'):02x}"
-        assert result == expected
+    def test_auth_failure_returns_empty(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(keyring_crypto, "CONFIG_DIR", tmp_path)
+        monkeypatch.setattr(keyring_crypto, "MASTER_KEY_PATH", tmp_path / "keyring-master.key")
+        blob = keyring_crypto.encrypt_password("secret")
+        # Corrupt the ciphertext portion while keeping UH1: prefix
+        corrupted = blob[:-4] + ("AAAA" if not blob.endswith("AAAA") else "BBBB")
+        assert keyring_crypto.decrypt_password(corrupted) == ""
 
 
 # ── update_keyring_status ───────────────────────────────────────────
@@ -460,189 +467,66 @@ class TestKeyringDetails:
             err_dialog = mock_msg_dialog_cls.return_value
             err_dialog.run.assert_called_once()
 
-    def test_on_keyring_enable_tpm_success(self):
+    def test_on_keyring_enable_cli_success(self):
         mock = MagicMock()
         mock.active_user = "testuser"
         mock.window = MagicMock()
 
-        def exists_side_effect(path):
-            if path in ["/dev/tpmrm0", "/dev/tpm0"]:
-                return True
-            return False
-
-        def which_side_effect(cmd):
-            if cmd in ["tpm2_createprimary", "tpm2_unseal"]:
-                return "/usr/bin/" + cmd
-            return None
-
-        mock_popen = MagicMock()
-        mock_popen.communicate.return_value = (b"", b"")
-        mock_popen.returncode = 0
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        mock_res.stdout = "ok"
+        mock_res.stderr = ""
 
         with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
              patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", side_effect=exists_side_effect), \
-             patch("shutil.which", side_effect=which_side_effect), \
-             patch("subprocess.run") as mock_run, \
-             patch("subprocess.Popen", return_value=mock_popen), \
-             patch("os.makedirs") as mock_makedirs, \
-             patch("os.chmod") as mock_chmod, \
+             patch("tab_keyring.subprocess.run", return_value=mock_res) as mock_run, \
              patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
+
             dialog = mock_dialog_cls.return_value
             dialog.run.return_value = 1
             dialog.entry1.get_text.return_value = "correctpass"
 
             tab_keyring.on_keyring_enable(mock, MagicMock())
             mock_run.assert_called_once()
-            mock_popen.communicate.assert_called_once_with(input=b"correctpass")
+            args, kwargs = mock_run.call_args
+            assert args[0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
+            assert kwargs["input"] == "correctpass\n"
             mock_msg_dialog_cls.assert_called_once()
             mock.update_keyring_status.assert_called_once()
 
-    def test_on_keyring_enable_tpm_failure(self):
+    def test_on_keyring_enable_cli_failure(self):
         mock = MagicMock()
         mock.active_user = "testuser"
         mock.window = MagicMock()
 
-        def exists_side_effect(path):
-            return path in ["/dev/tpmrm0", "/dev/tpm0"] or "primary_" in path
-
-        mock_popen = MagicMock()
-        mock_popen.communicate.return_value = (b"", b"tpm error")
-        mock_popen.returncode = 1
+        mock_res = MagicMock()
+        mock_res.returncode = 1
+        mock_res.stdout = ""
+        mock_res.stderr = "seal failed"
 
         with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
              patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", side_effect=exists_side_effect), \
-             patch("shutil.which", return_value="/usr/bin/tool"), \
-             patch("subprocess.run") as mock_run, \
-             patch("subprocess.Popen", return_value=mock_popen), \
-             patch("os.makedirs"), \
-             patch("os.chmod"), \
-             patch("os.unlink") as mock_unlink, \
+             patch("tab_keyring.subprocess.run", return_value=mock_res), \
              patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
 
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            unlinked_paths = [call[0][0] for call in mock_unlink.call_args_list]
-            assert any("primary_" in path for path in unlinked_paths)
-            mock_msg_dialog_cls.assert_called_once()
-
-    def test_on_keyring_enable_tpm_install_tools(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        which_calls = [0]
-        def which_side_effect(cmd):
-            which_calls[0] += 1
-            if which_calls[0] > 2:
-                return "/usr/bin/" + cmd
-            return None
-
-        mock_popen = MagicMock()
-        mock_popen.communicate.return_value = (b"", b"")
-        mock_popen.returncode = 0
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", side_effect=lambda p: p in ["/dev/tpmrm0"]), \
-             patch("shutil.which", side_effect=which_side_effect), \
-             patch("subprocess.run") as mock_run, \
-             patch("subprocess.Popen", return_value=mock_popen), \
-             patch("os.makedirs"), \
-             patch("os.chmod"), \
-             patch("tab_keyring.gtk.MessageDialog"):
-            
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
-
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_run.assert_any_call(["apt-get", "install", "-y", "-qq", "tpm2-tools"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=45)
-
-    def test_on_keyring_enable_software_success(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        open_mock = mock_open(read_data="machine123\n")
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", open_mock), \
-             patch("os.makedirs") as mock_makedirs, \
-             patch("os.chmod") as mock_chmod, \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
-
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            open_mock.assert_any_call("/etc/machine-id", "r")
-            open_mock.assert_any_call("/etc/ubuntu-hello/keyring-keys/testuser", "w")
-            mock_msg_dialog_cls.assert_called_once()
-
-    def test_on_keyring_enable_software_no_machine_id(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", side_effect=Exception("Read error")), \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
             dialog = mock_dialog_cls.return_value
             dialog.run.return_value = 1
             dialog.entry1.get_text.return_value = "correctpass"
 
             tab_keyring.on_keyring_enable(mock, MagicMock())
             mock_msg_dialog_cls.assert_called_once()
+            mock.update_keyring_status.assert_called_once()
 
-    def test_on_keyring_enable_software_empty_machine_id(self):
+    def test_on_keyring_enable_cli_exception(self):
         mock = MagicMock()
         mock.active_user = "testuser"
         mock.window = MagicMock()
 
-        open_mock = mock_open(read_data="   \n")
-
         with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
              patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", open_mock), \
+             patch("tab_keyring.subprocess.run", side_effect=FileNotFoundError("ubuntu-hello")), \
              patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
 
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_msg_dialog_cls.assert_called_once()
-
-    def test_on_keyring_enable_software_write_error(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        def open_side_effect(path, mode="r"):
-            if "machine-id" in path:
-                return mock_open(read_data="machine123")()
-            raise PermissionError("Access denied")
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", side_effect=open_side_effect), \
-             patch("os.makedirs"), \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            
             dialog = mock_dialog_cls.return_value
             dialog.run.return_value = 1
             dialog.entry1.get_text.return_value = "correctpass"
@@ -669,6 +553,27 @@ class TestKeyringDetails:
             assert mock_unlink.call_count == 4
             mock_success.run.assert_called_once()
             mock.update_keyring_status.assert_called_once()
+
+    def test_on_keyring_disable_partial_files(self):
+        """Some keyring paths missing — cover exists False branch in disable loop."""
+        mock = MagicMock()
+        mock.active_user = "testuser"
+        mock.window = MagicMock()
+        calls = {"n": 0}
+
+        def exists(_path):
+            calls["n"] += 1
+            return calls["n"] % 2 == 1
+
+        with patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls, \
+             patch("os.path.exists", side_effect=exists), \
+             patch("os.unlink") as mock_unlink:
+            mock_confirm = MagicMock()
+            mock_confirm.run.return_value = 3
+            mock_success = MagicMock()
+            mock_msg_dialog_cls.side_effect = [mock_confirm, mock_success]
+            tab_keyring.on_keyring_disable(mock, MagicMock())
+            assert mock_unlink.call_count == 2
 
     def test_on_keyring_disable_failure(self):
         mock = MagicMock()

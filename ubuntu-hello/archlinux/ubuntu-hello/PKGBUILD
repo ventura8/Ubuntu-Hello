@@ -4,7 +4,8 @@
 # Contributor: Kelley McChesney <kelley@kelleymcchesney.us>
 
 pkgname=ubuntu-hello
-pkgver=1.0.4
+# Single source of truth: repo-root VERSION (via scripts/read-version.py).
+pkgver="$(python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)/scripts/read-version.py")"
 pkgrel=1
 pkgdesc="Windows Hello for Linux"
 arch=('x86_64')

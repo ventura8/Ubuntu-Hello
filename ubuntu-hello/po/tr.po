@@ -1,0 +1,728 @@
+# ubuntu-hello translation for tr.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Başarısızlık, zaman aşımına ulaşıldı"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Yüz algılama görüntüsü çok karanlık"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Bilinmeyen hata:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s olarak tanımlanan yüz"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter tuşuna basmak için yeterli izin yok; kullanıcının bu tuşa basması "
+"bekleniyor"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Enter tuşuna gönderilemedi, bunun yerine kullanıcının basması bekleniyor"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Yüzle kimlik doğrulaması deneniyor"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Kullanıcı belirlenemedi, lütfen --user bayrağını kullanın"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello yüz kimlik doğrulaması için komut satırı arayüzü."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "emretmek"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "argümanlar"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Destek için lütfen ziyaret edin\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Yürütülecek komut seçeneği aşağıdakilerden biri olabilir: ekleme, temizleme, "
+"yapılandırma, devre dışı bırakma, anahtarlık, listeleme, kaldırma, anlık "
+"görüntü, ayarlama, test veya sürüm."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Ekleme, devre dışı bırakma, kaldırma ve ayarlama komutları için isteğe bağlı "
+"bağımsız değişkenler."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Kullanılacak kullanıcı hesabını ayarlayın."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Tüm soruları atlayın."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Makine dostu çıktılar yazdırın."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Bu yardım mesajını gösterin ve çıkın."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "mevcut aktif kullanıcı:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Geçersiz kullanıcı adı biçimi"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Lütfen bu komutu root olarak çalıştırın:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Ubuntu-hello komutları root olarak çalıştırılamıyor, lütfen bu komutu --user "
+"bayrağıyla çalıştırın"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "Veri dosyaları indirilmedi, lütfen aşağıdaki komutları çalıştırın:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "GİRİŞ YAPMAK"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Tarih:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Tarama süresi:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Çerçeveler:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Ana makine adı:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "En iyi kesinlik değeri:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Başlatılıyor..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Seni tanımlamak..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "ARIZALI"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Tüm kareler çok karanlıktı, lütfen yapılandırmada dark_threshold'u kontrol "
+"edin"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Ortalama karanlık: {avg}, Eşik: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Harcanan zaman"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Başlatılıyor"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Kamerayı aç + kütüphaneleri yükle: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Kamerayı açma"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Tanıma kitaplıklarını içe aktarma"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Bilinen yüz aranıyor"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Toplam süre"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Çözünürlük"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Yerel: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Kullanılan: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Aranan kareler: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Siyah çerçeveler göz ardı edildi: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Koyu çerçeveler göz ardı edildi: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Çerçeveyi kazanmanın kesinliği: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Kazanan model: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "BAŞARILI"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "oturum açma anahtarlığı"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "giriş anahtarlığı veya KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Dlib modülü içe aktarılamıyor, çıktısını kontrol edin"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Yüz modeli klasörü bulunamadı, bir tane oluşturuluyor"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "DİKKAT: Her ek model yüz tanıma motorunu biraz yavaşlatır"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "İptal etmek için Ctrl+C tuşlarına basın\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Kullanıcı için yüz modeli ekleme"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Model #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y bayrağı nedeniyle varsayılan \"%s\" etiketini kullanma"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Bu yeni model için bir etiket girin [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "DİKKAT: Model adından yasa dışı `` karakterinin kaldırılması"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Lütfen doğrudan kameraya bakın"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamera yalnızca siyah çerçeveler gördü - IR yayıcı çalışıyor mu?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Yüz algılanmadı, iptal ediliyor"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Birden çok yüz algılandı, iptal ediliyor"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Tarama tamamlandı\n"
+"Yeni model eklendi"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "Henüz model oluşturulmadı; mevcut değilse temizlenemez"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{}'nin modeli yok veya zaten temizlenmiş"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Bu, tüm modelleri temizleyecektir."
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Devam etmek istiyor musunuz [e/H]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"HAYIR\" olarak tercüme etme, iptal etme"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Modeller temizlendi"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Config.ini'yi {editor}'da açma"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Düzenleyici açılamadı: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Hata: Uygun bir metin düzenleyici bulunamadı."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Lütfen 'nano' veya 'vi'yi yükleyin veya EDITOR ortam değişkenini ayarlayın."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Bu komutu sudo ile çalıştırıyorsanız, EDITOR değişkeninizi korumak için "
+"'sudo -E ubuntu-hello config' komutunu deneyin."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Lütfen argüman olarak 0 (etkin) veya 1 (devre dışı) ekleyin"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Lütfen argüman olarak yalnızca 0 (etkin) veya 1 (devre dışı) kullanın"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Devre dışı bırakma seçeneği zaten şu şekilde ayarlandı:"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello devre dışı bırakıldı"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello etkinleştirildi"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Kullanım: anahtarlık [etkin|devre dışı bırak]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) kilidini açmak için {} kullanıcısının şifresini girin:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Şifre boş olamaz"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Şifreyi onaylayın:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Şifreler eşleşmiyor"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM donanımı algılandı. tpm2-tools otomatik olarak yükleniyor..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM donanımı etkin. TPM'de parola mühürleniyor..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Anahtarlık/KWallet kilit açma, TPM (cüzdan: {}) kullanan {} kullanıcısı için "
+"başarıyla etkinleştirildi."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM'ye şifre mühürlenemedi: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"Aktif TPM yok. Yazılım tabanlı kimlik bilgileri önbelleğe alma özelliğini "
+"kullanma..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Anahtarlık/KWallet kilit açma, {} kullanıcısı için başarıyla etkinleştirildi "
+"(Yazılım Önbelleğe Alma, cüzdan: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Anahtarlık kilidini açma etkinleştirilemedi: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Anahtarlık kilidinin açılması devre dışı bırakılamadı: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr ""
+"Anahtarlık/KWallet kilit açma, {} kullanıcısı için devre dışı bırakıldı."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Anahtarlık/KWallet kilit açma, {} kullanıcısı için etkinleştirilmedi."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Geçersiz eylem. 'Etkinleştir' veya 'devre dışı bırak'ı kullanın."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Yüz modelleri henüz başlatılmadı, lütfen şunu çalıştırın:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr ""
+"{} kullanıcısı için bilinen bir yüz modeli yok, lütfen şunu çalıştırın:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} için bilinen yüz modelleri:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Kimlik Tarih Etiketi [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Lütfen kaldırmak istediğiniz modelin kimliğini argüman olarak ekleyin"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Örneğin:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Kimlikleri aşağıdakileri çalıştırarak bulabilirsiniz:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Bu, {user} için \"{label}\" adlı modeli kaldıracaktır."
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} için {id} kimlikli model mevcut değil"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr ""
+"Son model kaldırıldı, kullanıcı için ubuntu-merhaba devre dışı bırakıldı"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Kaldırılan model {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Lütfen değiştirmek istediğiniz ayarı ve bunun belirleneceği değeri ekleyin"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Ayarlanacak \"{}\" yapılandırma seçeneği bulunamadı"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Yapılandırma seçeneği güncellendi"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "OLUŞTURULAN ANLIK GÖRÜNTÜ"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Karanlık eşik yapılandırması:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Kesinlik yapılandırması:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Oluşturulan anlık görüntü şu şekilde kaydedildi:"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello henüz test komutunu desteklemeyen bir kayıt cihazı kullanacak "
+"şekilde yapılandırıldı, iptal ediliyor"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Test beslemeli bir pencere açma\n"
+"\n"
+"Çıkmak için bu terminalde ctrl+C tuşlarına basın\n"
+"Yavaş modu etkinleştirmek veya devre dışı bırakmak için resme tıklayın\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "ÇÖZÜNÜRLÜK: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "ÇERÇEVELER: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "TANIMA: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "YAVAŞ MOD"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "KOYU ÇERÇEVE"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "TARAMA ÇERÇEVESİ"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Pencere kapatılıyor"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Lastik damga kuralı ayrıştırılırken hata oluştu: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Damga yüklü değil: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Damga hatası: Sınıf {} bulunamadı"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Lastik damga yapılandırma beyanında dahili hata:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Lastik damgada dahili hata:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{}'da yetkilendirme iptal ediliyor"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{}'da yetkilendirme"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr ""
+"İptal etmek için {abort_key} tuşuna, yetkilendirmek için {confirm_key} "
+"tuşuna basın"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Kimlik doğrulama iptal edildi"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Onaylamak için başını salla"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "İptal etmek için başınızı sallayın"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Onaylanmış kimlik doğrulama"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Kimlik doğrulama iptal edildi"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Ffmpeg modülü eksik, lütfen şunu çalıştırın:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Eksik pyv4l2 modülü, lütfen şunu çalıştırın:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello yapılandırma dosyasında belirtilen yolda bir kamera cihazı "
+"bulunamadı."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Yolun doğru şekilde yapılandırılmamış olması muhtemeldir; lütfen aşağıdaki "
+"komutu çalıştırarak 'device_path' yapılandırma değerini düzenleyin:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"'Device_path' yapılandırma seçeneğinde belirtilen kamera okunamadı, iptal "
+"ediliyor"

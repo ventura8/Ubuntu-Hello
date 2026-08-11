@@ -1,0 +1,25 @@
+# syntax=docker/dockerfile:1.26.0
+# CI image for Ubuntu Hello — Ubuntu 26.04 lint stage
+# Image tag: ubuntu-hello-ci-lint:26.04
+# Runs meson/ninja + clang-tidy + py_compile only (no pytest/coverage).
+# Source is bind-mounted at /src by scripts/ci-docker.sh (no COPY).
+FROM ubuntu:26.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+# Apt packages are distro-locked by ubuntu:26.04 (no floating apt versions).
+
+# Apt cache mounts keep package downloads across rebuilds (BuildKit).
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    python3 \
+    cmake make build-essential clang clang-tidy g++ \
+    libstdc++-15-dev \
+    libpam0g-dev libinih-dev libevdev-dev libssl-dev libboost-all-dev \
+    pkg-config libopencv-dev \
+    meson ninja-build gettext
+
+WORKDIR /src
+CMD ["./scripts/ci-docker.sh", "--inside"]

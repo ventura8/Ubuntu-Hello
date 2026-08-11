@@ -10,6 +10,7 @@ __pycache__/
 .Python
 env/
 build/
+builddir-agent/
 develop-eggs/
 dist/
 downloads/
@@ -48,11 +49,14 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
+# Keep *.pot committed (templates); only ignore compiled catalogs
 
 # Django stuff:
 *.log
 local_settings.py
+
+# Agent workstream progress (keep logs/README.md; ignore log files)
+/logs/*.log
 
 # Flask stuff:
 instance/
@@ -106,11 +110,18 @@ ENV/
 # snapshots
 /ubuntu-hello/src/snapshots
 
-# build files
-debian/ubuntu-hello.substvars
+# Local .deb output from scripts/ppa-docker.sh / CI packaging jobs
+/artifacts/
+
+# Debian packaging build trees (keep control, rules, *.install, maintainer scripts)
+debian/.debhelper/
+debian/tmp/
 debian/files
 debian/debhelper-build-stamp
-debian/ubuntu-hello
+debian/*.substvars
+debian/*.debhelper.log
+debian/ubuntu-hello/
+debian/ubuntu-hello-gtk/
 
 # vscode
 .vscode/*

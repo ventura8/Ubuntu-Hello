@@ -1,0 +1,711 @@
+# ubuntu-hello translation for yo.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: yo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Ikuna, akoko ipari ti de"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Aworan wiwa oju dudu ju"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Aṣiṣe aimọ:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Oju ti idanimọ bi %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Awọn igbanilaaye ti ko to lati firanṣẹ Tẹ tẹ, nduro fun olumulo lati tẹ dipo"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Kuna lati firanṣẹ Tẹ tẹ, nduro fun olumulo lati tẹ dipo"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Gbiyanju ìfàṣẹsí oju"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Ko le pinnu olumulo, jọwọ lo --user flag"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ni wiwo laini aṣẹ fun Ubuntu Hello ìfàṣẹsí oju."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "pipaṣẹ"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "awọn ariyanjiyan"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Fun atilẹyin jọwọ ṣabẹwo\n"
+"⟦U0000"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Aṣayan aṣẹ lati ṣiṣẹ, le jẹ ọkan ninu awọn atẹle: ṣafikun, ko o, atunto, mu "
+"ṣiṣẹ, bọtini bọtini, atokọ, yọkuro, aworan aworan, ṣeto, idanwo tabi ẹya."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "Awọn ariyanjiyan iyan fun afikun, mu ṣiṣẹ, yọkuro ati ṣeto awọn aṣẹ."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Ṣeto akọọlẹ olumulo lati lo."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Rekọja gbogbo awọn ibeere."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Print ẹrọ-friendly o wu."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Ṣe afihan ifiranṣẹ iranlọwọ yii ati jade."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "olumulo lọwọlọwọ:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Ọna kika orukọ olumulo ti ko tọ"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Jọwọ ṣiṣẹ aṣẹ yii bi gbongbo:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Ko le ṣiṣe awọn pipaṣẹ ubuntu-hello bi gbongbo, jọwọ ṣiṣẹ aṣẹ yii pẹlu asia "
+"olumulo --user"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "Awọn faili data ko ti ṣe igbasilẹ, jọwọ ṣiṣe awọn aṣẹ wọnyi:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "WO ILE"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Ọjọ:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Àkókò àyẹ̀wò:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Awọn fireemu:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Orukọ ogun:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Iye idaniloju to dara julọ:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Bibẹrẹ..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Ti n ṣe idanimọ rẹ..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "O kuna"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "Gbogbo awọn fireemu dudu ju, jọwọ ṣayẹwo dark_threshold ni atunto"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Okunkun apapọ: {avg}, Opin: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Akoko lo"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Bibẹrẹ"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Ṣii kamẹra + awọn libs fifuye: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Nsii kamẹra"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Akowọle idanimọ libs"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Wiwa fun oju ti a mọ"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Lapapọ akoko"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Ipinnu"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Ilu abinibi: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Ti a lo: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Awọn fireemu ti a ṣawari: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Akofojusi awọn fireemu dudu: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Awọn fireemu dudu ko bikita: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Idaju ti fireemu ti o bori: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Awoṣe ti o bori: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "Aseyori"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "bọtini wiwọle"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "bọtini iwọle tabi KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Ko le gbe awọn dlib module, ṣayẹwo awọn ti o wu ti"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Ko si folda awoṣe oju ti a rii, ṣiṣẹda ọkan"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "AKIYESI: Awoṣe afikun kọọkan fa fifalẹ ẹrọ idanimọ oju diẹ diẹ"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Tẹ Konturolu + C lati fagilee\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Ṣafikun awoṣe oju fun olumulo"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Awoṣe #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Lilo aami aiyipada \"%s\" nitori asia -y"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Tẹ aami sii fun awoṣe tuntun yii [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "AKIYESI: Yiyọkuro iwa aitọ \",\" lati orukọ awoṣe"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Jọwọ wo taara sinu kamẹra"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamẹra ri awọn fireemu dudu nikan - ṣe emitter IR n ṣiṣẹ?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Ko si oju ti a rii, iṣẹyun"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Awọn oju pupọ ti a rii, iṣẹyun"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Ṣiṣayẹwo pari\n"
+"Ti ṣafikun awoṣe tuntun si"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"Ko si awọn awoṣe ti a ṣẹda sibẹsibẹ, ko le pa wọn kuro ti wọn ko ba si tẹlẹ"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} ko ni awọn awoṣe tabi wọn ti sọ di mimọ tẹlẹ"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Eleyi yoo ko gbogbo awọn awoṣe fun"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Ṣe o fẹ tẹsiwaju [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Itumọ bi \"KO\", iṣẹyun"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Awọn awoṣe ti nso"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Ṣii config.ini ni {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Kuna lati ṣii olootu: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Aṣiṣe: Ko le wa oluṣatunṣe ọrọ to dara."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "Jọwọ fi sori ẹrọ 'nano' tabi 'vi', tabi ṣeto oniyipada ayika EDITOR."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Ti o ba n ṣiṣẹ aṣẹ yii pẹlu sudo, gbiyanju 'sudo -E ubuntu-hello config' "
+"lati tọju oniyipada EDITOR rẹ."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Jọwọ ṣafikun 0 kan (ṣiṣẹ) tabi 1 kan (mu ṣiṣẹ) bi ariyanjiyan"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Jọwọ lo 0 nikan (ṣiṣẹ) tabi 1 (mu ṣiṣẹ) bi ariyanjiyan"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Aṣayan mu ṣiṣẹ tẹlẹ ti ṣeto si"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello ti jẹ alaabo"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello ti ṣiṣẹ"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Lilo: titẹ bọtini [ṣiṣẹ|ṣiṣẹmọ]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Tẹ ọrọ igbaniwọle sii fun olumulo {} lati ṣii {} ({}):"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Ọrọigbaniwọle ko le jẹ ofo"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "So ni pato orukoabawole re:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Awọn ọrọigbaniwọle ko baramu"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM hardware ri. Fifi sori ẹrọ laifọwọyi tpm2-tools"
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM hardware ti nṣiṣe lọwọ. Idaduro ọrọ igbaniwọle ni TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Keyring/KWallet ṣiṣi silẹ ṣiṣẹ ni aṣeyọri fun olumulo {} lilo TPM (apamọwọ: "
+"{})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Kuna lati di ọrọ igbaniwọle si TPM: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "Ko si TPM lọwọ. Lilo caching ijẹrisi orisun software..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Keyring/KWallet ṣiṣi silẹ ṣiṣẹ ni aṣeyọri fun olumulo {} (Caching Software, "
+"apamọwọ: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Ti kuna lati mu šiši bọtini ṣiṣẹ: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Kuna lati mu ṣiṣi silẹ bọtini pa: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Keyring/KWallet ṣiṣi silẹ alaabo fun olumulo {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Ṣii silẹ / KWallet ṣiṣi silẹ ko ṣiṣẹ fun olumulo {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Iṣe ti ko tọ. Lo 'ṣiṣẹ' tabi 'muṣiṣẹ'."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Awọn awoṣe oju ko ti ni ipilẹṣẹ sibẹsibẹ, jọwọ ṣiṣẹ:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Ko si awoṣe oju ti a mọ fun olumulo {}, jọwọ ṣiṣẹ:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Awọn awoṣe oju ti a mọ fun {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Aami Ọjọ ID [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Jọwọ ṣafikun ID ti awoṣe ti o fẹ yọkuro bi ariyanjiyan"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Fun apere:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "O le wa awọn ID nipa ṣiṣe:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Eyi yoo yọ awoṣe ti a pe ni \"{label}\" fun {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Ko si awoṣe pẹlu ID {id} wa fun {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Awoṣe ti o kẹhin kuro, ubuntu-hello alaabo fun olumulo"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Awoṣe ti a yọ kuro {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "Jọwọ ṣafikun eto ti o fẹ yipada ati iye lati ṣeto si"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Ko le wa aṣayan atunto \"{}\" lati ṣeto"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Aṣayan atunto imudojuiwọn"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "Ipilẹṣẹ SAPSHOT"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Iṣeto ala-ilẹ dudu:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Iṣeto idaniloju:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Aworan ti ipilẹṣẹ ti o fipamọ bi"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"A ti tunto Ubuntu Hello lati lo agbohunsilẹ eyiti ko ṣe atilẹyin aṣẹ idanwo "
+"sibẹsibẹ, iṣẹyun"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Ṣii window kan pẹlu kikọ sii idanwo\n"
+"\n"
+"Tẹ ctrl + C ni ebute yii lati dawọ duro\n"
+"Tẹ aworan naa lati mu ṣiṣẹ tabi mu ipo ti o lọra ṣiṣẹ\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "Ipinnu: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "Awọn fireemu: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "Idanimọ: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "IPINLE IPO"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "AKIYESI ṣokunkun"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ÀFIKÚN wíwo"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Ferese titii pa"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Aṣiṣe ti n ṣe itupalẹ ofin rubberstamp: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Ko fi sori ẹrọ ontẹ: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Aṣiṣe ontẹ: Kilasi {} ko ri"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Aṣiṣe ti inu ni ikede iṣeto ti rubberstamp:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Aṣiṣe inu ni rubberstamp:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Gbigbe aṣẹ ni {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Ni aṣẹ ni {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Tẹ {abort_key} lati fagilee, {confirm_key} lati fun laṣẹ"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Ijeri aborted"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Kọ lati jẹrisi"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Gbọn ori rẹ lati ṣẹyun"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Ijẹrisi ti a fọwọsi"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Aborted ìfàṣẹsí"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Sonu module ffmpeg, jọwọ ṣiṣẹ:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Sonu pyv4l2 module, jọwọ ṣiṣe:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello ko le rii ẹrọ kamẹra kan ni ọna ti a pato ninu faili atunto."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"O ṣeese pupọ pe ọna naa ko ni tunto ni deede, jọwọ ṣatunkọ iye atunto "
+"'device_path' nipa ṣiṣe:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Kuna lati ka kamẹra ti a sọ pato ninu aṣayan atunto 'device_path', iṣẹyun"

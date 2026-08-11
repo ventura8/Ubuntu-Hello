@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
-<interface domain="ubuntu-hello">
+<interface domain="ubuntu-hello-gtk">
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkImage" id="iconadd">
     <property name="visible">True</property>
@@ -32,6 +32,20 @@
         <property name="can_focus">False</property>
         <property name="title" translatable="yes">Ubuntu Hello Configuration</property>
         <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkSearchEntry" id="settings_search">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">18</property>
+            <property name="primary_icon_name">edit-find-symbolic</property>
+            <property name="placeholder_text" translatable="yes">Search settings</property>
+            <signal name="search-changed" handler="on_settings_search_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
       </object>
     </child>
     <child>
@@ -406,7 +420,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Keyring Auto-Unlock</property>
+                <property name="label" translatable="yes">Keyring / KWallet Auto-Unlock</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                   <attribute name="scale" value="1.2"/>
@@ -423,7 +437,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Enable face authentication to automatically unlock your login keyring on login. This securely stores your password encrypted with your system's machine-id.</property>
+                <property name="label" translatable="yes">Enable face authentication to automatically unlock your login keyring or KWallet on login. This securely stores your password sealed in the TPM when available, or encrypted with AES-256-GCM using a root-only master key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on your desktop.</property>
                 <property name="wrap">True</property>
                 <property name="max_width_chars">60</property>
               </object>
@@ -550,6 +564,109 @@
           </packing>
         </child>
         <child>
+          <object class="GtkBox" id="language_page">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">20</property>
+            <property name="margin_right">20</property>
+            <property name="margin_top">20</property>
+            <property name="margin_bottom">20</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="language_heading">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Display language</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="language_row">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkLabel" id="language_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Language</property>
+                    <property name="valign">center</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="language_combo">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="halign">start</property>
+                    <signal name="changed" handler="on_language_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="language_restart_note">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Automatic follows the system language. Changes apply immediately.</property>
+                <property name="wrap">True</property>
+                <property name="justify">left</property>
+                <property name="max_width_chars">56</property>
+                <attributes>
+                  <attribute name="scale" value="0.9"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="languagetab">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="label" translatable="yes">Language</property>
+          </object>
+          <packing>
+            <property name="position">3</property>
+            <property name="tab_fill">False</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox" id="box5">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -651,7 +768,7 @@
             </child>
           </object>
           <packing>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child type="tab">
@@ -661,7 +778,7 @@
             <property name="label" translatable="yes">About</property>
           </object>
           <packing>
-            <property name="position">3</property>
+            <property name="position">4</property>
             <property name="tab_fill">False</property>
           </packing>
         </child>

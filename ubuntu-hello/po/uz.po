@@ -1,0 +1,735 @@
+# ubuntu-hello translation for uz.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Muvaffaqiyatsizlik, kutish vaqti tugadi"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Yuzni aniqlash tasviri juda qorong‘i"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Noma'lum xato:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s sifatida aniqlangan yuz"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter tugmasini yuborish uchun ruxsatlar yetarli emas, foydalanuvchi uni "
+"bosishini kutmoqda"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Enter tugmasini yuborib boʻlmadi, foydalanuvchi uni bosishini kutmoqda"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Yuzni autentifikatsiya qilishga urinish"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr ""
+"Foydalanuvchini aniqlab bo‘lmadi, iltimos --user belgisidan foydalaning"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello yuz autentifikatsiyasi uchun buyruq qatori interfeysi."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "buyruq"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "argumentlar"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Qo'llab-quvvatlash uchun tashrif buyuring\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Amalga oshirish uchun buyruq varianti quyidagilardan biri bo'lishi mumkin: "
+"qo'shish, tozalash, sozlash, o'chirish, kalitlash, ro'yxatlash, o'chirish, "
+"suratga olish, sozlash, sinov yoki versiya."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Qo'shish, o'chirish, o'chirish va o'rnatish buyruqlari uchun ixtiyoriy "
+"argumentlar."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Foydalanish uchun foydalanuvchi hisobini o'rnating."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Barcha savollarni o'tkazib yuboring."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Mashina uchun qulay mahsulotni chop etish."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Ushbu yordam xabarini ko'rsating va chiqing."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "joriy faol foydalanuvchi:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Foydalanuvchi nomi formati noto‘g‘ri"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Iltimos, ushbu buyruqni root sifatida ishga tushiring:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Ubuntu-hello buyruqlarini root sifatida ishga tushirib bo'lmaydi, iltimos bu "
+"buyruqni --user bayrog'i bilan ishga tushiring"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"Ma'lumotlar fayllari yuklab olinmadi, iltimos, quyidagi buyruqlarni bajaring:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "TIZIMGA KIRISH"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Sana:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Skanerlash vaqti:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Ramkalar:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Xost nomi:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Eng yaxshi ishonch qiymati:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Ishga tushmoqda..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Sizni aniqlash..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "MUVOFIQ EDI"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Barcha ramkalar juda qorong‘i edi, konfiguratsiyada dark_threshold-ni "
+"tekshiring"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Oʻrtacha qorongʻulik: {avg}, chegara: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "O'tkazilgan vaqt"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Ishga tushmoqda"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Ochiq kamera + yuklash bloklari: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Kamerani ochish"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Tanish kutubxonalarini import qilish"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Taniqli yuz qidirilmoqda"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Umumiy vaqt"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Rezolyutsiya"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Mahalliy: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Ishlatilgan: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Qidirilgan kadrlar: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Qora ramkalar hisobga olinmadi: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Tungi ramkalar e'tiborga olinmadi: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "G'olib kadrning aniqligi: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "G‘olib model: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "Muvaffaqiyatli"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "kirish kalitlari"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "kirish kaliti yoki KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Dlib modulini import qilib bo'lmadi, chiqishini tekshiring"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Hech qanday yuz modeli jild topilmadi, uni yarating"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"DIQQAT: Har bir qo‘shimcha model yuzni tanish mexanizmini biroz "
+"sekinlashtiradi"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Bekor qilish uchun Ctrl+C tugmalarini bosing\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Foydalanuvchi uchun yuz modeli qo'shilmoqda"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Model #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y bayrog'i tufayli standart \"%s\" yorlig'idan foydalanilmoqda"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Ushbu yangi model [{}] uchun yorliqni kiriting:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "DIQQAT: Model nomidan noqonuniy belgi “,” olib tashlanmoqda"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Iltimos, to'g'ridan-to'g'ri kameraga qarang"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamera faqat qora ramkalarni ko'rdi - IR emitter ishlayaptimi?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Hech qanday yuz aniqlanmadi, bekor qilinmoqda"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Bir nechta yuzlar aniqlandi, bekor qilinmoqda"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Skanerlash tugallandi\n"
+"ga yangi model qo'shildi"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"Hali hech qanday model yaratilmagan, agar ular mavjud bo'lmasa, ularni "
+"o'chirib bo'lmaydi"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} hech qanday modelga ega emas yoki ular allaqachon tozalangan"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Bu barcha modellarni tozalaydi"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Davom etmoqchimisiz [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"YO'Q\" deb talqin qilish, bekor qilish"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Modellar tozalandi"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "config.ini {editor} da ochilmoqda"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Tahrirlovchini ochib boʻlmadi: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Xato: mos matn muharriri topilmadi."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Iltimos, \"nano\" yoki \"vi\" ni o'rnating yoki EDITOR muhit o'zgaruvchisini "
+"o'rnating."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Agar siz ushbu buyruqni sudo bilan ishlatayotgan bo'lsangiz, EDITOR "
+"o'zgaruvchingizni saqlab qolish uchun \"sudo -E ubuntu-hello config\" ni "
+"sinab ko'ring."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Argument sifatida 0 (yoqish) yoki 1 (o'chirish) qo'shing"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Argument sifatida faqat 0 (yoqish) yoki 1 (o'chirish) dan foydalaning"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "O'chirish opsiyasi allaqachon o'rnatilgan"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello o'chirilgan"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello yoqilgan"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Foydalanish: kalitlar [yoqish | o'chirish]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) qulfini ochish uchun foydalanuvchi {} parolini kiriting:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Parol bo'sh bo'lishi mumkin emas"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Parolni tasdiqlang:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Parollar mos kelmaydi"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM uskunasi aniqlandi. tpm2-tools avtomatik oʻrnatilmoqda..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM uskuna faol. TPM da parolni muhrlash..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Keyring/KWallet qulfdan chiqarish TPM (hamyon: {}) yordamida {} "
+"foydalanuvchisi uchun muvaffaqiyatli yoqildi."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM parolini muhrlab bo‘lmadi: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"TPM faol emas. Dasturiy ta'minotga asoslangan hisob ma'lumotlarini "
+"keshlashdan foydalanish..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Keyring/KWallet qulfini ochish foydalanuvchi {} uchun muvaffaqiyatli yoqildi "
+"(Dasturiy taʼminotni keshlash, hamyon: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Kalitlarni qulfdan chiqarish yoqilmadi: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Kalitlarni qulfdan chiqarishni o‘chirib bo‘lmadi: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr ""
+"Foydalanuvchi {} uchun kalitlarni/KWallet qulfni ochish o‘chirib qo‘yilgan."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Keyring/KWallet qulfini ochish foydalanuvchi {} uchun yoqilmagan."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Yaroqsiz harakat. \"Yoqish\" yoki \"o'chirish\" dan foydalaning."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Yuz modellari hali ishga tushirilmagan, ishga tushiring:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "{} foydalanuvchi uchun yuz modeli ma'lum emas, iltimos:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} uchun taniqli yuz modellari:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID sana yorlig'i [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Argument sifatida oʻchirmoqchi boʻlgan model identifikatorini qoʻshing"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Masalan:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "IDlarni ishga tushirish orqali topishingiz mumkin:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Bu {user} uchun \"{label}\" deb nomlangan modelni olib tashlaydi."
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} uchun {id} identifikatorli model mavjud emas"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr ""
+"Oxirgi model olib tashlandi, foydalanuvchi uchun ubuntu-hello o'chirildi"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Model olib tashlandi {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Iltimos, o'zgartirmoqchi bo'lgan sozlamani va unga o'rnatiladigan qiymatni "
+"qo'shing"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Oʻrnatish uchun “{}” konfiguratsiya opsiyasi topilmadi"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Konfiguratsiya opsiyasi yangilandi"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "YARALANGAN SAPSHOT"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Qorong'i chegara konfiguratsiyasi:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Aniqlik konfiguratsiyasi:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Yaratilgan surat sifatida saqlangan"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello hali sinov buyrug'ini qo'llab-quvvatlamaydigan magnitafondan "
+"foydalanishga sozlangan, bekor qilinmoqda"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Sinov tasmasi bilan oynani ochish\n"
+"\n"
+"Chiqish uchun ushbu terminalda ctrl+C tugmalarini bosing\n"
+"Sekin rejimni yoqish yoki o'chirish uchun rasmga bosing\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "ROLIM: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "RAMALAR: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "TANISH: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "Sekin rejim"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "QOYIQ RAMA"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "RAMANI SKANISH"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Oynani yopish"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Kauchuk shtamp qoidasini tahlil qilishda xatolik: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Marka o‘rnatilmagan: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Marka xatosi: {} sinfi topilmadi"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Kauchuk shtamp konfiguratsiyasi deklaratsiyasidagi ichki xato:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Kauchuk shtampdagi ichki xato:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} da avtorizatsiyani bekor qilish"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} da avtorizatsiya qilish"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr ""
+"Bekor qilish uchun {abort_key}, avtorizatsiya qilish uchun {confirm_key} "
+"tugmasini bosing"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Autentifikatsiya bekor qilindi"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Tasdiqlash uchun bosh silkiting"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Abort qilish uchun boshingizni silkit"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Tasdiqlangan autentifikatsiya"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Autentifikatsiya bekor qilindi"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Ffmpeg moduli etishmayapti, ishga tushiring:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Pyv4l2 moduli etishmayapti, ishga tushiring:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello konfiguratsiya faylida ko'rsatilgan yo'lda kamera qurilmasini "
+"topa olmadi."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Yo‘l to‘g‘ri sozlanmagan bo‘lishi mumkin, iltimos, “device_path” "
+"konfiguratsiya qiymatini quyidagi amallarni bajarib tahrirlang:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"“Device_path” konfiguratsiya parametrida ko‘rsatilgan kamerani o‘qib "
+"bo‘lmadi, bekor qilinmoqda"

@@ -1,0 +1,704 @@
+# ubuntu-hello-gtk translation for lt.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "Sukurta"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Etiketė"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "Automatinis"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Įgalinti raktų pakabuką/KWallet atrakinimą"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Įveskite vartotojo <b>{}</b> slaptažodį, kad atrakintumėte {} ({}):"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Duomenų failai jau atsisiųsti!\n"
+"Spustelėkite Pirmyn, kad tęstumėte"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Atsisiunčiant duomenų failus įvyko klaida"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Atlikta!\n"
+"Spustelėkite Pirmyn, kad tęstumėte"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Klaida importuojant OpenCV2"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Pabandykite iš naujo įdiegti cv2"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Sistemoje nerasta internetinių kamerų"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Jei esate tikri, kad prijungtas suderinamas fotoaparatas, sukonfigūruokite "
+"fotoaparatą patys"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Ne, fotoaparato atidaryti negalima"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Ne, ne infraraudonųjų spindulių kamera"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Taip, suderinama infraraudonųjų spindulių kamera"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Kameros identifikatorius arba kelias"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "Rekomenduojama"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Klaida renkantis kamerą"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "Pasirinktos kameros atidaryti negalima"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Pabandykite pasirinkti kitą"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Prašome apsilankyti\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"kad įjungtumėte savo IR spinduliuotę"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Žiūrėkite tiesiai į kamerą"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Pradėkite veido nuskaitymą"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Nepavyko išsaugoti veido modelio"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti {} naudodamas veido autentifikavimą "
+"(aptikta piniginė: {}).\n"
+"\n"
+"<b>TPM būsena:</b> tikrinama TPM aparatinė įranga ir įrankiai..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti {} naudodamas veido autentifikavimą "
+"(aptikta piniginė: {}).\n"
+"\n"
+"<b>TPM būsena:</b> aptikta TPM aparatinė įranga. Automatiškai diegiamas "
+"<i>tpm2-tools</i>..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti {} naudodamas veido autentifikavimą "
+"(aptikta piniginė: {}).\n"
+"\n"
+"<b>TPM būsena:</b> aparatinės įrangos TPM 2.0 aktyvi. Jūsų slaptažodis bus "
+"saugiai užplombuotas TPM viduje."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti {} naudodamas veido autentifikavimą "
+"(aptikta piniginė: {}).\n"
+"\n"
+"<b>TPM būsena:</b> aptikta TPM aparatinė įranga, bet nepavyko automatiškai "
+"įdiegti <i>tpm2-tools</i>. Paleiskite <code>sudo apt install tpm2-tools</"
+"code>. Grįžimas prie programinės įrangos kredencialų kaupimo talpykloje."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti {} naudodamas veido autentifikavimą "
+"(aptikta piniginė: {}).\n"
+"\n"
+"<b>TPM būsena:</b> TPM aparatinė įranga neaptikta. Naudojant programinės "
+"įrangos kredencialų kaupimą talpykloje (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Nepavyko identifikuoti ne šakninės sistemos vartotojo raktų pakabuko "
+"atrakinimo metu"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Slaptažodžio laukas negali būti tuščias"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Neteisingas vartotojo slaptažodis {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "nežinoma klaida"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Nepavyko įgalinti raktų pakabuko atrakinimo: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Nepavyko išjungti raktų pakabuko atrakinimo: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Raktų pakabuko atrakinimo klaida"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Klaida nuskaitant radijo mygtukus"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Sąrankos įspėjimas"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr ""
+"Nepavyko išsaugoti tikrumo pasirinkimo, bet kitu atveju sąranka baigta."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Klaida"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Įkeliama..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Autentifikavimas"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Patvirtinkite vartotojo kūrimą"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr "Įveskite vartotojo vardą, kurį norite įtraukti į Ubuntu Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Vartotojo vardas:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Patvirtinkite modelio kūrimą"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "Įveskite naujo modelio pavadinimą, daugiausia 24 simbolių"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Modelio pavadinimas:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Modelio kūrimas"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Klaida pridedant modelį, klaidos kodas {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Patvirtinkite modelio ištrynimą"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Ar tikrai norite ištrinti modelį {id} ({name})?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Klaida ištrinant modelį, klaidos kodas {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Negalima atidaryti fotoaparato"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Nepavyksta importuoti OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "Nežinoma"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Nepasirinktas vartotojas</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Įgalinta (TPM aparatinė įranga)</b></span> – {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Įgalinta (programinės įrangos talpyklos "
+"kaupimas)</b></span> – {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>Įjungta (laukiama slaptažodžio įvedimo)</b></"
+"span> – {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>Išjungta</b></span> – {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "Klaida"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "Sėkmės"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "Raktų pakabukas/KWallet atrakinimas sėkmingai įjungtas vartotojui {}."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Išjungti raktų pakabuką/KWallet atrakinimą"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Ar tikrai norite išjungti raktų pakabuką/KWallet atrakinimą vartotojui {}?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Raktų pakabukas/KWallet atrakinimas išjungtas vartotojui {}."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigūracija"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigūracija"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Paieškos nustatymai"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Rodomi išsaugoti modeliai, skirti:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Pridėti naują vartotoją"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "Pridėti"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "Modeliai"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "Kameros ID:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "Tikra rezoliucija:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Naudota skiriamoji geba:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Diktofonas:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Vaizdo įrašas"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Raktų pakabukas / KWallet automatinis atrakinimas"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Įgalinkite veido autentifikavimą, kad prisijungus automatiškai atrakintumėte "
+"prisijungimo raktų pakabuką arba KWallet. Tai saugiai saugo jūsų slaptažodį, "
+"užplombuotą TPM, jei įmanoma, arba užšifruotą naudojant AES-256-GCM "
+"naudojant tik pagrindinį pagrindinį raktą. Veido autentifikavimas nustato "
+"PAM_AUTHTOK pam_gnome_keyring arba pam_kwallet5, atsižvelgiant į jūsų "
+"darbalaukį."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Dabartinė būsena:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Tikrinama..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Įgalinti automatinį atrakinimą"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Išjungti automatinį atrakinimą"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Raktų pakabukas"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Sąsajos kalba"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Kalba"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automatinė seka sistemos kalbą. Pakeitimai pritaikomi iškart."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Veido autentifikavimas, skirtas Linux"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Versija nežinoma"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Atidarykite GitHub "
+"nuorodą</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "Apie"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Sveiki atvykę į Ubuntu Hello"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Sąranka atlikta!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Baigėme! Ubuntu Hello dabar aktyvus šiame kompiuteryje. Pabandykite padaryti "
+"viską, ką įprastai turėtumėte įvesti slaptažodį, kad patvirtintumėte "
+"tapatybę, pavyzdžiui, paleiskite komandą su sudo. Jei įgalinote automatinį "
+"raktų pakabuko atrakinimą, prisijungimo raktų pakabukas arba KWallet taip "
+"pat bus automatiškai atrakintas prisijungus.\n"
+"\n"
+"Vėliau galite atidaryti Ubuntu Hello konfigūratorių, kad pakeistumėte "
+"išplėstinius nustatymus arba pridėtumėte papildomų modelių. Spustelėkite "
+"toliau esantį mygtuką Baigti, kad uždarytumėte šį langą ir atidarytumėte "
+"Ubuntu Hello konfigūratorių."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello gali automatiškai atrakinti prisijungimo raktų pakabuką arba "
+"KWallet naudodamas veido autentifikavimą, neleisdamas reikalauti "
+"slaptažodžio prisijungus."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Įgalinti automatinį raktų pakabuką / KWallet atrakinimą"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Patvirtinkite slaptažodį"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Apibrėžtumo politikos nustatymas"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Dėl kampų, atstumo ir kitų veiksnių pokyčių veido atitiktis niekada nėra "
+"visiškai tokia pati kaip išsaugotas veido modelis. Šiame puslapyje galite "
+"nustatyti, koks griežtas Ubuntu Hello turi būti."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "Greitai"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Leidžia daugiau neaiškių atitikmenų, \n"
+"bet labai pagreitina nuskaitymo procesą."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "Subalansuota"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Vis dar gana greitas aptikimas, \n"
+"bet gali neprisijungti, kai yra toliau."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "Saugus"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"Šiek tiek saugesnis variantas, \n"
+"bet užtruks daug ilgiau jūsų tapatybei patvirtinti"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Pridedamas veido modelis"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Kad patvirtintų jūsų tapatybę, Ubuntu Hello turi išsaugoti jūsų veido "
+"modelį, kad atpažintų jus. Norėdami pradėti veido nuskaitymą, paspauskite "
+"žemiau esantį mygtuką Nuskaityti."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Internetinės kameros konfigūravimas"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Ar mirksi infraraudonųjų spindulių spinduliuotė?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "taip"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "ne"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello automatiškai ieškos jūsų sistemoje galimų kamerų, todėl "
+"įsitikinkite, kad internetinė kamera yra prijungta. Po aptikimo bus rodomas "
+"tinkamų interneto kamerų sąrašas. Pasirinkite norimą naudoti ir spustelėkite "
+"Pirmyn."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Tikrinamos žiniatinklio kameros, palaukite..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Duomenų failų atsisiuntimas"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello reikia trijų iš anksto paruoštų veido atpažinimo duomenų "
+"rinkinių, kad būtų galima jus atpažinti, kurie bus atsisiųsti dabar. Toliau "
+"galite pamatyti atsisiuntimo eigą."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Pradedamas atsisiuntimas..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Sveiki atvykę į Ubuntu Hello!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Versija"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Šis vedlys padės atlikti sąrankos procesą ir automatiškai sukonfigūruos "
+"Ubuntu Hello už jus. Norėdami tęsti, paspauskite Kitas."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Kitas"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Baigti sąranką"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello stiliaus veido autentifikavimas"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "veidas;atpažinimas;autentifikavimas;saugumas;užraktas;"

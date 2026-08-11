@@ -12,7 +12,11 @@ import auth_helper
 
 
 from i18n import _
+from wallet_backend import wallet_backend_label, wallet_unlock_phrase
 
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 from gi.repository import Gtk as gtk
 from gi.repository import Gdk as gdk
 from gi.repository import GObject as gobject
@@ -22,7 +26,7 @@ from gi.repository import GLib
 
 class KeyringPasswordDialog(gtk.Dialog):
 	def __init__(self, parent, user):
-		gtk.Dialog.__init__(self, title=_("Enable Keyring Unlocking"), parent=parent, flags=gtk.DialogFlags.MODAL)
+		gtk.Dialog.__init__(self, title=_("Enable Keyring/KWallet Unlocking"), parent=parent, flags=gtk.DialogFlags.MODAL)
 		self.add_buttons(gtk.STOCK_CANCEL, gtk.ResponseType.CANCEL, gtk.STOCK_OK, gtk.ResponseType.OK)
 		self.set_default_response(gtk.ResponseType.OK)
 		self.set_resizable(False)
@@ -35,7 +39,8 @@ class KeyringPasswordDialog(gtk.Dialog):
 		box.set_margin_bottom(15)
 
 		label = gtk.Label()
-		label.set_markup(_("Enter password for user <b>{}</b> to unlock keyring:").format(user))
+		label.set_markup(_("Enter password for user <b>{}</b> to unlock {} ({}):").format(
+			user, wallet_unlock_phrase(), wallet_backend_label()))
 		label.set_alignment(0.0, 0.5)
 		box.pack_start(label, False, False, 0)
 
@@ -61,6 +66,7 @@ class OnboardingWindow(gtk.Window):
 		self.completed = False
 
 		self.builder = gtk.Builder()
+		self.builder.set_translation_domain("ubuntu-hello-gtk")
 		self.builder.add_from_file(paths_factory.onboarding_wireframe_path())
 		self.builder.connect_signals(self)
 
@@ -435,7 +441,9 @@ class OnboardingWindow(gtk.Window):
 
 	def execute_slide6(self):
 		self.builder.get_object("keyring_password_box").set_visible(False)
-		self.builder.get_object("keyring_desc_label").set_markup(_("Ubuntu Hello can automatically unlock your login keyring using face authentication.\n\n<b>TPM Status:</b> Checking TPM hardware and tools..."))
+		wallet = wallet_unlock_phrase()
+		backend = wallet_backend_label()
+		self.builder.get_object("keyring_desc_label").set_markup(_("Ubuntu Hello can automatically unlock your {} using face authentication (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware and tools...").format(wallet, backend))
 		
 		import threading
 		threading.Thread(target=self.detect_tpm_thread, daemon=True).start()
@@ -449,11 +457,13 @@ class OnboardingWindow(gtk.Window):
 
 		tpm_dev_exists = os.path.exists("/dev/tpmrm0") or os.path.exists("/dev/tpm0")
 		tpm_tools_exist = shutil.which("tpm2_createprimary") is not None and shutil.which("tpm2_unseal") is not None
+		wallet = wallet_unlock_phrase()
+		backend = wallet_backend_label()
 
 		if tpm_dev_exists and not tpm_tools_exist:
 			# Hardware exists, but tools missing. Let's try to install them automatically!
 			GLib.idle_add(lambda: self.builder.get_object("keyring_desc_label").set_markup(
-				_("Ubuntu Hello can automatically unlock your login keyring using face authentication.\n\n<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> automatically..."))
+				_("Ubuntu Hello can automatically unlock your {} using face authentication (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> automatically...").format(wallet, backend))
 			)
 			try:
 				subprocess.run(["apt-get", "install", "-y", "-qq", "tpm2-tools"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=45)
@@ -465,11 +475,11 @@ class OnboardingWindow(gtk.Window):
 		def update_ui():
 			desc_label = self.builder.get_object("keyring_desc_label")
 			if tpm_dev_exists and tpm_tools_exist:
-				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your login keyring using face authentication.\n\n<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely sealed inside the TPM."))
+				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your {} using face authentication (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely sealed inside the TPM.").format(wallet, backend))
 			elif tpm_dev_exists:
-				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your login keyring using face authentication.\n\n<b>TPM Status:</b> TPM hardware detected, but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. Falling back to software-based credential caching."))
+				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your {} using face authentication (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. Falling back to software-based credential caching.").format(wallet, backend))
 			else:
-				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your login keyring using face authentication.\n\n<b>TPM Status:</b> No TPM hardware detected. Using software-based credential caching (XOR/machine-id)."))
+				desc_label.set_markup(_("Ubuntu Hello can automatically unlock your {} using face authentication (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detected. Using software-based credential caching (AES-256-GCM).").format(wallet, backend))
 
 		GLib.idle_add(update_ui)
 
@@ -543,82 +553,20 @@ class OnboardingWindow(gtk.Window):
 				self.show_keyring_error(_("Incorrect password for user {}").format(user))
 				return False
 
-
-			# Detect TPM availability
-			import shutil
-			tpm_dev_exists = os.path.exists("/dev/tpmrm0") or os.path.exists("/dev/tpm0")
-			tpm_tools_exist = shutil.which("tpm2_createprimary") is not None and shutil.which("tpm2_unseal") is not None
-			
-			if tpm_dev_exists and not tpm_tools_exist:
-				try:
-					subprocess.run(["apt-get", "install", "-y", "-qq", "tpm2-tools"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=45)
-					tpm_tools_exist = shutil.which("tpm2_createprimary") is not None and shutil.which("tpm2_unseal") is not None
-				except Exception:
-					pass
-
-			if tpm_dev_exists and tpm_tools_exist:
-				# Use TPM!
-				try:
-					# Clean up software key file and pending files if they exist
-					for path in (key_file, pending_file):
-						if os.path.exists(path):
-							os.unlink(path)
-							
-					os.makedirs(tpm_keys_dir, exist_ok=True)
-					os.chmod(tpm_keys_dir, 0o700)
-
-					primary_ctx = os.path.join(tpm_keys_dir, f"primary_{os.getpid()}.ctx")
-					subprocess.run(["tpm2_createprimary", "-C", "o", "-c", primary_ctx], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-					
-					p = subprocess.Popen(["tpm2_create", "-C", primary_ctx, "-i", "-", "-u", pub_file, "-r", priv_file],
-										 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
-					stdout, stderr = p.communicate(input=passwd1.encode())
-					
-					if os.path.exists(primary_ctx):
-						try:
-							os.unlink(primary_ctx)
-						except Exception:
-							pass
-							
-					if p.returncode != 0:
-						raise Exception(f"tpm2_create failed: {stderr.decode()}")
-						
-					os.chmod(pub_file, 0o600)
-					os.chmod(priv_file, 0o600)
-					
-				except Exception as e:
-					self.show_keyring_error(_("Failed to seal password to TPM: {}").format(str(e)))
-					return False
-			else:
-				# Software Fallback (XOR/machine-id)
-				try:
-					# Clean up TPM files and pending files if they exist
-					for path in (pub_file, priv_file, pending_file):
-						if os.path.exists(path):
-							os.unlink(path)
-							
-					with open("/etc/machine-id", "r") as f:
-						machine_id = f.read().strip()
-				except Exception as e:
-					self.show_keyring_error(_("Failed to read /etc/machine-id: {}").format(str(e)))
-					return False
-
-				if not machine_id:
-					self.show_keyring_error(_("/etc/machine-id is empty"))
-					return False
-
-				ciphertext = ''.join(f"{ord(c) ^ ord(machine_id[i % len(machine_id)]):02x}" for i, c in enumerate(passwd1))
-
-				try:
-					os.makedirs(keyring_keys_dir, exist_ok=True)
-					os.chmod(keyring_keys_dir, 0o700)
-					
-					with open(key_file, "w") as f:
-						f.write(ciphertext + "\n")
-					os.chmod(key_file, 0o600)
-				except Exception as e:
-					self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(str(e)))
-					return False
+			try:
+				res = subprocess.run(
+					["ubuntu-hello", "keyring", "enable", "-U", user],
+					input=passwd1 + "\n",
+					capture_output=True,
+					text=True,
+					timeout=120,
+				)
+				if res.returncode != 0:
+					detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
+					raise Exception(detail)
+			except Exception as e:
+				self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(str(e)))
+				return False
 		else:
 			# Disable: delete pending file and any saved keys
 			try:
@@ -813,58 +761,7 @@ class OnboardingWindow(gtk.Window):
 			sys.exit(0)
 
 	def get_display_version(self):
-		"""Determine if running a dev version or release version, and return formatted version string"""
-		version = "unknown"
-		try:
-			import paths
-			if hasattr(paths, "version") and paths.version and not paths.version.startswith("@"):
-				version = paths.version
-		except Exception:
-			pass
+		"""Return UI version from VERSION / paths (never older git tags)."""
+		from version_display import get_display_version as _display_version
 
-		if "(Development)" in version or "-dev" in version or "dirty" in version:
-			if version.startswith("v"):
-				return version
-			return f"v{version}"
-
-		try:
-			current_dir = os.path.dirname(os.path.abspath(__file__))
-			res = subprocess.run(
-				["git", "-C", current_dir, "rev-parse", "--is-inside-work-tree"],
-				capture_output=True,
-				text=True
-			)
-			if res.returncode == 0 and res.stdout.strip() == "true":
-				root_res = subprocess.run(
-					["git", "-C", current_dir, "rev-parse", "--show-toplevel"],
-					capture_output=True,
-					text=True
-				)
-				if root_res.returncode == 0:
-					root_dir = root_res.stdout.strip()
-					meson_file = os.path.join(root_dir, "meson.build")
-					if os.path.exists(meson_file):
-						import re
-						with open(meson_file, "r") as f:
-							meson_content = f.read()
-						match = re.search(r"version\s*:\s*['\"]([^'\"]+)['\"]", meson_content)
-						if match:
-							version = match.group(1)
-
-				commit_res = subprocess.run(
-					["git", "-C", current_dir, "describe", "--tags", "--always", "--dirty"],
-					capture_output=True,
-					text=True
-				)
-				if commit_res.returncode == 0:
-					git_ver = commit_res.stdout.strip()
-					if git_ver.startswith("v"):
-						return f"{git_ver} (Development)"
-					return f"v{version}-dev ({git_ver})"
-				return f"v{version}-dev"
-		except Exception:
-			pass
-
-		if version.startswith("v"):
-			return f"{version} (Release)"
-		return f"v{version} (Release)"
+		return _display_version(os.path.dirname(os.path.abspath(__file__)))

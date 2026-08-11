@@ -1,0 +1,727 @@
+# ubuntu-hello translation for ja.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "失敗、タイムアウトに達しました"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "顔検出画像が暗すぎる"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "不明なエラー:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "顔は%sとして識別されました"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter キーを送信するには権限が不十分です。代わりにユーザーが押すのを待ってい"
+"ます"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Enter キーを送信できませんでした。代わりにユーザーが押すのを待っています"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "顔認証を試みています"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "ユーザーを特定できませんでした。 --user フラグを使用してください"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello 顔認証用のコマンド ライン インターフェイス。"
+
+#: src/cli.py:35
+msgid "command"
+msgstr "指示"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "引数"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"サポートについては、こちらをご覧ください\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"実行するコマンド オプションは、add、clear、config、disable、keyring、list、"
+"remove、snapshot、set、test、version のいずれかです。"
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "add、disable、remove、set コマンドのオプションの引数。"
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "使用するユーザーアカウントを設定します。"
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "すべての質問をスキップしてください。"
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "機械に適した出力を印刷します。"
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "このヘルプ メッセージを表示して終了します。"
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "現在のアクティブユーザー:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "無効なユーザー名の形式"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "このコマンドを root として実行してください。\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"root として ubuntu-hello コマンドを実行できません。 --user フラグを指定してこ"
+"のコマンドを実行してください。"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"データ ファイルがダウンロードされていません。次のコマンドを実行してください。"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "ログイン"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "日付："
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "スキャン時間:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "フレーム:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "ホスト名:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "最高の確実性の値:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "起動中..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "あなたを特定しています..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "失敗した"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"すべてのフレームが暗すぎました。設定で dark_threshold を確認してください。"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "平均濃度: {avg}、閾値: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "費やした時間"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "起動中"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "カムを開く + ライブラリをロード: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "カメラを開く"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "認識ライブラリのインポート"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "既知の顔を検索しています"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "合計時間"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"解決"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "ネイティブ: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "使用済み: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"検索されたフレーム: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "黒いフレームは無視されます: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "ダークフレームは無視されます: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "当選枠の確実性：%.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "優勝モデル: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "成功"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "ログインキーリング"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "ログインキーリングまたは KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib モジュールをインポートできません。出力を確認してください。"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "顔モデル フォルダが見つかりません。作成中です"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"注意: モデルを追加するたびに、顔認識エンジンの速度がわずかに低下します。"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Ctrl+C を押してキャンセルします\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "ユーザーの顔モデルを追加する"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "モデル ＃"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y フラグにより​​デフォルトのラベル「%s」を使用"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "この新しいモデルのラベルを入力してください [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "注意: モデル名から不正な文字「,」を削除します"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"カメラをまっすぐ見てください"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr ""
+"カメラには黒いフレームしか見えませんでした - IR エミッターは動作していますか?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "顔が検出されませんでした。中止します"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "複数の顔が検出されました。中止されます"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"スキャンが完了しました\n"
+"新しいモデルを追加しました"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"モデルがまだ作成されていません。モデルが存在しない場合はクリアできません"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} にはモデルがないか、すでにクリアされています"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "これにより、すべてのモデルがクリアされます"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "続行しますか [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"「NO」と解釈して中止します"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"クリアしたモデル"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "{editor} で config.ini を開く"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "エディタを開けませんでした: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "エラー: 適切なテキスト エディタが見つかりませんでした。"
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"「nano」または「vi」をインストールするか、EDITOR 環境変数を設定してください。"
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"このコマンドを sudo で実行している場合は、「sudo -E ubuntu-hello config」を試"
+"して EDITOR 変数を保存してください。"
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "引数として 0 (有効) または 1 (無効) を追加してください。"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "引数として 0 (有効) または 1 (無効) のみを使用してください。"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "無効化オプションはすでに次のように設定されています"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello は無効になりました"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello が有効になりました"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "使用法: キーリング [有効|無効]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr ""
+"{} ({}) のロックを解除するには、ユーザー {} のパスワードを入力してください:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "パスワードを空にすることはできません"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "パスワードを認証する："
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "パスワードが一致しません"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM ハードウェアが検出されました。 tpm2-tools を自動インストール中..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM ハードウェアがアクティブです。 TPM でパスワードを封印しています..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM を使用して、ユーザー {} のキーリング/KWallet のロック解除が正常に有効にな"
+"りました (ウォレット: {})。"
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM へのパスワードの封印に失敗しました: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"TPM がアクティブではありません。ソフトウェアベースの資格情報キャッシュを使用"
+"しています..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"キーリング/KWallet のロック解除がユーザー {} (ソフトウェア キャッシュ、ウォ"
+"レット: {}) ​​に対して正常に有効になりました。"
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "キーリングのロック解除を有効にできませんでした: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "キーリングのロック解除を無効にできませんでした: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "ユーザー {} のキーリング/KWallet のロック解除が無効になっています。"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr ""
+"ユーザー {} に対してキーリング/KWallet のロック解除が有効になっていませんでし"
+"た。"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "無効なアクションです。 「有効」または「無効」を使用します。"
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "顔モデルはまだ初期化されていません。次を実行してください。"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "ユーザー {} の顔モデルが不明です。次を実行してください:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} の既知の顔モデル:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID日付ラベル[0m]"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "削除したいモデルのIDを引数として追加してください"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "例えば："
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "ID は、次のコマンドを実行して見つけることができます。"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "これにより、{user} の「{label}」というモデルが削除されます"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} には ID {id} のモデルが存在しません"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr ""
+"最後のモデルが削除され、ユーザーに対して ubuntu-hello が無効になりました"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "削除されたモデル {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "変更したい設定とそれに設定する値を追加してください"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "設定する「{}」構成オプションが見つかりませんでした"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "構成オプションが更新されました"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "生成されたスナップショット"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "暗いしきい値の設定:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "確実性の設定:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "生成されたスナップショットは次の名前で保存されます"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello は、test コマンドをまだサポートしていないレコーダーを使用するよ"
+"うに設定されているため、中止されます"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"テストフィードでウィンドウを開く\n"
+"\n"
+"この端末で Ctrl+C を押して終了します\n"
+"画像をクリックして低速モードを有効または無効にします\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "解決策: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "フレーム: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "認識: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "スローモード"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "ダークフレーム"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "スキャンフレーム"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"窓を閉める"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "ラバースタンプ ルールの解析エラー: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "スタンプがインストールされていません: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "スタンプ エラー: クラス {} が見つかりません"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "ラバースタンプ構成宣言の内部エラー:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "ラバースタンプの内部エラー:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} で認証を中止しています"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} で認証中"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr ""
+"中止するには {abort_key} を押し、許可するには {confirm_key} を押してください"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "認証が中止されました"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "うなずいて確認する"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "頭を振って中止する"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "認証を確認しました"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "認証が中止されました"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg モジュールがありません。次を実行してください。"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "pyv4l2 モジュールがありません。次を実行してください。"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello は、構成ファイルで指定されたパスでカメラ デバイスを見つけること"
+"ができませんでした。"
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"パスが正しく構成されていない可能性が非常に高いため、次を実行して"
+"「device_path」構成値を編集してください。"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"「device_path」構成オプションで指定されたカメラの読み取りに失敗しました。中止"
+"されます"

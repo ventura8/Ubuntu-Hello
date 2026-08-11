@@ -1,0 +1,707 @@
+# ubuntu-hello translation for sa.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "असफलता, समयसमाप्तिः प्राप्ता"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "मुखपरिचयप्रतिबिम्बम् अतीव अन्धकारमयम्"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "अज्ञातदोषः : १."
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s इति चिह्नितं मुखम् ।"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter press प्रेषयितुं अपर्याप्ताः अनुमतिः, तस्य स्थाने उपयोक्तुः तस्य नुदनस्य प्रतीक्षां कुर्वन्"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Enter press प्रेषयितुं असफलः, तस्य स्थाने उपयोक्तुः तस्य नुदनस्य प्रतीक्षां कुर्वन्"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "मुखप्रमाणीकरणस्य प्रयासः"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "उपयोक्तारं निर्धारयितुं न शक्तवान्, कृपया --user ध्वजस्य उपयोगं कुर्वन्तु"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello मुखप्रमाणीकरणस्य कृते आदेशपङ्क्ति-अन्तरफलकम् ।"
+
+#: src/cli.py:35
+msgid "command"
+msgstr "आदेश"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "तर्काः"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"समर्थनार्थं कृपया पश्यन्तु\n"
+"⟦उ००००⟧ २."
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"निष्पादयितुं आदेशविकल्पः, निम्नलिखितयोः एकः भवितुम् अर्हति: add, clear, config, "
+"disable, keyring, list, remove, snapshot, set, test or version."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "add, disable, remove, set इति आदेशानां वैकल्पिकतर्काः ।"
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "उपयोक्तृलेखं उपयोक्तुं सेट् कुर्वन्तु ।"
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "सर्वे प्रश्नाः त्यजन्तु।"
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "मुद्रणयन्त्र-अनुकूलं उत्पादनम्।"
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "एतत् सहायतासन्देशं दर्शयित्वा निर्गच्छतु।"
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "वर्तमान सक्रियप्रयोक्ता : १."
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "अमान्यप्रयोक्तृनामस्वरूपम्"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "कृपया एतत् आदेशं root इति चालयन्तु:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"ubuntu-hello आदेशान् root रूपेण चालयितुं न शक्यते, कृपया --user ध्वजेन सह एतत् आदेशं चालयन्तु"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "दत्तांशसञ्चिकाः अवतरणं न कृतवन्तः, कृपया निम्नलिखित आदेशान् चालयन्तु ।"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "LOGIN इति"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "दिनाङ्कः:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "स्कैन् समयः : १."
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "फ्रेम्स : १."
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "होस्टनाम : १."
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "उत्तमं निश्चयमूल्यम् : १."
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "आरम्भं कुर्वन्..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "भवतः परिचयं कृत्वा..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "असफल"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"सर्वे फ्रेम्स अतीव अन्धकारमयाः आसन्, कृपया config मध्ये dark_threshold इति परीक्ष्यताम्"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "औसत अन्धकारः {avg}, दहलीजः {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "व्यतीतः समयः"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "आरम्भः"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "ओपन कैम + लोड लिब्स: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "कॅमेरा उद्घाटयन्"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "मान्यता libs आयात करना"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "ज्ञातं मुखं अन्वेष्य"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "कुल समय"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"प्रस्ताव"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "मूलनिवासी: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "प्रयुक्तः %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"अन्वेषणं कृतं फ्रेम्स: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "कृष्णचतुष्कोणाः उपेक्षिताः : %d ."
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "अन्धकारमयचतुष्कोणाः उपेक्षिताः : %d ."
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "विजयी फ्रेमस्य निश्चयः : %.3f ."
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "विजेता मॉडलः %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "सफल"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "login कीरिंग्"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "लॉगिन कीरिंग् अथवा KWallet ."
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib मॉड्यूलम् आयातयितुं न शक्नोति, इत्यस्य आउटपुट् पश्यन्तु"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "न मुखप्रतिरूपपुटं लब्धम्, एकं निर्माय"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "सूचना: प्रत्येकं अतिरिक्तं मॉडलं मुखपरिचयइञ्जिनं किञ्चित् मन्दं करोति"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "रद्दं कर्तुं Ctrl+C नुदन्तु\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "उपयोक्तुः कृते मुखप्रतिरूपं योजयित्वा"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "प्रतिकृति #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y ध्वजस्य कारणात् पूर्वनिर्धारितलेबलस्य \"%s\" इत्यस्य उपयोगः"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "अस्य नूतनस्य मॉडलस्य [{}] लेबलं प्रविशन्तु:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "सूचना: मॉडलनामतः अवैधवर्णं \",\" निष्कासयति"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"कृपया सीधा कॅमेरे पश्यन्तु"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "कॅमेरा केवलं कृष्णवर्णीयं फ्रेमं दृष्टवान् - IR emitter कार्यं करोति वा?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "न मुखं ज्ञातम्, गर्भपातं करोति"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "बहुमुखाः ज्ञाताः, गर्भपातं कुर्वन्ति"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"स्कैन् सम्पूर्णम्\n"
+"नूतनं मॉडलं योजितवान्"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "अद्यापि कोऽपि आदर्शः न निर्मितः, यदि ते नास्ति तर्हि तान् स्वच्छं कर्तुं न शक्नुवन्ति"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} इत्यस्य मॉडल् नास्ति अथवा ते पूर्वमेव क्लियर कृताः सन्ति"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "एतेन सर्वाणि आदर्शानि स्वच्छानि भविष्यन्ति"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "किं भवन्तः अग्रे गन्तुं इच्छन्ति [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"NO\" इति व्याख्यां कुर्वन्, गर्भपातं कुर्वन्"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"मॉडल्स् स्वच्छाः"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "{editor} इत्यस्मिन् config.ini उद्घाटयति ।"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "सम्पादकं उद्घाटयितुं असफलम्: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "त्रुटिः : उपयुक्तं पाठसम्पादकं न लब्धम् ।"
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "कृपया 'nano' अथवा 'vi' संस्थापयन्तु, अथवा EDITOR वातावरणचरं सेट् कुर्वन्तु ।"
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"यदि भवान् sudo इत्यनेन सह एतत् आदेशं चालयति तर्हि स्वस्य EDITOR चरं रक्षितुं 'sudo -E "
+"ubuntu-hello config' इति प्रयतस्व ।"
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "कृपया 0 (सक्षमम्) अथवा 1 (अक्षमम्) इति तर्करूपेण योजयन्तु"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "कृपया केवलं 0 (सक्षमम्) अथवा 1 (अक्षमम्) इति तर्करूपेण उपयुज्यताम्"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "disable विकल्पः पूर्वमेव सेट् कृतः अस्ति"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello अक्षमम् अस्ति"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello सक्षमम् अस्ति"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "उपयोगः: कीलीकरणम् [सक्षम|अक्षमम्] ।"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) अनलॉक् कर्तुं उपयोक्तुः {} कृते गुप्तशब्दं प्रविष्टं कुर्वन्तु:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "गुप्तशब्दः रिक्तः न भवितुम् अर्हति"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "गुप्तशब्दस्य पुष्टिः कुर्वन्तु : १."
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "गुप्तशब्दाः न मेलन्ति"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM हार्डवेयरं ज्ञातम्। स्वतः स्थापना tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM हार्डवेयर सक्रियः अस्ति। TPM मध्ये गुप्तशब्दं सीलयति..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM (wallet: {}) इत्यस्य उपयोगेन उपयोक्तुः {} कृते कीरिंग्/KWallet अनलॉकिंग् सफलतया "
+"सक्षमम् अभवत् ।"
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM प्रति गुप्तशब्दं मुद्रयितुं असफलम्: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "न TPM सक्रियः। सॉफ्टवेयर-आधारित-प्रमाणपत्र-सञ्चयस्य उपयोगेन..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"उपयोक्तुः {} (सॉफ्टवेयर कैशिंग्, बटुआ: {}) कृते कीरिंग्/KWallet अनलॉकिंग् सफलतया सक्षमम्।"
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "कीरिंग् अनलॉकिंग् सक्षमं कर्तुं असफलम्: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "कीरिंग् अनलॉकिंग् निष्क्रियं कर्तुं असफलम्: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "उपयोक्तुः {} कृते कीरिंग्/KWallet अनलॉकिंग् अक्षमम्।"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "उपयोक्तुः {} कृते कीरिंग्/KWallet अनलॉकिंग् सक्षमं नासीत् ।"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "असिद्धं कर्म । 'सक्षम' अथवा 'अक्षम' इति प्रयोगं कुर्वन्तु ।"
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "मुखस्य प्रतिरूपाः अद्यापि आरम्भं न कृतवन्तः, कृपया चालयन्तु:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "उपयोक्तुः कृते कोऽपि मुखस्य प्रतिरूपः {} इति प्रसिद्धः नास्ति, कृपया चालयन्तु:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} कृते ज्ञाताः मुखस्य आदर्शाः:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "आईडी तिथि लेबल [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "कृपया यत् मॉडल् भवन्तः निष्कासयितुम् इच्छन्ति तस्य ID तर्करूपेण योजयन्तु"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "उदाहरणतया:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "भवन्तः IDs इत्येतत् चालयित्वा अन्वेष्टुं शक्नुवन्ति:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "एतेन {user} कृते \"{label}\" इति मॉडलं निष्कासितम् ।"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} कृते ID {id} युक्तः कोऽपि मॉडलः नास्ति ।"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "अन्तिमप्रतिरूपं निष्कासितम्, उपयोक्तुः कृते ubuntu-hello अक्षमम्"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "निष्कासित मॉडल {} ."
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "कृपया परिवर्तनं कर्तुम् इच्छितं सेटिङ्ग्, तत् सेट् कर्तुं मूल्यं च योजयन्तु"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "सेट् कर्तुं \"{}\" विन्यासविकल्पः न प्राप्तः"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Config विकल्पः अद्यतनः अभवत्"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "उत्पन्न स्नैपशॉट"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "डार्क थ्रेशोल्ड विन्यासः : १."
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "निश्चयता विन्यासः : १."
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "उत्पन्नं स्नैपशॉटं यथा रक्षितम्"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello एकं रिकार्डरस्य उपयोगाय विन्यस्तं यत् अद्यापि परीक्षण-आदेशस्य समर्थनं न "
+"करोति, निरस्तं करोति"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"परीक्षण-फीड्-सहितं विण्डो-उद्घाटनम्\n"
+"\n"
+"अस्मिन् टर्मिनल् मध्ये ctrl+C नुदन्तु निर्गन्तुम्\n"
+"slow mode इत्येतत् सक्षमं कर्तुं निष्क्रियं वा कर्तुं चित्रे नुदन्तु\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "संकल्पः %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d ९."
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "फ्रेम्स: %d ९."
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "मान्यता : %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "SLOW MODE इति"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "DARK FRAME इति"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "SCAN FRAME इति"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"विण्डो समापनम्"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "रबरमुद्रण नियमः विश्लेषणं त्रुटिः: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "डाकटिकटं न स्थापितं : {} ."
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "डाकटिकटदोषः {} वर्गः न प्राप्तः"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "रबरस्टैम्प विन्यासघोषणायां आन्तरिकदोषः:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "रबरमुद्रायां आन्तरिकदोषः : १."
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} इत्यस्मिन् प्राधिकरणस्य गर्भपातः ।"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} इत्यस्मिन् अधिकृतीकरण।"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "गर्भपातं कर्तुं {abort_key}, अधिकृत्य {confirm_key} नुदन्तु"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "प्रमाणीकरणं निरस्तम्"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "पुष्टिं कर्तुं शीर्षं न्यस्य"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "गर्भपातं कर्तुं शिरः कम्पयन्तु"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "पुष्टिकृतं प्रमाणीकरणं"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "प्रमाणीकरणं निरस्तम्"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg मॉड्यूलः अनुपलब्धः, कृपया चालयन्तु:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "pyv4l2 मॉड्यूलः अनुपलब्धः, कृपया चालयन्तु:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr "Ubuntu Hello विन्याससञ्चिकायां निर्दिष्टमार्गे कॅमेरायन्त्रं न प्राप्नोत् ।"
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"अतीव सम्भाव्यते यत् मार्गः सम्यक् विन्यस्तः नास्ति, कृपया 'device_path' विन्यासमूल्यं "
+"चालयित्वा सम्पादयन्तु:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr "'device_path' config विकल्पे निर्दिष्टं कॅमेरा पठितुं असफलम्, निरस्तम्"
