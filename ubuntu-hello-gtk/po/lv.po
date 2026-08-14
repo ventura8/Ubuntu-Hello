@@ -1,0 +1,705 @@
+# ubuntu-hello-gtk translation for lv.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "Izveidots"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Etiķete"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "Automātiski"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Iespējot atslēgu piekariņa/KWallet atbloķēšanu"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Ievadiet lietotāja <b>{}</b> paroli, lai atbloķētu {} ({}):"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Parole"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Datu faili jau ir lejupielādēti!\n"
+"Noklikšķiniet uz Tālāk, lai turpinātu"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Lejupielādējot datu failus, radās kļūda"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Gatavs!\n"
+"Noklikšķiniet uz Tālāk, lai turpinātu"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Kļūda, importējot OpenCV2"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Mēģiniet pārinstalēt cv2"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Sistēmā nav atrasta neviena tīmekļa kamera"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Ja esat pārliecināts, ka ir pievienota saderīga kamera, lūdzu, konfigurējiet "
+"savu kameru pats"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Nē, kameru nevar atvērt"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Nē, ne infrasarkanā kamera"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Jā, saderīga infrasarkanā kamera"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Kameras identifikators vai ceļš"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "Ieteicams"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Izvēloties kameru, radās kļūda"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "Izvēlēto kameru nevar atvērt"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Mēģiniet izvēlēties citu"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Lūdzu, apmeklējiet\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"lai iespējotu IR emitētāju"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Lūdzu, skatieties tieši kamerā"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Sāciet sejas skenēšanu"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Nevar saglabāt sejas modeli"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu {}, izmantojot sejas "
+"autentifikāciju (konstatētais maks: {}).\n"
+"\n"
+"<b>TPM statuss:</b> tiek pārbaudīta TPM aparatūra un rīki..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu {}, izmantojot sejas "
+"autentifikāciju (konstatētais maks: {}).\n"
+"\n"
+"<b>TPM statuss:</b> konstatēta TPM aparatūra. Notiek <i>tpm2-tools</i> "
+"automātiska instalēšana..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu {}, izmantojot sejas "
+"autentifikāciju (konstatētais maks: {}).\n"
+"\n"
+"<b>TPM statuss:</b> aparatūras TPM 2.0 ir aktīvs. Jūsu parole tiks droši "
+"aizzīmogota TPM iekšpusē."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu {}, izmantojot sejas "
+"autentifikāciju (konstatētais maks: {}).\n"
+"\n"
+"<b>TPM statuss:</b> TPM aparatūra ir noteikta, taču automātiskā <i>tpm2-"
+"tools</i> instalēšana neizdevās. Palaidiet <code>sudo apt install tpm2-"
+"tools</code>. Atgriešanās pie programmatūras akreditācijas datu kešatmiņas "
+"saglabāšanas."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu {}, izmantojot sejas "
+"autentifikāciju (konstatētais maks: {}).\n"
+"\n"
+"<b>TPM statuss:</b> TPM aparatūra nav noteikta. Izmantojot uz programmatūru "
+"balstītu akreditācijas datu kešatmiņu (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Nevarēja identificēt atslēgu piekariņa atbloķēšanas lietotāju, kas nav "
+"saknes sistēmas lietotājs"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Paroles lauks nedrīkst būt tukšs"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Nepareiza parole lietotājam {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "nezināma kļūda"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Neizdevās iespējot atslēgu piekariņa atbloķēšanu: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Neizdevās atspējot atslēgu piekariņa atbloķēšanu: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Atslēgu piekariņa atbloķēšanas kļūda"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Kļūda nolasot radio pogas"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Iestatīšanas brīdinājums"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr ""
+"Nevarēja saglabāt noteiktības preferenci, taču citādi iestatīšana ir "
+"pabeigta."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Kļūda"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Notiek ielāde..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Autentifikācija"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Apstipriniet lietotāja izveidi"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr ""
+"Lūdzu, ievadiet tā lietotāja lietotājvārdu, kuru vēlaties pievienot Ubuntu "
+"Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Lietotājvārds:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Apstipriniet modeļa izveidi"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "Lūdzu, ievadiet jaunā modeļa nosaukumu, ne vairāk kā 24 rakstzīmes"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Modeļa nosaukums:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Modeļa izveide"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Kļūda, pievienojot modeli, kļūdas kods {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Apstipriniet modeļa dzēšanu"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Vai tiešām vēlaties dzēst modeli {id} ({name})?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Kļūda, dzēšot modeli, kļūdas kods {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Nevar atvērt kameru"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Nevar importēt OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "Nezināms"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Nav atlasīts neviens lietotājs</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>Iespējots (TPM aparatūra)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>Iespējots (programmatūras kešatmiņa)</b></"
+"span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>Iespējots (gaida paroles ievadi)</b></span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>Atspējots</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "Kļūda"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "Panākumi"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr ""
+"Atslēgu piekariņa/KWallet atbloķēšana ir veiksmīgi iespējota lietotājam {}."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Atspējot atslēgu piekariņa/KWallet atbloķēšanu"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Vai tiešām vēlaties atspējot atslēgu piekariņa/KWallet atbloķēšanu "
+"lietotājam {}?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Atslēgu piekariņa/KWallet atbloķēšana ir atspējota lietotājam {}."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigurācija"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigurācija"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Meklēšanas iestatījumi"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Tiek rādīti saglabātie modeļi:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Pievienot jaunu lietotāju"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "Pievienot"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Dzēst"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "Modeļi"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "Kameras ID:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "Reālā izšķirtspēja:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Izmantotā izšķirtspēja:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Ierakstītājs:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Video"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Atslēgu piekariņš / KWallet automātiskā atbloķēšana"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Iespējojiet sejas autentifikāciju, lai automātiski atbloķētu pieteikšanās "
+"atslēgu piekariņu vai KWallet pieteikšanās laikā. Tas droši saglabā jūsu "
+"paroli, kas ir aizzīmogota TPM, ja tāda ir pieejama, vai šifrēta ar AES-256-"
+"GCM, izmantojot tikai saknes galveno atslēgu. Sejas autentifikācija iestata "
+"PAM_AUTHTOK pam_gnome_keyring vai pam_kwallet5 atkarībā no darbvirsmas."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Pašreizējais statuss:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Notiek pārbaude..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Iespējot automātisko atbloķēšanu"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Atspējot automātisko atbloķēšanu"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Atslēgu piekariņš"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Attēlojuma valoda"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Valoda"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automātiski seko sistēmas valodai. Izmaiņas tiek lietotas nekavējoties."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Sejas autentifikācija operētājsistēmai Linux"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Versija nav zināma"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Atveriet GitHub saiti</"
+"a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "Par"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Laipni lūdzam Ubuntu Hello"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Iestatīšana ir pabeigta!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Esam galā! Ubuntu Hello tagad ir aktīvs šajā datorā. Mēģiniet darīt jebko, "
+"kas parasti būtu jāievada parole, lai autentificētos, piemēram, palaist "
+"komandu ar sudo. Ja iespējojāt atslēgu piekariņa automātisko atbloķēšanu, "
+"pieteikšanās laikā automātiski tiks atbloķēts arī jūsu pieteikšanās atslēgas "
+"piekariņš vai KWallet.\n"
+"\n"
+"Vēlāk varat atvērt Ubuntu Hello konfiguratoru, lai mainītu papildu "
+"iestatījumus vai pievienotu papildu modeļus. Tālāk nospiediet Finish, lai "
+"aizvērtu šo logu un atvērtu Ubuntu Hello konfiguratoru."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello var automātiski atbloķēt jūsu pieteikšanās atslēgu piekariņu "
+"vai KWallet, izmantojot sejas autentifikāciju, novēršot paroles uzvednes pēc "
+"pieteikšanās."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Iespējot automātisko atslēgu piekariņu/KWallet atbloķēšanu"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Apstipriniet paroli"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Noteiktības politikas iestatīšana"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Leņķu, attāluma un citu faktoru izmaiņu dēļ sejas atbilstība nekad nav tieši "
+"tāda pati kā saglabātais sejas modelis. Šajā lapā varat iestatīt, cik "
+"stingrai jābūt Ubuntu Hello."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "Ātri"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Ļauj vairāk neskaidru sakritību, \n"
+"bet ievērojami paātrina skenēšanas procesu."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "Līdzsvarots"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Joprojām salīdzinoši ātra noteikšana, \n"
+"bet, atrodoties tālāk, iespējams, jūs nepieteiksieties."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "Droši"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"Nedaudz drošāks variants, \n"
+"taču būs nepieciešams daudz ilgāks laiks, lai jūs autentificētu"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Sejas modeļa pievienošana"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Lai jūs autentificētu, Ubuntu Hello ir jāsaglabā jūsu sejas modelis, lai jūs "
+"atpazītu. Lai sāktu sejas skenēšanu, nospiediet zemāk esošo pogu Skenēt."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Tīmekļa kameras konfigurēšana"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Vai infrasarkanais starotājs mirgo?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "jā"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "nē"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello automātiski meklēs jūsu sistēmā visas pieejamās kameras, tāpēc "
+"pārliecinieties, vai tīmekļa kamera ir pievienota. Pēc noteikšanas tiks "
+"parādīts izmantojamo tīmekļa kameru saraksts. Izvēlieties to, kuru vēlaties "
+"izmantot, un noklikšķiniet uz Tālāk."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Notiek jūsu tīmekļa kameru pārbaude, lūdzu, uzgaidiet..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Datu failu lejupielāde"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello ir nepieciešamas trīs iepriekš apmācītas sejas atpazīšanas datu "
+"kopas, lai varētu jūs atpazīt, un tās tiks lejupielādētas tūlīt. "
+"Lejupielādes gaitu varat redzēt zemāk."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Notiek lejupielādes sākšana..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Laipni lūdzam Ubuntu Hello!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Versija"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Šis vednis palīdzēs jums veikt iestatīšanas procesu un automātiski "
+"konfigurēs Ubuntu Hello jūsu vietā. Lai turpinātu, nospiediet nākamo."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Tālāk"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Pabeidziet iestatīšanu"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello stila sejas autentifikācija"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "seja;atpazīšana;autentifikācija;drošība;slēdzene;"

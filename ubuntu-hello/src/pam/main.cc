@@ -34,10 +34,15 @@
 #include <security/pam_ext.h>
 #include <security/pam_modules.h>
 
+#include "aes_gcm_uh1.hh"
 #include "enter_device.hh"
+#include "face_skip.hh"
 #include "main.hh"
 #include "optional_task.hh"
 #include <paths.hh>
+
+const auto CHILD_TERM_TIMEOUT =
+    std::chrono::duration<int, std::chrono::milliseconds::period>(500);
 
 const auto DEFAULT_TIMEOUT =
     std::chrono::duration<int, std::chrono::milliseconds::period>(100);
@@ -148,11 +153,11 @@ auto ubuntu_hello_status(char *username, int status, const INIReader &config,
   }
 
   if (!config.GetBoolean("core", "no_confirmation", true)) {
-    // Construct confirmation text from i18n string
-    std::string confirm_text(S("Identified face as {}"));
-    std::string identify_msg =
-        confirm_text.replace(confirm_text.find("{}"), 2, std::string(username));
-    conv_function(PAM_TEXT_INFO, identify_msg.c_str());
+    // Printf-style %s so translators can reorder (gettext best practice).
+    std::array<char, 512> identify_buf{};
+    std::snprintf(identify_buf.data(), identify_buf.size(),
+                  S("Identified face as %s"), username);
+    conv_function(PAM_TEXT_INFO, identify_buf.data());
   }
 
   syslog(LOG_INFO, "Login approved");
@@ -160,24 +165,14 @@ auto ubuntu_hello_status(char *username, int status, const INIReader &config,
   return PAM_SUCCESS;
 }
 
-auto xor_crypt_cpp(const std::string &hex_ciphertext, const std::string &key) -> std::string {
-  if (hex_ciphertext.length() % 2 != 0 || key.empty()) {
-    return "";
-  }
-  std::string result;
-  result.reserve(hex_ciphertext.length() / 2);
-  for (size_t i = 0; i < hex_ciphertext.length(); i += 2) {
-    std::string byteString = hex_ciphertext.substr(i, 2);
-    auto byte = static_cast<char>(strtol(byteString.c_str(), nullptr, 16));
-    result.push_back(static_cast<char>(byte ^ key[(i / 2) % key.length()]));
-  }
-  return result;
-}
-
 /**
  * Try to set PAM_AUTHTOK from a stored keyring key file after successful
- * face authentication, so that downstream PAM modules (e.g. gnome-keyring)
- * can unlock automatically.
+ * face authentication, so that downstream PAM modules can unlock the
+ * session wallet automatically. Typical consumers of the same token:
+ *   - pam_gnome_keyring (GNOME / Ubuntu-family DEs)
+ *   - pam_kwallet5 (KDE Plasma / KWallet)
+ * No separate sealed-blob format is used for KWallet; both unlock paths
+ * reuse this PAM_AUTHTOK after face auth succeeds.
  * @param pamh      PAM handle
  * @param username  Authenticated username
  */
@@ -231,11 +226,15 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
     FILE *file_pipe = popen_as_root(cmd, "r");
     if (file_pipe != nullptr) {
       std::array<char, 256> buf{};
-      if (fgets(buf.data(), buf.size(), file_pipe) != nullptr) {
+      // Prefer fread over fgets so clang-analyzer does not flag a blocking
+      // fgets while identify()'s mutex is still (falsely) considered held.
+      const size_t got = fread(buf.data(), 1, buf.size() - 1, file_pipe);
+      if (got > 0) {
+        buf[got] = '\0';
         password = buf.data();
-        size_t len = password.length();
-        if (len > 0 && password[len - 1] == '\n') {
-          password.erase(len - 1);
+        const size_t newline_at = password.find('\n');
+        if (newline_at != std::string::npos) {
+          password.erase(newline_at);
         }
       }
       pclose(file_pipe);
@@ -246,7 +245,7 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
       return;
     }
   } else {
-    // Software Fallback (XOR/machine-id)
+    // Software fallback: AES-256-GCM (UH1:) with root-only master key
     std::string key_file = "/etc/ubuntu-hello/keyring-keys/" + std::string(username);
     std::ifstream ifs(key_file);
     if (!ifs.is_open()) {
@@ -259,24 +258,7 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
       return;
     }
 
-    std::string machine_id;
-    std::ifstream mif("/etc/machine-id");
-    if (mif.is_open()) {
-      std::getline(mif, machine_id);
-      size_t end = machine_id.find_last_not_of(" \t\r\n");
-      if (end != std::string::npos) {
-        machine_id = machine_id.substr(0, end + 1);
-      }
-      size_t start = machine_id.find_first_not_of(" \t\r\n");
-      if (start != std::string::npos) {
-        machine_id = machine_id.substr(start);
-      }
-    }
-    if (machine_id.empty()) {
-      return;
-    }
-
-    password = xor_crypt_cpp(ciphertext, machine_id);
+    password = aes_gcm_decrypt_uh1(ciphertext);
     if (password.empty()) {
       return;
     }
@@ -355,6 +337,99 @@ auto check_enabled(const INIReader &config, const char *username) -> int {
 }
 
 /**
+ * Terminate the compare process group (SIGTERM, then SIGKILL after grace).
+ */
+auto terminate_compare_group(pid_t child_pid, optional_task<int> &child_task)
+    -> void {
+  if (child_pid <= 0) {
+    return;
+  }
+  kill(-child_pid, SIGTERM);
+  if (child_task.wait(CHILD_TERM_TIMEOUT) == std::future_status::timeout) {
+    syslog(LOG_WARNING,
+           "Compare process group %d did not exit after SIGTERM, sending SIGKILL",
+           child_pid);
+    kill(-child_pid, SIGKILL);
+  }
+  child_task.stop(false);
+}
+
+/**
+ * Update face-skip marker from compare exit status (screensaver PAM only).
+ * Do not set skip on SIGTERM/cancel — Esc must allow a later face retry.
+ */
+auto update_face_skip_from_status(const char *username, int compare_status,
+                                  bool skip_face_after_failure,
+                                  bool face_skip_service) -> void {
+  if (!WIFEXITED(compare_status)) {
+    return;
+  }
+  if (WEXITSTATUS(compare_status) == EXIT_SUCCESS) {
+    face_skip_clear(username);
+    return;
+  }
+  if (skip_face_after_failure && face_skip_service &&
+      face_skip_set(username)) {
+    syslog(LOG_INFO, "Set face-skip marker after failed attempt for user %s",
+           username);
+  }
+}
+
+/**
+ * Dismiss a concurrent password prompt after face auth finished (workaround).
+ */
+auto dismiss_authtok_prompt(
+    Workaround workaround, optional_task<std::tuple<int, char *>> &pass_task,
+    const std::function<int(int, const char *)> &conv_function) -> void {
+  // UNSAFE: We cancel the thread using pthread, pam_get_authtok seems to be
+  // a cancellation point
+  if (workaround == Workaround::Native) {
+    pass_task.stop(true);
+    return;
+  }
+  if (workaround != Workaround::Input) {
+    return;
+  }
+
+  // We check if we have the right permissions on /dev/uinput
+  if (euidaccess("/dev/uinput", W_OK | R_OK) != 0) {
+    syslog(LOG_WARNING, "Insufficient permissions to create the fake device");
+    conv_function(PAM_ERROR_MSG,
+                  S("Insufficient permissions to send Enter "
+                    "press, waiting for user to press it instead"));
+  } else {
+    try {
+      EnterDevice enter_device;
+      int retries = 0;
+
+      // We try to send it
+      enter_device.send_enter_press();
+
+      for (; retries < MAX_RETRIES &&
+             pass_task.wait(DEFAULT_TIMEOUT) == std::future_status::timeout;
+           retries++) {
+        enter_device.send_enter_press();
+      }
+
+      if (retries == MAX_RETRIES) {
+        syslog(LOG_WARNING,
+               "Failed to send enter input before the retries limit");
+        conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
+                                       "for user to press it instead"));
+      }
+    } catch (std::runtime_error &err) {
+      syslog(LOG_WARNING, "Failed to send enter input: %s", err.what());
+      conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
+                                     "for user to press it instead"));
+    }
+  }
+
+  // We stop the thread (will block until the enter key is pressed if the
+  // input wasn't focused or if the uinput device failed to send keypress)
+  pass_task.stop(false);
+}
+
+/**
  * The main function, runs the identification and authentication
  * @param  pamh     The handle to interface directly with PAM
  * @param  flags    Flags passed on to us by PAM, XORed
@@ -408,6 +483,21 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     return pam_res;
   }
 
+  // Skip-after-failure only for legacy *screensaver* PAM services. GNOME lock
+  // uses gdm-password (same as login); skipping there blocks Esc→Enter retries.
+  const bool skip_face_after_failure =
+      config.GetBoolean("core", "skip_face_after_failure", true);
+  const bool face_skip_service =
+      service != nullptr && face_skip_applies(service);
+  if (skip_face_after_failure && face_skip_service &&
+      face_skip_active(username)) {
+    syslog(LOG_INFO,
+           "Skipped face authentication, skip-after-failure active for user %s "
+           "(service %s)",
+           username, service);
+    return PAM_AUTHINFO_UNAVAIL;
+  }
+
   Workaround workaround =
       get_workaround(config.GetString("core", "workaround", "input"));
 
@@ -424,7 +514,7 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   }
 
   // Wrap the PAM conversation function in our own, easier function
-  auto conv_function = [conv](int msg_type, const char *msg_str) {
+  auto conv_function = [conv](int msg_type, const char *msg_str) -> int {
     const struct pam_message msg = {.msg_style = msg_type, .msg = msg_str};
     const struct pam_message *msgp = &msg;
 
@@ -434,9 +524,10 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     return conv->conv(1, &msgp, &resp, conv->appdata_ptr);
   };
 
-  // Initialize gettext
+  // Initialize gettext (system locale; UTF-8 codeset for PAM notices)
   setlocale(LC_ALL, "");
   bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
   textdomain(GETTEXT_PACKAGE);
 
   if (config.GetBoolean("core", "detection_notice", true)) {
@@ -449,21 +540,29 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   std::array<char *, 4> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
                                 const_cast<char *>(COMPARE_PROCESS_PATH),
                                 username, nullptr};
-  pid_t child_pid;
+  pid_t child_pid = -1;
 
   posix_spawn_file_actions_t actions;
   posix_spawn_file_actions_init(&actions);
   posix_spawn_file_actions_addopen(&actions, 1, "/dev/null", O_WRONLY, 0);
   posix_spawn_file_actions_addopen(&actions, 2, "/dev/null", O_WRONLY, 0);
 
+  // Put compare (and its GTK child) in a new process group so cancel can
+  // signal the whole tree without leaving orphan overlays or open cameras.
+  posix_spawnattr_t spawn_attr;
+  posix_spawnattr_init(&spawn_attr);
+  posix_spawnattr_setflags(&spawn_attr, POSIX_SPAWN_SETPGROUP);
+  posix_spawnattr_setpgroup(&spawn_attr, 0);
+
   // Start the python subprocess
-  int spawn_err = posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, nullptr,
-                               args.data(), nullptr);
+  int spawn_err = posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions,
+                               &spawn_attr, args.data(), nullptr);
+  posix_spawnattr_destroy(&spawn_attr);
   posix_spawn_file_actions_destroy(&actions);
 
   if (spawn_err != 0) {
-    syslog(LOG_ERR, "Can't spawn the ubuntu-hello process: %s (%d)", strerror(errno),
-           errno);
+    syslog(LOG_ERR, "Can't spawn the ubuntu-hello process: %s (%d)",
+           strerror(spawn_err), spawn_err);
     return PAM_SYSTEM_ERR;
   }
 
@@ -475,8 +574,8 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
 
   // This task wait for the status of the python subprocess (we don't want a
   // zombie process)
-  optional_task<int> child_task([&] {
-    int status;
+  optional_task<int> child_task([&]() -> int {
+    int status = 0;
     waitpid(child_pid, &status, 0);
     {
       std::unique_lock<std::mutex> lock(mutx);
@@ -491,9 +590,9 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   child_task.activate();
 
   // This task waits for the password input (if the workaround wants it)
-  optional_task<std::tuple<int, char *>> pass_task([&] {
+  optional_task<std::tuple<int, char *>> pass_task([&]() -> std::tuple<int, char *> {
     char *auth_tok_ptr = nullptr;
-    int pam_res = pam_get_authtok(
+    int tok_res = pam_get_authtok(
         pamh, PAM_AUTHTOK, const_cast<const char **>(&auth_tok_ptr), nullptr);
     {
       std::unique_lock<std::mutex> lock(mutx);
@@ -503,32 +602,30 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     }
     convar.notify_one();
 
-    return std::tuple<int, char *>(pam_res, auth_tok_ptr);
+    return {tok_res, auth_tok_ptr};
   });
 
-  auto ask_pass = ask_auth_tok && workaround != Workaround::Off;
-
-  // We ask for the password if the function requires it and if a workaround is
-  // set
+  // Concurrent password watch is workaround-gated ONLY.
+  // HARD RULE: never OR in is_greeter_service() when workaround=off — that
+  // aborts GDM user-selection → login. See AGENTS.md lifecycle CAUTION.
+  const bool ask_pass = ask_auth_tok && workaround != Workaround::Off;
   if (ask_pass) {
     pass_task.activate();
   }
 
-  // Wait for the end either of the child or the password input
-  {
-    std::unique_lock<std::mutex> lock(mutx);
-    convar.wait(lock,
-                [&] { return confirmation_type != ConfirmationType::Unset; });
-  }
+  // Wait for the end either of the child or the password input.
+  // Unlock explicitly so clang-analyzer does not treat later I/O (e.g. TPM
+  // fgets in try_set_keyring_authtok) as BlockInCriticalSection.
+  std::unique_lock<std::mutex> lock(mutx);
+  convar.wait(lock, [&]() -> bool {
+    return confirmation_type != ConfirmationType::Unset;
+  });
+  lock.unlock();
 
   // The password has been entered or an error has occurred
   if (confirmation_type == ConfirmationType::Pam) {
-    // We kill the child because we don't need its result
-    kill(child_pid, SIGTERM);
-    child_task.stop(false);
+    terminate_compare_group(child_pid, child_task);
 
-    // We just wait for the thread to stop since it's this one which sent us the
-    // confirmation type
     pass_task.stop(false);
 
     char *password = nullptr;
@@ -552,6 +649,9 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   // Do not send enter presses or terminate the PAM function, as the user might
   // still be typing their password
   if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS && ask_pass) {
+    update_face_skip_from_status(username, status, skip_face_after_failure,
+                                 face_skip_service);
+
     // Wait for the password to be typed
     pass_task.stop(false);
 
@@ -569,50 +669,10 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   // We want to stop the password prompt, either by canceling the thread when
   // workaround is set to "native", or by emulating "Enter" input with
   // "input"
+  dismiss_authtok_prompt(workaround, pass_task, conv_function);
 
-  // UNSAFE: We cancel the thread using pthread, pam_get_authtok seems to be
-  // a cancellation point
-  if (workaround == Workaround::Native) {
-    pass_task.stop(true);
-  } else if (workaround == Workaround::Input) {
-    // We check if we have the right permissions on /dev/uinput
-    if (euidaccess("/dev/uinput", W_OK | R_OK) != 0) {
-      syslog(LOG_WARNING, "Insufficient permissions to create the fake device");
-      conv_function(PAM_ERROR_MSG,
-                    S("Insufficient permissions to send Enter "
-                      "press, waiting for user to press it instead"));
-    } else {
-      try {
-        EnterDevice enter_device;
-        int retries;
-
-        // We try to send it
-        enter_device.send_enter_press();
-
-        for (retries = 0;
-             retries < MAX_RETRIES &&
-             pass_task.wait(DEFAULT_TIMEOUT) == std::future_status::timeout;
-             retries++) {
-          enter_device.send_enter_press();
-        }
-
-        if (retries == MAX_RETRIES) {
-          syslog(LOG_WARNING,
-                 "Failed to send enter input before the retries limit");
-          conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
-                                         "for user to press it instead"));
-        }
-      } catch (std::runtime_error &err) {
-        syslog(LOG_WARNING, "Failed to send enter input: %s", err.what());
-        conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
-                                       "for user to press it instead"));
-      }
-    }
-
-    // We stop the thread (will block until the enter key is pressed if the
-    // input wasn't focused or if the uinput device failed to send keypress)
-    pass_task.stop(false);
-  }
+  update_face_skip_from_status(username, status, skip_face_after_failure,
+                               face_skip_service);
 
   if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_SUCCESS) {
     try_set_keyring_authtok(pamh, username);
@@ -659,7 +719,10 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
     syslog(LOG_ERR, "Invalid username format in pam_sm_setcred: %s", username);
     return PAM_IGNORE;
   }
-  
+
+  // Successful auth reached setcred — allow face again on next lock attempt.
+  face_skip_clear(username);
+
   std::string pending_file = "/etc/ubuntu-hello/keyring-caching-pending/" + std::string(username);
   std::string tpm_pub = "/etc/ubuntu-hello/tpm-keys/" + std::string(username) + ".pub";
   std::string key_file = "/etc/ubuntu-hello/keyring-keys/" + std::string(username);
@@ -681,7 +744,23 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
     return PAM_IGNORE;
   }
   
-  std::string cmd = "/usr/bin/ubuntu-hello keyring enable " + std::string(username);
+  std::string cmd =
+      "/usr/bin/ubuntu-hello keyring enable -U " + std::string(username);
+
+  // Migrate legacy XOR software blobs (and refresh UH1/TPM) when PAM_AUTHTOK is available
+  if (is_key) {
+    std::ifstream kifs(key_file);
+    std::string existing;
+    if (kifs.is_open()) {
+      std::getline(kifs, existing);
+      if (!existing.empty() && existing.compare(0, 4, "UH1:") != 0) {
+        syslog(LOG_INFO,
+               "Migrating legacy keyring blob to UH1 for user %s via keyring enable",
+               username);
+      }
+    }
+  }
+
   FILE *file_pipe = popen_as_root(cmd, "w");
   if (file_pipe != nullptr) {
     fputs(password, file_pipe);

@@ -1,0 +1,715 @@
+# ubuntu-hello translation for ht.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ht\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Echèk, timeout rive nan"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Imaj deteksyon figi twò nwa"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Erè enkoni:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Idantifye figi kòm %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Otorizasyon ensifizan pou voye Antre laprès, ap tann itilizatè a peze l pito"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Echwe pou voye Antre laprès, ap tann pou itilizatè a peze li pito"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Eseye otantifikasyon feminen"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Pa t 'kapab detèmine itilizatè a, tanpri itilize drapo a --user"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Koòdone liy kòmand pou Ubuntu Hello otantifikasyon figi."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "kòmandman"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "agiman"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Pou sipò tanpri vizite\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Opsyon lòd pou egzekite, kapab youn nan bagay sa yo: ajoute, klè, "
+"konfigirasyon, enfim, keyring, lis, retire, snapshot, mete, tès oswa vèsyon."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "Agiman opsyonèl pou ajoute, enfim, retire ak mete kòmandman yo."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Mete kont itilizatè a pou itilize."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Sote tout kesyon."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Enprime pwodiksyon machin-zanmitay."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Montre mesaj èd sa a epi sòti."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "aktyèl itilizatè aktif:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Fòma non itilizatè pa valab"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Tanpri kouri kòmandman sa a kòm rasin:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Pa ka kouri kòmandman ubuntu-hello kòm rasin, tanpri kouri lòd sa a ak drapo "
+"a --user"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "Fichye done yo pa te telechaje, tanpri kouri kòmandman sa yo:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "LOGIN"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Dat:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Tan eskane:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Ankadreman:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Non animatè:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Pi bon valè sètitid:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Kòmanse..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Idantifye w..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "ECHÈ"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Tout ankadreman yo te twò nwa, tanpri tcheke dark_threshold nan "
+"konfigirasyon an"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Mwayèn fènwa: {avg}, Papòt: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Tan ki pase"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Kòmanse"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Louvri kam + chaje lib: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Louvri kamera a"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Enpòte lib rekonesans"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Chèche figi konnen"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Tan total"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Rezolisyon"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Natif natal: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Itilize: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Ankadreman rechèch: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Ankadreman nwa yo inyore: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Ankadreman nwa yo inyore: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Sètitid nan ankadreman genyen: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Modèl genyen: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "SIKSÈ"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "login keyring"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "konekte keyring oswa KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Pa ka enpòte modil dlib la, tcheke pwodiksyon an"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Pa gen katab modèl figi yo jwenn, kreye youn"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "AVI: Chak modèl adisyonèl ralanti motè rekonesans figi a yon ti kras"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Peze Ctrl + C pou anile\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Ajoute modèl figi pou itilizatè a"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Modèl #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Sèvi ak etikèt default \"%s\" akòz -y drapo"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Antre yon etikèt pou nouvo modèl sa a [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "AVI: Retire karaktè ilegal \",\" nan non modèl la"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Tanpri gade tou dwat nan kamera a"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamera te wè sèlman ankadreman nwa - èske IR emeteur ap travay?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Pa gen figi detekte, avòte"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Plizyè figi detekte, avòtman"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Eskane nèt sou tout pwen\n"
+"Te ajoute yon nouvo modèl nan"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "Pa gen modèl ki te kreye ankò, pa ka klè yo si yo pa egziste"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} pa gen modèl oswa yo te otorize deja"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Sa a pral klè tout modèl pou"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Èske ou vle kontinye [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Entèprete kòm yon \"NON\", avòte"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Modèl otorize"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Louvri config.ini nan {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Echwe pou louvri editè: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Erè: Pa t 'kapab jwenn yon editè tèks apwopriye."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Tanpri enstale 'nano' oswa 'vi', oswa mete varyab anviwònman EDITOR la."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Si w ap kouri kòmandman sa a ak sudo, eseye 'sudo -E ubuntu-hello config' "
+"pou konsève varyab EDITOR ou a."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Tanpri ajoute yon 0 (pèmèt) oswa yon 1 (enfim) kòm yon agiman"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Tanpri itilize sèlman 0 (pèmèt) oswa 1 (enfim) kòm yon agiman"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Opsyon enfim lan te deja mete sou"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello te enfim"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello te aktive"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Itilizasyon: keyring [aktive|enfim]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Antre modpas pou itilizatè {} pou déblotché {} ({}):"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Modpas pa ka vid"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Konfime modpas:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Modpas pa koresponn"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM pyès ki nan konpitè detekte. Oto-enstale tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM pyès ki nan konpitè aktif. Sele modpas nan TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Keyring/KWallet déblotché aktive ak siksè pou itilizatè {} lè l sèvi avèk "
+"TPM (bous: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Echwe pou sele modpas TPM: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "Pa gen TPM aktif. Sèvi ak kachèt kalifikasyon ki baze sou lojisyèl..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Keyring/KWallet déverrouillage pèmèt ak siksè pou itilizatè {} (Caching "
+"lojisyèl, bous: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Echwe pou pèmèt debloke bag kle: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Echwe pou enfim déblotché trou kle: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Keyring/KWallet déblotché enfim pou itilizatè {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Debloke kle/KWallet pa t aktive pou itilizatè {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Aksyon envalid. Sèvi ak 'pèmèt' oswa 'enfim'."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Modèl figi yo poko inisyalize, tanpri kouri:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Pa gen okenn modèl figi konnen pou itilizatè a {}, tanpri kouri:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Modèl figi yo konnen pou {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Dat idantite etikèt [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Tanpri ajoute ID modèl ou vle retire a kòm yon agiman"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Pou egzanp:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Ou ka jwenn ID yo nan kouri:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Sa a pral retire modèl ki rele \"{label}\" pou {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Pa gen modèl ki gen ID {id} ki egziste pou {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Retire dènye modèl, ubuntu-hello enfim pou itilizatè"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Retire modèl {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "Tanpri ajoute yon paramèt ou ta renmen chanje ak valè pou mete l"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Pa t 'kapab jwenn yon opsyon konfigirasyon \"{}\" yo mete"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Opsyon konfigirasyon mete ajou"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "GENRE SNAPSHOT"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Konfigirasyon papòt nwa:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Sètitid konfigirasyon:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Snapshot jenere sove kòm"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello te configuré pou itilize yon achiv ki poko sipòte kòmandman tès "
+"la, avòte."
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Louvri yon fenèt ak yon manje tès\n"
+"\n"
+"Peze ctrl + C nan tèminal sa a pou kite\n"
+"Klike sou imaj la pou pèmèt oswa enfim mòd dousman\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "REZOLISYON: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "CADRE: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "REKONÈS: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "MÒD LANT"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "DARK FRAME"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ESKANYE FRAM"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Fenèt fèmen"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Erè nan analiz règ rubberstamp: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Koupon pou achte pa enstale: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Erè koupon pou achte: Klas {} pa jwenn"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Erè entèn nan deklarasyon konfigirasyon rubberstamp:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Erè entèn nan rubberstamp:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Avòte otorizasyon nan {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Otorize nan {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Peze {abort_key} pou avòte, {confirm_key} pou otorize"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Otantifikasyon avòte"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Souke tèt pou konfime"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Souke tèt ou pou avòte"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Otantifikasyon konfime"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Otantifikasyon avòte"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Modil ffmpeg ki manke, tanpri kouri:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Modil pyv4l2 ki manke, tanpri kouri:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello pa t 'kapab jwenn yon aparèy kamera nan chemen ki espesifye nan "
+"fichye konfigirasyon an."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Li trè posib ke chemen an pa konfigirasyon kòrèkteman, tanpri edite valè "
+"konfigirasyon 'device_path' nan kouri:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Echwe pou li kamera ki espesifye nan opsyon konfigirasyon 'device_path', "
+"avòte"

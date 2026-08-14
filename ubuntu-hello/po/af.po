@@ -1,0 +1,724 @@
+# ubuntu-hello translation for af.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Misluk, uitteltyd bereik"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Gesigbespeuringsprent te donker"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Onbekende fout:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Gesig geïdentifiseer as %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Onvoldoende toestemmings om Enter-druk te stuur, wag vir gebruiker om dit "
+"eerder te druk"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Kon nie Enter-druk stuur nie, wag vir gebruiker om dit eerder te druk"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Poging om gesigstawing"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Kon nie gebruiker bepaal nie, gebruik asseblief die --user vlag"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Opdragreël-koppelvlak vir Ubuntu Hello gesigstawing."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "bevel"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "argumente"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Vir ondersteuning besoek gerus\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Die opdrag-opsie om uit te voer, kan een van die volgende wees: voeg, "
+"skoonmaak, konfigureer, deaktiveer, sleutelring, lys, verwyder, "
+"momentopname, stel, toets of weergawe."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Opsionele argumente vir die opdragte byvoeg, deaktiveer, verwyder en stel."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Stel die gebruikersrekening om te gebruik."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Slaan alle vrae oor."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Druk masjienvriendelike afvoer."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Wys hierdie hulpboodskap en gaan uit."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "huidige aktiewe gebruiker:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Ongeldige gebruikernaamformaat"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Voer asseblief hierdie opdrag as root uit:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Kan nie ubuntu-hello-opdragte as root uitvoer nie, voer asseblief hierdie "
+"opdrag met die --user-vlag uit"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"Datalêers is nie afgelaai nie, voer asseblief die volgende opdragte uit:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "AANMEL"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Datum:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Skandeertyd:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Rame:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Gasheernaam:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Beste sekerheidswaarde:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Begin tans …"
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Identifiseer jou..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "MISLUK"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "Alle rame was te donker, kontroleer asseblief dark_threshold in config"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Gemiddelde duisternis: {avg}, Drempel: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Tyd spandeer"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Begin op"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Oop nokk + laai libs: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Maak die kamera oop"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Voer tans herkenningslibs in"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Op soek na bekende gesig"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Totale tyd"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Resolusie"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Inheems: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Gebruik: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Rame gesoek: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Swart rame geïgnoreer: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Donker rame geïgnoreer: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Sekerheid van wenraam: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Wenmodel: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "SUKSESVOL"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "aanmeld sleutelring"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "aanmeldsleutelring of KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Kan nie die dlib-module invoer nie, kyk na die uitvoer van"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Geen gesigmodelvouer gevind nie, skep een"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"KENNISGEWING: Elke bykomende model vertraag die gesigherkenningsenjin effens"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Druk Ctrl+C om te kanselleer\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Voeg gesigmodel vir die gebruiker by"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Model #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Gebruik verstek etiket \"%s\" as gevolg van -y vlag"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Voer 'n etiket vir hierdie nuwe model in [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "KENNISGEWING: Verwyder tans onwettige karakter \",\" uit modelnaam"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Kyk asseblief reguit in die kamera"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamera saag net swart rame - werk IR-straler?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Geen gesig bespeur nie, aborteer"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Veelvuldige gesigte bespeur, aborteer"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Skandering voltooi\n"
+"Het 'n nuwe model bygevoeg"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"Geen modelle is nog geskep nie, kan dit nie uitvee as hulle nie bestaan ​​nie"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} het geen modelle nie of hulle is reeds uitgevee"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Dit sal alle modelle uitvee vir"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Wil jy voortgaan met [j/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Interpreteer as 'n \"NEE\", aborteer"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Modelle skoongemaak"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Maak config.ini oop in {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Kon nie redigeerder oopmaak nie: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Fout: kon nie 'n geskikte teksredigeerder vind nie."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Installeer asseblief 'nano' of 'vi', of stel die EDITOR-"
+"omgewingsveranderlike."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"As jy hierdie opdrag met sudo uitvoer, probeer 'sudo -E ubuntu-hello config' "
+"om jou EDITOR-veranderlike te bewaar."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Voeg asseblief 'n 0 (aktiveer) of 'n 1 (deaktiveer) as 'n argument by"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Gebruik asseblief net 0 (aktiveer) of 1 (deaktiveer) as 'n argument"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Die deaktiveeropsie is reeds gestel op"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello is gedeaktiveer"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello is geaktiveer"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Gebruik: sleutelring [aktiveer|deaktiveer]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Voer wagwoord in vir gebruiker {} om {} ({}) te ontsluit:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Wagwoord kan nie leeg wees nie"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Bevestig wagwoord:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Wagwoorde stem nie ooreen nie"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM hardeware bespeur. Outo-installeer tans tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM hardeware aktief. Seël wagwoord in TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Sleutelring/KWallet-ontsluiting suksesvol geaktiveer vir gebruiker {} wat "
+"TPM gebruik (beursie: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Kon nie wagwoord aan TPM verseël nie: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "Geen TPM aktief nie. Gebruik sagteware-gebaseerde geloofsbriewe-kas..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Sleutelring/KWallet-ontsluiting suksesvol geaktiveer vir gebruiker {} "
+"(sagtewarekas, beursie: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Kon nie sleutelringontsluiting aktiveer nie: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Kon nie sleutelringontsluiting deaktiveer nie: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Sleutelring/KWallet-ontsluiting gedeaktiveer vir gebruiker {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr ""
+"Sleutelring/KWallet-ontsluiting is nie vir gebruiker {} geaktiveer nie."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Ongeldige handeling. Gebruik 'aktiveer' of 'deaktiveer'."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Gesigmodelle is nog nie geïnisialiseer nie, hardloop asseblief:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Geen gesigmodel bekend vir die gebruiker {} nie, hardloop asseblief:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Bekende gesigmodelle vir {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID Datum Etiket [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr ""
+"Voeg asseblief die ID van die model wat jy wil verwyder as 'n argument by"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Byvoorbeeld:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Jy kan die ID's vind deur te hardloop:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Dit sal die model genaamd \"{label}\" vir {user} verwyder"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Geen model met ID {id} bestaan ​​vir {user} nie"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Laaste model verwyder, ubuntu-hello gedeaktiveer vir gebruiker"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Verwyder model {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Voeg asseblief 'n instelling by wat jy wil verander en die waarde om dit op "
+"te stel"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Kon nie 'n \"{}\" konfigurasie opsie vind om te stel nie"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Config opsie opgedateer"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "GEGENEREERDE KIET"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Donker drempelopstelling:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Sekerheid konfigurasie:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Gegenereerde momentopname gestoor as"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello is opgestel om 'n opnemer te gebruik wat nog nie die "
+"toetsopdrag ondersteun nie, aborteer"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Maak 'n venster oop met 'n toetsvoer\n"
+"\n"
+"Druk ctrl+C in hierdie terminaal om af te sluit\n"
+"Klik op die prent om stadige modus te aktiveer of te deaktiveer\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "RESOLUSIE: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "RAME: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "ERKENNING: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "STADIGE MODUS"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "DONKER RAAM"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "SKANDEERRAAM"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Sluit venster"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Kon nie rubberstempelreël ontleed nie: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Seël nie geïnstalleer nie: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Stempelfout: Klas {} nie gevind nie"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Interne fout in rubberstempel-konfigurasieverklaring:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Interne fout in rubberstempel:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Stop magtiging in {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Magtiging in {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Druk {abort_key} om te staak, {confirm_key} om te magtig"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Stawing is afgelas"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Knik om te bevestig"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Skud jou kop om te aborteer"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Bevestig stawing"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Stawing gestaak"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Ontbrekende ffmpeg-module, hardloop asseblief:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Ontbreek pyv4l2-module, voer asseblief uit:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello kon nie 'n kamera-toestel vind by die pad gespesifiseer in die "
+"konfigurasielêer nie."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Dit is baie waarskynlik dat die pad nie korrek opgestel is nie, wysig "
+"asseblief die 'device_path'-konfigurasiewaarde deur te hardloop:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Kon nie kamera wat in die 'device_path'-opstellingopsie gespesifiseer is, "
+"lees nie, aborteer"

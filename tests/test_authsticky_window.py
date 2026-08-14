@@ -93,7 +93,7 @@ class TestGetThemePreference:
         mod = _get_authsticky()
         with patch("os.geteuid", return_value=0), \
              patch.object(mod, "get_real_user", return_value="testuser"), \
-             patch("subprocess.check_output", return_value="'prefer-dark'\n"):
+             patch("theme_detect.get_theme_preference", return_value="dark"):
             result = mod.get_theme_preference()
             assert result == "dark"
 
@@ -101,7 +101,7 @@ class TestGetThemePreference:
         mod = _get_authsticky()
         with patch("os.geteuid", return_value=0), \
              patch.object(mod, "get_real_user", return_value="testuser"), \
-             patch("subprocess.check_output", return_value="'prefer-light'\n"):
+             patch("theme_detect.get_theme_preference", return_value="light"):
             result = mod.get_theme_preference()
             assert result == "light"
 
@@ -114,18 +114,9 @@ class TestGetThemePreference:
 
     def test_root_gtk_dark_theme(self):
         mod = _get_authsticky()
-        call_count = [0]
-        def check_output_side_effect(*args, **kwargs):
-            call_count[0] += 1
-            if call_count[0] == 1:
-                return "'default'\n"  # color-scheme via dconf
-            elif call_count[0] == 2:
-                return "'Yaru-dark'\n"  # gtk-theme via dconf
-            return "''\n"
-        
         with patch("os.geteuid", return_value=0), \
              patch.object(mod, "get_real_user", return_value="testuser"), \
-             patch("subprocess.check_output", side_effect=check_output_side_effect):
+             patch("theme_detect.get_theme_preference", return_value="dark"):
             result = mod.get_theme_preference()
             assert result == "dark"
 
@@ -133,7 +124,7 @@ class TestGetThemePreference:
         mod = _get_authsticky()
         with patch("os.geteuid", return_value=0), \
              patch.object(mod, "get_real_user", return_value="testuser"), \
-             patch("subprocess.check_output", side_effect=Exception("fail")):
+             patch("theme_detect.get_theme_preference", return_value="light"):
             result = mod.get_theme_preference()
             assert result == "light"
 
@@ -149,6 +140,7 @@ class TestGetThemePreference:
         mock_schema_source.list_schemas.return_value = ([], [])
         
         with patch("os.geteuid", return_value=1000), \
+             patch("theme_detect.get_theme_preference", return_value=""), \
              patch("gi.repository.Gio.SettingsSchemaSource.get_default", return_value=mock_schema_source):
             result = mod.get_theme_preference()
             assert result == "dark"
@@ -162,6 +154,7 @@ class TestGetThemePreference:
         mock_settings.get_string.side_effect = lambda key: "prefer-dark" if key == "color-scheme" else "Yaru"
         
         with patch("os.geteuid", return_value=1000), \
+             patch("theme_detect.get_theme_preference", return_value=""), \
              patch("gi.repository.Gio.SettingsSchemaSource.get_default", return_value=mock_schema_source), \
              patch("gi.repository.Gio.Settings.new", return_value=mock_settings):
             result = mod.get_theme_preference()
@@ -176,6 +169,7 @@ class TestGetThemePreference:
         mock_settings.get_string.side_effect = lambda key: "default" if key == "color-scheme" else "Yaru-dark"
         
         with patch("os.geteuid", return_value=1000), \
+             patch("theme_detect.get_theme_preference", return_value=""), \
              patch("gi.repository.Gio.SettingsSchemaSource.get_default", return_value=mock_schema_source), \
              patch("gi.repository.Gio.Settings.new", return_value=mock_settings):
             result = mod.get_theme_preference()
@@ -190,10 +184,20 @@ class TestGetThemePreference:
         mock_settings.get_string.side_effect = lambda key: "default" if key == "color-scheme" else "Yaru-light"
         
         with patch("os.geteuid", return_value=1000), \
+             patch("theme_detect.get_theme_preference", return_value=""), \
              patch("gi.repository.Gio.SettingsSchemaSource.get_default", return_value=mock_schema_source), \
              patch("gi.repository.Gio.Settings.new", return_value=mock_settings):
             result = mod.get_theme_preference()
             assert result == "light"
+
+    def test_non_root_uses_theme_detect(self):
+        mod = _get_authsticky()
+        with patch("os.geteuid", return_value=1000), \
+             patch("theme_detect.get_theme_preference", return_value="dark") as mock_td:
+            result = mod.get_theme_preference()
+            assert result == "dark"
+            mock_td.assert_called()
+
 
 
 # ── StickyWindow class ──────────────────────────────────────────────

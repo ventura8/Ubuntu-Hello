@@ -1,11 +1,19 @@
 if meson.is_subproject()
-project('ubuntu-hello', 'cpp', license: 'MIT', version: '1.0.4', meson_version: '>= 0.64.0')
+  project(
+    'ubuntu-hello',
+    'cpp',
+    license: 'MIT',
+    version: run_command('python3', join_paths(meson.current_source_dir(), '..', '..', 'scripts', 'read-version.py'), check: true).stdout().strip(),
+    meson_version: '>= 0.64.0',
+  )
 endif
 
 
 datadir = get_option('prefix') / get_option('datadir') / 'ubuntu-hello'
 py_conf = configuration_data(paths_dict)
 py_conf.set('data_dir', datadir)
+py_conf.set('localedir', get_option('prefix') / get_option('localedir'))
+py_conf.set('gettext_package', 'ubuntu-hello')
 
 py = import('python').find_installation(paths_dict.get('python_path'))
 py.dependency()
@@ -13,6 +21,12 @@ py.dependency()
 py_paths = configure_file(
     input: 'paths.py.in',
     output: 'paths.py',
+    configuration: py_conf,
+)
+
+py_i18n = configure_file(
+    input: 'i18n.py.in',
+    output: 'i18n.py',
     configuration: py_conf,
 )
 
@@ -30,8 +44,10 @@ py_sources = [
     'cli/test.py',
     'cli.py',
     'compare.py',
-    'i18n.py',
+    py_i18n,
+    'keyring_crypto.py',
     'paths_factory.py',
+    'wallet_backend.py',
     'recorders/__init__.py',
     'recorders/ffmpeg_reader.py',
     'recorders/pyv4l2_reader.py',

@@ -54,79 +54,46 @@ def get_real_user():
 
 
 def get_theme_preference():
+	"""Prefer multi-DE detection; overlay defaults to dark on hard failures."""
 	try:
+		import theme_detect
 		if os.geteuid() == 0:
 			user = get_real_user()
 			if not user or user == "root":
 				return "dark"
+			return theme_detect.get_theme_preference(user=user, default="light")
 
-			import subprocess
-			try:
-				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/color-scheme"]
-				color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-				if color_scheme == "prefer-dark":
-					return "dark"
-				elif color_scheme == "prefer-light":
-					return "light"
-			except Exception:
-				pass
+		# Non-root: probe current session DE tools/configs first
+		detected = theme_detect.get_theme_preference(default="")
+		if detected in ("dark", "light"):
+			return detected
 
-			try:
-				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/gtk-theme"]
-				gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-				if "dark" in gtk_theme.lower():
-					return "dark"
-			except Exception:
-				pass
+		# GNOME Gio live schema when DE probe found nothing
+		schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
+		all_schemas = schemas[0] + schemas[1]
+		if "org.gnome.desktop.interface" not in all_schemas:
+			return "dark"
 
-			try:
-				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "color-scheme"]
-				color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-				if color_scheme == "prefer-dark":
-					return "dark"
-				elif color_scheme == "prefer-light":
-					return "light"
-			except Exception:
-				pass
+		settings = Gio.Settings.new("org.gnome.desktop.interface")
+		color_scheme = ""
+		try:
+			color_scheme = settings.get_string("color-scheme")
+		except Exception:
+			pass
 
-			try:
-				cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "gtk-theme"]
-				gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-				if "dark" in gtk_theme.lower():
-					return "dark"
-			except Exception:
-				pass
+		gtk_theme = ""
+		try:
+			gtk_theme = settings.get_string("gtk-theme")
+		except Exception:
+			pass
 
+		if color_scheme == "prefer-dark":
+			return "dark"
+		if gtk_theme and "dark" in gtk_theme.lower():
+			return "dark"
+		if color_scheme == "prefer-light" or gtk_theme:
 			return "light"
-		else:
-			# Check if the schema exists
-			schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
-			all_schemas = schemas[0] + schemas[1]
-			if "org.gnome.desktop.interface" not in all_schemas:
-				return "dark"
-
-			settings = Gio.Settings.new("org.gnome.desktop.interface")
-			color_scheme = ""
-			try:
-				color_scheme = settings.get_string("color-scheme")
-			except Exception:
-				pass
-
-			gtk_theme = ""
-			try:
-				gtk_theme = settings.get_string("gtk-theme")
-			except Exception:
-				pass
-
-			prefer_dark = False
-			if color_scheme == "prefer-dark":
-				prefer_dark = True
-			elif gtk_theme and "dark" in gtk_theme.lower():
-				prefer_dark = True
-			else:
-				prefer_dark = False
-
-			return "dark" if prefer_dark else "light"
+		return "dark"
 	except Exception:
 		return "dark"
 

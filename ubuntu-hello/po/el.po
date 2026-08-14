@@ -1,0 +1,737 @@
+# ubuntu-hello translation for el.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Αποτυχία, έφτασε το χρονικό όριο"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Η εικόνα ανίχνευσης προσώπου είναι πολύ σκοτεινή"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Άγνωστο σφάλμα:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Προσδιορισμένο πρόσωπο ως %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Ανεπαρκή δικαιώματα αποστολής πατήστε Enter, περιμένοντας να το πατήσει ο "
+"χρήστης"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Απέτυχε η αποστολή Enter, πατήστε Enter, περιμένοντας να το πατήσει ο χρήστης"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Προσπάθεια ελέγχου ταυτότητας προσώπου"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr ""
+"Δεν ήταν δυνατός ο προσδιορισμός του χρήστη, χρησιμοποιήστε τη σημαία --user"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Διεπαφή γραμμής εντολών για έλεγχο ταυτότητας προσώπου Ubuntu Hello."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "εντολή"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "επιχειρήματα"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Για υποστήριξη, επισκεφθείτε\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Η επιλογή εντολής για εκτέλεση, μπορεί να είναι μία από τις ακόλουθες: "
+"προσθήκη, διαγραφή, διαμόρφωση, απενεργοποίηση, πληκτρολόγηση, λίστα, "
+"αφαίρεση, στιγμιότυπο, ρύθμιση, δοκιμή ή έκδοση."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Προαιρετικά ορίσματα για τις εντολές προσθήκης, απενεργοποίησης, αφαίρεσης "
+"και ρύθμισης."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Ρυθμίστε τον λογαριασμό χρήστη για χρήση."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Παράλειψη όλων των ερωτήσεων."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Εκτύπωση φιλική προς τη μηχανή έξοδο."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Εμφάνιση αυτού του μηνύματος βοήθειας και έξοδος."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "τρέχων ενεργός χρήστης:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Μη έγκυρη μορφή ονόματος χρήστη"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Εκτελέστε αυτήν την εντολή ως root:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Δεν είναι δυνατή η εκτέλεση εντολών ubuntu-hello ως root, εκτελέστε αυτήν "
+"την εντολή με τη σημαία --user"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr ""
+"Δεν έχει γίνει λήψη αρχείων δεδομένων, εκτελέστε τις ακόλουθες εντολές:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "ΣΥΝΔΕΣΗ"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Ημερομηνία:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Χρόνος σάρωσης:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Κορνίζες:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Όνομα κεντρικού υπολογιστή:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Καλύτερη τιμή βεβαιότητας:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Ξεκινώντας..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Αναγνωρίζοντας σας..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "ΑΠΟΤΥΧΗΜΕΝΟΣ"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Όλα τα καρέ ήταν πολύ σκοτεινά, ελέγξτε το dark_threshold στη διαμόρφωση"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Μέσο σκοτάδι: {avg}, Κατώφλι: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Χρόνος που ξοδεύτηκε"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Εκκίνηση"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Άνοιγμα έκκεντρου + φόρτωση λωρίδων: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Άνοιγμα της κάμερας"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Εισαγωγή libs αναγνώρισης"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Αναζήτηση γνωστού προσώπου"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Συνολικός χρόνος"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Ψήφισμα"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Εγγενής: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Μεταχειρισμένο: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Αναζήτηση καρέ: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Τα μαύρα καρέ αγνοήθηκαν: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Τα σκοτεινά καρέ αγνοήθηκαν: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Βεβαιότητα νικηφόρου καρέ: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Μοντέλο που κερδίζει: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "ΕΠΙΤΥΧΗΣ"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "μπρελόκ σύνδεσης"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "μπρελόκ σύνδεσης ή KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Δεν είναι δυνατή η εισαγωγή της μονάδας dlib, ελέγξτε την έξοδο του"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Δεν βρέθηκε φάκελος μοντέλου προσώπου, δημιουργώντας έναν"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"ΕΙΔΟΠΟΙΗΣΗ: Κάθε πρόσθετο μοντέλο επιβραδύνει ελαφρώς τον κινητήρα "
+"αναγνώρισης προσώπου"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Πατήστε Ctrl+C για ακύρωση\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Προσθήκη μοντέλου προσώπου για τον χρήστη"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Μοντέλο #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Χρήση προεπιλεγμένης ετικέτας \"%s\" λόγω της σημαίας -y"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Εισαγάγετε μια ετικέτα για αυτό το νέο μοντέλο [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr ""
+"ΕΙΔΟΠΟΙΗΣΗ: Αφαίρεση του παράνομου χαρακτήρα \",\" από το όνομα μοντέλου"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Παρακαλώ κοιτάξτε κατευθείαν στην κάμερα"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Πριόνι κάμερας μόνο μαύρα πλαίσια - λειτουργεί ο πομπός υπερύθρων;"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Δεν εντοπίστηκε πρόσωπο, αποβολή"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Εντοπίστηκαν πολλά πρόσωπα, αποβολή"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Η σάρωση ολοκληρώθηκε\n"
+"Προστέθηκε ένα νέο μοντέλο στο"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr ""
+"Δεν έχουν δημιουργηθεί ακόμη μοντέλα, δεν είναι δυνατή η εκκαθάριση εάν δεν "
+"υπάρχουν"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "Το {} δεν έχει μοντέλα ή έχουν ήδη διαγραφεί"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Αυτό θα διαγράψει όλα τα μοντέλα"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Θέλετε να συνεχίσετε [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Ερμηνεία ως «ΟΧΙ», αποβολή"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Τα μοντέλα εκκαθαρίστηκαν"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Άνοιγμα config.ini στο {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Απέτυχε το άνοιγμα του προγράμματος επεξεργασίας: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Σφάλμα: Δεν ήταν δυνατή η εύρεση του κατάλληλου επεξεργαστή κειμένου."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Εγκαταστήστε το 'nano' ή το 'vi' ή ορίστε τη μεταβλητή περιβάλλοντος EDITOR."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Εάν εκτελείτε αυτήν την εντολή με sudo, δοκιμάστε το 'sudo -E ubuntu-hello "
+"config' για να διατηρήσετε τη μεταβλητή EDITOR."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Προσθέστε ένα 0 (ενεργοποίηση) ή ένα 1 (απενεργοποίηση) ως όρισμα"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Χρησιμοποιήστε μόνο 0 (ενεργοποίηση) ή 1 (απενεργοποίηση) ως όρισμα"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Η επιλογή απενεργοποίησης έχει ήδη οριστεί σε"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Το Ubuntu Hello έχει απενεργοποιηθεί"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Το Ubuntu Hello έχει ενεργοποιηθεί"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Χρήση: μπρελόκ [ενεργοποίηση|απενεργοποίηση]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr ""
+"Εισαγάγετε τον κωδικό πρόσβασης για τον χρήστη {} για ξεκλείδωμα {} ({}):"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Ο κωδικός πρόσβασης δεν μπορεί να είναι κενός"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Επιβεβαίωση κωδικού πρόσβασης:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Οι κωδικοί πρόσβασης δεν ταιριάζουν"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "Εντοπίστηκε υλικό TPM. Αυτόματη εγκατάσταση tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "Το υλικό TPM είναι ενεργό. Σφράγιση κωδικού πρόσβασης στο TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Το ξεκλείδωμα κλειδώματος/KWallet ενεργοποιήθηκε με επιτυχία για τον χρήστη "
+"{} χρησιμοποιώντας TPM (πορτοφόλι: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Απέτυχε η σφράγιση του κωδικού πρόσβασης στο TPM: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"Δεν υπάρχει ενεργό TPM. Χρήση προσωρινής αποθήκευσης διαπιστευτηρίων που "
+"βασίζεται σε λογισμικό..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Το ξεκλείδωμα κλειδώματος/KWallet ενεργοποιήθηκε με επιτυχία για τον χρήστη "
+"{} (Αποθήκευση λογισμικού, πορτοφόλι: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Αποτυχία ενεργοποίησης ξεκλειδώματος μπρελόκ: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Αποτυχία απενεργοποίησης ξεκλειδώματος μπρελόκ: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr ""
+"Το ξεκλείδωμα κλειδιού/KWallet είναι απενεργοποιημένο για τον χρήστη {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr ""
+"Το ξεκλείδωμα κλειδώματος/KWallet δεν ενεργοποιήθηκε για τον χρήστη {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Μη έγκυρη ενέργεια. Χρησιμοποιήστε «ενεργοποίηση» ή «απενεργοποίηση»."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Τα μοντέλα προσώπων δεν έχουν αρχικοποιηθεί ακόμα, εκτελέστε:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Δεν είναι γνωστό μοντέλο προσώπου για τον χρήστη {}, εκτελέστε:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Γνωστά μοντέλα προσώπου για {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Ετικέτα Ημερομηνίας Ταυτότητας [0μ"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr ""
+"Προσθέστε ως όρισμα το αναγνωριστικό του μοντέλου που θέλετε να καταργήσετε"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Για παράδειγμα:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Μπορείτε να βρείτε τα αναγνωριστικά εκτελώντας:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Αυτό θα καταργήσει το μοντέλο που ονομάζεται \"{label}\" για το {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Δεν υπάρχει μοντέλο με αναγνωριστικό {id} για το {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr ""
+"Καταργήθηκε το τελευταίο μοντέλο, το ubuntu-hello απενεργοποιήθηκε για τον "
+"χρήστη"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Καταργήθηκε το μοντέλο {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Προσθέστε μια ρύθμιση που θέλετε να αλλάξετε και την τιμή στην οποία θα την "
+"ορίσετε"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Δεν ήταν δυνατή η εύρεση της επιλογής ρύθμισης παραμέτρων \"{}\"."
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Η επιλογή διαμόρφωσης ενημερώθηκε"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "ΔΗΜΙΟΥΡΓΗΜΕΝΟ ΣΤΙΓΜΥΡΙΟ"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Διαμόρφωση σκοτεινού ορίου:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Διαμόρφωση βεβαιότητας:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Το στιγμιότυπο που δημιουργήθηκε αποθηκεύτηκε ως"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Το Ubuntu Hello έχει διαμορφωθεί ώστε να χρησιμοποιεί συσκευή εγγραφής που "
+"δεν υποστηρίζει ακόμη την εντολή δοκιμής, ματαιώνεται"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Άνοιγμα παραθύρου με δοκιμαστική τροφοδοσία\n"
+"\n"
+"Πατήστε ctrl+C σε αυτό το τερματικό για έξοδο\n"
+"Κάντε κλικ στην εικόνα για να ενεργοποιήσετε ή να απενεργοποιήσετε την αργή "
+"λειτουργία\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "ΑΝΑΛΥΣΗ: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "ΠΛΑΙΣΙΑ: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "ΑΝΑΓΝΩΡΙΣΗ: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "ΑΡΓΗ ΛΕΙΤΟΥΡΓΙΑ"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "ΣΚΟΥΡΟ ΠΛΑΙΣΙΟ"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ΠΛΑΙΣΙΟ ΣΑΡΩΣΗΣ"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Κλείσιμο παραθύρου"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Σφάλμα ανάλυσης κανόνα σφραγίδας: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Η σφραγίδα δεν έχει εγκατασταθεί: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Σφάλμα σφραγίδας: Η κλάση {} δεν βρέθηκε"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Εσωτερικό σφάλμα στη δήλωση διαμόρφωσης rubberstamp:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Εσωτερικό σφάλμα στη σφραγίδα καουτσούκ:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Ακύρωση εξουσιοδότησης στο {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Εξουσιοδότηση σε {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Πατήστε {abort_key} για ματαίωση, {confirm_key} για εξουσιοδότηση"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Ο έλεγχος ταυτότητας ματαιώθηκε"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Κουνήστε το κεφάλι για επιβεβαίωση"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Κούνησε το κεφάλι σου για αποβολή"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Επιβεβαιωμένος έλεγχος ταυτότητας"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Ματαιώθηκε ο έλεγχος ταυτότητας"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Λείπει η ενότητα ffmpeg, εκτελέστε:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Λείπει η μονάδα pyv4l2, εκτελέστε:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Το Ubuntu Hello δεν μπόρεσε να βρει μια συσκευή κάμερας στη διαδρομή που "
+"καθορίζεται στο αρχείο διαμόρφωσης."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Είναι πολύ πιθανό η διαδρομή να μην έχει ρυθμιστεί σωστά, επεξεργαστείτε την "
+"τιμή διαμόρφωσης 'device_path' εκτελώντας:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Αποτυχία ανάγνωσης της κάμερας που καθορίζεται στην επιλογή διαμόρφωσης "
+"'device_path', ματαιώνεται"

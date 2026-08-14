@@ -1,0 +1,723 @@
+# ubuntu-hello translation for sw.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Imeshindwa, muda umeisha"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Picha ya utambuzi wa nyuso nyeusi sana"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Hitilafu isiyojulikana:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "Uso uliotambuliwa kama %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Ruhusa haitoshi kutuma bonyeza Enter, ikisubiri mtumiaji kuibonyeza badala "
+"yake"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Imeshindwa kutuma bonyeza Enter, ikisubiri mtumiaji kuibonyeza badala yake"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Jaribio la uthibitishaji wa uso"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Haikuweza kubainisha mtumiaji, tafadhali tumia --bendera ya mtumiaji"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Kiolesura cha mstari wa amri cha Ubuntu Hello uthibitishaji wa uso."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "amri"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "hoja"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Kwa usaidizi tafadhali tembelea\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Chaguo la amri kutekeleza, linaweza kuwa mojawapo ya yafuatayo: kuongeza, "
+"kufuta, kusanidi, kuzima, ufunguo, orodha, kuondoa, snapshot, kuweka, "
+"mtihani au toleo."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "Hoja za hiari za kuongeza, kuzima, kuondoa na kuweka amri."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Weka akaunti ya mtumiaji kutumia."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Ruka maswali yote."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Chapisha pato linalofaa kwa mashine."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Onyesha ujumbe huu wa usaidizi na uondoke."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "mtumiaji anayetumika sasa:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Umbizo la jina la mtumiaji si sahihi"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Tafadhali endesha amri hii kama mzizi:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Haiwezi kutekeleza amri za ubuntu-hello kama mzizi, tafadhali endesha amri "
+"hii na --user bendera"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "Faili za data hazijapakuliwa, tafadhali endesha amri zifuatazo:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "INGIA"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Tarehe:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Muda wa kuchanganua:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Fremu:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Jina la mwenyeji:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Thamani bora ya uhakika:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Inaanza..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Inakutambulisha..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "IMESHINDWA"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Fremu zote zilikuwa nyeusi sana, tafadhali angalia dark_threshold katika "
+"usanidi"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Wastani wa giza: {avg}, Kizingiti: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Muda uliotumika"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Kuanzia"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Fungua cam + pakia libs: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Kufungua kamera"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Inaingiza vifaa vya utambuzi"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Inatafuta uso unaojulikana"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Jumla ya muda"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Azimio"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Asili: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Imetumika: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Fremu zilizotafutwa: %d (%.2f ramprogrammen)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Fremu nyeusi zimepuuzwa: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Fremu za giza zimepuuzwa: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Uhakika wa fremu ya kushinda: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Muundo ulioshinda: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "IMEFANIKIWA"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "ufunguo wa kuingia"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "ufunguo wa kuingia au KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Haiwezi kuleta moduli ya dlib, angalia matokeo ya"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Hakuna folda ya muundo wa uso iliyopatikana, ikitengeneza moja"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"ILANI: Kila muundo wa ziada hupunguza kasi ya injini ya utambuzi wa uso "
+"kidogo"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Bonyeza Ctrl+C ili kughairi\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Kuongeza mfano wa uso kwa mtumiaji"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Mfano #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Kwa kutumia lebo chaguo-msingi \"%s\" kwa sababu ya -y bendera"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Weka lebo ya muundo huu mpya [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "ILANI: Inaondoa herufi haramu \",\" kutoka kwa jina la mfano"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Tafadhali angalia moja kwa moja kwenye kamera"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Kamera iliona fremu nyeusi pekee - je, emitter ya IR inafanya kazi?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Hakuna uso uliogunduliwa, unaoavya mimba"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Nyuso nyingi zimegunduliwa, zinaacha"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Uchanganuzi umekamilika\n"
+"Imeongeza mtindo mpya kwa"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "Bado hakuna miundo iliyoundwa, haiwezi kuifuta ikiwa haipo"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} haina miundo au tayari imeondolewa"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Hii itafuta mifano yote"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Je, ungependa kuendelea [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"Kutafsiri kama \"HAPANA\", kutoa mimba"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Miundo imefutwa"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "Inafungua config.ini katika {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Imeshindwa kufungua kihariri: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Hitilafu: Haikuweza kupata kihariri cha maandishi kinachofaa."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Tafadhali sakinisha 'nano' au 'vi', au weka tofauti ya mazingira ya EDITOR."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Ikiwa unaendesha amri hii na sudo, jaribu 'sudo -E ubuntu-hello usanidi' ili "
+"kuhifadhi utofauti wako wa EDITOR."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Tafadhali ongeza 0 (wezesha) au 1 (lemaza) kama hoja"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Tafadhali tumia tu 0 (wezesha) au 1 (lemaza) kama hoja"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Chaguo la kuzima tayari limewekwa"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello imezimwa"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello imewashwa"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Matumizi: keyring [wezesha|lemaza]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Weka nenosiri la mtumiaji {} ili kufungua {} ({}):"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Nenosiri haliwezi kuwa tupu"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Thibitisha nenosiri:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Manenosiri hayalingani"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "Maunzi ya TPM yamegunduliwa. Inasakinisha kiotomatiki tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "maunzi ya TPM yanatumika. Inafunga nenosiri katika TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Ufunguo/KWallet ufunguaji umewezeshwa kwa mtumiaji {} kwa kutumia TPM "
+"(mkoba: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "Imeshindwa kufunga nenosiri kwa TPM: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr ""
+"Hakuna TPM inayotumika. Kwa kutumia uhifadhi wa kitambulisho kulingana na "
+"programu..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Uwekaji ufunguo/KWallet ufunguaji umewezeshwa kwa mtumiaji {} (Uhifadhi wa "
+"Programu, pochi: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Imeshindwa kuwezesha ufunguaji wa vitufe: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Imeshindwa kuzima ufunguaji wa vitufe: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Ufunguo/KWallet kufungua kumezimwa kwa mtumiaji {}."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "Uwekaji kitufe/KWallet kufungua hakujawashwa kwa mtumiaji {}."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Kitendo batili. Tumia 'kuwezesha' au 'lemaza'."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Miundo ya uso bado haijaanzishwa, tafadhali endesha:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "Hakuna muundo wa uso unaojulikana kwa mtumiaji {}, tafadhali endesha:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "Miundo ya uso inayojulikana ya {}:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "Lebo ya Tarehe ya Kitambulisho [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Tafadhali ongeza kitambulisho cha muundo unaotaka kuondoa kama hoja"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Kwa mfano:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Unaweza kupata vitambulisho kwa kuendesha:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Hii itaondoa modeli inayoitwa \"{label}\" ya {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "Hakuna muundo ulio na kitambulisho {id} kwa {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Imeondolewa mfano wa mwisho, ubuntu-hello imezimwa kwa mtumiaji"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "Muundo ulioondolewa {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Tafadhali ongeza mpangilio ambao ungependa kubadilisha na thamani ya kuuweka"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "Haikuweza kupata chaguo la usanidi la \"{}\" la kuweka"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Chaguo la kusanidi limesasishwa"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "SNAPSHOT ILIYOZALIWA"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Mpangilio wa kiwango cha giza:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Mpangilio wa uhakika:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Picha iliyotolewa imehifadhiwa kama"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello imesanidiwa kutumia kinasa sauti ambacho bado hakiauni amri ya "
+"jaribio, ikibatilisha"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Kufungua dirisha na mlisho wa majaribio\n"
+"\n"
+"Bonyeza ctrl+C katika terminal hii ili kuacha\n"
+"Bofya kwenye picha ili kuwezesha au kuzima hali ya polepole\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "SULUHU: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "FRAMU: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "TAMBULISHO: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "HALI YA SLOW"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "MFUMO WA GIZA"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "CHANGANUA FRAME"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Kufunga dirisha"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Hitilafu katika kuchanganua sheria ya rubberstamp: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Muhuri haijasakinishwa: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Hitilafu ya stempu: Hatari {} haijapatikana"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Hitilafu ya ndani katika tamko la usanidi wa rubberstamp:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Hitilafu ya ndani katika rubberstamp:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "Uidhinishaji wa kuondoa katika {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "Kuidhinisha katika {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Bonyeza {abort_key} ili kutoa mimba, {confirm_key} ili kuidhinisha"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Uthibitishaji umekatizwa"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Nod kuthibitisha"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Tikisa kichwa ili kutoa mimba"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Uthibitishaji uliothibitishwa"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Uthibitishaji ulioghairiwa"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg moduli haipo, tafadhali endesha:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Moduli ya pyv4l2 haipo, tafadhali endesha:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello haikuweza kupata kifaa cha kamera kwenye njia iliyobainishwa "
+"kwenye faili ya usanidi."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Kuna uwezekano mkubwa kwamba njia haijasanidiwa ipasavyo, tafadhali hariri "
+"thamani ya usanidi ya 'device_path' kwa kuendesha:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"Imeshindwa kusoma kamera iliyobainishwa katika chaguo la usanidi la "
+"'device_path', kughairi"

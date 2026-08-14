@@ -1,0 +1,697 @@
+# ubuntu-hello translation for zh.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "失败，超时"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "人脸检测图像太暗"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "未知错误："
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "识别人脸为%s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr "权限不足，无法发送 Enter 按键，而是等待用户按下它"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "无法发送 Enter 按键，等待用户按下它"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "尝试面部认证"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "无法确定用户，请使用 --user 标志"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "用于Ubuntu Hello人脸身份验证的命令行界面。"
+
+#: src/cli.py:35
+msgid "command"
+msgstr "命令"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "论点"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"如需支持，请访问\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"要执行的命令选项可以是以下之一：添加、清除、配置、禁用、密钥环、列表、删除、"
+"快照、设置、测试或版本。"
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "添加、禁用、删除和设置命令的可选参数。"
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "设置要使用的用户帐户。"
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "跳过所有问题。"
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "打印机器友好的输出。"
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "显示此帮助消息并退出。"
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "当前活跃用户："
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "用户名格式无效"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "请以 root 身份运行此命令：\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr "无法以 root 身份运行 ubuntu-hello 命令，请使用 --user 标志运行此命令"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "数据文件尚未下载，请运行以下命令："
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "登录"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "日期："
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "扫描时间："
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "框架："
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "主机名："
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "最佳确定值："
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "正在启动..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "识别你..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "失败的"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "所有帧都太暗，请检查配置中的 dark_threshold"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "平均暗度：{avg}，阈值：{threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "花费时间"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "正在启动"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "打开凸轮+加载库：%dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "打开相机"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "导入识别库"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "搜索已知面孔"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "总时间"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"解决"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "本机：%dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "使用：%dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"搜索帧数：%d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "忽略黑框：%d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "忽略黑框：%d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "胜局确定性：%.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "获胜模型：%d（“%s”）"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "成功的"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "登录密钥环"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "登录钥匙圈或KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"无法导入 dlib 模块，请检查输出"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "找不到脸部模型文件夹，正在创建一个"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "注意：每个额外的模型都会稍微减慢面部识别引擎的速度"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "按 Ctrl+C 取消\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "为用户添加人脸模型"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "模型 ＃"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "由于 -y 标志而使用默认标签“%s”"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "输入此新模型的标签 [{}]："
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "注意：从型号名称中删除非法字符“,”"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"请直视相机"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "相机只看到黑框 - 红外发射器是否正常工作？"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "未检测到人脸，正在中止"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "检测到多张面孔，中止"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"扫描完成\n"
+"添加了一个新模型"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "尚未创建模型，如果模型不存在则无法清除"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} 没有型号或已被清除"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "这将清除所有模型"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "您想继续吗[是/否]："
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"解释为“NO”，中止"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"模型清除"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "打开{editor}中的config.ini"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "无法打开编辑器：{error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "错误：找不到合适的文本编辑器。"
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "请安装“nano”或“vi”，或设置 EDITOR 环境变量。"
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"如果您使用 sudo 运行此命令，请尝试“sudo -E ubuntu-hello config”来保留您的 "
+"EDITOR 变量。"
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "请添加 0（启用）或 1（禁用）作为参数"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "请仅使用 0（启用）或 1（禁用）作为参数"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "禁用选项已设置为"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "⟦呃⟧已被禁用"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "⟦呃⟧已启用"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "用法：钥匙圈[启用|禁用]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "输入用户{}解锁{}（{}）的密码："
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "密码不能为空"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "确认密码："
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "密码不匹配"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "检测到 TPM 硬件。自动安装tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM 硬件处于活动状态。在 TPM 中密封密码..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr "使用 TPM 成功为用户 {} 启用密钥环/KWallet 解锁（钱包：{}）。"
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "无法将密码密封到 TPM：{}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "没有 TPM 处于活动状态。使用基于软件的凭证缓存..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr "已成功为用户{}启用钥匙圈/KWallet解锁（软件缓存，钱包：{}）。"
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "钥匙圈解锁失败：{}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "禁用钥匙圈解锁失败：{}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "用户{}禁用钥匙圈/KWallet解锁。"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "未为用户{}启用钥匙圈/KWallet解锁。"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "无效动作。使用“启用”或“禁用”。"
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "人脸模型尚未初始化，请运行："
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "没有已知用户{}的脸部模型，请运行："
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} 的已知脸部模型："
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID 日期标签 [0 米"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "请添加您要删除的模型的 ID 作为参数"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "例如："
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "您可以通过运行以下命令找到 ID："
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "这将删除 {user} 名为“{label}”的模型"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} 不存在 ID 为 {id} 的模型"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "删除了最后一个模型，为用户禁用了 ubuntu-hello"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "删除模型{}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "请添加您想要更改的设置以及要设置的值"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "找不到要设置的“{}”配置选项"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "配置选项已更新"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "生成的快照"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "暗阈值配置："
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "确定性配置："
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "生成的快照另存为"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr "Ubuntu Hello 已配置为使用尚不支持测试命令的记录器，正在中止"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"打开带有测试源的窗口\n"
+"\n"
+"在此终端中按 ctrl+C 退出\n"
+"单击图像以启用或禁用慢速模式\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "分辨率：%dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "帧率：%d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "帧数：%d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "识别：%dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "慢速模式"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "暗框"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "扫描框"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"关闭窗口"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "解析橡皮图章规则时出错：{}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "未安装印​​章：{}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "标记错误：未找到类 {}"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "rubystamp 配置声明中的内部错误："
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "rubystamp 中的内部错误："
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "中止{}中的授权"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "在{}授权"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "按{abort_key}取消，按{confirm_key}授权"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "身份验证已中止"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "点头确认"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "摇头放弃"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "已确认身份验证"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "中止身份验证"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "缺少 ffmpeg 模块，请运行："
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "缺少 pyv4l2 模块，请运行："
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr "Ubuntu Hello 在配置文件中指定的路径中找不到摄像头设备。"
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr "很可能路径配置不正确，请通过运行以下命令编辑“device_path”配置值："
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr "无法读取“device_path”配置选项中指定的相机，正在中止"

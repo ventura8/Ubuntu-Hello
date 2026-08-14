@@ -1,0 +1,712 @@
+# ubuntu-hello translation for ko.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "실패, 시간 초과 도달"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "얼굴 인식 이미지가 너무 어두움"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "알 수 없는 오류:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s로 식별된 얼굴"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter 키를 보낼 수 있는 권한이 부족합니다. 대신 사용자가 Enter 키를 누를 때까"
+"지 기다리고 있습니다."
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr ""
+"Enter 키를 보내지 못했습니다. 대신 사용자가 Enter 키를 누를 때까지 기다리고 "
+"있습니다."
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "얼굴 인증 시도 중"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "사용자를 확인할 수 없습니다. --user 플래그를 사용하십시오."
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello 얼굴 인증을 위한 명령줄 인터페이스입니다."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "명령"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "인수"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"지원을 받으려면 다음을 방문하세요.\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"실행할 명령 옵션은 추가, 지우기, 구성, 비활성화, 키링, 목록, 제거, 스냅샷, 설"
+"정, 테스트 또는 버전 중 하나일 수 있습니다."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "추가, 비활성화, 제거 및 설정 명령에 대한 선택적 인수입니다."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "사용할 사용자 계정을 설정합니다."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "모든 질문을 건너뛰세요."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "기계 친화적인 출력물을 인쇄합니다."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "이 도움말 메시지를 표시하고 종료합니다."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "현재 활성 사용자:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "잘못된 사용자 이름 형식"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "이 명령을 루트로 실행하십시오:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"ubuntu-hello 명령을 루트로 실행할 수 없습니다. --user 플래그와 함께 이 명령"
+"을 실행하십시오."
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "데이터 파일이 다운로드되지 않았습니다. 다음 명령을 실행하십시오:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "로그인"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "날짜:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "스캔 시간:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "프레임:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "호스트 이름:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "최고의 확실성 값:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "시작하는 중..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "당신을 식별하는 중..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "실패한"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "모든 프레임이 너무 어두웠습니다. 구성에서 dark_threshold를 확인하세요."
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "평균 어두움: {avg}, 임계값: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "소요 시간"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "시작 중"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "캠 열기 + 라이브러리 로드: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "카메라 열기"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "인식 라이브러리 가져오기"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "알려진 얼굴 검색 중"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "총 시간"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"해결"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "기본: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "사용됨: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"검색된 프레임: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "검은색 프레임은 무시됨: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "다크 프레임 무시됨: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "승리 프레임의 확실성: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "우승 모델: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "성공적인"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "로그인 키링"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "로그인 키링 또는 KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib 모듈을 가져올 수 없습니다. 출력을 확인하세요."
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "얼굴 모델 폴더를 찾을 수 없습니다. 새로 만듭니다."
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "주의 사항: 각 추가 모델은 얼굴 인식 엔진의 속도를 약간 늦춥니다."
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "취소하려면 Ctrl+C를 누르세요.\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "사용자의 얼굴 모델 추가"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "모델 #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y 플래그로 인해 기본 레이블 \"%s\" 사용"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "이 새 모델의 라벨을 입력하세요. [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "주의사항: 모델명에서 잘못된 문자 \",\" 제거"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"카메라를 똑바로 바라보세요"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "카메라는 검은색 프레임만 보았습니다. IR 이미터가 작동합니까?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "얼굴이 감지되지 않아 중단됩니다."
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "여러 얼굴이 감지되어 중단됩니다."
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"스캔 완료\n"
+"에 새로운 모델이 추가되었습니다."
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "아직 생성된 모델이 없습니다. 존재하지 않으면 삭제할 수 없습니다."
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} 모델이 없거나 이미 삭제되었습니다."
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "이렇게 하면 다음에 대한 모든 모델이 삭제됩니다."
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "계속하시겠습니까 [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"NO\"로 해석, 중단"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"삭제된 모델"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "{editor}에서 config.ini 열기"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "편집기를 열지 못했습니다: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "오류: 적합한 텍스트 편집기를 찾을 수 없습니다."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "'nano' 또는 'vi'를 설치하거나 EDITOR 환경 변수를 설정하세요."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"sudo로 이 명령을 실행하는 경우 'sudo -E ubuntu-hello config'를 시도하여 "
+"EDITOR 변수를 보존하세요."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "인수로 0(활성화) 또는 1(비활성화)을 추가하세요."
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "인수로 0(활성화) 또는 1(비활성화)만 사용하세요."
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "비활성화 옵션이 이미 다음으로 설정되어 있습니다."
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello가 비활성화되었습니다"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello가 활성화되었습니다"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "사용법: 키링 [enable|disable]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{}({})를 잠금 해제하려면 사용자 {}의 비밀번호를 입력하세요."
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "비밀번호는 비워둘 수 없습니다."
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "비밀번호 확인:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "비밀번호가 일치하지 않습니다."
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM 하드웨어가 감지되었습니다. tpm2-tools 자동 설치 중..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM 하드웨어가 활성화되었습니다. TPM에서 비밀번호를 봉인하는 중..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM(지갑: {})을 사용하는 사용자 {}에 대해 키링/KWallet 잠금 해제가 활성화되었"
+"습니다."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM에 비밀번호를 봉인하지 못했습니다: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "활성화된 TPM이 없습니다. 소프트웨어 기반 자격 증명 캐싱 사용..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"사용자 {}에 대해 키링/KWallet 잠금 해제가 활성화되었습니다(소프트웨어 캐싱, "
+"지갑: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "키링 잠금 해제를 활성화하지 못했습니다: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "키링 잠금 해제를 비활성화하지 못했습니다: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "사용자 {}에 대한 키링/KWallet 잠금 해제가 비활성화되었습니다."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "사용자 {}에 대해 키링/KWallet 잠금 해제가 활성화되지 않았습니다."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "잘못된 작업입니다. '활성화' 또는 '비활성화'를 사용하세요."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "얼굴 모델이 아직 초기화되지 않았습니다. 다음을 실행하세요."
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "사용자 {}에 대해 알려진 얼굴 모델이 없습니다. 다음을 실행하세요."
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{}의 알려진 얼굴 모델:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID 날짜 라벨 [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "삭제하려는 모델의 ID를 인수로 추가하세요."
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "예를 들어:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "다음을 실행하여 ID를 찾을 수 있습니다."
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "{user}에 대해 \"{label}\"이라는 모델이 제거됩니다."
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user}에 대한 ID가 {id}인 모델이 없습니다."
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "마지막 모델을 제거하고 사용자에 대해 ubuntu-hello를 비활성화했습니다."
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "삭제된 모델 {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "변경하려는 설정과 이를 설정할 값을 추가하세요."
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "설정할 '{}' 구성 옵션을 찾을 수 없습니다."
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "구성 옵션이 업데이트되었습니다."
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "생성된 스냅샷"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "어두운 임계값 구성:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "확실성 구성:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "생성된 스냅샷이 다음 이름으로 저장됨"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello는 아직 테스트 명령을 지원하지 않는 레코더를 사용하도록 구성되었"
+"으므로 중단합니다."
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"테스트 피드가 있는 창 열기\n"
+"\n"
+"종료하려면 이 터미널에서 Ctrl+C를 누르세요.\n"
+"저속 모드를 활성화 또는 비활성화하려면 이미지를 클릭하세요.\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "해결 방법: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "프레임: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "인식: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "슬로우 모드"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "다크 프레임"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "스캔 프레임"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"창을 닫는 중"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "고무도장 규칙을 구문 분석하는 중 오류 발생: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "스탬프가 설치되지 않음: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "스탬프 오류: 클래스 {}를 찾을 수 없습니다."
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Rubberstamp 구성 선언에 내부 오류가 있습니다."
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "고무 스탬프의 내부 오류:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{}에서 승인을 중단하는 중"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{}에서 승인 중"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "취소하려면 {abort_key}를 누르고 승인하려면 {confirm_key}를 누르세요."
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "인증이 중단되었습니다."
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "확인하려면 고개를 끄덕이세요"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "중단하려면 머리를 흔드세요."
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "확인된 인증"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "인증이 중단되었습니다."
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg 모듈이 없습니다. 다음을 실행하세요."
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "pyv4l2 모듈이 없습니다. 다음을 실행하세요."
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello 구성 파일에 지정된 경로에서 카메라 장치를 찾을 수 없습니다."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"경로가 올바르게 구성되지 않았을 가능성이 높습니다. 다음을 실행하여 "
+"'device_path' 구성 값을 편집하십시오."
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr "'device_path' 구성 옵션에 지정된 카메라를 읽지 못했습니다. 중단됩니다."

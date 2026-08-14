@@ -29,7 +29,20 @@ def get_camera_devices():
 
 
 def on_page_switch(self, notebook, page, page_num):
-	if page_num == 1:
+	# Undo search filters that hid this page's widgets (e.g. Video preview).
+	reveal = getattr(self, "reveal_search_page", None)
+	if callable(reveal):
+		reveal(page_num)
+
+	# Prefer page identity over hard-coded index when possible.
+	video_page = None
+	try:
+		video_page = self.builder.get_object("box2")
+	except Exception:
+		video_page = None
+	is_video = page is video_page if video_page is not None else page_num == 1
+
+	if is_video:
 		if getattr(self, "video_loop_active", False):
 			return
 		self.video_loop_active = True

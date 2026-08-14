@@ -33,3 +33,11 @@ Add the following line to your PAM configuration (/etc/pam.d/your-service):
 ``` pam
 auth  sufficient  pam_ubuntu_hello.so
 ```
+
+## Greeter / workaround hard rule
+
+With `core.workaround=off`, `pam_ubuntu_hello.so` must **not** call concurrent
+`pam_get_authtok` on GDM/login greeters (and must not install greeter
+`PAM_CONV` wrappers for Esc detection). Doing so aborts GDM user-selection →
+login. Canonical gate: `ask_pass = ask_auth_tok && workaround != Off`.
+See repository root `AGENTS.md` and `.agents/skills/pam-verifier/SKILL.md`.

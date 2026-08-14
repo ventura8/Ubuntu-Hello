@@ -1,0 +1,719 @@
+# ubuntu-hello translation for ba.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: ba\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "Уңышсызлык, срогы җитте"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "Йөзне ачыклау образы бик караңгы"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "Билгесез хата:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "FaceP0⟧ дип танылган йөз %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr ""
+"Enter пресс җибәрү өчен рөхсәтләр җитәрлек түгел, кулланучының аны басуын "
+"көтеп"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Enter прессын җибәрә алмады, аның урынына басуны көтеп"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "Йөзне раслау"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "Кулланучыны билгели алмады, зинһар --user флагын кулланыгыз"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello йөзен раслау өчен командование интерфейсы."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "боерык"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "аргументлар"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"Ярдәм өчен зинһар керегез\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"Эшләү өчен боерык варианты түбәндәгеләрнең берсе булырга мөмкин: өстәү, "
+"чистарту, конфигурацияләү, сүндерү, ачкыч, исемлек, бетерү, скриншот, "
+"көйләү, сынау яки версия."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr ""
+"Командаларны өстәү, сүндерү, бетерү һәм урнаштыру өчен өстәмә аргументлар."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "Кулланучының счетын кулланыгыз."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "Барлык сорауларны да калдырыгыз."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "Машинага файдалы чыгаруны бастырыгыз."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "Бу ярдәм хәбәрен күрсәтегез һәм чык."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "хәзерге актив кулланучы:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "Кулланучының исеме форматы дөрес түгел"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "Зинһар, бу боерыкны тамыр итеп эшләгез:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"Ubuntu-hello командаларын тамыр итеп эшли алмыйм, зинһар, бу боерыкны --user "
+"флагы белән эшләгез"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "Мәгълүмат файллары йөкләнмәде, зинһар, түбәндәге боерыкларны эшләгез:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "ЛОГИН"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "Дата:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "Сканерлау вакыты:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "Рамкалар:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "Хост исеме:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "Иң яхшы ышаныч бәясе:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "Башлау ..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "Сезне ачыклау ..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "Уңайсыз"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr ""
+"Барлык рамнар да караңгы иде, зинһар, конфигурациядә dark_threshold "
+"тикшерегез"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "Урта караңгылык: {avg}, бусага: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "Вакыт сарыф ителде"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "Башлау"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "Ачык камера + йөкләү либлары: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "Камераны ачу"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "Танып белү"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "Билгеле йөзне эзләү"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "Гомуми вакыт"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"Резолюция"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "Туган як: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "Кулланылган: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"Рамнар эзләнде: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "Кара рамкалар санга сукмыйлар: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "Кара рамнар санга сукмыйлар: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "Winningиңүче кадрның ышанычы: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "Modelиңү моделе: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "УUCЫШ"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "логин ачкыч"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "логин ачкыч яки KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"Dlib модулын кертә алмыйм, чыгышын тикшерегез"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "Бер модель папкасы табылмады, аны булдырды"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"Игътибар: һәрбер өстәмә модель бит тану двигателен бераз акрынайта"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Бетерү өчен Ctrl + C басыгыз\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "Кулланучы өчен йөз моделе өстәү"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "Модель #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "Флаг аркасында \"%s\" билгесен куллану"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "Бу яңа модель өчен ярлык кертегез [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "Искәрмә: законсыз характерны \",\" модель исеменнән бетерү"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"Зинһар, туры камерага карагыз"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "Камера кара рамнарны гына күрде - IR эмитеры эшли?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "Йөз табылмады, аборт"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "Берничә йөз табылды, аборт"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Сканерлау\n"
+"Өчен яңа модель өстәлде"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "Әле ясалган модельләр юк, аларны чистарта алмыйлар"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{}ның модельләре юк яки алар инде чистартылган"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "Бу барлык модельләрне чистартачак"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "Дәвам итәсегез киләме [y / N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"\" К \"дип аңлату, аборт"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"Модельләр чистартылды"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "{editor}'та config.ini ачу"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "Редакторны ачып булмады: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "Хата: Тиешле текст редакторын таба алмадым."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr ""
+"Зинһар, 'нано' яки 'vi' урнаштырыгыз, яки EDITOR мохит үзгәрүчесен куегыз."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"Әгәр сез бу боерыкны sudo белән эшлисез икән, EDITOR үзгәрүчегезне саклап "
+"калу өчен 'sudo -E ubuntu-hello config' кулланыгыз."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "Зинһар, аргумент буларак 0 (кушу) яки 1 (сүндерү) өстәргә"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "Зинһар, аргумент буларак 0 (кушу) яки 1 (сүндерү) кулланыгыз"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "Сүндерү варианты инде куелган"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello инвалид"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello кушылган"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "Куллану: ачкыч [кушу | сүндерү]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Enter password for user {} to unlock {} ({}): "
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "Серсүз буш була алмый"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "Серсүзне раслагыз:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "Серсүзләр туры килми"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM аппаратлары табылды. AutoTPM2⟧ автоматик урнаштыру ..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM аппаратлары актив. ТПМда серсүзне мөһерләү ..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM серсүзен мөһерли алмады: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "ТПМ актив түгел. Программага нигезләнгән таныклык кэшын куллану ..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Ачкычны ачу мөмкинлеген бирә алмады: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Клавиатураны ачуны сүндерә алмады: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "KeyP0 user кулланучы өчен ачкыч / KWallet ачу инвалид. {}"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "KeyP0⟧ кулланучы өчен ачкыч / KWallet ачу мөмкин булмаган. {}"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "Яраксыз эш. 'Эшләтү' яки 'сүндерү' кулланыгыз."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "Йөз модельләре әле башланмаган, зинһар, йөгерегез:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "{} кулланучысы өчен билгеле бер модель юк, зинһар, йөгерегез:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} өчен билгеле йөз модельләре:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID таныклыгы [0м"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "Зинһар, аргумент итеп бетерергә теләгән модельнең ID-ен өстәгез"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "Мәсәлән:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "Сез таныклыкларны йөгереп таба аласыз:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "Бу {user} өчен \"{label}\" дип аталган модельне бетерәчәк"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "IDP1⟧ өчен ID ⟧P0⟧ булган модель юк {id} {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "Соңгы модель бетерелде, ubuntu-hello кулланучы өчен инвалид"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "{} моделе алынды"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Зинһар, сез үзгәртергә теләгән көйләнүне һәм аны урнаштыру бәясен өстәгез"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "\"{}\" көйләү параметрын таба алмадым"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "Конфигурация варианты яңартылды"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "ГЕНЕРАТ СНАПШОТ"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "Караңгы бусага конфигурациясе:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "Ышаныч конфигурациясе:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "Генерацияләнгән скриншот сакланган"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello магнитофон куллану өчен конфигурацияләнгән, әле тест командасын "
+"хупламый, аборт"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"Тест тасмасы белән тәрәзә ачу\n"
+"\n"
+"Бу терминалда ctrl + C басыгыз\n"
+"Акрын режимны яисә сүндерү өчен рәсемгә басыгыз\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "Резолюция: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "Рамнар: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "Танышу: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "Акрын режим"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "Караңгы"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "Сканер"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"Тәрәзә ябу"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "Резин марка кагыйдәсен анализлауда хата: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "Марка куелмаган: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "Марка хата: {} класс табылмады"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "Резин марка конфигурациясе декларациясендә эчке хата:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "Резина маркадагы эчке хата:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} рөхсәтен төшерү"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "Аборт өчен {abort_key}, {confirm_key} басыгыз"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "Аутентификация туктатылды"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "Раслау өчен баш"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "Аборт өчен башыгызны чайкагыз"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "Ышанычлы аутентификация"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "Аутентификация"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "Ffmpeg модулын сагыну, зинһар, йөгерегез:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "Pyv4l2 модулын сагыну, зинһар, йөгерегез:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello конфигурация файлында күрсәтелгән юлда камера җайланмасын таба "
+"алмады."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"Pathл дөрес конфигурацияләнмәгәндер, мөгаен, 'device_path' конфигурация "
+"кыйммәтен үзгәртеп үзгәртегез:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"\"Device_path\" конфигурация параметрында күрсәтелгән камераны укып, аборт"

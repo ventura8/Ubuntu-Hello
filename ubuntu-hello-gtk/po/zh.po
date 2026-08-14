@@ -1,0 +1,670 @@
+# ubuntu-hello-gtk translation for zh.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "已创建"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "标签"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "自动的"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "启用钥匙圈/KWallet解锁"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "输入用户<b>{}</b>的密码来解锁{}（{}）："
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "密码"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"数据文件已经下载！\n"
+"单击“下一步”继续"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "下载数据文件时出错"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"完毕！\n"
+"单击“下一步”继续"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "导入OpenCV2时出错"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "尝试重新安装cv2"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "系统中未找到网络摄像头"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr "如果您确定连接了兼容的相机，请自行配置您的相机"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "不，相机无法打开"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "不，不是红外摄像机"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "是的，兼容红外摄像头"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "相机标识符或路径"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "受到推崇的"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "选择相机时出错"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "无法打开所选相机"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "尝试选择另一个"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"请访问\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"启用您的红外发射器"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "请直视相机"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "开始面部扫描"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "无法保存脸部模型"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的{}（检测到的钱包：{}）。\n"
+"\n"
+"<b>TPM 状态：</b> 检查 TPM 硬件和工具..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的{}（检测到的钱包：{}）。\n"
+"\n"
+"<b>TPM 状态：</b> 检测到 TPM 硬件。正在自动安装<i>tpm2-tools</i>..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的{}（检测到的钱包：{}）。\n"
+"\n"
+"<b>TPM 状态：</b> 硬件 TPM 2.0 处于活动状态。您的密码将安全地密封在 TPM 内。"
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的{}（检测到的钱包：{}）。\n"
+"\n"
+"<b>TPM 状态：</b> 检测到 TPM 硬件，但<i>tpm2-tools</i> 自动安装失败。运行 "
+"sudo apt install tpm2-tools</code>。回到基于软件的凭证缓存。"
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的{}（检测到的钱包：{}）。\n"
+"\n"
+"<b>TPM 状态：</b> 未检测到 TPM 硬件。使用基于软件的凭证缓存 (AES-256-GCM)。"
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "无法识别用于密钥环解锁的非根系统用户"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "密码不能为空"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "用户{}密码错误"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "未知错误"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "钥匙圈解锁失败：{}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "禁用钥匙圈解锁失败：{}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "钥匙圈解锁错误"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "读取单选按钮时出错"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello 设置警告"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr "无法保存确定性首选项，但设置已完成。"
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "⟦呃⟧ 错误"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "加载中..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "⟦呃⟧认证"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "确认用户创建"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr "请输入您要添加到Ubuntu Hello的用户的用户名"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "用户名："
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "确认模型创建"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "请输入新型号的名称，最多 24 个字符"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "型号名称："
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "创建模型"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"添加模型时出错，错误代码{}：\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "确认模型删除"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "您确定要删除模型{id}({name})吗？"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"删除模型时出错，错误代码{}：\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "无法打开相机"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "无法导入OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "未知"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>未选择任何用户</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>已启用（TPM 硬件）</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr "<span foreground='green'><b>启用（软件缓存）</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr "<span foreground='orange'><b>已启用（待输入密码）</b></span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>已禁用</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "错误"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "成功"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "成功为用户{}启用钥匙圈/KWallet解锁。"
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "禁用钥匙圈/KWallet解锁"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr "您确定要禁用用户{}的钥匙圈/KWallet解锁吗？"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "用户{}禁用钥匙圈/KWallet解锁。"
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "⟦呃⟧配置"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "⟦呃⟧配置"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "搜索设置"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "显示已保存的模型："
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "添加新用户"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "添加"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "删除"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "型号"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "相机ID："
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "实际分辨率："
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "使用的分辨率："
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "录音机："
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "视频"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "钥匙圈 / KWallet 自动解锁"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"启用面部验证以在登录时自动解锁您的登录密钥环或KWallet。这会将您的密码安全地存"
+"储在 TPM 中（如果可用），或者使用仅限 root 的主密钥通过 AES-256-GCM 进行加"
+"密。根据您的桌面，将面部验证设置为 pam_gnome_keyring 或 pam_kwallet5 "
+"PAM_AUTHTOK。"
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "目前状态："
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "检查..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "启用自动解锁"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "禁用自动解锁"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "钥匙圈"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "显示语言"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "语言"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "自动跟随系统语言。更改会立即生效。"
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Linux 下的面部认证"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "版本未知"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">打开 GitHub 链接</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "关于"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "欢迎来到⟦呃⟧"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "设置完成！"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"我们完成了！ Ubuntu Hello 现在在此计算机上处​​于活动状态。尝试执行通常需要输入"
+"密码才能进行身份验证的任何操作，例如使用 sudo 运行命令。如果您启用了密钥环自"
+"动解锁，您的登录密钥环或KWallet也将在登录时自动解锁。\n"
+"\n"
+"您可以稍后打开 Ubuntu Hello 配置器来更改更多高级设置或添加其他模型。按下面的"
+"“完成”关闭此窗口并打开 Ubuntu Hello 配置器。"
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello可以使用人脸验证自动解锁您的登录钥匙圈或KWallet，避免登录后出现密"
+"码提示。"
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "启用自动钥匙圈/KWallet解锁"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "确认密码"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "制定确定性政策"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"由于角度、距离和其他因素的变化，面部匹配永远不会与存储的面部模型完全相同。在"
+"此页面上，您可以设置Ubuntu Hello的严格程度。"
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "快速地"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"允许更多的模糊匹配， \n"
+"但大大加快了扫描过程。"
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "均衡"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"还是比较快的检测， \n"
+"但距离较远时可能无法登录。"
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "安全的"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"稍微安全一点的选择， \n"
+"但需要更长的时间来验证您的身份"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "添加面部模型"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"为了验证您的身份，Ubuntu Hello需要保存您的脸部模型来识别您。按下面的扫描按钮"
+"开始面部扫描。"
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "配置网络摄像头"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "红外线发射器是否闪烁？"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "是的"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "不"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello 将自动搜索您的系统以查找任何可用的摄像头，因此请确保您的网络摄像"
+"头已连接。检测后，将显示可用网络摄像头的列表。选择您要使用的，然后单击“下一"
+"步”。"
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "正在测试您的网络摄像头，请稍候..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "下载数据文件"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello需要三个预先训练的面部识别数据集才能识别您，现在就下载。您可以在"
+"下面看到下载进度。"
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "开始下载..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "欢迎来到⟦呃⟧！"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "版本"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr "该向导将引导您完成设置过程并自动为您配置Ubuntu Hello。按下一步继续。"
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "取消"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "下一个"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "完成设置"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello式人脸认证"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "人脸；识别；身份验证；安全；锁；"

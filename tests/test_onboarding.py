@@ -393,60 +393,51 @@ def test_get_real_user():
             assert ob.get_real_user() == "pkuser"
 
 def test_validate_and_save_keyring_active_success_tpm():
+    mock_res = MagicMock(returncode=0, stdout="ok", stderr="")
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch("onboarding.KeyringPasswordDialog") as mock_dialog_cls, \
          patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-         patch("os.path.exists", side_effect=lambda p: True if "tpm" in p else False), \
-         patch("shutil.which", return_value="/usr/bin/tpm"), \
-         patch("subprocess.Popen") as mock_popen, \
-         patch("subprocess.run") as mock_run, \
-         patch("os.unlink") as mock_unlink, \
-         patch("os.makedirs"), \
-         patch("os.chmod"):
+         patch("onboarding.subprocess.run", return_value=mock_res) as mock_run:
         ob = onboarding.OnboardingWindow()
-        
+
         mock_checkbox = MagicMock()
         mock_checkbox.get_active.return_value = True
         ob.builder.get_object.return_value = mock_checkbox
-        
+
         mock_dialog = MagicMock()
         mock_dialog.run.return_value = onboarding.gtk.ResponseType.OK
         mock_dialog.entry1.get_text.return_value = "mypassword"
         mock_dialog_cls.return_value = mock_dialog
-        
-        mock_proc = MagicMock()
-        mock_proc.communicate.return_value = (b"", b"")
-        mock_proc.returncode = 0
-        mock_popen.return_value = mock_proc
-        
+
         with patch.object(ob, "get_real_user", return_value="testuser"):
             assert ob.validate_and_save_keyring() is True
+            mock_run.assert_called_once()
+            args, kwargs = mock_run.call_args
+            assert args[0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
+            assert kwargs["input"] == "mypassword\n"
 
 def test_validate_and_save_keyring_active_success_software():
-    from unittest.mock import mock_open
+    mock_res = MagicMock(returncode=0, stdout="ok", stderr="")
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch("onboarding.KeyringPasswordDialog") as mock_dialog_cls, \
          patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-         patch("os.path.exists", return_value=False), \
-         patch("shutil.which", return_value=None), \
-         patch("builtins.open", mock_open(read_data="mymachineid\n")):
+         patch("onboarding.subprocess.run", return_value=mock_res) as mock_run:
         ob = onboarding.OnboardingWindow()
-        
+
         mock_checkbox = MagicMock()
         mock_checkbox.get_active.return_value = True
         ob.builder.get_object.return_value = mock_checkbox
-        
+
         mock_dialog = MagicMock()
         mock_dialog.run.return_value = onboarding.gtk.ResponseType.OK
         mock_dialog.entry1.get_text.return_value = "mypassword"
         mock_dialog_cls.return_value = mock_dialog
-        
-        with patch.object(ob, "get_real_user", return_value="testuser"), \
-             patch("os.makedirs"), \
-             patch("os.chmod"):
+
+        with patch.object(ob, "get_real_user", return_value="testuser"):
             assert ob.validate_and_save_keyring() is True
+            assert mock_run.call_args[0][0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
 
 def test_execute_slide7():
     with patch("onboarding.gtk.Builder"), \
@@ -951,7 +942,7 @@ def test_validate_and_save_keyring_more_errors():
             assert res is False
             mock_err.assert_called_once_with("Could not identify non-root system user for keyring unlocking")
             
-        # 2. TPM tools exist, tpm2_create fails (throws exception)
+        # 2. CLI enable fails (non-zero)
         mock_err.reset_mock()
         mock_checkbox = MagicMock()
         mock_checkbox.get_active.return_value = True
@@ -960,54 +951,26 @@ def test_validate_and_save_keyring_more_errors():
         mock_dialog.run.return_value = onboarding.gtk.ResponseType.OK
         mock_dialog.entry1.get_text.return_value = "secret"
         
+        mock_res = MagicMock(returncode=1, stdout="", stderr="enable failed")
         with patch.object(ob, "get_real_user", return_value="testuser"), \
              patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
              patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=True), \
-             patch("shutil.which", return_value="some_tool"), \
-             patch("subprocess.run", side_effect=Exception("TPM Error")):
+             patch("onboarding.subprocess.run", return_value=mock_res):
             res = ob.validate_and_save_keyring()
             assert res is False
             mock_err.assert_called_once()
             
-        # 3. Software fallback, machine-id empty
+        # 3. CLI enable raises exception
         mock_err.reset_mock()
         with patch.object(ob, "get_real_user", return_value="testuser"), \
              patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
              patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", mock_open(read_data="")), \
-             patch("shutil.which", return_value=None):
-            res = ob.validate_and_save_keyring()
-            assert res is False
-            mock_err.assert_called_once_with("/etc/machine-id is empty")
-            
-        # 4. Software fallback, machine-id read throws exception
-        mock_err.reset_mock()
-        with patch.object(ob, "get_real_user", return_value="testuser"), \
-             patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
-             patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open", side_effect=Exception("Read error")), \
-             patch("shutil.which", return_value=None):
-            res = ob.validate_and_save_keyring()
-            assert res is False
-            mock_err.assert_called_once()
-
-        # 5. Software fallback, writing key_file throws exception
-        mock_err.reset_mock()
-        with patch.object(ob, "get_real_user", return_value="testuser"), \
-             patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
-             patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=False), \
-             patch("builtins.open") as mock_file_open, \
-             patch("shutil.which", return_value=None):
-            mock_file_open.side_effect = [mock_open(read_data="12345").return_value, Exception("Write error")]
+             patch("onboarding.subprocess.run", side_effect=FileNotFoundError("ubuntu-hello")):
             res = ob.validate_and_save_keyring()
             assert res is False
             mock_err.assert_called_once()
             
-        # 6. Disable throws exception
+        # 4. Disable throws exception
         mock_err.reset_mock()
         mock_checkbox.get_active.return_value = False
         with patch.object(ob, "get_real_user", return_value="testuser"), \
@@ -1018,6 +981,7 @@ def test_validate_and_save_keyring_more_errors():
             mock_err.assert_called_once()
 
 def test_validate_and_save_keyring_tpm_create_failures():
+    # Legacy name: CLI enable failure path after verify
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_keyring_error") as mock_err:
@@ -1030,24 +994,17 @@ def test_validate_and_save_keyring_tpm_create_failures():
         mock_dialog.run.return_value = onboarding.gtk.ResponseType.OK
         mock_dialog.entry1.get_text.return_value = "secret"
         
-        # tpm2_create returns non-zero code
-        mock_proc = MagicMock()
-        mock_proc.communicate.return_value = (b"", b"tpm error log")
-        mock_proc.returncode = 1
-        
+        mock_res = MagicMock(returncode=1, stdout="", stderr="tpm error log")
         with patch.object(ob, "get_real_user", return_value="testuser"), \
              patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
              patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=True), \
-             patch("shutil.which", return_value="some_tool"), \
-             patch("subprocess.run") as mock_run, \
-             patch("subprocess.Popen", return_value=mock_proc), \
-             patch("os.unlink", side_effect=[None, Exception("ctx unlink fail")]):
+             patch("onboarding.subprocess.run", return_value=mock_res):
             res = ob.validate_and_save_keyring()
             assert res is False
             mock_err.assert_called_once()
 
 def test_validate_and_save_keyring_apt_install_tpm2_tools():
+    # Enable still goes through CLI; failure surfaces as keyring error
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_keyring_error") as mock_err:
@@ -1060,14 +1017,12 @@ def test_validate_and_save_keyring_apt_install_tpm2_tools():
         mock_dialog.run.return_value = onboarding.gtk.ResponseType.OK
         mock_dialog.entry1.get_text.return_value = "secret"
         
-        # tpm rm exists, tools missing, apt-get fails
         with patch.object(ob, "get_real_user", return_value="testuser"), \
              patch("onboarding.KeyringPasswordDialog", return_value=mock_dialog), \
              patch("onboarding.auth_helper.verify_user_password", return_value=True), \
-             patch("os.path.exists", return_value=True), \
-             patch("shutil.which", return_value=None), \
-             patch("subprocess.run", side_effect=Exception("apt fail")):
+             patch("onboarding.subprocess.run", side_effect=Exception("cli fail")):
             res = ob.validate_and_save_keyring()
+            assert res is False
             mock_err.assert_called_once()
 
 def test_execute_slide7_errors():

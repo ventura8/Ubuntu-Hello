@@ -1,4 +1,10 @@
-project('ubuntu-hello', 'cpp', license: 'MIT', version: '1.0.4', meson_version: '>= 0.64.0')
+project(
+  'ubuntu-hello',
+  'cpp',
+  license: 'MIT',
+  version: run_command('python3', 'scripts/read-version.py', check: true).stdout().strip(),
+  meson_version: '>= 0.64.0',
+)
 
 dlibdatadir = get_option('dlib_data_dir') != '' ? get_option('dlib_data_dir') : join_paths(get_option('prefix'), get_option('datadir'), 'dlib-data')
 confdir = get_option('config_dir') != '' ? get_option('config_dir') : join_paths(get_option('prefix'), get_option('sysconfdir'), 'ubuntu-hello')
@@ -10,18 +16,21 @@ config_path = join_paths(confdir, 'config.ini')
 
 git_bin = find_program('git', required: false)
 project_version = meson.project_version()
-build_version = project_version
+# User-facing version always comes from VERSION. Until v{project_version} is
+# tagged, mark as -dev — never embed `git describe`, which still names older
+# tags (e.g. v1.0.4-N-g…) and must not appear in Settings / setup wizard UI.
+build_version = 'v' + project_version
 
 if git_bin.found()
   git_check = run_command(git_bin, '-C', meson.project_source_root(), 'rev-parse', '--is-inside-work-tree', check: false)
   if git_check.returncode() == 0 and git_check.stdout().strip() == 'true'
-    git_desc = run_command(git_bin, '-C', meson.project_source_root(), 'describe', '--tags', '--always', '--dirty', check: false)
-    if git_desc.returncode() == 0
-      git_version_str = git_desc.stdout().strip()
+    git_exact = run_command(git_bin, '-C', meson.project_source_root(), 'describe', '--tags', '--exact-match', check: false)
+    if git_exact.returncode() == 0
+      git_version_str = git_exact.stdout().strip()
       if git_version_str == 'v' + project_version or git_version_str == project_version
-        build_version = git_version_str
+        build_version = 'v' + project_version
       else
-        build_version = git_version_str + ' (Development)'
+        build_version = 'v' + project_version + '-dev'
       endif
     else
       build_version = 'v' + project_version + '-dev'

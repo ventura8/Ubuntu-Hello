@@ -1,0 +1,704 @@
+# ubuntu-hello-gtk translation for mg.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: mg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "NAMORONA NY"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "Label"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "mandeha ho azy"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Alefaso ny Keyring/KWallet Mamaha"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr ""
+"Ampidiro ny tenimiafina ho an'ny mpampiasa <b>{}</b> hamaha ny {} ({}):"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "Password"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Efa nalaina ny angona!\n"
+"Tsindrio Manaraka raha hanohy"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "Hadisoana teo am-pisintonana fisie data"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Vita!\n"
+"Tsindrio Manaraka raha hanohy"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "Hadisoana teo am-panafarana OpenCV2"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "Andramo apetraka indray ny cv2"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "Tsy misy webcam hita ao amin'ny rafitra"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Ampifandraiso azafady ny fakantsarinao raha azonao antoka fa misy fakantsary "
+"mifanentana mifandray"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "Tsia, tsy azo sokafana ny fakan-tsary"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "Tsia, tsy fakan-tsary infrarouge"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "Eny, fakan-tsary infrarouge mifanentana"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "Famantarana fakan-tsary na lalana"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "soso-kevitra"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "Hadisoana nisafidianana fakantsary"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "Tsy azo sokafana ny fakantsary voafantina"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "Miezaha mifidy iray hafa"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Tsidiho azafady\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"mba hahafahan'ny ir emitter anao"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "Mba jereo mivantana ny fakantsary"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "Manomboka scan face"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "Tsy afaka mitahiry endrika endrika"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny {} amin'ny alàlan'ny fanamarinana "
+"endrika (kitapom-bola hita: {}).\n"
+"\n"
+"<b>Satan'ny TPM:</b> Mijery fitaovana sy fitaovana TPM..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny {} amin'ny alàlan'ny fanamarinana "
+"endrika (kitapom-bola hita: {}).\n"
+"\n"
+"<b>Sata TPM:</b> TPM fitaovana hita. Mametraka <i>tpm2-tools</i> ho azy..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny {} amin'ny alàlan'ny fanamarinana "
+"endrika (kitapom-bola hita: {}).\n"
+"\n"
+"<b>Sata TPM:</b> Hardware TPM 2.0 mavitrika. Ho voaisy tombo-kase tsara ao "
+"anatin'ny TPM ny tenimiafinao."
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny {} amin'ny alàlan'ny fanamarinana "
+"endrika (kitapom-bola hita: {}).\n"
+"\n"
+"<b>Satan'ny TPM:</b> Hita ny fitaovana TPM, saingy tsy nahomby ny "
+"fametrahana <i>tpm2-tools</i> mandeha ho azy. Alefaso ny <code>sudo apt "
+"install tpm2-tools</code>. Miverina amin'ny caching fahazoan-dàlana "
+"mifototra amin'ny rindrambaiko."
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny {} amin'ny alàlan'ny fanamarinana "
+"endrika (kitapom-bola hita: {}).\n"
+"\n"
+"<b>Sata TPM:</b> Tsy misy fitaovana TPM hita. Mampiasa caching fahazoan-"
+"dàlana mifototra amin'ny rindrambaiko (AES-256-GCM)."
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Tsy afaka hamantatra ny mpampiasa rafitra tsy faka amin'ny famotsorana "
+"peratra"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Tsy azo foanana ny tenimiafina"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Diso tenimiafina ho an'ny mpampiasa {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "fahadisoana tsy fantatra"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Tsy nahomby ny famotsorana peratra: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Tsy nahomby ny fanafoanana ny peratra fanalahidy: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "Hadisoana fanokafana keyring"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "Hadisoana mamaky bokotra radio"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello Fampitandremana fampitandremana"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr ""
+"Tsy afaka mitahiry safidy azo antoka, fa raha tsy izany dia vita ny "
+"fanamboarana."
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello Error"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "Loading..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello Authentication"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "Hamafiso ny famoronana mpampiasa"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr "Ampidiro azafady ny solon'ny mpampiasa tianao ampiana Ubuntu Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "Anarana mpampiasa:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "Hamafiso ny famoronana modely"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr ""
+"Ampidiro anarana ho an'ny modely vaovao azafady, 24 tarehintsoratra max"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "Anaran'ny modely:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "Mamorona Modely"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Hadisoana teo am-panampiana modely, kaody diso {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "Hamafiso ny famafana modely"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "Tena te-hamafa ny maodely {id} ({name}) ve ianao?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Hadisoana teo am-pamafana ny maodely, kaody diso {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "Tsy afaka manokatra fakantsary"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "Tsy afaka manafatra OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "TSY FANTATRA"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>Tsy misy mpampiasa voafidy</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>Enabled (Miandry ny tenimiafina fidirana)</b></"
+"span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>Sembana</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "fahadisoana"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "FETY"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "Ny famohana keyring/KWallet dia nahomby tamin'ny mpampiasa {}."
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "Atsaharo ny Keyring/KWallet Mamaha"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"Tena tianao ve ny hanafoana ny fanerena fanalahidy/KWallet manokatra ho "
+"an'ny mpampiasa {}?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "Keyring/KWallet manokatra kilema ho an'ny mpampiasa {}."
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuration"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Configuration"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "Fikarohana fikarohana"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "Mampiseho modely voatahiry ho an'ny:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "Hanampy mpampiasa vaovao"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "hametraka"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "Mamafa"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "modely"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "ID fakan-tsary:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "tena fanapahan-kevitra:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "Famahana ampiasaina:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "Mpanoratra:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "Video"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Fanalahidy / KWallet Auto-Mamaha"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"Alefaso ny fanamarinan-tarehy hamaha ho azy ny peratra fanalahidinao na "
+"KWallet amin'ny fidirana. Izany dia mitahiry ny tenimiafinao voaisy tombo-"
+"kase ao amin'ny TPM rehefa misy, na miafina amin'ny AES-256-GCM amin'ny "
+"fampiasana fanalahidy fototra tokana. Mametraka PAM_AUTHTOK face auth ho "
+"an'ny pam_gnome_keyring na pam_kwallet5 miankina amin'ny biraonao."
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "Sata ankehitriny:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "Manamarina..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "Alefaso ny Auto-Unlock"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "Atsaharo ny Auto-Unlock"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "Fehin-dakile"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "Fiteny aseho"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "Fiteny"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automatika manaraka ny fitenin’ny rafitra. Ampiharina avy hatrany ny fiovana."
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Fanamarinana tarehy ho an'ny Linux"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "Version tsy fantatra"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Sokafy rohy GitHub</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "About"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Tongasoa eto Ubuntu Hello"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "Vita ny fanamboarana!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Vita isika! Ubuntu Hello dia mavitrika amin'ity solosaina ity izao. "
+"Manandrama manao izay rehetra tsy maintsy ataonao manoratra ny tenimiafinao "
+"mba hanamarinana, toy ny fandefasana baiko amin'ny sudo. Raha navelanao ny "
+"fisokafana mandeha ho azy, ny peratra fanalahidinao na KWallet dia ho "
+"voahidy ho azy koa rehefa miditra.\n"
+"\n"
+"Azonao atao ny manokatra ny Ubuntu Hello Configurator amin'ny manaraka raha "
+"te hanova fanovana mandroso kokoa na manampy modely fanampiny. Tsindrio ny "
+"Finish eto ambany raha hanakatona ity varavarankely ity ary sokafy ny Ubuntu "
+"Hello Configurator."
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello dia afaka manokatra ho azy ny peratra fidirana na KWallet "
+"amin'ny alàlan'ny fanamarinan-tarehy, hisorohana ny fampandrenesana ny "
+"tenimiafina aorian'ny fidirana."
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Alefaso ny peratra fanalahidy mandeha ho azy/KWallet manokatra"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "Hamafiso ny tenimiafina"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "Mametraka politika azo antoka"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Noho ny fiovan'ny zoro, ny halavirana, ary ny anton-javatra hafa dia tsy "
+"mitovy velively amin'ny maodely tarehy voatahiry ny lalaon'ny tarehy. "
+"Amin'ity pejy ity dia azonao atao ny mametraka ny tokony ho hentitra Ubuntu "
+"Hello."
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "fifadian-kanina"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"Mamela lalao manjavozavo kokoa, \n"
+"fa manafaingana be ny fizotry ny scan."
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "mandanjalanja"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"Mbola hita taratra haingana, \n"
+"fa mety tsy hampiditra anao rehefa lavitra."
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "fiarovana"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"Ny safidy somary azo antoka kokoa, \n"
+"fa haharitra ela kokoa vao hanamarina anao"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "Manampy endrika endrika"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"Mba hanamarinana anao Ubuntu Hello dia mila mitahiry modely amin'ny tavanao "
+"mba hamantarana anao. Tsindrio ny bokotra Scan eto ambany hanombohana ny "
+"scan facial."
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "Fametrahana webcam"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "Mitselatra ve ny émitteur infrarouge?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "ENY"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "tsy misy"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello dia hikaroka ho azy ny rafitrao amin'ny fakan-tsary misy, koa "
+"ataovy azo antoka fa mifandray ny webcam-nao. Aorian'ny fisavana dia hiseho "
+"ny lisitry ny webcam azo ampiasaina. Fidio izay tianao hampiasaina ary "
+"tsindrio Next."
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "Mitsapa ny webcam-nao, andraso azafady..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "Misintona rakitra angona"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello dia mila angon-drakitra famantarana famantarana tarehy telo efa "
+"voaofana mba hahafantarana anao, izay ho alaina izao. Azonao jerena eto "
+"ambany ny fivoaran'ny fampidinana."
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "Manomboka misintona..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Tongasoa eto Ubuntu Hello!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "Malagasy Bible"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"Ity mpamosavy ity dia hitarika anao amin'ny fizotry ny fanamboarana ary "
+"manitsy ho azy ny Ubuntu Hello ho anao. Tsindrio manaraka raha hanohy."
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "hanafoana"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "Manaraka"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "Vita ny fanamboarana"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello fomba fanamarinana tarehy"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "tarehy;fanekena;fanamarinana;fiarovana;hidy;"

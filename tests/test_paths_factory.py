@@ -52,6 +52,80 @@ class TestPathsFactoryGtk:
         result = pf.dlib_data_dir_path()
         assert isinstance(result, PurePath)
 
+    def test_css_style_path(self):
+        pf = self._load_gtk_paths_factory()
+        result = pf.css_style_path()
+        assert "style.css" in result
+
+    def test_load_custom_css_swallows_gi_errors(self, monkeypatch):
+        pf = self._load_gtk_paths_factory()
+        import types
+
+        class Boom:
+            def __getattr__(self, _name):
+                raise ImportError("no gtk")
+
+        monkeypatch.setitem(sys.modules, "gi", types.SimpleNamespace(repository=Boom()))
+        monkeypatch.setitem(sys.modules, "gi.repository", Boom())
+        pf.load_custom_css()  # must not raise
+
+    def test_load_custom_css_from_local_file(self, tmp_path, monkeypatch):
+        pf = self._load_gtk_paths_factory()
+        import types
+
+        css = tmp_path / "style.css"
+        css.write_text("window {}", encoding="utf-8")
+
+        class FakeProvider:
+            def __init__(self):
+                self.loaded = None
+
+            def load_from_path(self, path):
+                self.loaded = path
+
+        provider_holder = {}
+
+        def make_provider():
+            provider_holder["p"] = FakeProvider()
+            return provider_holder["p"]
+
+        class FakeStyleContext:
+            called = None
+
+            @staticmethod
+            def add_provider_for_screen(screen, provider, priority):
+                FakeStyleContext.called = True
+
+        fake_gtk = types.SimpleNamespace(
+            CssProvider=make_provider,
+            StyleContext=FakeStyleContext,
+            STYLE_PROVIDER_PRIORITY_APPLICATION=600,
+        )
+        fake_gdk = types.SimpleNamespace(
+            Screen=types.SimpleNamespace(get_default=lambda: object())
+        )
+        monkeypatch.setitem(
+            sys.modules,
+            "gi",
+            types.SimpleNamespace(repository=types.SimpleNamespace(Gtk=fake_gtk, Gdk=fake_gdk)),
+        )
+        monkeypatch.setitem(
+            sys.modules,
+            "gi.repository",
+            types.SimpleNamespace(Gtk=fake_gtk, Gdk=fake_gdk),
+        )
+        monkeypatch.setattr(
+            pf,
+            "css_style_path",
+            lambda: str(tmp_path / "missing.css"),
+        )
+        # Make local_path resolve to our temp css via dirname/abspath of __file__.
+        monkeypatch.setattr(os.path, "dirname", lambda _p: str(tmp_path))
+        monkeypatch.setattr(os.path, "abspath", lambda p: p)
+        pf.load_custom_css()
+        assert provider_holder["p"].loaded == str(css)
+        assert FakeStyleContext.called is True
+
 
 class TestPathsFactoryCore:
     """Tests for ubuntu-hello/src/paths_factory.py loaded explicitly."""

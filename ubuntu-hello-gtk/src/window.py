@@ -9,7 +9,11 @@ os.umask(0o077)
 import subprocess
 
 from i18n import _
+import i18n
+import languages
 import paths_factory
+import preferences
+from search_fuzzy import fuzzy_match, fuzzy_score
 
 # Restore GUI environment variables passed from the parent process
 env_prefix = "--env-"
@@ -31,15 +35,31 @@ from gi.repository import Gio
 
 
 class MainWindow(gtk.Window):
-	def __init__(self):
-		"""Initialize the sticky window"""
+	def __init__(self, run_main_loop=True):
+		"""Initialize the Settings window."""
 		# Load the custom CSS theme stylesheet
 		paths_factory.load_custom_css()
 
 		# Make the class a GTK window
 		gtk.Window.__init__(self)
 
+		self.capture = None
+		self._sorted_users = []
+		self.active_user = ""
+		self._language_combo_ready = False
+		self._search_row_baselines = []
+		self._rebuilding = False
+		self._build_ui(initial=True)
+
+		if run_main_loop:
+			gtk.main()
+
+	def _build_ui(self, initial=True, restore=None):
+		"""Load Glade UI (also used for instant language rebuild)."""
+		restore = restore or {}
+
 		self.builder = gtk.Builder()
+		self.builder.set_translation_domain("ubuntu-hello-gtk")
 		self.builder.add_from_file(paths_factory.main_window_wireframe_path())
 		self.builder.connect_signals(self)
 
@@ -56,25 +76,54 @@ class MainWindow(gtk.Window):
 		if self.version_label:
 			self.version_label.set_text(self.get_display_version())
 
+		self.notebook = self.builder.get_object("notebook")
+		self.settings_search = self.builder.get_object("settings_search")
+		self.language_combo = self.builder.get_object("language_combo")
+
 		self.window.connect("destroy", self.exit)
 		self.window.connect("delete_event", self.exit)
-
-		# Init capture for video tab
-		self.capture = None
 
 		# Create a treeview that will list the model data
 		self.treeview = gtk.TreeView()
 		self.treeview.set_vexpand(True)
 
-		# Set the columns
-		for i, column in enumerate([_("ID"), _("Created"), _("Label")]):
+		# Set the columns (Python _() follows reloaded catalog after language switch)
+		for i, column in enumerate([i18n._("ID"), i18n._("Created"), i18n._("Label")]):
 			col = gtk.TreeViewColumn(column, gtk.CellRendererText(), text=i)
 			self.treeview.append_column(col)
 
 		# Add the treeview
 		self.modellistbox.add(self.treeview)
 
-		# Get all potential system users from Ubuntu
+		self._populate_users(restore.get("active_user"))
+		self._language_combo_ready = False
+		self._setup_language_combo(restore.get("language"))
+		self._search_row_baselines = []
+		self._collect_search_rows()
+
+		self.load_model_list()
+		self.update_keyring_status()
+
+		# Restore notebook / search / geometry after rebuild
+		if restore.get("page") is not None and self.notebook is not None:
+			page = restore["page"]
+			if 0 <= page < self.notebook.get_n_pages():
+				self.notebook.set_current_page(page)
+		if restore.get("search") and self.settings_search is not None:
+			self.settings_search.set_text(restore["search"])
+		if restore.get("width") and restore.get("height"):
+			try:
+				self.window.resize(restore["width"], restore["height"])
+			except Exception:
+				pass
+
+		self.window.show_all()
+		# Re-apply fuzzy filter after show (haystacks use displayed labels)
+		if self.settings_search is not None and (self.settings_search.get_text() or "").strip():
+			self.on_settings_search_changed(self.settings_search)
+
+	def _populate_users(self, preferred_user=None):
+		"""Fill user combo; prefer preferred_user, else real user / first with models."""
 		import pwd
 		users = set()
 		for u in pwd.getpwall():
@@ -82,7 +131,6 @@ class MainWindow(gtk.Window):
 				if u.pw_shell not in ("/usr/sbin/nologin", "/bin/false", "/usr/bin/false", "/sbin/nologin"):
 					users.add(u.pw_name)
 
-		# Add any users who already have models saved, in case they are not in the list above
 		try:
 			model_dir = paths_factory.user_models_dir_path()
 			if os.path.exists(model_dir):
@@ -93,36 +141,36 @@ class MainWindow(gtk.Window):
 			pass
 
 		sorted_users = sorted(list(users))
+		self._sorted_users = sorted_users
 		self.active_user = ""
 		self.userlist.items = 0
+		self.userlist.remove_all()
 
 		for user in sorted_users:
 			self.userlist.append_text(user)
 			self.userlist.items += 1
 
-		# Select the logged-in user as active by default if they are in the list.
-		# Otherwise, choose the first user who has a saved model.
-		# If none have models, choose the first user in the sorted list.
-		real_user = get_real_user()
 		default_user = ""
-		if real_user in sorted_users:
-			default_user = real_user
+		if preferred_user and preferred_user in sorted_users:
+			default_user = preferred_user
 		else:
-			# Fallback to the first user with a model
-			users_with_models = []
-			try:
-				model_dir = paths_factory.user_models_dir_path()
-				if os.path.exists(model_dir):
-					for file in os.listdir(model_dir):
-						if file.endswith(".dat") and file[:-4] in sorted_users:
-							users_with_models.append(file[:-4])
-			except Exception:
-				pass
-
-			if users_with_models:
-				default_user = sorted(users_with_models)[0]
-			elif sorted_users:
-				default_user = sorted_users[0]
+			real_user = get_real_user()
+			if real_user in sorted_users:
+				default_user = real_user
+			else:
+				users_with_models = []
+				try:
+					model_dir = paths_factory.user_models_dir_path()
+					if os.path.exists(model_dir):
+						for file in os.listdir(model_dir):
+							if file.endswith(".dat") and file[:-4] in sorted_users:
+								users_with_models.append(file[:-4])
+				except Exception:
+					pass
+				if users_with_models:
+					default_user = sorted(users_with_models)[0]
+				elif sorted_users:
+					default_user = sorted_users[0]
 
 		if default_user:
 			self.active_user = default_user
@@ -130,13 +178,300 @@ class MainWindow(gtk.Window):
 		else:
 			self.userlist.set_active(-1)
 
-		self.load_model_list()
-		self.update_keyring_status()
+	def _setup_language_combo(self, preferred=None):
+		"""Populate Language tab: Automatic (always first) + English + locales."""
+		combo = self.language_combo
+		if combo is None:
+			return
+		# Ignore changed signals while rebuilding the model so Automatic stays.
+		self._language_combo_ready = False
+		combo.remove_all()
+		combo.append(preferences.AUTO, i18n._("Automatic"))
+		ui_lang = preferred if preferred is not None else preferences.read_language()
+		for code in languages.COMBO_CODES:
+			combo.append(code, languages.language_combo_label(code, ui_lang))
 
-		self.window.show_all()
+		current = preferred if preferred is not None else preferences.read_language()
+		if current != preferences.AUTO and not languages.is_known_language(current):
+			current = preferences.AUTO
+		if hasattr(combo, "set_active_id"):
+			combo.set_active_id(current)
+			if combo.get_active() < 0:
+				combo.set_active_id(preferences.AUTO)
+			if combo.get_active() < 0:
+				combo.set_active(0)
+		else:
+			combo.set_active(0)
+		self._language_combo_ready = True
 
-		# Start GTK main loop
-		gtk.main()
+	def _session_snapshot(self):
+		"""Capture UI state to restore across language rebuild."""
+		snap = {
+			"active_user": self.active_user,
+			"language": preferences.read_language(),
+			"page": self.notebook.get_current_page() if self.notebook else 0,
+			"search": self.settings_search.get_text() if self.settings_search else "",
+			"width": None,
+			"height": None,
+		}
+		try:
+			w, h = self.window.get_size()
+			snap["width"], snap["height"] = w, h
+		except Exception:
+			pass
+		if self.language_combo is not None and hasattr(self.language_combo, "get_active_id"):
+			aid = self.language_combo.get_active_id()
+			if aid:
+				snap["language"] = aid
+		return snap
+
+	def _apply_language_rebuild(self, code):
+		"""Write preference, reload gettext, rebuild Settings UI in-process (no restart)."""
+		if self._rebuilding:
+			return
+		self._rebuilding = True
+		try:
+			preferences.write_language(code)
+		except OSError as exc:
+			print(f"Could not save language preference: {exc}", file=sys.stderr)
+			self._rebuilding = False
+			return
+
+		snap = self._session_snapshot()
+		snap["language"] = code
+
+		# Release camera before tearing down video tab widgets
+		if self.capture is not None:
+			try:
+				self.capture.release()
+			except Exception:
+				pass
+			self.capture = None
+
+		old_window = self.window
+		# Prevent destroy handler from quitting during rebuild
+		try:
+			old_window.disconnect_by_func(self.exit)
+		except Exception:
+			pass
+
+		i18n.reload_from_preferences()
+
+		try:
+			old_window.destroy()
+		except Exception:
+			pass
+
+		self._build_ui(initial=False, restore=snap)
+		self._rebuilding = False
+
+	def on_language_changed(self, combo):
+		"""Persist language and instantly rebuild Settings UI."""
+		if not self._language_combo_ready or self._rebuilding:
+			return
+		code = None
+		if hasattr(combo, "get_active_id"):
+			code = combo.get_active_id()
+		if not code:
+			idx = combo.get_active()
+			if idx == 0:
+				code = preferences.AUTO
+			elif idx > 0 and idx <= len(languages.COMBO_CODES):
+				code = languages.COMBO_CODES[idx - 1]
+			else:
+				code = preferences.AUTO
+		if code != preferences.AUTO and not languages.is_known_language(code):
+			code = preferences.AUTO
+		# Skip no-op (same language)
+		if code == preferences.read_language() and not self._rebuilding:
+			# Still ensure preference file exists for auto
+			try:
+				preferences.write_language(code)
+			except OSError:
+				pass
+			return
+		self._apply_language_rebuild(code)
+
+	def _widget_display_text(self, widget):
+		"""Collect currently displayed (translated) text from a widget subtree."""
+		parts = []
+
+		def walk(node):
+			if node is None:
+				return
+			try:
+				if isinstance(node, gtk.Label):
+					text = node.get_text() or ""
+					if not text and hasattr(node, "get_label"):
+						raw = node.get_label() or ""
+						if "<" in raw:
+							try:
+								from gi.repository import Pango
+								_, text, _ = Pango.parse_markup(raw, -1, "\0")
+							except Exception:
+								text = raw
+						else:
+							text = raw
+					if text:
+						parts.append(text)
+				elif isinstance(node, gtk.Button):
+					label = node.get_label()
+					if label:
+						parts.append(label)
+					child = node.get_child()
+					if child is not None:
+						walk(child)
+					return
+				elif isinstance(node, gtk.Entry):
+					pass
+				elif isinstance(node, gtk.ComboBoxText):
+					# Include all entries (Automatic + locales), not only the active one,
+					# so search still finds Language after the selection changes.
+					model = node.get_model()
+					if model is not None:
+						for i in range(len(model)):
+							try:
+								parts.append(str(model[i][0]))
+							except Exception:
+								pass
+					active = node.get_active_text()
+					if active:
+						parts.append(active)
+			except Exception:
+				pass
+			if isinstance(node, gtk.Container):
+				try:
+					for child in node.get_children():
+						walk(child)
+				except Exception:
+					pass
+
+		walk(widget)
+		return " ".join(parts)
+
+	def _collect_search_rows(self):
+		"""Remember filterable rows under each notebook tab (Models/Video/Keyring/Language/About)."""
+		self._search_row_baselines = []
+		notebook = self.notebook
+		if notebook is None:
+			return
+		# Whole-page tabs: a match shows every child (About/Language/Video).
+		# Video must be atomic — the preview EventBox has no label text, so
+		# row-level filtering would hide the camera UI while the device still opens.
+		atomic_pages = set()
+		for obj_id in ("box5", "language_page", "box2"):
+			obj = self.builder.get_object(obj_id)
+			if obj is not None:
+				atomic_pages.add(obj)
+
+		n_pages = notebook.get_n_pages()
+		for page_index in range(n_pages):
+			page = notebook.get_nth_page(page_index)
+			if page is None:
+				continue
+			candidates = []
+			if isinstance(page, gtk.Box):
+				candidates = list(page.get_children())
+			elif isinstance(page, gtk.Container):
+				candidates = list(page.get_children())
+			else:
+				candidates = [page]
+
+			expanded = []
+			for child in candidates:
+				if isinstance(child, gtk.Box) and child.get_orientation() == gtk.Orientation.VERTICAL:
+					expanded.extend(child.get_children())
+				else:
+					expanded.append(child)
+			if not expanded:
+				expanded = candidates
+
+			rows = list(expanded)
+			tab_label = notebook.get_tab_label(page)
+			self._search_row_baselines.append({
+				"page_index": page_index,
+				"page": page,
+				"tab_label": tab_label,
+				"rows": rows,
+				"atomic": page in atomic_pages,
+			})
+
+	def on_settings_search_changed(self, entry):
+		"""Fuzzy-filter Settings rows by currently displayed translated label text."""
+		query = (entry.get_text() or "").strip()
+		best_tab = None
+		best_score = -1.0
+
+		for page_info in self._search_row_baselines:
+			page_index = page_info["page_index"]
+			tab_text = self._widget_display_text(page_info["tab_label"])
+			rows = page_info["rows"]
+			atomic = page_info.get("atomic", False)
+
+			if not query:
+				for row in rows:
+					row.set_visible(True)
+				page_info["page"].set_visible(True)
+				continue
+
+			page_best = fuzzy_score(query, tab_text)
+			page_match = fuzzy_match(query, tab_text)
+
+			if atomic:
+				for row in rows:
+					text = self._widget_display_text(row)
+					if fuzzy_match(query, text):
+						page_match = True
+						page_best = max(page_best, fuzzy_score(query, text))
+				for row in rows:
+					row.set_visible(page_match)
+			else:
+				any_row = False
+				for row in rows:
+					text = self._widget_display_text(row)
+					score = max(fuzzy_score(query, text), fuzzy_score(query, tab_text))
+					match = fuzzy_match(query, text) or fuzzy_match(query, tab_text)
+					row.set_visible(match)
+					if match:
+						any_row = True
+						page_best = max(page_best, score)
+				page_match = any_row or page_match
+
+			page_info["page"].set_visible(True)
+
+			if page_match and page_best > best_score:
+				best_score = page_best
+				best_tab = page_index
+
+		if query and best_tab is not None and self.notebook is not None:
+			if self.notebook.get_current_page() != best_tab:
+				self.notebook.set_current_page(best_tab)
+
+	def reveal_search_page(self, page_index):
+		"""Force-show all widgets on a notebook page (undo stale search hides).
+
+		Row-level fuzzy search can leave Video/Models children invisible after the
+		user clicks another tab; camera startup must not run against a blank page.
+		"""
+		if self.notebook is None or page_index is None:
+			return
+		page = self.notebook.get_nth_page(page_index)
+		if page is None:
+			return
+
+		def show_tree(widget):
+			try:
+				widget.set_visible(True)
+			except Exception:
+				return
+			if isinstance(widget, gtk.Container):
+				try:
+					for child in widget.get_children():
+						show_tree(child)
+				except Exception:
+					pass
+
+		show_tree(page)
 
 	def load_model_list(self):
 		"""(Re)load the model list"""
@@ -180,6 +515,8 @@ class MainWindow(gtk.Window):
 
 	def exit(self, widget=None, context=None):
 		"""Cleanly exit"""
+		if self._rebuilding:
+			return True
 		if self.capture is not None:
 			self.capture.release()
 
@@ -187,61 +524,10 @@ class MainWindow(gtk.Window):
 		sys.exit(0)
 
 	def get_display_version(self):
-		"""Determine if running a dev version or release version, and return formatted version string"""
-		version = "unknown"
-		try:
-			import paths
-			if hasattr(paths, "version") and paths.version and not paths.version.startswith("@"):
-				version = paths.version
-		except Exception:
-			pass
+		"""Return UI version from VERSION / paths (never older git tags)."""
+		from version_display import get_display_version as _display_version
 
-		if "(Development)" in version or "-dev" in version or "dirty" in version:
-			if version.startswith("v"):
-				return version
-			return f"v{version}"
-
-		try:
-			current_dir = os.path.dirname(os.path.abspath(__file__))
-			res = subprocess.run(
-				["git", "-C", current_dir, "rev-parse", "--is-inside-work-tree"],
-				capture_output=True,
-				text=True
-			)
-			if res.returncode == 0 and res.stdout.strip() == "true":
-				root_res = subprocess.run(
-					["git", "-C", current_dir, "rev-parse", "--show-toplevel"],
-					capture_output=True,
-					text=True
-				)
-				if root_res.returncode == 0:
-					root_dir = root_res.stdout.strip()
-					meson_file = os.path.join(root_dir, "meson.build")
-					if os.path.exists(meson_file):
-						import re
-						with open(meson_file, "r") as f:
-							meson_content = f.read()
-						match = re.search(r"version\s*:\s*['\"]([^'\"]+)['\"]", meson_content)
-						if match:
-							version = match.group(1)
-
-				commit_res = subprocess.run(
-					["git", "-C", current_dir, "describe", "--tags", "--always", "--dirty"],
-					capture_output=True,
-					text=True
-				)
-				if commit_res.returncode == 0:
-					git_ver = commit_res.stdout.strip()
-					if git_ver.startswith("v"):
-						return f"{git_ver} (Development)"
-					return f"v{version}-dev ({git_ver})"
-				return f"v{version}-dev"
-		except Exception:
-			pass
-
-		if version.startswith("v"):
-			return f"{version} (Release)"
-		return f"v{version} (Release)"
+		return _display_version(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Make sure we quit on a SIGINT
@@ -253,7 +539,23 @@ def elevate():
 		return
 	try:
 		extra_args = []
-		for var in ["DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR", "XAUTHORITY", "DBUS_SESSION_BUS_ADDRESS"]:
+		# Forward display + locale so Automatic language and theme keep working
+		# after polkit elevation on all supported DEs (GNOME/KDE/XFCE/…).
+		for var in [
+			"DISPLAY",
+			"WAYLAND_DISPLAY",
+			"XDG_RUNTIME_DIR",
+			"XAUTHORITY",
+			"DBUS_SESSION_BUS_ADDRESS",
+			"XDG_CURRENT_DESKTOP",
+			"DESKTOP_SESSION",
+			"XDG_CONFIG_HOME",
+			"LANG",
+			"LANGUAGE",
+			"LC_ALL",
+			"LC_MESSAGES",
+			"LC_CTYPE",
+		]:
 			val = os.environ.get(var)
 			if val:
 				extra_args.append(f"--env-{var}={val}")
@@ -303,48 +605,11 @@ def get_real_user():
 
 
 def get_user_theme_preference():
+	import theme_detect
 	user = get_real_user()
 	if not user or user == "root":
 		return "light"
-
-	import subprocess
-	try:
-		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/color-scheme"]
-		color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-		if color_scheme == "prefer-dark":
-			return "dark"
-		elif color_scheme == "prefer-light":
-			return "light"
-	except Exception:
-		pass
-
-	try:
-		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "dconf", "read", "/org/gnome/desktop/interface/gtk-theme"]
-		gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-		if "dark" in gtk_theme.lower():
-			return "dark"
-	except Exception:
-		pass
-
-	try:
-		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "color-scheme"]
-		color_scheme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-		if color_scheme == "prefer-dark":
-			return "dark"
-		elif color_scheme == "prefer-light":
-			return "light"
-	except Exception:
-		pass
-
-	try:
-		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "gtk-theme"]
-		gtk_theme = subprocess.check_output(cmd, text=True).strip().strip("'\"")
-		if "dark" in gtk_theme.lower():
-			return "dark"
-	except Exception:
-		pass
-
-	return "light"
+	return theme_detect.get_theme_preference(user=user, default="light")
 
 
 def get_user_animations_preference():

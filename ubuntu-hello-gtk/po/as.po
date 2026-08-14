@@ -1,0 +1,695 @@
+# ubuntu-hello-gtk translation for as.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: as\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/window.py:91
+msgid "ID"
+msgstr "ID"
+
+#: src/window.py:91
+msgid "Created"
+msgstr "সৃষ্টি কৰা হৈছে"
+
+#: src/window.py:91
+msgid "Label"
+msgstr "লেবেল"
+
+#: src/window.py:189
+msgid "Automatic"
+msgstr "স্বয়ংক্ৰিয়"
+
+#: src/onboarding.py:29 src/tab_keyring.py:15
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "কিৰিং/KWallet আনলক সামৰ্থবান কৰক"
+
+#: src/onboarding.py:42 src/tab_keyring.py:28
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "{} ({}) আনলক কৰিবলৈ ব্যৱহাৰকাৰী <b>{}</b>ৰ বাবে পাছৱৰ্ড দিয়ক:"
+
+#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+msgid "Password"
+msgstr "পাছৱৰ্ড"
+
+#: src/onboarding.py:170
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"ইতিমধ্যে ডাটাফাইল ডাউনলোড কৰা হৈছে!\n"
+"আগবাঢ়ি যাবলৈ পৰৱৰ্তী ক্লিক কৰক"
+
+#: src/onboarding.py:200
+msgid "Error while downloading datafiles"
+msgstr "ডাটাফাইলসমূহ ডাউনলোড কৰাৰ সময়ত ত্ৰুটি"
+
+#: src/onboarding.py:203
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"কৰা হ’ল!\n"
+"আগবাঢ়ি যাবলৈ পৰৱৰ্তী ক্লিক কৰক"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Error while importing OpenCV2"
+msgstr "OpenCV2 আমদানি কৰাৰ সময়ত ত্ৰুটি"
+
+#: src/onboarding.py:230 src/onboarding.py:336
+msgid "Try reinstalling cv2"
+msgstr "cv2 পুনৰ সংস্থাপন কৰিবলৈ চেষ্টা কৰক"
+
+#: src/onboarding.py:237
+msgid "No webcams found on system"
+msgstr "চিস্টেমত কোনো ৱেবকেম পোৱা নগ'ল"
+
+#: src/onboarding.py:237
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"অনুগ্ৰহ কৰি আপোনাৰ কেমেৰা নিজেই বিন্যাস কৰক যদি আপুনি নিশ্চিত যে এটা সুসংগত কেমেৰা "
+"সংযুক্ত"
+
+#: src/onboarding.py:265
+msgid "No, camera can't be opened"
+msgstr "নাই, কেমেৰা খুলিব নোৱাৰি"
+
+#: src/onboarding.py:274
+msgid "No, not an infrared camera"
+msgstr "নাই, ইনফ্ৰাৰেড কেমেৰা নহয়"
+
+#: src/onboarding.py:278
+msgid "Yes, compatible infrared camera"
+msgstr "হয়, সামঞ্জস্যপূৰ্ণ ইনফ্ৰাৰেড কেমেৰা"
+
+#: src/onboarding.py:290
+msgid "Camera identifier or path"
+msgstr "কেমেৰা চিনাক্তকৰ্তা বা পথ"
+
+#: src/onboarding.py:290
+msgid "Recommended"
+msgstr "পৰামৰ্শিত"
+
+#: src/onboarding.py:349 src/onboarding.py:390
+msgid "Error selecting camera"
+msgstr "কেমেৰা নিৰ্বাচন কৰাত ত্ৰুটি"
+
+#: src/onboarding.py:362
+msgid "The selected camera cannot be opened"
+msgstr "নিৰ্বাচিত কেমেৰাটো খুলিব নোৱাৰিব"
+
+#: src/onboarding.py:362
+msgid "Try to select another one"
+msgstr "আন এটা বাছি ল’বলৈ চেষ্টা কৰক"
+
+#: src/onboarding.py:374
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"অনুগ্ৰহ কৰি চাওক\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"আপোনাৰ ir emitter সক্ষম কৰিবলৈ"
+
+#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+msgid "Please look directly into the camera"
+msgstr "অনুগ্ৰহ কৰি পোনে পোনে কেমেৰাৰ ভিতৰলৈ চাওক"
+
+#: src/onboarding.py:432 src/onboarding.glade:514
+msgid "Start face scan"
+msgstr "মুখৰ স্কেন আৰম্ভ কৰক"
+
+#: src/onboarding.py:434
+msgid "Can't save face model"
+msgstr "ফেচ মডেল চেভ কৰিব নোৱাৰি"
+
+#: src/onboarding.py:446
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
+msgstr ""
+"Ubuntu Hello এ মুখ প্ৰমাণীকৰণ ব্যৱহাৰ কৰি আপোনাৰ {} স্বয়ংক্ৰিয়ভাৱে আনলক কৰিব পাৰে "
+"(ধৰা মানিবেগ: {})।\n"
+"\n"
+"<b>TPM অৱস্থা:</b> TPM হাৰ্ডৱেৰ আৰু সঁজুলিসমূহ পৰীক্ষা কৰা হৈছে..."
+
+#: src/onboarding.py:466
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
+msgstr ""
+"Ubuntu Hello এ মুখ প্ৰমাণীকৰণ ব্যৱহাৰ কৰি আপোনাৰ {} স্বয়ংক্ৰিয়ভাৱে আনলক কৰিব পাৰে "
+"(ধৰা মানিবেগ: {})।\n"
+"\n"
+"<b>TPM অৱস্থা:</b> TPM হাৰ্ডৱেৰ ধৰা পৰিছে। <i>tpm2-tools</i> স্বয়ংক্ৰিয়ভাৱে "
+"সংস্থাপন কৰা হৈছে..."
+
+#: src/onboarding.py:478
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
+msgstr ""
+"Ubuntu Hello এ মুখ প্ৰমাণীকৰণ ব্যৱহাৰ কৰি আপোনাৰ {} স্বয়ংক্ৰিয়ভাৱে আনলক কৰিব পাৰে "
+"(ধৰা মানিবেগ: {})।\n"
+"\n"
+"<b>TPM অৱস্থা:</b> হাৰ্ডৱেৰ TPM 2.0 সক্ৰিয়। আপোনাৰ পাছৱৰ্ড TPM ৰ ভিতৰত "
+"সুৰক্ষিতভাৱে ছীল কৰা হ'ব।"
+
+#: src/onboarding.py:480
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello এ মুখ প্ৰমাণীকৰণ ব্যৱহাৰ কৰি আপোনাৰ {} স্বয়ংক্ৰিয়ভাৱে আনলক কৰিব পাৰে "
+"(ধৰা মানিবেগ: {})।\n"
+"\n"
+"<b>TPM অৱস্থা:</b> TPM হাৰ্ডৱেৰ ধৰা পৰিছে, কিন্তু <i>tpm2-tools</i> ৰ স্বয়ংক্ৰিয় "
+"সংস্থাপন ব্যৰ্থ। <code>sudo apt সংস্থাপন tpm2-tools</code> চলাওক। চফ্টৱেৰ-ভিত্তিক "
+"প্ৰমাণপত্ৰ কেচিংলৈ উভতি যোৱা।"
+
+#: src/onboarding.py:482
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello এ মুখ প্ৰমাণীকৰণ ব্যৱহাৰ কৰি আপোনাৰ {} স্বয়ংক্ৰিয়ভাৱে আনলক কৰিব পাৰে "
+"(ধৰা মানিবেগ: {})।\n"
+"\n"
+"<b>TPM অৱস্থা:</b> কোনো TPM হাৰ্ডৱেৰ ধৰা পৰা নাই। চফ্টৱেৰ-ভিত্তিক প্ৰমাণপত্ৰ কেচিং "
+"ব্যৱহাৰ কৰা (AES-256-GCM)।"
+
+#: src/onboarding.py:526
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "কিৰিং আনলক কৰাৰ বাবে অ-ৰূট চিস্টেম ব্যৱহাৰকাৰী চিনাক্ত কৰিব পৰা নগ'ল"
+
+#: src/onboarding.py:549 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "পাছৱৰ্ড খালী হ’ব নোৱাৰে"
+
+#: src/onboarding.py:553 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "ব্যৱহাৰকাৰীৰ বাবে ভুল পাছৱৰ্ড {}"
+
+#: src/onboarding.py:565 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "অজ্ঞাত ভুল"
+
+#: src/onboarding.py:568 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "কিৰিং আনলক সামৰ্থবান কৰাত ব্যৰ্থ: {}"
+
+#: src/onboarding.py:577 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "কিৰিং আনলক নিষ্ক্ৰিয় কৰাত ব্যৰ্থ: {}"
+
+#: src/onboarding.py:584
+msgid "Keyring Unlocking Error"
+msgstr "কিৰিং আনলক কৰা ত্ৰুটি"
+
+#: src/onboarding.py:599
+msgid "Error reading radio buttons"
+msgstr "ৰেডিঅ' বুটামসমূহ পঢ়াত ত্ৰুটি"
+
+#: src/onboarding.py:626
+msgid "Ubuntu Hello Setup Warning"
+msgstr "Ubuntu Hello ছেটআপ সতৰ্কবাণী"
+
+#: src/onboarding.py:627
+msgid "Could not save certainty preference, but setup is otherwise complete."
+msgstr "নিশ্চয়তা পছন্দ সংৰক্ষণ কৰিব পৰা নগ'ল, কিন্তু প্ৰতিষ্ঠা অন্যথা সম্পূৰ্ণ।"
+
+#: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
+msgid "Ubuntu Hello Error"
+msgstr "Ubuntu Hello ত্ৰুটি"
+
+#: src/authsticky.py:107
+msgid "Loading...  "
+msgstr "লোড হচ্ছে..."
+
+#: src/authsticky.py:123
+msgid "Ubuntu Hello Authentication"
+msgstr "Ubuntu Hello প্ৰমাণীকৰণ"
+
+#: src/tab_models.py:18
+msgid "Confirm User Creation"
+msgstr "ব্যৱহাৰকাৰী সৃষ্টি নিশ্চিত কৰক"
+
+#: src/tab_models.py:19
+msgid "Please enter the username of the user you want to add to Ubuntu Hello"
+msgstr ""
+"অনুগ্ৰহ কৰি আপুনি যোগ কৰিব বিচৰা ব্যৱহাৰকাৰীৰ ব্যৱহাৰকাৰীৰ নাম দিয়ক Ubuntu Hello"
+
+#: src/tab_models.py:26
+msgid "Username:"
+msgstr "ব্যৱহাৰকাৰীৰ নাম:"
+
+#: src/tab_models.py:54
+msgid "Confirm Model Creation"
+msgstr "মডেল সৃষ্টি নিশ্চিত কৰক"
+
+#: src/tab_models.py:55
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "নতুন মডেলটোৰ বাবে এটা নাম দিয়ক, সৰ্বাধিক ২৪ আখৰ"
+
+#: src/tab_models.py:62
+msgid "Model name:"
+msgstr "মডেলৰ নাম:"
+
+#: src/tab_models.py:77
+msgid "Creating Model"
+msgstr "মডেল সৃষ্টি কৰা"
+
+#: src/tab_models.py:95
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"মডেল যোগ কৰাৰ সময়ত ত্ৰুটি, ভুল ক'ড {}:\n"
+"\n"
+
+#: src/tab_models.py:111
+msgid "Confirm Model Deletion"
+msgstr "মডেল বিলোপ নিশ্চিত কৰক"
+
+#: src/tab_models.py:112
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "আপুনি নিশ্চিত নেকি যে আপুনি মডেল {id} ({name}) মচি পেলাব বিচাৰে?"
+
+#: src/tab_models.py:123
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"মডেল মচি পেলোৱাৰ সময়ত ত্ৰুটি, ভুল ক'ড {}:\n"
+"\n"
+
+#: src/tab_video.py:41
+msgid "Can't open camera"
+msgstr "কেমেৰা খুলিব নোৱাৰি"
+
+#: src/tab_video.py:49
+msgid "Can't import OpenCV2"
+msgstr "আমদানি কৰিব নোৱাৰি OpenCV2"
+
+#: src/tab_video.py:122
+msgid "Unknown"
+msgstr "অজ্ঞাত"
+
+#: src/tab_keyring.py:44
+msgid "<i>No user selected</i>"
+msgstr "<i>কোনো ব্যৱহাৰকাৰী নিৰ্বাচিত হোৱা নাই</i>"
+
+#: src/tab_keyring.py:59
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>সামৰ্থবান (TPM হাৰ্ডৱেৰ)</b></span> — {}"
+
+#: src/tab_keyring.py:63
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr ""
+"<span foreground='green'><b>সামৰ্থবান কৰা হৈছে (চফ্টৱেৰ কেচিং)</b></span> — {}"
+
+#: src/tab_keyring.py:67
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>সামৰ্থবান কৰা হৈছে (পাছৱৰ্ড প্ৰৱেশ বাকী আছে)</b></"
+"span> — {}"
+
+#: src/tab_keyring.py:71
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>অক্ষম</b></span> — {}"
+
+#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
+#: src/tab_keyring.py:165
+msgid "Error"
+msgstr "আঁসোৱাহ"
+
+#: src/tab_keyring.py:117 src/tab_keyring.py:159
+msgid "Success"
+msgstr "সফলতা"
+
+#: src/tab_keyring.py:118
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "ব্যৱহাৰকাৰী {} ৰ বাবে কিৰিং/KWallet আনলক সফলভাৱে সামৰ্থবান কৰা হৈছে।"
+
+#: src/tab_keyring.py:135
+msgid "Disable Keyring/KWallet Unlocking"
+msgstr "কিৰিং/KWallet আনলক নিষ্ক্ৰিয় কৰক"
+
+#: src/tab_keyring.py:136
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr ""
+"আপুনি নিশ্চিত নেকি যে আপুনি ব্যৱহাৰকাৰী {} ৰ বাবে কিৰিং/KWallet আনলক নিষ্ক্ৰিয় "
+"কৰিব বিচাৰে?"
+
+#: src/tab_keyring.py:160
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "ব্যৱহাৰকাৰী {} ৰ বাবে কিৰিং/KWallet আনলক নিষ্ক্ৰিয় কৰা হৈছে।"
+
+#: src/main.glade:26
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello বিন্যাস"
+
+#: src/main.glade:33
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello বিন্যাস"
+
+#: src/main.glade:41
+msgid "Search settings"
+msgstr "সন্ধান ছেটিংছ"
+
+#: src/main.glade:77
+msgid "Showing saved models for:"
+msgstr "ৰ বাবে সংৰক্ষিত মডেল দেখুৱা হৈছে:"
+
+#: src/main.glade:99
+msgid "Add new user"
+msgstr "নতুন ব্যৱহাৰকাৰী যোগ কৰক"
+
+#: src/main.glade:162
+msgid "Add"
+msgstr "যোগ কৰা"
+
+#: src/main.glade:183
+msgid "Delete"
+msgstr "বিলোপ"
+
+#: src/main.glade:218
+msgid "Models"
+msgstr "মডেল"
+
+#: src/main.glade:244
+msgid "Camera ID:"
+msgstr "কেমেৰা আইডি:"
+
+#: src/main.glade:273
+msgid "Real resolution:"
+msgstr "বাস্তৱিক ৰিজ'লিউচন:"
+
+#: src/main.glade:303
+msgid "Used resolution:"
+msgstr "ব্যৱহৃত ৰিজ'লিউচন:"
+
+#: src/main.glade:333
+msgid "Recorder:"
+msgstr "ৰেকৰ্ডাৰ:"
+
+#: src/main.glade:401
+msgid "Video"
+msgstr "ভিডিঅ"
+
+#: src/main.glade:423 src/onboarding.glade:111
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "কিৰিং / KWallet অটো-আনলক"
+
+#: src/main.glade:440
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"আপোনাৰ প্ৰৱেশ কিৰিং বা প্ৰৱেশৰ সময়ত KWallet স্বয়ংক্ৰিয়ভাৱে আনলক কৰিবলে মুখ "
+"প্ৰমাণীকৰণ সামৰ্থবান কৰক। ই আপোনাৰ গুপ্তশব্দ TPM ত ছীল কৰি সুৰক্ষিতভাৱে সংৰক্ষণ কৰে "
+"যেতিয়া উপলব্ধ, বা AES-256-GCM ৰ সৈতে ইনক্ৰিপ্ট কৰা এটা কেৱল ৰূট-মাষ্টাৰ চাবি "
+"ব্যৱহাৰ কৰি । মুখৰ প্ৰমাণীকৰণে আপোনাৰ ডেস্কটপৰ ওপৰত নিৰ্ভৰ কৰি pam_gnome_keyring "
+"বা pam_kwallet5 ৰ বাবে PAM_AUTHTOK সংহতি কৰে।"
+
+#: src/main.glade:471
+msgid "Current Status:"
+msgstr "বৰ্তমানৰ অৱস্থা:"
+
+#: src/main.glade:486
+msgid "Checking..."
+msgstr "চেক কৰি আছে..."
+
+#: src/main.glade:509
+msgid "Enable Auto-Unlock"
+msgstr "স্বয়ংক্ৰিয়-আনলক সামৰ্থবান কৰক"
+
+#: src/main.glade:526
+msgid "Disable Auto-Unlock"
+msgstr "স্বয়ংক্ৰিয়-আনলক নিষ্ক্ৰিয় কৰক"
+
+#: src/main.glade:559
+msgid "Keyring"
+msgstr "কীৰিং"
+
+#: src/main.glade:581
+msgid "Display language"
+msgstr "প্ৰদৰ্শনৰ ভাষা"
+
+#: src/main.glade:603 src/main.glade:662
+msgid "Language"
+msgstr "ভাষা"
+
+#: src/main.glade:637
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "স্বয়ংক্ৰিয়য়ে ছিষ্টেমৰ ভাষা অনুসৰণ কৰে। পৰিৱৰ্তনবোৰ তৎক্ষণাৎ প্ৰয়োগ হয়।"
+
+#: src/main.glade:694
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.glade:710
+msgid "Facial authentication for Linux"
+msgstr "Linux ৰ বাবে মুখৰ প্ৰমাণীকৰণ"
+
+#: src/main.glade:723
+msgid "Version unknown"
+msgstr "সংস্কৰণ অজ্ঞাত"
+
+#: src/main.glade:746
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub লিংক খোলক</a>"
+
+#: src/main.glade:778
+msgid "About"
+msgstr "বিষয়ে"
+
+#: src/onboarding.glade:35 src/onboarding.glade:43
+msgid "Welcome to Ubuntu Hello"
+msgstr "Ubuntu Hello লৈ আপোনাক স্বাগতম"
+
+#: src/onboarding.glade:63
+msgid "Setup is done!"
+msgstr "ছেটআপ কৰা হৈছে!"
+
+#: src/onboarding.glade:82
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"আমাৰ কাম শেষ! Ubuntu Hello এতিয়া এই কম্পিউটাৰত সক্ৰিয় হৈ আছে। আপুনি সাধাৰণতে "
+"প্ৰমাণীকৰণ কৰিবলে আপোনাৰ গুপ্তশব্দ টাইপ কৰিব লাগিব যিকোনো কাম কৰিবলৈ চেষ্টা কৰক, "
+"যেনে sudo ৰ সৈতে এটা আদেশ চলোৱা । যদি আপুনি কিৰিং স্বয়ংক্ৰিয়-আনলক সামৰ্থবান "
+"কৰিছে, আপোনাৰ প্ৰৱেশ কিৰিং বা KWalletও প্ৰৱেশৰ সময়ত স্বয়ংক্ৰিয়ভাৱে আনলক কৰা "
+"হ'ব।\n"
+"\n"
+"আপুনি পিছত অধিক উন্নত সংহতিসমূহ সলনি কৰিবলে বা অতিৰিক্ত আৰ্হিসমূহ যোগ কৰিবলে "
+"Ubuntu Hello বিন্যাসক খোলিব পাৰে। এই উইন্ডো বন্ধ কৰিবলে তলত সমাপ্ত টিপক আৰু "
+"Ubuntu Hello বিন্যাসক খোলিবলৈ।"
+
+#: src/onboarding.glade:130
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello এ স্বয়ংক্ৰিয়ভাৱে আপোনাৰ লগইন কিৰিং আনলক কৰিব পাৰে বা KWallet মুখ "
+"প্ৰমাণীকৰণ ব্যৱহাৰ কৰি, লগ ইন কৰাৰ পিছত পাছৱৰ্ড প্ৰমপ্টসমূহ বাধা দি।"
+
+#: src/onboarding.glade:142
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "স্বয়ংক্ৰিয় কিৰিং/KWallet আনলক সামৰ্থবান কৰক"
+
+#: src/onboarding.glade:184
+msgid "Confirm password"
+msgstr "পাছৱৰ্ড নিশ্চিত কৰক"
+
+#: src/onboarding.glade:216
+msgid "Setting a certainty policy"
+msgstr "এটা নিশ্চয়তা নীতি নিৰ্ধাৰণ কৰা"
+
+#: src/onboarding.glade:235
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"কোণ, দূৰত্ব আৰু অন্যান্য কাৰকৰ পৰিৱৰ্তনৰ বাবে মুখৰ মিল কেতিয়াও সংৰক্ষিত মুখৰ আৰ্হিৰ "
+"সৈতে হুবহু একে নহয়। এই পৃষ্ঠাত আপুনি ছেট কৰিব পাৰে যে Ubuntu Hello কিমান কঠোৰ হ'ব "
+"লাগে।"
+
+#: src/onboarding.glade:274
+msgid "Fast"
+msgstr "বেগাই"
+
+#: src/onboarding.glade:290
+msgid ""
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
+msgstr ""
+"অধিক অস্পষ্ট মিলৰ অনুমতি দিয়ে, \n"
+"কিন্তু স্কেনিং প্ৰক্ৰিয়াটো বহু পৰিমাণে দ্ৰুত কৰে।"
+
+#: src/onboarding.glade:329
+msgid "Balanced"
+msgstr "সুষম"
+
+#: src/onboarding.glade:345
+msgid ""
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
+msgstr ""
+"এতিয়াও তুলনামূলকভাৱে দ্ৰুত ধৰা পেলোৱা, \n"
+"কিন্তু আপুনি বেছি দূৰত থাকিলে লগ ইন নকৰিবও পাৰে।"
+
+#: src/onboarding.glade:384
+msgid "Secure"
+msgstr "সুৰক্ষিত"
+
+#: src/onboarding.glade:400
+msgid ""
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
+msgstr ""
+"অলপ নিৰাপদ বিকল্প, \n"
+"কিন্তু আপোনাক প্ৰমাণীকৰণ কৰিবলৈ বহুত বেছি সময় লাগিব"
+
+#: src/onboarding.glade:443
+msgid "Adding a face model"
+msgstr "এটা মুখৰ মডেল যোগ কৰা"
+
+#: src/onboarding.glade:462
+msgid ""
+"To authenticate you Ubuntu Hello needs to save a model of your face to "
+"recognise you. Press the Scan button below to start the facial scan."
+msgstr ""
+"আপোনাক প্ৰমাণীকৰণ কৰিবলৈ Ubuntu Hello আপোনাক চিনি পাবলৈ আপোনাৰ মুখৰ এটা মডেল "
+"সংৰক্ষণ কৰিব লাগিব। মুখৰ স্কেন আৰম্ভ কৰিবলৈ তলৰ স্কেন বুটামটো টিপক।"
+
+#: src/onboarding.glade:564 src/onboarding.glade:655
+msgid "Configuring webcam"
+msgstr "ৱেবকেম বিন্যাস কৰা"
+
+#: src/onboarding.glade:581
+msgid "Is the infrared emitter flashing ?"
+msgstr "ইনফ্ৰাৰেড ইমিটাৰটো জিলিকি আছে নেকি ?"
+
+#: src/onboarding.glade:599
+msgid "yes"
+msgstr "হয়"
+
+#: src/onboarding.glade:616
+msgid "no"
+msgstr "নহয়"
+
+#: src/onboarding.glade:674
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello এ আপোনাৰ চিস্টেমে যিকোনো উপলব্ধ কেমেৰাৰ বাবে স্বয়ংক্ৰিয়ভাৱে সন্ধান "
+"কৰিব, গতিকে আপোনাৰ ৱেবকেম সংযুক্ত হোৱাটো নিশ্চিত কৰক। ধৰা পেলোৱাৰ পিছত "
+"ব্যৱহাৰযোগ্য ৱেবকেমৰ তালিকা দেখুওৱা হ’ব। আপুনি ব্যৱহাৰ কৰিব বিচৰাটো বাছি লওক আৰু "
+"পৰৱৰ্তী ক্লিক কৰক।"
+
+#: src/onboarding.glade:697
+msgid "Testing your webcams, please wait..."
+msgstr "আপনার webcams পরীক্ষা, অনুগ্রহ অপেক্ষা করুন..."
+
+#: src/onboarding.glade:749
+msgid "Downloading data files"
+msgstr "ডাটা ফাইল ডাউনলোড কৰা"
+
+#: src/onboarding.glade:768
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello আপোনাক চিনি পাবলৈ তিনিটা প্ৰি ট্ৰেইনড ফেচিয়েল ৰিকগনিচন ডাটাছেটৰ "
+"প্ৰয়োজন, যিবোৰ এতিয়াই ডাউনলোড কৰা হ'ব। তলত ডাউনলোডৰ অগ্ৰগতি চাব পাৰিব।"
+
+#: src/onboarding.glade:789
+msgid "Starting download..."
+msgstr "ডাউনলোড আৰম্ভ..."
+
+#: src/onboarding.glade:838
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Ubuntu Hello লৈ আপোনাক স্বাগতম!"
+
+#: src/onboarding.glade:854
+msgid "Version"
+msgstr "সংস্কৰণ"
+
+#: src/onboarding.glade:875
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"এই উইজাৰ্ডে আপোনাক প্ৰতিষ্ঠা প্ৰক্ৰিয়াৰ মাজেৰে লৈ যাব আৰু আপোনাৰ বাবে স্বয়ংক্ৰিয়ভাৱে "
+"Ubuntu Hello বিন্যাস কৰিব। আগবাঢ়ি যাবলৈ কাষত টিপক।"
+
+#: src/onboarding.glade:899
+msgid "Cancel"
+msgstr "বাতিল কৰক"
+
+#: src/onboarding.glade:919
+msgid "Next"
+msgstr "পৰৱৰ্তী"
+
+#: src/onboarding.glade:944
+msgid "Finish setup"
+msgstr "ছেটআপ সমাপ্ত কৰক"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "Windows Hello style facial authentication"
+msgstr "Windows Hello শৈলীৰ মুখৰ প্ৰমাণীকৰণ"
+
+#: ubuntu-hello-gtk.desktop.in
+msgid "face;recognition;authentication;security;lock;"
+msgstr "মুখ;স্বীকৃতি;প্ৰমাণীকৰণ;নিৰাপত্তা;লক;"

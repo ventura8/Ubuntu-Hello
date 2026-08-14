@@ -137,14 +137,18 @@ else:
 	if version == "unknown":
 		try:
 			current_dir = os.path.dirname(os.path.abspath(__file__))
-			meson_file = os.path.join(current_dir, "..", "..", "meson.build")
-			if os.path.exists(meson_file):
-				import re
-				with open(meson_file, "r") as f:
-					meson_content = f.read()
-				match = re.search(r"version\s*:\s*['\"]([^'\"]+)['\"]", meson_content)
-				if match:
-					version = match.group(1)
+			# Prefer repo-root VERSION (single source of truth) over parsing meson.build.
+			for root_candidate in (
+				os.path.abspath(os.path.join(current_dir, "..", "..")),
+				os.path.abspath(os.path.join(current_dir, "..", "..", "..")),
+			):
+				version_file = os.path.join(root_candidate, "VERSION")
+				if os.path.isfile(version_file):
+					with open(version_file, encoding="utf-8") as handle:
+						line = handle.read().strip().splitlines()[0].strip()
+					if line:
+						version = line
+						break
 		except Exception:
 			pass
 	print(f"Ubuntu Hello {version}")

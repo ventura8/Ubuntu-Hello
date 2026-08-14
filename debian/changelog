@@ -1,3 +1,11 @@
+ubuntu-hello (1.1.0-1ppa1) noble; urgency=medium
+
+  * Expand multi-desktop compatibility across GNOME, KDE Plasma, XFCE, Cinnamon, MATE, Budgie, and LXQt (GDM/SDDM/LightDM; GNOME Keyring + KWallet).
+  * Greeter face-skip after failed compare; UH1 AES-GCM keyring blobs with PAM_AUTHTOK wallet unlock; multi-DE theme detection.
+  * Auth lifecycle hardening (compare process-group cancel / SIGTERM cleanup) and split lint/coverage/parallel per-DE CI under docker/.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Wed, 12 Aug 2026 02:49:00 +0300
+
 ubuntu-hello (1.0.4-1ppa1) noble; urgency=medium
 
   * Modernized setup wizard & settings GUI with Ubuntu 26.04 CSD styling, dynamic system themes, aspect-fit webcam feeds, and background thread camera initialization.

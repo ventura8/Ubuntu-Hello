@@ -1,0 +1,709 @@
+# ubuntu-hello translation for km.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "បរាជ័យ ដល់ពេលកំណត់"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "រូបភាពចាប់សញ្ញាមុខងងឹតពេក"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "កំហុសមិនស្គាល់៖"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "សម្គាល់មុខជា %s"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr "ការអនុញ្ញាតមិនគ្រប់គ្រាន់ដើម្បីផ្ញើការចុច Enter ដោយរង់ចាំឱ្យអ្នកប្រើប្រាស់ចុចវាជំនួសវិញ។"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "បរាជ័យ​ក្នុង​ការ​ផ្ញើ​សារ​ចុច Enter ដោយ​រង់ចាំ​អ្នក​ប្រើ​ចុច​ជំនួស​វិញ។"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "កំពុងព្យាយាមផ្ទៀងផ្ទាត់ផ្ទៃមុខ"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "មិនអាចកំណត់អ្នកប្រើប្រាស់បានទេ សូមប្រើទង់ --user flag"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "ចំណុចប្រទាក់បន្ទាត់ពាក្យបញ្ជាសម្រាប់ការផ្ទៀងផ្ទាត់មុខ Ubuntu Hello។"
+
+#: src/cli.py:35
+msgid "command"
+msgstr "បញ្ជា"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "អាគុយម៉ង់"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"សម្រាប់ការគាំទ្រសូមទស្សនា\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"ជម្រើស​ពាក្យ​បញ្ជា​ដើម្បី​ប្រតិបត្តិ​អាច​ជា​ជម្រើស​មួយ​ក្នុង​ចំណោម​ដូច​ខាង​ក្រោម៖ បន្ថែម ជម្រះ កំណត់​រចនាសម្ព័ន្ធ "
+"បិទ ការ​ចុច​គ្រាប់​ចុច បញ្ជី យក​ចេញ រូបថត កំណត់ សាកល្បង ឬ​កំណែ។"
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "អាគុយម៉ង់ស្រេចចិត្តសម្រាប់ការបន្ថែម បិទ ដកចេញ និងកំណត់ពាក្យបញ្ជា។"
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "កំណត់គណនីអ្នកប្រើប្រាស់ដែលត្រូវប្រើ។"
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "រំលងសំណួរទាំងអស់។"
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "បោះពុម្ពលទ្ធផលដែលងាយស្រួលប្រើជាមួយម៉ាស៊ីន។"
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "បង្ហាញសារជំនួយនេះហើយចេញ។"
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "អ្នកប្រើប្រាស់សកម្មបច្ចុប្បន្ន៖"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "ទម្រង់ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "សូមដំណើរការពាក្យបញ្ជានេះជា root៖\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"មិនអាចដំណើរការពាក្យបញ្ជា ubuntu-hello ជា root បានទេ សូមដំណើរការពាក្យបញ្ជានេះដោយប្រើទង់ "
+"--user flag"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "ឯកសារទិន្នន័យមិនទាន់ត្រូវបានទាញយកទេ សូមដំណើរការពាក្យបញ្ជាខាងក្រោម៖"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "ចូល"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "កាលបរិច្ឆេទ៖"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "ពេលវេលាស្កេន៖"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "ស៊ុម៖"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "ឈ្មោះម៉ាស៊ីន៖"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "តម្លៃភាពប្រាកដប្រជាល្អបំផុត៖"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "ចាប់ផ្តើម..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "កំណត់អត្តសញ្ញាណអ្នក..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "បរាជ័យ"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "ស៊ុមទាំងអស់ងងឹតពេក សូមពិនិត្យមើល dark_threshold នៅក្នុង config"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "ភាពងងឹតជាមធ្យម៖ {avg}, កម្រិត៖ {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "ពេលវេលាចំណាយ"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "ចាប់ផ្តើមឡើង"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "បើក cam + load libs៖ %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "ការបើកកាមេរ៉ា"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "ការនាំចូល libs ការទទួលស្គាល់"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "ស្វែងរកមុខដែលគេស្គាល់"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "ពេលវេលាសរុប"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"ដំណោះស្រាយ"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "ដើម៖ %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "បានប្រើ៖ %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"ស៊ុមស្វែងរក៖ %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "ស៊ុមខ្មៅមិនអើពើ៖ %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "មិនអើពើស៊ុមងងឹត៖ %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "ភាពជាក់លាក់នៃការឈ្នះស៊ុម៖ %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "ម៉ូដែលឈ្នះរង្វាន់៖ %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "ជោគជ័យ"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "សោចូល"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "សោចូល ឬ KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"មិនអាចនាំចូលម៉ូឌុល dlib សូមពិនិត្យមើលលទ្ធផលនៃ"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "រកមិនឃើញថតគំរូមុខទេ បង្កើតមួយ។"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "សេចក្តីជូនដំណឹង៖ ម៉ូដែលបន្ថែមនីមួយៗបន្ថយល្បឿនម៉ាស៊ីនសម្គាល់មុខបន្តិច"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "ចុច Ctrl+C ដើម្បីបោះបង់\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "ការបន្ថែមទម្រង់មុខសម្រាប់អ្នកប្រើប្រាស់"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "ម៉ូដែល #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "ការប្រើស្លាកលំនាំដើម \"%s\" ដោយសារតែទង់ -y"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "បញ្ចូលស្លាកសម្រាប់ម៉ូដែលថ្មីនេះ [{}]៖"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "សេចក្តីជូនដំណឹង៖ ការដកតួអក្សរខុសច្បាប់ \",\" ចេញពីឈ្មោះម៉ូដែល"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"សូមក្រឡេកមើលកាមេរ៉ាត្រង់"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "កាមេរ៉ាឃើញតែស៊ុមខ្មៅ - តើឧបករណ៍បញ្ចេញ IR ដំណើរការទេ?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "រកមិនឃើញមុខទេ រំលូតកូន"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "បានរកឃើញមុខជាច្រើន លុបចោល"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"ស្កេនបានបញ្ចប់\n"
+"បានបន្ថែមម៉ូដែលថ្មីទៅ"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "មិន​ទាន់​មាន​ម៉ូដែល​ដែល​បាន​បង្កើត​នៅ​ឡើយ​ទេ មិន​អាច​ជម្រះ​ពួកវា​បាន​ទេ​ប្រសិន​បើ​វា​មិន​មាន"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} អត់មានម៉ូដែល ឬគេជម្រះរួចហើយ"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "វានឹងសម្អាតម៉ូដែលទាំងអស់សម្រាប់"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "តើអ្នកចង់បន្ត [y/N]៖"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"ការបកប្រែជា \"ទេ\" បោះបង់"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"ម៉ូដែលត្រូវបានសម្អាត"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "បើក config.ini ក្នុង {editor}"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "បរាជ័យក្នុងការបើកកម្មវិធីនិពន្ធ៖ {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "កំហុស៖ មិនអាចស្វែងរកកម្មវិធីកែអត្ថបទដែលសមរម្យបានទេ។"
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "សូមដំឡើង 'nano' ឬ 'vi' ឬកំណត់អថេរបរិស្ថាន EDITOR ។"
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"ប្រសិនបើអ្នកកំពុងដំណើរការពាក្យបញ្ជានេះជាមួយ sudo សូមសាកល្បង 'sudo -E ubuntu-hello "
+"config' ដើម្បីការពារអថេរ EDITOR របស់អ្នក។"
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "សូមបន្ថែម 0 (បើក) ឬ 1 (បិទ) ជាអាគុយម៉ង់"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "សូមប្រើតែ 0 (បើក) ឬ 1 (បិទ) ជាអាគុយម៉ង់"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "ជម្រើសបិទត្រូវបានកំណត់រួចហើយ"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Helloត្រូវបានបិទ"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Helloត្រូវបានបើក"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "ការប្រើប្រាស់៖ សោរ [បើក|បិទ]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "បញ្ចូលពាក្យសម្ងាត់សម្រាប់អ្នកប្រើប្រាស់ {} ដើម្បីដោះសោ {} ({})៖"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "ពាក្យសម្ងាត់មិនអាចទទេបានទេ។"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "បញ្ជាក់ពាក្យសម្ងាត់៖"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "ពាក្យសម្ងាត់មិនត្រូវគ្នាទេ។"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "បានរកឃើញផ្នែករឹង TPM ។ ការដំឡើងដោយស្វ័យប្រវត្តិ tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "ផ្នែករឹង TPM សកម្ម។ ការបិទភ្ជាប់ពាក្យសម្ងាត់នៅក្នុង TPM..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"ការដោះសោសោរ/KWalletបានបើកដំណើរការដោយជោគជ័យសម្រាប់អ្នកប្រើប្រាស់ {} ដោយប្រើ TPM (កាបូប៖ "
+"{})។"
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "បរាជ័យក្នុងការបិទភ្ជាប់ពាក្យសម្ងាត់ទៅ TPM៖ {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "គ្មាន TPM សកម្ម។ ការប្រើប្រាស់ឃ្លាំងសម្ងាត់ព័ត៌មានផ្អែកលើកម្មវិធី..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"ការដោះសោសោរ/KWalletបានបើកដំណើរការដោយជោគជ័យសម្រាប់អ្នកប្រើប្រាស់ {} (កម្មវិធីឃ្លាំងសម្ងាត់ "
+"កាបូប៖ {})។"
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "បរាជ័យក្នុងការបើកការដោះសោសោរ៖ {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "បរាជ័យក្នុងការបិទការដោះសោសោរ៖ {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "ការដោះសោសោរ/KWalletត្រូវបានបិទសម្រាប់អ្នកប្រើប្រាស់ {}។"
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "ការដោះសោសោរ/KWallet មិនត្រូវបានបើកសម្រាប់អ្នកប្រើប្រាស់ {} ទេ។"
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "សកម្មភាពមិនត្រឹមត្រូវ។ ប្រើ 'បើក' ឬ 'បិទ' ។"
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "ម៉ូដែលមុខមិនទាន់ត្រូវបានចាប់ផ្តើមនៅឡើយទេ សូមដំណើរការ៖"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "គ្មានគំរូមុខដែលគេស្គាល់សម្រាប់អ្នកប្រើប្រាស់ {} សូមដំណើរការ៖"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "ម៉ូដែលមុខដែលគេស្គាល់សម្រាប់ {}៖"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ស្លាកកាលបរិច្ឆេទលេខសម្គាល់ [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "សូមបន្ថែមលេខសម្គាល់គំរូដែលអ្នកចង់ដកចេញជាអាគុយម៉ង់"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "ឧទាហរណ៍៖"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "អ្នកអាចស្វែងរកលេខសម្គាល់ដោយដំណើរការ៖"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "វា​នឹង​លុប​ម៉ូដែល​ដែល​ហៅ​ថា \"{label}\" សម្រាប់ {user}"
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "មិនមានម៉ូដែលដែលមានលេខសម្គាល់ {id} សម្រាប់ {user}"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "បានលុបម៉ូដែលចុងក្រោយ ubuntu-hello ត្រូវបានបិទសម្រាប់អ្នកប្រើប្រាស់"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "ម៉ូដែលដែលបានដកចេញ {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "សូមបន្ថែមការកំណត់ដែលអ្នកចង់ផ្លាស់ប្តូរ និងតម្លៃដែលត្រូវកំណត់វា។"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "មិនអាចរកឃើញជម្រើសកំណត់រចនាសម្ព័ន្ធ \"{}\" ដើម្បីកំណត់"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "បានធ្វើបច្ចុប្បន្នភាពជម្រើសកំណត់រចនាសម្ព័ន្ធ"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "បង្កើត​រូប​ថត"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "ការកំណត់កម្រិតងងឹត៖"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "ការកំណត់រចនាសម្ព័ន្ធជាក់លាក់៖"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "រូបថតដែលបានបង្កើតត្រូវបានរក្សាទុកជា"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello ត្រូវ​បាន​កំណត់​រចនាសម្ព័ន្ធ​ដើម្បី​ប្រើ​ឧបករណ៍​ថត​សំឡេង​ដែល​មិន​គាំទ្រ​ពាក្យ​បញ្ជា​សាកល្បង​នៅ​ឡើយ​"
+"ទេ ដោយ​បោះបង់"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"ការបើកបង្អួចជាមួយមតិព័ត៌មានសាកល្បង\n"
+"\n"
+"ចុច ctrl + C នៅក្នុងស្ថានីយនេះដើម្បីបិទ\n"
+"ចុចលើរូបភាពដើម្បីបើក ឬបិទមុខងារយឺត\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "ដំណោះស្រាយ៖ %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS៖ %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "ស៊ុម៖ %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "ការទទួលស្គាល់៖ %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "របៀបយឺត"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "ស៊ុមងងឹត"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ស្កេនស៊ុម"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"បង្អួចបិទ"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "កំហុសក្នុងការញែកច្បាប់ត្រាកៅស៊ូ៖ {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "មិនបានដំឡើងត្រា៖ {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "កំហុសត្រា៖ រកមិនឃើញថ្នាក់ {}"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "កំហុសខាងក្នុងក្នុងការប្រកាសការកំណត់រចនាសម្ព័ន្ធត្រាកៅស៊ូ៖"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "កំហុសខាងក្នុងនៅក្នុងត្រាកៅស៊ូ៖"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "ការបោះបង់ការអនុញ្ញាតក្នុង {}"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "ផ្តល់សិទ្ធិក្នុង {}"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "ចុច {abort_key} ដើម្បីបោះបង់, {confirm_key} ដើម្បីអនុញ្ញាត"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "ការផ្ទៀងផ្ទាត់ត្រូវបានបោះបង់"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "ងក់ក្បាលដើម្បីបញ្ជាក់"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "អ្រងួនក្បាលរបស់អ្នកដើម្បីរំលូតកូន"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "បាន​បញ្ជាក់​ការ​ផ្ទៀងផ្ទាត់"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "បានបោះបង់ការផ្ទៀងផ្ទាត់"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "បាត់ម៉ូឌុល ffmpeg សូមដំណើរការ៖"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "បាត់ម៉ូឌុល pyv4l2 សូមដំណើរការ៖"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello មិនអាចស្វែងរកឧបករណ៍កាមេរ៉ានៅផ្លូវដែលបានបញ្ជាក់នៅក្នុងឯកសារកំណត់រចនាសម្ព័ន្ធទេ។"
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"វាទំនងណាស់ដែលផ្លូវមិនត្រូវបានកំណត់ត្រឹមត្រូវទេ សូមកែសម្រួលតម្លៃកំណត់ 'device_path' ដោយដំណើរការ៖"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"បានបរាជ័យក្នុងការអានកាមេរ៉ាដែលបានបញ្ជាក់នៅក្នុងជម្រើសកំណត់រចនាសម្ព័ន្ធ 'device_path' "
+"ដោយបោះបង់"

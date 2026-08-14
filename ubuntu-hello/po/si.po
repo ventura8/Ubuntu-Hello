@@ -1,0 +1,710 @@
+# ubuntu-hello translation for si.
+# Copyright (C) Ubuntu Hello contributors
+# This file is distributed under the same license as the ubuntu-hello package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
+"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"PO-Revision-Date: 2026-08-12 03:20+0300\n"
+"Last-Translator: Ubuntu Hello contributors\n"
+"Language-Team: Ubuntu Hello\n"
+"Language: si\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/pam/main.cc:107
+msgid "Failure, timeout reached"
+msgstr "අසමත් වීම, කල් ඉකුත්වීම ළඟා විය"
+
+#: src/pam/main.cc:114
+msgid "Face detection image too dark"
+msgstr "මුහුණු හඳුනාගැනීමේ රූපය අඳුරු වැඩියි"
+
+#: src/pam/main.cc:123
+msgid "Unknown error: "
+msgstr "නොදන්නා දෝෂය:"
+
+#: src/pam/main.cc:159
+#, c-format
+msgid "Identified face as %s"
+msgstr "%s ලෙස හඳුනාගත් මුහුණ"
+
+#: src/pam/main.cc:390
+msgid ""
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
+msgstr "Enter ඔබන්න යැවීමට ප්‍රමාණවත් අවසර නැත, ඒ වෙනුවට පරිශීලකයා එය එබීමට බලා සිටී"
+
+#: src/pam/main.cc:409 src/pam/main.cc:414
+msgid "Failed to send Enter press, waiting for user to press it instead"
+msgstr "Enter ඔබන්න යැවීමට අසමත් විය, ඒ වෙනුවට පරිශීලකයා එය එබීමට බලා සිටීම"
+
+#: src/pam/main.cc:528
+msgid "Attempting facial authentication"
+msgstr "මුහුණේ සත්‍යාපනය කිරීමට උත්සාහ කිරීම"
+
+#: src/cli.py:26
+msgid "Could not determine user, please use the --user flag"
+msgstr "පරිශීලක නිර්ණය කළ නොහැකි විය, කරුණාකර --user ධජය භාවිතා කරන්න"
+
+#: src/cli.py:31
+msgid "Command line interface for Ubuntu Hello face authentication."
+msgstr "Ubuntu Hello මුහුණු සත්‍යාපනය සඳහා විධාන රේඛා අතුරුමුහුණත."
+
+#: src/cli.py:35
+msgid "command"
+msgstr "විධානය"
+
+#: src/cli.py:35
+msgid "arguments"
+msgstr "තර්ක"
+
+#: src/cli.py:36
+msgid ""
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
+msgstr ""
+"සහාය සඳහා කරුණාකර පිවිසෙන්න\n"
+"https://github.com/ventura8/ubuntu-hello"
+
+#: src/cli.py:41
+msgid ""
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
+msgstr ""
+"ක්‍රියාත්මක කිරීමට ඇති විධාන විකල්පය, පහත ඒවායින් එකක් විය හැක: එකතු කිරීම, පැහැදිලි කිරීම, වින්‍යාස "
+"කිරීම, අක්‍රිය කිරීම, යතුරු කිරීම, ලැයිස්තුව, ඉවත් කිරීම, ස්නැප්ෂොට්, සැකසීම, පරීක්ෂා කිරීම හෝ අනුවාදය."
+
+#: src/cli.py:48
+msgid "Optional arguments for the add, disable, remove and set commands."
+msgstr "විධාන එකතු කිරීම, අබල කිරීම, ඉවත් කිරීම සහ සැකසීම සඳහා විකල්ප තර්ක."
+
+#: src/cli.py:55
+msgid "Set the user account to use."
+msgstr "භාවිතා කිරීමට පරිශීලක ගිණුම සකසන්න."
+
+#: src/cli.py:60
+msgid "Skip all questions."
+msgstr "සියලුම ප්‍රශ්න මඟ හරින්න."
+
+#: src/cli.py:66
+msgid "Print machine-friendly output."
+msgstr "මුද්‍රණ යන්ත්‍ර-හිතකාමී ප්‍රතිදානය."
+
+#: src/cli.py:74
+msgid "Show this help message and exit."
+msgstr "මෙම උපකාරක පණිවිඩය පෙන්වා පිටවන්න."
+
+#: src/cli.py:78
+msgid "current active user: "
+msgstr "වත්මන් ක්රියාකාරී පරිශීලක:"
+
+#: src/cli.py:88
+msgid "Invalid username format"
+msgstr "වලංගු නොවන පරිශීලක නාම ආකෘතිය"
+
+#: src/cli.py:98
+msgid "Please run this command as root:\n"
+msgstr "කරුණාකර මෙම විධානය root ලෙස ක්‍රියාත්මක කරන්න:\n"
+
+#: src/cli.py:104
+msgid ""
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr ""
+"ubuntu-hello විධාන root ලෙස ක්‍රියාත්මක කළ නොහැක, කරුණාකර මෙම විධානය --user ධජය සමඟ "
+"ක්‍රියාත්මක කරන්න"
+
+#: src/compare.py:88 src/cli/add.py:32
+msgid "Data files have not been downloaded, please run the following commands:"
+msgstr "දත්ත ගොනු බාගත කර නොමැත, කරුණාකර පහත විධානයන් ක්‍රියාත්මක කරන්න:"
+
+#: src/compare.py:112
+msgid " LOGIN"
+msgstr "ඇතුල් වන්න"
+
+#: src/compare.py:113 src/cli/snap.py:44
+msgid "Date: "
+msgstr "දිනය:"
+
+#: src/compare.py:114
+msgid "Scan time: "
+msgstr "ස්කෑන් වේලාව:"
+
+#: src/compare.py:115
+msgid "Frames: "
+msgstr "රාමු:"
+
+#: src/compare.py:116
+msgid "Hostname: "
+msgstr "සත්කාරක නාමය:"
+
+#: src/compare.py:117
+msgid "Best certainty value: "
+msgstr "හොඳම නිශ්චිත අගය:"
+
+#: src/compare.py:214
+msgid "Starting up..."
+msgstr "ආරම්භ කරමින්..."
+
+#: src/compare.py:262
+msgid "Identifying you..."
+msgstr "ඔබව හඳුනා ගනිමින්..."
+
+#: src/compare.py:285
+msgid "FAILED"
+msgstr "අසාර්ථකයි"
+
+#: src/compare.py:288 src/cli/add.py:184
+msgid "All frames were too dark, please check dark_threshold in config"
+msgstr "සියලුම රාමු අඳුරු වැඩියි, කරුණාකර වින්‍යාසය තුළ අඳුරු_ඉතිහාසය පරීක්ෂා කරන්න"
+
+#: src/compare.py:289 src/cli/add.py:185
+#, python-brace-format
+msgid "Average darkness: {avg}, Threshold: {threshold}"
+msgstr "සාමාන්‍ය අන්ධකාරය: {avg}, සීමාව: {threshold}"
+
+#: src/compare.py:386
+msgid "Time spent"
+msgstr "ගත කළ කාලය"
+
+#: src/compare.py:387
+msgid "Starting up"
+msgstr "ආරම්භ කිරීම"
+
+#: src/compare.py:388
+#, python-format
+msgid "  Open cam + load libs: %dms"
+msgstr "විවෘත cam + load libs: %dms"
+
+#: src/compare.py:389
+msgid "  Opening the camera"
+msgstr "කැමරාව විවෘත කිරීම"
+
+#: src/compare.py:390
+msgid "  Importing recognition libs"
+msgstr "පිළිගැනීමේ ලිබ් ආනයනය කිරීම"
+
+#: src/compare.py:391
+msgid "Searching for known face"
+msgstr "දන්නා මුහුණ සොයමින්"
+
+#: src/compare.py:392
+msgid "Total time"
+msgstr "මුළු කාලය"
+
+#: src/compare.py:394
+msgid ""
+"\n"
+"Resolution"
+msgstr ""
+"\n"
+"විභේදනය"
+
+#: src/compare.py:396
+#, python-format
+msgid "  Native: %dx%d"
+msgstr "නිජබිම: %dx%d"
+
+#: src/compare.py:399
+#, python-format
+msgid "  Used: %dx%d"
+msgstr "භාවිත: %dx%d"
+
+#: src/compare.py:402
+#, python-format
+msgid ""
+"\n"
+"Frames searched: %d (%.2f fps)"
+msgstr ""
+"\n"
+"සෙවූ රාමු: %d (%.2f fps)"
+
+#: src/compare.py:403
+#, python-format
+msgid "Black frames ignored: %d "
+msgstr "කළු රාමු නොසලකා හැර ඇත: %d"
+
+#: src/compare.py:404
+#, python-format
+msgid "Dark frames ignored: %d "
+msgstr "අඳුරු රාමු නොසලකා හරින ලදී: %d"
+
+#: src/compare.py:405
+#, python-format
+msgid "Certainty of winning frame: %.3f"
+msgstr "ජයග්‍රාහී රාමුවේ නිශ්චිතභාවය: %.3f"
+
+#: src/compare.py:407
+#, python-format
+msgid "Winning model: %d (\"%s\")"
+msgstr "ජයග්‍රාහී ආකෘතිය: %d (\"%s\")"
+
+#: src/compare.py:411
+msgid "SUCCESSFUL"
+msgstr "සාර්ථකයි"
+
+#: src/wallet_backend.py:62 src/wallet_backend.py:72
+msgid "KWallet"
+msgstr "KWallet"
+
+#: src/wallet_backend.py:64
+msgid "GNOME Keyring"
+msgstr "GNOME Keyring"
+
+#: src/wallet_backend.py:65
+msgid "None"
+msgstr "None"
+
+#: src/wallet_backend.py:74
+msgid "login keyring"
+msgstr "පිවිසුම් යතුරුකරණය"
+
+#: src/wallet_backend.py:75
+msgid "login keyring or KWallet"
+msgstr "පිවිසුම් යතුරුකරණය හෝ KWallet"
+
+#: src/cli/add.py:23
+msgid ""
+"\n"
+"Can't import the dlib module, check the output of"
+msgstr ""
+"\n"
+"dlib මොඩියුලය ආයාත කළ නොහැක, ප්‍රතිදානය පරීක්ෂා කරන්න"
+
+#: src/cli/add.py:58
+msgid "No face model folder found, creating one"
+msgstr "මුහුණු ආකෘති ෆෝල්ඩරයක් හමු නොවීය, එකක් සාදයි"
+
+#: src/cli/add.py:69
+msgid ""
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "දැනුම්දීම: සෑම අමතර මාදිලියක්ම මුහුණු හඳුනාගැනීමේ එන්ජිම තරමක් මන්දගාමී කරයි"
+
+#: src/cli/add.py:70
+msgid "Press Ctrl+C to cancel\n"
+msgstr "අවලංගු කිරීමට Ctrl+C ඔබන්න\n"
+
+#: src/cli/add.py:74
+msgid "Adding face model for the user "
+msgstr "පරිශීලකයා සඳහා මුහුණු ආකෘතිය එක් කිරීම"
+
+#: src/cli/add.py:88
+msgid "Model #"
+msgstr "මාදිලිය #"
+
+#: src/cli/add.py:92
+#, python-format
+msgid "Using default label \"%s\" because of -y flag"
+msgstr "-y ධජය නිසා \"%s\" පෙරනිමි ලේබලය භාවිතා කිරීම"
+
+#: src/cli/add.py:95
+msgid "Enter a label for this new model [{}]: "
+msgstr "මෙම නව මාදිලිය සඳහා ලේබලයක් ඇතුළු කරන්න [{}]:"
+
+#: src/cli/add.py:103
+msgid "NOTICE: Removing illegal character \",\" from model name"
+msgstr "දැනුම්දීම: ආකෘති නාමයෙන් නීති විරෝධී අක්ෂර \",\" ඉවත් කිරීම"
+
+#: src/cli/add.py:117
+msgid ""
+"\n"
+"Please look straight into the camera"
+msgstr ""
+"\n"
+"කරුණාකර කෙලින්ම කැමරාව දෙස බලන්න"
+
+#: src/cli/add.py:182
+msgid "Camera saw only black frames - is IR emitter working?"
+msgstr "කැමරාව දුටුවේ කළු රාමු පමණි - IR විමෝචකය ක්‍රියා කරයිද?"
+
+#: src/cli/add.py:187
+msgid "No face detected, aborting"
+msgstr "මුහුණක් අනාවරණය වී නැත, ගබ්සා කිරීම"
+
+#: src/cli/add.py:192
+msgid "Multiple faces detected, aborting"
+msgstr "බහු මුහුණු අනාවරණය කර ගැනීම, ගබ්සා කිරීම"
+
+#: src/cli/add.py:214
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"ස්කෑන් කිරීම සම්පූර්ණයි\n"
+"නව මාදිලියක් එකතු කරන ලදී"
+
+#: src/cli/clear.py:16
+msgid "No models created yet, can't clear them if they don't exist"
+msgstr "තවමත් ආකෘති නිර්මාණය කර නැත, ඒවා නොමැති නම් ඒවා ඉවත් කළ නොහැක"
+
+#: src/cli/clear.py:21
+msgid "{} has no models or they have been cleared already"
+msgstr "{} හි ආකෘති නොමැත, නැතහොත් ඒවා දැනටමත් හිස් කර ඇත"
+
+#: src/cli/clear.py:27
+msgid "This will clear all models for "
+msgstr "මෙය සඳහා සියලුම මාදිලි ඉවත් කරනු ඇත"
+
+#: src/cli/clear.py:28 src/cli/remove.py:53
+msgid "Do you want to continue [y/N]: "
+msgstr "ඔබට ඉදිරියට යාමට අවශ්‍යද [y/N]:"
+
+#: src/cli/clear.py:32 src/cli/remove.py:57
+msgid ""
+"\n"
+"Interpreting as a \"NO\", aborting"
+msgstr ""
+"\n"
+"\"නැහැ\" ලෙස අර්ථ දැක්වීම, ගබ්සා කිරීම"
+
+#: src/cli/clear.py:37
+msgid ""
+"\n"
+"Models cleared"
+msgstr ""
+"\n"
+"ආකෘති නිෂ්කාශනය කරන ලදී"
+
+#: src/cli/config.py:32
+#, python-brace-format
+msgid "Opening config.ini in {editor}"
+msgstr "config.ini {editor} හි විවෘත කිරීම"
+
+#: src/cli/config.py:38
+#, python-brace-format
+msgid "Failed to open editor: {error}"
+msgstr "සංස්කාරකය විවෘත කිරීමට අසමත් විය: {error}"
+
+#: src/cli/config.py:40
+msgid "Error: Could not find a suitable text editor."
+msgstr "දෝෂය: සුදුසු පෙළ සංස්කාරකයක් සොයා ගැනීමට නොහැකි විය."
+
+#: src/cli/config.py:41
+msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
+msgstr "කරුණාකර 'nano' හෝ 'vi' ස්ථාපනය කරන්න, නැතහොත් EDITOR පරිසර විචල්‍යය සකසන්න."
+
+#: src/cli/config.py:42
+msgid ""
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
+msgstr ""
+"ඔබ මෙම විධානය sudo සමඟ ක්‍රියාත්මක කරන්නේ නම්, ඔබේ EDITOR විචල්‍යය සුරැකීමට 'sudo -E "
+"ubuntu-hello config' උත්සාහ කරන්න."
+
+#: src/cli/disable.py:22
+msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
+msgstr "කරුණාකර තර්කයක් ලෙස 0 (සක්‍රීය) හෝ 1 (අක්‍රිය) එක් කරන්න"
+
+#: src/cli/disable.py:35
+msgid "Please only use 0 (enable) or 1 (disable) as an argument"
+msgstr "කරුණාකර තර්කයක් ලෙස 0 (සක්‍රීය කරන්න) හෝ 1 (අක්‍රිය කරන්න) පමණක් භාවිතා කරන්න"
+
+#: src/cli/disable.py:40
+msgid "The disable option has already been set to "
+msgstr "අබල කිරීමේ විකල්පය දැනටමත් සකසා ඇත"
+
+#: src/cli/disable.py:49
+msgid "Ubuntu Hello has been disabled"
+msgstr "Ubuntu Hello අබල කර ඇත"
+
+#: src/cli/disable.py:51
+msgid "Ubuntu Hello has been enabled"
+msgstr "Ubuntu Hello සබල කර ඇත"
+
+#: src/cli/keyring.py:31
+msgid "Usage: keyring [enable|disable]"
+msgstr "භාවිතය: යතුරු කිරීම [සක්රිය|අක්රිය]"
+
+#: src/cli/keyring.py:48
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) අගුළු ඇරීමට පරිශීලක {} සඳහා මුරපදය ඇතුළත් කරන්න:"
+
+#: src/cli/keyring.py:50
+msgid "Password cannot be empty"
+msgstr "මුරපදය හිස් විය නොහැක"
+
+#: src/cli/keyring.py:53
+msgid "Confirm password: "
+msgstr "මුරපදය තහවුරු කරන්න:"
+
+#: src/cli/keyring.py:55
+msgid "Passwords do not match"
+msgstr "මුරපද නොගැලපේ"
+
+#: src/cli/keyring.py:64
+msgid "TPM hardware detected. Auto-installing tpm2-tools..."
+msgstr "TPM දෘඪාංග අනාවරණය විය. ස්වයංක්‍රීයව ස්ථාපනය කරමින් tpm2-tools..."
+
+#: src/cli/keyring.py:73
+msgid "TPM hardware active. Sealing password in TPM..."
+msgstr "TPM දෘඩාංග සක්‍රීයයි. TPM හි මුරපදය මුද්‍රා තැබීම..."
+
+#: src/cli/keyring.py:99
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
+msgstr ""
+"TPM (පසුම්බිය: {}) භාවිතයෙන් {} පරිශීලකයා සඳහා Keyring/KWallet unlocking සාර්ථකව සබල "
+"කර ඇත."
+
+#: src/cli/keyring.py:101
+msgid "Failed to seal password to TPM: {}"
+msgstr "TPM වෙත මුරපදය මුද්‍රා තැබීම අසාර්ථක විය: {}"
+
+#: src/cli/keyring.py:105
+msgid "No TPM active. Using software-based credential caching..."
+msgstr "TPM සක්‍රිය නැත. මෘදුකාංග පදනම් වූ අක්තපත්‍ර හැඹිලි භාවිතා කරමින්..."
+
+#: src/cli/keyring.py:121
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
+msgstr ""
+"{} (මෘදුකාංග හැඹිලිය, මුදල් පසුම්බිය: {}) සඳහා යතුරුකරණය/KWallet අගුලු හැරීම සාර්ථකව සක්‍රීය "
+"කර ඇත."
+
+#: src/cli/keyring.py:123
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "යතුරු අගුළු ඇරීම සබල කිරීමට අසමත් විය: {}"
+
+#: src/cli/keyring.py:134
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "යතුරු අගුළු ඇරීම අබල කිරීමට අසමත් විය: {}"
+
+#: src/cli/keyring.py:137
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "පරිශීලක {} සඳහා යතුරුකරණය/KWallet අගුලු හැරීම අබල කර ඇත."
+
+#: src/cli/keyring.py:139
+msgid "Keyring/KWallet unlocking was not enabled for user {}."
+msgstr "පරිශීලක {} සඳහා Keyring/KWallet unlocking සබල කර නැත."
+
+#: src/cli/keyring.py:142
+msgid "Invalid action. Use 'enable' or 'disable'."
+msgstr "වලංගු නොවන ක්‍රියාවක්. 'Enable' හෝ 'Disable' භාවිතා කරන්න."
+
+#: src/cli/list.py:17 src/cli/remove.py:25
+msgid "Face models have not been initialized yet, please run:"
+msgstr "මුහුණු ආකෘති තවම ආරම්භ කර නැත, කරුණාකර ධාවනය කරන්න:"
+
+#: src/cli/list.py:29 src/cli/remove.py:36
+msgid "No face model known for the user {}, please run:"
+msgstr "පරිශීලක {} සඳහා දන්නා මුහුණු ආකෘතියක් නැත, කරුණාකර ධාවනය කරන්න:"
+
+#: src/cli/list.py:35
+msgid "Known face models for {}:"
+msgstr "{} සඳහා දන්නා මුහුණු ආකෘති:"
+
+#: src/cli/list.py:36
+msgid "ID  Date                 Label[0m"
+msgstr "ID දින ලේබලය [0m"
+
+#: src/cli/remove.py:16
+msgid "Please add the ID of the model you want to remove as an argument"
+msgstr "කරුණාකර ඔබට ඉවත් කිරීමට අවශ්‍ය ආකෘතියේ ID තර්කයක් ලෙස එක් කරන්න"
+
+#: src/cli/remove.py:17 src/cli/set.py:18
+msgid "For example:"
+msgstr "උදාහරණ වශයෙන්:"
+
+#: src/cli/remove.py:19
+msgid "You can find the IDs by running:"
+msgstr "ධාවනය කිරීමෙන් ඔබට ID සොයා ගත හැක:"
+
+#: src/cli/remove.py:52
+#, python-brace-format
+msgid "This will remove the model called \"{label}\" for {user}"
+msgstr "මෙය {user} සඳහා \"{label}\" නම් ආකෘතිය ඉවත් කරයි."
+
+#: src/cli/remove.py:69
+#, python-brace-format
+msgid "No model with ID {id} exists for {user}"
+msgstr "{user} සඳහා ID {id} සහිත ආකෘතියක් නොමැත"
+
+#: src/cli/remove.py:75
+msgid "Removed last model, ubuntu-hello disabled for user"
+msgstr "අවසාන මාදිලිය ඉවත් කරන ලදී, පරිශීලකයා සඳහා ubuntu-hello අක්‍රිය කර ඇත"
+
+#: src/cli/remove.py:89
+msgid "Removed model {}"
+msgstr "ඉවත් කළ ආකෘතිය {}"
+
+#: src/cli/set.py:17
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr "කරුණාකර ඔබ වෙනස් කිරීමට කැමති සැකසීමක් සහ එය සැකසීමට අගය එක් කරන්න"
+
+#: src/cli/set.py:37
+msgid "Could not find a \"{}\" config option to set"
+msgstr "සැකසීමට \"{}\" වින්‍යාස විකල්පයක් සොයා ගැනීමට නොහැකි විය"
+
+#: src/cli/set.py:44
+msgid "Config option updated"
+msgstr "වින්‍යාස විකල්පය යාවත්කාලීන කරන ලදී"
+
+#: src/cli/snap.py:43
+msgid "GENERATED SNAPSHOT"
+msgstr "ජනනය කරන ලද ස්නැප්ෂොට්"
+
+#: src/cli/snap.py:45
+msgid "Dark threshold config: "
+msgstr "අඳුරු එළිපත්ත වින්‍යාසය:"
+
+#: src/cli/snap.py:46
+msgid "Certainty config: "
+msgstr "නිශ්චිත වින්‍යාසය:"
+
+#: src/cli/snap.py:50
+msgid "Generated snapshot saved as"
+msgstr "ජනනය කරන ලද ස්නැප්ෂොට් ලෙස සුරකින ලදී"
+
+#: src/cli/test.py:23
+msgid ""
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
+msgstr ""
+"Ubuntu Hello ගබ්සා කරමින් පරීක්ෂණ විධානයට තවමත් සහය නොදක්වන රෙකෝඩරයක් භාවිතා කිරීමට "
+"වින්‍යාස කර ඇත"
+
+#: src/cli/test.py:34
+msgid ""
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
+msgstr ""
+"\n"
+"පරීක්ෂණ සංග්‍රහයක් සහිත කවුළුවක් විවෘත කිරීම\n"
+"\n"
+"ඉවත් වීමට මෙම ටර්මිනලයේ ctrl+C ඔබන්න\n"
+"මන්දගාමී මාදිලිය සක්රිය හෝ අක්රිය කිරීමට රූපය මත ක්ලික් කරන්න\n"
+
+#: src/cli/test.py:148
+#, python-format
+msgid "RESOLUTION: %dx%d"
+msgstr "විභේදනය: %dx%d"
+
+#: src/cli/test.py:149
+#, python-format
+msgid "FPS: %d"
+msgstr "FPS: %d"
+
+#: src/cli/test.py:150
+#, python-format
+msgid "FRAMES: %d"
+msgstr "රාමු: %d"
+
+#: src/cli/test.py:151
+#, python-format
+msgid "RECOGNITION: %dms"
+msgstr "හඳුනාගැනීම: %dms"
+
+#: src/cli/test.py:155
+msgid "SLOW MODE"
+msgstr "මන්දගාමී මාදිලිය"
+
+#: src/cli/test.py:160
+msgid "DARK FRAME"
+msgstr "අඳුරු රාමුව"
+
+#: src/cli/test.py:163
+msgid "SCAN FRAME"
+msgstr "ස්කෑන් රාමුව"
+
+#: src/cli/test.py:247
+msgid ""
+"\n"
+"Closing window"
+msgstr ""
+"\n"
+"කවුළුව වැසීම"
+
+#: src/rubberstamps/__init__.py:80
+msgid "Error parsing rubberstamp rule: {}"
+msgstr "රබර් මුද්දර රීතිය විග්‍රහ කිරීමේ දෝෂයකි: {}"
+
+#: src/rubberstamps/__init__.py:87
+msgid "Stamp not installed: {}"
+msgstr "මුද්දරය ස්ථාපනය කර නැත: {}"
+
+#: src/rubberstamps/__init__.py:97
+msgid "Stamp error: Class {} not found"
+msgstr "මුද්දර දෝෂය: පන්තිය {} සොයාගත නොහැකි විය"
+
+#: src/rubberstamps/__init__.py:123
+msgid "Internal error in rubberstamp configuration declaration:"
+msgstr "රබර් මුද්දර වින්‍යාස ප්‍රකාශනයේ අභ්‍යන්තර දෝෂය:"
+
+#: src/rubberstamps/__init__.py:162
+msgid "Internal error in rubberstamp:"
+msgstr "රබර් මුද්‍රාවේ අභ්‍යන්තර දෝෂය:"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Aborting authorisation in {}"
+msgstr "{} හි අවසරය අත්හිටුවීම"
+
+#: src/rubberstamps/hotkey.py:21
+msgid "Authorising in {}"
+msgstr "{} හි අවසර දීම"
+
+#: src/rubberstamps/hotkey.py:25
+#, python-brace-format
+msgid "Press {abort_key} to abort, {confirm_key} to authorise"
+msgstr "ගබ්සා කිරීමට {abort_key}, අවසර දීමට {confirm_key} ඔබන්න"
+
+#: src/rubberstamps/hotkey.py:50
+msgid "Authentication aborted"
+msgstr "සත්‍යාපනය අත්හිටුවා ඇත"
+
+#: src/rubberstamps/nod.py:17
+msgid "Nod to confirm"
+msgstr "තහවුරු කිරීමට හිස නමන්න"
+
+#: src/rubberstamps/nod.py:18
+msgid "Shake your head to abort"
+msgstr "ගබ්සා කිරීමට ඔබේ හිස සොලවන්න"
+
+#: src/rubberstamps/nod.py:81
+msgid "Confirmed authentication"
+msgstr "තහවුරු කළ සත්‍යාපනය"
+
+#: src/rubberstamps/nod.py:84
+msgid "Aborted authentication"
+msgstr "අත්හළ සත්‍යාපනය"
+
+#: src/recorders/ffmpeg_reader.py:16
+msgid "Missing ffmpeg module, please run:"
+msgstr "ffmpeg මොඩියුලය අස්ථානගත වී ඇත, කරුණාකර ධාවනය කරන්න:"
+
+#: src/recorders/pyv4l2_reader.py:15
+msgid "Missing pyv4l2 module, please run:"
+msgstr "pyv4l2 මොඩියුලය අස්ථානගත වී ඇත, කරුණාකර ධාවනය කරන්න:"
+
+#: src/recorders/video_capture.py:37
+msgid ""
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello හට වින්‍යාස ගොනුවේ දක්වා ඇති මාර්ගයෙහි කැමරා උපාංගයක් සොයා ගැනීමට නොහැකි "
+"විය."
+
+#: src/recorders/video_capture.py:38
+msgid ""
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
+msgstr ""
+"මාර්ගය නිවැරදිව වින්‍යාස කර නොමැති බව බොහෝ දුරට ඉඩ ඇත, කරුණාකර ධාවනය කිරීමෙන් "
+"'device_path' වින්‍යාස අගය සංස්කරණය කරන්න:"
+
+#: src/recorders/video_capture.py:85
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"'device_path' වින්‍යාස විකල්පයේ සඳහන් කර ඇති කැමරාව කියවීමට අපොහොසත් විය, ගබ්සා කරමින්"
