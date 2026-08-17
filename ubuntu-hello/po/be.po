@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,25 +28,24 @@ msgid "Unknown error: "
 msgstr "Невядомая памылка:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Твар пазначаны як %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Недастатковыя дазволы для адпраўкі клавішы Enter, чаканне, пакуль "
-"карыстальнік націсне яе замест гэтага"
+"Недастатковыя дазволы для адпраўкі клавішы Enter, чаканне, пакуль кары"
+"стальнік націсне яе замест гэтага"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Не ўдалося адправіць націск Enter, чакаецца, пакуль карыстальнік націсне яго "
-"замест гэтага"
+"Не ўдалося адправіць націск Enter, чакаецца, пакуль карыстальнік націс"
+"не яго замест гэтага"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Спроба аўтэнтыфікацыі па твары"
 
@@ -68,25 +67,26 @@ msgstr "аргументы"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Каб атрымаць падтрымку, наведайце\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Каб атрымаць падтрымку, наведайце\nhttps://github.com/ventura8/ubuntu-"
+"hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"Параметр каманды для выканання можа быць адным з наступнага: дадаць, "
-"ачысціць, канфігураваць, адключыць, звязак ключоў, спіс, выдаліць, здымак, "
-"усталяваць, праверыць ці версію."
+"Параметр каманды для выканання можа быць адным з наступнага: дадаць, а"
+"чысціць, канфігураваць, адключыць, звязак ключоў, спіс, выдаліць, здым"
+"ак, усталяваць, праверыць ці версію."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"Неабавязковыя аргументы для каманд дадаць, адключыць, выдаліць і ўсталяваць."
+"Неабавязковыя аргументы для каманд дадаць, адключыць, выдаліць і ўстал"
+"яваць."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -113,143 +113,132 @@ msgid "Invalid username format"
 msgstr "Няправільны фармат імя карыстальніка"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Калі ласка, запусціце гэтую каманду ад імя root:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Калі ласка, запусціце гэтую каманду ад імя root:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Немагчыма выканаць каманды ubuntu-hello ад імя root, запусціце гэту каманду "
-"са сцягам --user"
+"Немагчыма выканаць каманды ubuntu-hello ад імя root, запусціце гэту ка"
+"манду са сцягам --user"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Файлы з дадзенымі не былі спампаваны, выканайце наступныя каманды:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "УВАХОД"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Дата:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Час сканавання:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "кадры:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Імя вузла:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Найлепшае значэнне пэўнасці:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Запуск..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Ідэнтыфікацыя вас..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "НЯВАЛІЧНА"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Усе кадры былі занадта цёмнымі, праверце dark_threshold у канфігурацыі"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Сярэдняя цемра: {avg}, Парог: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Вытрачаны час"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Запуск"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Адкрыць камеру + загрузіць бібліятэкі: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Адкрыццё камеры"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Імпарт распазнавання бібліятэк"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Пошук вядомага твару"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Агульны час"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"дазвол"
+"\nдазвол"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Родны: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Выкарыстоўваецца: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Пошук кадраў: %d (%.2f кадраў у секунду)"
+"\nПошук кадраў: %d (%.2f кадраў у секунду)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Чорныя рамкі ігнаруюцца: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Цёмныя рамкі ігнаруюцца: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Пэўнасць выйгрышнага кадра: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Мадэль-пераможца: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "ПАСПЯХОВЫ"
 
@@ -275,11 +264,9 @@ msgstr "бірулька для ўваходу або KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Немагчыма імпартаваць модуль dlib, праверце вывад"
+"\nНемагчыма імпартаваць модуль dlib, праверце вывад"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -287,13 +274,17 @@ msgstr "Стварэнне папкі з мадэллю твару не зной
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"УВАГА: кожная дадатковая мадэль трохі запавольвае механізм распазнання твараў"
+"УВАГА: кожная дадатковая мадэль трохі запавольвае механізм распазнання"
+" твараў"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Каб адмяніць, націсніце Ctrl+C\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Каб адмяніць, націсніце Ctrl+C\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -304,7 +295,6 @@ msgid "Model #"
 msgstr "мадэль #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Выкарыстанне цэтліка па змаўчанні \"%s\" з-за сцяга -y"
 
@@ -318,11 +308,9 @@ msgstr "УВАГА: Выдаленне недапушчальнага сімва
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Калі ласка, глядзіце прама ў камеру"
+"\nКалі ласка, глядзіце прама ў камеру"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -338,13 +326,9 @@ msgstr "Выяўлена некалькі твараў, спыненне"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Сканаванне завершана\n"
-"Дададзена новая мадэль"
+"\nСканаванне завершана\nДададзена новая мадэль"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -364,27 +348,21 @@ msgstr "Вы хочаце працягнуць [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Інтэрпрэтацыя як \"НЕ\", перапыненне"
+"\nІнтэрпрэтацыя як \"НЕ\", перапыненне"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Мадэлі ачышчаны"
+"\nМадэлі ачышчаны"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Адкрыццё config.ini ў {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Не ўдалося адкрыць рэдактар: {error}"
 
@@ -395,15 +373,16 @@ msgstr "Памылка: не ўдалося знайсці прыдатны тэ
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"Калі ласка, усталюйце 'nano' або 'vi' або задайце зменную асяроддзя EDITOR."
+"Калі ласка, усталюйце 'nano' або 'vi' або задайце зменную асяроддзя ED"
+"ITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Калі вы запускаеце гэтую каманду з sudo, паспрабуйце 'sudo -E ubuntu-hello "
-"config', каб захаваць вашу зменную EDITOR."
+"Калі вы запускаеце гэтую каманду з sudo, паспрабуйце 'sudo -E ubuntu-h"
+"ello config', каб захаваць вашу зменную EDITOR."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -412,8 +391,8 @@ msgstr "Калі ласка, дадайце 0 (уключыць) або 1 (вы�
 #: src/cli/disable.py:35
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr ""
-"Калі ласка, выкарыстоўвайце толькі 0 (уключыць) або 1 (выключыць) у якасці "
-"аргумента"
+"Калі ласка, выкарыстоўвайце толькі 0 (уключыць) або 1 (выключыць) у як"
+"асці аргумента"
 
 #: src/cli/disable.py:40
 msgid "The disable option has already been set to "
@@ -427,78 +406,107 @@ msgstr "Ubuntu Hello быў адключаны"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello быў уключаны"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Выкарыстанне: брелок [уключыць|выключыць]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Выкарыстанне: брелок [уключыць|выключыць|аднавіць] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Увядзіце пароль для карыстальніка {}, каб разблакіраваць {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Пароль не можа быць пустым"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Пацвердзіце пароль:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Паролі не супадаюць"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "Выяўлена абсталяванне TPM. Аўтаматычная ўстаноўка tpm2-tools..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "Апаратнае забеспячэнне TPM актыўнае. Запячатванне пароля ў TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Разблакіроўка бірулькі/KWallet паспяхова ўключана для карыстальніка {} з "
-"дапамогай TPM (кашалёк: {})."
+"Разблакіроўка бірулькі/KWallet паспяхова ўключана для карыстальніка {}"
+" з дапамогай TPM (кашалёк: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Не ўдалося замацаваць пароль для TPM: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
-msgstr ""
-"Няма актыўнага TPM. Выкарыстанне праграмнага кэшавання ўліковых даных..."
+msgstr "Няма актыўнага TPM. Выкарыстанне праграмнага кэшавання ўліковых даных..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Разблакіроўка бірулькі/KWallet паспяхова ўключана для карыстальніка {} "
-"(праграмнае кэшаванне, кашалёк: {})."
+"Разблакіроўка бірулькі/KWallet паспяхова ўключана для карыстальніка {}"
+" (праграмнае кэшаванне, кашалёк: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Не ўдалося ўключыць разблакіроўку бірулькі: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Не ўдалося адключыць разблакіроўку бірулькі: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Разблакіроўка бірулькі/KWallet адключана для карыстальніка {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Разблакіроўка бірулькі/KWallet не была ўключана для карыстальніка {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Няправільнае дзеянне. Выкарыстоўвайце «ўключыць» або «выключыць»."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Запячатаных пароляў уваходу не знойдзена; аднаўляць няма чаго."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Пароль кашалька ўваходу адноўлены для {} карыстальніка(ў)."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "Не ўдалося аднавіць пароль кашалька ўваходу для {} карыстальніка(ў)."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Калі запыты працягваюцца, задайце пароль брелкі ўваходу або KWallet у "
+"Seahorse / Наладах сістэмы."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Пароль кашалька ўваходу для карыстальніка {} адноўлены."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "Не ўдалося аднавіць пароль кашалька ўваходу для карыстальніка {}."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr ""
+"Няправільнае дзеянне. Выкарыстоўвайце «уключыць», «выключыць» або «адн"
+"авіць»."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -519,8 +527,8 @@ msgstr "Этыкетка даты [0м"
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
 msgstr ""
-"Калі ласка, дадайце ідэнтыфікатар мадэлі, якую вы хочаце выдаліць, у якасці "
-"аргумента"
+"Калі ласка, дадайце ідэнтыфікатар мадэлі, якую вы хочаце выдаліць, у я"
+"касці аргумента"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -531,12 +539,10 @@ msgid "You can find the IDs by running:"
 msgstr "Вы можаце знайсці ідэнтыфікатары, выканаўшы:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Гэта выдаліць мадэль пад назвай \"{label}\" для {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Для {user} не існуе мадэлі з ідэнтыфікатарам {id}"
 
@@ -549,11 +555,10 @@ msgid "Removed model {}"
 msgstr "Выдалена мадэль {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Калі ласка, дадайце параметр, які вы хочаце змяніць, і значэнне, якое трэба "
-"задаць"
+"Калі ласка, дадайце параметр, які вы хочаце змяніць, і значэнне, якое "
+"трэба задаць"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -581,43 +586,34 @@ msgstr "Створаны здымак захаваны як"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello быў сканфігураваны для выкарыстання запісу, які яшчэ не "
-"падтрымлівае тэставую каманду, спыненне"
+"Ubuntu Hello быў сканфігураваны для выкарыстання запісу, які яшчэ не п"
+"адтрымлівае тэставую каманду, спыненне"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Адкрыццё акна з тэставай стужкай\n"
-"\n"
-"Націсніце ctrl+C у гэтым тэрмінале, каб выйсці\n"
-"Націсніце на малюнак, каб уключыць або выключыць павольны рэжым\n"
+"\nАдкрыццё акна з тэставай стужкай\n\nНацісніце ctrl+C у гэтым тэрміна"
+"ле, каб выйсці\nНацісніце на малюнак, каб уключыць або выключыць павол"
+"ьны рэжым\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "РАЗРАШЭННЕ: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "РАМЫ: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "РАСПАЗНАННЕ: %dms"
 
@@ -635,11 +631,9 @@ msgstr "КАДР СКАНАВАННЯ"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Закрыццё акна"
+"\nЗакрыццё акна"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -670,7 +664,6 @@ msgid "Authorising in {}"
 msgstr "Аўтарызацыя ў {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Націсніце {abort_key} для перапынення, {confirm_key} для аўтарызацыі"
 
@@ -702,25 +695,26 @@ msgstr "Адсутнічае модуль ffmpeg, запусціце:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Адсутнічае модуль pyv4l2, запусціце:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello не можа знайсці камеру па шляху, пазначанаму ў файле "
-"канфігурацыі."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Вельмі верагодна, што шлях наладжаны няправільна, адрэдагуйце значэнне "
-"канфігурацыі 'device_path', выканаўшы:"
+"Ubuntu Hello не можа знайсці камеру па шляху, пазначанаму ў файле канф"
+"ігурацыі."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Не ўдалося прачытаць камеру, указаную ў параметре канфігурацыі "
-"'device_path', перапыненне"
+"Вельмі верагодна, што шлях наладжаны няправільна, адрэдагуйце значэнне"
+" канфігурацыі 'device_path', выканаўшы:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Не ўдалося прачытаць камеру, указаную ў параметре канфігурацыі 'device"
+"_path', перапыненне"

@@ -365,31 +365,36 @@ systemctl daemon-reload 2>/dev/null || true
 success "Polkit configured for face authentication"
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 10: Launch the setup wizard (Wayland/X11 session-aware)
+# Step 10: Launch the setup wizard only if no face models are enrolled
 # ─────────────────────────────────────────────────────────────────────
 step "Starting setup wizard"
 
-# Resolve installer location (empty when piped via curl | sudo bash).
-SCRIPT_DIR=""
-if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
-    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-fi
-
-POSTINSTALL_LAUNCHER=""
-if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
-    POSTINSTALL_LAUNCHER="$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
-elif [ -n "${SOURCE_DIR:-}" ] && [ -f "$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
-    POSTINSTALL_LAUNCHER="$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
-fi
-
-if [ -n "$POSTINSTALL_LAUNCHER" ]; then
-    if python3 "$POSTINSTALL_LAUNCHER"; then
-        success "Setup wizard launch requested (approve the polkit prompt if shown)"
-    else
-        warn "Could not auto-start the setup wizard — run: ubuntu-hello-gtk --force-onboarding"
-    fi
+MODELS_DIR="/etc/ubuntu-hello/models"
+if find "$MODELS_DIR" -maxdepth 1 -type f ! -name '.*' 2>/dev/null | grep -q .; then
+    success "Face models already enrolled — setup wizard not needed"
 else
-    warn "Post-install launcher missing — run: ubuntu-hello-gtk --force-onboarding"
+    # Resolve installer location (empty when piped via curl | sudo bash).
+    SCRIPT_DIR=""
+    if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+        SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    fi
+
+    POSTINSTALL_LAUNCHER=""
+    if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
+        POSTINSTALL_LAUNCHER="$SCRIPT_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
+    elif [ -n "${SOURCE_DIR:-}" ] && [ -f "$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py" ]; then
+        POSTINSTALL_LAUNCHER="$SOURCE_DIR/ubuntu-hello-gtk/bin/run_after_install.py"
+    fi
+
+    if [ -n "$POSTINSTALL_LAUNCHER" ]; then
+        if python3 "$POSTINSTALL_LAUNCHER"; then
+            success "Setup wizard launch requested (approve the polkit prompt if shown)"
+        else
+            warn "Could not auto-start the setup wizard — run: ubuntu-hello-gtk --force-onboarding"
+        fi
+    else
+        warn "Post-install launcher missing — run: ubuntu-hello-gtk --force-onboarding"
+    fi
 fi
 
 # ─────────────────────────────────────────────────────────────────────
@@ -414,7 +419,7 @@ echo -e "  ${BOLD}Next steps:${NC}"
 echo -e "  ${ARROW} Complete the setup wizard (camera + face enrollment)"
 echo -e "  ${ARROW} If it did not open: ${CYAN}ubuntu-hello-gtk --force-onboarding${NC}"
 echo -e "  ${ARROW} Once setup is complete, try ${CYAN}sudo -i${NC} to test face authentication"
-echo -e "  ${ARROW} Launch log: ${CYAN}/tmp/ubuntu-hello-postinstall.log${NC}"
+echo -e "  ${ARROW} Launch log: ${CYAN}/run/ubuntu-hello/postinstall.log${NC}"
 echo ""
 echo -e "  ${BOLD}To uninstall:${NC}"
 echo -e "  ${ARROW} ${CYAN}curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/uninstall.sh | sudo bash${NC}"

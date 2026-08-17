@@ -71,6 +71,9 @@ POLKIT_EOF
         systemctl daemon-reload 2>/dev/null || true
 
         echo ">>> Ubuntu Hello installation complete!"
+        # Setup wizard is launched from ubuntu-hello-gtk.postinst only when no
+        # face models are enrolled yet (see that script). Do not launch here —
+        # this package configures before gtk and must not force a second UI.
         ;;
 esac
 

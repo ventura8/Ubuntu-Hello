@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,23 +28,22 @@ msgid "Unknown error: "
 msgstr "Onbekende fout:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Gezicht geïdentificeerd als %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Onvoldoende rechten om op Enter te drukken, wachtend tot de gebruiker erop "
-"drukt"
+"Onvoldoende rechten om op Enter te drukken, wachtend tot de gebruiker "
+"erop drukt"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Kan Enter-druk niet verzenden, wacht totdat de gebruiker erop drukt"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Poging tot gezichtsauthenticatie"
 
@@ -66,26 +65,26 @@ msgstr "argumenten"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Voor ondersteuning kunt u terecht op\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Voor ondersteuning kunt u terecht op\nhttps://github.com/ventura8/ubun"
+"tu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"De uit te voeren opdrachtoptie kan een van de volgende zijn: toevoegen, "
-"wissen, configureren, uitschakelen, sleutelhanger, lijst, verwijderen, "
-"momentopname, instellen, testen of versie."
+"De uit te voeren opdrachtoptie kan een van de volgende zijn: toevoegen"
+", wissen, configureren, uitschakelen, sleutelhanger, lijst, verwijdere"
+"n, momentopname, instellen, testen of versie."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"Optionele argumenten voor de opdrachten toevoegen, uitschakelen, verwijderen "
-"en instellen."
+"Optionele argumenten voor de opdrachten toevoegen, uitschakelen, verwi"
+"jderen en instellen."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -112,145 +111,136 @@ msgid "Invalid username format"
 msgstr "Ongeldig gebruikersnaamformaat"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Voer dit commando uit als root:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Voer dit commando uit als root:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Kan ubuntu-hello-opdrachten niet uitvoeren als root. Voer deze opdracht uit "
-"met de vlag --user"
+"Kan ubuntu-hello-opdrachten niet uitvoeren als root. Voer deze opdrach"
+"t uit met de vlag --user"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"Er zijn geen gegevensbestanden gedownload. Voer de volgende opdrachten uit:"
+"Er zijn geen gegevensbestanden gedownload. Voer de volgende opdrachten"
+" uit:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Datum:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Scantijd:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Lijsten:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Hostnaam:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Beste zekerheidswaarde:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Opstarten..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Jou identificeren..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "MISLUKT"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Alle frames waren te donker. Controleer dark_threshold in de configuratie"
+"Alle frames waren te donker. Controleer dark_threshold in de configura"
+"tie"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Gemiddelde duisternis: {avg}, Drempel: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Tijd besteed"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Opstarten"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Open cam + laadlibs: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "De camera openen"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Herkenningslibs importeren"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Op zoek naar bekend gezicht"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Totale tijd"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Oplossing"
+"\nOplossing"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Native: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Gebruikt: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Gezochte frames: %d (%.2f fps)"
+"\nGezochte frames: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Zwarte kaders genegeerd: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Donkere frames genegeerd: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Zekerheid van winnend frame: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Winnend model: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "SUCCESVOL"
 
@@ -276,11 +266,9 @@ msgstr "login sleutelhanger of KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Kan de dlib-module niet importeren. Controleer de uitvoer van"
+"\nKan de dlib-module niet importeren. Controleer de uitvoer van"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -288,13 +276,17 @@ msgstr "Er is geen map met gezichtsmodellen gevonden. Er wordt er een gemaakt"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"LET OP: Elk extra model vertraagt ​​de gezichtsherkenningsengine enigszins"
+"LET OP: Elk extra model vertraagt ​​de gezichtsherkenningsengine enigs"
+"zins"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Druk op Ctrl+C om te annuleren\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Druk op Ctrl+C om te annuleren\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -305,7 +297,6 @@ msgid "Model #"
 msgstr "Modelnr."
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Standaardlabel \"%s\" gebruiken vanwege de vlag -y"
 
@@ -319,11 +310,9 @@ msgstr "LET OP: Illegaal teken \",\" uit de modelnaam verwijderd"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Kijk alstublieft recht in de camera"
+"\nKijk alstublieft recht in de camera"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -339,19 +328,15 @@ msgstr "Meerdere gezichten gedetecteerd, afgebroken"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Scannen voltooid\n"
-"Een nieuw model toegevoegd aan"
+"\nScannen voltooid\nEen nieuw model toegevoegd aan"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"Er zijn nog geen modellen gemaakt. Als ze niet bestaan, kan deze niet worden "
-"gewist"
+"Er zijn nog geen modellen gemaakt. Als ze niet bestaan, kan deze niet "
+"worden gewist"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -367,27 +352,21 @@ msgstr "Wilt u doorgaan [j/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Interpreteren als een \"NEE\", afbreken"
+"\nInterpreteren als een \"NEE\", afbreken"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Modellen gewist"
+"\nModellen gewist"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Configuratie.ini openen in {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Kan editor niet openen: {error}"
 
@@ -401,11 +380,11 @@ msgstr "Installeer 'nano' of 'vi', of stel de EDITOR-omgevingsvariabele in."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Als je deze opdracht met sudo uitvoert, probeer dan 'sudo -E ubuntu-hello "
-"config' om je EDITOR-variabele te behouden."
+"Als je deze opdracht met sudo uitvoert, probeer dan 'sudo -E ubuntu-he"
+"llo config' om je EDITOR-variabele te behouden."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -427,81 +406,111 @@ msgstr "Ubuntu Hello is uitgeschakeld"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello is ingeschakeld"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Gebruik: sleutelhanger [inschakelen|uitschakelen]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Gebruik: sleutelhanger [inschakelen|uitschakelen|herstellen] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Voer het wachtwoord in voor gebruiker {} om {} ({}) te ontgrendelen:"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Wachtwoord mag niet leeg zijn"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Wachtwoord bevestigen:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM-hardware gedetecteerd. tpm2-tools automatisch installeren..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM-hardware actief. Wachtwoord verzegelen in TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Ontgrendeling van sleutelring/KWallet is succesvol ingeschakeld voor "
-"gebruiker {} met behulp van TPM (portemonnee: {})."
+"Ontgrendeling van sleutelring/KWallet is succesvol ingeschakeld voor g"
+"ebruiker {} met behulp van TPM (portemonnee: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Kan wachtwoord niet naar TPM verzegelen: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
-msgstr ""
-"Geen TPM actief. Softwaregebaseerd cachen van inloggegevens gebruiken..."
+msgstr "Geen TPM actief. Softwaregebaseerd cachen van inloggegevens gebruiken..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Ontgrendeling van sleutelring/KWallet is succesvol ingeschakeld voor "
-"gebruiker {} (Software Caching, portemonnee: {})."
+"Ontgrendeling van sleutelring/KWallet is succesvol ingeschakeld voor g"
+"ebruiker {} (Software Caching, portemonnee: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Kan sleutelringontgrendeling niet inschakelen: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Kan sleutelringontgrendeling niet uitschakelen: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
-msgstr ""
-"Ontgrendeling van sleutelhanger/KWallet uitgeschakeld voor gebruiker {}."
+msgstr "Ontgrendeling van sleutelhanger/KWallet uitgeschakeld voor gebruiker {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr ""
-"Ontgrendeling van sleutelring/KWallet was niet ingeschakeld voor gebruiker "
-"{}."
+"Ontgrendeling van sleutelring/KWallet was niet ingeschakeld voor gebru"
+"iker {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Ongeldige actie. Gebruik 'inschakelen' of 'uitschakelen'."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Geen verzegelde aanmeldwachtwoorden gevonden; niets te herstellen."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Aanmeldportemonnee-wachtwoord hersteld voor {} gebruiker(s)."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr ""
+"Aanmeldportemonnee-wachtwoord voor {} gebruiker(s) kon niet worden her"
+"steld."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Als prompts blijven verschijnen, stel dan het wachtwoord van de aanmel"
+"dsleutelhanger of KWallet in via Seahorse / Systeeminstellingen."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Aanmeldportemonnee-wachtwoord hersteld voor gebruiker {}."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr ""
+"Aanmeldportemonnee-wachtwoord voor gebruiker {} kon niet worden herste"
+"ld."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Ongeldige actie. Gebruik 'inschakelen', 'uitschakelen' of 'herstellen'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -510,7 +519,8 @@ msgstr "Gezichtsmodellen zijn nog niet geïnitialiseerd. Voer het volgende uit:"
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
 msgstr ""
-"Er is geen gezichtsmodel bekend voor de gebruiker {}. Voer het volgende uit:"
+"Er is geen gezichtsmodel bekend voor de gebruiker {}. Voer het volgend"
+"e uit:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
@@ -533,13 +543,10 @@ msgid "You can find the IDs by running:"
 msgstr "U kunt de ID's vinden door het volgende uit te voeren:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
-msgstr ""
-"Hierdoor wordt het model met de naam \"{label}\" voor {user} verwijderd"
+msgstr "Hierdoor wordt het model met de naam \"{label}\" voor {user} verwijderd"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Er bestaat geen model met ID {id} voor {user}"
 
@@ -552,11 +559,10 @@ msgid "Removed model {}"
 msgstr "Model {} verwijderd"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Voeg een instelling toe die u wilt wijzigen en de waarde waarop u deze wilt "
-"instellen"
+"Voeg een instelling toe die u wilt wijzigen en de waarde waarop u deze"
+" wilt instellen"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -584,43 +590,34 @@ msgstr "Gegenereerde momentopname opgeslagen als"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello is geconfigureerd om een ​​recorder te gebruiken die de "
-"testopdracht nog niet ondersteunt."
+"Ubuntu Hello is geconfigureerd om een ​​recorder te gebruiken die de t"
+"estopdracht nog niet ondersteunt."
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Een venster openen met een testfeed\n"
-"\n"
-"Druk in deze terminal op ctrl+C om te stoppen\n"
-"Klik op de afbeelding om de langzame modus in of uit te schakelen\n"
+"\nEen venster openen met een testfeed\n\nDruk in deze terminal op ctrl"
+"+C om te stoppen\nKlik op de afbeelding om de langzame modus in of uit"
+" te schakelen\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RESOLUTIE: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "FRAMES: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "HERKENNING: %dms"
 
@@ -638,11 +635,9 @@ msgstr "FRAME SCANNEN"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Venster sluiten"
+"\nVenster sluiten"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -673,10 +668,8 @@ msgid "Authorising in {}"
 msgstr "Autoriseren in {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
-msgstr ""
-"Druk op {abort_key} om af te breken, op {confirm_key} om te autoriseren"
+msgstr "Druk op {abort_key} om af te breken, op {confirm_key} om te autoriseren"
 
 #: src/rubberstamps/hotkey.py:50
 msgid "Authentication aborted"
@@ -706,25 +699,27 @@ msgstr "Ontbrekende ffmpeg-module, voer het volgende uit:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Ontbrekende pyv4l2-module, voer het volgende uit:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello kan geen camera-apparaat vinden op het pad dat is opgegeven in "
-"het configuratiebestand."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Het is zeer waarschijnlijk dat het pad niet correct is geconfigureerd. "
-"Bewerk de configuratiewaarde 'device_path' door het volgende uit te voeren:"
+"Ubuntu Hello kan geen camera-apparaat vinden op het pad dat is opgegev"
+"en in het configuratiebestand."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Kan de camera die is opgegeven in de configuratieoptie 'device_path' niet "
-"lezen, wordt afgebroken"
+"Het is zeer waarschijnlijk dat het pad niet correct is geconfigureerd."
+" Bewerk de configuratiewaarde 'device_path' door het volgende uit te v"
+"oeren:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Kan de camera die is opgegeven in de configuratieoptie 'device_path' n"
+"iet lezen, wordt afgebroken"

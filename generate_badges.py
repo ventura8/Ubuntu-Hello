@@ -52,6 +52,14 @@ def check_lint_status():
                 except Exception as e:
                     print(f"Lint/Syntax error in {path}: {e}")
                     has_errors = True
+    i18n = subprocess.run(
+        [sys.executable, "scripts/i18n-lint.py"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if i18n.returncode != 0:
+        print("Lint error: scripts/i18n-lint.py failed (JSON / gettext catalogs)")
+        has_errors = True
     return "failing" if has_errors else "passing"
 
 def generate_coverage_badge(percentage, output_path):

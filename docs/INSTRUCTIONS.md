@@ -22,6 +22,8 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   ├── ci-matrix.sh           # Parallel DE compat matrix
 │   ├── read-version.py        # Print semver from VERSION
 │   ├── i18n-update.sh         # Refresh gettext pots/po; assert LINGUAS
+│   ├── i18n-lint.py           # Lint JSON packs + gettext .po catalogs
+│   ├── i18n-fill-translations.py  # Apply JSON fill maps onto .po files
 │   └── ppa-docker.sh          # PPA packaging Docker helper
 ├── po/
 │   └── whisper-languages.txt  # Canonical Whisper codes for LINGUAS (omit en)
@@ -48,6 +50,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   │   ├── compare.py         # Face verification engine
 │   │   ├── config.ini         # Default configuration template
 │   │   ├── keyring_crypto.py  # UH1 AES-GCM helpers
+│   │   ├── keyring_restore.py # Unseal + restore login wallet password
 │   │   ├── wallet_backend.py  # gnome-keyring / kwallet / none labels
 │   │   └── paths_factory.py
 │   ├── po/                    # gettext domain ubuntu-hello
@@ -136,6 +139,7 @@ sudo meson install -C build
 - **Settings search**: header-bar `Gtk.SearchEntry` on the **left** (`pack_type=start`) with **fuzzy** match (stdlib `difflib` + subsequence) over currently displayed (translated) labels; rebuilds after language switch.
 - **Native multi-DE**: Settings remains GTK3+Glade on GNOME/KDE/XFCE/Cinnamon/MATE/Budgie/LXQt; use `theme_detect`; do not introduce web UI.
 - Refresh: `./scripts/i18n-update.sh` (asserts LINGUAS, refreshes `.pot`, `msgmerge`s `.po` without wiping msgstr).
+- Lint catalogs: `python3 scripts/i18n-lint.py` (CI lint stage; JSON UTF-8/parse, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity).
 - **Mandatory**: after any translatable string add/change/remove, refresh catalogs and fill **all** Whisper languages in the same change (`i18n-fill-translations.py`); do not leave empty `msgstr` or fuzzy gaps. See AGENTS.md §4.6.0 and the i18n skill.
 - Verify: Settings Language (instant) **or** `LANG=ro_RO.UTF-8 LANGUAGE=ro ubuntu-hello list` — spot-check non-English strings.
 - Skill: [`.agents/skills/i18n/SKILL.md`](../.agents/skills/i18n/SKILL.md).
@@ -159,13 +163,15 @@ Settings stays **native GTK3 + Glade** (stock `HeaderBar` / `Notebook` / `Search
 sudo bash uninstall.sh
 ```
 
+Before deleting `/etc/ubuntu-hello`, uninstall (and `apt remove` via `debian/ubuntu-hello.prerm`) runs `ubuntu-hello keyring restore --all`. That decrypts each sealed setup-wizard login password and re-asserts it as the GNOME Keyring / KWallet master password when the user’s session bus is reachable. Bare `ubuntu-hello keyring restore` (no flags) restores only the CLI-selected user (`-U`). Restore cannot discover a wallet password that no longer matches the sealed login password; uninstall still continues, and you can set the login keyring or KWallet password in Seahorse / System Settings. `ubuntu-hello keyring disable` remains delete-only (no restore).
+
 ### 2.5 Quick install (from GitHub)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/install.sh | sudo bash
 ```
 
-After a successful install the **setup wizard** should open automatically **once** (approve the polkit prompt if shown). `install.sh` / dpkg postinst call `run_after_install.py` a single time after install completes (meson does not launch the GUI). The launcher forwards the real user’s Wayland/X11 session (`XDG_RUNTIME_DIR`, `WAYLAND_DISPLAY`, session bus) — not just `DISPLAY`. If the window does not appear, check `/tmp/ubuntu-hello-postinstall.log` and run:
+After a successful install the **setup wizard** opens automatically **only when no face models are enrolled yet**. `install.sh` / `ubuntu-hello-gtk` dpkg postinst call `run_after_install.py` once in that case (meson does not launch the GUI). Reinstalls/upgrades with existing models skip the wizard. The launcher forwards the real user’s Wayland/X11 session (`XDG_RUNTIME_DIR`, `WAYLAND_DISPLAY`, session bus) — not just `DISPLAY`. If the window does not appear when you still need enrollment, check `/run/ubuntu-hello/postinstall.log` and run:
 
 ```bash
 ubuntu-hello-gtk --force-onboarding
@@ -283,7 +289,7 @@ CI is split into three fail-fast stages on Ubuntu **26.04** (see [AGENTS.md](../
 
 | Stage | Image | Checks |
 |---|---|---|
-| `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile` |
+| `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile`, `scripts/i18n-lint.py` |
 | `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1` |
 | `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), `meson test pam-aes-gcm-uh1` |
 
@@ -322,6 +328,8 @@ sudo ubuntu-hello list
 sudo ubuntu-hello remove <model_id>
 sudo ubuntu-hello clear
 sudo ubuntu-hello keyring enable   # login keyring / KWallet via PAM_AUTHTOK
+sudo ubuntu-hello keyring restore --all  # every sealed user (uninstall uses this)
+sudo ubuntu-hello -U alice keyring restore  # one selected user
 sudo ubuntu-hello test
 ```
 

@@ -11,7 +11,7 @@ Canonical agent rules: [AGENTS.md](AGENTS.md). Setup guide: [docs/INSTRUCTIONS.m
 | [diagnostics](.agents/skills/diagnostics/SKILL.md) | compare.py dry-run / `ubuntu-hello test` |
 | [troubleshoot](.agents/skills/troubleshoot/SKILL.md) | Auth logs, debug knobs, PAM lockout |
 | [gtk-ui](.agents/skills/gtk-ui/SKILL.md) | Glade / GTK / theme_detect |
-| [keyring-wallet](.agents/skills/keyring-wallet/SKILL.md) | PAM_AUTHTOK / keyring / KWallet |
+| [keyring-wallet](.agents/skills/keyring-wallet/SKILL.md) | PAM_AUTHTOK / keyring / KWallet / uninstall restore |
 | [rubberstamp](.agents/skills/rubberstamp/SKILL.md) | Liveness plugins |
 | [coverage-badges](.agents/skills/coverage-badges/SKILL.md) | Badge generator |
 | [ci-docker-matrix](.agents/skills/ci-docker-matrix/SKILL.md) | Lint / coverage / per-DE compat Docker CI (`docker/` Dockerfiles) |

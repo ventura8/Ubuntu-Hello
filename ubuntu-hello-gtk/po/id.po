@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -38,7 +38,8 @@ msgstr "Aktifkan Gantungan Kunci/KWallet Membuka Kunci"
 #: src/onboarding.py:42 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr ""
-"Masukkan kata sandi untuk pengguna <b>{}</b> untuk membuka kunci {} ({}):"
+"Masukkan kata sandi untuk pengguna <b>{}</b> untuk membuka kunci {} ({"
+"}):"
 
 #: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
 msgid "Password"
@@ -46,11 +47,9 @@ msgstr "Kata sandi"
 
 #: src/onboarding.py:170
 msgid ""
-"Datafiles have already been downloaded!\n"
-"Click Next to continue"
+"Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
-"File data telah diunduh!\n"
-"Klik Berikutnya untuk melanjutkan"
+"File data telah diunduh!\nKlik Berikutnya untuk melanjutkan"
 
 #: src/onboarding.py:200
 msgid "Error while downloading datafiles"
@@ -58,11 +57,9 @@ msgstr "Terjadi kesalahan saat mengunduh file data"
 
 #: src/onboarding.py:203
 msgid ""
-"Done!\n"
-"Click Next to continue"
+"Done!\nClick Next to continue"
 msgstr ""
-"Selesai!\n"
-"Klik Berikutnya untuk melanjutkan"
+"Selesai!\nKlik Berikutnya untuk melanjutkan"
 
 #: src/onboarding.py:230 src/onboarding.py:336
 msgid "Error while importing OpenCV2"
@@ -78,11 +75,11 @@ msgstr "Tidak ada webcam yang ditemukan di sistem"
 
 #: src/onboarding.py:237
 msgid ""
-"Please configure your camera yourself if you are sure a compatible camera is "
-"connected"
+"Please configure your camera yourself if you are sure a compatible cam"
+"era is connected"
 msgstr ""
-"Silakan konfigurasikan sendiri kamera Anda jika Anda yakin kamera yang "
-"kompatibel telah terhubung"
+"Silakan konfigurasikan sendiri kamera Anda jika Anda yakin kamera yang"
+" kompatibel telah terhubung"
 
 #: src/onboarding.py:265
 msgid "No, camera can't be opened"
@@ -118,15 +115,13 @@ msgstr "Cobalah untuk memilih yang lain"
 
 #: src/onboarding.py:374
 msgid ""
-"Please visit\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"to enable your ir emitter"
+"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
+"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
+"able your ir emitter"
 msgstr ""
-"Silakan kunjungi\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"untuk mengaktifkan pemancar IR Anda"
+"Silakan kunjungi\n<a href=\"https://github.com/EmixamPP/linux-enable-i"
+"r-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nu"
+"ntuk mengaktifkan pemancar IR Anda"
 
 #: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
 msgid "Please look directly into the camera"
@@ -142,79 +137,66 @@ msgstr "Tidak dapat menyimpan model wajah"
 
 #: src/onboarding.py:446
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Checking TPM hardware and tools..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
+"nd tools..."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan "
-"otentikasi wajah (dompet terdeteksi: {}).\n"
-"\n"
-"<b>Status TPM:</b> Memeriksa perangkat keras dan alat TPM..."
+"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan o"
+"tentikasi wajah (dompet terdeteksi: {}).\n\n<b>Status TPM:</b> Memerik"
+"sa perangkat keras dan alat TPM..."
 
 #: src/onboarding.py:466
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
-"automatically..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
+"Installing <i>tpm2-tools</i> automatically..."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan "
-"otentikasi wajah (dompet terdeteksi: {}).\n"
-"\n"
-"<b>Status TPM:</b> Perangkat keras TPM terdeteksi. Menginstal <i>tpm2-tools</"
-"i> secara otomatis..."
+"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan o"
+"tentikasi wajah (dompet terdeteksi: {}).\n\n<b>Status TPM:</b> Perangk"
+"at keras TPM terdeteksi. Menginstal <i>tpm2-tools</i> secara otomatis."
+".."
 
 #: src/onboarding.py:478
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
-"sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
+". Your password will be securely sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan "
-"otentikasi wajah (dompet terdeteksi: {}).\n"
-"\n"
-"<b>Status TPM:</b> TPM 2.0 perangkat keras aktif. Kata sandi Anda akan "
-"tersegel dengan aman di dalam TPM."
+"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan o"
+"tentikasi wajah (dompet terdeteksi: {}).\n\n<b>Status TPM:</b> TPM 2.0"
+" perangkat keras aktif. Kata sandi Anda akan tersegel dengan aman di d"
+"alam TPM."
 
 #: src/onboarding.py:480
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
-"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
-"Falling back to software-based credential caching."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
+"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
+" apt install tpm2-tools</code>. Falling back to software-based credent"
+"ial caching."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan "
-"otentikasi wajah (dompet terdeteksi: {}).\n"
-"\n"
-"<b>Status TPM:</b> Perangkat keras TPM terdeteksi, tetapi pemasangan "
-"otomatis <i>tpm2-tools</i> gagal. Jalankan <code>sudo apt install tpm2-"
-"tools</code>. Kembali ke cache kredensial berbasis perangkat lunak."
+"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan o"
+"tentikasi wajah (dompet terdeteksi: {}).\n\n<b>Status TPM:</b> Perangk"
+"at keras TPM terdeteksi, tetapi pemasangan otomatis <i>tpm2-tools</i> "
+"gagal. Jalankan <code>sudo apt install tpm2-tools</code>. Kembali ke c"
+"ache kredensial berbasis perangkat lunak."
 
 #: src/onboarding.py:482
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
-"caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
+"d. Using software-based credential caching (AES-256-GCM)."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan "
-"otentikasi wajah (dompet terdeteksi: {}).\n"
-"\n"
-"<b>Status TPM:</b> Tidak ada perangkat keras TPM yang terdeteksi. "
-"Menggunakan cache kredensial berbasis perangkat lunak (AES-256-GCM)."
+"Ubuntu Hello dapat secara otomatis membuka kunci {} Anda menggunakan o"
+"tentikasi wajah (dompet terdeteksi: {}).\n\n<b>Status TPM:</b> Tidak a"
+"da perangkat keras TPM yang terdeteksi. Menggunakan cache kredensial b"
+"erbasis perangkat lunak (AES-256-GCM)."
 
 #: src/onboarding.py:526
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
-"Tidak dapat mengidentifikasi pengguna sistem non-root untuk membuka kunci "
-"gantungan kunci"
+"Tidak dapat mengidentifikasi pengguna sistem non-root untuk membuka ku"
+"nci gantungan kunci"
 
 #: src/onboarding.py:549 src/tab_keyring.py:91
 msgid "Password cannot be empty"
@@ -251,7 +233,8 @@ msgstr "Ubuntu Hello Peringatan Pengaturan"
 #: src/onboarding.py:627
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
-"Tidak dapat menyimpan preferensi kepastian, namun penyiapan telah selesai."
+"Tidak dapat menyimpan preferensi kepastian, namun penyiapan telah sele"
+"sai."
 
 #: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
 msgid "Ubuntu Hello Error"
@@ -272,8 +255,8 @@ msgstr "Konfirmasikan Pembuatan Pengguna"
 #: src/tab_models.py:19
 msgid "Please enter the username of the user you want to add to Ubuntu Hello"
 msgstr ""
-"Silakan masukkan nama pengguna pengguna yang ingin Anda tambahkan Ubuntu "
-"Hello"
+"Silakan masukkan nama pengguna pengguna yang ingin Anda tambahkan Ubun"
+"tu Hello"
 
 #: src/tab_models.py:26
 msgid "Username:"
@@ -297,38 +280,33 @@ msgstr "Membuat Model"
 
 #: src/tab_models.py:95
 msgid ""
-"Error while adding model, error code {}: \n"
-"\n"
+"Error while adding model, error code {}: \n\n"
 msgstr ""
-"Kesalahan saat menambahkan model, kode kesalahan {}:\n"
-"\n"
+"Kesalahan saat menambahkan model, kode kesalahan {}:\n\n"
 
 #: src/tab_models.py:111
 msgid "Confirm Model Deletion"
 msgstr "Konfirmasi Penghapusan Model"
 
 #: src/tab_models.py:112
-#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Apakah Anda yakin ingin menghapus model {id} ({name})?"
 
 #: src/tab_models.py:123
 msgid ""
-"Error while deleting model, error code {}: \n"
-"\n"
+"Error while deleting model, error code {}: \n\n"
 msgstr ""
-"Kesalahan saat menghapus model, kode kesalahan {}:\n"
-"\n"
+"Kesalahan saat menghapus model, kode kesalahan {}:\n\n"
 
-#: src/tab_video.py:41
+#: src/tab_video.py:54
 msgid "Can't open camera"
 msgstr "Tidak dapat membuka kamera"
 
-#: src/tab_video.py:49
+#: src/tab_video.py:62
 msgid "Can't import OpenCV2"
 msgstr "Tidak dapat mengimpor OpenCV2"
 
-#: src/tab_video.py:122
+#: src/tab_video.py:135
 msgid "Unknown"
 msgstr "Tidak dikenal"
 
@@ -339,20 +317,22 @@ msgstr "<i>Tidak ada pengguna yang dipilih</i>"
 #: src/tab_keyring.py:59
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
-"<span Foreground='green'><b>Diaktifkan (Perangkat Keras TPM)</b></span> — {}"
+"<span Foreground='green'><b>Diaktifkan (Perangkat Keras TPM)</b></span"
+"> — {}"
 
 #: src/tab_keyring.py:63
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span Foreground='green'><b>Diaktifkan (Caching Perangkat Lunak)</b></span> "
-"— {}"
+"<span Foreground='green'><b>Diaktifkan (Caching Perangkat Lunak)</b></"
+"span> — {}"
 
 #: src/tab_keyring.py:67
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
+"n> — {}"
 msgstr ""
-"<span Foreground='orange'><b>Diaktifkan (Entri Kata Sandi Tertunda)</b></"
-"span> — {}"
+"<span Foreground='orange'><b>Diaktifkan (Entri Kata Sandi Tertunda)</b"
+"></span> — {}"
 
 #: src/tab_keyring.py:71
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
@@ -378,8 +358,8 @@ msgstr "Nonaktifkan Gantungan Kunci/KWallet Membuka Kunci"
 #: src/tab_keyring.py:136
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Apakah Anda yakin ingin menonaktifkan pembukaan kunci keyring/KWallet untuk "
-"pengguna {}?"
+"Apakah Anda yakin ingin menonaktifkan pembukaan kunci keyring/KWallet "
+"untuk pengguna {}?"
 
 #: src/tab_keyring.py:160
 msgid "Keyring/KWallet unlocking disabled for user {}."
@@ -444,17 +424,18 @@ msgstr "Gantungan Kunci / KWallet Buka Kunci Otomatis"
 
 #: src/main.glade:440
 msgid ""
-"Enable face authentication to automatically unlock your login keyring or "
-"KWallet on login. This securely stores your password sealed in the TPM when "
-"available, or encrypted with AES-256-GCM using a root-only master key. Face "
-"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
-"your desktop."
+"Enable face authentication to automatically unlock your login keyring "
+"or KWallet on login. This securely stores your password sealed in the "
+"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
+"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
+"let5 depending on your desktop."
 msgstr ""
-"Aktifkan autentikasi wajah untuk membuka kunci kunci login Anda secara "
-"otomatis atau KWallet saat login. Ini dengan aman menyimpan kata sandi Anda "
-"yang disegel di TPM jika tersedia, atau dienkripsi dengan AES-256-GCM "
-"menggunakan kunci master khusus root. Kumpulan autentikasi wajah PAM_AUTHTOK "
-"untuk pam_gnome_keyring atau pam_kwallet5 bergantung pada desktop Anda."
+"Aktifkan autentikasi wajah untuk membuka kunci kunci login Anda secara"
+" otomatis atau KWallet saat login. Ini dengan aman menyimpan kata sand"
+"i Anda yang disegel di TPM jika tersedia, atau dienkripsi dengan AES-2"
+"56-GCM menggunakan kunci master khusus root. Kumpulan autentikasi waja"
+"h PAM_AUTHTOK untuk pam_gnome_keyring atau pam_kwallet5 bergantung pad"
+"a desktop Anda."
 
 #: src/main.glade:471
 msgid "Current Status:"
@@ -502,9 +483,11 @@ msgstr "Versi tidak diketahui"
 
 #: src/main.glade:746
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
+"/a> "
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Buka tautan GitHub</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Buka tautan GitHu"
+"b</a>"
 
 #: src/main.glade:778
 msgid "About"
@@ -520,33 +503,31 @@ msgstr "Penyiapan selesai!"
 
 #: src/onboarding.glade:82
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
-"you would normally have to type your password for to authenticate, like "
-"running a command with sudo. If you enabled keyring auto-unlock, your login "
-"keyring or KWallet will also be unlocked automatically on login.\n"
-"\n"
-"You can open the Ubuntu Hello Configurator later on to change more advanced "
-"settings or add additional models. Press Finish below to close this window "
-"and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing any"
+"thing you would normally have to type your password for to authenticat"
+"e, like running a command with sudo. If you enabled keyring auto-unloc"
+"k, your login keyring or KWallet will also be unlocked automatically o"
+"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
+"nge more advanced settings or add additional models. Press Finish belo"
+"w to close this window and open the Ubuntu Hello Configurator. "
 msgstr ""
 "Kita sudah selesai! Ubuntu Hello sekarang aktif di komputer ini. Coba "
-"lakukan apa pun yang biasanya Anda perlukan untuk mengetikkan kata sandi "
-"untuk mengautentikasi, seperti menjalankan perintah dengan sudo. Jika Anda "
-"mengaktifkan buka kunci otomatis keyring, keyring login Anda atau KWallet "
-"juga akan terbuka secara otomatis saat login.\n"
-"\n"
-"Anda dapat membuka Ubuntu Hello Configurator nanti untuk mengubah pengaturan "
-"lebih lanjut atau menambahkan model tambahan. Tekan Selesai di bawah untuk "
-"menutup jendela ini dan membuka Ubuntu Hello Configurator."
+"lakukan apa pun yang biasanya Anda perlukan untuk mengetikkan kata san"
+"di untuk mengautentikasi, seperti menjalankan perintah dengan sudo. Ji"
+"ka Anda mengaktifkan buka kunci otomatis keyring, keyring login Anda a"
+"tau KWallet juga akan terbuka secara otomatis saat login.\n\nAnda dapa"
+"t membuka Ubuntu Hello Configurator nanti untuk mengubah pengaturan le"
+"bih lanjut atau menambahkan model tambahan. Tekan Selesai di bawah unt"
+"uk menutup jendela ini dan membuka Ubuntu Hello Configurator."
 
 #: src/onboarding.glade:130
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
-"face authentication, preventing password prompts after logging in."
+"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
+"ing face authentication, preventing password prompts after logging in."
 msgstr ""
-"Ubuntu Hello dapat secara otomatis membuka kunci kunci masuk Anda atau "
-"KWallet menggunakan otentikasi wajah, mencegah permintaan kata sandi setelah "
-"masuk."
+"Ubuntu Hello dapat secara otomatis membuka kunci kunci masuk Anda atau"
+" KWallet menggunakan otentikasi wajah, mencegah permintaan kata sandi "
+"setelah masuk."
 
 #: src/onboarding.glade:142
 msgid "Enable automatic keyring/KWallet unlocking"
@@ -562,13 +543,13 @@ msgstr "Menetapkan kebijakan kepastian"
 
 #: src/onboarding.glade:235
 msgid ""
-"Because of changes in angles, distance, and other factors a face match is "
-"never exactly the same as the stored face model. On this page you can set "
-"how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match"
+" is never exactly the same as the stored face model. On this page you "
+"can set how strict Ubuntu Hello should be."
 msgstr ""
-"Karena perubahan sudut, jarak, dan faktor lainnya, kecocokan wajah tidak "
-"pernah sama persis dengan model wajah yang disimpan. Di halaman ini Anda "
-"dapat mengatur seberapa ketat Ubuntu Hello seharusnya."
+"Karena perubahan sudut, jarak, dan faktor lainnya, kecocokan wajah tid"
+"ak pernah sama persis dengan model wajah yang disimpan. Di halaman ini"
+" Anda dapat mengatur seberapa ketat Ubuntu Hello seharusnya."
 
 #: src/onboarding.glade:274
 msgid "Fast"
@@ -576,11 +557,11 @@ msgstr "Cepat"
 
 #: src/onboarding.glade:290
 msgid ""
-"Allows more fuzzy matches, \n"
-"but speeds up the scanning process greatly."
+"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
+"y."
 msgstr ""
-"Memungkinkan lebih banyak kecocokan yang tidak jelas, \n"
-"tetapi sangat mempercepat proses pemindaian."
+"Memungkinkan lebih banyak kecocokan yang tidak jelas, \ntetapi sangat "
+"mempercepat proses pemindaian."
 
 #: src/onboarding.glade:329
 msgid "Balanced"
@@ -588,11 +569,11 @@ msgstr "Seimbang"
 
 #: src/onboarding.glade:345
 msgid ""
-"Still relatively quick detection, \n"
-"but might not log you in when further away."
+"Still relatively quick detection, \nbut might not log you in when furt"
+"her away."
 msgstr ""
-"Deteksi masih relatif cepat, \n"
-"tapi mungkin tidak akan memasukkan Anda saat berada jauh."
+"Deteksi masih relatif cepat, \ntapi mungkin tidak akan memasukkan Anda"
+" saat berada jauh."
 
 #: src/onboarding.glade:384
 msgid "Secure"
@@ -600,11 +581,11 @@ msgstr "Aman"
 
 #: src/onboarding.glade:400
 msgid ""
-"The slightly safer option, \n"
-"but will take much longer to authenticate you"
+"The slightly safer option, \nbut will take much longer to authenticate"
+" you"
 msgstr ""
-"Pilihan yang sedikit lebih aman, \n"
-"namun akan memakan waktu lebih lama untuk mengautentikasi Anda"
+"Pilihan yang sedikit lebih aman, \nnamun akan memakan waktu lebih lama"
+" untuk mengautentikasi Anda"
 
 #: src/onboarding.glade:443
 msgid "Adding a face model"
@@ -612,12 +593,12 @@ msgstr "Menambahkan model wajah"
 
 #: src/onboarding.glade:462
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to "
-"recognise you. Press the Scan button below to start the facial scan."
+"To authenticate you Ubuntu Hello needs to save a model of your face to"
+" recognise you. Press the Scan button below to start the facial scan."
 msgstr ""
-"Untuk mengautentikasi Anda Ubuntu Hello perlu menyimpan model wajah Anda "
-"agar dapat mengenali Anda. Tekan tombol Pindai di bawah untuk memulai "
-"pemindaian wajah."
+"Untuk mengautentikasi Anda Ubuntu Hello perlu menyimpan model wajah An"
+"da agar dapat mengenali Anda. Tekan tombol Pindai di bawah untuk memul"
+"ai pemindaian wajah."
 
 #: src/onboarding.glade:564 src/onboarding.glade:655
 msgid "Configuring webcam"
@@ -637,14 +618,15 @@ msgstr "TIDAK"
 
 #: src/onboarding.glade:674
 msgid ""
-"Ubuntu Hello will search your system automatically for any available "
-"cameras, so make sure your webcam is connected. After detection a list of "
-"usable webcams will be shown. Pick the one you want to use and click Next."
+"Ubuntu Hello will search your system automatically for any available c"
+"ameras, so make sure your webcam is connected. After detection a list "
+"of usable webcams will be shown. Pick the one you want to use and clic"
+"k Next."
 msgstr ""
-"Ubuntu Hello akan mencari kamera apa pun yang tersedia di sistem Anda secara "
-"otomatis, jadi pastikan webcam Anda terhubung. Setelah terdeteksi, daftar "
-"webcam yang dapat digunakan akan ditampilkan. Pilih salah satu yang ingin "
-"Anda gunakan dan klik Berikutnya."
+"Ubuntu Hello akan mencari kamera apa pun yang tersedia di sistem Anda "
+"secara otomatis, jadi pastikan webcam Anda terhubung. Setelah terdetek"
+"si, daftar webcam yang dapat digunakan akan ditampilkan. Pilih salah s"
+"atu yang ingin Anda gunakan dan klik Berikutnya."
 
 #: src/onboarding.glade:697
 msgid "Testing your webcams, please wait..."
@@ -656,13 +638,13 @@ msgstr "Mengunduh file data"
 
 #: src/onboarding.glade:768
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
-"to recognise you, which will be downloaded now. You can see the download "
-"progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be"
+" able to recognise you, which will be downloaded now. You can see the "
+"download progress below."
 msgstr ""
-"Ubuntu Hello memerlukan tiga kumpulan data pengenalan wajah terlatih untuk "
-"dapat mengenali Anda, yang akan diunduh sekarang. Anda dapat melihat "
-"kemajuan pengunduhan di bawah ini."
+"Ubuntu Hello memerlukan tiga kumpulan data pengenalan wajah terlatih u"
+"ntuk dapat mengenali Anda, yang akan diunduh sekarang. Anda dapat meli"
+"hat kemajuan pengunduhan di bawah ini."
 
 #: src/onboarding.glade:789
 msgid "Starting download..."
@@ -681,8 +663,9 @@ msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Wizard ini akan memandu Anda melalui proses pengaturan dan secara otomatis "
-"mengonfigurasi Ubuntu Hello untuk Anda. Tekan berikutnya untuk melanjutkan."
+"Wizard ini akan memandu Anda melalui proses pengaturan dan secara otom"
+"atis mengonfigurasi Ubuntu Hello untuk Anda. Tekan berikutnya untuk me"
+"lanjutkan."
 
 #: src/onboarding.glade:899
 msgid "Cancel"

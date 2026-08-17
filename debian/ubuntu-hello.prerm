@@ -7,6 +7,12 @@ case "$1" in
         rm -f /usr/share/pam-configs/ubuntu-hello 2>/dev/null || true
         pam-auth-update --package 2>/dev/null || true
 
+        # Restore OS login wallet password from sealed SUW credentials while
+        # ubuntu-hello and /etc/ubuntu-hello still exist. Never fail removal.
+        if command -v ubuntu-hello >/dev/null 2>&1; then
+            timeout 120 ubuntu-hello keyring restore --all || true
+        fi
+
         # Remove Polkit override
         rm -f /etc/systemd/system/polkit-agent-helper@.service.d/override.conf 2>/dev/null || true
         rmdir /etc/systemd/system/polkit-agent-helper@.service.d 2>/dev/null || true

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,25 +28,24 @@ msgid "Unknown error: "
 msgstr "Tuntematon virhe:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Tunnistettiin kasvot %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Riittämättömät oikeudet Enter-painalluksen lähettämiseen. Odotetaan, että "
-"käyttäjä painaa sitä sen sijaan"
+"Riittämättömät oikeudet Enter-painalluksen lähettämiseen. Odotetaan, e"
+"ttä käyttäjä painaa sitä sen sijaan"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Enter-painalluksen lähettäminen epäonnistui. Odotetaan, että käyttäjä painaa "
-"sitä sen sijaan"
+"Enter-painalluksen lähettäminen epäonnistui. Odotetaan, että käyttäjä "
+"painaa sitä sen sijaan"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Yritetään kasvojen todennusta"
 
@@ -68,20 +67,19 @@ msgstr "argumentteja"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Tukea varten käy osoitteessa\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Tukea varten käy osoitteessa\nhttps://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"Suoritettava komentovaihtoehto voi olla jokin seuraavista: lisää, tyhjennä, "
-"konfiguroi, poista käytöstä, avainrengas, luettelo, poista, tilannekuva, "
-"aseta, testaa tai versio."
+"Suoritettava komentovaihtoehto voi olla jokin seuraavista: lisää, tyhj"
+"ennä, konfiguroi, poista käytöstä, avainrengas, luettelo, poista, tila"
+"nnekuva, aseta, testaa tai versio."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -112,144 +110,132 @@ msgid "Invalid username format"
 msgstr "Virheellinen käyttäjänimen muoto"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Suorita tämä komento pääkäyttäjänä:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Suorita tämä komento pääkäyttäjänä:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Ubuntu-hello-komentoja ei voi suorittaa pääkäyttäjänä. Suorita tämä komento "
-"--user-lipulla"
+"Ubuntu-hello-komentoja ei voi suorittaa pääkäyttäjänä. Suorita tämä ko"
+"mento --user-lipulla"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Datatiedostoja ei ole ladattu, suorita seuraavat komennot:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "KIRJAUDU"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Päivämäärä:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Skannausaika:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Kehykset:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Isäntänimi:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Paras varmuusarvo:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Käynnistetään..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Tunnistaminen..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "Epäonnistunut"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
-msgstr ""
-"Kaikki kehykset olivat liian tummia, tarkista dark_threshold asetuksista"
+msgstr "Kaikki kehykset olivat liian tummia, tarkista dark_threshold asetuksista"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Keskimääräinen pimeys: {avg}, Kynnys: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "käytetty aika"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Käynnistys"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Avaa kamera + lataa libs: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Kameran avaaminen"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Tuodaan tunnistuslibsejä"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Haetaan tunnettuja kasvoja"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Kokonaisaika"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Resoluutio"
+"\nResoluutio"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Alkuperäinen: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Käytetty: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Haetut kehykset: %d (%.2f fps)"
+"\nHaetut kehykset: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Mustat kehykset ohitettu: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Tummat kehykset ohitettu: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Voittokehyksen varmuus: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Voittajamalli: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "MENESTYKSI"
 
@@ -275,11 +261,9 @@ msgstr "kirjautumisavaimenperä tai KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Dlib-moduulia ei voi tuoda, tarkista tulos"
+"\nDlib-moduulia ei voi tuoda, tarkista tulos"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -287,13 +271,15 @@ msgstr "Kasvomallikansiota ei löytynyt, luotiin sellainen"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
-msgstr ""
-"VAROITUS: Jokainen lisämalli hidastaa kasvojentunnistusmoottoria hieman"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
+msgstr "VAROITUS: Jokainen lisämalli hidastaa kasvojentunnistusmoottoria hieman"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Peruuta painamalla Ctrl+C\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Peruuta painamalla Ctrl+C\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -304,7 +290,6 @@ msgid "Model #"
 msgstr "Malli #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Käytetään oletustunnistetta \"%s\" lipun -y takia"
 
@@ -318,11 +303,9 @@ msgstr "VAROITUS: Laittoman merkin \",\" poistaminen mallin nimestä"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Katso suoraan kameraan"
+"\nKatso suoraan kameraan"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -338,18 +321,15 @@ msgstr "Useita kasvoja havaittu, keskeytetään"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Skannaus valmis\n"
-"Lisätty uusi malli"
+"\nSkannaus valmis\nLisätty uusi malli"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"Malleja ei ole vielä luotu. Niitä ei voi tyhjentää, jos niitä ei ole olemassa"
+"Malleja ei ole vielä luotu. Niitä ei voi tyhjentää, jos niitä ei ole o"
+"lemassa"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -365,27 +345,21 @@ msgstr "Haluatko jatkaa [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Tulkinta \"EI\", keskeyttää"
+"\nTulkinta \"EI\", keskeyttää"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Mallit tyhjennetty"
+"\nMallit tyhjennetty"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Avataan config.ini kohdassa {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Editorin avaaminen epäonnistui: {error}"
 
@@ -399,11 +373,11 @@ msgstr "Asenna \"nano\" tai \"vi\" tai aseta EDITOR-ympäristömuuttuja."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Jos käytät tätä komentoa sudon kanssa, kokeile 'sudo -E ubuntu-hello config' "
-"säilyttääksesi EDITOR-muuttujasi."
+"Jos käytät tätä komentoa sudon kanssa, kokeile 'sudo -E ubuntu-hello c"
+"onfig' säilyttääksesi EDITOR-muuttujasi."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -425,80 +399,111 @@ msgstr "Ubuntu Hello on poistettu käytöstä"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello on otettu käyttöön"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Käyttö: avaimenperä [käytössä|poista käytöstä]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Käyttö: avainrengas [ota käyttöön|poista käytöstä|palauta] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Syötä salasana käyttäjälle {} avataksesi {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Salasana ei voi olla tyhjä"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Vahvista salasana:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Salasanat eivät täsmää"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM-laitteisto havaittu. tpm2-tools automaattinen asennus..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM-laitteisto aktiivinen. Suljetaan salasanaa TPM:ssä..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Avaimenperä/KWallet lukituksen avaaminen onnistui käyttäjälle {} TPM:n "
-"avulla (lompakko: {})."
+"Avaimenperä/KWallet lukituksen avaaminen onnistui käyttäjälle {} TPM:n"
+" avulla (lompakko: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Salasanan sulkeminen TPM:ään epäonnistui: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"TPM ei ole aktiivinen. Ohjelmistopohjaisen tunnistetietojen välimuistin "
-"käyttö..."
+"TPM ei ole aktiivinen. Ohjelmistopohjaisen tunnistetietojen välimuisti"
+"n käyttö..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Avaimenperä/KWallet lukituksen avaus otettu käyttöön onnistuneesti "
-"käyttäjälle {} (ohjelmiston välimuisti, lompakko: {})."
+"Avaimenperä/KWallet lukituksen avaus otettu käyttöön onnistuneesti käy"
+"ttäjälle {} (ohjelmiston välimuisti, lompakko: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Avaimenperän lukituksen avaaminen epäonnistui: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Avaimenperän lukituksen poistaminen käytöstä epäonnistui: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Avaimenperä/KWallet lukituksen avaaminen pois käytöstä käyttäjältä {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr ""
-"Avaimenperän/KWallet lukituksen avaaminen ei ollut käytössä käyttäjälle {}."
+"Avaimenperän/KWallet lukituksen avaaminen ei ollut käytössä käyttäjäll"
+"e {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Virheellinen toiminto. Käytä \"ota käyttöön\" tai \"poista käytöstä\"."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Sinetöityjä kirjautumissalasanoja ei löytynyt; ei mitään palautettavaa."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Kirjautumislompakon salasana palautettu {} käyttäjälle."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "Kirjautumislompakon salasanaa ei voitu palauttaa {} käyttäjälle."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Jos kehotteet jatkuvat, aseta kirjautumisavainrenkaan tai KWalletin sa"
+"lasana Seahorsessa / Järjestelmäasetuksissa."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Kirjautumislompakon salasana palautettu käyttäjälle {}."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "Kirjautumislompakon salasanaa ei voitu palauttaa käyttäjälle {}."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr ""
+"Virheellinen toiminto. Käytä 'ota käyttöön', 'poista käytöstä' tai 'pa"
+"lauta'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -529,12 +534,10 @@ msgid "You can find the IDs by running:"
 msgstr "Löydät tunnukset suorittamalla:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Tämä poistaa mallin nimeltä \"{label}\" kohteelta {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Mallille, jonka tunnus on {id}, ei ole mallia {user}"
 
@@ -547,8 +550,7 @@ msgid "Removed model {}"
 msgstr "Poistettu malli {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr "Lisää asetus, jota haluat muuttaa, ja arvo, johon se asetetaan"
 
 #: src/cli/set.py:37
@@ -577,43 +579,34 @@ msgstr "Luotu tilannekuva tallennettu nimellä"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello on määritetty käyttämään tallenninta, joka ei vielä tue "
-"testikomentoa, keskeyttää"
+"Ubuntu Hello on määritetty käyttämään tallenninta, joka ei vielä tue t"
+"estikomentoa, keskeyttää"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Ikkunan avaaminen testisyötteellä\n"
-"\n"
-"Lopeta painamalla ctrl+C tässä terminaalissa\n"
-"Ota hidas tila käyttöön tai poista se käytöstä napsauttamalla kuvaa\n"
+"\nIkkunan avaaminen testisyötteellä\n\nLopeta painamalla ctrl+C tässä "
+"terminaalissa\nOta hidas tila käyttöön tai poista se käytöstä napsautt"
+"amalla kuvaa\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RATKAISU: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "kehykset: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "TUNNISTAMINEN: %dms"
 
@@ -631,11 +624,9 @@ msgstr "SKANNAUSKEHYS"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Ikkunan sulkeminen"
+"\nIkkunan sulkeminen"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -666,7 +657,6 @@ msgid "Authorising in {}"
 msgstr "Valtuuttaminen kohdassa {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Paina {abort_key} keskeyttääksesi, {confirm_key} hyväksyäksesi"
 
@@ -698,25 +688,26 @@ msgstr "Puuttuva ffmpeg-moduuli, suorita:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Pyv4l2-moduuli puuttuu, suorita:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello ei löytänyt kameralaitetta asetustiedostossa määritetystä "
-"polusta."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"On erittäin todennäköistä, että polkua ei ole määritetty oikein. Muokkaa "
-"'device_path'-määritysarvoa suorittamalla:"
+"Ubuntu Hello ei löytänyt kameralaitetta asetustiedostossa määritetystä"
+" polusta."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Device_path-määritysasetuksessa määritetyn kameran lukeminen epäonnistui, "
-"keskeytetään"
+"On erittäin todennäköistä, että polkua ei ole määritetty oikein. Muokk"
+"aa 'device_path'-määritysarvoa suorittamalla:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Device_path-määritysasetuksessa määritetyn kameran lukeminen epäonnist"
+"ui, keskeytetään"

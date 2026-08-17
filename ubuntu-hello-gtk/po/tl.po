@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -38,7 +38,8 @@ msgstr "Paganahin ang Keyring/KWallet Pag-unlock"
 #: src/onboarding.py:42 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr ""
-"Ipasok ang password para sa user na <b>{}</b> upang i-unlock ang {} ({}):"
+"Ipasok ang password para sa user na <b>{}</b> upang i-unlock ang {} ({"
+"}):"
 
 #: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
 msgid "Password"
@@ -46,11 +47,9 @@ msgstr "Password"
 
 #: src/onboarding.py:170
 msgid ""
-"Datafiles have already been downloaded!\n"
-"Click Next to continue"
+"Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
-"Na-download na ang mga datafile!\n"
-"I-click ang Susunod upang magpatuloy"
+"Na-download na ang mga datafile!\nI-click ang Susunod upang magpatuloy"
 
 #: src/onboarding.py:200
 msgid "Error while downloading datafiles"
@@ -58,11 +57,9 @@ msgstr "Error habang nagda-download ng mga datafile"
 
 #: src/onboarding.py:203
 msgid ""
-"Done!\n"
-"Click Next to continue"
+"Done!\nClick Next to continue"
 msgstr ""
-"Tapos na!\n"
-"I-click ang Susunod upang magpatuloy"
+"Tapos na!\nI-click ang Susunod upang magpatuloy"
 
 #: src/onboarding.py:230 src/onboarding.py:336
 msgid "Error while importing OpenCV2"
@@ -78,11 +75,11 @@ msgstr "Walang nakitang webcam sa system"
 
 #: src/onboarding.py:237
 msgid ""
-"Please configure your camera yourself if you are sure a compatible camera is "
-"connected"
+"Please configure your camera yourself if you are sure a compatible cam"
+"era is connected"
 msgstr ""
-"Mangyaring i-configure ang iyong camera nang mag-isa kung sigurado kang "
-"nakakonekta ang isang katugmang camera"
+"Mangyaring i-configure ang iyong camera nang mag-isa kung sigurado kan"
+"g nakakonekta ang isang katugmang camera"
 
 #: src/onboarding.py:265
 msgid "No, camera can't be opened"
@@ -118,15 +115,13 @@ msgstr "Subukang pumili ng isa pa"
 
 #: src/onboarding.py:374
 msgid ""
-"Please visit\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"to enable your ir emitter"
+"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
+"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
+"able your ir emitter"
 msgstr ""
-"Mangyaring bisitahin\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"upang paganahin ang iyong ir emitter"
+"Mangyaring bisitahin\n<a href=\"https://github.com/EmixamPP/linux-enab"
+"le-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a"
+">\nupang paganahin ang iyong ir emitter"
 
 #: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
 msgid "Please look directly into the camera"
@@ -142,73 +137,60 @@ msgstr "Hindi ma-save ang modelo ng mukha"
 
 #: src/onboarding.py:446
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Checking TPM hardware and tools..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
+"nd tools..."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang face "
-"authentication (natukoy na wallet: {}).\n"
-"\n"
-"<b>Katayuan ng TPM:</b> Sinusuri ang hardware at mga tool ng TPM..."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang "
+"face authentication (natukoy na wallet: {}).\n\n<b>Katayuan ng TPM:</b"
+"> Sinusuri ang hardware at mga tool ng TPM..."
 
 #: src/onboarding.py:466
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
-"automatically..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
+"Installing <i>tpm2-tools</i> automatically..."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang face "
-"authentication (natukoy na wallet: {}).\n"
-"\n"
-"<b>Katayuan ng TPM:</b> Natukoy ang TPM hardware. Awtomatikong ini-install "
-"ang <i>tpm2-tools</i>..."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang "
+"face authentication (natukoy na wallet: {}).\n\n<b>Katayuan ng TPM:</b"
+"> Natukoy ang TPM hardware. Awtomatikong ini-install ang <i>tpm2-tools"
+"</i>..."
 
 #: src/onboarding.py:478
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
-"sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
+". Your password will be securely sealed inside the TPM."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang face "
-"authentication (natukoy na wallet: {}).\n"
-"\n"
-"<b>Katayuan ng TPM:</b> Aktibo ang Hardware TPM 2.0. Ang iyong password ay "
-"secure na selyuhan sa loob ng TPM."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang "
+"face authentication (natukoy na wallet: {}).\n\n<b>Katayuan ng TPM:</b"
+"> Aktibo ang Hardware TPM 2.0. Ang iyong password ay secure na selyuha"
+"n sa loob ng TPM."
 
 #: src/onboarding.py:480
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
-"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
-"Falling back to software-based credential caching."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
+"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
+" apt install tpm2-tools</code>. Falling back to software-based credent"
+"ial caching."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang face "
-"authentication (natukoy na wallet: {}).\n"
-"\n"
-"<b>Katayuan ng TPM:</b> Natukoy ang hardware ng TPM, ngunit nabigo ang "
-"awtomatikong pag-install ng <i>tpm2-tools</i>. Patakbuhin ang <code>sudo apt "
-"install tpm2-tools</code>. Bumabalik sa software-based credential caching."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang "
+"face authentication (natukoy na wallet: {}).\n\n<b>Katayuan ng TPM:</b"
+"> Natukoy ang hardware ng TPM, ngunit nabigo ang awtomatikong pag-inst"
+"all ng <i>tpm2-tools</i>. Patakbuhin ang <code>sudo apt install tpm2-t"
+"ools</code>. Bumabalik sa software-based credential caching."
 
 #: src/onboarding.py:482
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
-"caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
+"d. Using software-based credential caching (AES-256-GCM)."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang face "
-"authentication (natukoy na wallet: {}).\n"
-"\n"
-"<b>Katayuan ng TPM:</b> Walang TPM hardware na nakita. Paggamit ng software-"
-"based na credential caching (AES-256-GCM)."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong {} gamit ang "
+"face authentication (natukoy na wallet: {}).\n\n<b>Katayuan ng TPM:</b"
+"> Walang TPM hardware na nakita. Paggamit ng software-based na credent"
+"ial caching (AES-256-GCM)."
 
 #: src/onboarding.py:526
 msgid "Could not identify non-root system user for keyring unlocking"
@@ -249,8 +231,8 @@ msgstr "Ubuntu Hello Babala sa Pag-setup"
 #: src/onboarding.py:627
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
-"Hindi ma-save ang tiyak na kagustuhan, ngunit kung hindi man ay kumpleto ang "
-"pag-setup."
+"Hindi ma-save ang tiyak na kagustuhan, ngunit kung hindi man ay kumple"
+"to ang pag-setup."
 
 #: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
 msgid "Ubuntu Hello Error"
@@ -283,7 +265,8 @@ msgstr "Kumpirmahin ang Paggawa ng Modelo"
 #: src/tab_models.py:55
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr ""
-"Mangyaring maglagay ng pangalan para sa bagong modelo, 24 na character max"
+"Mangyaring maglagay ng pangalan para sa bagong modelo, 24 na character"
+" max"
 
 #: src/tab_models.py:62
 msgid "Model name:"
@@ -295,38 +278,33 @@ msgstr "Paglikha ng Modelo"
 
 #: src/tab_models.py:95
 msgid ""
-"Error while adding model, error code {}: \n"
-"\n"
+"Error while adding model, error code {}: \n\n"
 msgstr ""
-"Error habang nagdaragdag ng modelo, error code {}:\n"
-"\n"
+"Error habang nagdaragdag ng modelo, error code {}:\n\n"
 
 #: src/tab_models.py:111
 msgid "Confirm Model Deletion"
 msgstr "Kumpirmahin ang Pagtanggal ng Modelo"
 
 #: src/tab_models.py:112
-#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Sigurado ka bang gusto mong tanggalin ang modelong {id} ({name})?"
 
 #: src/tab_models.py:123
 msgid ""
-"Error while deleting model, error code {}: \n"
-"\n"
+"Error while deleting model, error code {}: \n\n"
 msgstr ""
-"Error habang tinatanggal ang modelo, error code {}:\n"
-"\n"
+"Error habang tinatanggal ang modelo, error code {}:\n\n"
 
-#: src/tab_video.py:41
+#: src/tab_video.py:54
 msgid "Can't open camera"
 msgstr "Hindi mabuksan ang camera"
 
-#: src/tab_video.py:49
+#: src/tab_video.py:62
 msgid "Can't import OpenCV2"
 msgstr "Hindi ma-import ang OpenCV2"
 
-#: src/tab_video.py:122
+#: src/tab_video.py:135
 msgid "Unknown"
 msgstr "Hindi kilala"
 
@@ -340,15 +318,15 @@ msgstr "<span foreground='green'><b>Pinagana (TPM Hardware)</b></span> — {}"
 
 #: src/tab_keyring.py:63
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
-msgstr ""
-"<span foreground='green'><b>Pinagana (Software Caching)</b></span> — {}"
+msgstr "<span foreground='green'><b>Pinagana (Software Caching)</b></span> — {}"
 
 #: src/tab_keyring.py:67
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
+"n> — {}"
 msgstr ""
-"<span foreground='orange'><b>Pinagana (Nakabinbing Pagpasok ng Password)</"
-"b></span> — {}"
+"<span foreground='orange'><b>Pinagana (Nakabinbing Pagpasok ng Passwor"
+"d)</b></span> — {}"
 
 #: src/tab_keyring.py:71
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
@@ -366,7 +344,8 @@ msgstr "Tagumpay"
 #: src/tab_keyring.py:118
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
-"Matagumpay na na-enable ang keyring/KWallet unlocking para sa user na {}."
+"Matagumpay na na-enable ang keyring/KWallet unlocking para sa user na "
+"{}."
 
 #: src/tab_keyring.py:135
 msgid "Disable Keyring/KWallet Unlocking"
@@ -375,8 +354,8 @@ msgstr "Huwag paganahin ang Keyring/KWallet Pag-unlock"
 #: src/tab_keyring.py:136
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Sigurado ka bang gusto mong i-disable ang keyring/KWallet pag-unlock para sa "
-"user na {}?"
+"Sigurado ka bang gusto mong i-disable ang keyring/KWallet pag-unlock p"
+"ara sa user na {}?"
 
 #: src/tab_keyring.py:160
 msgid "Keyring/KWallet unlocking disabled for user {}."
@@ -441,17 +420,18 @@ msgstr "Keyring / KWallet Auto-Unlock"
 
 #: src/main.glade:440
 msgid ""
-"Enable face authentication to automatically unlock your login keyring or "
-"KWallet on login. This securely stores your password sealed in the TPM when "
-"available, or encrypted with AES-256-GCM using a root-only master key. Face "
-"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
-"your desktop."
+"Enable face authentication to automatically unlock your login keyring "
+"or KWallet on login. This securely stores your password sealed in the "
+"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
+"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
+"let5 depending on your desktop."
 msgstr ""
-"I-enable ang face authentication para awtomatikong i-unlock ang iyong login "
-"keyring o KWallet sa pag-login. Ligtas nitong iniimbak ang iyong password na "
-"selyadong sa TPM kapag available, o naka-encrypt gamit ang AES-256-GCM gamit "
-"ang root-only master key. Ang face auth set ay PAM_AUTHTOK para sa "
-"pam_gnome_keyring o pam_kwallet5 depende sa iyong desktop."
+"I-enable ang face authentication para awtomatikong i-unlock ang iyong "
+"login keyring o KWallet sa pag-login. Ligtas nitong iniimbak ang iyong"
+" password na selyadong sa TPM kapag available, o naka-encrypt gamit an"
+"g AES-256-GCM gamit ang root-only master key. Ang face auth set ay PAM"
+"_AUTHTOK para sa pam_gnome_keyring o pam_kwallet5 depende sa iyong des"
+"ktop."
 
 #: src/main.glade:471
 msgid "Current Status:"
@@ -483,7 +463,9 @@ msgstr "Wika"
 
 #: src/main.glade:637
 msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Ang Awtomatiko ay sumusunod sa wika ng system. Agad na nailalapat ang mga pagbabago."
+msgstr ""
+"Ang Awtomatiko ay sumusunod sa wika ng system. Agad na nailalapat ang "
+"mga pagbabago."
 
 #: src/main.glade:694
 msgid "Ubuntu Hello"
@@ -499,10 +481,11 @@ msgstr "Hindi alam ang bersyon"
 
 #: src/main.glade:746
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
+"/a> "
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Buksan ang link ng "
-"GitHub</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Buksan ang link n"
+"g GitHub</a>"
 
 #: src/main.glade:778
 msgid "About"
@@ -518,34 +501,32 @@ msgstr "Tapos na ang pag-setup!"
 
 #: src/onboarding.glade:82
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
-"you would normally have to type your password for to authenticate, like "
-"running a command with sudo. If you enabled keyring auto-unlock, your login "
-"keyring or KWallet will also be unlocked automatically on login.\n"
-"\n"
-"You can open the Ubuntu Hello Configurator later on to change more advanced "
-"settings or add additional models. Press Finish below to close this window "
-"and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing any"
+"thing you would normally have to type your password for to authenticat"
+"e, like running a command with sudo. If you enabled keyring auto-unloc"
+"k, your login keyring or KWallet will also be unlocked automatically o"
+"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
+"nge more advanced settings or add additional models. Press Finish belo"
+"w to close this window and open the Ubuntu Hello Configurator. "
 msgstr ""
-"Tapos na tayo! Ubuntu Hello ay aktibo na ngayon sa computer na ito. Subukang "
-"gawin ang anumang bagay na karaniwan mong kailangang i-type ang iyong "
-"password para ma-authenticate, tulad ng pagpapatakbo ng command gamit ang "
-"sudo. Kung pinagana mo ang auto-unlock ng keyring, ang iyong keyring sa pag-"
-"login o KWallet ay awtomatikong ia-unlock din sa pag-login.\n"
-"\n"
-"Maaari mong buksan ang Ubuntu Hello Configurator sa ibang pagkakataon upang "
-"baguhin ang mas advanced na mga setting o magdagdag ng mga karagdagang "
-"modelo. Pindutin ang Tapos sa ibaba upang isara ang window na ito at buksan "
-"ang Ubuntu Hello Configurator."
+"Tapos na tayo! Ubuntu Hello ay aktibo na ngayon sa computer na ito. Su"
+"bukang gawin ang anumang bagay na karaniwan mong kailangang i-type ang"
+" iyong password para ma-authenticate, tulad ng pagpapatakbo ng command"
+" gamit ang sudo. Kung pinagana mo ang auto-unlock ng keyring, ang iyon"
+"g keyring sa pag-login o KWallet ay awtomatikong ia-unlock din sa pag-"
+"login.\n\nMaaari mong buksan ang Ubuntu Hello Configurator sa ibang pa"
+"gkakataon upang baguhin ang mas advanced na mga setting o magdagdag ng"
+" mga karagdagang modelo. Pindutin ang Tapos sa ibaba upang isara ang w"
+"indow na ito at buksan ang Ubuntu Hello Configurator."
 
 #: src/onboarding.glade:130
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
-"face authentication, preventing password prompts after logging in."
+"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
+"ing face authentication, preventing password prompts after logging in."
 msgstr ""
-"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong keyring sa pag-log "
-"in o KWallet gamit ang pagpapatunay ng mukha, na pumipigil sa mga prompt ng "
-"password pagkatapos mag-log in."
+"Maaaring awtomatikong i-unlock ng Ubuntu Hello ang iyong keyring sa pa"
+"g-log in o KWallet gamit ang pagpapatunay ng mukha, na pumipigil sa mg"
+"a prompt ng password pagkatapos mag-log in."
 
 #: src/onboarding.glade:142
 msgid "Enable automatic keyring/KWallet unlocking"
@@ -561,14 +542,14 @@ msgstr "Pagtatakda ng patakaran sa katiyakan"
 
 #: src/onboarding.glade:235
 msgid ""
-"Because of changes in angles, distance, and other factors a face match is "
-"never exactly the same as the stored face model. On this page you can set "
-"how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match"
+" is never exactly the same as the stored face model. On this page you "
+"can set how strict Ubuntu Hello should be."
 msgstr ""
-"Dahil sa mga pagbabago sa mga anggulo, distansya, at iba pang mga salik, ang "
-"isang tugma ng mukha ay hindi kailanman eksaktong kapareho ng nakaimbak na "
-"modelo ng mukha. Sa page na ito maaari mong itakda kung gaano dapat kahigpit "
-"ang Ubuntu Hello."
+"Dahil sa mga pagbabago sa mga anggulo, distansya, at iba pang mga sali"
+"k, ang isang tugma ng mukha ay hindi kailanman eksaktong kapareho ng n"
+"akaimbak na modelo ng mukha. Sa page na ito maaari mong itakda kung ga"
+"ano dapat kahigpit ang Ubuntu Hello."
 
 #: src/onboarding.glade:274
 msgid "Fast"
@@ -576,11 +557,11 @@ msgstr "Mabilis"
 
 #: src/onboarding.glade:290
 msgid ""
-"Allows more fuzzy matches, \n"
-"but speeds up the scanning process greatly."
+"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
+"y."
 msgstr ""
-"Nagbibigay-daan sa higit pang malabo na mga tugma, \n"
-"ngunit lubos na nagpapabilis sa proseso ng pag-scan."
+"Nagbibigay-daan sa higit pang malabo na mga tugma, \nngunit lubos na n"
+"agpapabilis sa proseso ng pag-scan."
 
 #: src/onboarding.glade:329
 msgid "Balanced"
@@ -588,11 +569,11 @@ msgstr "Balanseng"
 
 #: src/onboarding.glade:345
 msgid ""
-"Still relatively quick detection, \n"
-"but might not log you in when further away."
+"Still relatively quick detection, \nbut might not log you in when furt"
+"her away."
 msgstr ""
-"Medyo mabilis pa rin ang pagtuklas, \n"
-"ngunit maaaring hindi ka mai-log in kapag malayo."
+"Medyo mabilis pa rin ang pagtuklas, \nngunit maaaring hindi ka mai-log"
+" in kapag malayo."
 
 #: src/onboarding.glade:384
 msgid "Secure"
@@ -600,11 +581,11 @@ msgstr "Secure"
 
 #: src/onboarding.glade:400
 msgid ""
-"The slightly safer option, \n"
-"but will take much longer to authenticate you"
+"The slightly safer option, \nbut will take much longer to authenticate"
+" you"
 msgstr ""
-"Ang bahagyang mas ligtas na opsyon, \n"
-"ngunit mas magtatagal bago ka ma-authenticate"
+"Ang bahagyang mas ligtas na opsyon, \nngunit mas magtatagal bago ka ma"
+"-authenticate"
 
 #: src/onboarding.glade:443
 msgid "Adding a face model"
@@ -612,12 +593,12 @@ msgstr "Pagdaragdag ng modelo ng mukha"
 
 #: src/onboarding.glade:462
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to "
-"recognise you. Press the Scan button below to start the facial scan."
+"To authenticate you Ubuntu Hello needs to save a model of your face to"
+" recognise you. Press the Scan button below to start the facial scan."
 msgstr ""
-"Para ma-authenticate ka Ubuntu Hello kailangang mag-save ng modelo ng iyong "
-"mukha para makilala ka. Pindutin ang Scan button sa ibaba upang simulan ang "
-"facial scan."
+"Para ma-authenticate ka Ubuntu Hello kailangang mag-save ng modelo ng "
+"iyong mukha para makilala ka. Pindutin ang Scan button sa ibaba upang "
+"simulan ang facial scan."
 
 #: src/onboarding.glade:564 src/onboarding.glade:655
 msgid "Configuring webcam"
@@ -637,14 +618,15 @@ msgstr "hindi"
 
 #: src/onboarding.glade:674
 msgid ""
-"Ubuntu Hello will search your system automatically for any available "
-"cameras, so make sure your webcam is connected. After detection a list of "
-"usable webcams will be shown. Pick the one you want to use and click Next."
+"Ubuntu Hello will search your system automatically for any available c"
+"ameras, so make sure your webcam is connected. After detection a list "
+"of usable webcams will be shown. Pick the one you want to use and clic"
+"k Next."
 msgstr ""
-"Awtomatikong hahanapin ng Ubuntu Hello ang iyong system para sa anumang "
-"available na camera, kaya siguraduhing nakakonekta ang iyong webcam. "
-"Pagkatapos ng pagtuklas ay ipapakita ang isang listahan ng mga magagamit na "
-"webcam. Piliin ang gusto mong gamitin at i-click ang Susunod."
+"Awtomatikong hahanapin ng Ubuntu Hello ang iyong system para sa anuman"
+"g available na camera, kaya siguraduhing nakakonekta ang iyong webcam."
+" Pagkatapos ng pagtuklas ay ipapakita ang isang listahan ng mga magaga"
+"mit na webcam. Piliin ang gusto mong gamitin at i-click ang Susunod."
 
 #: src/onboarding.glade:697
 msgid "Testing your webcams, please wait..."
@@ -656,13 +638,13 @@ msgstr "Nagda-download ng mga file ng data"
 
 #: src/onboarding.glade:768
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
-"to recognise you, which will be downloaded now. You can see the download "
-"progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be"
+" able to recognise you, which will be downloaded now. You can see the "
+"download progress below."
 msgstr ""
-"Ang Ubuntu Hello ay nangangailangan ng tatlong paunang sinanay na dataset ng "
-"pagkilala sa mukha upang makilala ka, na mada-download ngayon. Maaari mong "
-"makita ang pag-unlad ng pag-download sa ibaba."
+"Ang Ubuntu Hello ay nangangailangan ng tatlong paunang sinanay na data"
+"set ng pagkilala sa mukha upang makilala ka, na mada-download ngayon. "
+"Maaari mong makita ang pag-unlad ng pag-download sa ibaba."
 
 #: src/onboarding.glade:789
 msgid "Starting download..."
@@ -681,9 +663,9 @@ msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Gagabayan ka ng wizard na ito sa proseso ng pag-setup at awtomatikong i-"
-"configure ang Ubuntu Hello para sa iyo. Pindutin ang susunod upang "
-"magpatuloy."
+"Gagabayan ka ng wizard na ito sa proseso ng pag-setup at awtomatikong "
+"i-configure ang Ubuntu Hello para sa iyo. Pindutin ang susunod upang m"
+"agpatuloy."
 
 #: src/onboarding.glade:899
 msgid "Cancel"

@@ -46,6 +46,7 @@ py_sources = [
     'compare.py',
     py_i18n,
     'keyring_crypto.py',
+    'keyring_restore.py',
     'paths_factory.py',
     'wallet_backend.py',
     'recorders/__init__.py',

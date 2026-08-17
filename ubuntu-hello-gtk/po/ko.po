@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -45,11 +45,9 @@ msgstr "비밀번호"
 
 #: src/onboarding.py:170
 msgid ""
-"Datafiles have already been downloaded!\n"
-"Click Next to continue"
+"Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
-"데이터파일이 이미 다운로드되었습니다!\n"
-"계속하려면 다음을 클릭하세요."
+"데이터파일이 이미 다운로드되었습니다!\n계속하려면 다음을 클릭하세요."
 
 #: src/onboarding.py:200
 msgid "Error while downloading datafiles"
@@ -57,11 +55,9 @@ msgstr "데이터 파일을 다운로드하는 중 오류가 발생했습니다.
 
 #: src/onboarding.py:203
 msgid ""
-"Done!\n"
-"Click Next to continue"
+"Done!\nClick Next to continue"
 msgstr ""
-"완료!\n"
-"계속하려면 다음을 클릭하세요."
+"완료!\n계속하려면 다음을 클릭하세요."
 
 #: src/onboarding.py:230 src/onboarding.py:336
 msgid "Error while importing OpenCV2"
@@ -77,10 +73,9 @@ msgstr "시스템에서 웹캠을 찾을 수 없습니다."
 
 #: src/onboarding.py:237
 msgid ""
-"Please configure your camera yourself if you are sure a compatible camera is "
-"connected"
-msgstr ""
-"호환되는 카메라가 연결되어 있다고 확신하는 경우 카메라를 직접 구성하세요."
+"Please configure your camera yourself if you are sure a compatible cam"
+"era is connected"
+msgstr "호환되는 카메라가 연결되어 있다고 확신하는 경우 카메라를 직접 구성하세요."
 
 #: src/onboarding.py:265
 msgid "No, camera can't be opened"
@@ -116,15 +111,13 @@ msgstr "다른 것을 선택해 보세요"
 
 #: src/onboarding.py:374
 msgid ""
-"Please visit\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"to enable your ir emitter"
+"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
+"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
+"able your ir emitter"
 msgstr ""
-"방문해주세요\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"IR 이미 터를 활성화하려면"
+"방문해주세요\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter"
+"\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nIR 이미 터를 활"
+"성화하려면"
 
 #: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
 msgid "Please look directly into the camera"
@@ -140,73 +133,51 @@ msgstr "얼굴 모델을 저장할 수 없습니다."
 
 #: src/onboarding.py:446
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Checking TPM hardware and tools..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
+"nd tools..."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
-"지된 지갑: {}).\n"
-"\n"
-"<b>TPM 상태:</b> TPM 하드웨어 및 도구를 확인하는 중..."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
+"M 상태:</b> TPM 하드웨어 및 도구를 확인하는 중..."
 
 #: src/onboarding.py:466
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
-"automatically..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
+"Installing <i>tpm2-tools</i> automatically..."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
-"지된 지갑: {}).\n"
-"\n"
-"<b>TPM 상태:</b> TPM 하드웨어가 감지되었습니다. <i>tpm2-tools</i> 자동 설치 "
-"중..."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
+"M 상태:</b> TPM 하드웨어가 감지되었습니다. <i>tpm2-tools</i> 자동 설치 중..."
 
 #: src/onboarding.py:478
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
-"sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
+". Your password will be securely sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
-"지된 지갑: {}).\n"
-"\n"
-"<b>TPM 상태:</b> 하드웨어 TPM 2.0이 활성화되었습니다. 귀하의 비밀번호는 TPM "
-"내부에 안전하게 봉인됩니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
+"M 상태:</b> 하드웨어 TPM 2.0이 활성화되었습니다. 귀하의 비밀번호는 TPM 내부에 안전하게 봉인됩니다."
 
 #: src/onboarding.py:480
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
-"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
-"Falling back to software-based credential caching."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
+"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
+" apt install tpm2-tools</code>. Falling back to software-based credent"
+"ial caching."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
-"지된 지갑: {}).\n"
-"\n"
-"<b>TPM 상태:</b> TPM 하드웨어가 감지되었지만 <i>tpm2-tools</i> 자동 설치에 실"
-"패했습니다. <code>sudo apt install tpm2-tools</code>를 실행하세요. 소프트웨"
-"어 기반 자격 증명 캐싱으로 대체됩니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
+"M 상태:</b> TPM 하드웨어가 감지되었지만 <i>tpm2-tools</i> 자동 설치에 실패했습니다. <code>sudo"
+" apt install tpm2-tools</code>를 실행하세요. 소프트웨어 기반 자격 증명 캐싱으로 대체됩니다."
 
 #: src/onboarding.py:482
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
-"caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
+"d. Using software-based credential caching (AES-256-GCM)."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
-"지된 지갑: {}).\n"
-"\n"
-"<b>TPM 상태:</b> TPM 하드웨어가 감지되지 않았습니다. 소프트웨어 기반 자격 증"
-"명 캐싱(AES-256-GCM)을 사용합니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
+"M 상태:</b> TPM 하드웨어가 감지되지 않았습니다. 소프트웨어 기반 자격 증명 캐싱(AES-256-GCM)을 사용합니다."
 
 #: src/onboarding.py:526
 msgid "Could not identify non-root system user for keyring unlocking"
@@ -290,38 +261,33 @@ msgstr "모델 생성"
 
 #: src/tab_models.py:95
 msgid ""
-"Error while adding model, error code {}: \n"
-"\n"
+"Error while adding model, error code {}: \n\n"
 msgstr ""
-"모델을 추가하는 중 오류가 발생했습니다. 오류 코드 {}:\n"
-"\n"
+"모델을 추가하는 중 오류가 발생했습니다. 오류 코드 {}:\n\n"
 
 #: src/tab_models.py:111
 msgid "Confirm Model Deletion"
 msgstr "모델 삭제 확인"
 
 #: src/tab_models.py:112
-#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "모델 {id}({name})을 삭제하시겠습니까?"
 
 #: src/tab_models.py:123
 msgid ""
-"Error while deleting model, error code {}: \n"
-"\n"
+"Error while deleting model, error code {}: \n\n"
 msgstr ""
-"모델 삭제 중 오류가 발생했습니다. 오류 코드 {}:\n"
-"\n"
+"모델 삭제 중 오류가 발생했습니다. 오류 코드 {}:\n\n"
 
-#: src/tab_video.py:41
+#: src/tab_video.py:54
 msgid "Can't open camera"
 msgstr "카메라를 열 수 없습니다"
 
-#: src/tab_video.py:49
+#: src/tab_video.py:62
 msgid "Can't import OpenCV2"
 msgstr "OpenCV2를 가져올 수 없습니다."
 
-#: src/tab_video.py:122
+#: src/tab_video.py:135
 msgid "Unknown"
 msgstr "알려지지 않은"
 
@@ -339,9 +305,9 @@ msgstr "<span foreground='green'><b>활성화됨(소프트웨어 캐싱)</b></sp
 
 #: src/tab_keyring.py:67
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
-msgstr ""
-"<span foreground='orange'><b>활성화됨(비밀번호 입력 보류 중)</b></span> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
+"n> — {}"
+msgstr "<span foreground='orange'><b>활성화됨(비밀번호 입력 보류 중)</b></span> — {}"
 
 #: src/tab_keyring.py:71
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
@@ -431,17 +397,15 @@ msgstr "열쇠고리 / KWallet 자동 잠금 해제"
 
 #: src/main.glade:440
 msgid ""
-"Enable face authentication to automatically unlock your login keyring or "
-"KWallet on login. This securely stores your password sealed in the TPM when "
-"available, or encrypted with AES-256-GCM using a root-only master key. Face "
-"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
-"your desktop."
+"Enable face authentication to automatically unlock your login keyring "
+"or KWallet on login. This securely stores your password sealed in the "
+"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
+"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
+"let5 depending on your desktop."
 msgstr ""
-"로그인 키링을 자동으로 잠금 해제하거나 로그인 시 KWallet를 입력하려면 얼굴 인"
-"증을 활성화하세요. 이는 사용 가능한 경우 TPM에 봉인된 비밀번호를 안전하게 저"
-"장하거나 루트 전용 마스터 키를 사용하여 AES-256-GCM로 암호화됩니다. 얼굴 인증"
-"은 데스크톱에 따라 pam_gnome_keyring 또는 pam_kwallet5에 대해 PAM_AUTHTOK을 "
-"설정합니다."
+"로그인 키링을 자동으로 잠금 해제하거나 로그인 시 KWallet를 입력하려면 얼굴 인증을 활성화하세요. 이는 사용 가능한 경우"
+" TPM에 봉인된 비밀번호를 안전하게 저장하거나 루트 전용 마스터 키를 사용하여 AES-256-GCM로 암호화됩니다. 얼굴 인"
+"증은 데스크톱에 따라 pam_gnome_keyring 또는 pam_kwallet5에 대해 PAM_AUTHTOK을 설정합니다."
 
 #: src/main.glade:471
 msgid "Current Status:"
@@ -489,9 +453,9 @@ msgstr "버전을 알 수 없음"
 
 #: src/main.glade:746
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
-msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub 링크 열기</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
+"/a> "
+msgstr "<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub 링크 열기</a>"
 
 #: src/main.glade:778
 msgid "About"
@@ -507,31 +471,26 @@ msgstr "설정이 완료되었습니다!"
 
 #: src/onboarding.glade:82
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
-"you would normally have to type your password for to authenticate, like "
-"running a command with sudo. If you enabled keyring auto-unlock, your login "
-"keyring or KWallet will also be unlocked automatically on login.\n"
-"\n"
-"You can open the Ubuntu Hello Configurator later on to change more advanced "
-"settings or add additional models. Press Finish below to close this window "
-"and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing any"
+"thing you would normally have to type your password for to authenticat"
+"e, like running a command with sudo. If you enabled keyring auto-unloc"
+"k, your login keyring or KWallet will also be unlocked automatically o"
+"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
+"nge more advanced settings or add additional models. Press Finish belo"
+"w to close this window and open the Ubuntu Hello Configurator. "
 msgstr ""
-"이제 끝났습니다! Ubuntu Hello가 이제 이 컴퓨터에서 활성화되었습니다. sudo로 "
-"명령을 실행하는 등 일반적으로 인증을 위해 비밀번호를 입력해야 하는 작업을 수"
-"행해 보세요. 키링 자동 잠금 해제를 활성화한 경우 로그인 키링 또는 KWallet도 "
-"로그인 시 자동으로 잠금 해제됩니다.\n"
-"\n"
-"나중에 Ubuntu Hello 구성 도구를 열어 고급 설정을 변경하거나 추가 모델을 추가"
-"할 수 있습니다. 아래의 마침을 눌러 이 창을 닫고 Ubuntu Hello 구성 도구를 엽니"
-"다."
+"이제 끝났습니다! Ubuntu Hello가 이제 이 컴퓨터에서 활성화되었습니다. sudo로 명령을 실행하는 등 일반적으로 인증"
+"을 위해 비밀번호를 입력해야 하는 작업을 수행해 보세요. 키링 자동 잠금 해제를 활성화한 경우 로그인 키링 또는 KWallet"
+"도 로그인 시 자동으로 잠금 해제됩니다.\n\n나중에 Ubuntu Hello 구성 도구를 열어 고급 설정을 변경하거나 추가 모"
+"델을 추가할 수 있습니다. 아래의 마침을 눌러 이 창을 닫고 Ubuntu Hello 구성 도구를 엽니다."
 
 #: src/onboarding.glade:130
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
-"face authentication, preventing password prompts after logging in."
+"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
+"ing face authentication, preventing password prompts after logging in."
 msgstr ""
-"Ubuntu Hello는 로그인 키링을 자동으로 잠금 해제하거나 KWallet 얼굴 인증을 사"
-"용하여 로그인 후 비밀번호 프롬프트를 방지할 수 있습니다."
+"Ubuntu Hello는 로그인 키링을 자동으로 잠금 해제하거나 KWallet 얼굴 인증을 사용하여 로그인 후 비밀번호 프롬프"
+"트를 방지할 수 있습니다."
 
 #: src/onboarding.glade:142
 msgid "Enable automatic keyring/KWallet unlocking"
@@ -547,13 +506,12 @@ msgstr "확실성 정책 설정"
 
 #: src/onboarding.glade:235
 msgid ""
-"Because of changes in angles, distance, and other factors a face match is "
-"never exactly the same as the stored face model. On this page you can set "
-"how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match"
+" is never exactly the same as the stored face model. On this page you "
+"can set how strict Ubuntu Hello should be."
 msgstr ""
-"각도, 거리 및 기타 요인의 변화로 인해 얼굴 일치는 저장된 얼굴 모델과 정확히 "
-"동일하지 않습니다. 이 페이지에서는 Ubuntu Hello의 엄격함 정도를 설정할 수 있"
-"습니다."
+"각도, 거리 및 기타 요인의 변화로 인해 얼굴 일치는 저장된 얼굴 모델과 정확히 동일하지 않습니다. 이 페이지에서는 Ubunt"
+"u Hello의 엄격함 정도를 설정할 수 있습니다."
 
 #: src/onboarding.glade:274
 msgid "Fast"
@@ -561,11 +519,10 @@ msgstr "빠른"
 
 #: src/onboarding.glade:290
 msgid ""
-"Allows more fuzzy matches, \n"
-"but speeds up the scanning process greatly."
+"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
+"y."
 msgstr ""
-"더 많은 퍼지 일치를 허용합니다. \n"
-"그러나 스캔 프로세스 속도가 크게 향상됩니다."
+"더 많은 퍼지 일치를 허용합니다. \n그러나 스캔 프로세스 속도가 크게 향상됩니다."
 
 #: src/onboarding.glade:329
 msgid "Balanced"
@@ -573,11 +530,10 @@ msgstr "균형 잡힌"
 
 #: src/onboarding.glade:345
 msgid ""
-"Still relatively quick detection, \n"
-"but might not log you in when further away."
+"Still relatively quick detection, \nbut might not log you in when furt"
+"her away."
 msgstr ""
-"여전히 상대적으로 빠른 감지, \n"
-"하지만 멀리 떨어져 있으면 로그인하지 못할 수도 있습니다."
+"여전히 상대적으로 빠른 감지, \n하지만 멀리 떨어져 있으면 로그인하지 못할 수도 있습니다."
 
 #: src/onboarding.glade:384
 msgid "Secure"
@@ -585,11 +541,10 @@ msgstr "안전한"
 
 #: src/onboarding.glade:400
 msgid ""
-"The slightly safer option, \n"
-"but will take much longer to authenticate you"
+"The slightly safer option, \nbut will take much longer to authenticate"
+" you"
 msgstr ""
-"조금 더 안전한 옵션은, \n"
-"하지만 인증하는 데 시간이 더 오래 걸립니다."
+"조금 더 안전한 옵션은, \n하지만 인증하는 데 시간이 더 오래 걸립니다."
 
 #: src/onboarding.glade:443
 msgid "Adding a face model"
@@ -597,11 +552,11 @@ msgstr "얼굴 모델 추가"
 
 #: src/onboarding.glade:462
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to "
-"recognise you. Press the Scan button below to start the facial scan."
+"To authenticate you Ubuntu Hello needs to save a model of your face to"
+" recognise you. Press the Scan button below to start the facial scan."
 msgstr ""
-"귀하를 인증하려면 Ubuntu Hello가 귀하를 인식할 얼굴 모델을 저장해야 합니다. "
-"아래의 스캔 버튼을 눌러 얼굴 스캔을 시작하세요."
+"귀하를 인증하려면 Ubuntu Hello가 귀하를 인식할 얼굴 모델을 저장해야 합니다. 아래의 스캔 버튼을 눌러 얼굴 스캔을 "
+"시작하세요."
 
 #: src/onboarding.glade:564 src/onboarding.glade:655
 msgid "Configuring webcam"
@@ -621,13 +576,13 @@ msgstr "아니요"
 
 #: src/onboarding.glade:674
 msgid ""
-"Ubuntu Hello will search your system automatically for any available "
-"cameras, so make sure your webcam is connected. After detection a list of "
-"usable webcams will be shown. Pick the one you want to use and click Next."
+"Ubuntu Hello will search your system automatically for any available c"
+"ameras, so make sure your webcam is connected. After detection a list "
+"of usable webcams will be shown. Pick the one you want to use and clic"
+"k Next."
 msgstr ""
-"Ubuntu Hello는 자동으로 시스템에서 사용 가능한 카메라를 검색하므로 웹캠이 연"
-"결되어 있는지 확인하세요. 감지 후 사용 가능한 웹캠 목록이 표시됩니다. 사용하"
-"려는 것을 선택하고 다음을 클릭하십시오."
+"Ubuntu Hello는 자동으로 시스템에서 사용 가능한 카메라를 검색하므로 웹캠이 연결되어 있는지 확인하세요. 감지 후 사용"
+" 가능한 웹캠 목록이 표시됩니다. 사용하려는 것을 선택하고 다음을 클릭하십시오."
 
 #: src/onboarding.glade:697
 msgid "Testing your webcams, please wait..."
@@ -639,13 +594,12 @@ msgstr "데이터 파일 다운로드"
 
 #: src/onboarding.glade:768
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
-"to recognise you, which will be downloaded now. You can see the download "
-"progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be"
+" able to recognise you, which will be downloaded now. You can see the "
+"download progress below."
 msgstr ""
-"Ubuntu Hello 당신을 인식하려면 세 가지 사전 훈련된 얼굴 인식 데이터세트가 필"
-"요하며, 지금 다운로드할 수 있습니다. 아래에서 다운로드 진행 상황을 볼 수 있습"
-"니다."
+"Ubuntu Hello 당신을 인식하려면 세 가지 사전 훈련된 얼굴 인식 데이터세트가 필요하며, 지금 다운로드할 수 있습니다."
+" 아래에서 다운로드 진행 상황을 볼 수 있습니다."
 
 #: src/onboarding.glade:789
 msgid "Starting download..."
@@ -663,9 +617,7 @@ msgstr "버전"
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
-msgstr ""
-"이 마법사는 설정 과정을 안내하고 Ubuntu Hello를 자동으로 구성합니다. 계속하려"
-"면 다음을 누르세요."
+msgstr "이 마법사는 설정 과정을 안내하고 Ubuntu Hello를 자동으로 구성합니다. 계속하려면 다음을 누르세요."
 
 #: src/onboarding.glade:899
 msgid "Cancel"

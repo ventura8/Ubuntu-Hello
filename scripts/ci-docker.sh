@@ -2,7 +2,7 @@
 # Build and run Ubuntu Hello CI inside Docker (ubuntu:26.04).
 #
 # Stages (UH_CI_STAGE):
-#   lint      — docker/Dockerfile.ci.lint; meson/ninja + clang-tidy + py_compile
+#   lint      — docker/Dockerfile.ci.lint; meson/ninja + clang-tidy + py_compile + i18n-lint
 #   coverage  — docker/Dockerfile.ci.coverage; meson/ninja + pytest coverage + meson tests
 #   compat    — per-DE docker/Dockerfile.ci[.de]; build + pytest (no cov floors) + meson tests
 #
@@ -189,6 +189,11 @@ run_py_compile() {
   python3 -c "import sys, py_compile, glob; [py_compile.compile(f, doraise=True) for f in glob.glob('**/*.py', recursive=True) if not any(p in f for p in ['.git', '.pytest_cache', 'build', 'builddir', '__pycache__'])]"
 }
 
+run_i18n_lint() {
+  echo "==> JSON + gettext catalog lint (scripts/i18n-lint.py)"
+  python3 scripts/i18n-lint.py
+}
+
 run_pytest_coverage() {
   # Isolate coverage DB per build dir (safe if stages ever overlap on one mount).
   export COVERAGE_FILE="${BUILD_DIR}/.coverage"
@@ -199,8 +204,9 @@ run_pytest_coverage() {
   # pytest-cov can round the printed % while still being under the floor; enforce with coverage CLI.
   python3 -m coverage report --data-file="${COVERAGE_FILE}" --precision=2 --fail-under=90
   echo "==> pytest keyring feature coverage == 100%"
-  pytest tests/test_keyring_crypto.py tests/test_cli_keyring_aes.py tests/test_gtk_tabs.py tests/test_onboarding.py \
+  pytest tests/test_keyring_crypto.py tests/test_cli_keyring_aes.py tests/test_keyring_restore.py tests/test_gtk_tabs.py tests/test_onboarding.py \
     --cov=keyring_crypto \
+    --cov=keyring_restore \
     --cov=cli.keyring \
     --cov=tab_keyring \
     --cov-branch \
@@ -228,6 +234,7 @@ run_inside() {
       meson_build
       run_clang_tidy
       run_py_compile
+      run_i18n_lint
       ;;
     coverage)
       meson_build

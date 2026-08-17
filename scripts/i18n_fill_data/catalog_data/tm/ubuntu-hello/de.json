@@ -84,7 +84,6 @@
   "The disable option has already been set to ": "Die Deaktivieren-Option ist bereits gesetzt auf ",
   "Ubuntu Hello has been disabled": "Ubuntu Hello wurde deaktiviert",
   "Ubuntu Hello has been enabled": "Ubuntu Hello wurde aktiviert",
-  "Usage: keyring [enable|disable]": "Verwendung: keyring [enable|disable]",
   "Enter password for user {} to unlock {} ({}): ": "Passwort für Benutzer {} eingeben, um {} zu entsperren ({}): ",
   "Password cannot be empty": "Passwort darf nicht leer sein",
   "Confirm password: ": "Passwort bestätigen: ",
@@ -99,7 +98,6 @@
   "Failed to disable keyring unlocking: {}": "Keyring-Entsperrung konnte nicht deaktiviert werden: {}",
   "Keyring/KWallet unlocking disabled for user {}.": "Keyring-/KWallet-Entsperrung für Benutzer {} deaktiviert.",
   "Keyring/KWallet unlocking was not enabled for user {}.": "Keyring-/KWallet-Entsperrung war für Benutzer {} nicht aktiviert.",
-  "Invalid action. Use 'enable' or 'disable'.": "Ungültige Aktion. Verwenden Sie „enable“ oder „disable“.",
   "Face models have not been initialized yet, please run:": "Gesichtsmodelle wurden noch nicht initialisiert, bitte ausführen:",
   "No face model known for the user {}, please run:": "Kein Gesichtsmodell für Benutzer {} bekannt, bitte ausführen:",
   "Known face models for {}:": "Bekannte Gesichtsmodelle für {}:",
@@ -145,5 +143,13 @@
   "Missing pyv4l2 module, please run:": "pyv4l2-Modul fehlt, bitte ausführen:",
   "Ubuntu Hello could not find a camera device at the path specified in the config file.": "Ubuntu Hello fand kein Kameragerät unter dem in der Konfiguration angegebenen Pfad.",
   "It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:": "Sehr wahrscheinlich ist der Pfad falsch konfiguriert. Bitte bearbeiten Sie „device_path“ mit:",
-  "Failed to read camera specified in the 'device_path' config option, aborting": "Kamera aus „device_path“ konnte nicht gelesen werden, Abbruch"
+  "Failed to read camera specified in the 'device_path' config option, aborting": "Kamera aus „device_path“ konnte nicht gelesen werden, Abbruch",
+  "Usage: keyring [enable|disable|restore]": "Verwendung: keyring [enable|disable|restore]",
+  "Invalid action. Use 'enable', 'disable', or 'restore'.": "Ungültige Aktion. Verwenden Sie „enable“, „disable“ oder „restore“.",
+  "Restored login wallet password for user {}.": "Anmelde-Wallet-Passwort für Benutzer {} wiederhergestellt.",
+  "Could not restore login wallet password for user {}.": "Anmelde-Wallet-Passwort für Benutzer {} konnte nicht wiederhergestellt werden.",
+  "No sealed login passwords found; nothing to restore.": "Keine versiegelten Anmeldepasswörter gefunden; nichts wiederherzustellen.",
+  "Restored login wallet password for {} user(s).": "Anmelde-Wallet-Passwort für {} Benutzer wiederhergestellt.",
+  "Could not restore login wallet password for {} user(s).": "Anmelde-Wallet-Passwort für {} Benutzer konnte nicht wiederhergestellt werden.",
+  "If prompts persist, set the login keyring or KWallet password in Seahorse / System Settings.": "Wenn Aufforderungen bestehen bleiben, setzen Sie das Passwort des Anmelde-Schlüsselbunds oder von KWallet in Seahorse / Systemeinstellungen."
 }

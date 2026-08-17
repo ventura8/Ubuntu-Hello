@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -45,11 +45,9 @@ msgstr "Пароль"
 
 #: src/onboarding.py:170
 msgid ""
-"Datafiles have already been downloaded!\n"
-"Click Next to continue"
+"Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
-"Файли даних вже завантажено!\n"
-"Натисніть «Далі», щоб продовжити"
+"Файли даних вже завантажено!\nНатисніть «Далі», щоб продовжити"
 
 #: src/onboarding.py:200
 msgid "Error while downloading datafiles"
@@ -57,11 +55,9 @@ msgstr "Помилка під час завантаження файлів да�
 
 #: src/onboarding.py:203
 msgid ""
-"Done!\n"
-"Click Next to continue"
+"Done!\nClick Next to continue"
 msgstr ""
-"Готово!\n"
-"Натисніть «Далі», щоб продовжити"
+"Готово!\nНатисніть «Далі», щоб продовжити"
 
 #: src/onboarding.py:230 src/onboarding.py:336
 msgid "Error while importing OpenCV2"
@@ -77,10 +73,11 @@ msgstr "У системі не знайдено веб-камер"
 
 #: src/onboarding.py:237
 msgid ""
-"Please configure your camera yourself if you are sure a compatible camera is "
-"connected"
+"Please configure your camera yourself if you are sure a compatible cam"
+"era is connected"
 msgstr ""
-"Налаштуйте камеру самостійно, якщо ви впевнені, що підключено сумісну камеру"
+"Налаштуйте камеру самостійно, якщо ви впевнені, що підключено сумісну "
+"камеру"
 
 #: src/onboarding.py:265
 msgid "No, camera can't be opened"
@@ -116,15 +113,13 @@ msgstr "Спробуйте вибрати інший"
 
 #: src/onboarding.py:374
 msgid ""
-"Please visit\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"to enable your ir emitter"
+"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
+"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
+"able your ir emitter"
 msgstr ""
-"Будь ласка, відвідайте\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"щоб увімкнути інфрачервоний випромінювач"
+"Будь ласка, відвідайте\n<a href=\"https://github.com/EmixamPP/linux-en"
+"able-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter<"
+"/a>\nщоб увімкнути інфрачервоний випромінювач"
 
 #: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
 msgid "Please look directly into the camera"
@@ -140,79 +135,64 @@ msgstr "Не вдається зберегти модель обличчя"
 
 #: src/onboarding.py:446
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Checking TPM hardware and tools..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
+"nd tools..."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою "
-"автентифікації обличчя (виявлений гаманець: {}).\n"
-"\n"
-"<b>Стан TPM:</b> Перевірка апаратного забезпечення та інструментів TPM..."
+"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою автенти"
+"фікації обличчя (виявлений гаманець: {}).\n\n<b>Стан TPM:</b> Перевірк"
+"а апаратного забезпечення та інструментів TPM..."
 
 #: src/onboarding.py:466
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
-"automatically..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
+"Installing <i>tpm2-tools</i> automatically..."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою "
-"автентифікації обличчя (виявлений гаманець: {}).\n"
-"\n"
-"<b>Стан TPM:</b> виявлено обладнання TPM. Автоматичне встановлення <i>tpm2-"
-"tools</i>..."
+"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою автенти"
+"фікації обличчя (виявлений гаманець: {}).\n\n<b>Стан TPM:</b> виявлено"
+" обладнання TPM. Автоматичне встановлення <i>tpm2-tools</i>..."
 
 #: src/onboarding.py:478
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
-"sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
+". Your password will be securely sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою "
-"автентифікації обличчя (виявлений гаманець: {}).\n"
-"\n"
-"<b>Стан TPM:</b> Апаратний TPM 2.0 активний. Ваш пароль буде надійно "
-"запечатано в TPM."
+"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою автенти"
+"фікації обличчя (виявлений гаманець: {}).\n\n<b>Стан TPM:</b> Апаратни"
+"й TPM 2.0 активний. Ваш пароль буде надійно запечатано в TPM."
 
 #: src/onboarding.py:480
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
-"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
-"Falling back to software-based credential caching."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
+"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
+" apt install tpm2-tools</code>. Falling back to software-based credent"
+"ial caching."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою "
-"автентифікації обличчя (виявлений гаманець: {}).\n"
-"\n"
-"<b>Статус TPM:</b> апаратне забезпечення TPM виявлено, але автоматичне "
-"встановлення <i>tpm2-tools</i> не вдалось. Запустіть <code>sudo apt install "
-"tpm2-tools</code>. Повернення до програмного кешування облікових даних."
+"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою автенти"
+"фікації обличчя (виявлений гаманець: {}).\n\n<b>Статус TPM:</b> апарат"
+"не забезпечення TPM виявлено, але автоматичне встановлення <i>tpm2-too"
+"ls</i> не вдалось. Запустіть <code>sudo apt install tpm2-tools</code>."
+" Повернення до програмного кешування облікових даних."
 
 #: src/onboarding.py:482
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
-"caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
+"d. Using software-based credential caching (AES-256-GCM)."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою "
-"автентифікації обличчя (виявлений гаманець: {}).\n"
-"\n"
-"<b>Стан TPM:</b> обладнання TPM не виявлено. Використання програмного "
-"кешування облікових даних (AES-256-GCM)."
+"Ubuntu Hello може автоматично розблокувати ваш {} за допомогою автенти"
+"фікації обличчя (виявлений гаманець: {}).\n\n<b>Стан TPM:</b> обладнан"
+"ня TPM не виявлено. Використання програмного кешування облікових даних"
+" (AES-256-GCM)."
 
 #: src/onboarding.py:526
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
-"Не вдалося ідентифікувати користувача без кореневої системи для "
-"розблокування брелоків"
+"Не вдалося ідентифікувати користувача без кореневої системи для розбло"
+"кування брелоків"
 
 #: src/onboarding.py:549 src/tab_keyring.py:91
 msgid "Password cannot be empty"
@@ -248,8 +228,7 @@ msgstr "Ubuntu Hello Попередження про налаштування"
 
 #: src/onboarding.py:627
 msgid "Could not save certainty preference, but setup is otherwise complete."
-msgstr ""
-"Не вдалося зберегти налаштування надійності, але налаштування завершено."
+msgstr "Не вдалося зберегти налаштування надійності, але налаштування завершено."
 
 #: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
 msgid "Ubuntu Hello Error"
@@ -270,7 +249,8 @@ msgstr "Підтвердити створення користувача"
 #: src/tab_models.py:19
 msgid "Please enter the username of the user you want to add to Ubuntu Hello"
 msgstr ""
-"Будь ласка, введіть ім'я користувача, якого ви хочете додати до Ubuntu Hello"
+"Будь ласка, введіть ім'я користувача, якого ви хочете додати до Ubuntu"
+" Hello"
 
 #: src/tab_models.py:26
 msgid "Username:"
@@ -294,38 +274,33 @@ msgstr "Створення моделі"
 
 #: src/tab_models.py:95
 msgid ""
-"Error while adding model, error code {}: \n"
-"\n"
+"Error while adding model, error code {}: \n\n"
 msgstr ""
-"Помилка під час додавання моделі, код помилки {}:\n"
-"\n"
+"Помилка під час додавання моделі, код помилки {}:\n\n"
 
 #: src/tab_models.py:111
 msgid "Confirm Model Deletion"
 msgstr "Підтвердити видалення моделі"
 
 #: src/tab_models.py:112
-#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Ви впевнені, що хочете видалити модель {id} ({name})?"
 
 #: src/tab_models.py:123
 msgid ""
-"Error while deleting model, error code {}: \n"
-"\n"
+"Error while deleting model, error code {}: \n\n"
 msgstr ""
-"Помилка під час видалення моделі, код помилки {}:\n"
-"\n"
+"Помилка під час видалення моделі, код помилки {}:\n\n"
 
-#: src/tab_video.py:41
+#: src/tab_video.py:54
 msgid "Can't open camera"
 msgstr "Не вдається відкрити камеру"
 
-#: src/tab_video.py:49
+#: src/tab_video.py:62
 msgid "Can't import OpenCV2"
 msgstr "Не вдається імпортувати OpenCV2"
 
-#: src/tab_video.py:122
+#: src/tab_video.py:135
 msgid "Unknown"
 msgstr "Невідомий"
 
@@ -336,20 +311,22 @@ msgstr "<i>Користувач не вибрано</i>"
 #: src/tab_keyring.py:59
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Увімкнено (апаратне забезпечення TPM)</b></span> "
-"— {}"
+"<span foreground='green'><b>Увімкнено (апаратне забезпечення TPM)</b><"
+"/span> — {}"
 
 #: src/tab_keyring.py:63
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Увімкнено (програмне кешування)</b></span> — {}"
+"<span foreground='green'><b>Увімкнено (програмне кешування)</b></span>"
+" — {}"
 
 #: src/tab_keyring.py:67
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
+"n> — {}"
 msgstr ""
-"<span foreground='orange'><b>Увімкнено (очікує введення пароля)</b></span> — "
-"{}"
+"<span foreground='orange'><b>Увімкнено (очікує введення пароля)</b></s"
+"pan> — {}"
 
 #: src/tab_keyring.py:71
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
@@ -375,8 +352,8 @@ msgstr "Вимкнути брелок/розблокування KWallet"
 #: src/tab_keyring.py:136
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Ви впевнені, що бажаєте вимкнути розблокування брелоків/KWallet для "
-"користувача {}?"
+"Ви впевнені, що бажаєте вимкнути розблокування брелоків/KWallet для ко"
+"ристувача {}?"
 
 #: src/tab_keyring.py:160
 msgid "Keyring/KWallet unlocking disabled for user {}."
@@ -441,17 +418,18 @@ msgstr "Брелок / KWallet Автоматичне розблокування
 
 #: src/main.glade:440
 msgid ""
-"Enable face authentication to automatically unlock your login keyring or "
-"KWallet on login. This securely stores your password sealed in the TPM when "
-"available, or encrypted with AES-256-GCM using a root-only master key. Face "
-"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
-"your desktop."
+"Enable face authentication to automatically unlock your login keyring "
+"or KWallet on login. This securely stores your password sealed in the "
+"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
+"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
+"let5 depending on your desktop."
 msgstr ""
-"Увімкніть автентифікацію обличчям, щоб автоматично розблокувати брелок або "
-"KWallet під час входу. Це надійно зберігає ваш пароль, запечатаний у TPM, "
-"якщо він доступний, або зашифрований за допомогою AES-256-GCM за допомогою "
-"головного ключа лише для root. Аутентифікація обличчя встановлює PAM_AUTHTOK "
-"для pam_gnome_keyring або pam_kwallet5 залежно від вашого робочого столу."
+"Увімкніть автентифікацію обличчям, щоб автоматично розблокувати брелок"
+" або KWallet під час входу. Це надійно зберігає ваш пароль, запечатани"
+"й у TPM, якщо він доступний, або зашифрований за допомогою AES-256-GCM"
+" за допомогою головного ключа лише для root. Аутентифікація обличчя вс"
+"тановлює PAM_AUTHTOK для pam_gnome_keyring або pam_kwallet5 залежно ві"
+"д вашого робочого столу."
 
 #: src/main.glade:471
 msgid "Current Status:"
@@ -499,10 +477,11 @@ msgstr "Версія невідома"
 
 #: src/main.glade:746
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
+"/a> "
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Відкрити посилання "
-"GitHub</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Відкрити посиланн"
+"я GitHub</a>"
 
 #: src/main.glade:778
 msgid "About"
@@ -518,32 +497,31 @@ msgstr "Налаштування виконано!"
 
 #: src/onboarding.glade:82
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
-"you would normally have to type your password for to authenticate, like "
-"running a command with sudo. If you enabled keyring auto-unlock, your login "
-"keyring or KWallet will also be unlocked automatically on login.\n"
-"\n"
-"You can open the Ubuntu Hello Configurator later on to change more advanced "
-"settings or add additional models. Press Finish below to close this window "
-"and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing any"
+"thing you would normally have to type your password for to authenticat"
+"e, like running a command with sudo. If you enabled keyring auto-unloc"
+"k, your login keyring or KWallet will also be unlocked automatically o"
+"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
+"nge more advanced settings or add additional models. Press Finish belo"
+"w to close this window and open the Ubuntu Hello Configurator. "
 msgstr ""
 "Ми готові! Ubuntu Hello зараз активний на цьому комп’ютері. Спробуйте "
-"зробити будь-що, для чого зазвичай потрібно вводити пароль для "
-"автентифікації, наприклад виконати команду за допомогою sudo. Якщо ви "
-"ввімкнули автоматичне розблокування брелока, ваш брелок або KWallet також "
-"буде автоматично розблоковано під час входу.\n"
-"\n"
-"Пізніше ви можете відкрити Конфігуратор Ubuntu Hello, щоб змінити розширені "
-"налаштування або додати додаткові моделі. Натисніть «Готово» нижче, щоб "
-"закрити це вікно та відкрити Конфігуратор Ubuntu Hello."
+"зробити будь-що, для чого зазвичай потрібно вводити пароль для автенти"
+"фікації, наприклад виконати команду за допомогою sudo. Якщо ви ввімкну"
+"ли автоматичне розблокування брелока, ваш брелок або KWallet також буд"
+"е автоматично розблоковано під час входу.\n\nПізніше ви можете відкрит"
+"и Конфігуратор Ubuntu Hello, щоб змінити розширені налаштування або до"
+"дати додаткові моделі. Натисніть «Готово» нижче, щоб закрити це вікно "
+"та відкрити Конфігуратор Ubuntu Hello."
 
 #: src/onboarding.glade:130
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
-"face authentication, preventing password prompts after logging in."
+"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
+"ing face authentication, preventing password prompts after logging in."
 msgstr ""
-"Ubuntu Hello може автоматично розблокувати ваш брелок або KWallet за "
-"допомогою автентифікації за обличчям, запобігаючи запитам пароля після входу."
+"Ubuntu Hello може автоматично розблокувати ваш брелок або KWallet за д"
+"опомогою автентифікації за обличчям, запобігаючи запитам пароля після "
+"входу."
 
 #: src/onboarding.glade:142
 msgid "Enable automatic keyring/KWallet unlocking"
@@ -559,13 +537,13 @@ msgstr "Встановлення політики визначеності"
 
 #: src/onboarding.glade:235
 msgid ""
-"Because of changes in angles, distance, and other factors a face match is "
-"never exactly the same as the stored face model. On this page you can set "
-"how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match"
+" is never exactly the same as the stored face model. On this page you "
+"can set how strict Ubuntu Hello should be."
 msgstr ""
-"Через зміни кутів, відстані та інших факторів збіг обличчя ніколи не буде "
-"точно таким же, як збережена модель обличчя. На цій сторінці ви можете "
-"встановити, наскільки суворим має бути Ubuntu Hello."
+"Через зміни кутів, відстані та інших факторів збіг обличчя ніколи не б"
+"уде точно таким же, як збережена модель обличчя. На цій сторінці ви мо"
+"жете встановити, наскільки суворим має бути Ubuntu Hello."
 
 #: src/onboarding.glade:274
 msgid "Fast"
@@ -573,11 +551,11 @@ msgstr "швидко"
 
 #: src/onboarding.glade:290
 msgid ""
-"Allows more fuzzy matches, \n"
-"but speeds up the scanning process greatly."
+"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
+"y."
 msgstr ""
-"Дозволяє більше нечітких збігів, \n"
-"але значно прискорює процес сканування."
+"Дозволяє більше нечітких збігів, \nале значно прискорює процес сканува"
+"ння."
 
 #: src/onboarding.glade:329
 msgid "Balanced"
@@ -585,11 +563,11 @@ msgstr "Збалансований"
 
 #: src/onboarding.glade:345
 msgid ""
-"Still relatively quick detection, \n"
-"but might not log you in when further away."
+"Still relatively quick detection, \nbut might not log you in when furt"
+"her away."
 msgstr ""
-"Все ще відносно швидке виявлення, \n"
-"але ви можете не ввійти, коли будете далі."
+"Все ще відносно швидке виявлення, \nале ви можете не ввійти, коли буде"
+"те далі."
 
 #: src/onboarding.glade:384
 msgid "Secure"
@@ -597,11 +575,11 @@ msgstr "Безпечний"
 
 #: src/onboarding.glade:400
 msgid ""
-"The slightly safer option, \n"
-"but will take much longer to authenticate you"
+"The slightly safer option, \nbut will take much longer to authenticate"
+" you"
 msgstr ""
-"Трохи безпечніший варіант, \n"
-"але автентифікація займе набагато більше часу"
+"Трохи безпечніший варіант, \nале автентифікація займе набагато більше "
+"часу"
 
 #: src/onboarding.glade:443
 msgid "Adding a face model"
@@ -609,12 +587,12 @@ msgstr "Додавання моделі обличчя"
 
 #: src/onboarding.glade:462
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to "
-"recognise you. Press the Scan button below to start the facial scan."
+"To authenticate you Ubuntu Hello needs to save a model of your face to"
+" recognise you. Press the Scan button below to start the facial scan."
 msgstr ""
-"Щоб автентифікувати вас, Ubuntu Hello має зберегти модель вашого обличчя, "
-"щоб розпізнати вас. Натисніть кнопку «Сканувати» нижче, щоб почати "
-"сканування обличчя."
+"Щоб автентифікувати вас, Ubuntu Hello має зберегти модель вашого облич"
+"чя, щоб розпізнати вас. Натисніть кнопку «Сканувати» нижче, щоб почати"
+" сканування обличчя."
 
 #: src/onboarding.glade:564 src/onboarding.glade:655
 msgid "Configuring webcam"
@@ -634,14 +612,15 @@ msgstr "немає"
 
 #: src/onboarding.glade:674
 msgid ""
-"Ubuntu Hello will search your system automatically for any available "
-"cameras, so make sure your webcam is connected. After detection a list of "
-"usable webcams will be shown. Pick the one you want to use and click Next."
+"Ubuntu Hello will search your system automatically for any available c"
+"ameras, so make sure your webcam is connected. After detection a list "
+"of usable webcams will be shown. Pick the one you want to use and clic"
+"k Next."
 msgstr ""
-"Ubuntu Hello автоматично шукатиме у вашій системі будь-які доступні камери, "
-"тому переконайтеся, що вашу веб-камеру підключено. Після виявлення буде "
-"показано список доступних веб-камер. Виберіть той, який хочете "
-"використовувати, і натисніть «Далі»."
+"Ubuntu Hello автоматично шукатиме у вашій системі будь-які доступні ка"
+"мери, тому переконайтеся, що вашу веб-камеру підключено. Після виявлен"
+"ня буде показано список доступних веб-камер. Виберіть той, який хочете"
+" використовувати, і натисніть «Далі»."
 
 #: src/onboarding.glade:697
 msgid "Testing your webcams, please wait..."
@@ -653,13 +632,13 @@ msgstr "Завантаження файлів даних"
 
 #: src/onboarding.glade:768
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
-"to recognise you, which will be downloaded now. You can see the download "
-"progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be"
+" able to recognise you, which will be downloaded now. You can see the "
+"download progress below."
 msgstr ""
-"Ubuntu Hello потребує трьох попередньо навчених наборів даних розпізнавання "
-"обличчя, щоб він міг упізнати вас, які зараз буде завантажено. Перебіг "
-"завантаження можна побачити нижче."
+"Ubuntu Hello потребує трьох попередньо навчених наборів даних розпізна"
+"вання обличчя, щоб він міг упізнати вас, які зараз буде завантажено. П"
+"еребіг завантаження можна побачити нижче."
 
 #: src/onboarding.glade:789
 msgid "Starting download..."
@@ -678,8 +657,8 @@ msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Цей майстер проведе вас через процес налаштування та автоматично налаштує "
-"Ubuntu Hello для вас. Натисніть далі, щоб продовжити."
+"Цей майстер проведе вас через процес налаштування та автоматично налаш"
+"тує Ubuntu Hello для вас. Натисніть далі, щоб продовжити."
 
 #: src/onboarding.glade:899
 msgid "Cancel"

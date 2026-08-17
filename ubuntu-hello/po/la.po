@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,22 +28,22 @@ msgid "Unknown error: "
 msgstr "Error ignotus:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Identified facies ut -P0⟧ %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Licentias insufficiens mittere Intra torcular, exspectans pro usuario premere"
+"Licentias insufficiens mittere Intra torcular, exspectans pro usuario "
+"premere"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Defecit mittere Intra torcular, expectans user urgeas pro"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Conanti facialis authenticas"
 
@@ -65,19 +65,19 @@ msgstr "argumentis"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Nam subsidium placet visita\n"
-"U0000⟧"
+"Nam subsidium placet visita\nU0000⟧"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"Praeceptum optionis faciendi, unum ex his potest esse: adde, clarum, config, "
-"disable, keyring, album, amovere, snapshot, paro, test vel versio."
+"Praeceptum optionis faciendi, unum ex his potest esse: adde, clarum, c"
+"onfig, disable, keyring, album, amovere, snapshot, paro, test vel vers"
+"io."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -108,144 +108,134 @@ msgid "Invalid username format"
 msgstr "Aliquam usoris forma"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Hoc mandatum ut radix currite:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Hoc mandatum ut radix currite:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Ubuntu-salve imperat ut radix currere non potest, hoc mandatum currunt cum --"
-"user flag"
+"Ubuntu-salve imperat ut radix currere non potest, hoc mandatum currunt"
+" cum --user flag"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Documenta data non receptae sunt, sequentia mandata currunt:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Date:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Scan tempus:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Tabulae:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Hostname:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Optima certitudo pretii;"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Satus..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Distinguendis te..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "MORTUUS"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Omnes tabulae nimis obscurae erant, quaeso, in config dark_threshold check"
+"Omnes tabulae nimis obscurae erant, quaeso, in config dark_threshold c"
+"heck"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Mediocris tenebrae: P0⟧, limen: P1⟧ {avg} {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Tempus"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Satus sursum"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Apertum cam + onus libs: P0ms %d"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Aperire camera"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Inferentes recognition libs"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Nota inquisitione vultus"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Totalis tempus"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Resolution"
+"\nResolution"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "  Native: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Adhibetur: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Tabulae searched: %d (%.2f fps)"
+"\nTabulae searched: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Tabulae nigrae neglecta: P0⟧ %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Tabulae obscurae neglecta: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Certa conciliationis frame: P0⟧ %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Exemplar blandus: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "FORTUNATUS"
 
@@ -271,11 +261,9 @@ msgstr "login keyring vel KW⟧"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Dlib modulus importare non potest, output reprehendo"
+"\nDlib modulus importare non potest, output reprehendo"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -283,14 +271,17 @@ msgstr "Nullum exemplar vultus folder invenitur, creando unum"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"NOTITIA: Quisque additional exemplar engine recognitionem faciem cohibetur "
-"leviter"
+"NOTITIA: Quisque additional exemplar engine recognitionem faciem cohib"
+"etur leviter"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Press CtrlTab + C ad remittendas\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Press CtrlTab + C ad remittendas\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -301,7 +292,6 @@ msgid "Model #"
 msgstr "Exemplar #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Usus default pittacium \"P0\" propter -y vexillum %s"
 
@@ -315,11 +305,9 @@ msgstr "NOTITIA: mores illegales removere \", ex exemplari nominis\""
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Vide recta in camera"
+"\nVide recta in camera"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -335,13 +323,9 @@ msgstr "Facies plures detectae abortum"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Scan completum\n"
-"Addidit novum exemplar to"
+"\nScan completum\nAddidit novum exemplar to"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -361,27 +345,21 @@ msgstr "Visne pergere [y/N];"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"INTERPRETATIO \"NO\", abortum"
+"\nINTERPRETATIO \"NO\", abortum"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Exempla purgata"
+"\nExempla purgata"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "dedicatio config.ini in P0⟧ {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Defecit aperire editor: P0⟧ {error}"
 
@@ -395,11 +373,11 @@ msgstr "Quaeso install \"nano\" vel \"vi\", vel pone Editorem variabile."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Si mandatum hoc cum sudo curris, conare 'sudo -E ubuntu-salve config' ad "
-"EDITOR variabilis conserva."
+"Si mandatum hoc cum sudo curris, conare 'sudo -E ubuntu-salve config' "
+"ad EDITOR variabilis conserva."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -421,77 +399,105 @@ msgstr "UH⟧ debilitata est"
 msgid "Ubuntu Hello has been enabled"
 msgstr "UH⟧ est enabled"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Usage: keyring [enable|disable]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Usus: keyring [enable|disable|restore [--all]]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Enter password for user {} to unlock {} ({}): "
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Password non vacua"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Adfirmare password:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Passwords non aequare"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM odio deprehensa est. Auto-installing tpm2-tools..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM odio activae. Obsignans password in TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Defecit signare password ut TPM: P0⟧ {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Nulla TPM activa. Usura software-fundatur documentorum caching..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Keyring/KWallet reserans enabled usoris {} feliciter (Software Caching, "
-"pera: {})."
+"Keyring/KWallet reserans enabled usoris {} feliciter (Software Caching"
+", pera: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Defecit ut keyring reserans: -P0⟧ {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Defecit inactivandi keyring reserans: P0 {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring / KWallet reserans erret pro user -P0⟧. {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Keyring/KWallet reserans non est enabled per user -P0⟧. {}"
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Irrita actio. Utere 'enable' vel 'disable'."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Nullae tesserae inscriptionis obsignatae inventae; nihil restituendum."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Tessera peculiariae inscriptionis pro {} utentibus restituta est."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "Tessera peculiariae inscriptionis pro {} utentibus restitui non potuit."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Si monitiones perstant, tesserae anuli inscriptionis vel KWallet in Se"
+"ahorse / Systematis optionibus statue."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Tesserae peculiariae inscriptionis tessera pro utente {} restituta est."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "Tessera peculiariae inscriptionis pro utente {} restitui non potuit."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Actio invalida. Utere 'enable', 'disable', aut 'restore'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -522,12 +528,10 @@ msgid "You can find the IDs by running:"
 msgstr "Potes invenire IDs currendo;"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "This will remove the model called \"{label}\" for {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Nullum exemplum cum ID -P0⟧ exstat pro -P1⟧ {id} {user}"
 
@@ -540,8 +544,7 @@ msgid "Removed model {}"
 msgstr "Exemplar remota -P0⟧ {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr "Quaeso addere occasum velis mutare ac valorem ad eam"
 
 #: src/cli/set.py:37
@@ -570,43 +573,33 @@ msgstr "Generatae snapshot servata est"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"UH⟧ conformatus est uti commentariis qui mandatum test non sustinet sed "
-"abortum facit"
+"UH⟧ conformatus est uti commentariis qui mandatum test non sustinet se"
+"d abortum facit"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Aperiens fenestra cum test feed\n"
-"\n"
-"Press accidit + C in hoc termino relicto\n"
-"Click in imagine ad enable vel inactivare tardus modus\n"
+"\nAperiens fenestra cum test feed\n\nPress accidit + C in hoc termino "
+"relicto\nClick in imagine ad enable vel inactivare tardus modus\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RESOLUTION: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "Etiam: P0⟧ %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "FRAMES: P0⟧ %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "MONUMENTUM: P0⟧ms %d"
 
@@ -624,11 +617,9 @@ msgstr "EXAMINO"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Claudendo fenestra"
+"\nClaudendo fenestra"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -659,7 +650,6 @@ msgid "Authorising in {}"
 msgstr "Concessum in -P0⟧ {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Press {abort_key} to abort, {confirm_key} to authorise"
 
@@ -691,25 +681,26 @@ msgstr "Modulus ffmpeg Absentis, quaeso currite;"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Modulus pyv4l2 Absentis, quaeso currite;"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello fabricam cameram invenire non potuerunt in via certa in "
-"fasciculi config."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Verisimile est semitam recte non configurari, quaeso ut \"device_path\" "
-"valorem currendi config emendes:"
+"Ubuntu Hello fabricam cameram invenire non potuerunt in via certa in f"
+"asciculi config."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
+msgstr ""
+"Verisimile est semitam recte non configurari, quaeso ut \"device_path"
+"\" valorem currendi config emendes:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
 msgstr ""
 "Defecit legere camera de quibus \"device_path\" optionem aboutconfig, "
 "abortum facere"
