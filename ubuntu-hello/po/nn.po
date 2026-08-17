@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,24 +28,24 @@ msgid "Unknown error: "
 msgstr "Ukjent feil:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Identifisert ansikt som %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Utilstrekkelige tillatelser til å sende Enter-trykk, venter på at brukeren "
-"skal trykke den i stedet"
+"Utilstrekkelige tillatelser til å sende Enter-trykk, venter på at bruk"
+"eren skal trykke den i stedet"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Kunne ikke sende Enter-trykk, venter på at brukeren skal trykke den i stedet"
+"Kunne ikke sende Enter-trykk, venter på at brukeren skal trykke den i "
+"stedet"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Forsøk på ansiktsautentisering"
 
@@ -67,25 +67,25 @@ msgstr "argumenter"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"For støtte, besøk\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For støtte, besøk\nhttps://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"Kommandoalternativet som skal utføres, kan være ett av følgende: legg til, "
-"slett, konfigurer, deaktiver, nøkkelring, liste, fjern, øyeblikksbilde, "
-"sett, test eller versjon."
+"Kommandoalternativet som skal utføres, kan være ett av følgende: legg "
+"til, slett, konfigurer, deaktiver, nøkkelring, liste, fjern, øyeblikks"
+"bilde, sett, test eller versjon."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"Valgfrie argumenter for å legge til, deaktivere, fjerne og angi kommandoer."
+"Valgfrie argumenter for å legge til, deaktivere, fjerne og angi komman"
+"doer."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -112,143 +112,132 @@ msgid "Invalid username format"
 msgstr "Ugyldig brukernavnformat"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Vennligst kjør denne kommandoen som root:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Vennligst kjør denne kommandoen som root:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
 "Kan ikke kjøre ubuntu-hello-kommandoer som root, vennligst kjør denne "
 "kommandoen med --user-flagget"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Datafiler er ikke lastet ned, vennligst kjør følgende kommandoer:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "LOGG PÅ"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Dato:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Skannetid:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Rammer:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Vertsnavn:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Beste sikkerhetsverdi:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Starter opp..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Identifiserer deg..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "MISLYKKES"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Alle rammer var for mørke, vennligst sjekk dark_threshold i config"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Gjennomsnittlig mørke: {avg}, Terskel: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Tid brukt"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Starter opp"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Åpne kamera + last libs: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Åpne kameraet"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Importerer gjenkjenningslibs"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Søker etter kjent ansikt"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Total tid"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Oppløsning"
+"\nOppløsning"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Innfødt: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Brukt: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Søkte rammer: %d (%.2f fps)"
+"\nSøkte rammer: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Svarte rammer ignorert: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Mørke rammer ignorert: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Sikkerhet om vinnerramme: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Vinnermodell: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "VELLYKKET"
 
@@ -274,11 +263,9 @@ msgstr "påloggingsnøkkelring eller KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Kan ikke importere dlib-modulen, sjekk utdataene til"
+"\nKan ikke importere dlib-modulen, sjekk utdataene til"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -286,12 +273,15 @@ msgstr "Fant ingen mappe for ansiktsmodeller, oppretter en"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr "MERKNAD: Hver ekstra modell bremser ansiktsgjenkjenningsmotoren litt"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Trykk Ctrl+C for å avbryte\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Trykk Ctrl+C for å avbryte\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -302,7 +292,6 @@ msgid "Model #"
 msgstr "Modell #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Bruker standardetiketten \"%s\" på grunn av -y-flagget"
 
@@ -316,11 +305,9 @@ msgstr "MERKNAD: Fjerner det ulovlige tegnet \",\" fra modellnavnet"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Vennligst se rett inn i kameraet"
+"\nVennligst se rett inn i kameraet"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -336,18 +323,15 @@ msgstr "Flere ansikter oppdaget, avbryter"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Skanning fullført\n"
-"Lagt til en ny modell"
+"\nSkanning fullført\nLagt til en ny modell"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"Ingen modeller opprettet ennå, kan ikke fjerne dem hvis de ikke eksisterer"
+"Ingen modeller opprettet ennå, kan ikke fjerne dem hvis de ikke eksist"
+"erer"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -363,27 +347,21 @@ msgstr "Vil du fortsette [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Å tolke som et \"NEI\", abort"
+"\nÅ tolke som et \"NEI\", abort"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Modeller klarert"
+"\nModeller klarert"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Åpner config.ini i {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Kunne ikke åpne redigeringsprogrammet: {error}"
 
@@ -397,11 +375,11 @@ msgstr "Installer 'nano' eller 'vi', eller sett EDITOR-miljøvariabelen."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Hvis du kjører denne kommandoen med sudo, prøv 'sudo -E ubuntu-hello config' "
-"for å bevare EDITOR-variabelen din."
+"Hvis du kjører denne kommandoen med sudo, prøv 'sudo -E ubuntu-hello c"
+"onfig' for å bevare EDITOR-variabelen din."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -423,77 +401,107 @@ msgstr "Ubuntu Hello har blitt deaktivert"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello er aktivert"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Bruk: nøkkelring [enable|disable]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Bruk: nøkkelring [enable|disable|restore [--all]]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Skriv inn passord for bruker {} for å låse opp {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Passordet kan ikke være tomt"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Bekreft passord:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Passord stemmer ikke"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM-maskinvare oppdaget. Installerer tpm2-tools automatisk..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM-maskinvare aktiv. Forsegler passord i TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Nøkkelring/KWallet-opplåsing aktivert vellykket for bruker {} ved bruk av "
-"TPM (lommebok: {})."
+"Nøkkelring/KWallet-opplåsing aktivert vellykket for bruker {} ved bruk"
+" av TPM (lommebok: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Kunne ikke forsegle passord til TPM: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Ingen TPM aktiv. Bruker programvarebasert påloggingsbufring..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Nøkkelring/KWallet-opplåsing aktivert vellykket for bruker {} "
-"(programvarebufring, lommebok: {})."
+"Nøkkelring/KWallet-opplåsing aktivert vellykket for bruker {} (program"
+"varebufring, lommebok: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Kunne ikke aktivere opplåsing av nøkkelring: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Kunne ikke deaktivere opplåsing av nøkkelring: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Nøkkelring/KWallet opplåsing deaktivert for bruker {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Opplåsing av nøkkelring/KWallet ble ikke aktivert for bruker {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Ugyldig handling. Bruk \"aktiver\" eller \"deaktiver\"."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Fann ingen forseglede innloggingspassord; ingenting å gjenopprette."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Innloggingslommebokpassord gjenoppretta for {} brukar(ar)."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr ""
+"Klarte ikkje å gjenopprette innloggingslommebokpassordet for {} brukar"
+"(ar)."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Viss spørsmål held fram, sett innloggingsnøkkelring- eller KWallet-pas"
+"sordet i Seahorse / Systeminnstillingar."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Innloggingslommebokpassord gjenoppretta for brukar {}."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "Klarte ikkje å gjenopprette innloggingslommebokpassordet for brukar {}."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Ugyldig handling. Bruk 'enable', 'disable' eller 'restore'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -524,12 +532,10 @@ msgid "You can find the IDs by running:"
 msgstr "Du kan finne ID-ene ved å kjøre:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Dette vil fjerne modellen kalt \"{label}\" for {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Ingen modell med ID {id} eksisterer for {user}"
 
@@ -542,11 +548,10 @@ msgid "Removed model {}"
 msgstr "Fjernet modell {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Vennligst legg til en innstilling du vil endre og verdien du vil sette den "
-"til"
+"Vennligst legg til en innstilling du vil endre og verdien du vil sette"
+" den til"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -574,43 +579,34 @@ msgstr "Generert øyeblikksbilde lagret som"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello har blitt konfigurert til å bruke en opptaker som ikke støtter "
-"testkommandoen ennå, avbryter"
+"Ubuntu Hello har blitt konfigurert til å bruke en opptaker som ikke st"
+"øtter testkommandoen ennå, avbryter"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Åpne et vindu med en testfeed\n"
-"\n"
-"Trykk ctrl+C i denne terminalen for å avslutte\n"
-"Klikk på bildet for å aktivere eller deaktivere sakte modus\n"
+"\nÅpne et vindu med en testfeed\n\nTrykk ctrl+C i denne terminalen for"
+" å avslutte\nKlikk på bildet for å aktivere eller deaktivere sakte mod"
+"us\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "OPPLØSNING: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "RAMMER: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "ANERKJENNING: %dms"
 
@@ -628,11 +624,9 @@ msgstr "SKANNERAMME"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Lukke vindu"
+"\nLukke vindu"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -663,7 +657,6 @@ msgid "Authorising in {}"
 msgstr "Autoriserer i {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Trykk {abort_key} for å avbryte, {confirm_key} for å godkjenne"
 
@@ -695,25 +688,26 @@ msgstr "Mangler ffmpeg-modul, vennligst kjør:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Mangler pyv4l2-modul, vennligst kjør:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello kunne ikke finne en kameraenhet på banen spesifisert i "
-"konfigurasjonsfilen."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Det er svært sannsynlig at banen ikke er riktig konfigurert, vennligst "
-"rediger konfigurasjonsverdien 'device_path' ved å kjøre:"
+"Ubuntu Hello kunne ikke finne en kameraenhet på banen spesifisert i ko"
+"nfigurasjonsfilen."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Kunne ikke lese kameraet spesifisert i konfigurasjonsalternativet "
-"'device_path', avbryter"
+"Det er svært sannsynlig at banen ikke er riktig konfigurert, vennligst"
+" rediger konfigurasjonsverdien 'device_path' ved å kjøre:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Kunne ikke lese kameraet spesifisert i konfigurasjonsalternativet 'dev"
+"ice_path', avbryter"

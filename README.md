@@ -125,7 +125,7 @@ sudo meson install -C builddir
 
 ## Setup
 
-After installation, Ubuntu Hello needs to learn what you look like so it can recognise you later. The installer launches the setup wizard automatically (Wayland/X11 session-aware). If it does not appear, check `/tmp/ubuntu-hello-postinstall.log` or run `ubuntu-hello-gtk --force-onboarding`.
+After installation, Ubuntu Hello needs to learn what you look like so it can recognise you later. The installer launches the setup wizard automatically **only when no face models are enrolled yet** (Wayland/X11 session-aware). If it does not appear, run `sudo cat /run/ubuntu-hello/postinstall.log` or `ubuntu-hello-gtk --force-onboarding`.
 
 If nothing went wrong we should be able to run sudo by just showing your face. Open a new terminal and run `sudo -i` to see it in action. Please check [this wiki page](https://github.com/ventura8/ubuntu-hello/wiki/Common-issues) if you're experiencing problems or [search](https://github.com/ventura8/ubuntu-hello/issues) for similar issues.
 
@@ -146,7 +146,7 @@ ubuntu-hello [-U user] [-y] command [argument]
 | `clear`   | Remove all face models for a user             |
 | `config`  | Open the config file in your default editor   |
 | `disable` | Disable or enable ubuntu-hello                       |
-| `keyring` | Manage automatic login keyring / KWallet unlocking (enable/disable) |
+| `keyring` | Manage automatic login keyring / KWallet unlocking (`enable` / `disable` / `restore [--all]`) |
 | `list`    | List all saved face models for a user         |
 | `remove`  | Remove a specific model for a user            |
 | `set`     | Change a configuration option directly        |

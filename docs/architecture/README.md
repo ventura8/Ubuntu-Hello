@@ -20,6 +20,7 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │   ├── ci-pipeline.sh
 │   ├── ci-matrix.sh
 │   ├── i18n-update.sh
+│   ├── i18n-lint.py
 │   └── ppa-docker.sh
 ├── po/
 │   └── whisper-languages.txt   # Whisper codes → LINGUAS (omit en)
@@ -44,8 +45,10 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │       ├── rubberstamps/        # Liveness plugins
 │       ├── compare.py
 │       ├── keyring_crypto.py
+│       ├── keyring_restore.py
 │       └── wallet_backend.py
 └── ubuntu-hello-gtk/
+    ├── bin/run_after_install.py # postinst wizard; lock/log under /run/ubuntu-hello
     ├── po/                      # domain ubuntu-hello-gtk
     └── src/
         ├── authsticky.py
@@ -154,6 +157,7 @@ sequenceDiagram
   - `theme_detect.py`: Shared dark/light detection across GNOME, KDE/Plasma, XFCE, Cinnamon, MATE, Budgie, and LXQt (used by `window.py` and `authsticky.py`).
   - `window.py` / `tab_models.py` / `tab_video.py` / `tab_keyring.py`: The administrative UI for managing users, adding/removing face profiles, tweaking camera parameters, and enabling keyring/KWallet auto-unlock.
   - `onboarding.py`: Wizard helping first-time users identify their camera and construct their first facial profile.
+* **Post-install launcher** (`bin/run_after_install.py`): `install.sh` / dpkg postinst spawn this as root when no face models are enrolled. Single-flight lock and log live under `/run/ubuntu-hello/` (`0700`, `O_NOFOLLOW`), not world-writable `/tmp`.
 
 ### 2.4 Administration CLI (`ubuntu-hello/src/cli.py` & `cli/`)
 
@@ -161,9 +165,9 @@ sequenceDiagram
 * **Commands**:
   - `add.py`: Guides users in creating a new profile. Captures up to 60 frames and extracts the first frame containing exactly one face to write to models.
   - `list.py`, `remove.py`, `clear.py`: Manage profile models (`models/<username>.dat`).
-  - `keyring.py`: Enable/disable automatic unlock of the login keyring or KWallet after face login (same sealed credential + `PAM_AUTHTOK`).
+  - `keyring.py`: Enable/disable automatic unlock of the login keyring or KWallet after face login (same sealed credential + `PAM_AUTHTOK`). `keyring restore` re-asserts the sealed login password for the selected user; `keyring restore --all` sweeps every sealed user (used by uninstall / apt `prerm` before deleting seals).
   - `test.py`: Debugging CLI tool that launches a local window showing the camera stream with highlighted landmarks and matching thresholds.
-* **Helpers**: `wallet_backend.py` labels the inferred session wallet (GNOME Keyring vs KWallet) for CLI/GTK copy.
+* **Helpers**: `wallet_backend.py` labels the inferred session wallet (GNOME Keyring vs KWallet) for CLI/GTK copy. `keyring_restore.py` unseals TPM/`UH1:` credentials and talks to GNOME Keyring (`ChangeWithMasterPassword`) or KWallet over the user’s session bus.
 
 ### 2.5 Camera Recorders Abstraction (`ubuntu-hello/src/recorders/`)
 
@@ -297,4 +301,4 @@ Target OS for CI is fixed **Ubuntu 26.04**. Quality work is split into **lint**,
 * PPA image: `docker/Dockerfile.ppa` / `scripts/ppa-docker.sh` (no DE packaging matrix)
 * Root clean: Dockerfiles stay under `docker/` ([AGENTS.md](../../AGENTS.md) §4.6.1)
 
-Lint: meson/ninja + clang-tidy + py_compile. Coverage: meson/ninja + pytest floors + meson C++ tests. Compat: meson/ninja + py_compile + pytest without floors + meson C++ tests.
+Lint: meson/ninja + clang-tidy + py_compile + `scripts/i18n-lint.py` (JSON + `.po`). Coverage: meson/ninja + pytest floors + meson C++ tests. Compat: meson/ninja + py_compile + pytest without floors + meson C++ tests.

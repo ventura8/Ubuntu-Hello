@@ -1,40 +1,47 @@
 #!/bin/bash
 set -e
 
+# Return 0 if any face model files are enrolled under /etc/ubuntu-hello/models.
+uh_models_enrolled() {
+	local d="/etc/ubuntu-hello/models"
+	[ -d "$d" ] || return 1
+	find "$d" -maxdepth 1 -type f ! -name '.*' 2>/dev/null | grep -q .
+}
+
+# Launch the Wayland-aware setup wizard (best-effort; never fail the package).
+# Logging is owned by run_after_install.py under /run/ubuntu-hello/ (not /tmp).
+uh_launch_setup_wizard() {
+	local reason="$1"
+	local launcher="/usr/share/ubuntu-hello-gtk/run_after_install.py"
+
+	if [ ! -f "$launcher" ]; then
+		echo ">>> Setup wizard launcher missing — run: ubuntu-hello-gtk --force-onboarding"
+		return 0
+	fi
+
+	echo ">>> Launching Ubuntu Hello setup wizard (${reason}; no face models enrolled yet)..."
+	set +e
+	python3 "$launcher"
+	launch_rc=$?
+	set -e
+	if [ "$launch_rc" -eq 0 ]; then
+		echo ">>> Setup wizard launch requested (approve the polkit prompt if shown)"
+	else
+		echo "WARNING: setup wizard did not start — run: ubuntu-hello-gtk --force-onboarding"
+	fi
+}
+
 case "$1" in
-    configure)
-        # Launch the setup wizard on fresh install only (not upgrades).
-        # Prefer the packaged Wayland-aware launcher (DISPLAY alone is not enough).
-        if [ -z "$2" ]; then
-            LAUNCHER="/usr/share/ubuntu-hello-gtk/run_after_install.py"
-            if [ -f "$LAUNCHER" ]; then
-                python3 "$LAUNCHER" || true
-            else
-                REAL_USER="${SUDO_USER:-}"
-                if [ -z "$REAL_USER" ] || [ "$REAL_USER" = "root" ]; then
-                    REAL_USER=$(loginctl list-sessions --no-legend 2>/dev/null | awk '$3 != "" && $3 != "root" {print $3; exit}' || true)
-                fi
-                if [ -n "$REAL_USER" ] && [ "$REAL_USER" != "root" ]; then
-                    UID_NUM=$(id -u "$REAL_USER" 2>/dev/null || true)
-                    RUNTIME="/run/user/${UID_NUM}"
-                    USER_HOME=$(eval echo "~$REAL_USER")
-                    WAYLAND_OPT=()
-                    if [ -S "${RUNTIME}/wayland-0" ]; then
-                        WAYLAND_OPT=(WAYLAND_DISPLAY=wayland-0)
-                    fi
-                    sudo -u "$REAL_USER" -H env -i \
-                        HOME="$USER_HOME" USER="$REAL_USER" LOGNAME="$REAL_USER" \
-                        XDG_RUNTIME_DIR="$RUNTIME" \
-                        DBUS_SESSION_BUS_ADDRESS="unix:path=${RUNTIME}/bus" \
-                        DISPLAY="${DISPLAY:-:0}" \
-                        "${WAYLAND_OPT[@]}" \
-                        PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
-                        ubuntu-hello-gtk --force-onboarding \
-                        >>/tmp/ubuntu-hello-postinstall.log 2>&1 &
-                fi
-            fi
-        fi
-        ;;
+	configure)
+		# Only when needed: no enrolled face models yet (fresh or reinstall
+		# without leftover models). Never interrupt upgrades/reinstalls that
+		# already have faces enrolled.
+		if uh_models_enrolled; then
+			echo ">>> Setup wizard skipped (face models already enrolled)"
+		else
+			uh_launch_setup_wizard "ubuntu-hello-gtk.configure"
+		fi
+		;;
 esac
 
 #DEBHELPER#

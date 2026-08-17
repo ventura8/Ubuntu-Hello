@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,25 +28,24 @@ msgid "Unknown error: "
 msgstr "Żball mhux magħruf:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Wiċċ identifikat bħala %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Permessi insuffiċjenti biex jintbagħtu Daħħal l-istampa, stennija għall-"
-"utent biex tagħfasha minflok"
+"Permessi insuffiċjenti biex jintbagħtu Daħħal l-istampa, stennija għal"
+"l-utent biex tagħfasha minflok"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Naqas milli jibgħat Ikteb l-istampa, qed jistenna li l-utent jagħfasha "
-"minflok"
+"Naqas milli jibgħat Ikteb l-istampa, qed jistenna li l-utent jagħfasha"
+" minflok"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Jippruvaw awtentikazzjoni tal-wiċċ"
 
@@ -57,7 +56,8 @@ msgstr "Ma setgħetx tiddetermina l-utent, jekk jogħġbok uża l-bandiera --use
 #: src/cli.py:31
 msgid "Command line interface for Ubuntu Hello face authentication."
 msgstr ""
-"Interface tal-linja tal-kmand għall-awtentikazzjoni tal-wiċċ Ubuntu Hello."
+"Interface tal-linja tal-kmand għall-awtentikazzjoni tal-wiċċ Ubuntu He"
+"llo."
 
 #: src/cli.py:35
 msgid "command"
@@ -69,20 +69,20 @@ msgstr "argumenti"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Għal appoġġ jekk jogħġbok żur\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Għal appoġġ jekk jogħġbok żur\nhttps://github.com/ventura8/ubuntu-hell"
+"o"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"L-għażla tal-kmand biex tesegwixxi, tista 'tkun waħda minn dawn li ġejjin: "
-"żid, ċara, konfigurazzjoni, tiddiżattiva, keyring, lista, neħħi, snapshot, "
-"issettja, test jew verżjoni."
+"L-għażla tal-kmand biex tesegwixxi, tista 'tkun waħda minn dawn li ġej"
+"jin: żid, ċara, konfigurazzjoni, tiddiżattiva, keyring, lista, neħħi, "
+"snapshot, issettja, test jew verżjoni."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -113,146 +113,136 @@ msgid "Invalid username format"
 msgstr "Format tal-isem tal-utent mhux validu"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Jekk jogħġbok mexxi dan il-kmand bħala root:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Jekk jogħġbok mexxi dan il-kmand bħala root:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Ma tistax tħaddem il-kmandi ubuntu-hello bħala root, jekk jogħġbok mexxi dan "
-"il-kmand bil-bandiera --user"
+"Ma tistax tħaddem il-kmandi ubuntu-hello bħala root, jekk jogħġbok mex"
+"xi dan il-kmand bil-bandiera --user"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"Fajls tad-dejta ma ġewx imniżżla, jekk jogħġbok mexxi l-kmandi li ġejjin:"
+"Fajls tad-dejta ma ġewx imniżżla, jekk jogħġbok mexxi l-kmandi li ġejj"
+"in:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Data:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Ħin tal-iskannjar:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Gwarniċi:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "L-isem tal-ospitant:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "L-aħjar valur taċ-ċertezza:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Nibdew..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Nidentifikak..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "FALLA"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Il-frejms kollha kienu skuri wisq, jekk jogħġbok iċċekkja dark_threshold fil-"
-"konfigurazzjoni"
+"Il-frejms kollha kienu skuri wisq, jekk jogħġbok iċċekkja dark_thresho"
+"ld fil-konfigurazzjoni"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Dlam medju: {avg}, Limitu: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Ħin mgħoddi"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Jibdew"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Open cam + tagħbija libs: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Ftuħ il-kamera"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "L-importazzjoni ta' libs ta' rikonoxximent"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Tiftix għal wiċċ magħruf"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Ħin totali"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Riżoluzzjoni"
+"\nRiżoluzzjoni"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Nattiv: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Użat: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Gwarniċi mfittxija: %d (%.2f fps)"
+"\nGwarniċi mfittxija: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Gwarniċi suwed injorati: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Gwarniċi skuri injorati: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Ċertezza tal-qafas rebbieħ: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Mudell rebbieħ: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "SUĊĊESS"
 
@@ -278,11 +268,9 @@ msgstr "login keyring jew KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Ma tistax timporta l-modulu dlib, iċċekkja l-output ta '"
+"\nMa tistax timporta l-modulu dlib, iċċekkja l-output ta '"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -290,14 +278,17 @@ msgstr "Ma nstab l-ebda folder tal-mudell tal-wiċċ, u ħoloq wieħed"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"AVVIŻ: Kull mudell addizzjonali inaqqas ftit il-magna tar-rikonoxximent tal-"
-"wiċċ"
+"AVVIŻ: Kull mudell addizzjonali inaqqas ftit il-magna tar-rikonoxximen"
+"t tal-wiċċ"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Agħfas Ctrl + C biex tikkanċella\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Agħfas Ctrl + C biex tikkanċella\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -308,7 +299,6 @@ msgid "Model #"
 msgstr "Mudell #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "L-użu tat-tikketta default \"%s\" minħabba l-bandiera -y"
 
@@ -322,11 +312,9 @@ msgstr "AVVIŻ: Tneħħi l-karattru illegali \",\" mill-isem tal-mudell"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Jekk jogħġbok ħares dritt fil-kamera"
+"\nJekk jogħġbok ħares dritt fil-kamera"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -342,13 +330,9 @@ msgstr "Uċuħ multipli misjuba, abort"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Skennja kompluta\n"
-"Żid mudell ġdid għal"
+"\nSkennja kompluta\nŻid mudell ġdid għal"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -368,27 +352,21 @@ msgstr "Trid tkompli [s/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Interpretazzjoni bħala \"LE\", abort"
+"\nInterpretazzjoni bħala \"LE\", abort"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Mudelli kklerjati"
+"\nMudelli kklerjati"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Ftuħ config.ini fi {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Naqas milli tiftaħ editur: {error}"
 
@@ -399,16 +377,16 @@ msgstr "Żball: Ma setgħetx issib editur tat-test adattat."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"Jekk jogħġbok installa 'nano' jew 'vi', jew issettja l-varjabbli ambjentali "
-"EDITOR."
+"Jekk jogħġbok installa 'nano' jew 'vi', jew issettja l-varjabbli ambje"
+"ntali EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Jekk qed tmexxi dan il-kmand b'sudo, ipprova 'sudo -E ubuntu-hello config' "
-"biex tippreserva l-varjabbli EDITOR tiegħek."
+"Jekk qed tmexxi dan il-kmand b'sudo, ipprova 'sudo -E ubuntu-hello con"
+"fig' biex tippreserva l-varjabbli EDITOR tiegħek."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -430,78 +408,111 @@ msgstr "Ubuntu Hello ġie diżattivat"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ġie attivat"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Użu: ċwievet [jippermetti|itfi]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Użu: ċwievet [jippermetti|itfi|irrestawra] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Daħħal il-password għall-utent {} biex tiftaħ {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Il-password ma tistax tkun vojta"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Ikkonferma l-password:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Il-passwords ma jaqblux"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "Ħardwer TPM skopert. Installazzjoni awtomatika ta' tpm2-tools..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "Ħardwer TPM attiv. Issiġillar tal-password fit-TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Il-ftuħ taċ-ċwievet/KWallet attivat b'suċċess għall-utent {} li juża TPM "
-"(kartiera: {})."
+"Il-ftuħ taċ-ċwievet/KWallet attivat b'suċċess għall-utent {} li juża T"
+"PM (kartiera: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Naqas milli tissiġilla l-password għat-TPM: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"L-ebda TPM attiv. L-użu tal-caching tal-kredenzjali bbażat fuq softwer..."
+"L-ebda TPM attiv. L-użu tal-caching tal-kredenzjali bbażat fuq softwer"
+"..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Il-ftuħ taċ-ċwievet/KWallet attivat b'suċċess għall-utent {} (Software "
-"Caching, kartiera: {})."
+"Il-ftuħ taċ-ċwievet/KWallet attivat b'suċċess għall-utent {} (Software"
+" Caching, kartiera: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Naqas milli jippermetti l-ftuħ taċ-ċwievet: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Naqas milli tiddiżattiva l-ftuħ taċ-ċwievet: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring/KWallet ftuħ diżattivat għall-utent {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Il-ftuħ taċ-ċwievet/KWallet ma kienx attivat għall-utent {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Azzjoni invalida. Uża 'jippermetti' jew 'jiskonnettja'."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Ma nstabu l-ebda passwords tal-login issiġillati; xejn x’tirrestawra."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Irrestawrata l-password tal-kartiera tal-login għal {} utent(i)."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr ""
+"Ma setgħetx tiġi rrestawrata l-password tal-kartiera tal-login għal {}"
+" utent(i)."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Jekk il-prompts jibqgħu, issettja l-password taċ-ċwievet tal-login jew"
+" ta’ KWallet f’Seahorse / Settings tas-Sistema."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Irrestawrata l-password tal-kartiera tal-login għall-utent {}."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr ""
+"Ma setgħetx tiġi rrestawrata l-password tal-kartiera tal-login għall-u"
+"tent {}."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Azzjoni invalida. Uża 'jippermetti', 'itfi', jew 'irrestawra'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -532,12 +543,10 @@ msgid "You can find the IDs by running:"
 msgstr "Tista' ssib l-IDs billi tmexxi:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Dan se jneħħi l-mudell imsejjaħ \"{label}\" għal {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Ma jeżisti l-ebda mudell b'ID {id} għal {user}"
 
@@ -550,10 +559,10 @@ msgid "Removed model {}"
 msgstr "Mudell imneħħi {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Jekk jogħġbok żid setting li tixtieq tibdel u l-valur biex issettjah għalih"
+"Jekk jogħġbok żid setting li tixtieq tibdel u l-valur biex issettjah g"
+"ħalih"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -581,43 +590,34 @@ msgstr "Snapshot iġġenerat salvat bħala"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello ġie kkonfigurat biex juża reġistratur li għadu ma jappoġġjax il-"
-"kmand tat-test, abort"
+"Ubuntu Hello ġie kkonfigurat biex juża reġistratur li għadu ma jappoġġ"
+"jax il-kmand tat-test, abort"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Ftuħ ta 'tieqa b'għalf tat-test\n"
-"\n"
-"Agħfas ctrl + C f'dan it-terminal biex tieqaf\n"
-"Ikklikkja fuq l-immaġni biex tattiva jew tiddiżattiva l-mod bil-mod\n"
+"\nFtuħ ta 'tieqa b'għalf tat-test\n\nAgħfas ctrl + C f'dan it-terminal"
+" biex tieqaf\nIkklikkja fuq l-immaġni biex tattiva jew tiddiżattiva l-"
+"mod bil-mod\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RIŻOLUZZJONI: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "OQFMES: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "RIKONOXXIMENT: %dms"
 
@@ -635,11 +635,9 @@ msgstr "QAFAS SKANJAR"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Tieqa tal-għeluq"
+"\nTieqa tal-għeluq"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -670,7 +668,6 @@ msgid "Authorising in {}"
 msgstr "Awtorizza fi {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Agħfas {abort_key} biex tabortixxi, {confirm_key} biex tawtorizza"
 
@@ -702,25 +699,27 @@ msgstr "Modulu ffmpeg nieqes, jekk jogħġbok mexxi:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Modulu pyv4l2 nieqes, jekk jogħġbok mexxi:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello ma setgħetx issib apparat tal-kamera fil-mogħdija speċifikata "
-"fil-fajl tal-konfigurazzjoni."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Huwa probabbli ħafna li l-mogħdija mhix ikkonfigurata b'mod korrett, jekk "
-"jogħġbok editja l-valur tal-konfigurazzjoni 'device_path' billi tħaddem:"
+"Ubuntu Hello ma setgħetx issib apparat tal-kamera fil-mogħdija speċifi"
+"kata fil-fajl tal-konfigurazzjoni."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
+msgstr ""
+"Huwa probabbli ħafna li l-mogħdija mhix ikkonfigurata b'mod korrett, j"
+"ekk jogħġbok editja l-valur tal-konfigurazzjoni 'device_path' billi tħ"
+"addem:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
 msgstr ""
 "Naqset milli taqra l-kamera speċifikata fl-għażla tal-konfigurazzjoni "
 "'device_path', abort"

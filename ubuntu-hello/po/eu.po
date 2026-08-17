@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,24 +28,24 @@ msgid "Unknown error: "
 msgstr "Errore ezezaguna:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "%s gisa identifikatu da aurpegia"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Sartu sakatu bidaltzeko baimen nahikorik ez dago, erabiltzaileak sakatuko "
-"duenaren zain"
+"Sartu sakatu bidaltzeko baimen nahikorik ez dago, erabiltzaileak sakat"
+"uko duenaren zain"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Ezin izan da bidali Sartu sakatu, erabiltzaileak sakatu behar duenaren zain"
+"Ezin izan da bidali Sartu sakatu, erabiltzaileak sakatu behar duenaren"
+" zain"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Aurpegiko autentifikazioa saiatzea"
 
@@ -67,25 +67,24 @@ msgstr "argudioak"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Laguntza lortzeko, mesedez bisitatu\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Laguntza lortzeko, mesedez bisitatu\nhttps://github.com/ventura8/ubunt"
+"u-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
 "Exekutatu beharreko komando-aukera hauetako bat izan daiteke: gehitu, "
-"garbitu, konfiguratu, desgaitu, giltza-erraza, zerrendatu, kendu, argazkia, "
-"ezarri, probatu edo bertsioa."
+"garbitu, konfiguratu, desgaitu, giltza-erraza, zerrendatu, kendu, arga"
+"zkia, ezarri, probatu edo bertsioa."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr ""
-"Gehitu, desgaitu, kendu eta ezarri komandoetarako aukerako argumentuak."
+msgstr "Gehitu, desgaitu, kendu eta ezarri komandoetarako aukerako argumentuak."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -112,143 +111,132 @@ msgid "Invalid username format"
 msgstr "Erabiltzaile-izen formatu baliogabea"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Exekutatu komando hau root gisa:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Exekutatu komando hau root gisa:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Ezin dira ubuntu-hello komandoak root gisa exekutatu, mesedez exekutatu "
-"komando hau --user banderarekin"
+"Ezin dira ubuntu-hello komandoak root gisa exekutatu, mesedez exekutat"
+"u komando hau --user banderarekin"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Datu-fitxategiak ez dira deskargatu, mesedez exekutatu komando hauek:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "SARTU"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Data:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Eskaneatzeko denbora:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Markoak:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Ostalari izena:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Ziurtasun balio onena:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Abiatzen..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Zu identifikatzen..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "HUTS EGIN"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Marko guztiak ilunegiak ziren, egiaztatu dark_threshold konfigurazioan"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Batez besteko iluntasuna: {avg}, Atalasea: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Pasatako denbora"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Abiatzen"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Ireki kamera + kargatu liburuak: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Kamera irekitzea"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Ezagutza liburuak inportatzen"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Aurpegi ezaguna bilatzen"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Denbora osoa"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Ebazpena"
+"\nEbazpena"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Bertakoa: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Erabilia: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Bilatutako fotogramak: %d (%.2f fps)"
+"\nBilatutako fotogramak: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Marko beltzak baztertu dira: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Ez ikusi egin dira fotograma ilunak: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Fotograma irabazlearen ziurtasuna: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Eredu irabazlea: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "ARRAKASTA"
 
@@ -274,11 +262,9 @@ msgstr "saioa hasteko giltza-errantzia edo KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Ezin da dlib modulua inportatu, egiaztatu irteera"
+"\nEzin da dlib modulua inportatu, egiaztatu irteera"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -286,14 +272,17 @@ msgstr "Ez da aurkitu aurpegi ereduaren karpetarik, bat sortuz"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"OHARRA: modelo gehigarri bakoitzak aurpegia ezagutzeko motorra apur bat "
-"moteltzen du"
+"OHARRA: modelo gehigarri bakoitzak aurpegia ezagutzeko motorra apur ba"
+"t moteltzen du"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Sakatu Ctrl+C bertan behera uzteko\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Sakatu Ctrl+C bertan behera uzteko\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -304,7 +293,6 @@ msgid "Model #"
 msgstr "Eredu #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "\"%s\" etiketa lehenetsia erabiliz -y bandera dela eta"
 
@@ -318,17 +306,15 @@ msgstr "OHARRA: \",\" legez kanpoko karakterea kentzea ereduaren izenetik"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Mesedez, begiratu zuzenean kamerara"
+"\nMesedez, begiratu zuzenean kamerara"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr ""
-"Kamerak fotograma beltzak bakarrik ikusi zituen - IR igorleak funtzionatzen "
-"al du?"
+"Kamerak fotograma beltzak bakarrik ikusi zituen - IR igorleak funtzion"
+"atzen al du?"
 
 #: src/cli/add.py:187
 msgid "No face detected, aborting"
@@ -340,18 +326,13 @@ msgstr "Aurpegi anitz detektatu dira, bertan behera uzten"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Eskaneatzea osatuta\n"
-"Eredu berri bat gehitu da"
+"\nEskaneatzea osatuta\nEredu berri bat gehitu da"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
-msgstr ""
-"Oraindik ez dago eredurik sortu, ezin dira garbitu existitzen ez badira"
+msgstr "Oraindik ez dago eredurik sortu, ezin dira garbitu existitzen ez badira"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -367,27 +348,21 @@ msgstr "Jarraitu nahi duzu [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"\"EZ\" gisa interpretatzea, abortatu"
+"\n\"EZ\" gisa interpretatzea, abortatu"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Modeloak garbitu"
+"\nModeloak garbitu"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Config.ini irekitzen {editor}-n"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Ezin izan da editorea ireki: {error}"
 
@@ -397,16 +372,15 @@ msgstr "Errorea: Ezin izan da testu-editore egokirik aurkitu."
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr ""
-"Mesedez, instalatu 'nano' edo 'vi', edo ezarri EDITOR ingurune-aldagaia."
+msgstr "Mesedez, instalatu 'nano' edo 'vi', edo ezarri EDITOR ingurune-aldagaia."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Komando hau sudorekin exekutatzen ari bazara, saiatu 'sudo -E ubuntu-hello "
-"config' zure EDITOR aldagaia gordetzeko."
+"Komando hau sudorekin exekutatzen ari bazara, saiatu 'sudo -E ubuntu-h"
+"ello config' zure EDITOR aldagaia gordetzeko."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -428,79 +402,113 @@ msgstr "Ubuntu Hello desgaitu da"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello gaitu da"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Erabilera: giltzarria [gaitu|desgaitu]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Erabilera: giltzarria [gaitu|desgaitu|leheneratu] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Sartu {} erabiltzailearen pasahitza {} desblokeatzeko ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Pasahitza ezin da hutsik egon"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Berretsi pasahitza:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM hardwarea detektatu da. tpm2-tools automatikoki instalatzen..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM hardware aktiboa. Pasahitza TPMn zigilatzen..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Giltza-erranzkoa/KWallet desblokeatzea behar bezala gaitu da {} "
-"erabiltzailearentzat TPM erabiliz (zorroa: {})."
+"Giltza-erranzkoa/KWallet desblokeatzea behar bezala gaitu da {} erabil"
+"tzailearentzat TPM erabiliz (zorroa: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Ezin izan da pasahitza zigilatu TPM-n: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Ez dago TPM aktiborik. Softwarean oinarritutako kredentzialen cachea "
-"erabiltzen..."
+"Ez dago TPM aktiborik. Softwarean oinarritutako kredentzialen cachea e"
+"rabiltzen..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Gako-errantola/KWallet desblokeatzea behar bezala gaitu da {} "
-"erabiltzailearentzat (Softwarea cachea, zorroa: {})."
+"Gako-errantola/KWallet desblokeatzea behar bezala gaitu da {} erabiltz"
+"ailearentzat (Softwarea cachea, zorroa: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Ezin izan da giltza-zerrenda desblokeatzea gaitu: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Ezin izan da giltza-zerrenda desblokeatzea desgaitu: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Giltza/KWallet desblokeatzea desgaituta dago {} erabiltzailearentzat."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Giltza/KWallet desblokeatzea ez da gaituta {} erabiltzailearentzat."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Ekintza baliogabea. Erabili 'gaitu' edo 'desgaitu'."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr ""
+"Ez da saio-hasierako pasahitz zigilaturik aurkitu; ez dago ezer lehene"
+"ratzeko."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "{} erabiltzaileren saio-hasierako zorroaren pasahitza leheneratu da."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr ""
+"Ezin izan da leheneratu {} erabiltzaileren saio-hasierako zorroaren pa"
+"sahitza."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Gonbiteek jarraitzen badute, ezarri saio-hasierako giltzarriaren edo K"
+"Wallet-en pasahitza Seahorse / Sistemaren ezarpenetan."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "{} erabiltzailearen saio-hasierako zorroaren pasahitza leheneratu da."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr ""
+"Ezin izan da leheneratu {} erabiltzailearen saio-hasierako zorroaren p"
+"asahitza."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Ekintza baliogabea. Erabili 'gaitu', 'desgaitu' edo 'leheneratu'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -509,7 +517,8 @@ msgstr "Aurpegi-ereduak oraindik ez dira hasieratu, mesedez exekutatu:"
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
 msgstr ""
-"Ez da ezagutzen {} erabiltzailearentzat aurpegi eredurik, mesedez exekutatu:"
+"Ez da ezagutzen {} erabiltzailearentzat aurpegi eredurik, mesedez exek"
+"utatu:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
@@ -532,29 +541,26 @@ msgid "You can find the IDs by running:"
 msgstr "IDak exekutatuta aurki ditzakezu:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Honek \"{label}\" izeneko eredua kenduko du {user}rako"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Ez dago {id} ID duen modelorik {user}rako"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
-msgstr ""
-"Azken eredua kendu da, ubuntu-hello desgaituta dago erabiltzailearentzat"
+msgstr "Azken eredua kendu da, ubuntu-hello desgaituta dago erabiltzailearentzat"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
 msgstr "{} eredua kendu da"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Mesedez, gehitu aldatu nahi duzun ezarpen bat eta ezarri nahi duzun balioa"
+"Mesedez, gehitu aldatu nahi duzun ezarpen bat eta ezarri nahi duzun ba"
+"lioa"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -582,43 +588,34 @@ msgstr "Sortutako argazkia honela gorde da"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello oraindik proba komandoa onartzen ez duen grabagailu bat "
-"erabiltzeko konfiguratu da, bertan behera utziz"
+"Ubuntu Hello oraindik proba komandoa onartzen ez duen grabagailu bat e"
+"rabiltzeko konfiguratu da, bertan behera utziz"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
+"\nLeiho bat irekitzea proba-jario batekin\n\nSakatu ctrl+C terminal ho"
+"netan irteteko\nEgin klik irudian modu motela gaitzeko edo desgaitzeko"
 "\n"
-"Leiho bat irekitzea proba-jario batekin\n"
-"\n"
-"Sakatu ctrl+C terminal honetan irteteko\n"
-"Egin klik irudian modu motela gaitzeko edo desgaitzeko\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "EBAZPENA: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "MARKOAK: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "Aitortza: %dms"
 
@@ -636,11 +633,9 @@ msgstr "ESKANATU MARKOA"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Leihoa ixten"
+"\nLeihoa ixten"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -671,7 +666,6 @@ msgid "Authorising in {}"
 msgstr "Baimena ematen {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Sakatu {abort_key} bertan behera uzteko, {confirm_key} baimentzeko"
 
@@ -703,25 +697,26 @@ msgstr "ffmpeg modulua falta da, mesedez exekutatu:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 modulua falta da, mesedez exekutatu:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello ezin izan da kamera gailurik aurkitu konfigurazio fitxategian "
-"zehaztutako bidean."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Litekeena da bidea behar bezala ez egotea, mesedez editatu 'device_path' "
-"konfigurazio-balioa exekutatuz:"
+"Ubuntu Hello ezin izan da kamera gailurik aurkitu konfigurazio fitxate"
+"gian zehaztutako bidean."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Ezin izan da irakurri 'device_path' konfigurazio aukeran zehaztutako kamera, "
-"bertan behera uzten"
+"Litekeena da bidea behar bezala ez egotea, mesedez editatu 'device_pat"
+"h' konfigurazio-balioa exekutatuz:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Ezin izan da irakurri 'device_path' konfigurazio aukeran zehaztutako k"
+"amera, bertan behera uzten"

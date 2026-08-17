@@ -345,3 +345,51 @@ def test_run_keyring_uses_builtins():
     builtins.ubuntu_hello_args = SimpleNamespace(arguments=[])
     with pytest.raises(SystemExit):
         keyring_mod.run_keyring()
+
+
+def test_restore_one_user_success(capsys):
+    with patch.object(keyring_mod, "restore_user", return_value=True) as restore:
+        keyring_mod.run_keyring("alice", ["restore"])
+        restore.assert_called_once_with("alice")
+    assert "Restored login wallet password for user alice" in capsys.readouterr().out
+
+
+def test_restore_one_user_failure():
+    with patch.object(keyring_mod, "restore_user", return_value=False), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["restore"])
+    assert exc.value.code == 1
+
+
+def test_restore_all_none(capsys):
+    with patch.object(keyring_mod, "restore_all_users", return_value=(0, 0)):
+        keyring_mod.run_keyring("alice", ["restore", "--all"])
+    assert "nothing to restore" in capsys.readouterr().out.lower()
+
+
+def test_restore_all_partial_failure(capsys):
+    with patch.object(keyring_mod, "restore_all_users", return_value=(1, 1)), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["restore", "--all"])
+    assert exc.value.code == 1
+    out = capsys.readouterr().out
+    assert "1 user(s)" in out
+
+
+def test_restore_all_success(capsys):
+    with patch.object(keyring_mod, "restore_all_users", return_value=(2, 0)):
+        keyring_mod.run_keyring("alice", ["restore", "--all"])
+    assert "2 user(s)" in capsys.readouterr().out
+
+
+def test_restore_rejects_positional_user():
+    with pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["restore", "bob"])
+    assert exc.value.code == 1
+
+
+def test_restore_rejects_restore_local_user_flag():
+    with pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["restore", "-U", "bob"])
+    assert exc.value.code == 1
+

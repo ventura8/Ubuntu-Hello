@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,28 +28,32 @@ msgid "Unknown error: "
 msgstr "తెలియని లోపం:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "ముఖం %sగా గుర్తించబడింది"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Enter ప్రెస్‌ని పంపడానికి తగిన అనుమతులు లేవు, బదులుగా వినియోగదారు దానిని నొక్కడం కోసం వేచి ఉన్నారు"
+"Enter ప్రెస్‌ని పంపడానికి తగిన అనుమతులు లేవు, బదులుగా వినియోగదారు దాని"
+"ని నొక్కడం కోసం వేచి ఉన్నారు"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
-msgstr "Enter ప్రెస్‌ని పంపడంలో విఫలమైంది, బదులుగా వినియోగదారు దాన్ని నొక్కడం కోసం వేచి ఉంది"
+msgstr ""
+"Enter ప్రెస్‌ని పంపడంలో విఫలమైంది, బదులుగా వినియోగదారు దాన్ని నొక్కడం "
+"కోసం వేచి ఉంది"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "ముఖ ప్రమాణీకరణను ప్రయత్నిస్తోంది"
 
 #: src/cli.py:26
 msgid "Could not determine user, please use the --user flag"
-msgstr "వినియోగదారుని గుర్తించడం సాధ్యం కాలేదు, దయచేసి --user ఫ్లాగ్‌ని ఉపయోగించండి"
+msgstr ""
+"వినియోగదారుని గుర్తించడం సాధ్యం కాలేదు, దయచేసి --user ఫ్లాగ్‌ని ఉపయోగి"
+"ంచండి"
 
 #: src/cli.py:31
 msgid "Command line interface for Ubuntu Hello face authentication."
@@ -65,19 +69,20 @@ msgstr "వాదనలు"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"మద్దతు కోసం దయచేసి సందర్శించండి\n"
-"https://github.com/ventura8/ubuntu-hello"
+"మద్దతు కోసం దయచేసి సందర్శించండి\nhttps://github.com/ventura8/ubuntu-he"
+"llo"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"అమలు చేయడానికి కమాండ్ ఎంపిక క్రింది వాటిలో ఒకటి కావచ్చు: జోడించు, క్లియర్, కాన్ఫిగర్, డిసేబుల్, కీరింగ్, "
-"జాబితా, తీసివేయడం, స్నాప్‌షాట్, సెట్, టెస్ట్ లేదా వెర్షన్."
+"అమలు చేయడానికి కమాండ్ ఎంపిక క్రింది వాటిలో ఒకటి కావచ్చు: జోడించు, క్లి"
+"యర్, కాన్ఫిగర్, డిసేబుల్, కీరింగ్, జాబితా, తీసివేయడం, స్నాప్‌షాట్, సెట"
+"్, టెస్ట్ లేదా వెర్షన్."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -108,143 +113,134 @@ msgid "Invalid username format"
 msgstr "చెల్లని వినియోగదారు పేరు ఫార్మాట్"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "దయచేసి ఈ ఆదేశాన్ని రూట్‌గా అమలు చేయండి:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"దయచేసి ఈ ఆదేశాన్ని రూట్‌గా అమలు చేయండి:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"ubuntu-hello ఆదేశాలను రూట్‌గా అమలు చేయడం సాధ్యపడదు, దయచేసి --user ఫ్లాగ్‌తో ఈ ఆదేశాన్ని అమలు "
-"చేయండి"
+"ubuntu-hello ఆదేశాలను రూట్‌గా అమలు చేయడం సాధ్యపడదు, దయచేసి --user ఫ్లా"
+"గ్‌తో ఈ ఆదేశాన్ని అమలు చేయండి"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "డేటా ఫైల్‌లు డౌన్‌లోడ్ చేయబడలేదు, దయచేసి కింది ఆదేశాలను అమలు చేయండి:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "లాగిన్ చేయండి"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "తేదీ:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "స్కాన్ సమయం:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "ఫ్రేమ్‌లు:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "హోస్ట్ పేరు:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "ఉత్తమ ఖచ్చిత విలువ:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "ప్రారంభిస్తోంది..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "నిన్ను గుర్తిస్తోంది..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "విఫలమైంది"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
-msgstr "అన్ని ఫ్రేమ్‌లు చాలా చీకటిగా ఉన్నాయి, దయచేసి కాన్ఫిగర్‌లో డార్క్_థ్రెషోల్డ్‌ని తనిఖీ చేయండి"
+msgstr ""
+"అన్ని ఫ్రేమ్‌లు చాలా చీకటిగా ఉన్నాయి, దయచేసి కాన్ఫిగర్‌లో డార్క్_థ్రెష"
+"ోల్డ్‌ని తనిఖీ చేయండి"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "సగటు చీకటి: {avg}, థ్రెషోల్డ్: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "గడిపిన సమయం"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "ప్రారంభిస్తోంది"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "క్యామ్ + లోడ్ లిబ్‌లను తెరవండి: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "కెమెరా తెరవడం"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "గుర్తింపు లిబ్‌లను దిగుమతి చేస్తోంది"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "తెలిసిన ముఖం కోసం వెతుకుతున్నారు"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "మొత్తం సమయం"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"రిజల్యూషన్"
+"\nరిజల్యూషన్"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "స్థానికం: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "వాడినది: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"శోధించిన ఫ్రేమ్‌లు: %d (%.2f fps)"
+"\nశోధించిన ఫ్రేమ్‌లు: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "నలుపు ఫ్రేమ్‌లు విస్మరించబడ్డాయి: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "చీకటి ఫ్రేమ్‌లు విస్మరించబడ్డాయి: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "విజేత ఫ్రేమ్ యొక్క ఖచ్చితత్వం: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "విజేత మోడల్: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "విజయవంతమైంది"
 
@@ -270,11 +266,10 @@ msgstr "లాగిన్ కీరింగ్ లేదా KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"dlib మాడ్యూల్‌ను దిగుమతి చేయడం సాధ్యం కాదు, అవుట్‌పుట్‌ని తనిఖీ చేయండి"
+"\ndlib మాడ్యూల్‌ను దిగుమతి చేయడం సాధ్యం కాదు, అవుట్‌పుట్‌ని తనిఖీ చేయం"
+"డి"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -282,12 +277,17 @@ msgstr "ఫేస్ మోడల్ ఫోల్డర్ ఏదీ కను�
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
-msgstr "నోటీసు: ప్రతి అదనపు మోడల్ ఫేస్ రికగ్నిషన్ ఇంజిన్‌ను కొద్దిగా నెమ్మదిస్తుంది"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
+msgstr ""
+"నోటీసు: ప్రతి అదనపు మోడల్ ఫేస్ రికగ్నిషన్ ఇంజిన్‌ను కొద్దిగా నెమ్మదిస్"
+"తుంది"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "రద్దు చేయడానికి Ctrl+C నొక్కండి\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"రద్దు చేయడానికి Ctrl+C నొక్కండి\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -298,7 +298,6 @@ msgid "Model #"
 msgstr "మోడల్ #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y ఫ్లాగ్ కారణంగా డిఫాల్ట్ లేబుల్ \"%s\"ని ఉపయోగించడం"
 
@@ -312,11 +311,9 @@ msgstr "నోటీసు: మోడల్ పేరు నుండి అక�
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"దయచేసి నేరుగా కెమెరాలోకి చూడండి"
+"\nదయచేసి నేరుగా కెమెరాలోకి చూడండి"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -332,17 +329,15 @@ msgstr "బహుళ ముఖాలు గుర్తించబడ్డా�
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"స్కాన్ పూర్తయింది\n"
-"దీనికి కొత్త మోడల్ జోడించబడింది"
+"\nస్కాన్ పూర్తయింది\nదీనికి కొత్త మోడల్ జోడించబడింది"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
-msgstr "ఇంకా మోడల్‌లు ఏవీ సృష్టించబడలేదు, అవి ఉనికిలో లేకుంటే వాటిని క్లియర్ చేయలేరు"
+msgstr ""
+"ఇంకా మోడల్‌లు ఏవీ సృష్టించబడలేదు, అవి ఉనికిలో లేకుంటే వాటిని క్లియర్ చ"
+"ేయలేరు"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -358,27 +353,21 @@ msgstr "మీరు [y/N] కొనసాగించాలనుకుంట�
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"\"NO\"గా వ్యాఖ్యానించడం, రద్దు చేయడం"
+"\n\"NO\"గా వ్యాఖ్యానించడం, రద్దు చేయడం"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"మోడల్‌లు క్లియర్ చేయబడ్డాయి"
+"\nమోడల్‌లు క్లియర్ చేయబడ్డాయి"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "config.iniని {editor}లో తెరుస్తోంది"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "ఎడిటర్‌ని తెరవడంలో విఫలమైంది: {error}"
 
@@ -388,15 +377,17 @@ msgstr "లోపం: తగిన టెక్స్ట్ ఎడిటర్ �
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr "దయచేసి 'nano' లేదా 'vi'ని ఇన్‌స్టాల్ చేయండి లేదా EDITOR ఎన్విరాన్‌మెంట్ వేరియబుల్‌ని సెట్ చేయండి."
+msgstr ""
+"దయచేసి 'nano' లేదా 'vi'ని ఇన్‌స్టాల్ చేయండి లేదా EDITOR ఎన్విరాన్‌మెంట"
+"్ వేరియబుల్‌ని సెట్ చేయండి."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"మీరు ఈ ఆదేశాన్ని sudoతో అమలు చేస్తుంటే, మీ ఎడిటర్ వేరియబుల్‌ను భద్రపరచడానికి 'sudo -E ubuntu-"
-"hello config'ని ప్రయత్నించండి."
+"మీరు ఈ ఆదేశాన్ని sudoతో అమలు చేస్తుంటే, మీ ఎడిటర్ వేరియబుల్‌ను భద్రపరచ"
+"డానికి 'sudo -E ubuntu-hello config'ని ప్రయత్నించండి."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -418,76 +409,109 @@ msgstr "Ubuntu Hello నిలిపివేయబడింది"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ప్రారంభించబడింది"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "వాడుక: కీరింగ్ [ఎనేబుల్|డిసేబుల్]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "వినియోగం: కీరింగ్ [ప్రారంభించు|నిలిపివేయి|పునరుద్ధరించు] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "{} ({})ని అన్‌లాక్ చేయడానికి వినియోగదారు {} పాస్‌వర్డ్‌ను నమోదు చేయండి:"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "పాస్‌వర్డ్ ఖాళీగా ఉండకూడదు"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "పాస్వర్డ్ను నిర్ధారించండి:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "పాస్‌వర్డ్‌లు సరిపోలడం లేదు"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM హార్డ్‌వేర్ కనుగొనబడింది. ఆటో-ఇన్‌స్టాల్ చేస్తోంది tpm2-tools..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM హార్డ్‌వేర్ సక్రియంగా ఉంది. TPMలో సీలింగ్ పాస్‌వర్డ్..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"TPM (వాలెట్: {}) ఉపయోగించి వినియోగదారు {} కోసం కీరింగ్/KWallet అన్‌లాకింగ్ విజయవంతంగా ప్రారంభించబడింది."
+"TPM (వాలెట్: {}) ఉపయోగించి వినియోగదారు {} కోసం కీరింగ్/KWallet అన్‌లాక"
+"ింగ్ విజయవంతంగా ప్రారంభించబడింది."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPMకి పాస్‌వర్డ్‌ను సీల్ చేయడంలో విఫలమైంది: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
-msgstr "TPM సక్రియంగా లేదు. సాఫ్ట్‌వేర్ ఆధారిత క్రెడెన్షియల్ కాషింగ్‌ని ఉపయోగించడం..."
-
-#: src/cli/keyring.py:121
-msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
 msgstr ""
-"వినియోగదారు {} (సాఫ్ట్‌వేర్ కాషింగ్, వాలెట్: {}) కోసం కీరింగ్/KWallet అన్‌లాకింగ్ విజయవంతంగా "
-"ప్రారంభించబడింది."
+"TPM సక్రియంగా లేదు. సాఫ్ట్‌వేర్ ఆధారిత క్రెడెన్షియల్ కాషింగ్‌ని ఉపయోగి"
+"ంచడం..."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:122
+msgid ""
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
+msgstr ""
+"వినియోగదారు {} (సాఫ్ట్‌వేర్ కాషింగ్, వాలెట్: {}) కోసం కీరింగ్/KWallet "
+"అన్‌లాకింగ్ విజయవంతంగా ప్రారంభించబడింది."
+
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "కీరింగ్ అన్‌లాకింగ్‌ని ప్రారంభించడంలో విఫలమైంది: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "కీరింగ్ అన్‌లాకింగ్‌ని నిలిపివేయడంలో విఫలమైంది: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "వినియోగదారు {} కోసం కీరింగ్/KWallet అన్‌లాకింగ్ నిలిపివేయబడింది."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "వినియోగదారు {} కోసం కీరింగ్/KWallet అన్‌లాకింగ్ ప్రారంభించబడలేదు."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "చెల్లని చర్య. 'ఎనేబుల్' లేదా 'డిసేబుల్' ఉపయోగించండి."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "సీలు చేసిన లాగిన్ పాస్‌వర్డ్‌లు దొరకలేదు; పునరుద్ధరించేది ఏమీ లేదు."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "{} వినియోగదారు(ల) కోసం లాగిన్ వాలెట్ పాస్‌వర్డ్ పునరుద్ధరించబడింది."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "{} వినియోగదారు(ల) కోసం లాగిన్ వాలెట్ పాస్‌వర్డ్‌ను పునరుద్ధరించలేకపోయాం."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"ప్రాంప్ట్‌లు కొనసాగితే, Seahorse / సిస్టమ్ సెట్టింగ్‌లలో లాగిన్ కీరింగ"
+"్ లేదా KWallet పాస్‌వర్డ్‌ను సెట్ చేయండి."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "వినియోగదారు {} కోసం లాగిన్ వాలెట్ పాస్‌వర్డ్ పునరుద్ధరించబడింది."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "వినియోగదారు {} కోసం లాగిన్ వాలెట్ పాస్‌వర్డ్‌ను పునరుద్ధరించలేకపోయాం."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr ""
+"చెల్లని చర్య. 'ప్రారంభించు', 'నిలిపివేయి' లేదా 'పునరుద్ధరించు' ఉపయోగిం"
+"చండి."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -518,12 +542,10 @@ msgid "You can find the IDs by running:"
 msgstr "మీరు అమలు చేయడం ద్వారా IDలను కనుగొనవచ్చు:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "ఇది {user} కోసం \"{label}\" అనే మోడల్‌ను తీసివేస్తుంది"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "{user} కోసం ID {id}తో మోడల్ ఏదీ లేదు"
 
@@ -536,9 +558,10 @@ msgid "Removed model {}"
 msgstr "తీసివేయబడిన మోడల్ {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
-msgstr "దయచేసి మీరు మార్చాలనుకుంటున్న సెట్టింగ్‌ని మరియు దానికి సెట్ చేయాల్సిన విలువను జోడించండి"
+msgid "Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"దయచేసి మీరు మార్చాలనుకుంటున్న సెట్టింగ్‌ని మరియు దానికి సెట్ చేయాల్సిన"
+" విలువను జోడించండి"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -566,43 +589,34 @@ msgstr "రూపొందించిన స్నాప్‌షాట్ ఇ�
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello పరీక్ష కమాండ్‌కు ఇంకా మద్దతు ఇవ్వని రికార్డర్‌ని ఉపయోగించడానికి కాన్ఫిగర్ చేయబడింది, "
-"ఆగిపోతుంది"
+"Ubuntu Hello పరీక్ష కమాండ్‌కు ఇంకా మద్దతు ఇవ్వని రికార్డర్‌ని ఉపయోగించ"
+"డానికి కాన్ఫిగర్ చేయబడింది, ఆగిపోతుంది"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"టెస్ట్ ఫీడ్‌తో విండోను తెరవడం\n"
-"\n"
-"నిష్క్రమించడానికి ఈ టెర్మినల్‌లో ctrl+C నొక్కండి\n"
-"స్లో మోడ్‌ని ఎనేబుల్ లేదా డిసేబుల్ చేయడానికి ఇమేజ్‌పై క్లిక్ చేయండి\n"
+"\nటెస్ట్ ఫీడ్‌తో విండోను తెరవడం\n\nనిష్క్రమించడానికి ఈ టెర్మినల్‌లో ct"
+"rl+C నొక్కండి\nస్లో మోడ్‌ని ఎనేబుల్ లేదా డిసేబుల్ చేయడానికి ఇమేజ్‌పై క"
+"్లిక్ చేయండి\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "రిజల్యూషన్: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "ఫ్రేమ్‌లు: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "గుర్తింపు: %dms"
 
@@ -620,11 +634,9 @@ msgstr "ఫ్రేమ్‌ని స్కాన్ చేయండి"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"విండోను మూసివేయడం"
+"\nవిండోను మూసివేయడం"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -655,9 +667,10 @@ msgid "Authorising in {}"
 msgstr "{}లో ఆథరైజింగ్"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
-msgstr "రద్దు చేయడానికి {abort_key}ని, ప్రామాణీకరించడానికి {confirm_key}ని నొక్కండి"
+msgstr ""
+"రద్దు చేయడానికి {abort_key}ని, ప్రామాణీకరించడానికి {confirm_key}ని నొక"
+"్కండి"
 
 #: src/rubberstamps/hotkey.py:50
 msgid "Authentication aborted"
@@ -687,21 +700,26 @@ msgstr "ffmpeg మాడ్యూల్ లేదు, దయచేసి అమ�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 మాడ్యూల్ లేదు, దయచేసి అమలు చేయండి:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr "Ubuntu Hello కాన్ఫిగర్ ఫైల్‌లో పేర్కొన్న మార్గంలో కెమెరా పరికరాన్ని కనుగొనలేకపోయింది."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"మార్గం సరిగ్గా కాన్ఫిగర్ చేయబడని అవకాశం ఉంది, దయచేసి అమలు చేయడం ద్వారా 'device_path' కాన్ఫిగర్ "
-"విలువను సవరించండి:"
+"Ubuntu Hello కాన్ఫిగర్ ఫైల్‌లో పేర్కొన్న మార్గంలో కెమెరా పరికరాన్ని కన"
+"ుగొనలేకపోయింది."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
-msgstr "'device_path' కాన్ఫిగరేషన్ ఎంపికలో పేర్కొన్న కెమెరాను చదవడంలో విఫలమైంది, ఆపివేయబడుతోంది"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
+msgstr ""
+"మార్గం సరిగ్గా కాన్ఫిగర్ చేయబడని అవకాశం ఉంది, దయచేసి అమలు చేయడం ద్వారా"
+" 'device_path' కాన్ఫిగర్ విలువను సవరించండి:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"'device_path' కాన్ఫిగరేషన్ ఎంపికలో పేర్కొన్న కెమెరాను చదవడంలో విఫలమైంద"
+"ి, ఆపివేయబడుతోంది"

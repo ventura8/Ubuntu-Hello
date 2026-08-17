@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,21 +28,20 @@ msgid "Unknown error: "
 msgstr "ያልታወቀ ስህተት፡-"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "ተለይቶ የሚታወቅ ፊት ​​%s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr "አስገባን ለመላክ በቂ ያልሆኑ ፈቃዶች፣ በምትኩ ተጠቃሚው እንዲጫን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "አስገባን መላክ አልተሳካም፣ በምትኩ ተጠቃሚው እስኪጭን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "የፊት ማረጋገጥን በመሞከር ላይ"
 
@@ -64,19 +63,18 @@ msgstr "ክርክሮች"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"ለድጋፍ እባክዎን ይጎብኙ\n"
-"⟦U0000"
+"ለድጋፍ እባክዎን ይጎብኙ\n⟦U0000"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"የማስፈጸም የትዕዛዝ አማራጭ ከሚከተሉት ውስጥ አንዱ ሊሆን ይችላል፡ አክል፣ አጽዳ፣ አዋቅር፣ አሰናክል፣ ቁልፍ ማድረግ፣ "
-"ዝርዝር፣ ማስወገድ፣ ቅጽበተ-ፎቶ፣ አዘጋጅ፣ ሙከራ ወይም ስሪት።"
+"የማስፈጸም የትዕዛዝ አማራጭ ከሚከተሉት ውስጥ አንዱ ሊሆን ይችላል፡ አክል፣ አጽዳ፣ አዋቅር፣ አሰናክል፣ ቁልፍ "
+"ማድረግ፣ ዝርዝር፣ ማስወገድ፣ ቅጽበተ-ፎቶ፣ አዘጋጅ፣ ሙከራ ወይም ስሪት።"
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -107,141 +105,130 @@ msgid "Invalid username format"
 msgstr "የተሳሳተ የተጠቃሚ ስም ቅርጸት"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "እባኮትን ይህን ትዕዛዝ እንደ ስር ያሂዱ፡-\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"እባኮትን ይህን ትዕዛዝ እንደ ስር ያሂዱ፡-\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr "የኡቡንቱ-ሄሎ ትዕዛዞችን እንደ ስር ማስኬድ አይቻልም፣ እባክዎ ይህን ትዕዛዝ በ --ተጠቃሚ ባንዲራ ያሂዱ"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "የውሂብ ፋይሎች አልተወረዱም፣ እባክዎ የሚከተሉትን ትዕዛዞችን ያሂዱ፡-"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "ግባ"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ቀን፡-"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "የፍተሻ ጊዜ፡"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "ፍሬሞች፡"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "የአስተናጋጅ ስም"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "የምርጥ እርግጠኝነት ዋጋ፡-"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "በመጀመር ላይ..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "እርስዎን በመለየት ላይ..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "አልተሳካም።"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "ሁሉም ክፈፎች በጣም ጨለማዎች ነበሩ፣እባክዎ በማዋቀር ውስጥ dark_thresholdን ያረጋግጡ"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "አማካይ ጨለማ፡ {avg}፣ ገደብ፡ {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "የጠፋው ጊዜ"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "በመጀመር ላይ"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "ካሜራ ክፈት + ሎድ ሊብስ፡ %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "ካሜራውን በመክፈት ላይ"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "የማወቂያ libs በማስመጣት ላይ"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "የሚታወቅ ፊት ​​በመፈለግ ላይ"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "ጠቅላላ ጊዜ"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"ጥራት"
+"\nጥራት"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "ቤተኛ፡ %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "ጥቅም ላይ የዋለ: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"ፍሬሞች ተፈልገው፡ %d (%.2f fps)"
+"\nፍሬሞች ተፈልገው፡ %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "ጥቁር ፍሬሞች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "ጨለማ ክፈፎች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "የማሸነፍ እርግጠኝነት፡ %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "አሸናፊ ሞዴል፡ %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "ተሳክቷል።"
 
@@ -267,11 +254,9 @@ msgstr "የመግቢያ ቁልፍ ወይም KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"የ dlib ሞጁሉን ማስመጣት አልተቻለም፣ ውጤቱን ያረጋግጡ"
+"\nየ dlib ሞጁሉን ማስመጣት አልተቻለም፣ ውጤቱን ያረጋግጡ"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -279,12 +264,15 @@ msgstr "ምንም የመልክ ሞዴል አቃፊ አልተገኘም፣ አን�
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr "ማሳሰቢያ: እያንዳንዱ ተጨማሪ ሞዴል የፊት ለይቶ ማወቂያ ሞተርን በትንሹ ይቀንሳል"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "ለመሰረዝ Ctrl+C ይጫኑ\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"ለመሰረዝ Ctrl+C ይጫኑ\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -295,7 +283,6 @@ msgid "Model #"
 msgstr "ሞዴል #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "በ -y ባንዲራ ምክንያት ነባሪ መለያ \"%s\" መጠቀም"
 
@@ -309,11 +296,9 @@ msgstr "ማሳሰቢያ፡ ህገወጥ ቁምፊን \"\" ከሞዴል ስም �
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"እባክዎን በቀጥታ ወደ ካሜራ ይመልከቱ"
+"\nእባክዎን በቀጥታ ወደ ካሜራ ይመልከቱ"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -329,13 +314,9 @@ msgstr "በርካታ ፊቶች ተገኝተዋል፣ ውርጃ"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"ቅኝት ተጠናቅቋል\n"
-"አዲስ ሞዴል ታክሏል።"
+"\nቅኝት ተጠናቅቋል\nአዲስ ሞዴል ታክሏል።"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -355,27 +336,21 @@ msgstr "መቀጠል ይፈልጋሉ [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"እንደ \"አይ\" መተርጎም, ማስወረድ"
+"\nእንደ \"አይ\" መተርጎም, ማስወረድ"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"ሞዴሎች ጸድተዋል።"
+"\nሞዴሎች ጸድተዋል።"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "config.ini {editor} ውስጥ በመክፈት ላይ"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "አርታዒን መክፈት አልተሳካም፦ {error}"
 
@@ -389,11 +364,11 @@ msgstr "እባክህ 'nano' ወይም 'vi' ን ጫን፣ ወይም የEDITOR አ
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"ይህን ትእዛዝ በ sudo እያስኬዱ ከሆነ፣ የእርስዎን የEDITOR ተለዋዋጭ ለማቆየት 'sudo -E ubuntu-hello "
-"config' ይሞክሩ።"
+"ይህን ትእዛዝ በ sudo እያስኬዱ ከሆነ፣ የእርስዎን የEDITOR ተለዋዋጭ ለማቆየት 'sudo -E ubuntu-"
+"hello config' ይሞክሩ።"
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -415,75 +390,103 @@ msgstr "Ubuntu Hello ተሰናክሏል።"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ነቅቷል።"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "አጠቃቀም፡ ቁልፍ ማድረግ [ማንቃት|ማሰናከል]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "አጠቃቀም፡ ቁልፍ ማድረግ [ማንቃት|ማሰናከል|መመለስ] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "ለመክፈት ለተጠቃሚ {} የይለፍ ቃል ያስገቡ {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "የይለፍ ቃል ባዶ ሊሆን አይችልም።"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "የይለፍ ቃል አረጋግጥ፡"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "የይለፍ ቃሎች አይዛመዱም።"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM ሃርድዌር ተገኝቷል። በራስ-ሰር በመጫን ላይ tpm2-tools..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM ሃርድዌር ንቁ። በTPM ውስጥ የይለፍ ቃል በማተም ላይ..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr "TPM (የኪስ ቦርሳ፡ {}) በመጠቀም ለተጠቃሚ {} ቁልፍ ማድረግ/KWallet መክፈት በተሳካ ሁኔታ ነቅቷል።"
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "በTPM ላይ የይለፍ ቃል ማተም አልተሳካም፡ {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "ምንም TPM ገቢር የለም። በሶፍትዌር ላይ የተመሰረተ ምስክርነት መሸጎጫ በመጠቀም..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "የቁልፍ መክፈቻን ማንቃት አልተሳካም፦ {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "የቁልፍ መክፈቻን ማሰናከል አልተሳካም: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "ለተጠቃሚ {} ቁልፍ መደወል/KWallet መክፈት ተሰናክሏል።"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ኪይንግ/KWallet መክፈት ለተጠቃሚ {} አልነቃም።"
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "ልክ ያልሆነ እርምጃ 'enable' ወይም 'አቦዝን' ይጠቀሙ።"
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "የታሸጉ የመግቢያ የይለፍ ቃሎች አልተገኙም፤ የሚመለስ ነገር የለም።"
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "የመግቢያ የኪስ ቦርሳ የይለፍ ቃል ለ {} ተጠቃሚ(ዎች) ተመልሷል።"
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "ለ {} ተጠቃሚ(ዎች) የመግቢያ የኪስ ቦርሳ የይለፍ ቃል መመለስ አልተቻለም።"
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"ጥያቄዎች ከቀጠሉ፣ በ Seahorse / የስርዓት ቅንብሮች ውስጥ የመግቢያ ቁልፍ ቀለበት ወይም KWallet የይ"
+"ለፍ ቃል ያዘጋጁ።"
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "የመግቢያ የኪስ ቦርሳ የይለፍ ቃል ለተጠቃሚ {} ተመልሷል።"
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "ለተጠቃሚ {} የመግቢያ የኪስ ቦርሳ የይለፍ ቃል መመለስ አልተቻለም።"
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "ልክ ያልሆነ እርምጃ። 'ማንቃት'፣ 'ማሰናከል' ወይም 'መመለስ' ይጠቀሙ።"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -514,12 +517,10 @@ msgid "You can find the IDs by running:"
 msgstr "በመሮጥ መታወቂያዎቹን ማግኘት ይችላሉ፡-"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "ይህ \"{label}\" ለ {user} ያለውን ሞዴል ያስወግዳል።"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "ለ {user} መታወቂያ {id} ያለው ሞዴል የለም"
 
@@ -532,8 +533,7 @@ msgid "Removed model {}"
 msgstr "የተወገደ ሞዴል {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr "እባክህ ለመለወጥ የምትፈልገውን ቅንብር እና የሚዘጋጅበትን ዋጋ ጨምር"
 
 #: src/cli/set.py:37
@@ -562,41 +562,31 @@ msgstr "የመነጨ ቅጽበታዊ ገጽ እይታ እንደ ተቀምጧል"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr "Ubuntu Hello የሙከራ ትዕዛዙን የማይደግፍ መቅጃ እንዲጠቀም ተዋቅሯል ፣ ማቋረጥ"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"ከሙከራ ምግብ ጋር መስኮት በመክፈት ላይ\n"
-"\n"
-"ለማቆም በዚህ ተርሚናል ላይ ctrl+C ይጫኑ\n"
-"ቀርፋፋ ሁነታን ለማንቃት ወይም ለማሰናከል ምስሉን ጠቅ ያድርጉ\n"
+"\nከሙከራ ምግብ ጋር መስኮት በመክፈት ላይ\n\nለማቆም በዚህ ተርሚናል ላይ ctrl+C ይጫኑ\nቀርፋፋ ሁነታን"
+" ለማንቃት ወይም ለማሰናከል ምስሉን ጠቅ ያድርጉ\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "መፍትሄ፡ %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "ፍሬሞች፡ %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "እውቅና፡ %dms"
 
@@ -614,11 +604,9 @@ msgstr "ፍሬም ይቃኙ"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"የመዝጊያ መስኮት"
+"\nየመዝጊያ መስኮት"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -649,7 +637,6 @@ msgid "Authorising in {}"
 msgstr "በ {} ውስጥ ፍቃድ መስጠት"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "ለማስወረድ {abort_key} ይጫኑ፡ {confirm_key} ፍቃድ ለመስጠት"
 
@@ -681,19 +668,20 @@ msgstr "የffmpeg ሞጁል ይጎድላል፣ እባክዎን ያሂዱ፡-"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "የጠፋ pyv4l2 ሞጁል፣ እባክዎን ያሂዱ፡"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr "Ubuntu Hello በማዋቀር ፋይሉ ላይ በተጠቀሰው መንገድ የካሜራ መሳሪያ ማግኘት አልቻለም።"
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
+msgstr "Ubuntu Hello በማዋቀር ፋይሉ ላይ በተጠቀሰው መንገድ የካሜራ መሳሪያ ማግኘት አልቻለም።"
+
+#: src/recorders/video_capture.py:39
+msgid ""
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr "መንገዱ በትክክል ያልተዋቀረ ሳይሆን አይቀርም፣ እባክዎን በማሄድ 'የመሳሪያ_ዱካ' ውቅር ዋጋን ያርትዑ፡"
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:99
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
 msgstr "በ'device_path' ውቅር አማራጭ ውስጥ የተገለጸውን ካሜራ ማንበብ አልተሳካም፣ ማቋረጥ"

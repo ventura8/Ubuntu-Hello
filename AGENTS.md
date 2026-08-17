@@ -142,16 +142,18 @@ Ensure files are modified or added in their appropriate structural directories:
 | `ubuntu-hello/src/pam/` | C++ PAM module (`main.cc`, `enter_device.cc`, `face_skip.*`, AES-GCM helpers). Spawns compare in a process group; after face success, sets `PAM_AUTHTOK` for downstream keyring/wallet modules. |
 | `ubuntu-hello/src/cli/` | Command line subcommands (`add`, `clear`, `config`, `disable`, `list`, `remove`, `test`, `snapshot`, `keyring`). |
 | `ubuntu-hello/src/wallet_backend.py` | Labels session wallet backend (`gnome-keyring`, `kwallet`, or `none`) from desktop env; does not change sealed credential format. |
+| `ubuntu-hello/src/keyring_restore.py` | Unseals SUW login passwords and restores the OS wallet master password on uninstall / `ubuntu-hello keyring restore`. |
 | `ubuntu-hello/po/` | Core gettext domain `ubuntu-hello` (PAM `S()` + Python `_()`); `.pot`/`.po` committed, `.mo` built. |
 | `ubuntu-hello/src/recorders/` | Camera capturing plugins (wrapper, ffmpeg, pyv4l2, cv2). |
 | `ubuntu-hello/src/rubberstamps/` | Post-auth liveness check plugins (e.g., nose-tracking nod check). |
 | `ubuntu-hello-gtk/src/` | Administrative settings panel (`window.py`), setup wizard (`onboarding.py`), and overlay window (`authsticky.py`). Instant language rebuild + fuzzy search; `preferences.py` / `languages.py` / `search_fuzzy.py`. |
 | `scripts/uh-apt-deps.sh` | Shared apt build/runtime deps for `install.sh` / `uninstall.sh` (GTK/Babel, multi-DE theme tools, wallet PAM, polkit). Records newly added packages under `/var/lib/ubuntu-hello/apt-packages-added.list` for clean removal (auto transitive deps allowed on uninstall; untracked manual packages refused; auto checks avoid `apt-mark \| grep -q` under pipefail and use `</dev/null` inside `while read` loops). |
-| `ubuntu-hello-gtk/bin/run_after_install.py` | Post-install setup-wizard launcher (installed under `/usr/share/ubuntu-hello-gtk/`). Invoked **once** by `install.sh` / dpkg postinst (not by meson install). Forwards Wayland/X11 session env; single-flight lock; log: `/tmp/ubuntu-hello-postinstall.log` (`O_NOFOLLOW`; replaces foreign-owned regular leftovers under `/tmp`). |
+| `ubuntu-hello-gtk/bin/run_after_install.py` | Post-install setup-wizard launcher (installed under `/usr/share/ubuntu-hello-gtk/`). Invoked by `install.sh` / `ubuntu-hello-gtk` dpkg postinst **only when no face models are enrolled** (not by meson). Forwards Wayland/X11 session env; single-flight lock; log/lock under `/run/ubuntu-hello/` (`O_NOFOLLOW`, not `/tmp`). |
 | `ubuntu-hello-gtk/src/theme_detect.py` | Multi-DE dark/light theme detection (GNOME/KDE/XFCE/Cinnamon/MATE/Budgie/LXQt); used by `window.py` and `authsticky.py`. |
 | `ubuntu-hello-gtk/po/` | GTK gettext domain `ubuntu-hello-gtk` (Python `_()`, Glade, desktop `merge_file`). |
 | `po/whisper-languages.txt` | Canonical Whisper language codes (98, omit `en`); both `LINGUAS` files must match. |
 | `scripts/i18n-update.sh` | Refresh `.pot`, `msgmerge` `.po`, assert `LINGUAS` ↔ Whisper list. |
+| `scripts/i18n-lint.py` | Lint JSON packs + gettext `.po` (UTF-8/JSON, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity). CI lint stage. |
 | `scripts/i18n-fill-translations.py` | Apply filled JSON maps under `scripts/i18n_fill_data/` onto committed `.po` files. |
 | `scripts/read-version.py` | Print semver from repo-root `VERSION` (used by Meson, PKGBUILD, i18n). |
 | `debian/` | Debian packaging control, installation, and post-installation scripts. Build trees (`tmp/`, `.debhelper/`, staged `ubuntu-hello*/`, `*.substvars`) are gitignored. |
@@ -224,7 +226,7 @@ Ensure files are modified or added in their appropriate structural directories:
 * If you add, edit, or remove a translatable string in PAM/Python/Glade/desktop sources, **in the same change set**:
   1. Run `./scripts/i18n-update.sh` (refresh `.pot`, `msgmerge` every `.po`, assert `LINGUAS` ↔ Whisper list).
   2. Fill **every** Whisper language for new/changed msgids (`scripts/i18n-fill-translations.py` / `scripts/i18n_fill_data/`).
-  3. Verify **no** empty `msgstr` and **no** unresolved fuzzy entries remain for either domain before finishing.
+  3. Run `python3 scripts/i18n-lint.py` and verify **no** empty `msgstr` and **no** unresolved fuzzy entries remain for either domain before finishing.
 * Do not ship English-only UI for non-`en` locales after a string change. Details: [`.agents/skills/i18n/SKILL.md`](.agents/skills/i18n/SKILL.md).
 
 ### 4.6.1 Keep the Repository Root Clean (Mandatory)
@@ -253,7 +255,7 @@ Ensure files are modified or added in their appropriate structural directories:
 * **Base image always fixed**: every CI/PPA Dockerfile must use `FROM ubuntu:26.04`. **Forbidden:** floating series tags, unpinned “current Ubuntu” aliases, or any dependency pin that uses the word `latest`.
 * **Dockerfiles under `docker/`** (root stays clean): `docker/Dockerfile.ci.lint`, `docker/Dockerfile.ci.coverage`, `docker/Dockerfile.ci` (baseline compat), `docker/Dockerfile.ci.<de>`, `docker/Dockerfile.ppa`.
 * **Three stages** (`UH_CI_STAGE`):
-  * `lint` — `docker/Dockerfile.ci.lint` / `ubuntu-hello-ci-lint:26.04` / `build-ci-lint` — meson/ninja + clang-tidy + `py_compile`
+  * `lint` — `docker/Dockerfile.ci.lint` / `ubuntu-hello-ci-lint:26.04` / `build-ci-lint` — meson/ninja + clang-tidy + `py_compile` + `scripts/i18n-lint.py` (JSON + gettext `.po`)
   * `coverage` — `docker/Dockerfile.ci.coverage` / `ubuntu-hello-ci-coverage:26.04` / `build-ci-coverage` — meson/ninja + pytest coverage floors + meson C++ tests
   * `compat` — per-DE images under `docker/` — meson/ninja + `py_compile` + pytest (**no** cov floors) + meson C++ tests (**no** clang-tidy)
 * **One Dockerfile + one image per DE** for compat — do **not** collapse DEs into a single ARG-switched Dockerfile. Prefer duplicated clear Dockerfiles. Do **not** fold lint/coverage back into every DE cell.
@@ -289,7 +291,7 @@ Ensure files are modified or added in their appropriate structural directories:
 
 * **Scripts**: `UH_CI_STAGE=lint|coverage ./scripts/ci-docker.sh` for quality stages; `UH_CI_STAGE=compat UH_CI_DE=<de> ./scripts/ci-docker.sh` for one compat cell; `./scripts/ci-pipeline.sh` for the full fail-fast gate; `./scripts/ci-matrix.sh` for parallel compat only. `docker/Dockerfile.ppa` stays `ubuntu:26.04` only (no DE packaging matrix).
 * **Pipeline fix-until-green** (see `.agents/skills/pipeline-runner/SKILL.md`): when running the CI gate, **fix all failures and re-run until every stage and DE cell is green**. Do **not** ignore warnings, add NOLINT suppressions, disable checks, raise clang-tidy thresholds, lower coverage floors, or skip steps to paper over red CI. Each stage/cell must keep fail-fast quality steps (`set -e`, clang-tidy `WarningsAsErrors`).
-* **Keyring / wallet**: face auth sets `PAM_AUTHTOK` for consumers such as `pam_gnome_keyring` and `pam_kwallet5`. UX/docs should mention login keyring **or** KWallet; use `wallet_backend.py` for backend labels and `theme_detect.py` for multi-DE theme probes. Do not invent a second sealed-blob format for KWallet.
+* **Keyring / wallet**: face auth sets `PAM_AUTHTOK` for consumers such as `pam_gnome_keyring` and `pam_kwallet5`. UX/docs should mention login keyring **or** KWallet; use `wallet_backend.py` for backend labels and `theme_detect.py` for multi-DE theme probes. Do not invent a second sealed-blob format for KWallet. Uninstall / apt `prerm` runs `timeout 120 ubuntu-hello keyring restore --all` before deleting `/etc/ubuntu-hello` (re-assert sealed login password as wallet password when possible; never abort removal on restore failure). Bare `keyring restore` restores only the CLI-selected user (`-U`).
 
 ---
 

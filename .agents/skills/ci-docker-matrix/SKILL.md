@@ -18,7 +18,7 @@ All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS
 
 | `UH_CI_STAGE` | Dockerfile | Image | Purpose |
 |---|---|---|---|
-| `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` |
+| `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` + `scripts/i18n-lint.py` |
 | `coverage` | `docker/Dockerfile.ci.coverage` | `ubuntu-hello-ci-coverage:26.04` | pytest coverage floors + meson C++ tests |
 | `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` | DE compatibility build/test |
 
@@ -79,7 +79,7 @@ Compat-only parallel matrix:
 
 ## What each stage runs
 
-* **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`
+* **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`, `scripts/i18n-lint.py` (JSON + `.po`)
 * **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
 * **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip`
 

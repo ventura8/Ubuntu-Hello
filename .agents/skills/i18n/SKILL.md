@@ -4,8 +4,9 @@ description: >-
   Maintain Ubuntu Hello gettext catalogs (ubuntu-hello / ubuntu-hello-gtk),
   LINGUAS ↔ Whisper language list, Automatic locale + optional Settings language
   preference with instant in-session apply, fuzzy Settings search, native
-  multi-DE Settings, and scripts/i18n-update.sh. Use when adding translatable
-  strings, refreshing .pot/.po, or changing locale / Glade / desktop i18n wiring.
+  multi-DE Settings, scripts/i18n-update.sh, and scripts/i18n-lint.py. Use when
+  adding translatable strings, refreshing .pot/.po, linting JSON/.po catalogs,
+  or changing locale / Glade / desktop i18n wiring.
 ---
 
 # Internationalization (gettext)
@@ -85,6 +86,7 @@ When you add, change, or remove a msgid (Python `_()`, PAM `S()`, Glade, desktop
 Audit helper:
 
 ```bash
+python3 scripts/i18n-lint.py   # JSON packs + .po (msgfmt, empty/fuzzy msgstr, placeholders)
 # Empty msgstr (excluding header) or fuzzy entries → must be zero after a string change
 for d in ubuntu-hello ubuntu-hello-gtk; do
   echo "== $d =="

@@ -157,8 +157,20 @@ rm -f /usr/share/bash-completion/completions/ubuntu-hello 2>/dev/null || true
 success "Bash completion removed"
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 4: Remove configuration & data
+# Step 4: Restore OS wallet password, then remove configuration & data
 # ─────────────────────────────────────────────────────────────────────
+step "Restoring login keyring / KWallet password"
+
+if command -v ubuntu-hello >/dev/null 2>&1; then
+    if timeout 120 ubuntu-hello keyring restore --all; then
+        success "Login wallet password restored from sealed credentials where possible"
+    else
+        warn "Could not restore every login wallet password — set it in Seahorse / System Settings if prompts persist"
+    fi
+else
+    warn "ubuntu-hello not on PATH — skipping wallet password restore"
+fi
+
 step "Removing configuration and data"
 
 if [ -d /etc/ubuntu-hello ]; then

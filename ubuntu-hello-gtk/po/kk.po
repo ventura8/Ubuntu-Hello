@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello-gtk 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 19:53+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -37,8 +37,7 @@ msgstr "Keyring/KWallet Unlocking функциясын қосыңыз"
 
 #: src/onboarding.py:42 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr ""
-"{} ({}) құлпын ашу үшін <b>{}</b> пайдаланушының құпия сөзін енгізіңіз:"
+msgstr "{} ({}) құлпын ашу үшін <b>{}</b> пайдаланушының құпия сөзін енгізіңіз:"
 
 #: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
 msgid "Password"
@@ -46,11 +45,10 @@ msgstr "Құпия сөз"
 
 #: src/onboarding.py:170
 msgid ""
-"Datafiles have already been downloaded!\n"
-"Click Next to continue"
+"Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
-"Деректер файлдары жүктеліп қойған!\n"
-"Жалғастыру үшін Келесі түймесін басыңыз"
+"Деректер файлдары жүктеліп қойған!\nЖалғастыру үшін Келесі түймесін ба"
+"сыңыз"
 
 #: src/onboarding.py:200
 msgid "Error while downloading datafiles"
@@ -58,11 +56,9 @@ msgstr "Деректер файлдарын жүктеп алу кезіндег
 
 #: src/onboarding.py:203
 msgid ""
-"Done!\n"
-"Click Next to continue"
+"Done!\nClick Next to continue"
 msgstr ""
-"Дайын!\n"
-"Жалғастыру үшін Келесі түймесін басыңыз"
+"Дайын!\nЖалғастыру үшін Келесі түймесін басыңыз"
 
 #: src/onboarding.py:230 src/onboarding.py:336
 msgid "Error while importing OpenCV2"
@@ -78,11 +74,11 @@ msgstr "Жүйеде веб-камералар табылмады"
 
 #: src/onboarding.py:237
 msgid ""
-"Please configure your camera yourself if you are sure a compatible camera is "
-"connected"
+"Please configure your camera yourself if you are sure a compatible cam"
+"era is connected"
 msgstr ""
-"Үйлесімді камера қосылғанына сенімді болсаңыз, камераңызды өзіңіз "
-"конфигурациялаңыз"
+"Үйлесімді камера қосылғанына сенімді болсаңыз, камераңызды өзіңіз конф"
+"игурациялаңыз"
 
 #: src/onboarding.py:265
 msgid "No, camera can't be opened"
@@ -118,15 +114,13 @@ msgstr "Басқасын таңдап көріңіз"
 
 #: src/onboarding.py:374
 msgid ""
-"Please visit\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"to enable your ir emitter"
+"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
+"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
+"able your ir emitter"
 msgstr ""
-"Келіңіз\n"
-"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
-"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"ir эмитентіңізді қосу үшін"
+"Келіңіз\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter"
+"\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nir эмитент"
+"іңізді қосу үшін"
 
 #: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
 msgid "Please look directly into the camera"
@@ -142,80 +136,64 @@ msgstr "Бет үлгісін сақтау мүмкін емес"
 
 #: src/onboarding.py:446
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Checking TPM hardware and tools..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
+"nd tools..."
 msgstr ""
-"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрде аша "
-"алады (анықталған әмиян: {}).\n"
-"\n"
-"<b>TPM күйі:</b> TPM жабдығы мен құралдары тексерілуде..."
+"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрд"
+"е аша алады (анықталған әмиян: {}).\n\n<b>TPM күйі:</b> TPM жабдығы ме"
+"н құралдары тексерілуде..."
 
 #: src/onboarding.py:466
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
-"automatically..."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
+"Installing <i>tpm2-tools</i> automatically..."
 msgstr ""
-"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрде аша "
-"алады (анықталған әмиян: {}).\n"
-"\n"
-"<b>TPM күйі:</b> TPM аппараттық құралы анықталды. <i>tpm2-tools</i> "
-"автоматты түрде орнатылуда..."
+"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрд"
+"е аша алады (анықталған әмиян: {}).\n\n<b>TPM күйі:</b> TPM аппараттық"
+" құралы анықталды. <i>tpm2-tools</i> автоматты түрде орнатылуда..."
 
 #: src/onboarding.py:478
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
-"sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
+". Your password will be securely sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрде аша "
-"алады (анықталған әмиян: {}).\n"
-"\n"
-"<b>TPM күйі:</b> Жабдық TPM 2.0 белсенді. Құпия сөзіңіз TPM ішінде сенімді "
-"түрде жабылады."
+"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрд"
+"е аша алады (анықталған әмиян: {}).\n\n<b>TPM күйі:</b> Жабдық TPM 2.0"
+" белсенді. Құпия сөзіңіз TPM ішінде сенімді түрде жабылады."
 
 #: src/onboarding.py:480
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
-"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
-"Falling back to software-based credential caching."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
+"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
+" apt install tpm2-tools</code>. Falling back to software-based credent"
+"ial caching."
 msgstr ""
-"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрде аша "
-"алады (анықталған әмиян: {}).\n"
-"\n"
-"<b>TPM күйі:</b> TPM аппараттық құралы анықталды, бірақ <i>tpm2-tools</i> "
-"автоматты орнату сәтсіз аяқталды. <code>sudo apt install tpm2-tools</code> "
-"іске қосыңыз. Бағдарламаға негізделген тіркелгі деректерін кэштеу режиміне "
-"қайта оралу."
+"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрд"
+"е аша алады (анықталған әмиян: {}).\n\n<b>TPM күйі:</b> TPM аппараттық"
+" құралы анықталды, бірақ <i>tpm2-tools</i> автоматты орнату сәтсіз аяқ"
+"талды. <code>sudo apt install tpm2-tools</code> іске қосыңыз. Бағдарла"
+"маға негізделген тіркелгі деректерін кэштеу режиміне қайта оралу."
 
 #: src/onboarding.py:482
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authentication "
-"(detected wallet: {}).\n"
-"\n"
-"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
-"caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authenticatio"
+"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
+"d. Using software-based credential caching (AES-256-GCM)."
 msgstr ""
-"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрде аша "
-"алады (анықталған әмиян: {}).\n"
-"\n"
-"<b>TPM күйі:</b> TPM жабдығы анықталмады. Бағдарламалық құралға негізделген "
-"тіркелгі деректерін кэштеуді пайдалану (AES-256-GCM)."
+"Ubuntu Hello бет аутентификациясын пайдаланып {} құлпын автоматты түрд"
+"е аша алады (анықталған әмиян: {}).\n\n<b>TPM күйі:</b> TPM жабдығы ан"
+"ықталмады. Бағдарламалық құралға негізделген тіркелгі деректерін кэште"
+"уді пайдалану (AES-256-GCM)."
 
 #: src/onboarding.py:526
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
-"Кілттер құлпын ашу үшін түбірлік жүйе емес пайдаланушыны анықтау мүмкін "
-"болмады"
+"Кілттер құлпын ашу үшін түбірлік жүйе емес пайдаланушыны анықтау мүмкі"
+"н болмады"
 
 #: src/onboarding.py:549 src/tab_keyring.py:91
 msgid "Password cannot be empty"
@@ -252,7 +230,8 @@ msgstr "Ubuntu Hello Орнату туралы ескерту"
 #: src/onboarding.py:627
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
-"Сенімділік параметрін сақтау мүмкін болмады, бірақ орнату басқаша аяқталды."
+"Сенімділік параметрін сақтау мүмкін болмады, бірақ орнату басқаша аяқт"
+"алды."
 
 #: src/onboarding.py:642 src/tab_models.py:94 src/tab_models.py:122
 msgid "Ubuntu Hello Error"
@@ -296,38 +275,33 @@ msgstr "Модель құру"
 
 #: src/tab_models.py:95
 msgid ""
-"Error while adding model, error code {}: \n"
-"\n"
+"Error while adding model, error code {}: \n\n"
 msgstr ""
-"Үлгіні қосу кезіндегі қате, қате коды {}:\n"
-"\n"
+"Үлгіні қосу кезіндегі қате, қате коды {}:\n\n"
 
 #: src/tab_models.py:111
 msgid "Confirm Model Deletion"
 msgstr "Үлгіні жоюды растаңыз"
 
 #: src/tab_models.py:112
-#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "{id} ({name}) үлгісін шынымен жойғыңыз келе ме?"
 
 #: src/tab_models.py:123
 msgid ""
-"Error while deleting model, error code {}: \n"
-"\n"
+"Error while deleting model, error code {}: \n\n"
 msgstr ""
-"Үлгіні жою кезіндегі қате, қате коды {}:\n"
-"\n"
+"Үлгіні жою кезіндегі қате, қате коды {}:\n\n"
 
-#: src/tab_video.py:41
+#: src/tab_video.py:54
 msgid "Can't open camera"
 msgstr "Камераны ашу мүмкін емес"
 
-#: src/tab_video.py:49
+#: src/tab_video.py:62
 msgid "Can't import OpenCV2"
 msgstr "OpenCV2 импорттау мүмкін емес"
 
-#: src/tab_video.py:122
+#: src/tab_video.py:135
 msgid "Unknown"
 msgstr "Белгісіз"
 
@@ -338,20 +312,22 @@ msgstr "<i>Ешбір пайдаланушы таңдалмаған</i>"
 #: src/tab_keyring.py:59
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Қосылған (TPM аппараттық құралы)</b></span> — {}"
+"<span foreground='green'><b>Қосылған (TPM аппараттық құралы)</b></span"
+"> — {}"
 
 #: src/tab_keyring.py:63
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Қосылған (Бағдарламалық жасақтаманы кэштеу)</b></"
-"span> — {}"
+"<span foreground='green'><b>Қосылған (Бағдарламалық жасақтаманы кэштеу"
+")</b></span> — {}"
 
 #: src/tab_keyring.py:67
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
+"n> — {}"
 msgstr ""
-"<span foreground='orange'><b>Қосылған (құпия сөзді енгізу күтілуде)</b></"
-"span> — {}"
+"<span foreground='orange'><b>Қосылған (құпия сөзді енгізу күтілуде)</b"
+"></span> — {}"
 
 #: src/tab_keyring.py:71
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
@@ -377,8 +353,8 @@ msgstr "Keyring/KWallet құлпын ашуды өшіріңіз"
 #: src/tab_keyring.py:136
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"{} пайдаланушысы үшін кілттерді/KWallet құлпын ашуды шынымен өшіргіңіз келе "
-"ме?"
+"{} пайдаланушысы үшін кілттерді/KWallet құлпын ашуды шынымен өшіргіңіз"
+" келе ме?"
 
 #: src/tab_keyring.py:160
 msgid "Keyring/KWallet unlocking disabled for user {}."
@@ -443,18 +419,18 @@ msgstr "Кілт / KWallet Құлыпты автоматты түрде ашу"
 
 #: src/main.glade:440
 msgid ""
-"Enable face authentication to automatically unlock your login keyring or "
-"KWallet on login. This securely stores your password sealed in the TPM when "
-"available, or encrypted with AES-256-GCM using a root-only master key. Face "
-"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
-"your desktop."
+"Enable face authentication to automatically unlock your login keyring "
+"or KWallet on login. This securely stores your password sealed in the "
+"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
+"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
+"let5 depending on your desktop."
 msgstr ""
 "Жүйеге кіру кілтін немесе KWallet құлпын автоматты түрде ашу үшін бет "
-"аутентификациясын қосыңыз. Бұл қолжетімді болған кезде TPM ішінде мөрленген "
-"немесе AES-256-GCM көмегімен тек түбірлік негізгі кілт арқылы шифрланған "
-"құпия сөзіңізді қауіпсіз сақтайды. Жұмыс үстеліне байланысты "
-"pam_gnome_keyring немесе pam_kwallet5 үшін бетті аутентификациялау "
-"PAM_AUTHTOK орнатады."
+"аутентификациясын қосыңыз. Бұл қолжетімді болған кезде TPM ішінде мөрл"
+"енген немесе AES-256-GCM көмегімен тек түбірлік негізгі кілт арқылы ши"
+"фрланған құпия сөзіңізді қауіпсіз сақтайды. Жұмыс үстеліне байланысты "
+"pam_gnome_keyring немесе pam_kwallet5 үшін бетті аутентификациялау PAM"
+"_AUTHTOK орнатады."
 
 #: src/main.glade:471
 msgid "Current Status:"
@@ -502,10 +478,11 @@ msgstr "Нұсқа белгісіз"
 
 #: src/main.glade:746
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
+"/a> "
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub сілтемесін "
-"ашыңыз</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub сілтемесін"
+" ашыңыз</a>"
 
 #: src/main.glade:778
 msgid "About"
@@ -521,33 +498,31 @@ msgstr "Орнату аяқталды!"
 
 #: src/onboarding.glade:82
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
-"you would normally have to type your password for to authenticate, like "
-"running a command with sudo. If you enabled keyring auto-unlock, your login "
-"keyring or KWallet will also be unlocked automatically on login.\n"
-"\n"
-"You can open the Ubuntu Hello Configurator later on to change more advanced "
-"settings or add additional models. Press Finish below to close this window "
-"and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing any"
+"thing you would normally have to type your password for to authenticat"
+"e, like running a command with sudo. If you enabled keyring auto-unloc"
+"k, your login keyring or KWallet will also be unlocked automatically o"
+"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
+"nge more advanced settings or add additional models. Press Finish belo"
+"w to close this window and open the Ubuntu Hello Configurator. "
 msgstr ""
-"Біз біттік! Ubuntu Hello енді осы компьютерде белсенді. Аутентификация үшін "
-"әдетте құпия сөзді теру қажет болатын кез келген әрекетті орындап көріңіз, "
-"мысалы, sudo көмегімен пәрменді орындау. Кілттерді автоматты түрде ашуды "
-"қоссаңыз, кіру кілттері немесе KWallet кіру кезінде автоматты түрде "
-"ашылады.\n"
-"\n"
-"Қосымша параметрлерді өзгерту немесе қосымша үлгілерді қосу үшін Ubuntu "
-"Hello конфигураторын кейін ашуға болады. Осы терезені жабу және Ubuntu Hello "
-"конфигураторын ашу үшін төмендегі Аяқтау түймесін басыңыз."
+"Біз біттік! Ubuntu Hello енді осы компьютерде белсенді. Аутентификация"
+" үшін әдетте құпия сөзді теру қажет болатын кез келген әрекетті орында"
+"п көріңіз, мысалы, sudo көмегімен пәрменді орындау. Кілттерді автоматт"
+"ы түрде ашуды қоссаңыз, кіру кілттері немесе KWallet кіру кезінде авто"
+"матты түрде ашылады.\n\nҚосымша параметрлерді өзгерту немесе қосымша ү"
+"лгілерді қосу үшін Ubuntu Hello конфигураторын кейін ашуға болады. Осы"
+" терезені жабу және Ubuntu Hello конфигураторын ашу үшін төмендегі Аяқ"
+"тау түймесін басыңыз."
 
 #: src/onboarding.glade:130
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
-"face authentication, preventing password prompts after logging in."
+"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
+"ing face authentication, preventing password prompts after logging in."
 msgstr ""
-"Ubuntu Hello жүйеге кіргеннен кейін құпия сөз сұрауларына жол бермей, бет "
-"аутентификациясын пайдаланып логин кілтін немесе KWallet құлпын автоматты "
-"түрде аша алады."
+"Ubuntu Hello жүйеге кіргеннен кейін құпия сөз сұрауларына жол бермей, "
+"бет аутентификациясын пайдаланып логин кілтін немесе KWallet құлпын ав"
+"томатты түрде аша алады."
 
 #: src/onboarding.glade:142
 msgid "Enable automatic keyring/KWallet unlocking"
@@ -563,13 +538,13 @@ msgstr "Сенімділік саясатын орнату"
 
 #: src/onboarding.glade:235
 msgid ""
-"Because of changes in angles, distance, and other factors a face match is "
-"never exactly the same as the stored face model. On this page you can set "
-"how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match"
+" is never exactly the same as the stored face model. On this page you "
+"can set how strict Ubuntu Hello should be."
 msgstr ""
-"Бұрыштардың, қашықтықтың және басқа факторлардың өзгеруіне байланысты бет "
-"сәйкестігі ешқашан сақталған бет үлгісімен бірдей болмайды. Бұл бетте Ubuntu "
-"Hello қаншалықты қатаң болуы керектігін орнатуға болады."
+"Бұрыштардың, қашықтықтың және басқа факторлардың өзгеруіне байланысты "
+"бет сәйкестігі ешқашан сақталған бет үлгісімен бірдей болмайды. Бұл бе"
+"тте Ubuntu Hello қаншалықты қатаң болуы керектігін орнатуға болады."
 
 #: src/onboarding.glade:274
 msgid "Fast"
@@ -577,11 +552,11 @@ msgstr "Жылдам"
 
 #: src/onboarding.glade:290
 msgid ""
-"Allows more fuzzy matches, \n"
-"but speeds up the scanning process greatly."
+"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
+"y."
 msgstr ""
-"Көбірек анық емес сәйкестіктерге мүмкіндік береді, \n"
-"бірақ сканерлеу процесін айтарлықтай жылдамдатады."
+"Көбірек анық емес сәйкестіктерге мүмкіндік береді, \nбірақ сканерлеу п"
+"роцесін айтарлықтай жылдамдатады."
 
 #: src/onboarding.glade:329
 msgid "Balanced"
@@ -589,11 +564,11 @@ msgstr "Теңдестірілген"
 
 #: src/onboarding.glade:345
 msgid ""
-"Still relatively quick detection, \n"
-"but might not log you in when further away."
+"Still relatively quick detection, \nbut might not log you in when furt"
+"her away."
 msgstr ""
-"Әлі де салыстырмалы түрде жылдам анықтау, \n"
-"бірақ алысырақ кезде жүйеге кірмеуі мүмкін."
+"Әлі де салыстырмалы түрде жылдам анықтау, \nбірақ алысырақ кезде жүйег"
+"е кірмеуі мүмкін."
 
 #: src/onboarding.glade:384
 msgid "Secure"
@@ -601,11 +576,11 @@ msgstr "Қауіпсіз"
 
 #: src/onboarding.glade:400
 msgid ""
-"The slightly safer option, \n"
-"but will take much longer to authenticate you"
+"The slightly safer option, \nbut will take much longer to authenticate"
+" you"
 msgstr ""
-"Сәл қауіпсіз опция, \n"
-"бірақ сізді аутентификациялау үшін көп уақыт қажет"
+"Сәл қауіпсіз опция, \nбірақ сізді аутентификациялау үшін көп уақыт қаж"
+"ет"
 
 #: src/onboarding.glade:443
 msgid "Adding a face model"
@@ -613,12 +588,12 @@ msgstr "Бет үлгісін қосу"
 
 #: src/onboarding.glade:462
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to "
-"recognise you. Press the Scan button below to start the facial scan."
+"To authenticate you Ubuntu Hello needs to save a model of your face to"
+" recognise you. Press the Scan button below to start the facial scan."
 msgstr ""
-"Сізді аутентификациялау үшін Ubuntu Hello сізді тану үшін бетіңіздің үлгісін "
-"сақтауы керек. Бет сканерін бастау үшін төмендегі «Сканерлеу» түймесін "
-"басыңыз."
+"Сізді аутентификациялау үшін Ubuntu Hello сізді тану үшін бетіңіздің ү"
+"лгісін сақтауы керек. Бет сканерін бастау үшін төмендегі «Сканерлеу» т"
+"үймесін басыңыз."
 
 #: src/onboarding.glade:564 src/onboarding.glade:655
 msgid "Configuring webcam"
@@ -638,14 +613,15 @@ msgstr "жоқ"
 
 #: src/onboarding.glade:674
 msgid ""
-"Ubuntu Hello will search your system automatically for any available "
-"cameras, so make sure your webcam is connected. After detection a list of "
-"usable webcams will be shown. Pick the one you want to use and click Next."
+"Ubuntu Hello will search your system automatically for any available c"
+"ameras, so make sure your webcam is connected. After detection a list "
+"of usable webcams will be shown. Pick the one you want to use and clic"
+"k Next."
 msgstr ""
 "Ubuntu Hello кез келген қолжетімді камераларды жүйеде автоматты түрде "
-"іздейді, сондықтан веб-камераның қосылғанын тексеріңіз. Анықталғаннан кейін "
-"қолдануға болатын веб-камералар тізімі көрсетіледі. Пайдаланғыңыз келетінін "
-"таңдап, «Келесі» түймесін басыңыз."
+"іздейді, сондықтан веб-камераның қосылғанын тексеріңіз. Анықталғаннан "
+"кейін қолдануға болатын веб-камералар тізімі көрсетіледі. Пайдаланғыңы"
+"з келетінін таңдап, «Келесі» түймесін басыңыз."
 
 #: src/onboarding.glade:697
 msgid "Testing your webcams, please wait..."
@@ -657,13 +633,13 @@ msgstr "Деректер файлдары жүктелуде"
 
 #: src/onboarding.glade:768
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
-"to recognise you, which will be downloaded now. You can see the download "
-"progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be"
+" able to recognise you, which will be downloaded now. You can see the "
+"download progress below."
 msgstr ""
-"Ubuntu Hello сізді тану үшін алдын ала дайындалған үш бетті тану деректер "
-"жинағы қажет, олар қазір жүктеп алынады. Төменде жүктеп алу барысын көре "
-"аласыз."
+"Ubuntu Hello сізді тану үшін алдын ала дайындалған үш бетті тану дерек"
+"тер жинағы қажет, олар қазір жүктеп алынады. Төменде жүктеп алу барысы"
+"н көре аласыз."
 
 #: src/onboarding.glade:789
 msgid "Starting download..."
@@ -682,9 +658,9 @@ msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Бұл шебер сізге орнату процесі арқылы көрсетеді және сіз үшін Ubuntu Hello "
-"параметрін автоматты түрде конфигурациялайды. Жалғастыру үшін келесі "
-"түймесін басыңыз."
+"Бұл шебер сізге орнату процесі арқылы көрсетеді және сіз үшін Ubuntu H"
+"ello параметрін автоматты түрде конфигурациялайды. Жалғастыру үшін кел"
+"есі түймесін басыңыз."
 
 #: src/onboarding.glade:899
 msgid "Cancel"

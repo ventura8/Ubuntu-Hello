@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-hello 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-13 23:52+0300\n"
+"POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -28,24 +28,24 @@ msgid "Unknown error: "
 msgstr "Óþekkt villa:"
 
 #: src/pam/main.cc:159
-#, c-format
 msgid "Identified face as %s"
 msgstr "Þekkti andlit sem %s"
 
-#: src/pam/main.cc:390
+#: src/pam/main.cc:398
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to press it "
-"instead"
+"Insufficient permissions to send Enter press, waiting for user to pres"
+"s it instead"
 msgstr ""
-"Ófullnægjandi heimildir til að senda Enter ýttu á, bíður eftir að notandi "
-"ýti á það í staðinn"
+"Ófullnægjandi heimildir til að senda Enter ýttu á, bíður eftir að nota"
+"ndi ýti á það í staðinn"
 
-#: src/pam/main.cc:409 src/pam/main.cc:414
+#: src/pam/main.cc:417 src/pam/main.cc:422
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Mistókst að senda Enter ýttu, bíður eftir að notandi ýti á hana í staðinn"
+"Mistókst að senda Enter ýttu, bíður eftir að notandi ýti á hana í stað"
+"inn"
 
-#: src/pam/main.cc:528
+#: src/pam/main.cc:534
 msgid "Attempting facial authentication"
 msgstr "Reynir að sannvotta andlitið"
 
@@ -67,25 +67,26 @@ msgstr "rök"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\n"
-"https://github.com/ventura8/ubuntu-hello"
+"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Fyrir stuðning vinsamlegast farðu á\n"
-"https://github.com/ventura8/ubuntu-hello"
+"Fyrir stuðning vinsamlegast farðu á\nhttps://github.com/ventura8/ubunt"
+"u-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear, "
-"config, disable, keyring, list, remove, snapshot, set, test or version."
+"The command option to execute, can be one of the following: add, clear"
+", config, disable, keyring, list, remove, snapshot, set, test or versi"
+"on."
 msgstr ""
-"Skipunarvalkosturinn til að framkvæma getur verið einn af eftirfarandi: bæta "
-"við, hreinsa, stilla, óvirkja, lyklakippu, lista, fjarlægja, skyndimynd, "
-"stilla, prófa eða útgáfa."
+"Skipunarvalkosturinn til að framkvæma getur verið einn af eftirfarandi"
+": bæta við, hreinsa, stilla, óvirkja, lyklakippu, lista, fjarlægja, sk"
+"yndimynd, stilla, prófa eða útgáfa."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"Valfrjáls rök fyrir bæta við, slökkva á, fjarlægja og stilla skipanirnar."
+"Valfrjáls rök fyrir bæta við, slökkva á, fjarlægja og stilla skipanirn"
+"ar."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -112,147 +113,136 @@ msgid "Invalid username format"
 msgstr "Ógilt snið notandanafns"
 
 #: src/cli.py:98
-msgid "Please run this command as root:\n"
-msgstr "Vinsamlegast keyrðu þessa skipun sem rót:\n"
+msgid ""
+"Please run this command as root:\n"
+msgstr ""
+"Vinsamlegast keyrðu þessa skipun sem rót:\n"
 
 #: src/cli.py:104
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with the --"
-"user flag"
+"Can't run ubuntu-hello commands as root, please run this command with "
+"the --user flag"
 msgstr ""
-"Get ekki keyrt ubuntu-hello skipanir sem rót, vinsamlegast keyrðu þessa "
-"skipun með --user fánanum"
+"Get ekki keyrt ubuntu-hello skipanir sem rót, vinsamlegast keyrðu þess"
+"a skipun með --user fánanum"
 
-#: src/compare.py:88 src/cli/add.py:32
+#: src/compare.py:128 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"Gagnaskrám hefur ekki verið hlaðið niður, vinsamlegast keyrðu eftirfarandi "
-"skipanir:"
+"Gagnaskrám hefur ekki verið hlaðið niður, vinsamlegast keyrðu eftirfar"
+"andi skipanir:"
 
-#: src/compare.py:112
+#: src/compare.py:154
 msgid " LOGIN"
 msgstr "INNskrá"
 
-#: src/compare.py:113 src/cli/snap.py:44
+#: src/compare.py:155 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Dagsetning:"
 
-#: src/compare.py:114
+#: src/compare.py:156
 msgid "Scan time: "
 msgstr "Skannatími:"
 
-#: src/compare.py:115
+#: src/compare.py:157
 msgid "Frames: "
 msgstr "Rammar:"
 
-#: src/compare.py:116
+#: src/compare.py:158
 msgid "Hostname: "
 msgstr "Hýsingarheiti:"
 
-#: src/compare.py:117
+#: src/compare.py:159
 msgid "Best certainty value: "
 msgstr "Besta vissugildið:"
 
-#: src/compare.py:214
+#: src/compare.py:259
 msgid "Starting up..."
 msgstr "Er að byrja..."
 
-#: src/compare.py:262
+#: src/compare.py:312
 msgid "Identifying you..."
 msgstr "Að bera kennsl á þig..."
 
-#: src/compare.py:285
+#: src/compare.py:344
 msgid "FAILED"
 msgstr "MIKIÐ"
 
-#: src/compare.py:288 src/cli/add.py:184
+#: src/compare.py:347 src/cli/add.py:184
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Allir rammar voru of dökkir, vinsamlegast athugaðu dark_threshold í "
-"stillingum"
+"Allir rammar voru of dökkir, vinsamlegast athugaðu dark_threshold í st"
+"illingum"
 
-#: src/compare.py:289 src/cli/add.py:185
-#, python-brace-format
+#: src/compare.py:348 src/cli/add.py:185
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Meðalmyrkur: {avg}, Þröskuldur: {threshold}"
 
-#: src/compare.py:386
+#: src/compare.py:449
 msgid "Time spent"
 msgstr "Varið tíma"
 
-#: src/compare.py:387
+#: src/compare.py:450
 msgid "Starting up"
 msgstr "Er að byrja"
 
-#: src/compare.py:388
-#, python-format
+#: src/compare.py:451
 msgid "  Open cam + load libs: %dms"
 msgstr "Opna myndavél + hlaða libs: %dms"
 
-#: src/compare.py:389
+#: src/compare.py:452
 msgid "  Opening the camera"
 msgstr "Að opna myndavélina"
 
-#: src/compare.py:390
+#: src/compare.py:453
 msgid "  Importing recognition libs"
 msgstr "Flytur inn viðurkenningarskrár"
 
-#: src/compare.py:391
+#: src/compare.py:454
 msgid "Searching for known face"
 msgstr "Leita að þekktu andliti"
 
-#: src/compare.py:392
+#: src/compare.py:455
 msgid "Total time"
 msgstr "Heildartími"
 
-#: src/compare.py:394
+#: src/compare.py:457
 msgid ""
-"\n"
-"Resolution"
+"\nResolution"
 msgstr ""
-"\n"
-"Upplausn"
+"\nUpplausn"
 
-#: src/compare.py:396
-#, python-format
+#: src/compare.py:459
 msgid "  Native: %dx%d"
 msgstr "Innfæddur maður: %dx%d"
 
-#: src/compare.py:399
-#, python-format
+#: src/compare.py:462
 msgid "  Used: %dx%d"
 msgstr "Notað: %dx%d"
 
-#: src/compare.py:402
-#, python-format
+#: src/compare.py:465
 msgid ""
-"\n"
-"Frames searched: %d (%.2f fps)"
+"\nFrames searched: %d (%.2f fps)"
 msgstr ""
-"\n"
-"Rammar leitaðir: %d (%.2f fps)"
+"\nRammar leitaðir: %d (%.2f fps)"
 
-#: src/compare.py:403
-#, python-format
+#: src/compare.py:466
 msgid "Black frames ignored: %d "
 msgstr "Svartir rammar hunsaðir: %d"
 
-#: src/compare.py:404
-#, python-format
+#: src/compare.py:467
 msgid "Dark frames ignored: %d "
 msgstr "Dökkir rammar hunsaðir: %d"
 
-#: src/compare.py:405
-#, python-format
+#: src/compare.py:468
 msgid "Certainty of winning frame: %.3f"
 msgstr "Vissu um sigurramma: %.3f"
 
-#: src/compare.py:407
-#, python-format
+#: src/compare.py:470
 msgid "Winning model: %d (\"%s\")"
 msgstr "Sigurlíkan: %d (\"%s\")"
 
-#: src/compare.py:411
+#: src/compare.py:474
 msgid "SUCCESSFUL"
 msgstr "ÁRANGUR"
 
@@ -278,11 +268,9 @@ msgstr "innskráningarlyklahring eða KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\n"
-"Can't import the dlib module, check the output of"
+"\nCan't import the dlib module, check the output of"
 msgstr ""
-"\n"
-"Get ekki flutt inn dlib eininguna, athugaðu úttakið á"
+"\nGet ekki flutt inn dlib eininguna, athugaðu úttakið á"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -290,13 +278,17 @@ msgstr "Engin andlitsmappa fannst, bjó til eina"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine slightly"
+"NOTICE: Each additional model slows down the face recognition engine s"
+"lightly"
 msgstr ""
-"ATHUGIÐ: Hver tegund til viðbótar hægir aðeins á andlitsgreiningarvélinni"
+"ATHUGIÐ: Hver tegund til viðbótar hægir aðeins á andlitsgreiningarvéli"
+"nni"
 
 #: src/cli/add.py:70
-msgid "Press Ctrl+C to cancel\n"
-msgstr "Ýttu á Ctrl+C til að hætta við\n"
+msgid ""
+"Press Ctrl+C to cancel\n"
+msgstr ""
+"Ýttu á Ctrl+C til að hætta við\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -307,7 +299,6 @@ msgid "Model #"
 msgstr "Gerð #"
 
 #: src/cli/add.py:92
-#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Notar sjálfgefið merki \"%s\" vegna -y fána"
 
@@ -321,11 +312,9 @@ msgstr "TILKYNNING: Fjarlægir ólöglegan staf \",\" úr heiti líkansins"
 
 #: src/cli/add.py:117
 msgid ""
-"\n"
-"Please look straight into the camera"
+"\nPlease look straight into the camera"
 msgstr ""
-"\n"
-"Vinsamlegast horfðu beint í myndavélina"
+"\nVinsamlegast horfðu beint í myndavélina"
 
 #: src/cli/add.py:182
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -341,18 +330,13 @@ msgstr "Mörg andlit fundust, hætta"
 
 #: src/cli/add.py:214
 msgid ""
-"\n"
-"Scan complete\n"
-"Added a new model to "
+"\nScan complete\nAdded a new model to "
 msgstr ""
-"\n"
-"Skönnun lokið\n"
-"Bætti nýrri gerð við"
+"\nSkönnun lokið\nBætti nýrri gerð við"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
-msgstr ""
-"Engin líkön búin til ennþá, ekki hægt að hreinsa þær ef þær eru ekki til"
+msgstr "Engin líkön búin til ennþá, ekki hægt að hreinsa þær ef þær eru ekki til"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -368,27 +352,21 @@ msgstr "Viltu halda áfram [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\n"
-"Interpreting as a \"NO\", aborting"
+"\nInterpreting as a \"NO\", aborting"
 msgstr ""
-"\n"
-"Að túlka sem „NEI“, fóstureyðingu"
+"\nAð túlka sem „NEI“, fóstureyðingu"
 
 #: src/cli/clear.py:37
 msgid ""
-"\n"
-"Models cleared"
+"\nModels cleared"
 msgstr ""
-"\n"
-"Módel hreinsuð"
+"\nMódel hreinsuð"
 
 #: src/cli/config.py:32
-#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Opnar config.ini í {editor}"
 
 #: src/cli/config.py:38
-#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Mistókst að opna ritil: {error}"
 
@@ -399,15 +377,16 @@ msgstr "Villa: Gat ekki fundið viðeigandi textaritil."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"Vinsamlegast settu upp 'nano' eða 'vi' eða stilltu EDITOR umhverfisbreytuna."
+"Vinsamlegast settu upp 'nano' eða 'vi' eða stilltu EDITOR umhverfisbre"
+"ytuna."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
-"to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
+"onfig' to preserve your EDITOR variable."
 msgstr ""
-"Ef þú ert að keyra þessa skipun með sudo, reyndu 'sudo -E ubuntu-hello "
-"config' til að varðveita EDITOR breytuna þína."
+"Ef þú ert að keyra þessa skipun með sudo, reyndu 'sudo -E ubuntu-hello"
+" config' til að varðveita EDITOR breytuna þína."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -429,78 +408,107 @@ msgstr "Ubuntu Hello hefur verið gert óvirkt"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello hefur verið virkjað"
 
-#: src/cli/keyring.py:31
-msgid "Usage: keyring [enable|disable]"
-msgstr "Notkun: lyklakippa [virkja|slökkva]"
+#: src/cli/keyring.py:32 src/cli/keyring.py:157
+msgid "Usage: keyring [enable|disable|restore [--all]]"
+msgstr "Notkun: lyklakippa [virkja|slökkva|endurheimta] [--all]"
 
-#: src/cli/keyring.py:48
+#: src/cli/keyring.py:49
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Sláðu inn lykilorð fyrir notanda {} til að opna {} ({}):"
 
-#: src/cli/keyring.py:50
+#: src/cli/keyring.py:51
 msgid "Password cannot be empty"
 msgstr "Lykilorð má ekki vera tómt"
 
-#: src/cli/keyring.py:53
+#: src/cli/keyring.py:54
 msgid "Confirm password: "
 msgstr "Staðfestu lykilorð:"
 
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:56
 msgid "Passwords do not match"
 msgstr "Lykilorð passa ekki saman"
 
-#: src/cli/keyring.py:64
+#: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM vélbúnaður fannst. Setur tpm2-tools upp sjálfkrafa..."
 
-#: src/cli/keyring.py:73
+#: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM vélbúnaður virkur. Lokar lykilorð í TPM..."
 
-#: src/cli/keyring.py:99
+#: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
-"(wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
+"wallet: {})."
 msgstr ""
-"Lyklahringur/KWallet opnun virkjað með góðum árangri fyrir notanda {} með "
-"TPM (veski: {})."
+"Lyklahringur/KWallet opnun virkjað með góðum árangri fyrir notanda {} "
+"með TPM (veski: {})."
 
-#: src/cli/keyring.py:101
+#: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
 msgstr "Mistókst að innsigla lykilorð fyrir TPM: {}"
 
-#: src/cli/keyring.py:105
+#: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Enginn TPM virkur. Að nota hugbúnað sem byggir á skilríkjum í skyndiminni..."
+"Enginn TPM virkur. Að nota hugbúnað sem byggir á skilríkjum í skyndimi"
+"nni..."
 
-#: src/cli/keyring.py:121
+#: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software "
-"Caching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
+"aching, wallet: {})."
 msgstr ""
 "Lyklahringur/KWallet opnun virkjað með góðum árangri fyrir notanda {} "
 "(hugbúnaðarskyndiminni, veski: {})."
 
-#: src/cli/keyring.py:123
+#: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Mistókst að virkja lyklakippuopnun: {}"
 
-#: src/cli/keyring.py:134
+#: src/cli/keyring.py:135
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Mistókst að slökkva á lyklakippuopnun: {}"
 
-#: src/cli/keyring.py:137
+#: src/cli/keyring.py:138
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Lyklahringur/KWallet aflæsing óvirk fyrir notanda {}."
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Lyklahringur/KWallet aflæsing var ekki virkjuð fyrir notanda {}."
 
-#: src/cli/keyring.py:142
-msgid "Invalid action. Use 'enable' or 'disable'."
-msgstr "Ógild aðgerð. Notaðu 'virkja' eða 'slökkva'."
+#: src/cli/keyring.py:149
+msgid "No sealed login passwords found; nothing to restore."
+msgstr "Ongi innsiglað innritanarloyniorð funnin; einki at endurheimta."
+
+#: src/cli/keyring.py:151
+msgid "Restored login wallet password for {} user(s)."
+msgstr "Innritanar-veskju loyniorðið er endurheintað fyri {} brúkara(r)."
+
+#: src/cli/keyring.py:153
+msgid "Could not restore login wallet password for {} user(s)."
+msgstr "Kundi ikki endurheimta innritanar-veskju loyniorðið fyri {} brúkara(r)."
+
+#: src/cli/keyring.py:154
+msgid ""
+"If prompts persist, set the login keyring or KWallet password in Seaho"
+"rse / System Settings."
+msgstr ""
+"Um áheitanir halda fram, set loyniorðið á innritanarlyklakippuni ella "
+"KWallet í Seahorse / Skipanarinnstillingum."
+
+#: src/cli/keyring.py:161
+msgid "Restored login wallet password for user {}."
+msgstr "Innritanar-veskju loyniorðið er endurheintað fyri brúkara {}."
+
+#: src/cli/keyring.py:163
+msgid "Could not restore login wallet password for user {}."
+msgstr "Kundi ikki endurheimta innritanar-veskju loyniorðið fyri brúkara {}."
+
+#: src/cli/keyring.py:167
+msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
+msgstr "Ógildig handling. Nýt 'virkja', 'slökkva' ella 'endurheimta'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -520,8 +528,7 @@ msgstr "ID Dagsetning Merki [0m"
 
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
-msgstr ""
-"Vinsamlegast bættu við auðkenni líkansins sem þú vilt fjarlægja sem rök"
+msgstr "Vinsamlegast bættu við auðkenni líkansins sem þú vilt fjarlægja sem rök"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -532,12 +539,10 @@ msgid "You can find the IDs by running:"
 msgstr "Þú getur fundið auðkennin með því að keyra:"
 
 #: src/cli/remove.py:52
-#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Þetta mun fjarlægja líkanið sem heitir \"{label}\" fyrir {user}"
 
 #: src/cli/remove.py:69
-#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Engin gerð með auðkenni {id} er til fyrir {user}"
 
@@ -550,11 +555,10 @@ msgid "Removed model {}"
 msgstr "Fjarlægði líkan {}"
 
 #: src/cli/set.py:17
-msgid ""
-"Please add a setting you would like to change and the value to set it to"
+msgid "Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Vinsamlegast bættu við stillingu sem þú vilt breyta og gildinu til að stilla "
-"hana á"
+"Vinsamlegast bættu við stillingu sem þú vilt breyta og gildinu til að "
+"stilla hana á"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -582,43 +586,34 @@ msgstr "Mynduð skyndimynd vistuð sem"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't support the "
-"test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
+"rt the test command yet, aborting"
 msgstr ""
-"Ubuntu Hello hefur verið stillt til að nota upptökutæki sem styður ekki "
-"prófunarskipunina ennþá, hættir við"
+"Ubuntu Hello hefur verið stillt til að nota upptökutæki sem styður ekk"
+"i prófunarskipunina ennþá, hættir við"
 
 #: src/cli/test.py:34
 msgid ""
-"\n"
-"Opening a window with a test feed\n"
-"\n"
-"Press ctrl+C in this terminal to quit\n"
-"Click on the image to enable or disable slow mode\n"
+"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
+"o quit\nClick on the image to enable or disable slow mode\n"
 msgstr ""
-"\n"
-"Að opna glugga með prófunarstraumi\n"
-"\n"
-"Ýttu á ctrl+C í þessari flugstöð til að hætta\n"
-"Smelltu á myndina til að virkja eða slökkva á hægum ham\n"
+"\nAð opna glugga með prófunarstraumi\n\nÝttu á ctrl+C í þessari flugst"
+"öð til að hætta\nSmelltu á myndina til að virkja eða slökkva á hægum h"
+"am\n"
 
 #: src/cli/test.py:148
-#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "UPPLÝSING: %dx%d"
 
 #: src/cli/test.py:149
-#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
-#, python-format
 msgid "FRAMES: %d"
 msgstr "RAMMAR: %d"
 
 #: src/cli/test.py:151
-#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "VIÐURKENNING: %dms"
 
@@ -636,11 +631,9 @@ msgstr "SKANNA RAMMA"
 
 #: src/cli/test.py:247
 msgid ""
-"\n"
-"Closing window"
+"\nClosing window"
 msgstr ""
-"\n"
-"Lokar glugga"
+"\nLokar glugga"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -671,7 +664,6 @@ msgid "Authorising in {}"
 msgstr "Heimildir í {}"
 
 #: src/rubberstamps/hotkey.py:25
-#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Ýttu á {abort_key} til að hætta við, {confirm_key} til að heimila"
 
@@ -703,25 +695,26 @@ msgstr "Vantar ffmpeg mát, vinsamlegast keyrðu:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Vantar pyv4l2 einingu, vinsamlegast keyrðu:"
 
-#: src/recorders/video_capture.py:37
-msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in the "
-"config file."
-msgstr ""
-"Ubuntu Hello gat ekki fundið myndavélartæki á slóðinni sem tilgreind er í "
-"stillingarskránni."
-
 #: src/recorders/video_capture.py:38
 msgid ""
-"It is very likely that the path is not configured correctly, please edit the "
-"'device_path' config value by running:"
+"Ubuntu Hello could not find a camera device at the path specified in t"
+"he config file."
 msgstr ""
-"Það er mjög líklegt að slóðin sé ekki rétt stillt, vinsamlegast breyttu "
-"stillingargildinu 'device_path' með því að keyra:"
+"Ubuntu Hello gat ekki fundið myndavélartæki á slóðinni sem tilgreind e"
+"r í stillingarskránni."
 
-#: src/recorders/video_capture.py:85
+#: src/recorders/video_capture.py:39
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, aborting"
+"It is very likely that the path is not configured correctly, please ed"
+"it the 'device_path' config value by running:"
 msgstr ""
-"Mistókst að lesa myndavél sem tilgreind er í stillingarvalkostinum "
-"'device_path', hættir við"
+"Það er mjög líklegt að slóðin sé ekki rétt stillt, vinsamlegast breytt"
+"u stillingargildinu 'device_path' með því að keyra:"
+
+#: src/recorders/video_capture.py:99
+msgid ""
+"Failed to read camera specified in the 'device_path' config option, ab"
+"orting"
+msgstr ""
+"Mistókst að lesa myndavél sem tilgreind er í stillingarvalkostinum 'de"
+"vice_path', hættir við"
