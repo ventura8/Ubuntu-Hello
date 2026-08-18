@@ -1,3 +1,10 @@
+ubuntu-hello (1.1.2-1ppa1) resolute; urgency=medium
+
+  * Restore /etc/ubuntu-hello/config.ini from /usr/share/ubuntu-hello/config.ini when missing after apt remove/reinstall (config_ensure.py, postinst, CLI/compare).
+  * Install default config template to share dir; VideoCapture and Settings Video tab tolerate missing [video] section.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Tue, 18 Aug 2026 12:10:00 +0300
+
 ubuntu-hello (1.1.1-1ppa1) noble; urgency=medium
 
   * Restore GNOME Keyring / KWallet passwords from sealed credentials on uninstall (timeout 120, restore --all).

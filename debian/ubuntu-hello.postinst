@@ -54,6 +54,25 @@ case "$1" in
         mkdir -p /var/log/ubuntu-hello
         chmod 755 /var/log/ubuntu-hello
 
+        # dpkg will not restore a deleted conffile on reinstall. prerm removes
+        # /etc/ubuntu-hello on apt remove, so recreate config.ini from the
+        # packaged template when it is missing (setup wizard needs [video]).
+        CONFIG_INI="/etc/ubuntu-hello/config.ini"
+        CONFIG_TEMPLATE="/usr/share/ubuntu-hello/config.ini"
+        if [ ! -f "$CONFIG_INI" ]; then
+            if [ -f "$CONFIG_TEMPLATE" ]; then
+                if mkdir -p "$(dirname "$CONFIG_INI")" &&
+                    cp "$CONFIG_TEMPLATE" "$CONFIG_INI" &&
+                    chmod 644 "$CONFIG_INI"; then
+                    echo ">>> Restored default config.ini"
+                else
+                    echo "WARNING: Failed to restore config.ini from $CONFIG_TEMPLATE"
+                fi
+            else
+                echo "WARNING: $CONFIG_TEMPLATE missing; config.ini was not created"
+            fi
+        fi
+
         # ── Configure PAM ─────────────────────────────────────────────
         echo ">>> Configuring PAM..."
         pam-auth-update --package 2>/dev/null || true

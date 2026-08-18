@@ -32,9 +32,28 @@ class VideoCapture:
         else:
             self.config = config
 
-        # Check device path
-        if not os.path.exists(self.config.get("video", "device_path")):
-            if self.config.getboolean("video", "warn_no_device", fallback=True):
+        # Check device path. Missing [video] (empty/absent config.ini after
+        # apt reinstall) must not raise NoSectionError — exit like a bad path.
+        # "none" is the packaged sentinel; do not treat it as a relative path.
+        has_video = self.config.has_section("video")
+        device_path = None
+        if has_video:
+            raw = self.config.get("video", "device_path", fallback="").strip()
+            if raw and raw.lower() != "none":
+                device_path = raw
+        missing = device_path is None
+        if not missing:
+            try:
+                missing = not os.path.exists(device_path)
+            except OSError:
+                missing = True
+        if missing:
+            warn_no_device = True
+            if has_video:
+                warn_no_device = self.config.getboolean(
+                    "video", "warn_no_device", fallback=True
+                )
+            if warn_no_device:
                 print(_("Ubuntu Hello could not find a camera device at the path specified in the config file."))
                 print(_("It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:"))
                 print("\n\tsudo ubuntu-hello config\n")

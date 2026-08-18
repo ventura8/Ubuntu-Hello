@@ -319,6 +319,29 @@ def test_video_capture_init_missing_device_no_warn():
         vc = VideoCapture(config)
         mock_exit.assert_called_once_with(14)
 
+def test_video_capture_init_missing_video_section():
+    config = configparser.ConfigParser()
+    with patch("os.path.exists") as mock_exists, \
+         patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
+        with pytest.raises(SystemExit) as exc:
+            VideoCapture(config)
+        assert exc.value.code == 14
+        mock_exit.assert_called_once_with(14)
+        mock_exists.assert_not_called()
+
+
+def test_video_capture_init_sentinel_none_skips_exists():
+    config = configparser.ConfigParser()
+    config.add_section("video")
+    config.set("video", "device_path", "none")
+    with patch("os.path.exists") as mock_exists, \
+         patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
+        with pytest.raises(SystemExit) as exc:
+            VideoCapture(config)
+        assert exc.value.code == 14
+        mock_exit.assert_called_once_with(14)
+        mock_exists.assert_not_called()
+
 def test_video_capture_read_frame_cvt_errors():
     import cv2
     if isinstance(cv2.error, MagicMock):

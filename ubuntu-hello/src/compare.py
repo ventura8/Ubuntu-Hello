@@ -226,7 +226,14 @@ if __name__ == "__main__":
 	if len(models) < 1:
 		exit(10)
 
-	# Read config from disk
+	# Read config from disk (restore the packaged default if apt reinstall
+	# left /etc/ubuntu-hello/config.ini missing).
+	from config_ensure import ensure_system_config
+	try:
+		ensure_system_config()
+	except OSError as err:
+		print("Failed to restore /etc/ubuntu-hello/config.ini:", err)
+		exit(12)
 	config = configparser.ConfigParser()
 	config.read(paths_factory.config_file_path())
 

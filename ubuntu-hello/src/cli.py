@@ -104,6 +104,15 @@ if args.user == "root":
 	print(_("Can't run ubuntu-hello commands as root, please run this command with the --user flag"))
 	sys.exit(1)
 
+# apt remove deletes /etc/ubuntu-hello; dpkg will not restore the conffile
+# on reinstall. Recreate it from the packaged template before subcommands.
+from config_ensure import ensure_system_config
+try:
+	ensure_system_config()
+except OSError as err:
+	print("Failed to restore /etc/ubuntu-hello/config.ini:", err)
+	sys.exit(1)
+
 # Execute the right command
 if args.command == "add":
 	import cli.add

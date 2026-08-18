@@ -143,6 +143,8 @@ Ensure files are modified or added in their appropriate structural directories:
 | `ubuntu-hello/src/cli/` | Command line subcommands (`add`, `clear`, `config`, `disable`, `list`, `remove`, `test`, `snapshot`, `keyring`). |
 | `ubuntu-hello/src/wallet_backend.py` | Labels session wallet backend (`gnome-keyring`, `kwallet`, or `none`) from desktop env; does not change sealed credential format. |
 | `ubuntu-hello/src/keyring_restore.py` | Unseals SUW login passwords and restores the OS wallet master password on uninstall / `ubuntu-hello keyring restore`. |
+| `ubuntu-hello/src/install_config.py` | Meson install script: copy default `config.ini` into `/etc/ubuntu-hello` when missing (source installs). |
+| `ubuntu-hello/src/config_ensure.py` | Recreate live `config.ini` from `/usr/share/ubuntu-hello/config.ini` when the file is missing (dpkg will not restore a deleted conffile after `apt remove`). |
 | `ubuntu-hello/po/` | Core gettext domain `ubuntu-hello` (PAM `S()` + Python `_()`); `.pot`/`.po` committed, `.mo` built. |
 | `ubuntu-hello/src/recorders/` | Camera capturing plugins (wrapper, ffmpeg, pyv4l2, cv2). |
 | `ubuntu-hello/src/rubberstamps/` | Post-auth liveness check plugins (e.g., nose-tracking nod check). |
@@ -156,7 +158,7 @@ Ensure files are modified or added in their appropriate structural directories:
 | `scripts/i18n-lint.py` | Lint JSON packs + gettext `.po` (UTF-8/JSON, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity). CI lint stage. |
 | `scripts/i18n-fill-translations.py` | Apply filled JSON maps under `scripts/i18n_fill_data/` onto committed `.po` files. |
 | `scripts/read-version.py` | Print semver from repo-root `VERSION` (used by Meson, PKGBUILD, i18n). |
-| `debian/` | Debian packaging control, installation, and post-installation scripts. Build trees (`tmp/`, `.debhelper/`, staged `ubuntu-hello*/`, `*.substvars`) are gitignored. |
+| `debian/` | Debian packaging control, installation, and post-installation scripts. `ubuntu-hello.postinst` restores `/etc/ubuntu-hello/config.ini` from `/usr/share/ubuntu-hello/config.ini` when the conffile is missing after `apt remove` / reinstall. Build trees (`tmp/`, `.debhelper/`, staged `ubuntu-hello*/`, `*.substvars`) are gitignored. |
 | `artifacts/` | Local/CI `.deb` output from `scripts/ppa-docker.sh` (gitignored; not source). |
 | `docker/` | All CI/PPA Dockerfiles (`Dockerfile.ci*`, `Dockerfile.ppa`). Keep new Docker assets here — not at repo root. |
 | `scripts/ppa-docker.sh` | PPA signed-source / binary helper inside `ubuntu-hello-ppa:26.04`. Uses `--sign-backend=gpg` + passphrase `gpg` wrapper (dpkg auto/Sequoia args break classic gpg). |

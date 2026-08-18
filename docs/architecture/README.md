@@ -44,6 +44,8 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │       ├── recorders/           # Camera plugins
 │       ├── rubberstamps/        # Liveness plugins
 │       ├── compare.py
+│       ├── config.ini             # default template (also installed to $datadir)
+│       ├── config_ensure.py       # restore /etc config.ini when the conffile is missing
 │       ├── keyring_crypto.py
 │       ├── keyring_restore.py
 │       └── wallet_backend.py
@@ -131,6 +133,12 @@ sequenceDiagram
 * **Process Lifecycle**: Spawns Python using `posix_spawnp` with `POSIX_SPAWN_SETPGROUP` so compare and its GTK child share a process group. On password-first cancel (**only when `core.workaround` is `input`/`native`**), PAM sends `SIGTERM` to the group, waits briefly, then `SIGKILL` if needed — compare owns GTK teardown; PAM does not signal GTK directly. `compare.py` sets `PR_SET_PDEATHSIG` so orphans die with the PAM worker.
 * **HARD RULE (greeter login):** Never force greeter `pam_get_authtok` / custom `PAM_CONV` when `workaround=off`. That breaks GDM user-selection → login (immediate bounce back to the user list). Canonical: `ask_pass = ask_auth_tok && workaround != Off`. See [AGENTS.md](../../AGENTS.md).
 * **Desktop notes**: Face authentication through `common-auth` is DE-agnostic (GDM/SDDM/LightDM). Wallet auto-unlock depends on which AUTHTOK consumer is installed in the PAM stack.
+
+### 2.1.1 Live `config.ini`
+
+The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/share/ubuntu-hello/config.ini` (Meson `install_data`; source tree `ubuntu-hello/src/config.ini`).
+
+`apt remove` deletes `/etc/ubuntu-hello` in `debian/ubuntu-hello.prerm`. dpkg then treats `config.ini` as a deleted conffile and **does not** restore it on the next install. `debian/ubuntu-hello.postinst` copies the share template back when the live file is missing. CLI/compare (`config_ensure.py`) do the same so the setup wizard can run `ubuntu-hello set` / `add` without `NoSectionError: video`.
 
 ### 2.2 Face Matching Engine (`ubuntu-hello/src/compare.py`)
 

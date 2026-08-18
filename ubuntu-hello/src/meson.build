@@ -45,6 +45,7 @@ py_sources = [
     'cli.py',
     'compare.py',
     py_i18n,
+    'config_ensure.py',
     'keyring_crypto.py',
     'keyring_restore.py',
     'paths_factory.py',
@@ -113,6 +114,13 @@ else
 endif
 
 install_data('logo.png', install_tag: 'meta')
+# Immutable default used by postinst / CLI when dpkg skips a deleted conffile.
+install_data(
+    'config.ini',
+    install_dir: datadir,
+    install_mode: 'rw-r--r--',
+    install_tag: 'meta',
+)
 autocomplete = configure_file(
     input: 'autocomplete/ubuntu-hello.in',
     output: 'autocomplete',
