@@ -387,6 +387,47 @@ class TestTabVideo:
             open_mock.assert_called_with("/mock/config.ini", "w")
             mock_widgets["videores"].set_text.assert_called_with("640x480")
 
+    def test_on_camera_change_creates_video_section(self):
+        mock = MagicMock()
+        mock.populating_cameras = False
+        mock.capture = None
+
+        mock_combo = MagicMock()
+        mock_combo.get_active_text.return_value = "/dev/video1"
+
+        mock_capture = MagicMock()
+        mock_capture.get.side_effect = lambda prop: 480 if prop == 4 else 640
+
+        mock.config = configparser.ConfigParser()
+        mock.config.add_section("core")
+        mock.config.set("core", "disabled", "false")
+
+        mock_widgets = {
+            "videores": MagicMock(),
+            "videoresused": MagicMock(),
+            "videorecorder": MagicMock()
+        }
+        mock.builder.get_object.side_effect = lambda name: mock_widgets[name]
+
+        mock_cv2 = sys.modules['cv2']
+        mock.cv2 = mock_cv2
+        mock_cv2.CAP_PROP_FRAME_HEIGHT = 4
+        mock_cv2.CAP_PROP_FRAME_WIDTH = 3
+        mock_cv2.VideoCapture.return_value = mock_capture
+
+        open_mock = mock_open()
+
+        with patch("builtins.open", open_mock), \
+             patch("tab_video.paths_factory.config_file_path", return_value="/mock/config.ini"), \
+             patch("threading.Thread", SyncThread), \
+             patch("gi.repository.GLib.idle_add", side_effect=lambda func, *args, **kwargs: func(*args, **kwargs)):
+
+            tab_video.on_camera_change(mock, mock_combo)
+
+            assert mock.config.has_section("video")
+            assert mock.config.get("video", "device_path") == "/dev/video1"
+            open_mock.assert_called_with("/mock/config.ini", "w")
+
     def test_capture_frame_success(self):
         mock = MagicMock()
         mock.capture = MagicMock()

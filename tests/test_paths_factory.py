@@ -173,6 +173,12 @@ class TestPathsFactoryCore:
         result = pf.config_file_path()
         assert "config.ini" in result
 
+    def test_default_config_file_path(self):
+        import paths
+        pf = self._load_core_paths_factory()
+        expected = str(paths.data_dir / "config.ini")
+        assert pf.default_config_file_path() == expected
+
     def test_snapshots_dir_path(self):
         pf = self._load_core_paths_factory()
         result = pf.snapshots_dir_path()

@@ -32,6 +32,11 @@ def config_file_path() -> str:
     return str(paths.config_dir / "config.ini")
 
 
+def default_config_file_path() -> str:
+    """Packaged default config.ini (not the live /etc file)."""
+    return str(paths.data_dir / "config.ini")
+
+
 def snapshots_dir_path() -> PurePath:
     return paths.log_path / "snapshots"
 

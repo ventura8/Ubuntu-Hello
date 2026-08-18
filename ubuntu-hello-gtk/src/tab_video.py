@@ -47,13 +47,25 @@ def on_page_switch(self, notebook, page, page_num):
 			return
 		self.video_loop_active = True
 
+		previous = getattr(self, "config", None)
+		parser = configparser.ConfigParser()
 		try:
-			self.config = configparser.ConfigParser()
-			self.config.read(paths_factory.config_file_path())
+			loaded = parser.read(paths_factory.config_file_path())
 		except Exception:
 			print(_("Can't open camera"))
+			self.config = previous if previous is not None else parser
+		else:
+			if loaded or parser.sections():
+				self.config = parser
+			elif previous is not None:
+				self.config = previous
+			else:
+				self.config = parser
 
-		path = self.config.get("video", "device_path")
+		if self.config.has_section("video"):
+			path = self.config.get("video", "device_path", fallback="none")
+		else:
+			path = "none"
 
 		try:
 			import cv2
@@ -150,6 +162,8 @@ def on_camera_change(self, combo):
 		self.capture = None
 
 	try:
+		if not self.config.has_section("video"):
+			self.config.add_section("video")
 		self.config.set("video", "device_path", path)
 		with open(paths_factory.config_file_path(), "w") as f:
 			self.config.write(f)

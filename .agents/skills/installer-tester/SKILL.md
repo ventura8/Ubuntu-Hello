@@ -40,10 +40,12 @@ curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/uninst
 ```bash
 set -euo pipefail
 mkdir -p logs
-pytest tests/test_install_download.py tests/test_run_after_install.py tests/test_uh_apt_deps.py tests/test_uninstall_keyring_restore.py -v 2>&1 | tee logs/installer-tests.log
+pytest tests/test_install_download.py tests/test_run_after_install.py tests/test_uh_apt_deps.py tests/test_uninstall_keyring_restore.py tests/test_config_ensure.py -v 2>&1 | tee logs/installer-tests.log
 ```
 
 `tests/test_install_download.py` covers installer config parsing and model download helpers (`TestInstallConfig`, `TestDownloadModels`) without requiring a full privileged system install in CI.
+
+`tests/test_config_ensure.py` covers restoring a missing/empty `/etc/ubuntu-hello/config.ini` from the packaged `/usr/share/ubuntu-hello/config.ini` template, and asserts `debian/ubuntu-hello.postinst` performs that copy (dpkg does not restore a deleted conffile after `apt remove`).
 
 `tests/test_run_after_install.py` covers Wayland/session env detection for the post-install setup-wizard launcher, plus symlink-safe lock/log creation under `/run/ubuntu-hello/`.
 

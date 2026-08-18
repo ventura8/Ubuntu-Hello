@@ -48,7 +48,8 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   │   ├── rubberstamps/      # Post-auth hooks (nod, hotkey)
 │   │   ├── cli.py             # CLI router
 │   │   ├── compare.py         # Face verification engine
-│   │   ├── config.ini         # Default configuration template
+│   │   ├── config.ini         # Default configuration template (also installed to $datadir)
+│   │   ├── config_ensure.py   # Restore live config.ini if the dpkg conffile is missing
 │   │   ├── keyring_crypto.py  # UH1 AES-GCM helpers
 │   │   ├── keyring_restore.py # Unseal + restore login wallet password
 │   │   ├── wallet_backend.py  # gnome-keyring / kwallet / none labels
@@ -186,6 +187,8 @@ sudo apt install ubuntu-hello
 ```
 
 PPA packaging Docker helper: `scripts/ppa-docker.sh` / `docker/Dockerfile.ppa` (`FROM ubuntu:26.04` only). Signed source builds force `--sign-backend=gpg` with a passphrase wrapper — required on dpkg 1.23+ so auto/Sequoia arg style is not passed to classic `gpg`.
+
+`apt remove` (and `debian/ubuntu-hello.prerm`) deletes `/etc/ubuntu-hello`, including the `config.ini` conffile. dpkg will **not** unpack that deleted conffile on the next `apt install`. `ubuntu-hello.postinst` copies `/usr/share/ubuntu-hello/config.ini` back to `/etc/ubuntu-hello/config.ini` when it is missing; the CLI (`config_ensure.py`) does the same before `add` / `set`. Without that restore, the setup wizard fails with `configparser.NoSectionError: No section: 'video'`.
 
 Keep the **repo root clean**: put new CI/Docker assets under `docker/` (see [AGENTS.md](../AGENTS.md) §4.6.1).
 
