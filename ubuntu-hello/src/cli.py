@@ -66,6 +66,12 @@ parser.add_argument(
 	help=_("Print machine-friendly output."),
 	action="store_true")
 
+# Used by: ubuntu-hello keyring restore --all (uninstall / package-prerm).
+parser.add_argument(
+	"--all",
+	help=_("With keyring restore: restore sealed login passwords for all users."),
+	action="store_true")
+
 # Overwrite the default help message so we can use a uppercase S
 parser.add_argument(
 	"-h", "--help",

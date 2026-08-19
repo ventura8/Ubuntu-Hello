@@ -3,31 +3,9 @@ set -e
 
 case "$1" in
     remove|purge)
-        # Remove PAM config
-        rm -f /usr/share/pam-configs/ubuntu-hello 2>/dev/null || true
-        pam-auth-update --package 2>/dev/null || true
-
-        # Restore OS login wallet password from sealed SUW credentials while
-        # ubuntu-hello and /etc/ubuntu-hello still exist. Never fail removal.
-        if command -v ubuntu-hello >/dev/null 2>&1; then
-            timeout 120 ubuntu-hello keyring restore --all || true
-        fi
-
-        # Remove Polkit override
-        rm -f /etc/systemd/system/polkit-agent-helper@.service.d/override.conf 2>/dev/null || true
-        rmdir /etc/systemd/system/polkit-agent-helper@.service.d 2>/dev/null || true
-        systemctl daemon-reload 2>/dev/null || true
-
-        # Remove config, models, and data
-        rm -rf /etc/ubuntu-hello 2>/dev/null || true
-        rm -rf /var/log/ubuntu-hello 2>/dev/null || true
-
-        # Uninstall dlib
-        PIP_FLAGS=""
-        if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)" 2>/dev/null; then
-            PIP_FLAGS="--break-system-packages"
-        fi
-        pip3 uninstall dlib -y $PIP_FLAGS 2>/dev/null || true
+        # shellcheck source=/dev/null
+        . /usr/share/ubuntu-hello/package-prerm.sh
+        uh_package_prerm
         ;;
 esac
 

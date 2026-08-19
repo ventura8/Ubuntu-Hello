@@ -63,7 +63,7 @@ Consumers of `VERSION` (do not duplicate the number elsewhere for shipping pins)
 |------|---------------------|
 | `VERSION` | **Source of truth** |
 | `meson.build` (+ subproject meson files) | `run_command(…/scripts/read-version.py)` |
-| `ubuntu-hello/archlinux/ubuntu-hello/PKGBUILD` | `pkgver=$(python3 …/scripts/read-version.py)` |
+| `packaging/arch/ubuntu-hello/PKGBUILD` | `pkgver=$(python3 …/scripts/read-version.py)` — moved from legacy `ubuntu-hello/archlinux/ubuntu-hello/README.md` stub |
 | `scripts/i18n-update.sh` / `scripts/i18n-fill-translations.py` | `--package-version` / `Project-Id-Version` from VERSION |
 | `tests/conftest.py` | `mock_paths.version = f"{VERSION}-dev"` |
 | CLI/GTK fallbacks (`cli.py`, `window.py`, `onboarding.py`) | Read `VERSION` when `paths.version` unavailable |
@@ -121,6 +121,23 @@ git diff --cached -- <touched staged paths>
 Mirror the tone and section shape of the latest prior files in `docs/releases/`
 (e.g. `v1.0.4.md` / `v1.0.4_github_description.md`): welcome blurb, key
 enhancement sections with bullets, install methods, short changelog.
+
+**Install methods section** must list every GitHub Release artifact family when
+shipping a release that includes them:
+
+* Quick install (optional): download and review [`install.sh`](https://github.com/ventura8/ubuntu-hello/blob/vX.Y.Z/install.sh) from the release tag — **do not** pipe a moving branch URL to `bash`
+* Verify Release assets with `SHA256SUMS` before installing downloaded packages
+* PPA (`ppa:ventura8/ubuntu-hello`)
+* Debian `.deb` (attach from Release)
+* Fedora RPM (`dnf install ./ubuntu-hello-*.rpm`)
+* openSUSE RPM (`zypper install ./ubuntu-hello-*.rpm`)
+* Arch (`.pkg.tar.zst` — `pacman -U`)
+* Snap classic (`snap install --dangerous --classic` for local `.snap` files)
+* Flatpak bundle + one-time host install (`flatpak install …` then run installer / polkit)
+* AppImage + one-time host install (`./Ubuntu-Hello-*.AppImage --install`)
+
+Note AppImage/Flatpak require elevated host install after download (PAM cannot
+live inside a sandbox).
 
 GitHub description H1 pattern:
 

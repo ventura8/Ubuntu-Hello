@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,31 @@ msgstr "Praleiskite visus klausimus."
 msgid "Print machine-friendly output."
 msgstr "Spausdinimo aparatui pritaikyta produkcija."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"Su keyring restore: atkurti užplombuotus prisijungimo slaptažodžius vi"
+"siems naudotojams."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Parodykite šį pagalbos pranešimą ir išeikite."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "dabartinis aktyvus vartotojas:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Neteisingas vartotojo vardo formatas"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Paleiskite šią komandą kaip root:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -152,93 +158,93 @@ msgstr "Pagrindinio kompiuterio pavadinimas:"
 msgid "Best certainty value: "
 msgstr "Geriausia patikimumo vertė:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Pradedama..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Tave identifikuojant..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "NEPASIEKĖ"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Visi rėmeliai buvo per tamsūs, konfigūracijose patikrinkite dark_thres"
 "hold"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Vidutinis tamsumas: {avg}, slenkstis: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Praleistas laikas"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Paleidimas"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Atidaryti kamerą + įkelti libs: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Kameros atidarymas"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Importuojamos atpažinimo bibliotekos"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Ieško žinomo veido"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Visas laikas"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nRezoliucija"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Gimtasis: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Naudota: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nIeškomi kadrai: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Nepaisyti juodi rėmeliai: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Tamsių rėmelių nepaisoma: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Laimėjimo kadro tikrumas: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Laimėjęs modelis: %d („%s“)"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "SĖKMINGAS"
 
@@ -294,37 +300,37 @@ msgstr "Naudotojo veido modelio pridėjimas"
 msgid "Model #"
 msgstr "Modelis Nr."
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Naudojama numatytoji etiketė „%s“ dėl -y vėliavėlės"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Įveskite šio naujo modelio etiketę [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "PASTABA: pašalinamas neteisėtas simbolis \",\" iš modelio pavadinimo"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nŽiūrėkite tiesiai į kamerą"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Fotoaparatas matė tik juodus rėmelius – ar veikia IR spinduliuotė?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Veido neaptikta, abortas"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Aptikti keli veidai, nutraukiamas"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -402,7 +408,7 @@ msgstr "Ubuntu Hello buvo išjungtas"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello buvo įjungtas"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Naudojimas: raktų pakabukas [įjungti|išjungti|atkurti] [--all]"
 
@@ -472,21 +478,21 @@ msgstr "Raktų pakabukas/KWallet atrakinimas išjungtas vartotojui {}."
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Raktų pakabuko/KWallet atrakinimas nebuvo įjungtas vartotojui {}."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Užantspauduotų prisijungimo slaptažodžių nerasta; nėra ką atkurti."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Prisijungimo piniginės slaptažodis atkurtas {} naudotojui (-ams)."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
 "Nepavyko atkurti prisijungimo piniginės slaptažodžio {} naudotojui (-a"
 "ms)."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -693,7 +699,7 @@ msgstr "Trūksta ffmpeg modulio, paleiskite:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Trūksta pyv4l2 modulio, paleiskite:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -701,7 +707,7 @@ msgstr ""
 "Ubuntu Hello nepavyko rasti fotoaparato įrenginio konfigūracijos faile"
 " nurodytu keliu."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -709,7 +715,7 @@ msgstr ""
 "Labai tikėtina, kad kelias netinkamai sukonfigūruotas. Redaguokite „de"
 "vice_path“ konfigūracijos reikšmę paleisdami:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

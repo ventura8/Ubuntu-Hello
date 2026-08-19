@@ -143,7 +143,11 @@ def run_keyring(user=None, arguments=None):
 		# Re-assert the sealed login password as the OS wallet password.
 		# Does not delete seals (uninstall / apt prerm delete afterwards).
 		rest = arguments[1:]
-		if rest == ["--all"]:
+		want_all = bool(getattr(builtins.ubuntu_hello_args, "all", False)) or rest == ["--all"]
+		if rest and rest != ["--all"]:
+			print(_("Usage: keyring [enable|disable|restore [--all]]"))
+			sys.exit(1)
+		if want_all:
 			ok, fail = restore_all_users()
 			if ok == 0 and fail == 0:
 				print(_("No sealed login passwords found; nothing to restore."))
@@ -153,15 +157,11 @@ def run_keyring(user=None, arguments=None):
 					print(_("Could not restore login wallet password for {} user(s).").format(fail))
 					print(_("If prompts persist, set the login keyring or KWallet password in Seahorse / System Settings."))
 					sys.exit(1)
-		elif rest:
-			print(_("Usage: keyring [enable|disable|restore [--all]]"))
-			sys.exit(1)
+		elif restore_user(user):
+			print(_("Restored login wallet password for user {}.").format(user))
 		else:
-			if restore_user(user):
-				print(_("Restored login wallet password for user {}.").format(user))
-			else:
-				print(_("Could not restore login wallet password for user {}.").format(user))
-				sys.exit(1)
+			print(_("Could not restore login wallet password for user {}.").format(user))
+			sys.exit(1)
 
 	else:
 		print(_("Invalid action. Use 'enable', 'disable', or 'restore'."))

@@ -19,6 +19,7 @@ for de in "${DES[@]}"; do
   (
     export UH_CI_STAGE=compat
     export UH_CI_DE="${de}"
+    export UH_CI_PARALLEL_BUILD=1
     export UBUNTU_HELLO_CI_BUILD_DIR="build-ci-${de}"
     echo "[${de}] starting compat (log: ${log})"
     ./scripts/ci-docker.sh

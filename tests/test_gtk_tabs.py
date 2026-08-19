@@ -170,7 +170,11 @@ class TestTabModels:
             tab_models.execute_add(box, dialog, "model1")
             dialog.destroy.assert_called_once()
             box.load_model_list.assert_called_once()
-            mock_run.assert_called_once_with(["ubuntu-hello", "add", "model1", "-y", "-U", "testuser"], capture_output=True, text=True)
+            mock_run.assert_called_once_with(
+                ["ubuntu-hello", "-y", "-U", "testuser", "add", "model1"],
+                capture_output=True,
+                text=True,
+            )
 
     def test_execute_add_failure(self):
         box = MagicMock()

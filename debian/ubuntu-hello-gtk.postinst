@@ -1,46 +1,11 @@
 #!/bin/bash
 set -e
 
-# Return 0 if any face model files are enrolled under /etc/ubuntu-hello/models.
-uh_models_enrolled() {
-	local d="/etc/ubuntu-hello/models"
-	[ -d "$d" ] || return 1
-	find "$d" -maxdepth 1 -type f ! -name '.*' 2>/dev/null | grep -q .
-}
-
-# Launch the Wayland-aware setup wizard (best-effort; never fail the package).
-# Logging is owned by run_after_install.py under /run/ubuntu-hello/ (not /tmp).
-uh_launch_setup_wizard() {
-	local reason="$1"
-	local launcher="/usr/share/ubuntu-hello-gtk/run_after_install.py"
-
-	if [ ! -f "$launcher" ]; then
-		echo ">>> Setup wizard launcher missing — run: ubuntu-hello-gtk --force-onboarding"
-		return 0
-	fi
-
-	echo ">>> Launching Ubuntu Hello setup wizard (${reason}; no face models enrolled yet)..."
-	set +e
-	python3 "$launcher"
-	launch_rc=$?
-	set -e
-	if [ "$launch_rc" -eq 0 ]; then
-		echo ">>> Setup wizard launch requested (approve the polkit prompt if shown)"
-	else
-		echo "WARNING: setup wizard did not start — run: ubuntu-hello-gtk --force-onboarding"
-	fi
-}
-
 case "$1" in
 	configure)
-		# Only when needed: no enrolled face models yet (fresh or reinstall
-		# without leftover models). Never interrupt upgrades/reinstalls that
-		# already have faces enrolled.
-		if uh_models_enrolled; then
-			echo ">>> Setup wizard skipped (face models already enrolled)"
-		else
-			uh_launch_setup_wizard "ubuntu-hello-gtk.configure"
-		fi
+		# shellcheck source=/dev/null
+		. /usr/share/ubuntu-hello/package-gtk-onboard.sh
+		uh_package_gtk_onboard "ubuntu-hello-gtk.configure"
 		;;
 esac
 

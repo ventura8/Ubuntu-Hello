@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,31 @@ msgstr "Kihagy minden kérdést."
 msgid "Print machine-friendly output."
 msgstr "Nyomtatás gépbarát kimenet."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"A keyring restore használatával: az összes felhasználó lezárt bejelent"
+"kezési jelszavának visszaállítása."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Mutassa meg ezt a súgóüzenetet, és lépjen ki."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "jelenlegi aktív felhasználó:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Érvénytelen felhasználónév-formátum"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Kérjük, futtassa ezt a parancsot rootként:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -154,93 +160,93 @@ msgstr "Gazdanév:"
 msgid "Best certainty value: "
 msgstr "Legjobb bizonyossági érték:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Indítás..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Azonosítani téged..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "SIKERTELEN"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Minden keret túl sötét volt, kérjük, ellenőrizze a dark_threshold beál"
 "lítást a konfigurációban"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Átlagos sötétség: {avg}, Küszöb: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Eltöltött idő"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Indítás"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Kamera megnyitása + libs betöltése: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "A kamera kinyitása"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Felismerési könyvtárak importálása"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Ismert arc keresése"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Teljes idő"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nFelbontás"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Natív: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Használt: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nA keresett képkockák: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Fekete keretek figyelmen kívül hagyva: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Sötét keretek figyelmen kívül hagyva: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "A nyerő keret bizonyossága: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Nyertes modell: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "SIKERES"
 
@@ -296,39 +302,39 @@ msgstr "Arcmodell hozzáadása a felhasználó számára"
 msgid "Model #"
 msgstr "Modellsz."
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Az alapértelmezett \"%s\" címke használata az -y jelző miatt"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Adjon meg egy címkét ehhez az új modellhez [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "FIGYELMEZTETÉS: Az illegális \",\" karakter eltávolítása a modellnévből"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nKérjük, nézzen egyenesen a kamerába"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr ""
 "A fényképezőgép csak fekete kereteket látott – működik az infravörös j"
 "eladó?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Nem észlelt arcot, elvetél"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Több arc észlelve, megszakítás"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -410,7 +416,7 @@ msgstr "Az Ubuntu Hello le van tiltva"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello engedélyezve van"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Használat: kulcstartó [engedélyezés|letiltás|visszaállítás] [--all]"
 
@@ -482,23 +488,23 @@ msgstr ""
 "A kulcstartó/KWallet feloldás nem volt engedélyezve a {} felhasználó s"
 "zámára."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
 "Nem találhatók lezárt bejelentkezési jelszavak; nincs mit visszaállíta"
 "ni."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "A bejelentkezési tárca jelszava visszaállítva {} felhasználónál."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
 "Nem sikerült visszaállítani a bejelentkezési tárca jelszavát {} felhas"
 "ználónál."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -711,7 +717,7 @@ msgstr "Hiányzik az ffmpeg modul, futtassa:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Hiányzik a pyv4l2 modul, futtassa:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -719,7 +725,7 @@ msgstr ""
 "Az Ubuntu Hello nem talált kameraeszközt a konfigurációs fájlban megad"
 "ott elérési úton."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -728,7 +734,7 @@ msgstr ""
 "érjük, módosítsa a \"device_path\" konfigurációs értéket a következő f"
 "uttatással:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

@@ -87,12 +87,16 @@ if builtins.ubuntu_hello_args.arguments:
 else:
 	label = _("Model #") + str(next_id)
 
-# Keep de default name if we can't ask questions
-if builtins.ubuntu_hello_args.y:
+# Keep the default name if we can't ask questions (-y, or no TTY / closed stdin
+# as when the setup wizard / Settings runs add with capture_output).
+if builtins.ubuntu_hello_args.y or not sys.stdin.isatty():
 	print(_('Using default label "%s" because of -y flag') % (label, ))
 else:
 	# Ask the user for a custom label
-	label_in = input(_("Enter a label for this new model [{}]: ").format(label))
+	try:
+		label_in = input(_("Enter a label for this new model [{}]: ").format(label))
+	except EOFError:
+		label_in = ""
 
 	# Set the custom label (if any) and limit it to 24 characters
 	if label_in != "":

@@ -5,6 +5,18 @@ export DH_VERBOSE = 1
 %:
 	dh $@ --buildsystem=meson
 
+
+# Parallel packaging CI cells share a bind-mounted tree; default dh_clean
+# runs find(1) across "." and fails when sibling cells remove build-* dirs
+# mid-walk (e.g. build-flatpak). Clean only Debian/Meson outputs instead.
+override_dh_clean:
+	dh_auto_clean --buildsystem=meson
+	rm -rf debian/.debhelper/ debian/tmp/ debian/ubuntu-hello/ \
+		debian/ubuntu-hello-gtk/ obj-x86_64-linux-gnu
+	rm -f debian/debhelper-build-stamp debian/ubuntu-hello.substvars \
+		debian/ubuntu-hello-gtk.substvars debian/files \
+		debian/ubuntu-hello.debhelper.log
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Ddlib_data_dir=/etc/ubuntu-hello/dlib-data \

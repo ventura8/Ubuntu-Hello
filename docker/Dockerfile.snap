@@ -1,0 +1,26 @@
+# syntax=docker/dockerfile:1.26.0
+# Snap (core24) builds require Ubuntu 24.04 — core24 cannot build on 26.04 hosts.
+#
+# snapd manages snap mounts via systemd units, so it needs a real systemd as
+# PID 1 (not a plain entrypoint script) — otherwise `snap install` fails with
+# "Failed to connect to bus: Host is down". Boot systemd as the container's
+# CMD; the actual build runs afterward via `docker exec` (see
+# docker/snap-entrypoint.sh and the packaging-snap job in check.yml), once
+# systemd reports ready.
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    systemd dbus snapd ca-certificates fuse squashfs-tools python3 git \
+    curl bzip2 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY packaging/snap/SNAPCRAFT_REVISION /etc/ubuntu-hello/SNAPCRAFT_REVISION
+COPY docker/snap-entrypoint.sh /usr/local/bin/snap-entrypoint.sh
+RUN chmod +x /usr/local/bin/snap-entrypoint.sh
+
+WORKDIR /src
+ENV container=docker
+STOPSIGNAL SIGRTMIN+3
+CMD ["/lib/systemd/systemd"]

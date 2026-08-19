@@ -2,8 +2,17 @@ name: Build & Check
 
 on: [push, pull_request]
 
+# Cancel stale runs when the same PR or branch gets a new push.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+# OSS public-repo concurrency: GitHub grants up to 20 parallel runners.
+# Job definitions expand to 17 concurrent runners (lint + coverage + 8× compat +
+# 7× packaging) with no needs gates. Local ./scripts/ci-pipeline.sh mirrors this
+# fail-fast: lint → coverage → compat matrix → packaging matrix (same cell script).
+
 jobs:
-  # Fail-fast quality stages (parallel with each other)
   lint:
     runs-on: ubuntu-26.04
     steps:
@@ -38,12 +47,11 @@ jobs:
           chmod +x scripts/ci-docker.sh
           UH_CI_STAGE=coverage ./scripts/ci-docker.sh
 
-  # DE compatibility matrix — only after lint + coverage are green
   compat:
-    needs: [lint, coverage]
     runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
+      max-parallel: 20
       matrix:
         de: [baseline, gnome, kde, xfce, cinnamon, mate, budgie, lxqt]
     steps:
@@ -61,27 +69,25 @@ jobs:
           chmod +x scripts/ci-docker.sh
           UH_CI_STAGE=compat UH_CI_DE=${{ matrix.de }} ./scripts/ci-docker.sh
 
-  # Verify debian packaging builds successfully (Ubuntu 26.04 Docker)
-  deb-package:
+  # Packaging smoke + live E2E — same scripts/ci-packaging-cell.sh as local
+  # ci-pipeline.sh. Skip fork PRs (untrusted Docker/snapcraft/privileged builds).
+  packaging:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        format: [deb, rpm-fedora, rpm-opensuse, arch, snap, appimage, flatpak]
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v7.0.1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.2.0
-
-      - name: Build debian package in Docker (ubuntu:26.04)
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Packaging cell ${{ matrix.format }} (build + smoke + E2E)
         env:
           DOCKER_BUILDKIT: "1"
         run: |
-          chmod +x scripts/ppa-docker.sh
-          docker build -f docker/Dockerfile.ppa -t ubuntu-hello-ppa:26.04 .
-          docker run --rm \
-            -e BUILD_BINARY=1 \
-            -v "$PWD:/src:rw" \
-            -w /src \
-            ubuntu-hello-ppa:26.04 \
-            ./scripts/ppa-docker.sh binary
-          echo "✔ Package built successfully"
-          ls -la artifacts/
+          chmod +x scripts/ci-packaging-cell.sh
+          ./scripts/ci-packaging-cell.sh "${{ matrix.format }}"

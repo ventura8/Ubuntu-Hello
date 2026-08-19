@@ -8,23 +8,24 @@ Wired into every UH_CI_DE compat cell via scripts/ci-docker.sh.
 """
 from __future__ import annotations
 
+import importlib
 import os
 from pathlib import Path
 
+import gi
 import pytest
 
 if os.environ.get("UH_REAL_GTK") != "1":
 	pytest.skip("Settings E2E requires UH_REAL_GTK=1 (real gi.repository.Gtk)", allow_module_level=True)
 
-import gi
-
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk  # noqa: E402
-
-import languages  # noqa: E402
-import preferences  # noqa: E402
-import theme_detect  # noqa: E402
-from search_fuzzy import fuzzy_match, fuzzy_score  # noqa: E402
+Gtk = importlib.import_module("gi.repository.Gtk")
+languages = importlib.import_module("languages")
+preferences = importlib.import_module("preferences")
+theme_detect = importlib.import_module("theme_detect")
+_search_fuzzy = importlib.import_module("search_fuzzy")
+fuzzy_match = _search_fuzzy.fuzzy_match
+fuzzy_score = _search_fuzzy.fuzzy_score
 
 GLADE = Path(__file__).resolve().parents[2] / "ubuntu-hello-gtk" / "src" / "main.glade"
 

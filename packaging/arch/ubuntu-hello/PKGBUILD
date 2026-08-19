@@ -1,0 +1,94 @@
+# Maintainer: ventura8 <alexandrescu.sergiu@gmail.com>
+pkgbase=ubuntu-hello
+pkgname=(ubuntu-hello ubuntu-hello-gtk)
+pkgver="$(python3 "${startdir}/../../../scripts/read-version.py")"
+pkgrel=1
+pkgdesc="Windows Hello style facial authentication for Linux"
+arch=('x86_64')
+url="https://github.com/ventura8/ubuntu-hello"
+license=('MIT')
+depends=(
+	'python'
+	'python-numpy'
+	'python-opencv'
+	'python-cryptography'
+	'python-pip'
+	'cmake'
+	'opencv'
+	'curl'
+	'bzip2'
+	'v4l-utils'
+	'tpm2-tools'
+	'pam'
+	'polkit'
+)
+makedepends=(
+	'meson'
+	'ninja'
+	'cmake'
+	'boost'
+	'openssl'
+	'libinih'
+	'libevdev'
+	'gettext'
+	'python'
+	'pkgconf'
+)
+optdepends=(
+	'ubuntu-hello-gtk: graphical settings and setup wizard'
+)
+source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/ventura8/ubuntu-hello/archive/v${pkgver}.tar.gz")
+sha256sums=('7d4ae11850ac93c9e97c3082e077bd0eaae4a47a6a74e75f72ce75663bc8ef5f')
+
+prepare() {
+	cd "${srcdir}/ubuntu-hello-${pkgver}"
+}
+
+build() {
+	cd "${srcdir}/ubuntu-hello-${pkgver}"
+	# Wipe any leftover builddir (sticky makepkg src/ on bind mounts).
+	rm -rf build
+	# Arch libinih ships system INIReader.pc — do not pass the wrap-only
+	# INIReader meson subproject option (exists only for the wrap fallback).
+	meson setup build --prefix=/usr \
+		-Ddlib_data_dir=/etc/ubuntu-hello/dlib-data \
+		-Dconfig_dir=/etc/ubuntu-hello \
+		-Duser_models_dir=/etc/ubuntu-hello/models \
+		-Dinstall_pam_config=true \
+		-Dwith_polkit=true \
+		-Dfetch_dlib_data=false
+	ninja -C build
+	rm -rf "${srcdir}/fakeroot"
+	DESTDIR="${srcdir}/fakeroot" ninja -C build install
+}
+
+package_ubuntu-hello() {
+	local root="${pkgdir}"
+	backup=('etc/ubuntu-hello/config.ini')
+	install=ubuntu-hello.install
+	cd "${srcdir}/ubuntu-hello-${pkgver}"
+	# shellcheck source=/dev/null
+	. scripts/release-common.sh
+	UH_REPO_ROOT="$(pwd)"
+	uh_split_install_from_list "${srcdir}/fakeroot" "${root}" \
+		"packaging/file-lists/ubuntu-hello.install"
+}
+
+package_ubuntu-hello-gtk() {
+	local root="${pkgdir}"
+	depends=(
+		"ubuntu-hello=${pkgver}-${pkgrel}"
+		'python-babel'
+		'python-gobject'
+		'python-cairo'
+		'gtk3'
+		'polkit'
+		'opencv'
+	)
+	cd "${srcdir}/ubuntu-hello-${pkgver}"
+	# shellcheck source=/dev/null
+	. scripts/release-common.sh
+	UH_REPO_ROOT="$(pwd)"
+	uh_split_install_from_list "${srcdir}/fakeroot" "${root}" \
+		"packaging/file-lists/ubuntu-hello-gtk.install"
+}

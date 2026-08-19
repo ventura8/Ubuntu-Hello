@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <vendor>Ubuntu Hello</vendor>
+  <vendor_url>https://github.com/ventura8/ubuntu-hello</vendor_url>
+  <icon_name>ubuntu-hello-gtk</icon_name>
+  <action id="com.github.ventura8.UbuntuHello.install">
+    <description>Install Ubuntu Hello on the system</description>
+    <message>Authentication is required to install Ubuntu Hello (PAM module and system files)</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/app/share/ubuntu-hello/install-host.sh</annotate>
+    <annotate key="org.freedesktop.policykit.exec.argv1">--install</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+  <action id="com.github.ventura8.UbuntuHello.uninstall">
+    <description>Remove Ubuntu Hello from the system</description>
+    <message>Authentication is required to remove Ubuntu Hello system files</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/app/share/ubuntu-hello/install-host.sh</annotate>
+    <annotate key="org.freedesktop.policykit.exec.argv1">--uninstall</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

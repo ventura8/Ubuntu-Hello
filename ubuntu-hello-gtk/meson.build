@@ -46,6 +46,7 @@ sources = files(
 )
 
 py = import('python').find_installation(
+    paths_dict.get('python_path')
     # modules: ['gi', 'elevate']
 )
 py.dependency()

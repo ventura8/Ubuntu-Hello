@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,29 @@ msgstr "Ruka maswali yote."
 msgid "Print machine-friendly output."
 msgstr "Chapisha pato linalofaa kwa mashine."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "With keyring restore: restore sealed login passwords for all users."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Onyesha ujumbe huu wa usaidizi na uondoke."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "mtumiaji anayetumika sasa:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Umbizo la jina la mtumiaji si sahihi"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Tafadhali endesha amri hii kama mzizi:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -152,93 +156,93 @@ msgstr "Jina la mwenyeji:"
 msgid "Best certainty value: "
 msgstr "Thamani bora ya uhakika:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Inaanza..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Inakutambulisha..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "IMESHINDWA"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Fremu zote zilikuwa nyeusi sana, tafadhali angalia dark_threshold kati"
 "ka usanidi"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Wastani wa giza: {avg}, Kizingiti: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Muda uliotumika"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Kuanzia"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Fungua cam + pakia libs: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Kufungua kamera"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Inaingiza vifaa vya utambuzi"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Inatafuta uso unaojulikana"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Jumla ya muda"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nAzimio"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Asili: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Imetumika: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nFremu zilizotafutwa: %d (%.2f ramprogrammen)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Fremu nyeusi zimepuuzwa: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Fremu za giza zimepuuzwa: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Uhakika wa fremu ya kushinda: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Muundo ulioshinda: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "IMEFANIKIWA"
 
@@ -294,37 +298,37 @@ msgstr "Kuongeza mfano wa uso kwa mtumiaji"
 msgid "Model #"
 msgstr "Mfano #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Kwa kutumia lebo chaguo-msingi \"%s\" kwa sababu ya -y bendera"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Weka lebo ya muundo huu mpya [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "ILANI: Inaondoa herufi haramu \",\" kutoka kwa jina la mfano"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nTafadhali angalia moja kwa moja kwenye kamera"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Kamera iliona fremu nyeusi pekee - je, emitter ya IR inafanya kazi?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Hakuna uso uliogunduliwa, unaoavya mimba"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Nyuso nyingi zimegunduliwa, zinaacha"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -404,7 +408,7 @@ msgstr "Ubuntu Hello imezimwa"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello imewashwa"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Matumizi: keyring [wezesha|lemaza|rejesha] [--all]"
 
@@ -474,21 +478,21 @@ msgstr "Ufunguo/KWallet kufungua kumezimwa kwa mtumiaji {}."
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Uwekaji kitufe/KWallet kufungua hakujawashwa kwa mtumiaji {}."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
 "Hakuna manenosiri ya kuingia yaliyofungwa yaliyopatikana; hakuna cha k"
 "urejesha."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Nenosiri la pochi ya kuingia limerejeshwa kwa watumiaji {}."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Imeshindwa kurejesha nenosiri la pochi ya kuingia kwa watumiaji {}."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -693,7 +697,7 @@ msgstr "ffmpeg moduli haipo, tafadhali endesha:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Moduli ya pyv4l2 haipo, tafadhali endesha:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -701,7 +705,7 @@ msgstr ""
 "Ubuntu Hello haikuweza kupata kifaa cha kamera kwenye njia iliyobainis"
 "hwa kwenye faili ya usanidi."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -709,7 +713,7 @@ msgstr ""
 "Kuna uwezekano mkubwa kwamba njia haijasanidiwa ipasavyo, tafadhali ha"
 "riri thamani ya usanidi ya 'device_path' kwa kuendesha:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

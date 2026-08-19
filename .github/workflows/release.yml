@@ -1,0 +1,330 @@
+name: Release
+
+# Trigger on version tags like v1.0.0, v1.2.3, etc.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+env:
+  PPA_NAME: "ppa:ventura8/ubuntu-hello"
+  MAINTAINER_NAME: "ventura8"
+  MAINTAINER_EMAIL: "alexandrescu.sergiu@gmail.com"
+  PPA_IMAGE: "ubuntu-hello-ppa:26.04"
+  RPM_FEDORA_IMAGE: "ubuntu-hello-rpm-fedora:44"
+  RPM_OPENSUSE_IMAGE: "ubuntu-hello-rpm-opensuse:16.0"
+  ARCH_IMAGE: "ubuntu-hello-arch:base-devel-20260816.0.574111"
+  RELEASE_IMAGE: "ubuntu-hello-release:26.04"
+
+jobs:
+  upload-to-ppa:
+    runs-on: ubuntu-26.04
+    strategy:
+      max-parallel: 20
+      matrix:
+        distro: [noble, resolute]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build Ubuntu 26.04 PPA image
+        run: |
+          chmod +x scripts/ppa-docker.sh
+          docker build -f docker/Dockerfile.ppa -t "${PPA_IMAGE}" .
+
+      - name: Build signed source and upload in Docker (ubuntu:26.04)
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          docker run --rm \
+            -e GPG_PRIVATE_KEY \
+            -e GPG_PASSPHRASE \
+            -e VERSION \
+            -e DISTRO=${{ matrix.distro }} \
+            -e MAINTAINER_NAME \
+            -e MAINTAINER_EMAIL \
+            -e UPLOAD_PPA=1 \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${PPA_IMAGE}" \
+            ./scripts/ppa-docker.sh
+
+  build-deb:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build .deb packages
+        run: |
+          chmod +x scripts/release-deb.sh scripts/ppa-docker.sh
+          docker build -f docker/Dockerfile.ppa -t "${PPA_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${PPA_IMAGE}" \
+            ./scripts/release-deb.sh
+
+      - name: Upload deb artifacts
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: deb
+          path: artifacts/*.deb
+          if-no-files-found: error
+
+  build-rpm-fedora:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build Fedora RPMs
+        run: |
+          chmod +x scripts/release-rpm.sh
+          docker build -f docker/Dockerfile.rpm.fedora -t "${RPM_FEDORA_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_FEDORA_IMAGE}" \
+            ./scripts/release-rpm.sh fedora
+
+      - name: Upload Fedora RPM artifacts
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: rpm-fedora
+          path: artifacts/*.rpm
+          if-no-files-found: error
+
+  build-rpm-opensuse:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build openSUSE RPMs
+        run: |
+          chmod +x scripts/release-rpm.sh
+          docker build -f docker/Dockerfile.rpm.opensuse -t "${RPM_OPENSUSE_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_OPENSUSE_IMAGE}" \
+            ./scripts/release-rpm.sh opensuse
+
+      - name: Upload openSUSE RPM artifacts
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: rpm-opensuse
+          path: artifacts/*.rpm
+          if-no-files-found: error
+
+  build-arch:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build Arch packages
+        run: |
+          chmod +x scripts/release-arch.sh
+          docker build -f docker/Dockerfile.arch -t "${ARCH_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${ARCH_IMAGE}" \
+            ./scripts/release-arch.sh
+
+      - name: Upload Arch artifacts
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: arch
+          path: artifacts/*.pkg.tar.zst
+          if-no-files-found: error
+
+  build-snap:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build Snap (Ubuntu 24.04 — core24 base)
+        env:
+          DOCKER_BUILDKIT: "1"
+        run: |
+          chmod +x scripts/release-portable.sh docker/snap-entrypoint.sh scripts/ci-snap-build.sh
+          ./scripts/ci-snap-build.sh
+
+      - name: Upload Snap artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: snap
+          path: artifacts/*.snap
+          if-no-files-found: error
+
+  build-appimage:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build AppImage
+        run: |
+          chmod +x scripts/release-portable.sh packaging/appimage/build-appimage.sh
+          docker build -f docker/Dockerfile.release -t "${RELEASE_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            --privileged \
+            "${RELEASE_IMAGE}" \
+            ./scripts/release-portable.sh appimage
+
+      - name: Upload AppImage artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: appimage
+          path: artifacts/*.AppImage
+          if-no-files-found: error
+
+  build-flatpak:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Build Flatpak bundle
+        run: |
+          chmod +x scripts/release-portable.sh
+          docker build -f docker/Dockerfile.release -t "${RELEASE_IMAGE}" .
+          docker run --rm \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            --privileged \
+            --device /dev/fuse \
+            "${RELEASE_IMAGE}" \
+            ./scripts/release-portable.sh flatpak
+
+      - name: Upload Flatpak artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: flatpak
+          path: artifacts/*.flatpak
+          if-no-files-found: error
+
+  github-release:
+    runs-on: ubuntu-26.04
+    needs:
+      - upload-to-ppa
+      - build-deb
+      - build-rpm-fedora
+      - build-rpm-opensuse
+      - build-arch
+      - build-snap
+      - build-appimage
+      - build-flatpak
+    # PPA upload (Launchpad outage, rejected upload, missing secret) must not
+    # suppress the GitHub Release — every artifact build still gates it.
+    if: |
+      !cancelled() &&
+      needs.build-deb.result == 'success' &&
+      needs.build-rpm-fedora.result == 'success' &&
+      needs.build-rpm-opensuse.result == 'success' &&
+      needs.build-arch.result == 'success' &&
+      needs.build-snap.result == 'success' &&
+      needs.build-appimage.result == 'success' &&
+      needs.build-flatpak.result == 'success'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4.3.0
+        with:
+          path: release-artifacts
+          merge-multiple: true
+
+      - name: Generate SHA256SUMS
+        run: |
+          cd release-artifacts
+          find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 \
+            | xargs -0 sha256sum -- > SHA256SUMS
+          ls -la
+
+      - name: Load release notes body
+        id: notes
+        run: |
+          BODY_FILE="docs/releases/v${VERSION}_github_description.md"
+          if [ -f "$BODY_FILE" ]; then
+            echo "use_body=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "use_body=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub Release (authored notes)
+        if: steps.notes.outputs.use_body == 'true'
+        uses: softprops/action-gh-release@v3.0.2
+        with:
+          body_path: docs/releases/v${{ env.VERSION }}_github_description.md
+          files: |
+            release-artifacts/*
+          draft: false
+          prerelease: false
+
+      - name: Create GitHub Release (generated notes fallback)
+        if: steps.notes.outputs.use_body == 'false'
+        uses: softprops/action-gh-release@v3.0.2
+        with:
+          generate_release_notes: true
+          files: |
+            release-artifacts/*
+          draft: false
+          prerelease: false

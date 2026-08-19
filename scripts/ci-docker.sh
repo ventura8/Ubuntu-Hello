@@ -3,10 +3,11 @@
 #
 # Stages (UH_CI_STAGE):
 #   lint      — docker/Dockerfile.ci.lint; meson/ninja + clang-tidy + py_compile + i18n-lint
+#              + no-suppressions-lint + shellcheck
 #   coverage  — docker/Dockerfile.ci.coverage; meson/ninja + pytest coverage + meson tests
 #   compat    — per-DE docker/Dockerfile.ci[.de]; build + pytest (no cov floors) + meson tests
 #
-# Dockerfiles live under docker/ (repo root stays clean; see AGENTS.md §4.6.1).
+# Dockerfiles live under docker/ (repo root stays clean; see AGENTS.md §4.7.1).
 #
 # Compat DE selection: UH_CI_DE=baseline|gnome|kde|xfce|cinnamon|mate|budgie|lxqt
 #
@@ -17,6 +18,7 @@
 #     local — buildx + .cache/docker-ci/<scope> + skip rebuild if Dockerfile digest matches image label
 #     none  — plain docker build (BuildKit layer cache only)
 #   UH_CI_FORCE_BUILD=1 — always rebuild (ignore digest skip)
+#   UH_CI_PARALLEL_BUILD=1 — compat matrix: skip local cache export (parallel buildx cache-to deadlocks)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -84,6 +86,17 @@ image_has_digest() {
   [[ -n "${got}" && "${got}" == "${want}" ]]
 }
 
+build_ci_image_parallel() {
+  local digest="$1"
+  echo "==> docker build (parallel matrix, no buildx) ${IMAGE} from ${DOCKERFILE}"
+  # buildx --load shares one builder and deadlocks with 8 concurrent compat cells.
+  docker build \
+    --file "${DOCKERFILE}" \
+    --tag "${IMAGE}" \
+    --label "ubuntu-hello.ci.dockerfile-digest=${digest}" \
+    .
+}
+
 build_ci_image() {
   export DOCKER_BUILDKIT=1
   local digest scope cache_dir
@@ -92,6 +105,11 @@ build_ci_image() {
 
   if [[ "${UH_CI_FORCE_BUILD}" != "1" ]] && image_has_digest "${digest}"; then
     echo "==> reusing ${IMAGE} (Dockerfile digest ${digest:0:12}… unchanged; set UH_CI_FORCE_BUILD=1 to rebuild)"
+    return 0
+  fi
+
+  if [[ "${UH_CI_PARALLEL_BUILD:-0}" == "1" ]]; then
+    build_ci_image_parallel "${digest}"
     return 0
   fi
 
@@ -186,12 +204,61 @@ run_clang_tidy() {
 
 run_py_compile() {
   echo "==> Python syntax lint (py_compile)"
-  python3 -c "import sys, py_compile, glob; [py_compile.compile(f, doraise=True) for f in glob.glob('**/*.py', recursive=True) if not any(p in f for p in ['.git', '.pytest_cache', 'build', 'builddir', '__pycache__'])]"
+  # Skip Meson/CI build trees and snapcraft leftovers (parts/stage/prime/…).
+  python3 -c "
+import glob, py_compile
+skip = {'.git', '.pytest_cache', '__pycache__', 'parts', 'stage', 'prime', 'overlay', '.craft', 'artifacts', 'logs'}
+for path in glob.glob('**/*.py', recursive=True):
+    parts = path.split('/')
+    if any(p in skip for p in parts):
+        continue
+    if any(p.startswith('build') or p.startswith('obj-') for p in parts):
+        continue
+    py_compile.compile(path, doraise=True)
+"
 }
 
 run_i18n_lint() {
   echo "==> JSON + gettext catalog lint (scripts/i18n-lint.py)"
   python3 scripts/i18n-lint.py
+}
+
+run_no_suppressions_lint() {
+  echo "==> no suppressions lint (scripts/no-suppressions-lint.py)"
+  python3 scripts/no-suppressions-lint.py
+}
+
+run_shellcheck() {
+  echo "==> shellcheck (packaging + shared scripts)"
+  local files=(
+    scripts/package-configure.sh
+    scripts/package-gtk-onboard.sh
+    scripts/package-prerm.sh
+    scripts/release-common.sh
+    scripts/release-deb.sh
+    scripts/release-rpm.sh
+    scripts/release-arch.sh
+    scripts/release-portable.sh
+    scripts/packaging-smoke-verify.sh
+    scripts/packaging-e2e-install.sh
+    scripts/ci-snap-build.sh
+    scripts/ci-packaging-cell.sh
+    scripts/ci-packaging-matrix.sh
+    scripts/ci-pipeline.sh
+    scripts/release-verify-tag-version.sh
+    scripts/test-split-install-adapter.sh
+    scripts/test-packaging-installers.sh
+    scripts/ci-matrix.sh
+    packaging/appimage/build-appimage.sh
+    packaging/flatpak/install-host.sh
+    packaging/snap/install-wrapper.sh
+    packaging/snap/hooks/configure
+    docker/snap-entrypoint.sh
+    debian/ubuntu-hello.postinst
+    debian/ubuntu-hello-gtk.postinst
+    debian/ubuntu-hello.prerm
+  )
+  shellcheck "${files[@]}"
 }
 
 run_pytest_coverage() {
@@ -235,6 +302,8 @@ run_inside() {
       run_clang_tidy
       run_py_compile
       run_i18n_lint
+      run_no_suppressions_lint
+      run_shellcheck
       ;;
     coverage)
       meson_build
@@ -263,7 +332,16 @@ if [[ ! -f "${DOCKERFILE}" ]]; then
   echo "error: missing ${DOCKERFILE} for UH_CI_STAGE=${UH_CI_STAGE} UH_CI_DE=${UH_CI_DE}" >&2
   exit 1
 fi
-build_ci_image
+
+if [[ "${UH_CI_SKIP_BUILD:-0}" != "1" ]]; then
+  build_ci_image
+fi
+
+if [[ "${1:-}" == "--build-only" ]]; then
+  echo "==> image ready: ${IMAGE} (build-only)"
+  exit 0
+fi
+
 echo "==> docker run CI suite (BUILD_DIR=${BUILD_DIR})"
 docker run --rm \
   -e "UH_CI_STAGE=${UH_CI_STAGE}" \

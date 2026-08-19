@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -100,25 +100,29 @@ msgstr "ಎಲ್ಲಾ ಪ್ರಶ್ನೆಗಳನ್ನು ಬಿಟ್ಟ�
 msgid "Print machine-friendly output."
 msgstr "ಯಂತ್ರ ಸ್ನೇಹಿ ಔಟ್‌ಪುಟ್ ಅನ್ನು ಮುದ್ರಿಸಿ."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "With keyring restore: restore sealed login passwords for all users."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "ಈ ಸಹಾಯ ಸಂದೇಶವನ್ನು ತೋರಿಸಿ ಮತ್ತು ನಿರ್ಗಮಿಸಿ."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ ಬಳಕೆದಾರ:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "ಅಮಾನ್ಯ ಬಳಕೆದಾರಹೆಸರು ಸ್ವರೂಪ"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "ದಯವಿಟ್ಟು ಈ ಆಜ್ಞೆಯನ್ನು ರೂಟ್ ಆಗಿ ಚಲಾಯಿಸಿ:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -156,93 +160,93 @@ msgstr "ಹೋಸ್ಟ್ ಹೆಸರು:"
 msgid "Best certainty value: "
 msgstr "ಅತ್ಯುತ್ತಮ ನಿಶ್ಚಿತ ಮೌಲ್ಯ:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "ನಿಮ್ಮನ್ನು ಗುರುತಿಸಲಾಗುತ್ತಿದೆ..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "ವಿಫಲವಾಗಿದೆ"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "ಎಲ್ಲಾ ಫ್ರೇಮ್‌ಗಳು ತುಂಬಾ ಗಾಢವಾಗಿವೆ, ದಯವಿಟ್ಟು ಸಂರಚನೆಯಲ್ಲಿ ಡಾರ್ಕ್_ಥ್ರೆಶೋಲ್"
 "ಡ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ಸರಾಸರಿ ಕತ್ತಲೆ: {avg}, ಮಿತಿ: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "ಸಮಯ ಕಳೆದಿದೆ"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "ಓಪನ್ ಕ್ಯಾಮ್ + ಲೋಡ್ ಲಿಬ್ಸ್: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "ಕ್ಯಾಮರಾ ತೆರೆಯಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "ಗುರುತಿಸುವಿಕೆ ಲಿಬ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "ಪರಿಚಿತ ಮುಖವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "ಒಟ್ಟು ಸಮಯ"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nರೆಸಲ್ಯೂಶನ್"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "ಸ್ಥಳೀಯ: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "ಬಳಸಲಾಗಿದೆ: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nಚೌಕಟ್ಟುಗಳನ್ನು ಹುಡುಕಲಾಗಿದೆ: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "ಕಪ್ಪು ಚೌಕಟ್ಟುಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "ಡಾರ್ಕ್ ಫ್ರೇಮ್‌ಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "ಗೆಲ್ಲುವ ಚೌಕಟ್ಟಿನ ಖಚಿತತೆ: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "ವಿಜೇತ ಮಾದರಿ: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "ಯಶಸ್ವಿಯಾಗಿದೆ"
 
@@ -299,39 +303,39 @@ msgstr "ಬಳಕೆದಾರರಿಗೆ ಮುಖದ ಮಾದರಿಯನ್�
 msgid "Model #"
 msgstr "ಮಾದರಿ #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y ಫ್ಲ್ಯಾಗ್‌ನಿಂದಾಗಿ \"%s\" ಡೀಫಾಲ್ಟ್ ಲೇಬಲ್ ಅನ್ನು ಬಳಸಲಾಗುತ್ತಿದೆ"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "ಈ ಹೊಸ ಮಾದರಿಗಾಗಿ ಲೇಬಲ್ ಅನ್ನು ನಮೂದಿಸಿ [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "ಸೂಚನೆ: ಮಾದರಿ ಹೆಸರಿನಿಂದ ಅಕ್ರಮ ಅಕ್ಷರ \",\" ತೆಗೆದುಹಾಕಲಾಗುತ್ತಿದೆ"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nದಯವಿಟ್ಟು ನೇರವಾಗಿ ಕ್ಯಾಮರಾದಲ್ಲಿ ನೋಡಿ"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr ""
 "ಕ್ಯಾಮೆರಾ ಕಪ್ಪು ಚೌಕಟ್ಟುಗಳನ್ನು ಮಾತ್ರ ನೋಡಿದೆ - ಐಆರ್ ಎಮಿಟರ್ ಕಾರ್ಯನಿರ್ವಹಿಸು"
 "ತ್ತಿದೆಯೇ?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "ಯಾವುದೇ ಮುಖ ಪತ್ತೆಯಾಗಿಲ್ಲ, ಸ್ಥಗಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "ಬಹು ಮುಖಗಳನ್ನು ಪತ್ತೆಹಚ್ಚಲಾಗಿದೆ, ಸ್ಥಗಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -415,7 +419,7 @@ msgstr "Ubuntu Hello ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದ�
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "ಬಳಕೆ: ಕೀರಿಂಗ್ [ಸಕ್ರಿಯಗೊಳಿಸಿ|ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ|ಮರುಸ್ಥಾಪಿಸಿ] [--all]"
 
@@ -487,19 +491,19 @@ msgstr "ಬಳಕೆದಾರರಿಗಾಗಿ ಕೀರಿಂಗ್/KWallet �
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ಬಳಕೆದಾರ {} ಗಾಗಿ ಕೀರಿಂಗ್/KWallet ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿಲ್ಲ."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "ಯಾವುದೇ ಸೀಲ್ ಮಾಡಿದ ಲಾಗಿನ್ ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಸಿಗಲಿಲ್ಲ; ಮರುಸ್ಥಾಪಿಸಲು ಏನೂ ಇಲ್ಲ."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} ಬಳಕೆದಾರ(ರು)ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} ಬಳಕೆದಾರ(ರು)ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಲಿಲ್ಲ."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -708,7 +712,7 @@ msgstr "ffmpeg ಮಾಡ್ಯೂಲ್ ಕಾಣೆಯಾಗಿದೆ, ದಯ�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 ಮಾಡ್ಯೂಲ್ ಕಾಣೆಯಾಗಿದೆ, ದಯವಿಟ್ಟು ರನ್ ಮಾಡಿ:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -716,7 +720,7 @@ msgstr ""
 "Ubuntu Hello ಸಂರಚನಾ ಕಡತದಲ್ಲಿ ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ ಮಾರ್ಗದಲ್ಲಿ ಕ್ಯಾಮರಾ ಸಾಧನವನ"
 "್ನು ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -724,7 +728,7 @@ msgstr ""
 "ಮಾರ್ಗವನ್ನು ಸರಿಯಾಗಿ ಕಾನ್ಫಿಗರ್ ಮಾಡದಿರುವ ಸಾಧ್ಯತೆಯಿದೆ, ದಯವಿಟ್ಟು ಚಾಲನೆ ಮಾಡು"
 "ವ ಮೂಲಕ 'device_path' ಸಂರಚನಾ ಮೌಲ್ಯವನ್ನು ಸಂಪಾದಿಸಿ:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

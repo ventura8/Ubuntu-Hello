@@ -18,8 +18,10 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 ├── install.sh / uninstall.sh  # Host install / uninstall scripts
 ├── scripts/
 │   ├── ci-docker.sh           # Stage runner (UH_CI_STAGE=lint|coverage|compat)
-│   ├── ci-pipeline.sh         # Full gate: lint → coverage → compat matrix
-│   ├── ci-matrix.sh           # Parallel DE compat matrix
+│   ├── ci-pipeline.sh         # Full gate: lint → coverage → compat → packaging
+│   ├── ci-matrix.sh           # Parallel DE compat cells
+│   ├── ci-packaging-matrix.sh # Parallel packaging format cells (same as GHA)
+│   ├── ci-packaging-cell.sh   # One packaging format: build + smoke + E2E
 │   ├── read-version.py        # Print semver from VERSION
 │   ├── i18n-update.sh         # Refresh gettext pots/po; assert LINGUAS
 │   ├── i18n-lint.py           # Lint JSON packs + gettext .po catalogs
@@ -140,8 +142,8 @@ sudo meson install -C build
 - **Settings search**: header-bar `Gtk.SearchEntry` on the **left** (`pack_type=start`) with **fuzzy** match (stdlib `difflib` + subsequence) over currently displayed (translated) labels; rebuilds after language switch.
 - **Native multi-DE**: Settings remains GTK3+Glade on GNOME/KDE/XFCE/Cinnamon/MATE/Budgie/LXQt; use `theme_detect`; do not introduce web UI.
 - Refresh: `./scripts/i18n-update.sh` (asserts LINGUAS, refreshes `.pot`, `msgmerge`s `.po` without wiping msgstr).
-- Lint catalogs: `python3 scripts/i18n-lint.py` (CI lint stage; JSON UTF-8/parse, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity).
-- **Mandatory**: after any translatable string add/change/remove, refresh catalogs and fill **all** Whisper languages in the same change (`i18n-fill-translations.py`); do not leave empty `msgstr` or fuzzy gaps. See AGENTS.md §4.6.0 and the i18n skill.
+- Lint catalogs: `python3 scripts/i18n-lint.py` (CI lint stage; JSON UTF-8/parse, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity, fill-pack ↔ `.pot` completeness). Pytest: `tests/test_i18n_lint.py::test_all_translations_filled`.
+- **Mandatory**: after any translatable string add/change/remove, refresh catalogs and fill **all** Whisper languages in the same change (`i18n-fill-translations.py`); do not leave empty `msgstr` or fuzzy gaps. See AGENTS.md §4.7.0 and the i18n skill.
 - Verify: Settings Language (instant) **or** `LANG=ro_RO.UTF-8 LANGUAGE=ro ubuntu-hello list` — spot-check non-English strings.
 - Skill: [`.agents/skills/i18n/SKILL.md`](../.agents/skills/i18n/SKILL.md).
 
@@ -190,7 +192,33 @@ PPA packaging Docker helper: `scripts/ppa-docker.sh` / `docker/Dockerfile.ppa` (
 
 `apt remove` (and `debian/ubuntu-hello.prerm`) deletes `/etc/ubuntu-hello`, including the `config.ini` conffile. dpkg will **not** unpack that deleted conffile on the next `apt install`. `ubuntu-hello.postinst` copies `/usr/share/ubuntu-hello/config.ini` back to `/etc/ubuntu-hello/config.ini` when it is missing; the CLI (`config_ensure.py`) does the same before `add` / `set`. Without that restore, the setup wizard fails with `configparser.NoSectionError: No section: 'video'`.
 
-Keep the **repo root clean**: put new CI/Docker assets under `docker/` (see [AGENTS.md](../AGENTS.md) §4.6.1).
+### 2.7 GitHub Release artifacts (multi-format)
+
+Tag push `vX.Y.Z` triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml): PPA upload plus parallel builds attached to the GitHub Release (with `SHA256SUMS` and `docs/releases/vX.Y.Z_github_description.md` as the release body when present).
+
+Verify downloaded assets before installing:
+
+```bash
+sha256sum -c SHA256SUMS
+```
+
+| Format | Install (from Release assets) |
+|--------|-------------------------------|
+| **Debian `.deb`** | `sudo apt install ./ubuntu-hello_*_amd64.deb ./ubuntu-hello-gtk_*_all.deb` |
+| **Fedora RPM** | `sudo dnf install ./ubuntu-hello-[0-9]*fc44*.rpm ./ubuntu-hello-gtk-*fc44*.rpm` |
+| **openSUSE RPM** | `sudo zypper install ./ubuntu-hello-[0-9]*lp160*.rpm ./ubuntu-hello-gtk-*lp160*.rpm` |
+| **Arch** | `sudo pacman -U ./ubuntu-hello-[0-9]*.pkg.tar.zst ./ubuntu-hello-gtk-*.pkg.tar.zst` |
+| **Snap** | `sudo snap install --dangerous --classic ubuntu-hello_*_amd64.snap && sudo snap run ubuntu-hello.host-install` |
+| **AppImage** | `chmod +x Ubuntu-Hello-*-x86_64.AppImage && ./Ubuntu-Hello-*-x86_64.AppImage --install` |
+| **Flatpak** | `flatpak install --user ./com.github.ventura8.UbuntuHello-*.flatpak && flatpak run --command=ubuntu-hello-host-install com.github.ventura8.UbuntuHello && flatpak run com.github.ventura8.UbuntuHello` |
+
+Local rebuild: [`.agents/skills/release-packaging/SKILL.md`](../.agents/skills/release-packaging/SKILL.md) and `scripts/release-*.sh` with Docker images under `docker/Dockerfile.{ppa,rpm.fedora,rpm.opensuse,arch,release}`.
+
+Shared post-install helpers live in `scripts/package-configure.sh`, `package-gtk-onboard.sh`, and `package-prerm.sh` (installed to `/usr/share/ubuntu-hello/`).
+
+Keep the **repo root clean**: put new CI/Docker assets under `docker/` (see [AGENTS.md](../AGENTS.md) §4.7.1).
+
+**Lint and test** new or changed code in the same change set (see [AGENTS.md](../AGENTS.md) §4.5).
 
 ---
 
@@ -288,18 +316,19 @@ PAM may return `PAM_AUTHINFO_UNAVAIL` without running compare (disabled/SSH/lid 
 
 ## 5. Local CI Quality Bar
 
-CI is split into three fail-fast stages on Ubuntu **26.04** (see [AGENTS.md](../AGENTS.md) §4.7):
+CI is split into fail-fast stages on Ubuntu **26.04** (see [AGENTS.md](../AGENTS.md) §4.8):
 
-| Stage | Image | Checks |
+| Stage | Image / driver | Checks |
 |---|---|---|
-| `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile`, `scripts/i18n-lint.py` |
+| `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile`, `scripts/i18n-lint.py`, `scripts/no-suppressions-lint.py` |
 | `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1` |
 | `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), `meson test pam-aes-gcm-uh1` |
+| `packaging` | `ci-packaging-cell.sh` (same as GHA) | build + smoke-verify + live E2E install/upgrade/remove/reinstall |
 
 Commands:
 
 ```bash
-# Full gate (preferred): lint → coverage → parallel compat matrix
+# Full gate (preferred): lint → coverage → parallel compat → parallel packaging
 ./scripts/ci-pipeline.sh
 
 # Individual stages
@@ -309,13 +338,17 @@ UH_CI_STAGE=compat UH_CI_DE=kde ./scripts/ci-docker.sh
 
 # Compat-only parallel matrix (all DEs)
 ./scripts/ci-matrix.sh
+
+# Packaging-only parallel matrix (all formats; same cells as GHA)
+./scripts/ci-packaging-matrix.sh
+./scripts/ci-packaging-cell.sh deb
 ```
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
 Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.15.4`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.26.0`. Never pin by commit SHA; never use a `latest` alias.
 
-Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log` (see [logs/README.md](../logs/README.md)).
+Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 
 Coverage/lint SVG badges (host): `python3 generate_badges.py`.
 

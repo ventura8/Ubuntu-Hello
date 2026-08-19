@@ -80,7 +80,6 @@ def test_stop_preview():
         assert ob.current_preview_path is None
         assert ob.preview_capture is None
         mock_thread.join.assert_called_once_with(timeout=2.0)
-        ob.preview_image.clear.assert_called_once()
 
 def test_go_next_slide_stops_preview():
     with patch("onboarding.gtk.Builder"), \

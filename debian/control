@@ -40,6 +40,7 @@ Depends:
  libpam-kwallet5
 Recommends:
   ubuntu-hello-gtk,
+  python3-dlib,
   libopenblas-dev | liblapack-dev,
   python3-pip,
   cmake,
@@ -54,6 +55,9 @@ Description: Windows Hello style facial authentication for Linux
  .
  Using the central authentication system (PAM), this works everywhere you
  would otherwise need your password: login, lock screen, sudo, su, etc.
+ .
+ python3-dlib is not available on every Ubuntu release; where the Recommends
+ cannot be satisfied, install it manually: pip3 install dlib
 
 Package: ubuntu-hello-gtk
 Architecture: all

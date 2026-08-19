@@ -24,7 +24,7 @@ description: >-
 - Debian packages must ship the `.mo` files via:
   - `debian/ubuntu-hello.install` → `usr/share/locale/*/LC_MESSAGES/ubuntu-hello.mo`
   - `debian/ubuntu-hello-gtk.install` → `usr/share/locale/*/LC_MESSAGES/ubuntu-hello-gtk.mo`
-  Missing these makes `dh_missing` fail the `deb-package` CI job.
+  Missing these makes `dh_missing` fail the `packaging` matrix `deb` cell.
 
 ## Automatic default + Settings override
 
@@ -80,13 +80,15 @@ When you add, change, or remove a msgid (Python `_()`, PAM `S()`, Glade, desktop
 
 1. Run `./scripts/i18n-update.sh` so both domains’ `.pot` refresh and every `.po` is `msgmerge`d; `LINGUAS` must match [`po/whisper-languages.txt`](../../../po/whisper-languages.txt).
 2. Fill **all** languages for new/changed strings via `scripts/i18n_fill_data/` + `python3 scripts/i18n-fill-translations.py` (or regenerate packs, then apply).
-3. Before finishing: assert **no** empty `msgstr` and **no** leftover `fuzzy` entries in `ubuntu-hello/po/*.po` and `ubuntu-hello-gtk/po/*.po` (except intentional English source).
+3. Before finishing: assert **no** empty `msgstr` and **no** leftover `fuzzy` entries in `ubuntu-hello/po/*.po` and `ubuntu-hello-gtk/po/*.po` (except intentional English source). Also keep `scripts/i18n_fill_data/<domain>/_keys.json` and every Whisper language JSON in sync with the domain `.pot` (msgctxt keys use `msgctxt\x04msgid`).
 4. Keep this in the **same change set** as the string edit — do not defer “translations later”.
 
-Audit helper:
+Audit helper (CI lint + pytest `test_all_translations_filled`):
 
 ```bash
-python3 scripts/i18n-lint.py   # JSON packs + .po (msgfmt, empty/fuzzy msgstr, placeholders)
+python3 scripts/i18n-lint.py   # JSON packs + .po + pack↔pot completeness
+python3 scripts/i18n-fill-translations.py --check
+pytest tests/test_i18n_lint.py::test_all_translations_filled -q
 # Empty msgstr (excluding header) or fuzzy entries → must be zero after a string change
 for d in ubuntu-hello ubuntu-hello-gtk; do
   echo "== $d =="

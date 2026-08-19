@@ -282,7 +282,7 @@ def _gio_call(
     environ: dict[str, str],
 ):
     """Synchronous D-Bus method call via a private Gio connection."""
-    from gi.repository import Gio  # type: ignore
+    from gi.repository import Gio
 
     address = environ.get("DBUS_SESSION_BUS_ADDRESS")
     if not address:
@@ -319,7 +319,7 @@ def _gio_call(
 
 
 def _glib_variant(signature: str, value):
-    from gi.repository import GLib  # type: ignore
+    from gi.repository import GLib
 
     return GLib.Variant(signature, value)
 

@@ -1,0 +1,100 @@
+app-id: com.github.ventura8.UbuntuHello
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: ubuntu-hello-host-install
+finish-args:
+  # Both required for the host-install/uninstall wrappers: pkexec cannot
+  # gain privilege from inside the sandbox (no_new_privs), so they run it
+  # on the host via `flatpak-spawn --host`, authorized by PolicyKit there.
+  - --talk-name=org.freedesktop.Flatpak
+  - --talk-name=org.freedesktop.PolicyKit1
+  - --system-talk-name=org.freedesktop.PolicyKit1
+
+modules:
+  - name: inih
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/benhoyt/inih.git
+        tag: r58
+    config-opts:
+      - -Dwith_INIReader=true
+
+  - name: linux-pam
+    buildsystem: autotools
+    config-opts:
+      - --disable-doc
+      - --disable-nis
+      - --disable-audit
+      - --disable-selinux
+      - --disable-examples
+      - --disable-Werror
+    sources:
+      - type: git
+        url: https://github.com/linux-pam/linux-pam.git
+        tag: v1.6.1
+    post-install:
+      - mkdir -p /app/include/security
+      - mv /app/include/_pam_compat.h /app/include/_pam_macros.h /app/include/_pam_types.h
+        /app/include/pam_appl.h /app/include/pam_modules.h /app/include/pam_ext.h
+        /app/include/pam_modutil.h /app/include/security/
+
+  - name: libevdev
+    buildsystem: meson
+    config-opts:
+      - -Dtests=disabled
+      - -Ddocumentation=disabled
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/libevdev/libevdev.git
+        tag: libevdev-1.13.3
+
+  - name: ubuntu-hello
+    # buildsystem: meson would configure/install with --prefix=/app directly
+    # into the sandbox root, baking /app/... into compiled paths (CLI
+    # launcher, PAM module's compare-script path, paths.py) that don't exist
+    # once install-host.sh copies files onto the real host. Instead build
+    # with --prefix=/usr (host paths) and DESTDIR-install under /app, same
+    # as the AppImage bundle (uh_meson_setup/uh_meson_build_install in
+    # scripts/release-common.sh) — install-host.sh already understands this
+    # "usr/ nested under the bundle root" layout.
+    buildsystem: simple
+    build-commands:
+      - |
+        set -e
+        . scripts/release-common.sh
+        UH_REPO_ROOT="$(pwd)"
+        uh_meson_setup build --prefix=/usr --libdir=lib
+        uh_meson_build_install build /app
+      - |
+        set -e
+        cat > /app/bin/ubuntu-hello-host-install <<'WRAPPER_EOF'
+        #!/bin/sh
+        # pkexec inside a Flatpak sandbox cannot escalate (no_new_privs), and
+        # the sandbox-only /app path isn't visible to a host process anyway.
+        # Resolve the real host-visible install path from /.flatpak-info and
+        # run pkexec on the host via flatpak-spawn --host instead.
+        set -e
+        HOST_APP_PATH="$(sed -n 's/^app-path=//p' /.flatpak-info)"
+        if [ -z "$HOST_APP_PATH" ]; then
+        	echo "error: unable to resolve host Flatpak install path from /.flatpak-info" >&2
+        	exit 1
+        fi
+        exec flatpak-spawn --host pkexec "${HOST_APP_PATH}/usr/share/ubuntu-hello/install-host.sh" --install
+        WRAPPER_EOF
+        chmod 755 /app/bin/ubuntu-hello-host-install
+        cat > /app/bin/ubuntu-hello-host-uninstall <<'WRAPPER_EOF'
+        #!/bin/sh
+        set -e
+        HOST_APP_PATH="$(sed -n 's/^app-path=//p' /.flatpak-info)"
+        if [ -z "$HOST_APP_PATH" ]; then
+        	echo "error: unable to resolve host Flatpak install path from /.flatpak-info" >&2
+        	exit 1
+        fi
+        exec flatpak-spawn --host pkexec "${HOST_APP_PATH}/usr/share/ubuntu-hello/install-host.sh" --uninstall
+        WRAPPER_EOF
+        chmod 755 /app/bin/ubuntu-hello-host-uninstall
+    sources:
+      - type: dir
+        path: ../..

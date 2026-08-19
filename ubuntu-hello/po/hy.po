@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,29 @@ msgstr "Բաց թողնել բոլոր հարցերը:"
 msgid "Print machine-friendly output."
 msgstr "Տպել մեքենայի համար հարմար արդյունք:"
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "With keyring restore: restore sealed login passwords for all users."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Ցույց տալ այս օգնության հաղորդագրությունը և դուրս գալ:"
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "ընթացիկ ակտիվ օգտվող."
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Օգտվողի անվան անվավեր ձևաչափ"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Խնդրում ենք գործարկել այս հրամանը որպես root.\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -154,93 +158,93 @@ msgstr "Հյուրընկալողի անունը."
 msgid "Best certainty value: "
 msgstr "Լավագույն որոշակի արժեք."
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Սկսվում է..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Ձեզ նույնականացնելով..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "ՉԱՓՈԽՎԱԾ"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Բոլոր շրջանակները չափազանց մութ էին, խնդրում ենք ստուգել dark_threshol"
 "d-ը կազմաձևում"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Միջին մթություն՝ {avg}, շեմը՝ {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Ծախսված ժամանակը"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Մեկնարկում"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Բացեք տեսախցիկը + բեռնման եզրերը՝ %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Տեսախցիկի բացում"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Ներմուծում ճանաչման libs"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Հայտնի դեմքի որոնում"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Ընդհանուր ժամանակը"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nԲանաձեւ"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Մայրենի՝ %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Օգտագործված՝ %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nՈրոնված շրջանակներ՝ %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Սև շրջանակներն անտեսված են՝ %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Մուգ շրջանակներն անտեսված են՝ %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Հաղթող շրջանակի որոշակիություն՝ %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Հաղթող մոդել՝ %d («%s»)"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "ՀԱՋՈՂԱԿԱՆ"
 
@@ -296,37 +300,37 @@ msgstr "Օգտագործողի համար դեմքի մոդելի ավելացո
 msgid "Model #"
 msgstr "Մոդել #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "«%s» լռելյայն պիտակի օգտագործումը -y դրոշի պատճառով"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Մուտքագրեք պիտակ այս նոր մոդելի համար [{}]."
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "ԾԱՆՈՒՑՈՒՄ. մոդելի անունից հանվում է անօրինական «» նիշը"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nԽնդրում ենք ուղիղ նայել տեսախցիկի մեջ"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Տեսախցիկի սղոցը միայն սև շրջանակներ է. IR հաղորդիչն աշխատում է:"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Դեմք չի հայտնաբերվել, ընդհատվում է"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Բազմաթիվ դեմքեր են հայտնաբերվել, ընդհատվում է"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -408,7 +412,7 @@ msgstr "Ubuntu Hello անջատված է"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello միացված է"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Օգտագործում՝ ստեղնաշար [միացնել|անջատել|վերականգնել] [--all]"
 
@@ -478,19 +482,19 @@ msgstr "Keyring/KWallet ապակողպումն անջատված է {} օգտատ
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Keyring/KWallet ապակողպումը միացված չէ {} օգտատիրոջ համար:"
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Կնքված մուտքի գաղտնաբառեր չեն գտնվել. վերականգնելու բան չկա։"
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Մուտքի դրամապանակի գաղտնաբառը վերականգնվեց {} օգտատիրոջ համար։"
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Չհաջողվեց վերականգնել մուտքի դրամապանակի գաղտնաբառը {} օգտատիրոջ համար։"
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -699,7 +703,7 @@ msgstr "Բացակայում է ffmpeg մոդուլը, խնդրում ենք գ�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Բացակայում է pyv4l2 մոդուլը, խնդրում ենք գործարկել՝"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -707,7 +711,7 @@ msgstr ""
 "Ubuntu Hello չկարողացավ գտնել տեսախցիկի սարքը կազմաձևման ֆայլում նշված"
 " ուղու վրա:"
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -715,7 +719,7 @@ msgstr ""
 "Շատ հավանական է, որ ուղին ճիշտ կազմաձևված չէ, խնդրում ենք խմբագրել «de"
 "vice_path» կազմաձևման արժեքը՝ գործարկելով."
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

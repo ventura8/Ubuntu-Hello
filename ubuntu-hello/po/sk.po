@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,31 @@ msgstr "Preskočte všetky otázky."
 msgid "Print machine-friendly output."
 msgstr "Tlačový výstup vhodný pre stroj."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"S keyring restore: obnoviť zapečatené prihlasovacie heslá pre všetkých"
+" používateľov."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Ukážte túto pomocnú správu a ukončite ju."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "aktuálny aktívny používateľ:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Neplatný formát používateľského mena"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Spustite tento príkaz ako root:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -152,93 +158,93 @@ msgstr "Názov hostiteľa:"
 msgid "Best certainty value: "
 msgstr "Najlepšia hodnota istoty:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Spúšťa sa..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Identifikujem vás..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "Zlyhal"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Všetky snímky boli príliš tmavé, skontrolujte dark_threshold v konfigu"
 "rácii"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Priemerná tmavosť: {avg}, Prahová hodnota: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Strávený čas"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Spustenie"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Otvorená vačka + limity zaťaženia: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Otváranie fotoaparátu"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Importovanie knižníc na rozpoznávanie"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Hľadanie známej tváre"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Celkový čas"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nRozlíšenie"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Natívne: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Použité: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nVyhľadávané snímky: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Ignorované čierne rámy: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Tmavé rámy sú ignorované: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Istota výherného rámca: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Víťazný model: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "ÚSPEŠNÝ"
 
@@ -294,37 +300,37 @@ msgstr "Pridanie modelu tváre pre používateľa"
 msgid "Model #"
 msgstr "model #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Použitie predvoleného označenia \"%s\" kvôli príznaku -y"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Zadajte štítok pre tento nový model [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "UPOZORNENIE: Odstránenie nepovoleného znaku \",\" z názvu modelu"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nPozrite sa prosím priamo do kamery"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Fotoaparát videl iba čierne rámy - funguje IR žiarič?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Nebola rozpoznaná žiadna tvár, prerušuje sa"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Rozpoznané viaceré tváre, prerušené"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -406,7 +412,7 @@ msgstr "Ubuntu Hello bolo vypnuté"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello bolo povolené"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Použitie: kľúčenka [povoliť|zakázať|obnoviť] [--all]"
 
@@ -476,21 +482,21 @@ msgstr "Odblokovanie kľúčenky/KWallet je pre používateľa {} zakázané."
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Odblokovanie kľúčenky/KWallet nebolo povolené pre používateľa {}."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Nenašli sa žiadne zapečatené prihlasovacie heslá; nie je čo obnovovať."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Heslo prihlasovacej peňaženky obnovené pre {} používateľa(-ov)."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
 "Heslo prihlasovacej peňaženky sa nepodarilo obnoviť pre {} používateľa"
 "(-ov)."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -695,7 +701,7 @@ msgstr "Chýba modul ffmpeg, spustite:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Chýba modul pyv4l2, spustite:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -703,7 +709,7 @@ msgstr ""
 "Ubuntu Hello nemohol nájsť kamerové zariadenie na ceste zadanej v konf"
 "iguračnom súbore."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -711,7 +717,7 @@ msgstr ""
 "Je veľmi pravdepodobné, že cesta nie je správne nakonfigurovaná, uprav"
 "te hodnotu konfigurácie 'device_path' spustením:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"
