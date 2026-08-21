@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+if [ -f "$SNAP/usr/share/ubuntu-hello/package-configure.sh" ]; then
+	# dlib is pre-bundled at snap build time (override-build in snapcraft.yaml);
+	# skip the pip install step inside the configure hook to avoid the 5-minute
+	# snapd hook timeout that occurs when building dlib from source at install time.
+	export UH_DLIB_PIP_SKIP=1
+	# shellcheck source=/dev/null
+	. "$SNAP/usr/share/ubuntu-hello/package-configure.sh"
+	uh_package_configure
+fi
+if [ -f "$SNAP/usr/share/ubuntu-hello/package-gtk-onboard.sh" ]; then
+	# shellcheck source=/dev/null
+	. "$SNAP/usr/share/ubuntu-hello/package-gtk-onboard.sh"
+	uh_package_gtk_onboard "snap.configure"
+fi

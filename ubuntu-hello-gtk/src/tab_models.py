@@ -84,7 +84,11 @@ def on_model_add(self, button):
 
 def execute_add(box, dialog, entered_name):
 
-	res = subprocess.run(["ubuntu-hello", "add", entered_name, "-y", "-U", box.active_user], capture_output=True, text=True)
+	res = subprocess.run(
+		["ubuntu-hello", "-y", "-U", box.active_user, "add", entered_name],
+		capture_output=True,
+		text=True,
+	)
 	status, output = res.returncode, res.stdout + res.stderr
 
 	dialog.destroy()

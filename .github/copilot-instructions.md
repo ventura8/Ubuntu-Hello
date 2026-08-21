@@ -9,4 +9,4 @@ Additional context (do not fork rules into this file):
 - [docs/SECURITY.md](../docs/SECURITY.md) — security practices
 - [`.agents/skills/`](../.agents/skills/) — task-specific runbooks
 
-When changing behavior, update `AGENTS.md` and affected skills in the same change set. Use `logs/` for agent progress output.
+When changing behavior, update `AGENTS.md` and affected skills in the same change set. Lint and test new or changed code per `AGENTS.md` §4.5. Use `logs/` for agent progress output.

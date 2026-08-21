@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib
 import sys
 from pathlib import Path
 
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GTK_SRC = ROOT / "ubuntu-hello-gtk" / "src"
 sys.path.insert(0, str(GTK_SRC))
 
-import version_display as vd  # noqa: E402
+vd = importlib.import_module("version_display")
 
 REPO_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip().splitlines()[0].strip()
 

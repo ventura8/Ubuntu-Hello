@@ -17,4 +17,4 @@ Optional import (if using Gemini `@` imports in your local setup):
 @./AGENTS.md
 ```
 
-Progress logs: `logs/`. Sync agent docs with code per `AGENTS.md` §4.6. Baseline OS for CI/docs: Ubuntu **26.04**.
+Progress logs: `logs/`. Lint and test new or changed code per `AGENTS.md` §4.5. Sync agent docs with code per `AGENTS.md` §4.7. Baseline OS for CI/docs: Ubuntu **26.04**.

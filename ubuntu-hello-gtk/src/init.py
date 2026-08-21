@@ -7,7 +7,10 @@ gi.require_version("GLib", "2.0")
 from gi.repository import GLib
 
 # System locale + bindtextdomain before any user-visible string / Glade load.
-import i18n  # noqa: F401
+import i18n
+
+# Keep the import live for side-effect setup (DOMAIN is set at module load).
+_I18N_DOMAIN = i18n.DOMAIN
 
 
 def _ensure_ubuntu_hello_on_path(here: str | None = None) -> None:
@@ -20,8 +23,6 @@ def _ensure_ubuntu_hello_on_path(here: str | None = None) -> None:
 	base = os.path.dirname(os.path.abspath(here or __file__))
 	candidates = [
 		os.path.join(os.path.dirname(base), "ubuntu-hello"),
-		"/usr/lib/ubuntu-hello",
-		"/usr/local/lib/ubuntu-hello",
 	]
 	# Debian multiarch / custom libdir: /usr/lib/<triplet>/ubuntu-hello
 	lib_root = os.path.dirname(base)
@@ -31,6 +32,12 @@ def _ensure_ubuntu_hello_on_path(here: str | None = None) -> None:
 				candidates.append(os.path.join(lib_root, name, "ubuntu-hello"))
 		except OSError:
 			pass
+
+	if here is None:
+		candidates.extend([
+			"/usr/lib/ubuntu-hello",
+			"/usr/local/lib/ubuntu-hello",
+		])
 
 	for path in candidates:
 		if not path or not os.path.isfile(os.path.join(path, "wallet_backend.py")):

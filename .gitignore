@@ -10,7 +10,10 @@ __pycache__/
 .Python
 env/
 build/
-builddir-agent/
+# Local Meson / packaging / CI staging (e.g. build-appimage/, build-ci-*, build-flatpak*)
+build-*/
+builddir/
+builddir-*/
 develop-eggs/
 dist/
 downloads/
@@ -19,6 +22,19 @@ eggs/
 lib/
 lib64/
 parts/
+packaging/snap/ubuntu-hello-src.tar.gz
+# uh_create_source_tarball mktemp leftovers next to the snap source tarball
+packaging/snap/.ubuntu-hello-src.tar.gz.*
+packaging/snap/.uh-src-*/
+packaging/snap/.craft/
+packaging/snap/stage/
+packaging/snap/prime/
+packaging/snap/overlay/
+packaging/snap/*.snap
+packaging/arch/ubuntu-hello/src/
+packaging/arch/ubuntu-hello/pkg/
+packaging/arch/ubuntu-hello/*.tar.gz
+packaging/arch/ubuntu-hello/*.pkg.tar.zst
 sdist/
 var/
 wheels/
@@ -31,6 +47,7 @@ wheels/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+!packaging/rpm/**/*.spec
 
 # Installer logs
 pip-log.txt

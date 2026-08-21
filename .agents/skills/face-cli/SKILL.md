@@ -14,9 +14,10 @@ Use the `ubuntu-hello` wrapper for administrative profile actions (typically as 
 
 ```bash
 sudo ubuntu-hello add
+sudo ubuntu-hello -y add              # non-interactive (default label; used by SUW / Settings)
 ```
 
-Follow interactive prompts to save face profile descriptors.
+Follow interactive prompts to save face profile descriptors. Without a TTY (or with `-y`), `add` skips the label prompt and uses the default. Do **not** use `argparse.REMAINDER` for CLI extras — it swallows `-y` after `add` and breaks the setup wizard (`EOFError` on `input()`). Top-level `--all` is for `keyring restore --all`.
 
 ## List / remove / clear
 

@@ -131,15 +131,18 @@ def test_ensure_finds_packaged_or_source_template(tmp_path):
 
 
 def test_postinst_restores_missing_config_ini():
-    text = _read_repo("debian/ubuntu-hello.postinst")
-    assert 'CONFIG_INI="/etc/ubuntu-hello/config.ini"' in text
-    assert 'CONFIG_TEMPLATE="/usr/share/ubuntu-hello/config.ini"' in text
-    assert '[ ! -f "$CONFIG_INI" ]' in text
-    assert 'mkdir -p "$(dirname "$CONFIG_INI")"' in text
-    assert 'cp "$CONFIG_TEMPLATE" "$CONFIG_INI"' in text
-    assert 'chmod 644 "$CONFIG_INI"' in text
-    assert ">>> Restored default config.ini" in text
-    assert "Failed to restore config.ini" in text
+    postinst = _read_repo("debian/ubuntu-hello.postinst")
+    configure = _read_repo("scripts/package-configure.sh")
+    assert "package-configure.sh" in postinst
+    assert "uh_package_configure" in postinst
+    assert 'config_ini="$(uh_pkg_path "/etc/ubuntu-hello/config.ini")"' in configure
+    assert 'config_template="$(uh_pkg_path "/usr/share/ubuntu-hello/config.ini")"' in configure
+    assert '[ ! -f "$config_ini" ]' in configure
+    assert 'mkdir -p "$(dirname "$config_ini")"' in configure
+    assert 'cp "$config_template" "$config_ini"' in configure
+    assert 'chmod 644 "$config_ini"' in configure
+    assert ">>> Restored default config.ini" in configure
+    assert "Failed to restore config.ini" in configure
 
 
 def test_meson_installs_share_template():

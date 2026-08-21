@@ -8,6 +8,8 @@ description: >-
 
 # Test Runner
 
+When adding or changing code, run applicable tests in the same change set ([AGENTS.md](../../../AGENTS.md) §4.5).
+
 ## Preferred: Docker coverage stage (matches GHA coverage job)
 
 ```bash
@@ -61,7 +63,7 @@ Sources: `tests/pam_aes_gcm_uh1_test.cc`, `tests/pam_face_skip_test.cc` (wired i
 | `tests/test_compare_cleanup.py` | SIGTERM / GTK cleanup |
 | `tests/test_theme_detect.py` | Multi-DE theme probes |
 | `tests/test_wallet_backend.py` | Wallet labels |
-| `tests/test_i18n_lint.py` | JSON + gettext catalog lint (`scripts/i18n-lint.py`) |
+| `tests/test_i18n_lint.py` | JSON + gettext catalog lint; `test_all_translations_filled` fails on empty/fuzzy `.po` or fill-pack gaps vs `.pot` (`scripts/i18n-lint.py`) |
 | `tests/test_config_ensure.py` | Restore missing `config.ini` after apt remove/reinstall |
 
 Always tee long runs to `logs/` (Hello convention), not other log roots.

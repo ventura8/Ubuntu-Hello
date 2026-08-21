@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -98,25 +98,31 @@ msgstr "Pomiń wszystkie pytania."
 msgid "Print machine-friendly output."
 msgstr "Drukuj wydruki przyjazne dla maszyny."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"Z keyring restore: przywróć zapieczętowane hasła logowania dla wszystk"
+"ich użytkowników."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Pokaż ten komunikat pomocy i wyjdź."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "bieżący aktywny użytkownik:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Nieprawidłowy format nazwy użytkownika"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Proszę uruchomić to polecenie jako root:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -152,91 +158,91 @@ msgstr "Nazwa hosta:"
 msgid "Best certainty value: "
 msgstr "Najlepsza wartość pewności:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Uruchamiam..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Identyfikacja Ciebie..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "PRZEGRANY"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Wszystkie klatki były zbyt ciemne. Sprawdź dark_threshold w konfiguracji"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Średnia ciemność: {avg}, Próg: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Czas spędzony"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Uruchamianie"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Otwórz kamerę + załaduj biblioteki: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Otwieranie aparatu"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Importowanie bibliotek rozpoznawania"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Wyszukiwanie znanej twarzy"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Całkowity czas"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nRezolucja"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Natywny: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Używane: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nPrzeszukiwane klatki: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Zignorowano czarne ramki: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Zignorowano ciemne ramki: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Pewność zwycięskiego frejma: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Zwycięski model: %d („%s”)"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "UDANY"
 
@@ -290,37 +296,37 @@ msgstr "Dodanie modelu twarzy dla użytkownika"
 msgid "Model #"
 msgstr "Model #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Używanie domyślnej etykiety „%s” z powodu flagi -y"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Wprowadź etykietę dla tego nowego modelu [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "UWAGA: Usuwanie niedozwolonego znaku „,” z nazwy modelu"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nProszę spojrzeć prosto w kamerę"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Kamera widziała tylko czarne klatki - czy emiter podczerwieni działa?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Nie wykryto twarzy, przerywam"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Wykryto wiele twarzy, przerywam"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -400,7 +406,7 @@ msgstr "Ubuntu Hello zostało wyłączone"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello zostało włączone"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Użycie: brelok [włącz|wyłącz|przywróć] [--all]"
 
@@ -472,21 +478,21 @@ msgstr ""
 "Odblokowanie pęku kluczy/KWallet nie zostało włączone dla użytkownika "
 "{}."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
 "Nie znaleziono zapieczętowanych haseł logowania; nie ma nic do przywró"
 "cenia."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Przywrócono hasło portfela logowania dla {} użytkownika(-ów)."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Nie można przywrócić hasła portfela logowania dla {} użytkownika(-ów)."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -690,7 +696,7 @@ msgstr "Brak modułu ffmpeg, uruchom:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Brak modułu pyv4l2, uruchom:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -698,7 +704,7 @@ msgstr ""
 "Ubuntu Hello nie mógł znaleźć kamery w ścieżce określonej w pliku konf"
 "iguracyjnym."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -706,7 +712,7 @@ msgstr ""
 "Jest bardzo prawdopodobne, że ścieżka nie jest poprawnie skonfigurowan"
 "a. Zmień wartość konfiguracyjną „ścieżka_urządzenia”, uruchamiając:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

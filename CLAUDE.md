@@ -9,4 +9,4 @@ Do not treat this file as a second rulebook. Read and follow `AGENTS.md`, then u
 - [docs/SECURITY.md](docs/SECURITY.md) — security architecture
 - [`.agents/skills/`](.agents/skills/) — focused runbooks (`*/SKILL.md`)
 
-Progress for long runs: append under `logs/` (see [logs/README.md](logs/README.md)). Keep agent docs in sync with code changes as described in `AGENTS.md` §4.6.
+Progress for long runs: append under `logs/` (see [logs/README.md](logs/README.md)). Lint and test new or changed code per `AGENTS.md` §4.5. Keep agent docs in sync with code changes as described in `AGENTS.md` §4.7.

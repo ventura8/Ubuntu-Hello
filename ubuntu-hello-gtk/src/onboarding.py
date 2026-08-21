@@ -55,7 +55,7 @@ class KeyringPasswordDialog(gtk.Dialog):
 
 
 class OnboardingWindow(gtk.Window):
-	def __init__(self):
+	def __init__(self, run_main_loop=True):
 		"""Initialize the sticky window"""
 		# Load the custom CSS theme stylesheet
 		paths_factory.load_custom_css()
@@ -64,6 +64,7 @@ class OnboardingWindow(gtk.Window):
 		gtk.Window.__init__(self)
 
 		self.completed = False
+		self.run_main_loop = run_main_loop
 
 		self.builder = gtk.Builder()
 		self.builder.set_translation_domain("ubuntu-hello-gtk")
@@ -120,13 +121,25 @@ class OnboardingWindow(gtk.Window):
 		except Exception as e:
 			print("Error centering window:", e)
 
+		# Initialize preview images with blank pixbuf to avoid empty GTK3 style crash
+		try:
+			from gi.repository import GdkPixbuf
+			blank = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+			for img_id in ("preview_image", "slide4_preview_image"):
+				img = self.builder.get_object(img_id)
+				if img:
+					img.set_from_pixbuf(blank)
+		except Exception:
+			pass
+
 		# Hide the finish button initially
 		self.builder.get_object("finishbutton").hide()
 
 		self.window.current_slide = 0
 
-		# Start GTK main loop
-		gtk.main()
+		# Start GTK main loop if requested
+		if run_main_loop:
+			gtk.main()
 
 	def go_next_slide(self, button=None):
 		if self.window.current_slide == 6:
@@ -286,43 +299,35 @@ class OnboardingWindow(gtk.Window):
 		self.treeview = gtk.TreeView()
 		self.treeview.set_vexpand(True)
 
-		# Set the columns
-		for i, column in enumerate([_("Camera identifier or path"), _("Recommended")]):
-			cell = gtk.CellRendererText()
-			cell.set_property("ellipsize", pango.EllipsizeMode.END)
-			col = gtk.TreeViewColumn(column, cell, text=i)
-			self.treeview.append_column(col)
-
-		# Create a scrolled window to contain the treeview so it fits the screen
-		self.scrolled_window = gtk.ScrolledWindow()
-		self.scrolled_window.set_policy(gtk.PolicyType.NEVER, gtk.PolicyType.AUTOMATIC)
-		self.scrolled_window.set_shadow_type(gtk.ShadowType.IN)
-		self.scrolled_window.set_vexpand(True)
-		self.scrolled_window.set_hexpand(True)
-		self.scrolled_window.set_min_content_height(100)
-		self.scrolled_window.add(self.treeview)
-		self.scrolled_window.set_margin_bottom(15)
-
-		# Add the scrolled window to the container instead of the treeview directly
-		self.devicelistbox.add(self.scrolled_window)
-
-		# Create a datamodel
 		self.listmodel = gtk.ListStore(str, str, str, bool)
-
 		for device in device_rows:
 			is_gray = device[2] == 5
 			self.listmodel.append([device[0], device[3], device[1], is_gray])
 
 		self.treeview.set_model(self.listmodel)
-		self.treeview.get_selection().connect("changed", self.on_camera_selection_changed)
-		self.treeview.set_cursor(0)
 
-		self.scrolled_window.show_all()
+		for i, column in enumerate([_("Camera identifier or path"), _("Recommended")]):
+			cell = gtk.CellRendererText()
+			col = gtk.TreeViewColumn(column, cell, text=i)
+			self.treeview.append_column(col)
+
+		self.scrolled_window = gtk.ScrolledWindow()
+		self.scrolled_window.set_policy(gtk.PolicyType.NEVER, gtk.PolicyType.AUTOMATIC)
+		self.scrolled_window.set_shadow_type(gtk.ShadowType.IN)
+		self.scrolled_window.set_vexpand(True)
+		self.scrolled_window.set_hexpand(True)
 		self.loadinglabel.hide()
+		self.scrolled_window.add(self.treeview)
+		self.devicelistbox.add(self.scrolled_window)
+		self.scrolled_window.show_all()
 		self.enable_next()
 
-		# Ensure preview is started for the first device as a fallback
-		if device_rows and not self.current_preview_path:
+		self.treeview.get_selection().connect("changed", self.on_camera_selection_changed)
+		if len(device_rows) > 0:
+			self.treeview.set_cursor(0)
+
+		# Ensure preview is started for the first device if selection did not trigger it
+		if device_rows and not self.current_preview_path and not self.preview_thread:
 			default_path = device_rows[0][1]
 			self.preview_image = self.builder.get_object("preview_image")
 			self.current_preview_path = default_path
@@ -360,17 +365,20 @@ class OnboardingWindow(gtk.Window):
 			self.capture = cv2.VideoCapture(real_path)
 			if not self.capture.isOpened():
 				self.show_error(_("The selected camera cannot be opened"), _("Try to select another one"))
+				return
 			self.capture.read()
 		else:  
 			# skip, the selected camera is not infrared
 			self.go_next_slide()
 
 	def slide3_button_yes(self, button):
-		self.capture.release()
+		if hasattr(self, "capture") and self.capture is not None:
+			self.capture.release()
 		self.go_next_slide()
 
 	def slide3_button_no(self, button):
-		self.capture.release()
+		if hasattr(self, "capture") and self.capture is not None:
+			self.capture.release()
 		self.builder.get_object("leiestatus").set_markup(_("Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto enable your ir emitter"))
 		self.builder.get_object("leieyesbutton").hide()
 		self.builder.get_object("leienobutton").hide()
@@ -391,7 +399,10 @@ class OnboardingWindow(gtk.Window):
 			return
 
 		device_path = model.get_value(treeiter, 2)
-		self.proc = subprocess.Popen(["ubuntu-hello", "set", "device_path", device_path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		try:
+			self.proc = subprocess.Popen(["ubuntu-hello", "set", "device_path", device_path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		except Exception:
+			self.proc = subprocess.Popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 		self.window.set_focus(self.builder.get_object("scanbutton"))
 
@@ -419,7 +430,7 @@ class OnboardingWindow(gtk.Window):
 		gobject.timeout_add(600, self.run_add)
 
 	def run_add(self):
-		res = subprocess.run(["ubuntu-hello", "add", "-y"], capture_output=True, text=True)
+		res = subprocess.run(["ubuntu-hello", "-y", "add"], capture_output=True, text=True)
 		status, output = res.returncode, res.stdout + res.stderr
 
 		print("ubuntu-hello add output:")
@@ -503,8 +514,6 @@ class OnboardingWindow(gtk.Window):
 			except Exception:
 				pass
 		if not user or user == "root":
-			user = os.environ.get("USER")
-		if not user or user == "root":
 			try:
 				import subprocess
 				out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
@@ -515,67 +524,81 @@ class OnboardingWindow(gtk.Window):
 						break
 			except Exception:
 				pass
+		if not user or user == "root":
+			user = os.environ.get("USER")
 		if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
 			return user
 		return "root"
 
 	def validate_and_save_keyring(self):
+		tpm_keys_dir = paths_factory.tpm_keys_dir_path()
+		keyring_keys_dir = paths_factory.keyring_keys_dir_path()
+		pending_dir = paths_factory.keyring_pending_dir_path()
+
 		checkbox = self.builder.get_object("keyring_checkbox")
+		if not checkbox.get_active():
+			# Disable / skip: delete pending file and any saved keys for user if identified
+			user = self.get_real_user()
+			if user and user != "root":
+				key_file = os.path.join(keyring_keys_dir, user)
+				pub_file = os.path.join(tpm_keys_dir, f"{user}.pub")
+				priv_file = os.path.join(tpm_keys_dir, f"{user}.priv")
+				pending_file = os.path.join(pending_dir, user)
+				unlink_errors = []
+				for path in (pending_file, key_file, pub_file, priv_file):
+					if os.path.exists(path):
+						try:
+							os.unlink(path)
+						except Exception as e:
+							unlink_errors.append(f"{path}: {e}")
+				if unlink_errors:
+					self.show_keyring_error(_("Failed to disable keyring unlocking: {}").format("; ".join(unlink_errors)))
+					return False
+			return True
+
 		user = self.get_real_user()
 		if not user or user == "root":
 			self.show_keyring_error(_("Could not identify non-root system user for keyring unlocking"))
 			return False
 
-		tpm_keys_dir = "/etc/ubuntu-hello/tpm-keys"
-		keyring_keys_dir = "/etc/ubuntu-hello/keyring-keys"
-		pending_dir = "/etc/ubuntu-hello/keyring-caching-pending"
-		
-		key_file = os.path.join(keyring_keys_dir, user)
-		pub_file = os.path.join(tpm_keys_dir, f"{user}.pub")
-		priv_file = os.path.join(tpm_keys_dir, f"{user}.priv")
-		pending_file = os.path.join(pending_dir, user)
+		# Ask user for password immediately using the secure GTK dialog popup!
+		dialog = KeyringPasswordDialog(self.window, user)
+		response = dialog.run()
+		passwd1 = dialog.entry1.get_text()
+		dialog.destroy()
 
-		if checkbox.get_active():
-			# Ask user for password immediately using the secure GTK dialog popup!
-			dialog = KeyringPasswordDialog(self.window, user)
-			response = dialog.run()
-			passwd1 = dialog.entry1.get_text()
-			dialog.destroy()
+		if response != gtk.ResponseType.OK:
+			return False
 
-			if response != gtk.ResponseType.OK:
-				return False
+		if not passwd1:
+			self.show_keyring_error(_("Password cannot be empty"))
+			return False
 
-			if not passwd1:
-				self.show_keyring_error(_("Password cannot be empty"))
-				return False
+		if not auth_helper.verify_user_password(user, passwd1):
+			self.show_keyring_error(_("Incorrect password for user {}").format(user))
+			return False
 
-			if not auth_helper.verify_user_password(user, passwd1):
-				self.show_keyring_error(_("Incorrect password for user {}").format(user))
+		try:
+			res = subprocess.run(
+				["ubuntu-hello", "keyring", "enable", "-U", user],
+				input=passwd1 + "\n",
+				capture_output=True,
+				text=True,
+				timeout=120,
+			)
+			if res.returncode != 0:
+				detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
+				self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(detail))
 				return False
-
-			try:
-				res = subprocess.run(
-					["ubuntu-hello", "keyring", "enable", "-U", user],
-					input=passwd1 + "\n",
-					capture_output=True,
-					text=True,
-					timeout=120,
-				)
-				if res.returncode != 0:
-					detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
-					raise Exception(detail)
-			except Exception as e:
-				self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(str(e)))
-				return False
-		else:
-			# Disable: delete pending file and any saved keys
-			try:
-				for path in (pending_file, key_file, pub_file, priv_file):
-					if os.path.exists(path):
-						os.unlink(path)
-			except Exception as e:
-				self.show_keyring_error(_("Failed to disable keyring unlocking: {}").format(str(e)))
-				return False
+		except FileNotFoundError:
+			self.show_keyring_error(_("Failed to enable keyring unlocking: ubuntu-hello executable not found"))
+			return False
+		except subprocess.TimeoutExpired:
+			self.show_keyring_error(_("Failed to enable keyring unlocking: timed out waiting for keyring enable"))
+			return False
+		except (OSError, Exception) as e:
+			self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(str(e)))
+			return False
 
 		return True
 
@@ -631,7 +654,11 @@ class OnboardingWindow(gtk.Window):
 	def on_finishbutton_click(self, button):
 		self.completed = True
 		self.window.destroy()
-		gtk.main_quit()
+		if getattr(self, "run_main_loop", True):
+			try:
+				gtk.main_quit()
+			except RuntimeError:
+				pass
 
 	def enable_next(self):
 		self.nextbutton.set_sensitive(True)
@@ -659,46 +686,48 @@ class OnboardingWindow(gtk.Window):
 					pass
 
 		if treeiter is None:
-			self.stop_preview()
+			self.stop_preview(clear_image=False)
 			return
 
 		try:
 			device_path = model.get_value(treeiter, 2)
 		except Exception:
-			self.stop_preview()
+			self.stop_preview(clear_image=False)
 			return
 
 		if self.current_preview_path == device_path:
 			return
 
+		self.preview_image = self.slide2_preview_image
 		self.stop_preview()
 		self.current_preview_path = device_path
-
-		# Start opening the new camera in a background thread to prevent UI freezing
 		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
 		self.preview_thread.start()
 
 	def open_camera_for_preview(self, device_path):
+		cap = None
 		try:
 			import cv2
-			import os
 			import time
 			from gi.repository import GLib, GdkPixbuf as pixbuf
 
-			real_path = os.path.realpath(device_path)
-			cap = cv2.VideoCapture(real_path)
+			cap = cv2.VideoCapture(device_path)
 			if not cap.isOpened():
-				cap.release()
 				return
 
 			if self.current_preview_path != device_path:
-				cap.release()
 				return
 
 			self.preview_capture = cap
 
-			height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 1
-			width = cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 1
+			try:
+				width = float(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 640)
+			except Exception:
+				width = 640.0
+			try:
+				height = float(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 480)
+			except Exception:
+				height = 480.0
 
 			if self.preview_image == self.slide4_preview_image:
 				preview_max_height = 350
@@ -720,32 +749,41 @@ class OnboardingWindow(gtk.Window):
 				try:
 					frame = cv2.resize(frame, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_AREA)
 					retval, buffer = cv2.imencode(".png", frame)
-					
-					loader = pixbuf.PixbufLoader()
-					loader.write(buffer)
-					loader.close()
-					pix = loader.get_pixbuf()
-
-					GLib.idle_add(self.update_preview_image_widget, device_path, pix)
+					if retval and buffer is not None:
+						raw_bytes = buffer.tobytes() if hasattr(buffer, "tobytes") else bytes(buffer)
+						GLib.idle_add(self.update_preview_image_widget, device_path, raw_bytes)
 				except Exception as e:
 					print("Error processing preview frame:", e)
 
 				time.sleep(0.03)
-
-			cap.release()
 		except Exception as e:
 			print("Error in camera preview thread:", e)
+		finally:
+			if cap is not None:
+				try:
+					cap.release()
+				except Exception:
+					pass
 
-	def update_preview_image_widget(self, device_path, pix):
-		if self.current_preview_path == device_path and self.preview_image:
-			self.preview_image.set_from_pixbuf(pix)
+	def update_preview_image_widget(self, device_path, data):
+		if self.current_preview_path == device_path and getattr(self, "preview_image", None) and data is not None:
+			try:
+				if not isinstance(data, (bytes, bytearray)):
+					pix = data
+				else:
+					loader = pixbuf.PixbufLoader()
+					loader.write(data)
+					loader.close()
+					pix = loader.get_pixbuf()
+				if pix is not None:
+					self.preview_image.set_from_pixbuf(pix)
+			except Exception:
+				pass
 		return False
 
-	def stop_preview(self, clear_image=True):
+	def stop_preview(self, clear_image=False):
 		self.current_preview_path = None
 		self.preview_capture = None
-		if clear_image and hasattr(self, 'preview_image') and self.preview_image is not None:
-			self.preview_image.clear()
 		if hasattr(self, 'preview_thread') and self.preview_thread is not None:
 			try:
 				self.preview_thread.join(timeout=2.0)
@@ -756,9 +794,13 @@ class OnboardingWindow(gtk.Window):
 	def exit(self, widget=None, context=None):
 		"""Cleanly exit"""
 		self.stop_preview()
-		gtk.main_quit()
-		if not self.completed:
-			sys.exit(0)
+		if getattr(self, "run_main_loop", True):
+			try:
+				gtk.main_quit()
+			except RuntimeError:
+				pass
+			if not self.completed:
+				sys.exit(0)
 
 	def get_display_version(self):
 		"""Return UI version from VERSION / paths (never older git tags)."""

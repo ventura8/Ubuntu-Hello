@@ -19,6 +19,8 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │   ├── ci-docker.sh
 │   ├── ci-pipeline.sh
 │   ├── ci-matrix.sh
+│   ├── ci-packaging-matrix.sh
+│   ├── ci-packaging-cell.sh
 │   ├── i18n-update.sh
 │   ├── i18n-lint.py
 │   └── ppa-docker.sh
@@ -291,7 +293,7 @@ gettext catalogs with **Automatic** system locale by default and an optional Set
 
 ## 6. CI / Docker Layout
 
-Target OS for CI is fixed **Ubuntu 26.04**. Quality work is split into **lint**, **coverage**, and **compat** stages. Each DE compat cell has its own Dockerfile and image; the compat matrix runs **in parallel**.
+Target OS for CI is fixed **Ubuntu 26.04**. Quality work is split into **lint**, **coverage**, **compat**, and **packaging** stages. Each DE compat cell has its own Dockerfile and image; the compat and packaging matrices run **in parallel**.
 
 | Stage / `UH_CI_DE` | Dockerfile | Default image |
 |---|---|---|
@@ -300,13 +302,13 @@ Target OS for CI is fixed **Ubuntu 26.04**. Quality work is split into **lint**,
 | `baseline` (compat) | `docker/Dockerfile.ci` | `ubuntu-hello-ci-baseline:26.04` |
 | `gnome` … `lxqt` (compat) | `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` |
 
-* Full gate: `./scripts/ci-pipeline.sh` (lint → coverage → compat matrix; fail-fast between stages)
+* Full gate: `./scripts/ci-pipeline.sh` (lint → coverage → compat matrix → packaging matrix; fail-fast between stages)
 * Single stage/cell: `UH_CI_STAGE=lint|coverage|compat` (+ `UH_CI_DE` for compat) `./scripts/ci-docker.sh`
 * Compat-only parallel matrix: `./scripts/ci-matrix.sh` → `logs/ci-matrix/<de>.log`
-* GHA: lint + coverage jobs in parallel; `compat` needs both; `strategy.matrix.de` with `fail-fast: false`; Buildx + `UH_CI_DOCKER_CACHE=gha`
+* GHA: lint + coverage + `compat` DE matrix + `packaging` format matrix start immediately (no `needs` gates); both matrices use `fail-fast: false` / `max-parallel: 20`; packaging cells build + smoke-verify + live E2E install/upgrade/remove/reinstall; Buildx + `UH_CI_DOCKER_CACHE=gha` on quality stages; packaging skips fork PRs
 * Caching: BuildKit apt/pip mounts in Dockerfiles; local `.cache/docker-ci/`; digest-label image reuse
 * Pins: Actions/runners → version tags only (`ubuntu-26.04`, `@v7.0.1`, …); pip → `==` versions; Docker → `ubuntu:26.04` + `dockerfile:1.26.0`; never SHAs; never a `latest` alias
 * PPA image: `docker/Dockerfile.ppa` / `scripts/ppa-docker.sh` (no DE packaging matrix)
-* Root clean: Dockerfiles stay under `docker/` ([AGENTS.md](../../AGENTS.md) §4.6.1)
+* Root clean: Dockerfiles stay under `docker/` ([AGENTS.md](../../AGENTS.md) §4.7.1)
 
-Lint: meson/ninja + clang-tidy + py_compile + `scripts/i18n-lint.py` (JSON + `.po`). Coverage: meson/ninja + pytest floors + meson C++ tests. Compat: meson/ninja + py_compile + pytest without floors + meson C++ tests.
+Lint: meson/ninja + clang-tidy + py_compile + `scripts/i18n-lint.py` (JSON + `.po`) + shellcheck (packaging scripts). Coverage: meson/ninja + pytest floors + meson C++ tests. Compat: meson/ninja + py_compile + pytest without floors + meson C++ tests.

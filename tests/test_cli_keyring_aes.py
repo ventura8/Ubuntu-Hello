@@ -382,6 +382,28 @@ def test_restore_all_success(capsys):
     assert "2 user(s)" in capsys.readouterr().out
 
 
+def test_cli_argparse_accepts_keyring_restore_all() -> None:
+    """Top-level --all must be a known option (prerm: keyring restore --all)."""
+    import argparse
+    from pathlib import Path
+
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("command", choices=["keyring"])
+    parser.add_argument("arguments", nargs="*")
+    parser.add_argument("-U", "--user", default="alice")
+    parser.add_argument("--all", action="store_true")
+    args = parser.parse_args(["keyring", "restore", "--all"])
+    assert args.command == "keyring"
+    assert args.arguments == ["restore"]
+    assert args.all is True
+
+    cli_src = (Path(__file__).resolve().parents[1] / "ubuntu-hello" / "src" / "cli.py").read_text(
+        encoding="utf-8"
+    )
+    assert '"--all"' in cli_src or "'--all'" in cli_src
+    assert "REMAINDER" not in cli_src
+
+
 def test_restore_rejects_positional_user():
     with pytest.raises(SystemExit) as exc:
         keyring_mod.run_keyring("alice", ["restore", "bob"])

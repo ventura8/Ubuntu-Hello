@@ -1,0 +1,23 @@
+# syntax=docker/dockerfile:1.26.0
+# openSUSE Leap RPM packaging — 16.0 (Leap 15.6 reached EOL 2026-04-30)
+FROM opensuse/leap:16.0
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN zypper --non-interactive refresh && zypper --non-interactive install -y \
+    update-alternatives \
+    meson ninja gcc-c++ cmake git \
+    libboost_headers-devel libboost_system-devel libopenssl-devel pam-devel \
+    libinih-devel libevdev-devel gettext-tools \
+    python313 python313-devel \
+    pkgconf-pkg-config rpm-build \
+    python313-numpy python313-opencv python313-cryptography \
+    python313-pip python313-gobject python313-pycairo python313-Babel \
+    libpwquality \
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1 \
+    && zypper clean -a
+
+WORKDIR /src
+COPY . /src
+
+CMD ["./scripts/release-rpm.sh", "opensuse"]

@@ -4,6 +4,7 @@ project(
   license: 'MIT',
   version: run_command('python3', 'scripts/read-version.py', check: true).stdout().strip(),
   meson_version: '>= 0.64.0',
+  default_options: ['cpp_std=c++17'],
 )
 
 dlibdatadir = get_option('dlib_data_dir') != '' ? get_option('dlib_data_dir') : join_paths(get_option('prefix'), get_option('datadir'), 'dlib-data')

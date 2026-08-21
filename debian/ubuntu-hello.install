@@ -23,8 +23,8 @@ usr/share/man/man1/ubuntu-hello.1
 # Data files
 usr/share/ubuntu-hello/
 
+# Relax polkit-agent-helper's device sandboxing (needed for camera + uinput access)
+etc/systemd/system/polkit-agent-helper@.service.d/override.conf
+
 # Gettext message catalogs
 usr/share/locale/*/LC_MESSAGES/ubuntu-hello.mo
-
-# Polkit systemd override for camera access
-etc/systemd/system/polkit-agent-helper@.service.d/override.conf

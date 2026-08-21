@@ -183,16 +183,19 @@ def capture_frame(self):
 		gobject.timeout_add(20, self.capture_frame)
 		return False
 
-	frame = self.cv2.resize(frame, None, fx=self.scaling_factor, fy=self.scaling_factor, interpolation=self.cv2.INTER_AREA)
-
-	retval, buffer = self.cv2.imencode(".png", frame)
-
-	loader = pixbuf.PixbufLoader()
-	loader.write(buffer)
-	loader.close()
-	buffer = loader.get_pixbuf()
-
-	self.opencvimage.set_from_pixbuf(buffer)
+	try:
+		frame = self.cv2.resize(frame, None, fx=self.scaling_factor, fy=self.scaling_factor, interpolation=self.cv2.INTER_AREA)
+		retval, buffer = self.cv2.imencode(".png", frame)
+		if retval and buffer is not None:
+			loader = pixbuf.PixbufLoader()
+			loader.write(buffer.tobytes() if hasattr(buffer, "tobytes") else bytes(buffer))
+			loader.close()
+			pix = loader.get_pixbuf()
+			if pix is not None and hasattr(self, "opencvimage") and self.opencvimage:
+				self.opencvimage.set_from_pixbuf(pix)
+	except Exception as e:
+		import sys
+		print(f"Error updating video preview frame: {e}", file=sys.stderr)
 
 	gobject.timeout_add(20, self.capture_frame)
 	return False

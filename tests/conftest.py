@@ -59,18 +59,18 @@ sys.modules["pyv4l2.frame"] = MagicMock()
 # Create mock for ffmpeg
 sys.modules["ffmpeg"] = MagicMock()
 
-# Create mock for cv2
-mock_cv2 = MagicMock()
-mock_cv2.CAP_PROP_FRAME_WIDTH = 3
-mock_cv2.CAP_PROP_FRAME_HEIGHT = 4
-mock_cv2.CAP_PROP_FPS = 5
-mock_cv2.CAP_PROP_FOURCC = 6
-mock_cv2.CAP_V4L = 200
-mock_cv2.COLOR_BGR2GRAY = 6
-sys.modules["cv2"] = mock_cv2
-sys.modules["cv2.cv2"] = mock_cv2
-
 if not UH_REAL_GTK:
+	# Create mock for cv2
+	mock_cv2 = MagicMock()
+	mock_cv2.CAP_PROP_FRAME_WIDTH = 3
+	mock_cv2.CAP_PROP_FRAME_HEIGHT = 4
+	mock_cv2.CAP_PROP_FPS = 5
+	mock_cv2.CAP_PROP_FOURCC = 6
+	mock_cv2.CAP_V4L = 200
+	mock_cv2.COLOR_BGR2GRAY = 6
+	sys.modules["cv2"] = mock_cv2
+	sys.modules["cv2.cv2"] = mock_cv2
+
 	# Create mock for cairo
 	sys.modules["cairo"] = MagicMock()
 

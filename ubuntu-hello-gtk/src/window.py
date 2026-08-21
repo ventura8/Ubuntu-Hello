@@ -43,6 +43,7 @@ class MainWindow(gtk.Window):
 		# Make the class a GTK window
 		gtk.Window.__init__(self)
 
+		self.run_main_loop = run_main_loop
 		self.capture = None
 		self._sorted_users = []
 		self.active_user = ""
@@ -479,11 +480,15 @@ class MainWindow(gtk.Window):
 		# Get username and default to none if there are no models at all yet
 		user = 'none'
 		if self.active_user: user = self.active_user
-
-		# Execute the list command to get the models
-		res = subprocess.run(["ubuntu-hello", "list", "--plain", "-U", user], capture_output=True, text=True)
-		status = res.returncode
-		output = res.stdout + res.stderr
+		status = 1
+		output = ""
+		try:
+			# Execute the list command to get the models
+			res = subprocess.run(["ubuntu-hello", "list", "--plain", "-U", user], capture_output=True, text=True)
+			status = res.returncode
+			output = res.stdout + res.stderr
+		except (OSError, subprocess.SubprocessError) as e:
+			print(f"Error executing ubuntu-hello list: {e}", file=sys.stderr)
 
 		# Create a datamodel
 		self.listmodel = gtk.ListStore(str, str, str)
@@ -515,13 +520,19 @@ class MainWindow(gtk.Window):
 
 	def exit(self, widget=None, context=None):
 		"""Cleanly exit"""
-		if self._rebuilding:
+		if getattr(self, "_rebuilding", False):
 			return True
-		if self.capture is not None:
-			self.capture.release()
-
-		gtk.main_quit()
-		sys.exit(0)
+		if getattr(self, "capture", None) is not None:
+			try:
+				self.capture.release()
+			except Exception:
+				pass
+		if getattr(self, "run_main_loop", True):
+			try:
+				gtk.main_quit()
+			except RuntimeError:
+				pass
+			sys.exit(0)
 
 	def get_display_version(self):
 		"""Return UI version from VERSION / paths (never older git tags)."""
@@ -692,17 +703,6 @@ def setup_theme():
 		print(f"Error setting up theme tracking: {e}", file=sys.stderr)
 
 
-# Setup theme tracking to follow system dark/light theme
-setup_theme()
-
-# If no models have been created yet or when it is forced, start the onboarding
-model_dir = paths_factory.user_models_dir_path()
-if "--force-onboarding" in sys.argv or not os.path.exists(model_dir) or not os.listdir(model_dir):
-	import onboarding
-	ob = onboarding.OnboardingWindow()
-	if not getattr(ob, "completed", False):
-		sys.exit(0)
-
 # Class is split so it isn't too long, import split functions
 import tab_models
 MainWindow.on_user_add = tab_models.on_user_add
@@ -718,5 +718,30 @@ MainWindow.update_keyring_status = tab_keyring.update_keyring_status
 MainWindow.on_keyring_enable = tab_keyring.on_keyring_enable
 MainWindow.on_keyring_disable = tab_keyring.on_keyring_disable
 
-# Open the GTK window
-window = MainWindow()
+
+def _launch():
+	# Setup theme tracking to follow system dark/light theme
+	setup_theme()
+
+	# If no models have been created yet or when it is forced, start the onboarding
+	model_dir = paths_factory.user_models_dir_path()
+	has_models = False
+	try:
+		if os.path.isdir(model_dir) and os.listdir(model_dir):
+			has_models = True
+	except OSError:
+		has_models = False
+
+	if "--force-onboarding" in sys.argv or not has_models:
+		import onboarding
+		ob = onboarding.OnboardingWindow()
+		if not getattr(ob, "completed", False):
+			sys.exit(0)
+
+	# Open the GTK window
+	return MainWindow()
+
+
+if os.environ.get("UH_DONT_AUTO_LAUNCH") != "1" and "pytest" not in sys.modules:
+	window = _launch()
+

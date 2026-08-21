@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -92,25 +92,29 @@ msgstr "すべての質問をスキップしてください。"
 msgid "Print machine-friendly output."
 msgstr "機械に適した出力を印刷します。"
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "keyring restore と併用：すべてのユーザーの封印済みログインパスワードを復元します。"
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "このヘルプ メッセージを表示して終了します。"
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "現在のアクティブユーザー:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "無効なユーザー名の形式"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "このコマンドを root として実行してください。\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -144,91 +148,91 @@ msgstr "ホスト名:"
 msgid "Best certainty value: "
 msgstr "最高の確実性の値:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "起動中..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "あなたを特定しています..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "失敗した"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "すべてのフレームが暗すぎました。設定で dark_threshold を確認してください。"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "平均濃度: {avg}、閾値: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "費やした時間"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "起動中"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "カムを開く + ライブラリをロード: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "カメラを開く"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "認識ライブラリのインポート"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "既知の顔を検索しています"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "合計時間"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\n解決"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "ネイティブ: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "使用済み: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\n検索されたフレーム: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "黒いフレームは無視されます: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "ダークフレームは無視されます: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "当選枠の確実性：%.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "優勝モデル: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "成功"
 
@@ -282,37 +286,37 @@ msgstr "ユーザーの顔モデルを追加する"
 msgid "Model #"
 msgstr "モデル ＃"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y フラグにより​​デフォルトのラベル「%s」を使用"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "この新しいモデルのラベルを入力してください [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "注意: モデル名から不正な文字「,」を削除します"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nカメラをまっすぐ見てください"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "カメラには黒いフレームしか見えませんでした - IR エミッターは動作していますか?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "顔が検出されませんでした。中止します"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "複数の顔が検出されました。中止されます"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -390,7 +394,7 @@ msgstr "Ubuntu Hello は無効になりました"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello が有効になりました"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "使い方: keyring [enable|disable|restore [--all]]"
 
@@ -454,19 +458,19 @@ msgstr "ユーザー {} のキーリング/KWallet のロック解除が無効�
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ユーザー {} に対してキーリング/KWallet のロック解除が有効になっていませんでした。"
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "封印されたログインパスワードは見つかりませんでした。復元するものはありません。"
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} 人のユーザーのログインウォレットパスワードを復元しました。"
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} 人のユーザーのログインウォレットパスワードを復元できませんでした。"
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -664,19 +668,19 @@ msgstr "ffmpeg モジュールがありません。次を実行してくださ�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 モジュールがありません。次を実行してください。"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
 msgstr "Ubuntu Hello は、構成ファイルで指定されたパスでカメラ デバイスを見つけることができませんでした。"
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
 msgstr "パスが正しく構成されていない可能性が非常に高いため、次を実行して「device_path」構成値を編集してください。"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

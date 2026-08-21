@@ -14,7 +14,7 @@ PyGObject (GTK 3) + Glade:
 | Settings tabs | Models, Video, Keyring, **Language**, About (`main.glade`) |
 | Language combo | Automatic (always) + English + Whisper locales; Babel/CLDR UI name + native name in `()`; instant apply via rebuild |
 | Main settings window | `ubuntu-hello-gtk/src/window.py` (+ `tab_models.py`, `tab_video.py`, `tab_keyring.py`) |
-| Onboarding wizard | `ubuntu-hello-gtk/src/onboarding.py` |
+| Onboarding wizard | `ubuntu-hello-gtk/src/onboarding.py` (face scan: `ubuntu-hello -y add`; never interactive `input()`) |
 | Version label | `ubuntu-hello-gtk/src/version_display.py` (Settings + wizard; `v`+VERSION, optional `-dev`; never older `git describe` tags) |
 | GTK entrypoint | `ubuntu-hello-gtk/src/init.py` (adds `/usr/lib/ubuntu-hello` to `sys.path` so `wallet_backend` imports work) |
 | Auth overlay | `ubuntu-hello-gtk/src/authsticky.py` |

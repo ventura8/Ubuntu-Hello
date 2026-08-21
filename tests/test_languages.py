@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib
 import sys
 from pathlib import Path
 
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GTK_SRC = ROOT / "ubuntu-hello-gtk" / "src"
 sys.path.insert(0, str(GTK_SRC))
 
-import languages as langs  # noqa: E402
+langs = importlib.import_module("languages")
 
 
 def test_combo_label_english_ui_shows_native_in_parens():

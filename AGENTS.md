@@ -155,18 +155,28 @@ Ensure files are modified or added in their appropriate structural directories:
 | `ubuntu-hello-gtk/po/` | GTK gettext domain `ubuntu-hello-gtk` (Python `_()`, Glade, desktop `merge_file`). |
 | `po/whisper-languages.txt` | Canonical Whisper language codes (98, omit `en`); both `LINGUAS` files must match. |
 | `scripts/i18n-update.sh` | Refresh `.pot`, `msgmerge` `.po`, assert `LINGUAS` ↔ Whisper list. |
-| `scripts/i18n-lint.py` | Lint JSON packs + gettext `.po` (UTF-8/JSON, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity). CI lint stage. |
+| `scripts/i18n-lint.py` | Lint JSON packs + gettext `.po` (UTF-8/JSON, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity, fill-pack ↔ `.pot` / `_keys.json` completeness). CI lint stage; pytest `test_all_translations_filled`. |
+| `scripts/no-suppressions-lint.py` | Fail if production/tests contain `NOLINT`, `# shellcheck disable`, `# noqa`, `# type: ignore`, `@pytest.mark.skip`/`xfail`, etc. CI lint stage; pytest `test_repo_has_no_suppressions`. |
 | `scripts/i18n-fill-translations.py` | Apply filled JSON maps under `scripts/i18n_fill_data/` onto committed `.po` files. |
 | `scripts/read-version.py` | Print semver from repo-root `VERSION` (used by Meson, PKGBUILD, i18n). |
+| `scripts/package-configure.sh` | Shared post-install configure (models, permissions, config restore, PAM, polkit); installs pinned `dlib` via pip when missing on the live host (sets `CMAKE_POLICY_VERSION_MINIMUM=3.5` for modern CMake; marker for prerm). Sourced by deb/rpm/snap/AppImage/Flatpak hooks. |
+| `scripts/package-gtk-onboard.sh` | Shared setup-wizard launcher when no face models enrolled. |
+| `scripts/package-prerm.sh` | Shared removal steps (PAM, keyring restore, cleanup). |
+| `scripts/release-{deb,rpm,arch,portable,common}.sh` | Local/tag-release packaging drivers; output under `artifacts/`. Arch/RPM source tarball packs the **working tree** (excludes build/cache), not `git archive HEAD`, so packaging CI sees bind-mount fixes. |
+| `packaging/` | Non-deb release metadata: Arch PKGBUILD, Fedora/openSUSE RPM specs, Snap, AppImage, Flatpak manifests, file lists. |
 | `debian/` | Debian packaging control, installation, and post-installation scripts. `ubuntu-hello.postinst` restores `/etc/ubuntu-hello/config.ini` from `/usr/share/ubuntu-hello/config.ini` when the conffile is missing after `apt remove` / reinstall. Build trees (`tmp/`, `.debhelper/`, staged `ubuntu-hello*/`, `*.substvars`) are gitignored. |
-| `artifacts/` | Local/CI `.deb` output from `scripts/ppa-docker.sh` (gitignored; not source). |
-| `docker/` | All CI/PPA Dockerfiles (`Dockerfile.ci*`, `Dockerfile.ppa`). Keep new Docker assets here — not at repo root. |
+| `artifacts/` | Gitignored release build output (`.deb`, `.rpm`, `.pkg.tar.zst`, `.snap`, `.AppImage`, `.flatpak`, `SHA256SUMS`). Local Meson/CI/packaging staging is also gitignored: `build/`, `build-*/` (AppImage, Flatpak, `build-ci-*`, …), `builddir/`, `builddir-*/`. |
+| `docker/` | CI, PPA, and release Dockerfiles (`Dockerfile.ci*`, `Dockerfile.ppa`, `Dockerfile.rpm.*`, `Dockerfile.arch`, `Dockerfile.release`, `Dockerfile.snap`). Keep new Docker assets here — not at repo root. |
 | `scripts/ppa-docker.sh` | PPA signed-source / binary helper inside `ubuntu-hello-ppa:26.04`. Uses `--sign-backend=gpg` + passphrase `gpg` wrapper (dpkg auto/Sequoia args break classic gpg). |
-| `scripts/ci-docker.sh` | Stage runner; `UH_CI_STAGE=lint|coverage|compat` (+ `UH_CI_DE` for compat). BuildKit cache via `UH_CI_DOCKER_CACHE`. |
-| `scripts/ci-pipeline.sh` | Full local gate: lint → coverage → compat matrix (fail-fast between stages). |
+| `scripts/ci-docker.sh` | Stage runner; `UH_CI_STAGE=lint\|coverage\|compat` (+ `UH_CI_DE` for compat). BuildKit cache via `UH_CI_DOCKER_CACHE`. |
+| `scripts/ci-pipeline.sh` | Full local gate: lint → coverage → compat matrix → packaging matrix (fail-fast between stages). |
 | `scripts/ci-matrix.sh` | Launches **all** DE **compat** cells in parallel (never sequential). |
-| `.github/workflows/check.yml` | GHA: lint + coverage in parallel, then `compat` `needs` both; `strategy.matrix.de` with Buildx GHA cache. |
-| `logs/` | Agent progress + CI logs (`ci-lint.log`, `ci-coverage.log`, `ci-pipeline.log`, `ci-matrix/<de>.log`). |
+| `scripts/ci-packaging-matrix.sh` | Launches **all** packaging format cells in parallel (same `ci-packaging-cell.sh` as GHA). |
+| `scripts/ci-packaging-cell.sh` | One format: build + smoke-verify + live E2E (shared by GHA `check.yml` and local pipeline). |
+| `.github/workflows/check.yml` | GHA: **4 job definitions → 17 runners** (lint, coverage, 8× `compat` matrix, 7× `packaging` matrix) — no `needs` gates; packaging cells call `ci-packaging-cell.sh`; `concurrency` cancels stale runs on new PR/branch push; OSS up to **20 runners** (`max-parallel: 20` on both matrices). Local `./scripts/ci-pipeline.sh` fail-fast lint → coverage → compat → packaging. |
+| `scripts/packaging-e2e-install.sh` | Live install E2E for built artifacts (PAM/`config.ini`; upgrade preserve + remove+reinstall). |
+| `.github/workflows/release.yml` | GHA: on `v*` tag — PPA upload + parallel multi-format builds (deb, Fedora/openSUSE RPM, Arch, Snap, AppImage, Flatpak) → GitHub Release with authored notes + `SHA256SUMS`. |
+| `logs/` | Agent progress + CI logs (`ci-lint.log`, `ci-coverage.log`, `ci-pipeline.log`, `ci-matrix/<de>.log`, `ci-packaging/<format>.log`). |
 
 ---
 
@@ -200,14 +210,31 @@ Ensure files are modified or added in their appropriate structural directories:
 * Maintain documentation integrity. Keep existing comments and docstrings intact unless directly refactoring the referenced logic.
 * Document any new class methods, rubberstamp plugins, or configuration options you add.
 
-### 4.5 Progress Visibility
+### 4.5 Lint and Test New or Changed Files (Mandatory)
+
+> [!IMPORTANT]
+> New or modified executable code must pass the same quality gates as the rest of the repo before the work is complete.
+
+* **When adding or changing files**, run the applicable linters and tests in the **same change set** — do not defer lint/test fixes to CI or a follow-up.
+* **By file type**:
+  - **C++** (`*.cc`, `*.h`): meson/ninja build; clang-tidy (lint stage). New PAM/helpers: add or extend meson C++ tests when behavior is testable.
+  - **Python** (`*.py`): `python3 -m py_compile` on touched modules; pytest under `tests/` when logic changes or new modules warrant coverage.
+  - **Shell** (`scripts/*.sh`, packaging hooks): `shellcheck` where the lint stage applies; `scripts/no-suppressions-lint.py` forbids `# shellcheck disable` and other suppressions.
+  - **All production + tests**: no `NOLINT` / `# noqa` / `# type: ignore` / `@pytest.mark.skip`/`xfail` (enforced by `scripts/no-suppressions-lint.py` in the lint stage).
+  - **gettext / i18n**: see §4.7.0.
+  - **Meson/build files**: confirm `meson setup` + `ninja` still succeed after edits.
+* **New test files**: place under `tests/` using existing naming (`test_*.py`); wire C++ tests in meson when adding native tests.
+* **Run order**: targeted checks first (e.g. `pytest tests/test_foo.py`, `python3 -m py_compile path/to/module.py`, a single meson test target), then broader gates for shared infrastructure (`UH_CI_STAGE=lint ./scripts/ci-docker.sh`, `UH_CI_STAGE=coverage ./scripts/ci-docker.sh`, or `./scripts/ci-pipeline.sh`). See [`.agents/skills/test-runner/SKILL.md`](.agents/skills/test-runner/SKILL.md) and [`.agents/skills/pipeline-runner/SKILL.md`](.agents/skills/pipeline-runner/SKILL.md).
+* **Exceptions**: pure docs, release notes, or agent-only markdown with no executable code — lint/test not required unless translatable strings or i18n catalogs change.
+
+### 4.6 Progress Visibility
 
 * Always show what you are doing: prefer **printing/echoing progress to the terminal**, OR append lines under `logs/` at the repo root (e.g. `logs/aes-keyring-progress.log` or a general `logs/agent-progress.log`).
 * Prefer `tee -a` (or equivalent) so the same progress line appears in both the terminal and the log when a feature-specific log is in use.
 * Create `logs/` if missing. Do not leave long agent runs silent.
 * See [logs/README.md](logs/README.md). Do **not** use other log roots for agent progress.
 
-### 4.6 Always Update Agent Docs
+### 4.7 Always Update Agent Docs
 
 * **Whenever you change any project files** (code, docs, config, tests, packaging, CI), also update the relevant agent guidance in the **same change set** so the next session has accurate context.
 * Keep these in sync when behavior, paths, or workflows change:
@@ -220,7 +247,7 @@ Ensure files are modified or added in their appropriate structural directories:
 * Document new modules, paths, security properties, workflows, and conventions you introduce or change.
 * CI/Docker/DE-matrix rules below are mandatory agent constraints; if you change images, scripts, or supported DEs, update **both** `AGENTS.md` and the affected skills (especially `ci-docker-matrix`) in the same change.
 
-### 4.6.0 Always Update Translations (Mandatory)
+### 4.7.0 Always Update Translations (Mandatory)
 
 > [!IMPORTANT]
 > Changing a user-visible / gettext-marked string without updating **all** language catalogs is incomplete work.
@@ -231,7 +258,7 @@ Ensure files are modified or added in their appropriate structural directories:
   3. Run `python3 scripts/i18n-lint.py` and verify **no** empty `msgstr` and **no** unresolved fuzzy entries remain for either domain before finishing.
 * Do not ship English-only UI for non-`en` locales after a string change. Details: [`.agents/skills/i18n/SKILL.md`](.agents/skills/i18n/SKILL.md).
 
-### 4.6.1 Keep the Repository Root Clean (Mandatory)
+### 4.7.1 Keep the Repository Root Clean (Mandatory)
 
 > [!IMPORTANT]
 > Do **not** pile new top-level files at the repo root. Prefer existing folders (`docker/`, `scripts/`, `docs/`, `.agents/`, `.github/`, `ubuntu-hello/`, `ubuntu-hello-gtk/`, `debian/`, `tests/`, `logs/`, …).
@@ -241,7 +268,7 @@ Ensure files are modified or added in their appropriate structural directories:
 * **Scripts** stay under `scripts/`; **workflows** under `.github/workflows/`; **agent runbooks** under `.agents/skills/`.
 * When relocating or introducing paths: **update agent MDs first** (this file + affected skills + `docs/INSTRUCTIONS.md` / architecture), **then** move/add files, **then** fix all script/workflow references in the same change set. Do not leave stale root copies.
 
-### 4.6.2 Project Version — Single Source of Truth (Mandatory)
+### 4.7.2 Project Version — Single Source of Truth (Mandatory)
 
 * The **only** shipping semver pin is the repo-root **`VERSION`** file (one `N.N.N` line).
 * Read it via **`scripts/read-version.py`** (or by opening `VERSION` directly). Meson, Arch PKGBUILD, i18n tooling, and test mocks must **not** hardcode a duplicate version string.
@@ -249,7 +276,7 @@ Ensure files are modified or added in their appropriate structural directories:
 * **User-facing version** (CLI `paths.version`, Settings / setup wizard via `version_display.py`): always `v` + VERSION. Until that tag exists, Meson may append `-dev` only — **never** embed `git describe` / older tags (e.g. do not show `v1.1.0-dev (v1.0.4-…)`).
 * Historical `docs/releases/vX.Y.Z*.md` and older changelog entries may mention prior versions (e.g. `1.0.4`) — that is expected archive content.
 
-### 4.7 CI / Docker / Desktop Matrix (Mandatory)
+### 4.8 CI / Docker / Desktop Matrix (Mandatory)
 
 > [!IMPORTANT]
 > Fixed OS version, split stages (lint / coverage / compat), and parallel per-DE compat images are hard rules for agents touching Docker or CI.
@@ -257,12 +284,12 @@ Ensure files are modified or added in their appropriate structural directories:
 * **Base image always fixed**: every CI/PPA Dockerfile must use `FROM ubuntu:26.04`. **Forbidden:** floating series tags, unpinned “current Ubuntu” aliases, or any dependency pin that uses the word `latest`.
 * **Dockerfiles under `docker/`** (root stays clean): `docker/Dockerfile.ci.lint`, `docker/Dockerfile.ci.coverage`, `docker/Dockerfile.ci` (baseline compat), `docker/Dockerfile.ci.<de>`, `docker/Dockerfile.ppa`.
 * **Three stages** (`UH_CI_STAGE`):
-  * `lint` — `docker/Dockerfile.ci.lint` / `ubuntu-hello-ci-lint:26.04` / `build-ci-lint` — meson/ninja + clang-tidy + `py_compile` + `scripts/i18n-lint.py` (JSON + gettext `.po`)
+  * `lint` — `docker/Dockerfile.ci.lint` / `ubuntu-hello-ci-lint:26.04` / `build-ci-lint` — meson/ninja + clang-tidy + `py_compile` + `scripts/i18n-lint.py` (JSON + gettext `.po`) + `scripts/no-suppressions-lint.py` + `shellcheck` (packaging scripts)
   * `coverage` — `docker/Dockerfile.ci.coverage` / `ubuntu-hello-ci-coverage:26.04` / `build-ci-coverage` — meson/ninja + pytest coverage floors + meson C++ tests
   * `compat` — per-DE images under `docker/` — meson/ninja + `py_compile` + pytest (**no** cov floors) + meson C++ tests (**no** clang-tidy)
 * **One Dockerfile + one image per DE** for compat — do **not** collapse DEs into a single ARG-switched Dockerfile. Prefer duplicated clear Dockerfiles. Do **not** fold lint/coverage back into every DE cell.
-* **Fail-fast between stages**: local `./scripts/ci-pipeline.sh` runs lint → coverage → compat matrix and stops on the first red stage. GHA: `lint` + `coverage` jobs in parallel; `compat` `needs: [lint, coverage]`.
-* **Compat matrix runs all DE cells in parallel** (local `scripts/ci-matrix.sh` and GHA `check.yml` `strategy.matrix` with `fail-fast: false`). **Never** serialize DE CI in one job or a sequential loop.
+* **GHA check.yml parallelism**: **4** top-level jobs expand immediately to **17** runners (lint, coverage, 8× `compat` DE matrix, 7× `packaging` format matrix) to use OSS **20-runner** concurrency; **`concurrency.cancel-in-progress`** drops stale runs when the same PR or branch is pushed again; the packaging matrix skips **fork** `pull_request` events (`head.repo.full_name == github.repository`) and runs `scripts/ci-packaging-cell.sh` (build + smoke + live E2E); parallel cells share the bind mount — deb uses `override_dh_clean`, Flatpak stages under `UH_ARTIFACTS_DIR/.flatpak-work`. Local `./scripts/ci-pipeline.sh` fail-fast lint → coverage → compat → packaging (same cell script via `ci-packaging-matrix.sh`).
+* **Compat matrix runs all DE cells in parallel** (local `scripts/ci-matrix.sh` and GHA `check.yml` `strategy.matrix` with `fail-fast: false`). **Never** serialize DE CI in one job or a sequential loop. Local parallel matrix sets `UH_CI_PARALLEL_BUILD=1`, which uses plain `docker build` (not buildx) so eight concurrent cells do not deadlock the shared buildx builder; lint/coverage still use buildx cache export when run alone.
 * **Pinned CI deps** (explicit version tags/numbers only — never commit SHAs, never the `latest` alias):
   * GHA runners: `runs-on: ubuntu-26.04` (not a floating runner alias)
   * GHA actions: explicit tags (e.g. `actions/checkout@v7.0.1`, `docker/setup-buildx-action@v4.2.0`, `softprops/action-gh-release@v3.0.2`)
@@ -291,8 +318,9 @@ Ensure files are modified or added in their appropriate structural directories:
 | `budgie` | `docker/Dockerfile.ci.budgie` | `ubuntu-hello-ci-budgie:26.04` | `build-ci-budgie` |
 | `lxqt` | `docker/Dockerfile.ci.lxqt` | `ubuntu-hello-ci-lxqt:26.04` | `build-ci-lxqt` |
 
-* **Scripts**: `UH_CI_STAGE=lint|coverage ./scripts/ci-docker.sh` for quality stages; `UH_CI_STAGE=compat UH_CI_DE=<de> ./scripts/ci-docker.sh` for one compat cell; `./scripts/ci-pipeline.sh` for the full fail-fast gate; `./scripts/ci-matrix.sh` for parallel compat only. `docker/Dockerfile.ppa` stays `ubuntu:26.04` only (no DE packaging matrix).
-* **Pipeline fix-until-green** (see `.agents/skills/pipeline-runner/SKILL.md`): when running the CI gate, **fix all failures and re-run until every stage and DE cell is green**. Do **not** ignore warnings, add NOLINT suppressions, disable checks, raise clang-tidy thresholds, lower coverage floors, or skip steps to paper over red CI. Each stage/cell must keep fail-fast quality steps (`set -e`, clang-tidy `WarningsAsErrors`).
+* **Scripts**: `UH_CI_STAGE=lint|coverage ./scripts/ci-docker.sh` for quality stages; `UH_CI_STAGE=compat UH_CI_DE=<de> ./scripts/ci-docker.sh` for one compat cell; `./scripts/ci-pipeline.sh` for the full fail-fast gate (lint → coverage → compat → packaging); `./scripts/ci-matrix.sh` for parallel compat only; `./scripts/ci-packaging-matrix.sh` for parallel packaging only; `./scripts/ci-packaging-cell.sh <format>` for one packaging format. `docker/Dockerfile.ppa` stays `ubuntu:26.04` only (no DE packaging matrix).
+* **Pipeline fix-until-green** (see `.agents/skills/pipeline-runner/SKILL.md`): when running the CI gate, **fix all failures and re-run until every stage and DE cell is green**. Do **not** ignore warnings, add NOLINT suppressions, add `# shellcheck disable=…` (or `shellcheck -e`), add `# noqa` / `# type: ignore` / similar Python suppressions, disable checks, raise clang-tidy thresholds, lower coverage floors, or skip steps to paper over red CI. Fix the code so linters pass cleanly. Each stage/cell must keep fail-fast quality steps (`set -e`, clang-tidy `WarningsAsErrors`).
+* **Packaging log scan (mandatory with pipeline-runner)**: after the packaging matrix (or any packaging cell), **read** `logs/ci-packaging/<format>.log` for **every** format — do not stop at `packaging cell OK` / exit 0. Hunt and **fix** meaningful `ERROR` / `WARNING` / `!!!` / `error:` lines that indicate broken product behavior (examples: missing `dlib`, failed model downloads, `ubuntu-hello … unrecognized arguments`, PAM module / configure failures). Benign noise (optional-deps advisories, expected “already exists, skipping”) can stay; anything that means face auth, uninstall/keyring restore, or install configure is wrong must be fixed and the affected cell(s) re-run before declaring the pipeline done.
 * **Keyring / wallet**: face auth sets `PAM_AUTHTOK` for consumers such as `pam_gnome_keyring` and `pam_kwallet5`. UX/docs should mention login keyring **or** KWallet; use `wallet_backend.py` for backend labels and `theme_detect.py` for multi-DE theme probes. Do not invent a second sealed-blob format for KWallet. Uninstall / apt `prerm` runs `timeout 120 ubuntu-hello keyring restore --all` before deleting `/etc/ubuntu-hello` (re-assert sealed login password as wallet password when possible; never abort removal on restore failure). Bare `keyring restore` restores only the CLI-selected user (`-U`).
 
 ---

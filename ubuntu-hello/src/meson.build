@@ -121,6 +121,26 @@ install_data(
     install_mode: 'rw-r--r--',
     install_tag: 'meta',
 )
+package_scripts = [
+    '../../scripts/package-configure.sh',
+    '../../scripts/package-gtk-onboard.sh',
+    '../../scripts/package-prerm.sh',
+    '../../packaging/flatpak/install-host.sh',
+]
+install_data(
+    package_scripts,
+    install_dir: datadir,
+    install_mode: 'rwxr-xr-x',
+    install_tag: 'meta',
+)
+install_data(
+    '../../packaging/file-lists/ubuntu-hello.install',
+    '../../packaging/file-lists/ubuntu-hello-gtk.install',
+    '../../packaging/flatpak/data/com.github.ventura8.UbuntuHello.host.policy',
+    install_dir: datadir,
+    install_mode: 'r--r--r--',
+    install_tag: 'meta',
+)
 autocomplete = configure_file(
     input: 'autocomplete/ubuntu-hello.in',
     output: 'autocomplete',

@@ -16,6 +16,9 @@ def test_skip_build_and_cache_dirs():
     assert i18n_lint.skip_path(Path("builddir/meson-logs/testlog.json"))
     assert i18n_lint.skip_path(Path(".cache/docker-ci/x.json"))
     assert i18n_lint.skip_path(Path("obj-x86_64-linux-gnu/x.json"))
+    assert i18n_lint.skip_path(Path("packaging/snap/parts/ubuntu-hello/install/x.json"))
+    assert i18n_lint.skip_path(Path("packaging/snap/stage/usr/share/gdal/x.json"))
+    assert i18n_lint.skip_path(Path("artifacts/ci-packaging/deb/x.json"))
     assert not i18n_lint.skip_path(Path("scripts/i18n_fill_data/ubuntu-hello/de.json"))
 
 
@@ -95,6 +98,34 @@ def test_lint_linguas_detects_missing_po(tmp_path):
     assert any("missing .po" in e for e in errors)
 
 
-def test_repo_json_and_po_lint_clean():
+def test_lint_fill_packs_detects_keys_drift(tmp_path):
+    """Synthetic tree: _keys.json missing a pot msgid → completeness error."""
+    (tmp_path / "po").mkdir()
+    (tmp_path / "po" / "whisper-languages.txt").write_text("de\n", encoding="utf-8")
+    for domain in ("ubuntu-hello", "ubuntu-hello-gtk"):
+        podir = tmp_path / domain / "po"
+        podir.mkdir(parents=True)
+        (podir / "LINGUAS").write_text("de\n", encoding="utf-8")
+        (podir / f"{domain}.pot").write_text(
+            'msgid ""\nmsgstr ""\n\nmsgid "Hello"\nmsgstr ""\n',
+            encoding="utf-8",
+        )
+        (podir / "de.po").write_text(
+            'msgid ""\nmsgstr "Content-Type: text/plain; charset=UTF-8\\n"\n\n'
+            'msgid "Hello"\nmsgstr "Hallo"\n',
+            encoding="utf-8",
+        )
+        pack_dir = tmp_path / "scripts" / "i18n_fill_data" / domain
+        pack_dir.mkdir(parents=True)
+        (pack_dir / "_keys.json").write_text('["Other"]\n', encoding="utf-8")
+        (pack_dir / "de.json").write_text('{"Other": "x"}\n', encoding="utf-8")
+
+    errors = i18n_lint.lint_fill_packs_complete(tmp_path)
+    assert any("_keys.json" in e and "missing" in e for e in errors), errors
+    assert any("untranslated" in e for e in errors), errors
+
+
+def test_all_translations_filled():
+    """Fail if any committed .po or Whisper fill pack is incomplete vs .pot."""
     errors = i18n_lint.lint_tree(ROOT)
-    assert errors == [], "\n".join(errors[:20])
+    assert errors == [], "translations incomplete:\n" + "\n".join(errors[:40])

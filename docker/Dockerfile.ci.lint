@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.26.0
 # CI image for Ubuntu Hello — Ubuntu 26.04 lint stage
 # Image tag: ubuntu-hello-ci-lint:26.04
-# Runs meson/ninja + clang-tidy + py_compile + i18n-lint (JSON/.po) only (no pytest/coverage).
+# Runs meson/ninja + clang-tidy + py_compile + i18n-lint (JSON/.po) + shellcheck only (no pytest/coverage).
 # Source is bind-mounted at /src by scripts/ci-docker.sh (no COPY).
 FROM ubuntu:26.04
 
@@ -19,7 +19,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libstdc++-15-dev \
     libpam0g-dev libinih-dev libevdev-dev libssl-dev libboost-all-dev \
     pkg-config libopencv-dev \
-    meson ninja-build gettext
+    meson ninja-build gettext \
+    shellcheck
 
 WORKDIR /src
 CMD ["./scripts/ci-docker.sh", "--inside"]

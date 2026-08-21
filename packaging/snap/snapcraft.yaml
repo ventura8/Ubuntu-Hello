@@ -1,0 +1,86 @@
+name: ubuntu-hello
+base: core24
+adopt-info: ubuntu-hello
+summary: Windows Hello style facial authentication for Linux
+description: |
+  Ubuntu Hello provides Windows Hello style authentication for Linux using
+  PAM, facial recognition, and optional GTK settings. Using the central
+  authentication system (PAM), this works everywhere you would otherwise
+  need your password: login, lock screen, sudo, su, etc.
+grade: stable
+confinement: classic
+
+apps:
+  ubuntu-hello:
+    command: usr/bin/ubuntu-hello
+  ubuntu-hello-gtk:
+    command: usr/bin/ubuntu-hello-gtk
+  host-install:
+    command: meta/install-wrapper.sh --install
+
+parts:
+  ubuntu-hello:
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+      # Debian/Ubuntu multiarch (not Fedora lib64) so install-host globs
+      # usr/lib/*/ubuntu-hello match the primed snap tree.
+      - --libdir=lib/x86_64-linux-gnu
+      - -Ddlib_data_dir=/etc/ubuntu-hello/dlib-data
+      - -Dconfig_dir=/etc/ubuntu-hello
+      - -Duser_models_dir=/etc/ubuntu-hello/models
+      - -Dinstall_pam_config=true
+      - -Dwith_polkit=true
+      - -Dfetch_dlib_data=false
+      - -Dinih:with_INIReader=true
+    # A generated tarball, not the live ../.. tree: pointing craft-parts at
+    # the repo directly makes it drop the whole packaging/ dir to avoid
+    # copying its own build output (packaging/snap/parts/...) into itself.
+    # scripts/release-portable.sh generates this before invoking snapcraft.
+    source: ubuntu-hello-src.tar.gz
+    override-pull: |
+      craftctl default
+      # No AppStream metainfo to parse-info from; set adopt-info's version
+      # directly instead (config.ini was never going to parse as one).
+      craftctl set version="$(head -n1 "${CRAFT_PART_SRC}/VERSION")"
+    build-packages:
+      - meson
+      - ninja-build
+      - g++
+      - cmake
+      - make
+      - libpam0g-dev
+      - libinih-dev
+      - libevdev-dev
+      - libssl-dev
+      - libboost-all-dev
+      - pkg-config
+      - gettext
+      - python3-dev
+      - python3-pip
+    stage-packages:
+      - python3
+      - python3-numpy
+      - python3-opencv
+      - python3-cryptography
+      - python3-gi
+      - python3-gi-cairo
+      - python3-babel
+      - gir1.2-gtk-3.0
+      - v4l-utils
+      - tpm2-tools
+      - curl
+      - bzip2
+      - polkitd
+      - pkexec
+    override-build: |
+      craftctl default
+      # python3-dlib isn't packaged for Ubuntu; build it from source into the
+      # snap payload (classic confinement needs it staged, unlike the .deb
+      # which can fall back to a manual `pip3 install dlib` at runtime).
+      pip3 install --break-system-packages --no-compile \
+        --target="${CRAFT_PART_INSTALL}/usr/lib/python3/dist-packages" dlib==19.24.6
+    override-prime: |
+      craftctl default
+      install -Dm755 "$CRAFT_PROJECT_DIR/install-wrapper.sh" "$CRAFT_PRIME/meta/install-wrapper.sh"
+      install -Dm755 "$CRAFT_PROJECT_DIR/hooks/configure" "$CRAFT_PRIME/meta/hooks/configure"

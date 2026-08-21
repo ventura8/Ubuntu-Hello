@@ -1,0 +1,18 @@
+# syntax=docker/dockerfile:1.26.0
+# Fedora RPM packaging — Fedora 44
+FROM fedora:44
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN dnf -y install \
+    meson ninja-build gcc-c++ cmake git \
+    boost-devel openssl-devel pam-devel \
+    inih-devel libevdev-devel gettext \
+    python3-devel python3-pip pkgconfig rpm-build rpmdevtools \
+    python3-numpy python3-opencv python3-cryptography \
+    && dnf clean all
+
+WORKDIR /src
+COPY . /src
+
+CMD ["./scripts/release-rpm.sh", "fedora"]

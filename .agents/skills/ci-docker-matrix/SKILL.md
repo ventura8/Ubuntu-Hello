@@ -12,13 +12,13 @@ Target OS is fixed **Ubuntu 26.04 (resolute)**. Every CI Dockerfile uses `FROM u
 
 ## Root clean + Dockerfile location
 
-All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS.md](../../../AGENTS.md) §4.6.1. When adding or relocating Docker assets: update agent MDs first, then move files, then fix script/workflow references.
+All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS.md](../../../AGENTS.md) §4.7.1. When adding or relocating Docker assets: update agent MDs first, then move files, then fix script/workflow references.
 
 ## Stages
 
 | `UH_CI_STAGE` | Dockerfile | Image | Purpose |
 |---|---|---|---|
-| `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` + `scripts/i18n-lint.py` |
+| `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` + `scripts/i18n-lint.py` + `scripts/no-suppressions-lint.py` + `shellcheck` |
 | `coverage` | `docker/Dockerfile.ci.coverage` | `ubuntu-hello-ci-coverage:26.04` | pytest coverage floors + meson C++ tests |
 | `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` | DE compatibility build/test |
 
@@ -51,15 +51,25 @@ Keep **one Dockerfile + one image per DE** (no ARG-collapsed single image).
 ./scripts/ci-pipeline.sh
 ```
 
-Runs **lint → coverage → compat matrix** and fails fast between stages.
+Runs **lint → coverage → compat matrix → packaging matrix** and fails fast between stages.
 
-Compat-only parallel matrix:
+Compat-only parallel matrix (local):
 
 ```bash
 ./scripts/ci-matrix.sh
 ```
 
-`ci-matrix.sh` starts every DE **compat** cell concurrently (`UH_CI_STAGE=compat`), each with a unique `UBUNTU_HELLO_CI_BUILD_DIR`, and fails if **any** cell fails. Logs: `logs/ci-matrix/<de>.log`.
+`ci-matrix.sh` starts every DE **compat** cell concurrently (`UH_CI_STAGE=compat`, `UH_CI_PARALLEL_BUILD=1`), each with a unique `UBUNTU_HELLO_CI_BUILD_DIR`. Parallel image builds use plain **`docker build`** (not buildx) to avoid builder deadlocks. Fails if **any** cell fails. Logs: `logs/ci-matrix/<de>.log`.
+
+Packaging-only parallel matrix (local; same cells as GHA):
+
+```bash
+./scripts/ci-packaging-matrix.sh
+# or one format:
+./scripts/ci-packaging-cell.sh deb
+```
+
+`ci-packaging-matrix.sh` starts every format cell concurrently with `UH_PACKAGING_ARTIFACTS_ISOLATE=1` (per-format `artifacts/ci-packaging/<format>/`). Logs: `logs/ci-packaging/<format>.log`.
 
 ## Dependency pins
 
@@ -79,20 +89,22 @@ Compat-only parallel matrix:
 
 ## What each stage runs
 
-* **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`, `scripts/i18n-lint.py` (JSON + `.po`)
+* **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`, `scripts/i18n-lint.py` (JSON + `.po`), `scripts/no-suppressions-lint.py`, `shellcheck` on packaging scripts
 * **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
 * **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip`
 
 ## GitHub Actions
 
-`.github/workflows/check.yml`:
+`.github/workflows/check.yml` (OSS **20-runner** concurrency):
 
-* `lint` and `coverage` jobs run in parallel (each with Buildx + GHA layer cache)
-* `compat` job `needs: [lint, coverage]`, then `strategy.matrix.de` with `fail-fast: false`
+* **17 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 8× `compat` matrix (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
+* **`concurrency.cancel-in-progress: true`** — a new push to the same PR or branch cancels the previous workflow run
+* Each job uses its own runner; matrix jobs use `strategy.max-parallel: 20` to saturate OSS workers
+* Local `./scripts/ci-pipeline.sh` fail-fast **lint → coverage → compat → packaging** (same packaging cell script via `ci-packaging-matrix.sh`)
 * Each compat matrix job: `UH_CI_STAGE=compat UH_CI_DE=… ./scripts/ci-docker.sh`
 * **Never** turn DE compat into a sequential loop in one job
 * **Never** re-run full clang-tidy/coverage floors inside every DE cell
+* **Never** leave packaging smoke/E2E GHA-only — local gate must fail when packaging fails
+`docker/Dockerfile.ppa` remains `ubuntu:26.04` only (no DE packaging matrix). When changing CI/Docker/DE support, update [AGENTS.md](../../../AGENTS.md) §4.7.1 / §4.8 and this skill in the same change.
 
-`docker/Dockerfile.ppa` remains `ubuntu:26.04` only (no DE packaging matrix). When changing CI/Docker/DE support, update [AGENTS.md](../../../AGENTS.md) §4.6.1 / §4.7 and this skill in the same change.
-
-For the **full gate + fix-until-green** agent loop (no NOLINT / no weakened checks), use [pipeline-runner](../pipeline-runner/SKILL.md).
+For the **full gate + fix-until-green** agent loop (no NOLINT / no `# shellcheck disable` / no `# noqa` / no `# type: ignore` / no weakened checks), use [pipeline-runner](../pipeline-runner/SKILL.md).

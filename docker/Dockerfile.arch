@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1.26.0
+# Arch Linux packaging image (pinned base-devel weekly tag)
+FROM archlinux:base-devel-20260816.0.574111
+
+RUN pacman -Syu --noconfirm \
+    && pacman -S --noconfirm \
+    meson ninja cmake boost openssl pam libinih libevdev \
+    gettext python python-pip python-numpy python-opencv python-cryptography \
+    curl bzip2 v4l-utils tpm2-tools polkit pkgconf git \
+    && pacman -Scc --noconfirm
+
+WORKDIR /src
+COPY . /src
+
+RUN if id -u builduser >/dev/null 2>&1; then \
+      userdel -r builduser 2>/dev/null || true; \
+    fi; \
+    useradd -m -u 1000 builduser
+
+CMD ["./scripts/release-arch.sh"]

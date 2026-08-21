@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -100,25 +100,29 @@ msgstr "Laktawan ang lahat ng tanong."
 msgid "Print machine-friendly output."
 msgstr "Print machine-friendly na output."
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "With keyring restore: restore sealed login passwords for all users."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "Ipakita ang mensahe ng tulong na ito at lumabas."
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "kasalukuyang aktibong user:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "Di-wastong format ng username"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "Mangyaring patakbuhin ang utos na ito bilang ugat:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -156,93 +160,93 @@ msgstr "Hostname:"
 msgid "Best certainty value: "
 msgstr "Pinakamahusay na halaga ng katiyakan:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "Nagsisimula..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "Kinikilala ka..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "NABIGO"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Masyadong madilim ang lahat ng frame, pakitingnan ang dark_threshold s"
 "a config"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Average na dilim: {avg}, Threshold: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "Oras na ginugol"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "Nagsisimula"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "Buksan ang cam + load libs: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "Pagbukas ng camera"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "Pag-import ng recognition libs"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "Naghahanap ng kilalang mukha"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "Kabuuang oras"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nResolusyon"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "Katutubo: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "Ginamit: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nHinanap ang mga frame: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "Binalewala ang mga itim na frame: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "Binalewala ang mga madilim na frame: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "Katiyakan ng panalong frame: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "Panalong modelo: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "MATAGUMPAY"
 
@@ -298,37 +302,37 @@ msgstr "Pagdaragdag ng modelo ng mukha para sa user"
 msgid "Model #"
 msgstr "Model #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Gamit ang default na label na \"%s\" dahil sa -y flag"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "Maglagay ng label para sa bagong modelong ito [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "PAUNAWA: Pag-alis ng ilegal na karakter \",\" mula sa pangalan ng modelo"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nMangyaring tumingin nang diretso sa camera"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Itim na frame lang ang nakita ng camera - gumagana ba ang IR emitter?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "Walang nakitang mukha, nagpapalaglag"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "Maramihang mukha ang nakita, nagpapalaglag"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -412,7 +416,7 @@ msgstr "Ang Ubuntu Hello ay hindi pinagana"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ay pinagana"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "Paggamit: keyring [paganahin|i-disable|i-restore] [--all]"
 
@@ -482,19 +486,19 @@ msgstr "Na-disable ang keyring/KWallet unlocking para sa user na {}."
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Ang pag-unlock ng keyring/KWallet ay hindi pinagana para sa user na {}."
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Walang nahanap na selyadong login password; walang ire-restore."
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Naibalik ang password ng login wallet para sa {} (na) user."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Hindi maibalik ang password ng login wallet para sa {} (na) user."
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -705,7 +709,7 @@ msgstr "Nawawalang ffmpeg module, mangyaring patakbuhin ang:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Nawawalang pyv4l2 module, mangyaring patakbuhin ang:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -713,7 +717,7 @@ msgstr ""
 "Ubuntu Hello hindi makahanap ng camera device sa path na tinukoy sa co"
 "nfig file."
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -721,7 +725,7 @@ msgstr ""
 "Malamang na ang path ay hindi na-configure nang tama, paki-edit ang 'd"
 "evice_path' na halaga ng config sa pamamagitan ng pagpapatakbo:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"

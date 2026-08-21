@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.0\n"
+"Project-Id-Version: ubuntu-hello 1.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -97,25 +97,29 @@ msgstr "সব প্রশ্ন এড়িয়ে যান।"
 msgid "Print machine-friendly output."
 msgstr "প্রিন্ট মেশিন-বান্ধব আউটপুট।"
 
-#: src/cli.py:74
+#: src/cli.py:72
+msgid "With keyring restore: restore sealed login passwords for all users."
+msgstr "With keyring restore: restore sealed login passwords for all users."
+
+#: src/cli.py:80
 msgid "Show this help message and exit."
 msgstr "এই সাহায্য বার্তাটি দেখান এবং প্রস্থান করুন।"
 
-#: src/cli.py:78
+#: src/cli.py:84
 msgid "current active user: "
 msgstr "বর্তমান সক্রিয় ব্যবহারকারী:"
 
-#: src/cli.py:88
+#: src/cli.py:94
 msgid "Invalid username format"
 msgstr "অবৈধ ব্যবহারকারীর নাম বিন্যাস"
 
-#: src/cli.py:98
+#: src/cli.py:104
 msgid ""
 "Please run this command as root:\n"
 msgstr ""
 "অনুগ্রহ করে এই কমান্ডটি রুট হিসাবে চালান:\n"
 
-#: src/cli.py:104
+#: src/cli.py:110
 msgid ""
 "Can't run ubuntu-hello commands as root, please run this command with "
 "the --user flag"
@@ -151,93 +155,93 @@ msgstr "হোস্টনাম:"
 msgid "Best certainty value: "
 msgstr "সর্বোত্তম নিশ্চিততা মান:"
 
-#: src/compare.py:259
+#: src/compare.py:266
 msgid "Starting up..."
 msgstr "শুরু হচ্ছে..."
 
-#: src/compare.py:312
+#: src/compare.py:319
 msgid "Identifying you..."
 msgstr "তোমাকে শনাক্ত করা হচ্ছে..."
 
-#: src/compare.py:344
+#: src/compare.py:351
 msgid "FAILED"
 msgstr "ব্যর্থ হয়েছে"
 
-#: src/compare.py:347 src/cli/add.py:184
+#: src/compare.py:354 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "সমস্ত ফ্রেম খুব অন্ধকার ছিল, অনুগ্রহ করে কনফিগারে অন্ধকার_থ্রেশহোল্ড চ"
 "েক করুন"
 
-#: src/compare.py:348 src/cli/add.py:185
+#: src/compare.py:355 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "গড় অন্ধকার: {avg}, থ্রেশহোল্ড: {threshold}"
 
-#: src/compare.py:449
+#: src/compare.py:456
 msgid "Time spent"
 msgstr "সময় কাটে"
 
-#: src/compare.py:450
+#: src/compare.py:457
 msgid "Starting up"
 msgstr "শুরু হচ্ছে"
 
-#: src/compare.py:451
+#: src/compare.py:458
 msgid "  Open cam + load libs: %dms"
 msgstr "ওপেন ক্যাম + লোড libs: %dms"
 
-#: src/compare.py:452
+#: src/compare.py:459
 msgid "  Opening the camera"
 msgstr "ক্যামেরা খুলছি"
 
-#: src/compare.py:453
+#: src/compare.py:460
 msgid "  Importing recognition libs"
 msgstr "স্বীকৃতি libs আমদানি করা হচ্ছে"
 
-#: src/compare.py:454
+#: src/compare.py:461
 msgid "Searching for known face"
 msgstr "চেনা মুখ খুঁজছি"
 
-#: src/compare.py:455
+#: src/compare.py:462
 msgid "Total time"
 msgstr "মোট সময়"
 
-#: src/compare.py:457
+#: src/compare.py:464
 msgid ""
 "\nResolution"
 msgstr ""
 "\nরেজোলিউশন"
 
-#: src/compare.py:459
+#: src/compare.py:466
 msgid "  Native: %dx%d"
 msgstr "স্থানীয়: %dx%d"
 
-#: src/compare.py:462
+#: src/compare.py:469
 msgid "  Used: %dx%d"
 msgstr "ব্যবহৃত: %dx%d"
 
-#: src/compare.py:465
+#: src/compare.py:472
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nফ্রেম অনুসন্ধান করা হয়েছে: %d (%.2f fps)"
 
-#: src/compare.py:466
+#: src/compare.py:473
 msgid "Black frames ignored: %d "
 msgstr "কালো ফ্রেম উপেক্ষা করা হয়েছে: %d"
 
-#: src/compare.py:467
+#: src/compare.py:474
 msgid "Dark frames ignored: %d "
 msgstr "গাঢ় ফ্রেম উপেক্ষা করা হয়েছে: %d"
 
-#: src/compare.py:468
+#: src/compare.py:475
 msgid "Certainty of winning frame: %.3f"
 msgstr "ফ্রেম জয়ের নিশ্চিততা: %.3f"
 
-#: src/compare.py:470
+#: src/compare.py:477
 msgid "Winning model: %d (\"%s\")"
 msgstr "বিজয়ী মডেল: %d (\"%s\")"
 
-#: src/compare.py:474
+#: src/compare.py:481
 msgid "SUCCESSFUL"
 msgstr "সফল"
 
@@ -293,37 +297,37 @@ msgstr "ব্যবহারকারীর জন্য মুখের মড
 msgid "Model #"
 msgstr "মডেল #"
 
-#: src/cli/add.py:92
+#: src/cli/add.py:93
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y পতাকার কারণে ডিফল্ট লেবেল \"%s\" ব্যবহার করা হচ্ছে"
 
-#: src/cli/add.py:95
+#: src/cli/add.py:97
 msgid "Enter a label for this new model [{}]: "
 msgstr "এই নতুন মডেলের জন্য একটি লেবেল লিখুন [{}]:"
 
-#: src/cli/add.py:103
+#: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "বিজ্ঞপ্তি: মডেলের নাম থেকে অবৈধ অক্ষর \",\" সরানো হচ্ছে"
 
-#: src/cli/add.py:117
+#: src/cli/add.py:121
 msgid ""
 "\nPlease look straight into the camera"
 msgstr ""
 "\nদয়া করে সরাসরি ক্যামেরার দিকে তাকান"
 
-#: src/cli/add.py:182
+#: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "ক্যামেরা শুধু কালো ফ্রেম দেখেছে - আইআর ইমিটার কি কাজ করছে?"
 
-#: src/cli/add.py:187
+#: src/cli/add.py:191
 msgid "No face detected, aborting"
 msgstr "কোনো মুখ শনাক্ত করা হয়নি, বাতিল করা হচ্ছে"
 
-#: src/cli/add.py:192
+#: src/cli/add.py:196
 msgid "Multiple faces detected, aborting"
 msgstr "একাধিক মুখ সনাক্ত করা হয়েছে, বাতিল করা হচ্ছে"
 
-#: src/cli/add.py:214
+#: src/cli/add.py:218
 msgid ""
 "\nScan complete\nAdded a new model to "
 msgstr ""
@@ -407,7 +411,7 @@ msgstr "Ubuntu Hello নিষ্ক্রিয় করা হয়েছে
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello সক্ষম করা হয়েছে"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:157
+#: src/cli/keyring.py:32 src/cli/keyring.py:148
 msgid "Usage: keyring [enable|disable|restore [--all]]"
 msgstr "ব্যবহার: কীরিং [সক্ষম|অক্ষম|পুনরুদ্ধার] [--all]"
 
@@ -479,19 +483,19 @@ msgstr "ব্যবহারকারী {} এর জন্য কীরিং
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "কীরিং/KWallet আনলকিং ব্যবহারকারী {} এর জন্য সক্ষম করা হয়নি।"
 
-#: src/cli/keyring.py:149
+#: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "কোনও সিল করা লগইন পাসওয়ার্ড পাওয়া যায়নি; পুনরুদ্ধার করার কিছু নেই।"
 
-#: src/cli/keyring.py:151
+#: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} জন ব্যবহারকারীর জন্য লগইন ওয়ালেট পাসওয়ার্ড পুনরুদ্ধার করা হয়েছে।"
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} জন ব্যবহারকারীর জন্য লগইন ওয়ালেট পাসওয়ার্ড পুনরুদ্ধার করা যায়নি।"
 
-#: src/cli/keyring.py:154
+#: src/cli/keyring.py:158
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seaho"
 "rse / System Settings."
@@ -693,7 +697,7 @@ msgstr "ffmpeg মডিউল অনুপস্থিত, অনুগ্র�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "অনুপস্থিত pyv4l2 মডিউল, দয়া করে চালান:"
 
-#: src/recorders/video_capture.py:38
+#: src/recorders/video_capture.py:57
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in t"
 "he config file."
@@ -701,7 +705,7 @@ msgstr ""
 "Ubuntu Hello কনফিগার ফাইলে নির্দিষ্ট পাথে একটি ক্যামেরা ডিভাইস খুঁজে প"
 "ায়নি।"
 
-#: src/recorders/video_capture.py:39
+#: src/recorders/video_capture.py:58
 msgid ""
 "It is very likely that the path is not configured correctly, please ed"
 "it the 'device_path' config value by running:"
@@ -709,7 +713,7 @@ msgstr ""
 "খুব সম্ভবত পথটি সঠিকভাবে কনফিগার করা হয়নি, অনুগ্রহ করে 'device_path' "
 "কনফিগার মানটি রান করে সম্পাদনা করুন:"
 
-#: src/recorders/video_capture.py:99
+#: src/recorders/video_capture.py:118
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, ab"
 "orting"
