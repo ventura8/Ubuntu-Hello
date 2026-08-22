@@ -71,6 +71,8 @@ Consumers of `VERSION` (do not duplicate the number elsewhere for shipping pins)
 
 Do **not** leave a stale shipping pin (e.g. hardcoded `1.0.4` in Meson/PKGBUILD) when releasing `v1.1.0`. Historical `docs/releases/v1.0.4*.md` and older `debian/changelog` entries are archives — leave them. Mention the version bump in both release docs’ changelogs.
 
+**Do not hand-sync `Project-Id-Version` inside individual `.po` files.** `scripts/i18n-update.sh` already writes the current `VERSION` into the two `.pot` templates via `--package-version` — that is the one correct, automatic sync point. `msgmerge` deliberately leaves each `.po`'s own `Project-Id-Version` header alone when merging (normal, expected gettext behavior); it only moves forward the next time that `.po` actually goes through a real content regeneration, not on every version bump. Hand-editing that field across ~100 language files on a bump that touched no translatable strings is pure noise — skip it. If you're unsure a version bump needs any `.po`/`.pot` change at all, it usually doesn't: only run `i18n-update.sh` when source strings actually changed.
+
 ## Gather ALL changes (do not skip)
 
 Run these and read the outputs fully before writing prose:
@@ -160,12 +162,18 @@ After the release docs (and skill index updates) are written:
      requires force-push of others' work.
    * Prefer amending only when HEAD is this release branch tip and the user
      invoked this skill (explicit amend request).
-2. Stage **everything** that belongs in the release tip (docs, skill, indexes,
-   and any still-uncommitted release work):
+2. Stage everything that belongs in the release tip (docs, skill, indexes,
+   and any still-uncommitted release work) by **explicit pathspec — not
+   `git add -A`** (same rule as [release-packaging](../release-packaging/SKILL.md)
+   §Amend current commit — the two skills must not disagree here):
 
 ```bash
-git add -A
-# Review: git status && git diff --cached --stat
+git add <changed-file-1> <changed-file-2> ...
+git status
+git diff --cached --stat
+# Compare the staged path list against what you actually intended to change.
+# If anything unexpected is staged, STOP — unstage it (git restore --staged <path>)
+# or add it deliberately if it does belong — before amending.
 ```
 
 3. Amend with title + description (HEREDOC). Subject follows repo style:

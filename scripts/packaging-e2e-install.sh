@@ -18,6 +18,9 @@ cd "$(dirname "$0")/.."
 FORMAT="${1:?format: deb|rpm-fedora|rpm-opensuse|arch|snap|appimage|flatpak}"
 VERSION="$(uh_read_version)"
 ART="${UH_ARTIFACTS_DIR:-artifacts}"
+# rpmbuild tags the built RPM with the container's own arch (x86_64, aarch64, ...) —
+# match whatever this cell is actually running as, not a hardcoded x86_64.
+RPM_ARCH="$(uname -m)"
 export UH_SKIP_ONBOARD="${UH_SKIP_ONBOARD:-1}"
 # Unique per-run marker written into live config.ini before the upgrade step.
 UH_E2E_CONFIG_MARKER="UH_E2E_UPGRADE_MARKER=${VERSION}-$$-${RANDOM}"
@@ -159,10 +162,10 @@ uh_e2e_rpm_fedora_install() {
 	local f
 	while IFS= read -r f; do
 		rpms+=("$f")
-	done < <(compgen -G "${ART}/ubuntu-hello-${VERSION}-*.fc*.x86_64.rpm" || true)
+	done < <(compgen -G "${ART}/ubuntu-hello-${VERSION}-*.fc*.${RPM_ARCH}.rpm" || true)
 	while IFS= read -r f; do
 		rpms+=("$f")
-	done < <(compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.fc*.x86_64.rpm" || true)
+	done < <(compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.fc*.${RPM_ARCH}.rpm" || true)
 	[[ "${#rpms[@]}" -ge 2 ]] || uh_e2e_fail "expected Fedora RPM artifacts under ${ART}"
 	# Local CI artifacts are unsigned. Same NEVRA needs reinstall for a true upgrade pass.
 	if rpm -q ubuntu-hello >/dev/null 2>&1; then
@@ -181,10 +184,10 @@ uh_e2e_rpm_opensuse_install() {
 	local f
 	while IFS= read -r f; do
 		rpms+=("$f")
-	done < <(compgen -G "${ART}/ubuntu-hello-${VERSION}-*.lp*.x86_64.rpm" || true)
+	done < <(compgen -G "${ART}/ubuntu-hello-${VERSION}-*.lp*.${RPM_ARCH}.rpm" || true)
 	while IFS= read -r f; do
 		rpms+=("$f")
-	done < <(compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.lp*.x86_64.rpm" || true)
+	done < <(compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.lp*.${RPM_ARCH}.rpm" || true)
 	[[ "${#rpms[@]}" -ge 2 ]] || uh_e2e_fail "expected openSUSE RPM artifacts under ${ART}"
 	# Local CI artifacts are unsigned; allow install without repo signatures.
 	if rpm -q ubuntu-hello >/dev/null 2>&1; then
@@ -233,16 +236,22 @@ uh_e2e_host_uninstall_from_prefix() {
 
 uh_e2e_appimage_prepare_prefix() {
 	local appimage extract_dir offset
-	appimage="$(compgen -G "${ART}/Ubuntu-Hello-${VERSION}-*.AppImage" | head -n1 || true)"
-	[[ -n "$appimage" ]] || uh_e2e_fail "AppImage artifact missing"
+	# Match this cell's own arch (x86_64, aarch64, ...) rather than a bare
+	# wildcard + head -n1, which could silently grab a stale/foreign-arch
+	# AppImage if artifacts/ ever holds more than one arch at once.
+	appimage="$(compgen -G "${ART}/Ubuntu-Hello-${VERSION}-${RPM_ARCH}.AppImage" | head -n1 || true)"
+	[[ -n "$appimage" ]] || uh_e2e_fail "AppImage artifact missing for arch ${RPM_ARCH}"
 	appimage="$(readlink -f "$appimage")"
 	chmod +x "$appimage"
 	extract_dir="$(mktemp -d /tmp/uh-e2e-appimage.XXXXXX)"
 	echo ">>> Extracting AppImage to ${extract_dir}" >&2
 	(
 		cd "$extract_dir"
-		# Prefer offset+unsquashfs when available (no FUSE required).
-		if command -v unsquashfs >/dev/null 2>&1 && offset="$("${appimage}" --appimage-offset 2>/dev/null)" && [[ -n "${offset}" ]]; then
+		# Prefer offset+unsquashfs when available (no FUSE required, and never
+		# executes the AppImage itself — see uh_appimage_squashfs_offset for
+		# why running it directly fails under QEMU cross-arch emulation).
+		if command -v unsquashfs >/dev/null 2>&1 \
+			&& offset="$(uh_appimage_squashfs_offset "${appimage}" 2>/dev/null)" && [[ -n "${offset}" ]]; then
 			unsquashfs -o "${offset}" -d squashfs-root "${appimage}" >/dev/null
 		else
 			APPIMAGE_EXTRACT_AND_RUN=1 "${appimage}" --appimage-extract >/dev/null

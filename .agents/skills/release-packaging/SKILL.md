@@ -10,6 +10,38 @@ description: >-
 
 Build all GitHub Release artifact families locally before pushing a `v*` tag.
 
+## Amend current commit (mandatory)
+
+After making or verifying any packaging-pipeline change under this skill (Docker
+files, `release.yml`, `scripts/release-*.sh`, `packaging-smoke-verify.sh`,
+`packaging-e2e-install.sh`, etc.), stage exactly the files that changed (plus any
+related doc fixes) by explicit pathspec — not `git add -A` — and **amend HEAD** so
+its subject and body describe the change — do not leave the packaging work sitting
+under a stale or empty commit message:
+
+```bash
+# Stage only the intended packaging/CI files — explicit pathspecs, not -A —
+# then inspect what's actually staged before amending.
+git add <changed-file-1> <changed-file-2> ...
+git status
+git diff --cached --stat
+# Compare the staged path list against the files you actually intended to
+# change. If anything unexpected is staged, STOP — unstage it
+# (`git restore --staged <path>`) or add it deliberately if it does belong —
+# before amending.
+git commit --amend -m "$(cat <<'EOF'
+<short subject describing the packaging/CI change>
+
+<1-3 short bullets/paragraphs: what changed and why>
+EOF
+)"
+git log -1 --format='%s%n%n%b'
+```
+
+Only amend when HEAD is this branch's own tip (not a shared/already-pushed commit
+someone else's work depends on) and the user asked for or is directing this change.
+Do **not** push unless the user explicitly asks. Do **not** use `--no-verify`.
+
 ## Prerequisites
 
 - Docker with BuildKit
@@ -23,11 +55,35 @@ All drivers write to **`artifacts/`** (gitignored). Tag releases upload these vi
 
 | Format | Script / Docker | Output example |
 |--------|-----------------|----------------|
-| Debian | `docker/Dockerfile.ppa` + `scripts/release-deb.sh` | `ubuntu-hello_*_amd64.deb` |
-| Fedora RPM | `docker/Dockerfile.rpm.fedora` + `scripts/release-rpm.sh fedora` | `ubuntu-hello-*-1.fc44.x86_64.rpm` |
-| openSUSE RPM | `docker/Dockerfile.rpm.opensuse` + `scripts/release-rpm.sh opensuse` | `ubuntu-hello-*-1.lp160.x86_64.rpm` |
-| Arch | `docker/Dockerfile.arch` + `scripts/release-arch.sh` | `*.pkg.tar.zst` (split packages) |
-| Snap / AppImage / Flatpak | `docker/Dockerfile.snap` (Snap) / `docker/Dockerfile.release` + `scripts/release-portable.sh` | `.snap`, `.AppImage`, `.flatpak` |
+| Debian | `docker/Dockerfile.ppa` + `scripts/release-deb.sh` | `ubuntu-hello_*_amd64.deb` / `ubuntu-hello_*_arm64.deb` |
+| Fedora RPM | `docker/Dockerfile.rpm.fedora` + `scripts/release-rpm.sh fedora` | `ubuntu-hello-*-1.fc44.x86_64.rpm` / `...aarch64.rpm` |
+| openSUSE RPM | `docker/Dockerfile.rpm.opensuse` + `scripts/release-rpm.sh opensuse` | `ubuntu-hello-*-1.lp160.x86_64.rpm` / `...aarch64.rpm` |
+| AppImage | `docker/Dockerfile.release` + `scripts/release-portable.sh appimage` | `Ubuntu-Hello-*-x86_64.AppImage` / `...-aarch64.AppImage` |
+| Arch | `docker/Dockerfile.arch` + `scripts/release-arch.sh` | `*.pkg.tar.zst` (split packages, **amd64 only** — no official arm64 `archlinux` image) |
+| Snap | `docker/Dockerfile.snap` + `scripts/ci-snap-build.sh` | `.snap` (**amd64 only** — deferred: systemd+snapd under QEMU emulation is unreliable, not attempted) |
+| Flatpak | `docker/Dockerfile.release` + `scripts/release-portable.sh flatpak` | `.flatpak` (**amd64 only** — `flatpak-builder` always sandboxes each module build with `bwrap`, which requires Linux user namespaces; `unshare --user` fails under QEMU user-mode emulation with "Invalid argument", and `flatpak-builder` has no flag to disable sandboxing) |
+
+`release.yml` builds Debian, both RPM formats, and AppImage for **amd64 and arm64**
+(arm64 via QEMU cross-build — `docker/setup-qemu-action` + `docker build/run --platform
+linux/arm64`) and runs `packaging-smoke-verify.sh` + `packaging-e2e-install.sh` against
+each arch before upload. Arch/Snap/Flatpak stay amd64-only (reasons above).
+
+**AppImage arm64 gotcha (already handled, keep it this way):** type-2 AppImages encode an
+`"AI\x02"` signature into the ELF `e_ident` ABI-version padding bytes. The standard
+`qemu-user-static` binfmt_misc registration requires an exact-match on that byte, so the
+kernel refuses to even hand an AppImage to QEMU under cross-arch emulation — executing one
+directly (`--appimage-extract`, `--appimage-offset`) fails with "Exec format error", both
+for the downloaded `appimagetool` binary itself and for our own built output AppImage.
+Fixed by avoiding execution of the wrapped envelope on the primary path (a fallback to
+direct execution remains if `unsquashfs`/offset detection is unavailable):
+`uh_appimage_squashfs_offset()` in
+[`scripts/release-common.sh`](../../../scripts/release-common.sh) parses the ELF header
+directly (`e_shoff + e_shnum*e_shentsize`, the same formula the AppImage runtime itself
+uses) to find the appended squashfs offset, then `unsquashfs -o <offset>` extracts it — no
+execution required. `docker/Dockerfile.release` uses the same technique (inlined, since it
+runs before `scripts/` is copied into the image) to extract `appimagetool` from the
+downloaded AppImage, and `packaging-e2e-install.sh` uses the shared helper to extract our
+built output AppImage during the E2E install test.
 
 ## Parallel packaging cells
 

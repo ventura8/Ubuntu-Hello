@@ -9,7 +9,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERSION="$(uh_read_version)"
 APPDIR="${UH_REPO_ROOT}/build-appimage/AppDir"
 APPIMAGETOOL="${APPIMAGETOOL:-appimagetool}"
-OUTPUT="${UH_ARTIFACTS_DIR}/Ubuntu-Hello-${VERSION}-x86_64.AppImage"
+# appimagetool tags the ARCH env var into the output filename; match whatever
+# arch this build is actually running as (x86_64, aarch64, ...).
+ARCH="$(uname -m)"
+OUTPUT="${UH_ARTIFACTS_DIR}/Ubuntu-Hello-${VERSION}-${ARCH}.AppImage"
 
 uh_prepare_artifacts_dir
 rm -rf "${UH_REPO_ROOT}/build-appimage"
@@ -50,6 +53,6 @@ if ! command -v "${APPIMAGETOOL}" &>/dev/null; then
   exit 1
 fi
 
-ARCH=x86_64 "${APPIMAGETOOL}" "${APPDIR}" "${OUTPUT}"
+ARCH="${ARCH}" "${APPIMAGETOOL}" "${APPDIR}" "${OUTPUT}"
 ls -la "${OUTPUT}"
 echo "Built AppImage: ${OUTPUT}"

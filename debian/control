@@ -60,7 +60,7 @@ Description: Windows Hello style facial authentication for Linux
  cannot be satisfied, install it manually: pip3 install dlib
 
 Package: ubuntu-hello-gtk
-Architecture: all
+Architecture: any
 Depends:
  ${misc:Depends},
  ubuntu-hello (>= ${source:Version}),

@@ -202,15 +202,23 @@ Verify downloaded assets before installing:
 sha256sum -c SHA256SUMS
 ```
 
+`.deb`, Fedora RPM, openSUSE RPM, and AppImage Release assets ship for both **amd64** and
+**arm64** (built via QEMU cross-build in `release.yml`). Arch, Snap, and Flatpak stay
+**amd64-only**: the upstream `archlinux` base image has no arm64 manifest (Arch), Snap's
+build needs a privileged systemd+snapd container which is unreliable under QEMU emulation
+(deferred, not attempted), and `flatpak-builder` always sandboxes builds with `bwrap`,
+which requires Linux user namespaces — broken under QEMU user-mode emulation (confirmed:
+`unshare --user` fails there). Match the asset to your machine's architecture.
+
 | Format | Install (from Release assets) |
 |--------|-------------------------------|
-| **Debian `.deb`** | `sudo apt install ./ubuntu-hello_*_amd64.deb ./ubuntu-hello-gtk_*_all.deb` |
-| **Fedora RPM** | `sudo dnf install ./ubuntu-hello-[0-9]*fc44*.rpm ./ubuntu-hello-gtk-*fc44*.rpm` |
-| **openSUSE RPM** | `sudo zypper install ./ubuntu-hello-[0-9]*lp160*.rpm ./ubuntu-hello-gtk-*lp160*.rpm` |
-| **Arch** | `sudo pacman -U ./ubuntu-hello-[0-9]*.pkg.tar.zst ./ubuntu-hello-gtk-*.pkg.tar.zst` |
-| **Snap** | `sudo snap install --dangerous --classic ubuntu-hello_*_amd64.snap && sudo snap run ubuntu-hello.host-install` |
-| **AppImage** | `chmod +x Ubuntu-Hello-*-x86_64.AppImage && ./Ubuntu-Hello-*-x86_64.AppImage --install` |
-| **Flatpak** | `flatpak install --user ./com.github.ventura8.UbuntuHello-*.flatpak && flatpak run --command=ubuntu-hello-host-install com.github.ventura8.UbuntuHello && flatpak run com.github.ventura8.UbuntuHello` |
+| **Debian `.deb`** | `sudo apt install ./ubuntu-hello_*_$(dpkg --print-architecture).deb ./ubuntu-hello-gtk_*_$(dpkg --print-architecture).deb` |
+| **Fedora RPM** | `sudo dnf install ./ubuntu-hello-[0-9]*fc44*.$(uname -m).rpm ./ubuntu-hello-gtk-*fc44*.$(uname -m).rpm` |
+| **openSUSE RPM** | `sudo zypper install ./ubuntu-hello-[0-9]*lp160*.$(uname -m).rpm ./ubuntu-hello-gtk-*lp160*.$(uname -m).rpm` |
+| **AppImage** | `chmod +x Ubuntu-Hello-*-$(uname -m).AppImage && ./Ubuntu-Hello-*-$(uname -m).AppImage --install` |
+| **Arch** (amd64 only) | `sudo pacman -U ./ubuntu-hello-[0-9]*.pkg.tar.zst ./ubuntu-hello-gtk-*.pkg.tar.zst` |
+| **Snap** (amd64 only) | `sudo snap install --dangerous --classic ubuntu-hello_*_amd64.snap && sudo snap run ubuntu-hello.host-install` |
+| **Flatpak** (amd64 only) | `flatpak install --user ./com.github.ventura8.UbuntuHello-*.flatpak && flatpak run --command=ubuntu-hello-host-install com.github.ventura8.UbuntuHello && flatpak run com.github.ventura8.UbuntuHello` |
 
 Local rebuild: [`.agents/skills/release-packaging/SKILL.md`](../.agents/skills/release-packaging/SKILL.md) and `scripts/release-*.sh` with Docker images under `docker/Dockerfile.{ppa,rpm.fedora,rpm.opensuse,arch,release}`.
 
