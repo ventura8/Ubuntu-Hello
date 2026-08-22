@@ -7,15 +7,26 @@ import pytest
 import onboarding
 
 def test_on_camera_selection_changed():
+    # get_object() returns a distinct sentinel per widget id (instead of a
+    # bare MagicMock that auto-vivifies any attribute) so this test can
+    # actually detect a regression to a nonexistent attribute like
+    # self.slide2_preview_image, which silently returned a fresh MagicMock
+    # under plain mocking and let that bug ship uncaught.
+    widget_sentinels = {}
+
+    def fake_get_object(widget_id):
+        return widget_sentinels.setdefault(widget_id, MagicMock(name=widget_id))
+
     with patch("onboarding.gtk.Builder") as mock_builder_cls, \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
+        mock_builder_cls.return_value.get_object.side_effect = fake_get_object
         ob = onboarding.OnboardingWindow()
-        
+
         # mock the selection
         mock_selection = MagicMock()
         mock_listmodel = MagicMock()
         mock_iter = MagicMock()
-        
+
         # get_selected_rows and get_selected
         mock_selection.get_selected.return_value = (mock_listmodel, mock_iter)
         mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
@@ -25,11 +36,14 @@ def test_on_camera_selection_changed():
             2: "/dev/video0",
             3: True
         }[col]
-        
+
         with patch("threading.Thread") as mock_thread:
             ob.on_camera_selection_changed(mock_selection)
             assert ob.current_preview_path == "/dev/video0"
             mock_thread.assert_called_once()
+            # Must be slide 2's own preview widget, not slide4's or a
+            # nonexistent attribute.
+            assert ob.preview_image is widget_sentinels["preview_image"]
 
 def test_open_camera_for_preview():
     with patch("onboarding.gtk.Builder"), \
@@ -712,16 +726,21 @@ def test_scan_cameras_thread_udevadm_and_incompatible():
             # udevadm product match
             mock_check_output.return_value = b"ID_MODEL=product_test\nPRODUCT=1/2/3\n"
             
-            # Videocapture fails to open
+            # Videocapture opens successfully but read() fails
             mock_cap = MagicMock()
             mock_cap.read.return_value = (False, None)
             mock_vc.return_value = mock_cap
-            
+
             ob.scan_cameras_thread()
             # It should have updated with incompatible status
             mock_idle.assert_called_once()
             device_rows = mock_idle.call_args[0][1]
             assert device_rows[0][2] == -9
+            # A capture that opened but failed to read a frame must still be
+            # released by the watchdog thread itself -- otherwise the handle
+            # leaks and can leave the underlying device busy for later opens
+            # of the same real /dev/videoN node.
+            mock_cap.release.assert_called_once()
             
             # Videocapture opens but is color (np.all fails)
             mock_idle.reset_mock()
@@ -752,6 +771,104 @@ def test_scan_cameras_thread_udevadm_exception():
             
             ob.scan_cameras_thread()
             assert mock_idle.called
+
+def test_scan_cameras_thread_hanging_device_times_out():
+    """A device whose cv2.VideoCapture().read() never returns in time must not
+    freeze the whole scan. This exercises the *real* watchdog timeout (a
+    genuinely blocked read via threading.Event, with CAMERA_PROBE_TIMEOUT
+    patched small) rather than faking is_alive()/join() -- mocking time.sleep
+    would silently no-op a `time.sleep(9999)`-based fake block since both
+    refer to the same module object, which is why this uses Event.wait()
+    instead. It also verifies the abandoned capture is released once the
+    blocked read eventually completes, instead of leaking."""
+    import threading as threading_module
+    import time as time_module
+
+    release_read = threading_module.Event()
+    hanging_cap = MagicMock()
+    hanging_cap.read.side_effect = lambda: (release_read.wait(timeout=2.0), (True, MagicMock()))[1]
+
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
+         patch("gi.repository.GLib.idle_add") as mock_idle:
+        ob = onboarding.OnboardingWindow()
+
+        with patch("onboarding.CAMERA_PROBE_TIMEOUT", 0.05), \
+             patch("os.listdir", return_value=["stuck-device"]), \
+             patch("time.sleep"), \
+             patch("subprocess.check_output", return_value=b""), \
+             patch("os.path.realpath", return_value="/dev/video0"), \
+             patch("cv2.VideoCapture", return_value=hanging_cap):
+            ob.scan_cameras_thread()
+
+        # The real (short-patched) timeout elapsed while read() was still
+        # blocked, so the device is reported unopenable.
+        mock_idle.assert_called_once()
+        device_rows = mock_idle.call_args[0][1]
+        assert device_rows[0][2] == -9
+
+        # Let the blocked read complete after the scan already gave up on
+        # this device; the watchdog must release the now-unwanted capture
+        # itself instead of leaking the handle.
+        release_read.set()
+        deadline = time_module.time() + 2.0
+        while not hanging_cap.release.called and time_module.time() < deadline:
+            time_module.sleep(0.02)
+        hanging_cap.release.assert_called_once()
+
+def test_scan_cameras_thread_late_timeout_does_not_leak_into_next_device():
+    """Regression test for the closure late-binding bug: real_path/state/lock
+    were previously captured by reference from the loop, so a device whose
+    watchdog timed out but later actually finished its read could write its
+    stale capture/frame into a *later* device's result (or find the later
+    device's not-yet-set abandonment flag and "publish" through it),
+    potentially leaking a handle or corrupting which camera gets selected.
+    Each iteration must own its own private state regardless of when its
+    worker thread actually completes."""
+    import threading as threading_module
+    import time as time_module
+    import numpy as np
+
+    release_first = threading_module.Event()
+
+    first_cap = MagicMock()
+    first_cap.read.side_effect = lambda: (release_first.wait(timeout=2.0), (True, np.ones((2, 2, 3))))[1]
+
+    second_cap = MagicMock()
+    second_cap.read.return_value = (True, np.ones((2, 2, 3)))  # all channels equal -> "compatible"
+
+    capture_by_path = {"/dev/video-first": first_cap, "/dev/video-second": second_cap}
+
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
+         patch("gi.repository.GLib.idle_add") as mock_idle:
+        ob = onboarding.OnboardingWindow()
+
+        with patch("onboarding.CAMERA_PROBE_TIMEOUT", 0.05), \
+             patch("os.listdir", return_value=["first", "second"]), \
+             patch("time.sleep"), \
+             patch("subprocess.check_output", return_value=b""), \
+             patch("os.path.realpath", side_effect=lambda p: p.replace("/dev/v4l/by-path/", "/dev/video-")), \
+             patch("cv2.VideoCapture", side_effect=lambda real_path: capture_by_path[real_path]):
+            ob.scan_cameras_thread()
+
+        mock_idle.assert_called_once()
+        device_rows = {row[1]: row for row in mock_idle.call_args[0][1]}
+
+    assert device_rows["/dev/v4l/by-path/first"][2] == -9
+    assert device_rows["/dev/v4l/by-path/second"][2] == 5
+    second_cap.release.assert_called_once()
+
+    # Let the abandoned first device's read complete only now, after the
+    # scan has already moved on to and finished with the second device.
+    release_first.set()
+    deadline = time_module.time() + 2.0
+    while not first_cap.release.called and time_module.time() < deadline:
+        time_module.sleep(0.02)
+
+    first_cap.release.assert_called_once()
+    # The second device's already-reported result must stay untouched.
+    assert second_cap.release.call_count == 1
 
 def test_execute_slide3_errors():
     with patch("onboarding.gtk.Builder"), \

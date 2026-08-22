@@ -22,6 +22,13 @@ from gi.repository import Gdk as gdk
 from gi.repository import GObject as gobject
 from gi.repository import Pango as pango
 from gi.repository import GLib
+from gi.repository import GdkPixbuf as pixbuf
+
+# How long scan_cameras_thread()'s watchdog waits for a single device's
+# cv2.VideoCapture().read() before giving up on it. A module-level constant
+# (rather than a literal in the loop) so tests can patch it to a small value
+# and exercise the real timeout/abandonment path instead of faking it out.
+CAMERA_PROBE_TIMEOUT = 5
 
 
 class KeyringPasswordDialog(gtk.Dialog):
@@ -260,7 +267,9 @@ class OnboardingWindow(gtk.Window):
 
 			# Get the udevadm details to try to get a better name
 			try:
-				udevadm = subprocess.check_output(["udevadm", "info", "-r", "--query=all", "-n", device_path]).decode("utf-8")
+				udevadm = subprocess.check_output(
+					["udevadm", "info", "-r", "--query=all", "-n", device_path], timeout=5
+				).decode("utf-8")
 
 				# Loop though udevadm to search for a better name
 				for line in udevadm.split("\n"):
@@ -272,11 +281,74 @@ class OnboardingWindow(gtk.Window):
 				pass
 
 			real_path = os.path.realpath(device_path)
-			capture = cv2.VideoCapture(real_path)
-			is_open, frame = capture.read()
-			if not is_open:
+			# cv2.VideoCapture().read() has no timeout of its own and cannot be
+			# cancelled once called; a misbehaving driver can block it forever,
+			# which would otherwise freeze the whole scan on this one device.
+			# Run it on a watchdog thread instead: if it doesn't finish in
+			# time, treat the device as unopenable and move on.
+			#
+			# `state`/`lock` are created fresh per iteration and passed in as
+			# default arguments (not captured by reference) so a worker that
+			# is still running when the scan moves on to the next device can
+			# never observe -- or write into -- a later iteration's state;
+			# Python closures capture loop variables like `real_path` by
+			# reference, so without this binding a late-finishing worker
+			# would see whatever the *current* iteration happened to be.
+			#
+			# `lock` makes the timeout/completion handoff atomic: whichever
+			# side reaches `state["status"] == "pending"` first -- the
+			# worker finishing its read, or the main thread's post-join
+			# check -- is the one responsible for the capture (consume it or
+			# release it); the other side is guaranteed to see it already
+			# changed and do nothing, so a capture is claimed exactly once
+			# and never silently discarded unreleased.
+			state = {"status": "pending"}
+			lock = threading.Lock()
+
+			def _open_and_read(real_path=real_path, state=state, lock=lock):
+				cap = None
+				try:
+					cap = cv2.VideoCapture(real_path)
+					ok, img = cap.read()
+				except Exception:
+					ok, img = False, None
+				with lock:
+					if state["status"] != "pending":
+						# The main thread already gave up on this device;
+						# nobody else will release this capture.
+						if cap is not None:
+							try:
+								cap.release()
+							except Exception:
+								pass
+						return
+					state["status"] = "done"
+					if ok:
+						state["capture"] = cap
+						state["frame"] = img
+					elif cap is not None:
+						try:
+							cap.release()
+						except Exception:
+							pass
+
+			opener = threading.Thread(target=_open_and_read, daemon=True)
+			opener.start()
+			opener.join(timeout=CAMERA_PROBE_TIMEOUT)
+
+			with lock:
+				if state["status"] == "pending":
+					state["status"] = "abandoned"
+					timed_out = True
+				else:
+					timed_out = False
+
+			if timed_out or "capture" not in state:
 				device_rows.append([device_name, device_path, -9, _("No, camera can't be opened")])
 				continue
+
+			capture = state["capture"]
+			frame = state["frame"]
 
 			try:
 				# Use numpy to check if grayscale / infrared extremely quickly
@@ -308,6 +380,15 @@ class OnboardingWindow(gtk.Window):
 
 		for i, column in enumerate([_("Camera identifier or path"), _("Recommended")]):
 			cell = gtk.CellRendererText()
+			# Device names/paths can be arbitrarily long (full udev product
+			# strings, /dev/v4l/by-path/... paths). The ScrolledWindow below
+			# disables horizontal scrolling (PolicyType.NEVER), so without
+			# ellipsizing, an unbounded TreeViewColumn width request fighting
+			# a fixed-width parent can drive GTK's layout code to compute a
+			# negative allocation ("attempt to allocate widget with width 0
+			# and height -15") and segfault. v1.1.2 set this; dropped by a
+			# later rewrite.
+			cell.set_property("ellipsize", pango.EllipsizeMode.END)
 			col = gtk.TreeViewColumn(column, cell, text=i)
 			self.treeview.append_column(col)
 
@@ -316,6 +397,14 @@ class OnboardingWindow(gtk.Window):
 		self.scrolled_window.set_shadow_type(gtk.ShadowType.IN)
 		self.scrolled_window.set_vexpand(True)
 		self.scrolled_window.set_hexpand(True)
+		# Without an explicit minimum, a freshly-created ScrolledWindow with no
+		# natural size request of its own can be allocated ~0 height by its
+		# parent box, silently collapsing the whole device list out of view
+		# (GTK logs "Negative content width/height" warnings when this
+		# happens) even though the widget tree and Next-button enabling are
+		# otherwise correct. v1.1.2 set this; a later rewrite dropped it.
+		self.scrolled_window.set_min_content_height(100)
+		self.scrolled_window.set_margin_bottom(15)
 		self.loadinglabel.hide()
 		self.scrolled_window.add(self.treeview)
 		self.devicelistbox.add(self.scrolled_window)
@@ -698,7 +787,16 @@ class OnboardingWindow(gtk.Window):
 		if self.current_preview_path == device_path:
 			return
 
-		self.preview_image = self.slide2_preview_image
+		# "preview_image" is slide 2's own preview widget (see __init__); a
+		# prior slide (slide4's face-scan step) may have pointed
+		# self.preview_image at slide4_preview_image instead, so reset it
+		# here. There is no "slide2_preview_image" object in the Glade
+		# file -- referencing self.slide2_preview_image raised an
+		# uncaught AttributeError on every camera selection, which the
+		# unit test suite never caught because it runs against a mocked
+		# Gtk.Window that auto-vivifies any missing attribute instead of
+		# raising.
+		self.preview_image = self.builder.get_object("preview_image")
 		self.stop_preview()
 		self.current_preview_path = device_path
 		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
@@ -709,9 +807,18 @@ class OnboardingWindow(gtk.Window):
 		try:
 			import cv2
 			import time
-			from gi.repository import GLib, GdkPixbuf as pixbuf
 
-			cap = cv2.VideoCapture(device_path)
+			# device_path is a /dev/v4l/by-path/... symlink; resolve it to the
+			# real /dev/videoN node like every other camera-opening call in
+			# this file (scan_cameras_thread, execute_slide3). Opening the
+			# symlink directly was a regression from a later preview-thread
+			# rewrite -- some V4L2/GStreamer driver + kernel combinations
+			# bind the wrong underlying node (or none at all) when handed a
+			# by-path symlink instead of the canonical device, which can
+			# leave this loop spinning on failed reads with no visible
+			# preview and no error ("stuck testing webcams").
+			real_path = os.path.realpath(device_path)
+			cap = cv2.VideoCapture(real_path)
 			if not cap.isOpened():
 				return
 

@@ -1,3 +1,105 @@
+ubuntu-hello (1.1.5-1ppa1) resolute; urgency=medium
+
+  * Fixed the setup wizard getting stuck on "Testing your webcams, please
+    wait...": scan_cameras_thread() had two unbounded blocking calls
+    (udevadm subprocess, cv2.VideoCapture().read()) that could freeze the
+    whole sequential device scan forever on a single misbehaving driver;
+    both now have explicit timeouts (5s), with the VideoCapture open+read
+    run on a watchdog thread so a stuck device is reported unopenable and
+    skipped instead of blocking the scan indefinitely.
+  * Fixed the live camera preview (shown while selecting a webcam) opening
+    the raw /dev/v4l/by-path/... symlink instead of the resolved
+    /dev/videoN device -- a regression from a later preview-thread
+    rewrite that dropped the os.path.realpath() call present in v1.1.2
+    and in the two sibling camera-opening call sites in the same file.
+    Restored, matching v1.1.2's behavior.
+  * Fixed an uncaught AttributeError in on_camera_selection_changed()
+    (self.slide2_preview_image, which was never defined anywhere) that
+    fired on every camera selection -- including the automatic first-row
+    selection right after the webcam scan completes -- silently breaking
+    the live preview immediately after "Testing your webcams" finishes.
+    This is one of several distinct causes behind the wizard appearing
+    stuck on that step; it does not exist in v1.1.2. The unit test suite
+    never caught it because it runs against a mocked Gtk.Window that
+    auto-vivifies any missing attribute instead of raising. Confirmed
+    fixed by running the real installed binary against real webcam
+    hardware: the traceback that fired on every run is gone.
+  * Fixed the device list disappearing on the same webcam-testing step:
+    update_camera_list_gui() builds the camera ScrolledWindow at runtime
+    with no minimum content height, so GTK could allocate it ~0 size
+    (logged as "Negative content width/height" warnings) and the device
+    list silently vanished even though the scan succeeded and Next was
+    enabled -- indistinguishable from a hang. v1.1.2 set
+    set_min_content_height(100) on this widget; a later rewrite dropped
+    it. Restored, matching v1.1.2.
+  * Fixed a genuine crash (SIGSEGV) on the webcam-testing step, confirmed
+    from a real terminal run: the device list's CellRendererText lost its
+    ellipsize property in the same rewrite. Device names/paths can be
+    arbitrarily long (full udev product strings, /dev/v4l/by-path/...
+    paths), and the containing ScrolledWindow disables horizontal
+    scrolling (PolicyType.NEVER); without ellipsizing, the resulting
+    unbounded column-width request against a fixed-width parent drove
+    GTK's layout code to compute a negative allocation
+    ("gtk_widget_size_allocate(): attempt to allocate widget with width 0
+    and height -15", followed immediately by "Negative content
+    width/height" on the ScrolledWindow) and segfault. v1.1.2 set
+    cell.set_property("ellipsize", Pango.EllipsizeMode.END); restored.
+  * Fixed the actual root cause of the device list staying invisible
+    (onboarding.glade): slidecontainer had the deprecated GtkBox
+    resize-mode="immediate" property set. Isolated and reproduced in a
+    minimal test: with this property set, any widget added at runtime to
+    an already-realized/visible descendant box (exactly what
+    update_camera_list_gui() does to devicelistbox once the scan
+    finishes) permanently collapses to a 1x1 allocation, no matter how
+    many further queue_resize() calls follow -- with the default resize
+    mode the identical code sizes correctly. Removed the property.
+    Confirmed by the user: the device list now renders normally after
+    this change (a separate, expected issue remains where GStreamer
+    itself fails to open some cameras -- reported per-device in the now-
+    visible list rather than appearing as a stuck wizard).
+  * Fixed the live camera preview always staying black even for a
+    successfully-opened, compatible camera: update_preview_image_widget()
+    referenced GdkPixbuf (aliased "pixbuf") to decode each captured
+    frame, but that alias was only ever imported locally inside the
+    sibling method open_camera_for_preview() -- never at module scope --
+    so every call raised NameError: name 'pixbuf' is not defined,
+    silently swallowed by a bare except. Diagnosed with temporary debug
+    logging confirming frames were captured and encoded correctly
+    (isOpened=True, frames read and PNG-encoded) but every widget update
+    failed with this NameError. Fixed by importing GdkPixbuf as pixbuf
+    at module level.
+  * Fixed a VideoCapture handle leak in scan_cameras_thread()'s watchdog:
+    when cap.read() failed after a successful open, or the watchdog timed
+    out on a hanging read, the capture was never released. Left unfixed,
+    this can leave the underlying device busy for later opens of the same
+    real /dev/videoN node (this scan's own next iteration for a duplicate
+    by-path alias, or the live preview). The watchdog now releases the
+    capture itself whenever the read fails or the device is abandoned due
+    to timeout.
+  * Fixed two related concurrency bugs in that same watchdog, found in PR
+    review: (1) the per-device open_result dict and abandoned Event were
+    captured by the worker closure by reference, not bound per loop
+    iteration, so a worker that finished after the scan had already moved
+    on to a later device could read or write into that later device's
+    state -- corrupting which camera's result was reported, or leaking a
+    handle without being noticed; (2) the timeout handoff between the main
+    thread (is_alive() + abandoned.set()) and the worker's own
+    abandoned.is_set() check was not atomic, so a worker could observe
+    "not abandoned" and publish its capture in the same window the main
+    thread was declaring it abandoned, discarding that capture unreleased.
+    Rewritten so each iteration owns a private state/lock pair (bound as
+    default arguments, not captured by reference) and the lock makes the
+    completion/timeout handoff atomic: whichever side reaches the pending
+    state first owns the capture. The join timeout is now the module-level
+    CAMERA_PROBE_TIMEOUT constant so tests can exercise the real watchdog
+    path (a genuinely blocked read via threading.Event) instead of faking
+    Thread.is_alive()/join(), which previously let a test pass without
+    actually testing the timeout behavior. Added a regression test
+    covering a device that times out and only later finishes, verifying
+    it cannot corrupt a subsequent device's result.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Sat, 22 Aug 2026 23:15:00 +0300
+
 ubuntu-hello (1.1.4-1ppa1) resolute; urgency=medium
 
   * ARM64 release artifacts: .deb, Fedora RPM, openSUSE RPM, and AppImage now
