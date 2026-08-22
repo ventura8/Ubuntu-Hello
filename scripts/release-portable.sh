@@ -29,8 +29,12 @@ build_flatpak() {
 	mkdir -p "${staging}"
 	flatpak-builder --state-dir="${state_dir}" --repo="${repo}" --force-clean "${build_dir}" \
 		packaging/flatpak/com.github.ventura8.UbuntuHello.yml
+	# Bundle name carries this build's own arch (x86_64, aarch64, ...) —
+	# matches whatever arch flatpak-builder actually targeted.
+	local flatpak_arch
+	flatpak_arch="$(uname -m)"
 	flatpak build-bundle "${repo}" \
-		"${UH_ARTIFACTS_DIR}/com.github.ventura8.UbuntuHello-${VERSION}-x86_64.flatpak" \
+		"${UH_ARTIFACTS_DIR}/com.github.ventura8.UbuntuHello-${VERSION}-${flatpak_arch}.flatpak" \
 		com.github.ventura8.UbuntuHello
 }
 

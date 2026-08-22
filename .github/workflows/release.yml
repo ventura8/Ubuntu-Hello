@@ -61,6 +61,9 @@ jobs:
 
   build-deb:
     runs-on: ubuntu-26.04
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -69,26 +72,52 @@ jobs:
       - name: Extract version from tag
         run: ./scripts/release-verify-tag-version.sh
 
-      - name: Build .deb packages
+      - name: Set up QEMU
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v3.7.0
+        with:
+          platforms: arm64
+          image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
+
+      - name: Build .deb packages (${{ matrix.arch }})
         run: |
-          chmod +x scripts/release-deb.sh scripts/ppa-docker.sh
-          docker build -f docker/Dockerfile.ppa -t "${PPA_IMAGE}" .
-          docker run --rm \
+          chmod +x scripts/release-deb.sh scripts/ppa-docker.sh scripts/packaging-smoke-verify.sh scripts/packaging-e2e-install.sh
+          docker build --platform "linux/${{ matrix.arch }}" -f docker/Dockerfile.ppa -t "${PPA_IMAGE}-${{ matrix.arch }}" .
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
             -e VERSION \
             -v "$PWD:/src:rw" \
             -w /src \
-            "${PPA_IMAGE}" \
+            "${PPA_IMAGE}-${{ matrix.arch }}" \
             ./scripts/release-deb.sh
+
+      - name: Verify + install-test .deb packages (${{ matrix.arch }})
+        run: |
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${PPA_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-smoke-verify.sh deb
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -e UH_SKIP_ONBOARD=1 \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${PPA_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-e2e-install.sh deb
 
       - name: Upload deb artifacts
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: deb
+          name: deb-${{ matrix.arch }}
           path: artifacts/*.deb
           if-no-files-found: error
 
   build-rpm-fedora:
     runs-on: ubuntu-26.04
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -97,26 +126,52 @@ jobs:
       - name: Extract version from tag
         run: ./scripts/release-verify-tag-version.sh
 
-      - name: Build Fedora RPMs
+      - name: Set up QEMU
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v3.7.0
+        with:
+          platforms: arm64
+          image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
+
+      - name: Build Fedora RPMs (${{ matrix.arch }})
         run: |
-          chmod +x scripts/release-rpm.sh
-          docker build -f docker/Dockerfile.rpm.fedora -t "${RPM_FEDORA_IMAGE}" .
-          docker run --rm \
+          chmod +x scripts/release-rpm.sh scripts/packaging-smoke-verify.sh scripts/packaging-e2e-install.sh
+          docker build --platform "linux/${{ matrix.arch }}" -f docker/Dockerfile.rpm.fedora -t "${RPM_FEDORA_IMAGE}-${{ matrix.arch }}" .
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
             -e VERSION \
             -v "$PWD:/src:rw" \
             -w /src \
-            "${RPM_FEDORA_IMAGE}" \
+            "${RPM_FEDORA_IMAGE}-${{ matrix.arch }}" \
             ./scripts/release-rpm.sh fedora
+
+      - name: Verify + install-test Fedora RPMs (${{ matrix.arch }})
+        run: |
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_FEDORA_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-smoke-verify.sh rpm-fedora
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -e UH_SKIP_ONBOARD=1 \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_FEDORA_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-e2e-install.sh rpm-fedora
 
       - name: Upload Fedora RPM artifacts
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: rpm-fedora
+          name: rpm-fedora-${{ matrix.arch }}
           path: artifacts/*.rpm
           if-no-files-found: error
 
   build-rpm-opensuse:
     runs-on: ubuntu-26.04
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -125,26 +180,54 @@ jobs:
       - name: Extract version from tag
         run: ./scripts/release-verify-tag-version.sh
 
-      - name: Build openSUSE RPMs
+      - name: Set up QEMU
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v3.7.0
+        with:
+          platforms: arm64
+          image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
+
+      - name: Build openSUSE RPMs (${{ matrix.arch }})
         run: |
-          chmod +x scripts/release-rpm.sh
-          docker build -f docker/Dockerfile.rpm.opensuse -t "${RPM_OPENSUSE_IMAGE}" .
-          docker run --rm \
+          chmod +x scripts/release-rpm.sh scripts/packaging-smoke-verify.sh scripts/packaging-e2e-install.sh
+          docker build --platform "linux/${{ matrix.arch }}" -f docker/Dockerfile.rpm.opensuse -t "${RPM_OPENSUSE_IMAGE}-${{ matrix.arch }}" .
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
             -e VERSION \
             -v "$PWD:/src:rw" \
             -w /src \
-            "${RPM_OPENSUSE_IMAGE}" \
+            "${RPM_OPENSUSE_IMAGE}-${{ matrix.arch }}" \
             ./scripts/release-rpm.sh opensuse
+
+      - name: Verify + install-test openSUSE RPMs (${{ matrix.arch }})
+        run: |
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_OPENSUSE_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-smoke-verify.sh rpm-opensuse
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -e UH_SKIP_ONBOARD=1 \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            "${RPM_OPENSUSE_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-e2e-install.sh rpm-opensuse
 
       - name: Upload openSUSE RPM artifacts
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: rpm-opensuse
+          name: rpm-opensuse-${{ matrix.arch }}
           path: artifacts/*.rpm
           if-no-files-found: error
 
   build-arch:
     runs-on: ubuntu-26.04
+    # arm64 intentionally excluded: the official archlinux/archlinux Docker image
+    # (used by docker/Dockerfile.arch) only publishes an amd64 manifest — there is
+    # no official Arch Linux ARM image. Arch Linux ARM is a separate distro/repo
+    # set (archlinuxarm.org) with no first-party container image, so it isn't a
+    # drop-in --platform target the way Ubuntu/Fedora/openSUSE are.
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -197,6 +280,9 @@ jobs:
 
   build-appimage:
     runs-on: ubuntu-26.04
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -205,27 +291,60 @@ jobs:
       - name: Extract version from tag
         run: ./scripts/release-verify-tag-version.sh
 
-      - name: Build AppImage
+      - name: Set up QEMU
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v3.7.0
+        with:
+          platforms: arm64
+          image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
+
+      - name: Build AppImage (${{ matrix.arch }})
         run: |
-          chmod +x scripts/release-portable.sh packaging/appimage/build-appimage.sh
-          docker build -f docker/Dockerfile.release -t "${RELEASE_IMAGE}" .
-          docker run --rm \
+          chmod +x scripts/release-portable.sh packaging/appimage/build-appimage.sh scripts/packaging-smoke-verify.sh scripts/packaging-e2e-install.sh
+          docker build --platform "linux/${{ matrix.arch }}" -f docker/Dockerfile.release -t "${RELEASE_IMAGE}-${{ matrix.arch }}" .
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
             -e VERSION \
             -v "$PWD:/src:rw" \
             -w /src \
             --privileged \
-            "${RELEASE_IMAGE}" \
+            "${RELEASE_IMAGE}-${{ matrix.arch }}" \
             ./scripts/release-portable.sh appimage
+
+      - name: Verify + install-test AppImage (${{ matrix.arch }})
+        run: |
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            --privileged \
+            "${RELEASE_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-smoke-verify.sh appimage
+          docker run --rm --platform "linux/${{ matrix.arch }}" \
+            -e VERSION \
+            -e UH_SKIP_ONBOARD=1 \
+            -v "$PWD:/src:rw" \
+            -w /src \
+            --privileged \
+            "${RELEASE_IMAGE}-${{ matrix.arch }}" \
+            ./scripts/packaging-e2e-install.sh appimage
 
       - name: Upload AppImage artifact
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: appimage
+          name: appimage-${{ matrix.arch }}
           path: artifacts/*.AppImage
           if-no-files-found: error
 
   build-flatpak:
     runs-on: ubuntu-26.04
+    # arm64 intentionally excluded: flatpak-builder always sandboxes each module
+    # build with bwrap (bubblewrap), which requires Linux user namespaces
+    # (CLONE_NEWUSER). User namespaces are broken under QEMU user-mode
+    # emulation (`unshare --user` fails with "Invalid argument" — confirmed
+    # locally under the same docker/setup-qemu-action mechanism used here),
+    # and flatpak-builder has no flag to disable sandboxing. This blocks arm64
+    # Flatpak builds via cross-arch QEMU emulation entirely, the same way the
+    # missing arm64 archlinux image blocks build-arch.
     steps:
       - uses: actions/checkout@v7.0.1
         with:

@@ -15,15 +15,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     flatpak flatpak-builder appstream file elfutils squashfs-tools desktop-file-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# AppImage tooling — immutable release + SHA-256 verify; extract binary (no FUSE in build)
+# AppImage tooling — immutable release + SHA-256 verify; extract binary (no FUSE in build).
+# TARGETARCH is set automatically by buildx from --platform (amd64/arm64/...);
+# appimagetool must match the container's own arch: the extraction below never
+# executes it (see the note further down), but the extracted binary IS
+# executed later, natively, by scripts/release-portable.sh to build the
+# project's own AppImage.
+ARG TARGETARCH
 ARG APPIMAGETOOL_VERSION=1.9.1
-ARG APPIMAGETOOL_SHA256=ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0
-RUN wget -q -O /tmp/appimagetool.AppImage \
-    "https://github.com/AppImage/appimagetool/releases/download/${APPIMAGETOOL_VERSION}/appimagetool-x86_64.AppImage" \
-    && echo "${APPIMAGETOOL_SHA256}  /tmp/appimagetool.AppImage" | sha256sum -c - \
-    && chmod +x /tmp/appimagetool.AppImage \
+ARG APPIMAGETOOL_SHA256_AMD64=ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0
+ARG APPIMAGETOOL_SHA256_ARM64=f0837e7448a0c1e4e650a93bb3e85802546e60654ef287576f46c71c126a9158
+# Extraction deliberately never *executes* the downloaded AppImage: type-2
+# AppImages encode an "AI\x02" signature into the ELF e_ident ABI-version
+# padding bytes, which breaks the standard qemu-user-static binfmt_misc
+# registration's exact-match mask on that byte — under cross-arch emulation
+# (this RUN step, when TARGETARCH != build host arch), `--appimage-extract`
+# fails with "Exec format error" even though the file is a valid ELF.
+# unsquashfs has no such problem, so compute the appended-squashfs offset by
+# parsing the ELF header directly (same formula the AppImage runtime uses:
+# e_shoff + e_shnum*e_shentsize) and unsquash it without ever running the file.
+RUN case "${TARGETARCH}" in \
+      amd64) UH_AT_ARCH=x86_64; UH_AT_SHA256="${APPIMAGETOOL_SHA256_AMD64}" ;; \
+      arm64) UH_AT_ARCH=aarch64; UH_AT_SHA256="${APPIMAGETOOL_SHA256_ARM64}" ;; \
+      *) echo "error: no pinned appimagetool checksum for TARGETARCH=${TARGETARCH}" >&2; exit 1 ;; \
+    esac \
+    && wget -q -O /tmp/appimagetool.AppImage \
+    "https://github.com/AppImage/appimagetool/releases/download/${APPIMAGETOOL_VERSION}/appimagetool-${UH_AT_ARCH}.AppImage" \
+    && echo "${UH_AT_SHA256}  /tmp/appimagetool.AppImage" | sha256sum -c - \
     && cd /tmp \
-    && APPIMAGE_EXTRACT_AND_RUN=1 ./appimagetool.AppImage --appimage-extract \
+    && UH_AT_OFFSET="$(python3 -c 'import struct; header=open("appimagetool.AppImage","rb").read(64); e_shoff,=struct.unpack_from("<Q",header,0x28); e_shentsize,e_shnum=struct.unpack_from("<HH",header,0x3a); print(e_shoff+e_shentsize*e_shnum)')" \
+    && unsquashfs -o "${UH_AT_OFFSET}" -d /tmp/squashfs-root /tmp/appimagetool.AppImage \
     && install -Dm755 /tmp/squashfs-root/usr/bin/appimagetool /usr/local/bin/appimagetool \
     && rm -rf /tmp/appimagetool.AppImage /tmp/squashfs-root
 

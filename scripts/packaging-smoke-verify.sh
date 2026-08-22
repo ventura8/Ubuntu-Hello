@@ -9,6 +9,9 @@ cd "$(dirname "$0")/.."
 FORMAT="${1:?format: deb|rpm-fedora|rpm-opensuse|arch|snap|appimage|flatpak}"
 VERSION="$(uh_read_version)"
 ART="${UH_ARTIFACTS_DIR:-artifacts}"
+# rpmbuild tags the built RPM with the container's own arch (x86_64, aarch64, ...) —
+# match whatever this cell is actually running as, not a hardcoded x86_64.
+RPM_ARCH="$(uname -m)"
 
 case "${FORMAT}" in
 	deb)
@@ -16,12 +19,12 @@ case "${FORMAT}" in
 		compgen -G "${ART}/ubuntu-hello-gtk_${VERSION}*_*.deb" >/dev/null
 		;;
 	rpm-fedora)
-		compgen -G "${ART}/ubuntu-hello-${VERSION}-*.fc*.x86_64.rpm" >/dev/null
-		compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.fc*.x86_64.rpm" >/dev/null
+		compgen -G "${ART}/ubuntu-hello-${VERSION}-*.fc*.${RPM_ARCH}.rpm" >/dev/null
+		compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.fc*.${RPM_ARCH}.rpm" >/dev/null
 		;;
 	rpm-opensuse)
-		compgen -G "${ART}/ubuntu-hello-${VERSION}-*.lp*.x86_64.rpm" >/dev/null
-		compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.lp*.x86_64.rpm" >/dev/null
+		compgen -G "${ART}/ubuntu-hello-${VERSION}-*.lp*.${RPM_ARCH}.rpm" >/dev/null
+		compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.lp*.${RPM_ARCH}.rpm" >/dev/null
 		;;
 	arch)
 		compgen -G "${ART}/ubuntu-hello-${VERSION}-*.pkg.tar.zst" >/dev/null

@@ -175,7 +175,7 @@ Ensure files are modified or added in their appropriate structural directories:
 | `scripts/ci-packaging-cell.sh` | One format: build + smoke-verify + live E2E (shared by GHA `check.yml` and local pipeline). |
 | `.github/workflows/check.yml` | GHA: **4 job definitions → 17 runners** (lint, coverage, 8× `compat` matrix, 7× `packaging` matrix) — no `needs` gates; packaging cells call `ci-packaging-cell.sh`; `concurrency` cancels stale runs on new PR/branch push; OSS up to **20 runners** (`max-parallel: 20` on both matrices). Local `./scripts/ci-pipeline.sh` fail-fast lint → coverage → compat → packaging. |
 | `scripts/packaging-e2e-install.sh` | Live install E2E for built artifacts (PAM/`config.ini`; upgrade preserve + remove+reinstall). |
-| `.github/workflows/release.yml` | GHA: on `v*` tag — PPA upload + parallel multi-format builds (deb, Fedora/openSUSE RPM, Arch, Snap, AppImage, Flatpak) → GitHub Release with authored notes + `SHA256SUMS`. |
+| `.github/workflows/release.yml` | GHA: on `v*` tag — PPA upload + parallel multi-format builds → GitHub Release with authored notes + `SHA256SUMS`. Per-format arch coverage and rationale: [`release-packaging` skill](.agents/skills/release-packaging/SKILL.md). |
 | `logs/` | Agent progress + CI logs (`ci-lint.log`, `ci-coverage.log`, `ci-pipeline.log`, `ci-matrix/<de>.log`, `ci-packaging/<format>.log`). |
 
 ---

@@ -17,7 +17,7 @@ Canonical agent rules: [AGENTS.md](AGENTS.md). Setup guide: [docs/INSTRUCTIONS.m
 | [ci-docker-matrix](.agents/skills/ci-docker-matrix/SKILL.md) | Lint / coverage / per-DE compat Docker CI (`docker/` Dockerfiles) |
 | [test-runner](.agents/skills/test-runner/SKILL.md) | pytest + PAM C++ tests |
 | [pipeline-runner](.agents/skills/pipeline-runner/SKILL.md) | Full gate: lint → coverage → compat matrix; fix until green |
-| [release](.agents/skills/release/SKILL.md) | Release notes from **all** branch changes; amend commit title/body (latest: v1.1.3 multi-format releases) |
+| [release](.agents/skills/release/SKILL.md) | Release notes from **all** branch changes; amend commit title/body — see `docs/releases/` for the latest |
 | [release-packaging](.agents/skills/release-packaging/SKILL.md) | Local multi-format release builds (deb/RPM/Arch/Snap/AppImage/Flatpak) |
 | [installer-tester](.agents/skills/installer-tester/SKILL.md) | install.sh / uninstall.sh tests |
 | [pam-verifier](.agents/skills/pam-verifier/SKILL.md) | PAM lifecycle / face-skip / UH1 |

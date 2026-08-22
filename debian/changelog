@@ -1,3 +1,25 @@
+ubuntu-hello (1.1.4-1ppa1) resolute; urgency=medium
+
+  * ARM64 release artifacts: .deb, Fedora RPM, openSUSE RPM, and AppImage now
+    build and install-test for both amd64 and arm64 (arm64 via QEMU
+    cross-build in release.yml, verified with the same live install ->
+    upgrade -> remove -> reinstall E2E cycle as amd64). Arch, Snap, and
+    Flatpak stay amd64-only (no official arm64 archlinux image; systemd/snapd
+    under QEMU is unreliable; flatpak-builder's bwrap sandbox needs user
+    namespaces, which QEMU user-mode emulation does not support).
+  * Fixed AppImage arm64 "Exec format error": type-2 AppImages encode an
+    "AI\x02" signature into ELF e_ident bytes that the standard
+    qemu-user-static binfmt_misc registration rejects. appimagetool
+    extraction and our own built AppImage's E2E extraction now compute the
+    squashfs offset from the ELF header and use unsquashfs on the primary
+    path, falling back to direct execution of the wrapped AppImage only if
+    unsquashfs or offset detection is unavailable.
+  * Packaging script hardening: RPM/AppImage artifact selection now matches
+    this cell's own architecture instead of a bare wildcard; debian/rules
+    cleans only the current build's own meson output dir.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Sat, 22 Aug 2026 15:30:00 +0300
+
 ubuntu-hello (1.1.3-1ppa1) resolute; urgency=medium
 
   * Multi-format GitHub Release artifacts: .deb, Fedora/openSUSE RPM, Arch,

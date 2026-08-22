@@ -2,6 +2,8 @@
 
 export DH_VERBOSE = 1
 
+DEB_HOST_GNU_TYPE := $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
 %:
 	dh $@ --buildsystem=meson
 
@@ -12,7 +14,7 @@ export DH_VERBOSE = 1
 override_dh_clean:
 	dh_auto_clean --buildsystem=meson
 	rm -rf debian/.debhelper/ debian/tmp/ debian/ubuntu-hello/ \
-		debian/ubuntu-hello-gtk/ obj-x86_64-linux-gnu
+		debian/ubuntu-hello-gtk/ obj-$(DEB_HOST_GNU_TYPE)
 	rm -f debian/debhelper-build-stamp debian/ubuntu-hello.substvars \
 		debian/ubuntu-hello-gtk.substvars debian/files \
 		debian/ubuntu-hello.debhelper.log

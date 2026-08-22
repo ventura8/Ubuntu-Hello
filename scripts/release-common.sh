@@ -9,6 +9,30 @@ uh_read_version() {
 	python3 "${UH_REPO_ROOT}/scripts/read-version.py"
 }
 
+# Compute an AppImage's appended-squashfs byte offset by parsing its ELF
+# header (e_shoff + e_shnum*e_shentsize) — the same formula the AppImage
+# runtime itself uses. Deliberately does NOT execute the AppImage: type-2
+# AppImages encode an "AI\x02" signature into the ELF e_ident ABI-version
+# padding bytes, which breaks the standard qemu-user-static binfmt_misc
+# registration's exact-match mask on that byte — under QEMU cross-arch
+# emulation (docker build/run --platform), directly executing an AppImage
+# (e.g. `--appimage-offset` / `--appimage-extract`) fails with
+# "Exec format error" even though `file`/readelf identify it correctly.
+# unsquashfs (a plain, non-AppImage-wrapped ELF) has no such problem.
+uh_appimage_squashfs_offset() {
+	local appimage="$1"
+	python3 - "${appimage}" <<'EOF'
+import struct
+import sys
+
+with open(sys.argv[1], "rb") as f:
+    header = f.read(64)
+e_shoff, = struct.unpack_from("<Q", header, 0x28)
+e_shentsize, e_shnum = struct.unpack_from("<HH", header, 0x3a)
+print(e_shoff + e_shentsize * e_shnum)
+EOF
+}
+
 uh_meson_setup() {
 	local build_dir="$1"
 	shift

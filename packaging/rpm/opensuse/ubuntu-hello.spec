@@ -1,5 +1,5 @@
 # openSUSE Leap 16.0 RPM spec for Ubuntu Hello (core + GTK subpackages)
-# Version: rpmbuild -D "uh_version 1.1.3"
+# Version is passed at build time from repo-root VERSION: rpmbuild -D "uh_version $(cat VERSION)"
 
 %global uh_version %{?uh_version}%{!?uh_version:0.0.0}
 %global uh_release 1
