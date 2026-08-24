@@ -317,6 +317,8 @@ If a broken PAM module locks out graphical login / `sudo`:
 
 PAM may return `PAM_AUTHINFO_UNAVAIL` without running compare (disabled/SSH/lid closed, or legacy `*screensaver*` skip-after-failure under `/run/ubuntu-hello/face-skip/`). GNOME lock uses `gdm-password` and does **not** skip after failure (Esc→Enter retries face). See `core.skip_face_after_failure` in `config.ini`.
 
+`compare.py` also self-aborts a running scan if its login1 session's `IdleHint` transitions from `false` to `true` mid-scan — an already-idle session at the *start* of a scan does not trigger this, so a normal wake-and-unlock is unaffected. This polls `busctl` on its own daemon thread and sends the process `SIGTERM` on that transition; it does not touch PAM-level password watching. Fails open if `busctl`/logind are unavailable. Config: `core.abort_on_session_idle` (default `true`). **Note**: live D-Bus testing on GNOME/GDM found `IdleHint` does not actually change when Esc falls back to the idle/clock view at a lock screen, so this does not reliably help with that specific case there — see `AGENTS.md` lifecycle notes.
+
 > [!CAUTION]
 > **Greeter login hard rule:** with `core.workaround=off`, do **not** force concurrent `pam_get_authtok` (or greeter `PAM_CONV` wrappers) on `gdm-password` / login. That aborts GDM user-selection → login (user is thrown straight back to the account list). `ask_pass` must stay `ask_auth_tok && workaround != Off`. Details: [AGENTS.md](../AGENTS.md), [`.agents/skills/pam-verifier/SKILL.md`](../.agents/skills/pam-verifier/SKILL.md).
 

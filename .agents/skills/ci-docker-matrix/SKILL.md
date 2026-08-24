@@ -84,7 +84,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * Dockerfiles: `# syntax=docker/dockerfile:1.26.0` + BuildKit apt/pip cache mounts
 * `scripts/ci-docker.sh`: `DOCKER_BUILDKIT=1`; `UH_CI_DOCKER_CACHE=local|gha|none` (default `local`)
 * Local: `.cache/docker-ci/<scope>` + skip rebuild when image label `ubuntu-hello.ci.dockerfile-digest` matches Dockerfile sha256 (`UH_CI_FORCE_BUILD=1` to rebuild). On local `buildx` failure, continue only if the loaded image’s digest label matches the current Dockerfile digest (never a stale pre-existing tag); otherwise retry without cache export.
-* GHA: `docker/setup-buildx-action@v4.2.0` + `UH_CI_DOCKER_CACHE=gha` (`cache-from/to: type=gha`, scope per stage/DE)
+* GHA: `docker/setup-buildx-action@v4.3.0` + `crazy-max/ghaction-github-runtime@v4.0.0` (exposes `ACTIONS_RESULTS_URL`/`ACTIONS_RUNTIME_TOKEN`, which `setup-buildx-action` alone does not) + `UH_CI_DOCKER_CACHE=gha` (`cache-from/to: type=gha`, scope per stage/DE)
 * Bind-mount `/src` runs are unchanged — cache is image-layer only
 
 ## What each stage runs

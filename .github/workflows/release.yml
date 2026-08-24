@@ -74,7 +74,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v3.7.0
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -107,7 +107,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh deb
 
       - name: Upload deb artifacts
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: deb-${{ matrix.arch }}
           path: artifacts/*.deb
@@ -128,7 +128,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v3.7.0
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -161,7 +161,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh rpm-fedora
 
       - name: Upload Fedora RPM artifacts
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: rpm-fedora-${{ matrix.arch }}
           path: artifacts/*.rpm
@@ -182,7 +182,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v3.7.0
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -215,7 +215,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh rpm-opensuse
 
       - name: Upload openSUSE RPM artifacts
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: rpm-opensuse-${{ matrix.arch }}
           path: artifacts/*.rpm
@@ -248,7 +248,7 @@ jobs:
             ./scripts/release-arch.sh
 
       - name: Upload Arch artifacts
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: arch
           path: artifacts/*.pkg.tar.zst
@@ -272,7 +272,7 @@ jobs:
           ./scripts/ci-snap-build.sh
 
       - name: Upload Snap artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: snap
           path: artifacts/*.snap
@@ -293,7 +293,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v3.7.0
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -329,7 +329,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh appimage
 
       - name: Upload AppImage artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: appimage-${{ matrix.arch }}
           path: artifacts/*.AppImage
@@ -367,7 +367,7 @@ jobs:
             ./scripts/release-portable.sh flatpak
 
       - name: Upload Flatpak artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: flatpak
           path: artifacts/*.flatpak
@@ -406,7 +406,7 @@ jobs:
         run: ./scripts/release-verify-tag-version.sh
 
       - name: Download all build artifacts
-        uses: actions/download-artifact@v4.3.0
+        uses: actions/download-artifact@v8.0.1
         with:
           path: release-artifacts
           merge-multiple: true
