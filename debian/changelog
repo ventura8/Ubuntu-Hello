@@ -1,3 +1,57 @@
+ubuntu-hello (1.1.6-1ppa1) resolute; urgency=medium
+
+  * Added a best-effort self-abort for a running face scan: compare.py now
+    runs its own daemon thread (_watch_session_idle) that polls its login1
+    session's IdleHint via busctl (absolute /usr/bin/busctl path, since
+    this runs as root during PAM auth) and, only on an observed
+    false -> true transition (edge-triggered -- an already-idle session at
+    scan start, the normal case when waking a lock screen, does not
+    trigger this), sends the process SIGTERM so the existing main-thread
+    signal handler does cleanup, rather than racing the main thread's
+    concurrent camera/GTK access from the watcher thread directly.
+    _session_idle_hint() accepts only exactly "b true"/"b false" from
+    busctl. Deliberately did NOT widen the PAM-side password-watch gating
+    to greeters for this -- that is an explicit HARD RULE in AGENTS.md,
+    guarding against a worse prior incident where doing so broke GDM
+    login outright (selecting a user immediately bounced back to the
+    account list). Fails open: if busctl/logind are unavailable or return
+    anything unparseable, the watcher gives up after a few failed checks
+    and the scan behaves exactly as before. New config:
+    core.abort_on_session_idle (default true).
+  * KNOWN LIMITATION, confirmed by live testing: this does not fix the
+    originally reported symptom (face recognition continuing to run after
+    Esc at a GNOME/GDM lock screen). Live D-Bus capture across a real
+    Esc-at-lock-screen repro (system bus and user session bus, multiple
+    rounds) showed IdleHint never transitions for that scenario on
+    GNOME/GDM -- Esc only toggles GNOME Shell's internal
+    password-prompt-vs-idle-clock view, which exposes no external signal
+    found so far (logind IdleHint, xdg-desktop-portal Inhibit's
+    screensaver-active, and org.gnome.ScreenSaver.ActiveChanged all stayed
+    unchanged; org.gnome.ScreenSaver.WakeUpScreen and Mutter.IdleMonitor
+    watches do fire, but also on ordinary interaction like typing a
+    password, so using them would risk aborting a legitimate scan). On
+    GNOME/GDM this feature is currently a dormant safety net, not a
+    working fix; kept because it is harmless and may help on other
+    desktop/login-manager combinations where IdleHint reflects UI state.
+  * Fixed two concurrency bugs in the idle watcher found in PR review: a
+    closure late-binding issue where a late-finishing probe could
+    corrupt state, and a non-atomic timeout/completion handoff that could
+    silently drop a result. Hardened busctl output parsing to reject
+    malformed output as undetermined instead of guessing. Added full test
+    coverage in tests/test_compare_cleanup.py.
+  * Fixed a race, found in PR review, where the idle watcher's blocking
+    busctl calls (up to a few seconds) could still be in flight when the
+    main thread independently finished a successful/failed exit; a late
+    "idle" reading returned after that point could still send SIGTERM,
+    re-enter the signal handler, and override the already-decided exit
+    code with abort code 12 -- silently corrupting a legitimate result.
+    _signal_exit() and the watcher's pre-signal check now both re-verify
+    the process has not already cleaned up before acting, so an exit
+    decision, once made, cannot be overridden. Added a regression test
+    covering cleanup completing while the probe is still blocked.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Tue, 25 Aug 2026 00:30:00 +0300
+
 ubuntu-hello (1.1.5-1ppa1) resolute; urgency=medium
 
   * Fixed the setup wizard getting stuck on "Testing your webcams, please

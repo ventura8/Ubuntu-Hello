@@ -114,9 +114,121 @@ def exit(code=None):
 
 
 def _signal_exit(signum, frame):
-	"""Handle SIGTERM/SIGINT: same cleanup as exit, then abort with code 12"""
+	"""Handle SIGTERM/SIGINT: same cleanup as exit, then abort with code 12.
+
+	If cleanup() has already run -- e.g. the main thread already completed
+	its own successful/failed exit, or another signal got here first -- this
+	is a no-op instead of forcing os._exit(12). Overriding an
+	already-decided exit code (e.g. turning a successful 0 into an abort
+	12) would be worse than not aborting. This is also the backstop against
+	the idle watcher's SIGTERM racing a concurrent natural exit: the
+	watcher's own _cleaned_up re-check narrows the window, but this check
+	is what makes the remainder of that race harmless.
+	"""
+	if _cleaned_up:
+		return
 	cleanup()
 	os._exit(12)
+
+
+# Absolute path: this module runs as root during PAM authentication (see the
+# file header note above about PATH), so the session-idle probe below must
+# not resolve "busctl" via an inherited PATH.
+BUSCTL_PATH = "/usr/bin/busctl"
+
+
+def _session_idle_hint():
+	"""Return True/False for the current login1 session's IdleHint, or None
+	if it can't be determined (busctl missing, no session, DBus error, ...).
+	"""
+	try:
+		session_path = subprocess.run(
+			[BUSCTL_PATH, "--system", "--", "call", "org.freedesktop.login1", "/org/freedesktop/login1",
+			 "org.freedesktop.login1.Manager", "GetSessionByPID", "u", str(os.getpid())],
+			capture_output=True, text=True, timeout=2,
+		)
+		if session_path.returncode != 0:
+			return None
+		# Output looks like: o "/org/freedesktop/login1/session/_31"
+		parts = session_path.stdout.strip().split(None, 1)
+		if len(parts) != 2 or parts[0] != "o":
+			return None
+		path = parts[1].strip().strip('"')
+
+		idle_hint = subprocess.run(
+			[BUSCTL_PATH, "--system", "--", "get-property", "org.freedesktop.login1", path,
+			 "org.freedesktop.login1.Session", "IdleHint"],
+			capture_output=True, text=True, timeout=2,
+		)
+		if idle_hint.returncode != 0:
+			return None
+		# Output must be exactly "b true" or "b false" -- anything else
+		# (malformed output, an unexpected D-Bus type signature like "s true")
+		# is treated as undetermined rather than guessed, since a false
+		# positive here would abort a legitimate scan.
+		parts = idle_hint.stdout.strip().split()
+		if len(parts) != 2 or parts[0] != "b" or parts[1] not in ("true", "false"):
+			return None
+		return parts[1] == "true"
+	except Exception:
+		return None
+
+
+def _watch_session_idle(poll_interval=0.5):
+	"""Abort the scan if our login1 session goes idle (Esc at a greeter/lock
+	screen falling back to screensaver/idle). Runs on its own daemon thread;
+	any failure here (busctl missing, DBus unavailable, parsing error) just
+	means this watcher does nothing -- it must never block or interfere with
+	the normal auth flow.
+
+	Edge-triggered, not level-triggered: waking a lock screen commonly starts
+	a new auth attempt *while* IdleHint is still true from before (it's only
+	cleared on successful unlock), so aborting on the first poll would reject
+	the normal case. This only aborts on an observed False -> True transition
+	during this attempt, requiring at least one "not idle" reading first.
+
+	Also does not touch the camera/GTK subprocess directly: cleanup() runs on
+	the main thread, which may concurrently be reading from video_capture or
+	writing to gtk_proc's stdin. Instead this sends the process SIGTERM,
+	which Python always delivers to the main thread's registered handler
+	(_signal_exit), so cleanup happens exactly like an external cancel.
+	"""
+	consecutive_failures = 0
+	seen_not_idle = False
+	try:
+		while not _cleaned_up:
+			idle = _session_idle_hint()
+			if idle is None:
+				consecutive_failures += 1
+				# Give up after a few consecutive failures rather than a
+				# single one (avoid bailing out on a transient DBus hiccup),
+				# but still stop eventually if this greeter/login manager or
+				# platform genuinely doesn't expose session idle state.
+				if consecutive_failures >= 3:
+					return
+				time.sleep(poll_interval)
+				continue
+			consecutive_failures = 0
+			if idle:
+				# Re-check _cleaned_up right before firing: _session_idle_hint()
+				# can block for a couple of seconds (two busctl calls), long
+				# enough for the main thread to have independently finished a
+				# successful/failed exit via cleanup() in the meantime. Do not
+				# signal a process that has already decided its own exit code
+				# -- _signal_exit() is the authoritative backstop for the
+				# remaining (much narrower) race, but avoiding the signal
+				# entirely here is strictly better.
+				if seen_not_idle and not _cleaned_up:
+					os.kill(os.getpid(), signal.SIGTERM)
+					return
+				# Already idle when this attempt started -- not a
+				# transition, so not our signal to abort. Keep watching for
+				# an actual False -> True transition instead.
+			else:
+				seen_not_idle = True
+			time.sleep(poll_interval)
+	except Exception:
+		pass
 
 
 def init_detector(lock):
@@ -261,6 +373,14 @@ if __name__ == "__main__":
 	# Ensure SIGTERM/SIGINT release the camera and tear down GTK (atexit does not run on SIGTERM)
 	signal.signal(signal.SIGTERM, _signal_exit)
 	signal.signal(signal.SIGINT, _signal_exit)
+
+	# Abort if the greeter/lock session goes idle mid-scan (e.g. Esc falling
+	# back to screensaver) -- see AGENTS.md lifecycle notes: this watches our
+	# own session's state and decides to bail out on its own, it does not
+	# touch PAM-level password watching or the workaround= hard rule.
+	if config.getboolean("core", "abort_on_session_idle", fallback=True):
+		import threading
+		threading.Thread(target=_watch_session_idle, daemon=True).start()
 
 	# Write to the stdin to redraw ui
 	send_to_ui("M", _("Starting up..."))

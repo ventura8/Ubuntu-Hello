@@ -49,7 +49,7 @@ RUN case "${TARGETARCH}" in \
     && rm -rf /tmp/appimagetool.AppImage /tmp/squashfs-root
 
 RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
-    && flatpak install -y flathub org.freedesktop.Platform//24.08 org.freedesktop.Sdk//24.08
+    && flatpak install -y flathub org.freedesktop.Platform//25.08 org.freedesktop.Sdk//25.08
 
 WORKDIR /src
 COPY . /src
