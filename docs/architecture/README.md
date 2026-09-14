@@ -175,7 +175,7 @@ The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/s
 * **Commands**:
   - `add.py`: Guides users in creating a new profile. Captures up to 60 frames and extracts the first frame containing exactly one face to write to models.
   - `list.py`, `remove.py`, `clear.py`: Manage profile models (`models/<username>.dat`).
-  - `keyring.py`: Enable/disable automatic unlock of the login keyring or KWallet after face login (same sealed credential + `PAM_AUTHTOK`). `keyring restore` re-asserts the sealed login password for the selected user; `keyring restore --all` sweeps every sealed user (used by uninstall / apt `prerm` before deleting seals).
+  - `keyring.py`: Enable/disable automatic unlock of the login keyring or KWallet after face login (same sealed credential + `PAM_AUTHTOK`). `keyring restore` re-asserts the sealed login password for the selected user; `keyring restore --all` sweeps every sealed user (used by uninstall / apt `prerm` while the `ubuntu-hello` binary still exists, before deleting seals).
   - `test.py`: Debugging CLI tool that launches a local window showing the camera stream with highlighted landmarks and matching thresholds.
 * **Helpers**: `wallet_backend.py` labels the inferred session wallet (GNOME Keyring vs KWallet) for CLI/GTK copy. `keyring_restore.py` unseals TPM/`UH1:` credentials and talks to GNOME Keyring (`ChangeWithMasterPassword`) or KWallet over the user’s session bus.
 

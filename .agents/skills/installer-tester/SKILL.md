@@ -14,10 +14,10 @@ Hello-specific installer validation (not a generic multi-distro e2e suite).
 
 | Script | Role |
 |---|---|
-| `install.sh` | Root installer: banner shows `v`+`VERSION` (local file or raw GitHub peek for curl\|bash); bootstrap git, fetch source, **full apt deps** via `scripts/uh-apt-deps.sh` (GTK/Babel, multi-DE theme tools, wallet PAM, polkit, build stack), Meson build/install, dlib models, PAM/Polkit, then Wayland-aware setup-wizard launch |
-| `scripts/uh-apt-deps.sh` | Shared apt package lists + install/remove helpers; records newly added packages in `/var/lib/ubuntu-hello/apt-packages-added.list`; remove simulates the apt plan and allows Remv of tracked names **plus apt-mark auto transitive deps** (e.g. `libxfconf-0-3` with `xfconf`); refuses untracked *manual* packages; keeps the marker if remove fails. Auto checks use `grep … < <(apt-mark … </dev/null)` (not `apt-mark \| grep -q`) so pipefail SIGPIPE and `while read` stdin steal cannot false-negative auto deps |
+| `install.sh` | Root installer: banner shows `v`+`VERSION` (local file or raw GitHub peek for curl\|bash); bootstrap git, fetch source from the official HTTPS GitHub URL only (ignores `UH_REPO_URL` / `sudo -E`), **full apt deps** via `scripts/uh-apt-deps.sh` (GTK/Babel, multi-DE theme tools, wallet PAM, polkit, build stack), Meson build/install, **pinned dlib** + **SHA256-verified** dlib models via `scripts/package-configure.sh` (`uh_ensure_dlib` / `uh_download_models`; meson `-Dfetch_dlib_data=false` so unsigned meson downloads cannot skip the hash check), PAM/Polkit, then Wayland-aware setup-wizard launch |
+| `scripts/uh-apt-deps.sh` | Shared apt package lists + install/remove helpers; records newly added packages in `/var/lib/ubuntu-hello/apt-packages-added.list` (not overridable via `UH_APT_MARKER`); remove simulates the apt plan and allows Remv of tracked names **plus apt-mark auto transitive deps** (e.g. `libxfconf-0-3` with `xfconf`); refuses untracked *manual* packages; keeps the marker if remove fails. Auto checks use `grep … < <(apt-mark … </dev/null)` (not `apt-mark \| grep -q`) so pipefail SIGPIPE and `while read` stdin steal cannot false-negative auto deps |
 | `ubuntu-hello-gtk/bin/run_after_install.py` | Post-install GUI launcher (installed to `/usr/share/ubuntu-hello-gtk/`); called by `install.sh` / `ubuntu-hello-gtk` dpkg postinst **only when no face models are enrolled**. Sets Wayland/X11 session env; single-flight lock under `/run/ubuntu-hello/`; skips when models exist (override with `UH_FORCE_POSTINSTALL_GUI=1`) |
-| `uninstall.sh` | Restore login wallet passwords from sealed credentials, then full removal including tracked apt deps (and pip `dlib` / `face_recognition_models`) |
+| `uninstall.sh` | Restore login wallet passwords from sealed credentials **while `ubuntu-hello` is still installed**, then full removal including tracked apt deps (and pip `dlib` / `face_recognition_models`) |
 
 Host usage (from a clone):
 
@@ -40,7 +40,7 @@ curl -fsSL https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/uninst
 ```bash
 set -euo pipefail
 mkdir -p logs
-pytest tests/test_install_download.py tests/test_run_after_install.py tests/test_uh_apt_deps.py tests/test_uninstall_keyring_restore.py tests/test_config_ensure.py -v 2>&1 | tee logs/installer-tests.log
+pytest tests/test_install_download.py tests/test_run_after_install.py tests/test_uh_apt_deps.py tests/test_uninstall_keyring_restore.py tests/test_install_sh_hardening.py tests/test_config_ensure.py -v 2>&1 | tee logs/installer-tests.log
 ```
 
 `tests/test_install_download.py` covers installer config parsing and model download helpers (`TestInstallConfig`, `TestDownloadModels`) without requiring a full privileged system install in CI.
@@ -51,10 +51,12 @@ pytest tests/test_install_download.py tests/test_run_after_install.py tests/test
 
 `tests/test_uh_apt_deps.py` asserts the shared apt dep lists include Babel, multi-DE theme tools, and wallet PAM packages.
 
-`tests/test_uninstall_keyring_restore.py` asserts `uninstall.sh` and `debian/ubuntu-hello.prerm` run `ubuntu-hello keyring restore --all` before `rm -rf /etc/ubuntu-hello`.
+`tests/test_uninstall_keyring_restore.py` asserts `uninstall.sh` and `debian/ubuntu-hello.prerm` run `ubuntu-hello keyring restore --all` before removing `/usr/bin/ubuntu-hello` and before `rm -rf /etc/ubuntu-hello`.
+
+`tests/test_install_sh_hardening.py` asserts source `install.sh` sources `scripts/package-configure.sh` for SHA256 model verify and pinned dlib, and does not honor `UH_REPO_URL` from the environment.
 
 ## Notes
 
 * Prefer running installer unit tests inside `./scripts/ci-docker.sh` as part of the normal `tests/` suite when validating PRs
-* Do not invent checksum gates or distro matrices this repo does not have
+* Source `install.sh` and `package-configure.sh` share the same dlib model SHA256 pins; keep `download_models.py` in sync
 * Agent progress for long install experiments: `logs/` with `tee -a`

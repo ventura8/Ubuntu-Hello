@@ -94,10 +94,10 @@ sudo apt-get update && sudo apt-get install -y \
 ```
 
 `install.sh` installs this full set via [`scripts/uh-apt-deps.sh`](../scripts/uh-apt-deps.sh) (build + runtime for every supported DE). Packages that were **not** already present are recorded under `/var/lib/ubuntu-hello/apt-packages-added.list` and removed again by `uninstall.sh` (base packages such as `python3` are never removed). Uninstall also allows apt to drop **auto-installed** transitive deps of those tracked packages (e.g. `libxfconf-0-3` with `xfconf`); it still refuses to remove untracked **manual** packages. The auto check uses `grep … < <(apt-mark showauto </dev/null)` so it stays correct under `set -o pipefail` and inside `while read` plan validation.
-dlib (often via pip):
+dlib (often via pip; pin matches `scripts/package-configure.sh`):
 
 ```bash
-pip3 install dlib --break-system-packages
+CMAKE_POLICY_VERSION_MINIMUM=3.5 pip3 install dlib==19.24.9 --break-system-packages
 ```
 
 ### 2.2 Compilation and Installation (Meson)
@@ -166,7 +166,7 @@ Settings stays **native GTK3 + Glade** (stock `HeaderBar` / `Notebook` / `Search
 sudo bash uninstall.sh
 ```
 
-Before deleting `/etc/ubuntu-hello`, uninstall (and `apt remove` via `debian/ubuntu-hello.prerm`) runs `ubuntu-hello keyring restore --all`. That decrypts each sealed setup-wizard login password and re-asserts it as the GNOME Keyring / KWallet master password when the user’s session bus is reachable. Bare `ubuntu-hello keyring restore` (no flags) restores only the CLI-selected user (`-U`). Restore cannot discover a wallet password that no longer matches the sealed login password; uninstall still continues, and you can set the login keyring or KWallet password in Seahorse / System Settings. `ubuntu-hello keyring disable` remains delete-only (no restore).
+Before removing the `ubuntu-hello` binary and deleting `/etc/ubuntu-hello`, uninstall (and `apt remove` via `debian/ubuntu-hello.prerm`) runs `ubuntu-hello keyring restore --all`. That decrypts each sealed setup-wizard login password and re-asserts it as the GNOME Keyring / KWallet master password when the user’s session bus is reachable. Bare `ubuntu-hello keyring restore` (no flags) restores only the CLI-selected user (`-U`). Restore cannot discover a wallet password that no longer matches the sealed login password; uninstall still continues, and you can set the login keyring or KWallet password in Seahorse / System Settings. `ubuntu-hello keyring disable` remains delete-only (no restore).
 
 ### 2.5 Quick install (from GitHub)
 

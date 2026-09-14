@@ -5,7 +5,9 @@
 # Budgie, and LXQt on Ubuntu 26.04 (theme probes, GTK Settings, wallet PAM).
 
 # Packages we installed that were not already present (one name per line).
-UH_APT_MARKER="${UH_APT_MARKER:-/var/lib/ubuntu-hello/apt-packages-added.list}"
+# Ignore UH_APT_MARKER from the caller environment (sudo -E / env_keep): a
+# preserved path could make uninstall `rm -f` an arbitrary file.
+UH_APT_MARKER="/var/lib/ubuntu-hello/apt-packages-added.list"
 
 # Never remove these even if recorded (base OS / shared tooling).
 UH_APT_NEVER_REMOVE=(

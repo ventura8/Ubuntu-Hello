@@ -5,7 +5,12 @@ from unittest.mock import patch, mock_open, MagicMock, call
 import pytest
 
 from install_config import main as install_config_main
-from download_models import main as download_models_main
+from download_models import (
+    MODEL_ARCHIVE_SHA256,
+    archive_sha256,
+    main as download_models_main,
+    verify_archive_sha256,
+)
 
 
 # ── install_config ──────────────────────────────────────────────────
@@ -177,6 +182,7 @@ class TestDownloadModels:
              patch("builtins.open", mock_open()), \
              patch("bz2.BZ2File", return_value=mock_open(read_data=b"data")()), \
              patch("shutil.copyfileobj"), \
+             patch("download_models.verify_archive_sha256", return_value=True), \
              patch("os.remove"):
             mock_response = MagicMock()
             mock_response.__enter__ = MagicMock(return_value=mock_response)
@@ -201,3 +207,32 @@ class TestDownloadModels:
              patch("os.path.exists", return_value=True):
             download_models_main()
             mock_mkdirs.assert_called_once_with("/staging/data", exist_ok=True)
+
+    def test_checksum_mismatch_skips_extract(self, tmp_path, capsys):
+        target_dir = tmp_path / "data"
+        target_dir.mkdir()
+
+        def fake_copyfileobj(_src, dst):
+            dst.write(b"not-a-real-bz2")
+
+        with patch("sys.argv", ["download_models.py", str(target_dir)]), \
+             patch.dict(os.environ, {}, clear=True), \
+             patch("urllib.request.urlopen") as mock_urlopen, \
+             patch("shutil.copyfileobj", side_effect=fake_copyfileobj), \
+             patch("bz2.BZ2File") as mock_bz2:
+            mock_response = MagicMock()
+            mock_response.__enter__ = MagicMock(return_value=mock_response)
+            mock_response.__exit__ = MagicMock(return_value=False)
+            mock_urlopen.return_value = mock_response
+            download_models_main()
+        captured = capsys.readouterr()
+        assert "Checksum mismatch" in captured.out
+        mock_bz2.assert_not_called()
+
+    def test_archive_sha256_roundtrip(self, tmp_path):
+        blob = tmp_path / "archive.bz2"
+        blob.write_bytes(b"ubuntu-hello-model-bytes")
+        digest = archive_sha256(str(blob))
+        assert verify_archive_sha256(str(blob), digest)
+        assert not verify_archive_sha256(str(blob), "0" * 64)
+        assert len(MODEL_ARCHIVE_SHA256) == 3

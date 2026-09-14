@@ -94,7 +94,32 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 2: Remove Polkit configuration
+# Step 2: Restore OS wallet password while ubuntu-hello still exists
+# ─────────────────────────────────────────────────────────────────────
+# Must run before binaries are deleted. package-prerm.sh does the same.
+step "Restoring login keyring / KWallet password"
+
+UH_BIN=""
+if command -v ubuntu-hello >/dev/null 2>&1; then
+    UH_BIN="$(command -v ubuntu-hello)"
+elif [ -x /usr/bin/ubuntu-hello ]; then
+    UH_BIN="/usr/bin/ubuntu-hello"
+elif [ -x /usr/local/bin/ubuntu-hello ]; then
+    UH_BIN="/usr/local/bin/ubuntu-hello"
+fi
+
+if [ -n "$UH_BIN" ]; then
+    if timeout 120 "$UH_BIN" keyring restore --all; then
+        success "Login wallet password restored from sealed credentials where possible"
+    else
+        warn "Could not restore every login wallet password — set it in Seahorse / System Settings if prompts persist"
+    fi
+else
+    warn "ubuntu-hello not on PATH — skipping wallet password restore"
+fi
+
+# ─────────────────────────────────────────────────────────────────────
+# Step 3: Remove Polkit configuration
 # ─────────────────────────────────────────────────────────────────────
 step "Removing Polkit configuration"
 
@@ -113,7 +138,7 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 3: Remove installed binaries and libraries
+# Step 4: Remove installed binaries and libraries
 # ─────────────────────────────────────────────────────────────────────
 step "Removing installed files"
 
@@ -157,20 +182,8 @@ rm -f /usr/share/bash-completion/completions/ubuntu-hello 2>/dev/null || true
 success "Bash completion removed"
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 4: Restore OS wallet password, then remove configuration & data
+# Step 5: Remove configuration & data (seals already restored above)
 # ─────────────────────────────────────────────────────────────────────
-step "Restoring login keyring / KWallet password"
-
-if command -v ubuntu-hello >/dev/null 2>&1; then
-    if timeout 120 ubuntu-hello keyring restore --all; then
-        success "Login wallet password restored from sealed credentials where possible"
-    else
-        warn "Could not restore every login wallet password — set it in Seahorse / System Settings if prompts persist"
-    fi
-else
-    warn "ubuntu-hello not on PATH — skipping wallet password restore"
-fi
-
 step "Removing configuration and data"
 
 if [ -d /etc/ubuntu-hello ]; then
@@ -192,7 +205,7 @@ fi
 rm -rf /etc/ubuntu-hello/keyring-keys 2>/dev/null || true
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 5: Uninstall dlib Python package
+# Step 6: Uninstall dlib Python package
 # ─────────────────────────────────────────────────────────────────────
 step "Uninstalling Python packages"
 
@@ -216,11 +229,12 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 6: Remove apt packages that this install added
+# Step 7: Remove apt packages that this install added
 # ─────────────────────────────────────────────────────────────────────
 step "Removing apt dependencies added by Ubuntu Hello"
 
-UH_APT_MARKER="${UH_APT_MARKER:-/var/lib/ubuntu-hello/apt-packages-added.list}"
+# Do not honor UH_APT_MARKER from the environment (sudo -E / env_keep).
+UH_APT_MARKER="/var/lib/ubuntu-hello/apt-packages-added.list"
 DEPS_SCRIPT=""
 if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
     _uh_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

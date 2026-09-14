@@ -37,8 +37,20 @@ def test_before_etc_remove_rejects_hello_gtk_prefix():
 def test_uninstall_sh_restores_before_deleting_config():
     text = _read_repo_text("uninstall.sh")
     head = _before_etc_remove(text)
-    assert "ubuntu-hello keyring restore --all" in head
+    assert "ubuntu-hello" in head
+    assert "keyring restore --all" in head
     assert "step \"Restoring login keyring / KWallet password\"" in head
+
+
+def test_uninstall_sh_restores_before_removing_binary():
+    """Restore must run while /usr/bin/ubuntu-hello still exists."""
+    text = _read_repo_text("uninstall.sh")
+    restore_idx = text.index("keyring restore --all")
+    bin_idx = text.index("rm -f /usr/bin/ubuntu-hello")
+    etc_idx = text.index("rm -rf /etc/ubuntu-hello\n")
+    assert restore_idx < bin_idx
+    assert restore_idx < etc_idx
+    assert "ubuntu-hello not on PATH" in text
 
 
 def test_debian_prerm_restores_before_deleting_config():
