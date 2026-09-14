@@ -1,9 +1,36 @@
 #!/usr/bin/env python3
+import hashlib
 import os
 import sys
 import urllib.request
 import bz2
 import shutil
+
+# Keep in sync with scripts/package-configure.sh model_sha256.
+MODEL_ARCHIVE_SHA256 = {
+    "dlib_face_recognition_resnet_model_v1.dat.bz2": (
+        "abb1f61041e434465855ce81c2bd546e830d28bcbed8d27ffbe5bb408b11553a"
+    ),
+    "mmod_human_face_detector.dat.bz2": (
+        "db9e9e40f092c118d5eb3e643935b216838170793559515541c56a2b50d9fc84"
+    ),
+    "shape_predictor_5_face_landmarks.dat.bz2": (
+        "6e787bbebf5c9efdb793f6cd1f023230c4413306605f24f299f12869f95aa472"
+    ),
+}
+
+
+def archive_sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_archive_sha256(path, expected):
+    return archive_sha256(path) == expected
+
 
 def main():
     if len(sys.argv) < 2:
@@ -48,6 +75,8 @@ def main():
             continue
 
         url = model['url']
+        archive_name = os.path.basename(url)
+        expected = MODEL_ARCHIVE_SHA256[archive_name]
         temp_path = target_path + '.tmp'
         try:
             print(f"Downloading {url}...")
@@ -58,7 +87,11 @@ def main():
             with urllib.request.urlopen(req) as response:
                 with open(temp_path, 'wb') as f_temp:
                     shutil.copyfileobj(response, f_temp)
-            
+
+            if not verify_archive_sha256(temp_path, expected):
+                print(f"WARNING: Checksum mismatch for {model['filename']}")
+                continue
+
             print(f"Decompressing {temp_path} to {target_path}...")
             with bz2.BZ2File(temp_path) as fr, open(target_path, 'wb') as fw:
                 shutil.copyfileobj(fr, fw)

@@ -23,6 +23,8 @@ meson compile -C builddir
 sudo meson install -C builddir
 ```
 
+`download_models.py` (when `-Dfetch_dlib_data=true`) verifies dlib model archives with the same SHA256 pins as `scripts/package-configure.sh`. Source `install.sh` sets `-Dfetch_dlib_data=false` and calls `uh_download_models` instead.
+
 Shorter local configure (option defaults from `meson.options`):
 
 ```bash

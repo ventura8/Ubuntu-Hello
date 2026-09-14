@@ -30,9 +30,20 @@ CHECKMARK="${GREEN}✔${NC}"
 CROSSMARK="${RED}✘${NC}"
 ARROW="${CYAN}➜${NC}"
 
-# Default clone URL (also used to peek VERSION for curl|bash installs).
-REPO_URL="${UH_REPO_URL:-https://github.com/ventura8/ubuntu-hello.git}"
-REPO_RAW_VERSION_URL="${UH_REPO_RAW_VERSION_URL:-https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/VERSION}"
+# Official clone URL only. Ignore UH_REPO_URL / UH_REPO_RAW_VERSION_URL from
+# the caller environment (sudo -E / env_keep) so a preserved value cannot
+# redirect the root installer at a different Git remote.
+UH_OFFICIAL_REPO_URL="https://github.com/ventura8/ubuntu-hello.git"
+UH_OFFICIAL_RAW_VERSION_URL="https://raw.githubusercontent.com/ventura8/ubuntu-hello/master/VERSION"
+REPO_URL="$UH_OFFICIAL_REPO_URL"
+REPO_RAW_VERSION_URL="$UH_OFFICIAL_RAW_VERSION_URL"
+case "${UH_REPO_URL:-}" in
+    ""|"$UH_OFFICIAL_REPO_URL"|"https://github.com/ventura8/ubuntu-hello"|"${UH_OFFICIAL_REPO_URL}/")
+        ;;
+    *)
+        echo "  Ignoring untrusted UH_REPO_URL (official GitHub HTTPS URL only)" >&2
+        ;;
+esac
 
 uh_read_version_file() {
     local path="$1"
@@ -174,7 +185,6 @@ for _pkg in "${BOOTSTRAP_PKGS[@]}"; do
 done
 apt-get install -y -qq "${BOOTSTRAP_PKGS[@]}" 2>&1 | tail -1
 
-REPO_URL="${REPO_URL:-https://github.com/ventura8/ubuntu-hello.git}"
 INSTALL_FROM_CLONE=false
 
 # Check if we're already inside the repo
@@ -188,6 +198,14 @@ else
     INSTALL_FROM_CLONE=true
     success "Source cloned to $SOURCE_DIR"
 fi
+
+CONFIGURE_SCRIPT="$SOURCE_DIR/scripts/package-configure.sh"
+if [ ! -f "$CONFIGURE_SCRIPT" ]; then
+    fail "Missing $CONFIGURE_SCRIPT — cannot verify models or pin dlib"
+fi
+# Shared SHA256 model download + pinned dlib pip (same as deb/rpm postinst).
+# shellcheck source=scripts/package-configure.sh
+source "$CONFIGURE_SCRIPT"
 
 # ─────────────────────────────────────────────────────────────────────
 # Step 2: Install system dependencies (all DEs / GTK / wallet / build)
@@ -217,13 +235,11 @@ if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)" 2>
     PIP_FLAGS="--break-system-packages"
 fi
 
-# Install dlib via pip (compiles from source with cmake)
-if python3 -c "import dlib" 2>/dev/null; then
-    success "dlib is already installed"
+# Pinned dlib via package-configure (CMAKE_POLICY_VERSION_MINIMUM for CMake 4+).
+if uh_ensure_dlib; then
+    success "dlib ready"
 else
-    echo -e "  ${YELLOW}Building dlib from source — this can take 2-5 minutes...${NC}"
-    pip3 install dlib $PIP_FLAGS 2>&1 | tail -3
-    success "dlib installed successfully"
+    fail "Failed to install pinned dlib — face authentication will not work"
 fi
 
 # Install face_recognition_models if not present
@@ -254,7 +270,7 @@ meson setup "$BUILD_DIR" "$SOURCE_DIR" \
     -Duser_models_dir=/etc/ubuntu-hello/models \
     -Dinstall_pam_config=true \
     -Dwith_polkit=true \
-    -Dfetch_dlib_data=true \
+    -Dfetch_dlib_data=false \
     -Dinih:with_INIReader=true \
     2>&1 | tail -5
 
@@ -276,40 +292,10 @@ success "Ubuntu Hello installed to system"
 # ─────────────────────────────────────────────────────────────────────
 step "Downloading face recognition models"
 
-MODELS_DIR="/etc/ubuntu-hello/dlib-data"
-mkdir -p "$MODELS_DIR"
-
-MODELS=(
-    "dlib_face_recognition_resnet_model_v1.dat"
-    "mmod_human_face_detector.dat"
-    "shape_predictor_5_face_landmarks.dat"
-)
-BASE_URL="https://github.com/davisking/dlib-models/raw/master"
-
-all_present=true
-for model in "${MODELS[@]}"; do
-    if [ ! -f "$MODELS_DIR/$model" ]; then
-        all_present=false
-        break
-    fi
-done
-
-if [ "$all_present" = true ]; then
-    success "All face recognition models already present"
-else
-    for model in "${MODELS[@]}"; do
-        if [ -f "$MODELS_DIR/$model" ]; then
-            success "$model ✓"
-            continue
-        fi
-        echo -e "  Downloading $model..."
-        ARCHIVE="$MODELS_DIR/${model}.bz2"
-        wget -q --tries=5 --show-progress -O "$ARCHIVE" "${BASE_URL}/${model}.bz2" 2>&1 || \
-            curl -fsSL --retry 5 -o "$ARCHIVE" "${BASE_URL}/${model}.bz2"
-        bunzip2 -f "$ARCHIVE"
-        success "$model ✓"
-    done
-fi
+# SHA256-verified archives under root-owned /etc/ubuntu-hello/dlib-data
+# (not predictable /tmp staging). Same hashes as package-configure.sh.
+uh_download_models
+success "Face recognition models ready"
 
 # ─────────────────────────────────────────────────────────────────────
 # Step 7: Configure PAM
@@ -328,22 +314,7 @@ fi
 # ─────────────────────────────────────────────────────────────────────
 step "Setting permissions"
 
-# Ensure config directory is accessible
-chmod 755 /etc/ubuntu-hello 2>/dev/null || true
-chmod 755 /etc/ubuntu-hello/dlib-data 2>/dev/null || true
-
-# Ensure models directory exists
-mkdir -p /etc/ubuntu-hello/models
-chmod 700 /etc/ubuntu-hello/models
-
-# Ensure tpm keys directory exists
-mkdir -p /etc/ubuntu-hello/tpm-keys
-chmod 700 /etc/ubuntu-hello/tpm-keys
-
-# Ensure log directory exists
-mkdir -p /var/log/ubuntu-hello
-chmod 755 /var/log/ubuntu-hello
-
+uh_set_permissions
 success "Permissions set"
 
 # ─────────────────────────────────────────────────────────────────────

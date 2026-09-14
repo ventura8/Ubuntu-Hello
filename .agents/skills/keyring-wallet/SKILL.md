@@ -39,13 +39,13 @@ sudo ubuntu-hello keyring restore --all         # every sealed user (uninstall/p
 
 Bare `restore` (no flags) restores **only** the CLI-selected user (`-U` / elevation). Uninstall and `apt remove` use `restore --all` with a `timeout` bound.
 
-Uninstall (`uninstall.sh`) and `apt remove` (`debian/ubuntu-hello.prerm`) run `timeout 120 ubuntu-hello keyring restore --all` **before** deleting `/etc/ubuntu-hello`. GNOME Keyring restore uses D-Bus `ChangeWithMasterPassword` with old=new=sealed password `P`. KWallet restore is **verification-only** via `pamOpen` (PBKDF2 hash); it does **not** change the wallet password — if verification fails, the user must set it in System Settings. Failures warn and do **not** abort removal. `disable` stays delete-only (no restore). Never log the password.
+Uninstall (`uninstall.sh`) and `apt remove` (`debian/ubuntu-hello.prerm`) run `timeout 120 ubuntu-hello keyring restore --all` **while the `ubuntu-hello` binary still exists**, then delete `/etc/ubuntu-hello`. Source `uninstall.sh` restores immediately after dropping PAM config and before `rm -f /usr/bin/ubuntu-hello`. GNOME Keyring restore uses D-Bus `ChangeWithMasterPassword` with old=new=sealed password `P`. KWallet restore is **verification-only** via `pamOpen` (PBKDF2 hash); it does **not** change the wallet password — if verification fails, the user must set it in System Settings. Failures warn and do **not** abort removal. `disable` stays delete-only (no restore). Never log the password.
 
 ## Security notes
 
 * TPM sealing when available; else `UH1:` + master key under `/etc/ubuntu-hello/` (`0600` / dir `0700`)
 * Legacy XOR/`machine-id` blobs are not decrypted on face auth; re-enable upgrades to `UH1:`
-* Uninstall restores the wallet password from the sealed login password when possible, then deletes seals
+* Uninstall restores the wallet password from the sealed login password when possible (binary still present), then deletes seals
 * Details: [docs/SECURITY.md](../../../docs/SECURITY.md)
 
 ## Tests

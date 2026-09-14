@@ -53,6 +53,20 @@ def test_marker_path_default():
     assert path == "/var/lib/ubuntu-hello/apt-packages-added.list"
 
 
+def test_marker_path_ignores_environment_override():
+    out = subprocess.check_output(
+        [
+            "bash",
+            "-c",
+            'set -euo pipefail; UH_APT_MARKER=/etc/passwd; source "$1"; printf "%s" "$UH_APT_MARKER"',
+            "_",
+            str(DEPS_SCRIPT),
+        ],
+        text=True,
+    )
+    assert out.strip() == "/var/lib/ubuntu-hello/apt-packages-added.list"
+
+
 def test_remove_exact_allows_auto_transitive_deps(tmp_path):
     """Auto-installed Remv packages (e.g. libxfconf-0-3) must not block uninstall."""
     snippet = r"""
