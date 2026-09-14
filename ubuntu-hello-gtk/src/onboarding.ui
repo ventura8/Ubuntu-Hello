@@ -1,0 +1,950 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <object class="GtkWindow" id="onboardingwindow">
+    <property name="width_request">800</property>
+    <property name="height_request">680</property>
+    <property name="default_width">800</property>
+    <property name="default_height">680</property>
+    <property name="title" translatable="1">Welcome to Ubuntu Hello</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="headerbar">
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="label" translatable="1">Welcome to Ubuntu Hello</property>
+            <style>
+              <class name="title" />
+            </style>
+          </object>
+        </property>
+      </object>
+    </child>
+    <property name="child">
+      <object class="GtkCenterBox" id="slidecontainer">
+        <property name="orientation">vertical</property>
+        <property name="start-widget">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox" id="slide7">
+                    <property name="vexpand">1</property>
+                    <property name="valign">center</property>
+                <property name="visible">0</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">object-select-symbolic</property>
+                    <property name="pixel-size">72</property>
+                    <property name="margin-top">8</property>
+                    <property name="margin-bottom">8</property>
+                    <style>
+                      <class name="dim-label" />
+                      <class name="uh-page-icon" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label9">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Setup is done!</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label10">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">We're done! Ubuntu Hello is now active on this computer. Try doing anything you would normally have to type your password for to authenticate, like running a command with sudo. If you enabled keyring auto-unlock, your login keyring or KWallet will also be unlocked automatically on login.
+
+You can open the Ubuntu Hello Configurator later on to change more advanced settings or add additional models. Press Finish below to close this window and open the Ubuntu Hello Configurator. </property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide5">
+                    <property name="vexpand">1</property>
+                <property name="visible">0</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">security-high-symbolic</property>
+                    <property name="pixel-size">72</property>
+                    <property name="margin-top">8</property>
+                    <property name="margin-bottom">8</property>
+                    <style>
+                      <class name="dim-label" />
+                      <class name="uh-page-icon" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label11">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Setting a certainty policy</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label12">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">Because of changes in angles, distance, and other factors a face match is never exactly the same as the stored face model. On this page you can set how strict Ubuntu Hello should be.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box2">
+                    <property name="width-request">520</property>
+                    <property name="margin-start">0</property>
+                    <property name="margin-end">0</property>
+                    <property name="orientation">vertical</property>
+                    <style>
+                      <class name="uh-card" />
+                    </style>
+                    <child>
+                      <object class="GtkCheckButton" id="radiofast">
+                        <property name="focusable">1</property>
+                        <property name="margin-bottom">10</property>
+                        <child>
+                          <object class="GtkBox" id="box3">
+                            <property name="margin-start">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel" id="label13">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">Fast</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold" />
+                                </attributes>
+                  </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label14">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">The most forgiving match and the quickest to let you in. Choose this if convenience matters more than strictness.</property>
+                                <property name="wrap">1</property>
+                    <property name="max-width-chars">70</property>
+                  </object>
+                            </child>
+                  </object>
+                        </child>
+                  </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="radiobalanced">
+                        <property name="focusable">1</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="active">1</property>
+                        <property name="group">radiofast</property>
+                        <child>
+                          <object class="GtkBox" id="box4">
+                            <property name="margin-start">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel" id="label15">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">Balanced</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold" />
+                                </attributes>
+                  </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label16">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">A strict match that still logs you in quickly. It may not recognise you at a sharp angle or from further away.</property>
+                                <property name="wrap">1</property>
+                    <property name="max-width-chars">70</property>
+                  </object>
+                            </child>
+                  </object>
+                        </child>
+                  </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="radiosecure">
+                        <property name="focusable">1</property>
+                        <property name="group">radiofast</property>
+                        <property name="active">1</property>
+                        <child>
+                          <object class="GtkBox" id="box5">
+                            <property name="margin-start">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel" id="label17">
+                                <property name="valign">center</property>
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">Secure</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold" />
+                                </attributes>
+                  </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label18">
+                                <property name="valign">center</property>
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">The strictest match, with no extra step when you log in. Recommended.</property>
+                                <property name="wrap">1</property>
+                    <property name="max-width-chars">70</property>
+                  </object>
+                            </child>
+                  </object>
+                        </child>
+                  </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="margin-top">4</property>
+                        <property name="margin-bottom">4</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="liveness_row">
+                        <property name="spacing">20</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="hexpand">1</property>
+                            <child>
+                              <object class="GtkLabel" id="liveness_label">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">Ask me to nod to confirm</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold" />
+                                </attributes>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="liveness_desc">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="1">After your face matches, a notification asks you to nod. A photo held up to the camera cannot nod.</property>
+                                <property name="wrap">1</property>
+                                <property name="max-width-chars">60</property>
+                                <style>
+                                  <class name="dim-label" />
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="liveness_switch">
+                            <property name="halign">center</property>
+                            <property name="focusable">1</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide4">
+                <property name="vexpand">1</property>
+                <property name="visible">0</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label4">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Adding your face models</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label5">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">Ubuntu Hello records your face from a few angles in about a minute: keep your face inside the preview and follow the prompts (look straight, turn slightly left and right, chin up and down). Afterwards a second, optional scan — with glasses, different facial hair or other lighting — makes recognition even more reliable at any time of day.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkPicture" id="slide4_preview_image">
+                    <property name="vexpand">1</property>
+                    <property name="hexpand">1</property>
+                    <property name="content-fit">contain</property>
+                    <property name="can-shrink">1</property>
+                    <style>
+                      <class name="preview-frame" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="slide4_instruction_label">
+                    <property name="visible">0</property>
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">4</property>
+                    <property name="label" translatable="1">Please look directly into the camera</property>
+                    <attributes>
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box1">
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">10</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="scanbutton">
+                        <property name="hexpand">1</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-start">50</property>
+                        <property name="margin-end">50</property>
+                        <property name="has-frame">0</property>
+                        <signal name="clicked" handler="on_scanbutton_click" swapped="no" />
+                        <style>
+                          <class name="suggested-action" />
+                        </style>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">media-playback-start-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1">Start face scan</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="skipsecondbutton">
+                        <property name="label" translatable="1">Skip for now</property>
+                        <property name="visible">0</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-end">50</property>
+                        <property name="has-frame">0</property>
+                        <property name="tooltip-text" translatable="1">You can add more face models later from Settings or with: sudo ubuntu-hello add</property>
+                        <signal name="clicked" handler="on_skipsecondbutton_click" swapped="no" />
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide3">
+                <property name="visible">0</property>
+                <property name="vexpand">1</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label19">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Configuring webcam</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="leiebox">
+                    <property name="orientation">vertical</property>
+                    <property name="vexpand">1</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                    <property name="spacing">12</property>
+                    <property name="margin-start">40</property>
+                    <property name="margin-end">40</property>
+                    <property name="margin-bottom">40</property>
+                    <child>
+                      <object class="GtkImage" id="leieicon">
+                        <property name="icon-name">camera-web-symbolic</property>
+                        <property name="pixel-size">72</property>
+                        <property name="margin-bottom">8</property>
+                        <style>
+                          <class name="dim-label" />
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="leiestatus">
+                        <property name="label" translatable="1">Is the infrared emitter flashing ?</property>
+                        <property name="justify">center</property>
+                        <property name="wrap">1</property>
+                    <property name="max-width-chars">70</property>
+                        <attributes>
+                          <attribute name="weight" value="bold" />
+                          <attribute name="scale" value="1.4" />
+                        </attributes>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="leiehint">
+                        <property name="label" translatable="1">Look at the camera you selected: an infrared camera shows a small light that blinks while Ubuntu Hello tests it. This tells us whether it can see your face in the dark.</property>
+                        <property name="justify">center</property>
+                        <property name="wrap">1</property>
+                        <property name="max-width-chars">60</property>
+                        <property name="margin-bottom">16</property>
+                        <style>
+                          <class name="dim-label" />
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="halign">center</property>
+                        <property name="spacing">16</property>
+                        <property name="homogeneous">1</property>
+                        <child>
+                          <object class="GtkButton" id="leieyesbutton">
+                            <property name="focusable">1</property>
+                            <property name="width-request">200</property>
+                            <signal name="clicked" handler="slide3_button_yes" swapped="no" />
+                            <style>
+                              <class name="suggested-action" />
+                            </style>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="halign">center</property>
+                                <property name="spacing">8</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">object-select-symbolic</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="1">Yes, it flashes</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="leienobutton">
+                            <property name="focusable">1</property>
+                            <property name="width-request">200</property>
+                            <signal name="clicked" handler="slide3_button_no" swapped="no" />
+                            <style>
+                              <class name="destructive-action" />
+                            </style>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="halign">center</property>
+                                <property name="spacing">8</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">window-close-symbolic</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="1">No, nothing flashes</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide2">
+                <property name="vexpand">1</property>
+                <property name="visible">0</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label2">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Configuring webcam</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label3">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">Ubuntu Hello will search your system automatically for any available cameras, so make sure your webcam is connected. After detection a list of usable webcams will be shown. Pick the one you want to use and click Next.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="devicelistbox">
+                    <property name="vexpand">1</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel" id="loadinglabel">
+                        <property name="margin-top">15</property>
+                        <property name="label" translatable="1">Testing your webcams, please wait...</property>
+                        <attributes>
+                          <attribute name="style" value="italic" />
+                        </attributes>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkPicture" id="preview_image">
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="vexpand">0</property>
+                        <property name="hexpand">1</property>
+                        <property name="content-fit">contain</property>
+                        <property name="can-shrink">1</property>
+                        <style>
+                          <class name="preview-frame" />
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide1">
+                <property name="vexpand">1</property>
+                <property name="visible">0</property>
+                <property name="margin-bottom">10</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">folder-download-symbolic</property>
+                    <property name="pixel-size">72</property>
+                    <property name="margin-top">8</property>
+                    <property name="margin-bottom">8</property>
+                    <style>
+                      <class name="dim-label" />
+                      <class name="uh-page-icon" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label8">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Downloading data files</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label1">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">Ubuntu Hello needs three pre trained facial recognition datasets to be able to recognise you, which will be downloaded now. You can see the download progress below.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="downloadeventbox">
+                    <property name="vexpand">1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="downloadoutputlabel">
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">1</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-top">10</property>
+                        <property name="label" translatable="1">Starting download...</property>
+                        <property name="justify">center</property>
+                        <style>
+                          <class name="terminal-label" />
+                        </style>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="terminal-box" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide0">
+                    <property name="vexpand">1</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkPicture" id="image2">
+                    <property name="visible">0</property>
+                    <property name="margin-top">20</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="can-shrink">0</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">ubuntu-hello-gtk</property>
+                    <property name="pixel-size">96</property>
+                    <property name="margin-top">8</property>
+                    <property name="margin-bottom">8</property>
+                    <style>
+                      <class name="uh-page-icon" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label6">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">5</property>
+                    <property name="label" translatable="1">Welcome to Ubuntu Hello!</property>
+                    <attributes>
+                      <attribute name="scale" value="2" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="version_label">
+                    <property name="margin-top">5</property>
+                    <property name="label" translatable="1">Version</property>
+                    <style>
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label7">
+                    <property name="width-request">100</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-top">10</property>
+                    <property name="label" translatable="1">This wizard will walk you through the setup process and automatically configure Ubuntu Hello for you. Press next to continue.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="slide6">
+                    <property name="vexpand">1</property>
+                    <property name="valign">center</property>
+                <property name="visible">0</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">dialog-password-symbolic</property>
+                    <property name="pixel-size">72</property>
+                    <property name="margin-top">8</property>
+                    <property name="margin-bottom">8</property>
+                    <style>
+                      <class name="dim-label" />
+                      <class name="uh-page-icon" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="keyring_title_label">
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">40</property>
+                    <property name="justify">center</property>
+                    <property name="margin-top">20</property>
+                    <property name="label" translatable="1">Keyring / KWallet Auto-Unlock</property>
+                    <attributes>
+                      <attribute name="scale" value="1.4" />
+                      <attribute name="weight" value="bold" />
+                    </attributes>
+                    <style>
+                      <class name="uh-page-title" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="keyring_desc_label">
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="label" translatable="1">Ubuntu Hello can automatically unlock your login keyring or KWallet using face authentication, preventing password prompts after logging in.</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <property name="max-width-chars">60</property>
+                    <style>
+                      <class name="uh-page-hint" />
+                      <class name="dim-label" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="keyring_checkbox">
+                    <property name="label" translatable="1">Enable automatic keyring/KWallet unlocking</property>
+                    <property name="focusable">1</property>
+                    <property name="halign">center</property>
+                    <property name="margin-bottom">15</property>
+                    <signal name="toggled" handler="on_keyring_checkbox_toggled" swapped="no" />
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="keyring_password_box">
+                    <property name="sensitive">0</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
+                    <property name="halign">center</property>
+                    <property name="width-request">380</property>
+                    <style>
+                      <class name="uh-card" />
+                    </style>
+                    <child>
+                      <object class="GtkEntry" id="keyring_password_entry">
+                        <property name="focusable">1</property>
+                        <property name="visibility">0</property>
+                        <property name="placeholder-text" translatable="1">Password</property>
+                  </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="keyring_password_confirm_entry">
+                        <property name="focusable">1</property>
+                        <property name="visibility">0</property>
+                        <property name="placeholder-text" translatable="1">Confirm password</property>
+                  </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </property>
+        <property name="end-widget">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkCenterBox" id="navigationbar">
+                <property name="margin-bottom">10</property>
+                <property name="start-widget">
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkButton" id="cancelbutton">
+                        <property name="focusable">1</property>
+                        <property name="margin-start">10</property>
+                        <signal name="clicked" handler="exit" swapped="no" />
+                        <child>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">window-close-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1">Cancel</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="backbutton">
+                        <property name="visible">0</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-start">10</property>
+                        <signal name="clicked" handler="go_prev_slide" swapped="no" />
+                        <child>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">go-previous-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1">Back</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </object>
+                </property>
+                <property name="end-widget">
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkButton" id="finishbutton">
+                        <property name="visible">0</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-end">10</property>
+                        <property name="has-frame">0</property>
+                        <signal name="clicked" handler="on_finishbutton_click" swapped="no" />
+                        <style>
+                          <class name="suggested-action" />
+                        </style>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">object-select-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1">Finish setup</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="nextbutton">
+                        <property name="focusable">1</property>
+                        <property name="margin-end">10</property>
+                        <property name="has-frame">0</property>
+                        <signal name="clicked" handler="go_next_slide" swapped="no" />
+                        <style>
+                          <class name="suggested-action" />
+                        </style>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">go-next-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1">Next</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </object>
+</interface>

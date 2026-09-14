@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,668 +15,899 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Ekelamaki"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Etikete"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Automatique ya kosala"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Activer Keyring/KWallet Kofungola"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Kobakisa ba modèles ya elongi na yo"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Tyá motó ya likambo mpo na mosaleli <b>{}</b> mpo na kofungola {} ({}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Mot de passe"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Ba fichiers ya ba données esi e téléchargé!\nFiná na Suivant mpo na ko"
-"koba"
+"Ubuntu Hello ekangaka elongi na yo na ngámbo ndenge na ndenge na miniti mɔ̌kɔ́ "
+"soki: tíká elongi na yo na káti ya emonisele mpe landá malako (talá semba, "
+"balusá mokɛ na mwásí mpe na mobáli, ebɛlɛ likoló mpe nsé). Na nsima, skani "
+"ya míbalé oyo ezali na bonsɔmi — na talatala, na mandɛfu ekeseni to na "
+"mwínda mosúsu — ekómisaka koyeba elongi lisusu ya kotyela motema na ntángo "
+"nyonso ya mokolo."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Erreur tango ozali ko télécharger ba fichiers ya ba données"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Esalemi!\nFiná na Suivant mpo na kokoba"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Libunga tango ya kokɔtisa OpenCV2 ."
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Meka kozongisa cv2 ."
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Webcams ezwami te na système"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Svp configurer camera na yo yo moko soki ozali sûr que caméra compatib"
-"le ezali connecté"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Te, camera ekoki kofungwama te"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Te, kamera ya infrarouge te"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Oui, caméra infrarouge compatible"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Identifiant ya kamera to nzela"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Kolendisa"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Libunga na kopona kamera"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Caméra oyo oponi ekoki kofungwama te"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Meká kopona mosusu"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Tosɛngi bino bókende kotala\n<a href=\"https://github.com/EmixamPP/lin"
-"ux-enable-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emi"
-"tter</a>\nmpo na ko activer émetteur na yo ya ir"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Svp tala directement na kati ya caméra"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Bandá kosala scanner ya elongi"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Ba fichiers ya ba données esi e téléchargé!\n"
+"Finá na Suivant mpo na kokoba"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Erreur tango ozali ko télécharger ba fichiers ya ba données"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Esalemi!\n"
+"Finá na Suivant mpo na kokoba"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Libunga tango ya kokɔtisa OpenCV2 ."
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Meka kozongisa cv2 ."
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "Webcams ezwami te na système"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Svp configurer camera na yo yo moko soki ozali sûr que caméra compatible "
+"ezali connecté"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Te, camera ekoki kofungwama te"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Te, kamera ya infrarouge te"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Oui, caméra infrarouge compatible"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Identifiant ya kamera to nzela"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "Kolendisa"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Libunga na kopona kamera"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "Caméra oyo oponi ekoki kofungwama te"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Meká kopona mosusu"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Tosɛngi bino bókende kotala\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"mpo na ko activer émetteur na yo ya ir"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Bobongisi ya mwinda 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Bobongisi ya mwinda 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Ekoki ko sauver modèle ya elongi te"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Scan modèle ya mibale"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Ekokaki ko enregistrer modèle ya mibale te"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka"
-" authentification ya elongi (portefeuille détecté: {}).\n\n<b>Ezalela "
-"ya TPM:</b> Kotala matériel mpe bisaleli ya TPM..."
+"Modèle na yo ya liboso ebombami, yango wana login ya elongi esalaka déjà. "
+"Chambre esengeli kaka ezala kongenga mpo na komona elongi na yo — bongola "
+"mwinda na esika ya kokanga yango — sima meka lisusu, to sauter mpe bakisa "
+"modèle moko sima uta na Paramètres."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "Skani ya míbalé: talatala, mandɛfu to mwínda ekeseni"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka"
-" authentification ya elongi (portefeuille détecté: {}).\n\n<b>Ezalela "
-"ya TPM:</b> Matériel ya TPM ezwami. Kotia <i>tpm2-tools</i> na ndenge "
-"ya automatique..."
+"Modɛlɛ ya libosó ebombami: kokɔta na elongi esili kosála. Modɛlɛ ya míbalé "
+"ekómisaka koyeba ya kotyela motema ntángo elóko ebongwani: látá talatala oyo "
+"olátaka mbala mosúsu (to longolá yangó), kangá yangó na mandɛfu ekeseni, mpe "
+"bongolá mwínda — pelisá to bomá mwínda, longwá pene ya lininísa. Tíká elongi "
+"na yo emonana polele mpe finá Skani lisusu; bokangi mokusé ya kotambwisama "
+"ndenge moko ekolanda."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka"
-" authentification ya elongi (portefeuille détecté: {}).\n\n<b>Ezalela "
-"ya TPM:</b> Matériel TPM 2.0 ezali kosala. Mot de passe na yo ekokanga"
-"ma malamu na kati ya TPM."
+"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka "
+"authentification ya elongi (portefeuille détecté: {}).\n"
+"\n"
+"<b>Ezalela ya TPM:</b> Kotala matériel mpe bisaleli ya TPM..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka"
-" authentification ya elongi (portefeuille détecté: {}).\n\n<b>Ezalela "
-"ya TPM:</b> Matériel ya TPM ezwami, kasi botiami ya automatique ya <i>"
-"tpm2-tools</i> elongi te. Tambwisa <code>sudo apt installation tpm2-to"
-"ols</code>. Kozonga sima na caching ya ba credentiels basé na logiciel"
-"."
+"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka "
+"authentification ya elongi (portefeuille détecté: {}).\n"
+"\n"
+"<b>Ezalela ya TPM:</b> Matériel ya TPM ezwami. Kotia <i>tpm2-tools</i> na "
+"ndenge ya automatique..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka"
-" authentification ya elongi (portefeuille détecté: {}).\n\n<b>Ezalela "
-"ya TPM:</b> Matériel ya TPM ezwami te. Kosalela caching ya ba credenti"
-"els oyo esalemi na logiciel (AES-256-GCM)."
+"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka "
+"authentification ya elongi (portefeuille détecté: {}).\n"
+"\n"
+"<b>Ezalela ya TPM:</b> Matériel TPM 2.0 ezali kosala. Mot de passe na yo "
+"ekokangama malamu na kati ya TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Ekoki te koyeba mosaleli ya système oyo azali misisa te mpo na kofungo"
-"la ba clés"
+"Ubuntu Hello ekoki kofungola {} na yo yango moko na nzela ya bondimi ya "
+"elongi (portefeuille emonani: {}).\n"
+"\n"
+"<b>Ezalela ya TPM:</b> Bisaleli ya TPM emonani, kasi kotia <i>tpm2-tools</i> "
+"yango moko elongi te. Salá <code>sudo apt install tpm2-tools</code>. Tozongi "
+"na kobomba ba mot de passe na nzela ya logiciel."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Mot de passe ekoki kozala vide te"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello ekoki ko débloquer automatiquement {} na yo na kosalelaka "
+"authentification ya elongi (portefeuille détecté: {}).\n"
+"\n"
+"<b>Ezalela ya TPM:</b> Matériel ya TPM ezwami te. Kosalela caching ya ba "
+"credentiels oyo esalemi na logiciel (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Mot de passe ya mabe pona mosaleli {} ."
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "libunga eyebani te"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Elongi te ko activer déverrouillage ya ba clés: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Elongi te ko désactiver déverrouillage ya clé: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Ekoki te koyeba mosaleli ya système oyo azali root te mpo na kofungola "
+"keyring"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Mot de passe ekoki kozala vide te"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Mot de passe ya mabe pona mosaleli {} ."
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "libunga eyebani te"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Elongi te ko activer déverrouillage ya ba clés: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Elongi te ko activer déverrouillage ya ba clés: exécutable ubuntu-hello "
+"ezwami te"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Ekoki te kopelisa bofungoli ya keyring: ntango esili na kozela keyring enable"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Erreur ya Déverrouillage ya Keyring"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Libunga na kotánga ba boutons ya radio"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Kebisi ya bobongisi"
-
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
-"Ekoki te kobomba préférence ya certitude, kasi setup ezali autrement c"
-"omplet."
+"Ekoki te kobomba ba paramètres ya libateli, kasi bobongisi esili malamu."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Libunga"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Ezali ko charger..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Bondimi ya bondimi"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Confirmer Création ya Mosaleli"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Svp kotisa kombo ya mosaleli ya mosaleli oyo olingi kobakisa na Ubuntu"
-" Hello ."
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Nkombo ya mosaleli:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Confirmer Création ya Modèle"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Kolongola"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Kobakisa"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Svp kotisa kombo ya modèle ya sika, 24 caractères max"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Nkombo ya modèle:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Kosala Modèle"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Libunga tango ya kobakisa modèle, code ya erreur {}:\n\n"
+"Tíká elongi na yo na káti ya emonisele ya kamera mpe landá malako; ezwaka "
+"miniti mɔ̌kɔ́ soki."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Confirmer Bolongolami ya Modèle"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Talá kamera semba"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Libunga tango ya kobakisa modèle, code ya erreur {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Ozali sûr que olingi o supprimer modèle {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Libunga tango ya ko effacer modèle, code ya erreur {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Boma"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Libunga tango ya ko effacer modèle, code ya erreur {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Balusá motó na yo mokɛ na ngámbo ya mwásí"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Balusá motó na yo mokɛ na ngámbo ya mobáli"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Tombolá ebɛlɛ na yo mokɛ"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Kitisá ebɛlɛ na yo mokɛ"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "Ezali kokanga… {count} na {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "Ekoki kofungola camera te"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Ekoki te ko importer OpenCV2 ."
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Eyebani te"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Activer Keyring/KWallet Kofungola"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "Malamu"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr ""
+"Tyá motó ya likambo mpo na mosaleli <b>{}</b> mpo na kofungola {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Mot de passe"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Mosaleli moko te aponami</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
-msgstr "<span foreground='vert'><b>Efungolami (Matériel TPM)</b></span> — {}"
+msgstr "<span foreground='green'><b>Efungolami (Matériel TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='vert'><b>Efungolami (Caching ya logiciel)</b></span>"
-" — {}"
+"<span foreground='green'><b>Efungolami (Caching ya logiciel)</b></span> — {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Efungolami (Ezali kozela bokotisi mot ya "
 "nzela)</b></span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
-msgstr "<span foreground='rouge'><b>Ezali na bopemi</b></span> — {}"
+msgstr "<span foreground='red'><b>Ezali na bopemi</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Libunga"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Kolonga"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "Keyring/KWallet déverrouillage efungolami malamu mpo na mosaleli {}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Désactiver clé/KWallet Kofungola"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Ozali sûr que olingi ko désactiver clé/KWallet déverrouillage pona usa"
-"ger {}?"
+"Ozali sûr que olingi ko désactiver clé/KWallet déverrouillage pona usager {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Désactiver Déverrouillage automatique"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring/KWallet déverrouillage désactivé mpo na mosaleli {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Ekoki te kobomba paramètre ya notification"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Ekoki te kobomba paramètre ya libateli"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Bobongisi ya mosala"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Bobongisi ya mosala"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Ba paramètres ya koluka"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Bobongisi ya mosala"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Ba modèles ya elongi"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Ba snapshots ya elongi na yo oyo Ubuntu Hello ekokanisi contre. Bomba ata "
+"mibale, oyo ekomami na pole ekeseni."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Kolakisa ba modèles oyo ebombami mpo na:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Bakisa mosaleli ya sika"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Modɛlɛ mɔ̌kɔ́ ya elongi kaka nde ekomisami. Talatala, mbongwana ya mandɛfu to "
+"mwínda ekeseni ebongolaka ndenge kamera emonaka elongi na yo, yangó wana "
+"modɛlɛ mɔ̌kɔ́ ekoki kolónga te (na ndakisa na mpokwa na nsé ya mínda). Bakisá "
+"modɛlɛ ya míbalé na talatala to kozánga yangó, na lolenge na yo mosúsu, to "
+"na mwínda ekeseni mpo ete kofungola etíkala ya kotyela motema."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Kobakisa"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Bakisa modèle ya mibale"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Boma"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Ba modèles"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Caméra"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"Caméra Ubuntu Hello esalela pona koluka elongi na yo, na aperçu en direct."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "ID ya kamera:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Résolution ya solo:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Résolution oyo basaleli:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Enregistreur:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
-msgstr "Video"
+msgstr "Vidéo"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Clé / KWallet Déverrouillage automatique"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Mayebisi"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Activer authentification ya elongi mpo na ko débloquer automatiquement"
-" clé ya bokɔti na yo to KWallet na bokɔti. Yango ebombaka malamu mot d"
-"e passe na yo ekangami na TPM soki ezali, to e chiffré na AES-256-GCM "
-"na kosalelaka fungola ya masta ya misisa kaka. Face auth etie PAM_AUTH"
-"TOK pona pam_gnome_keyring to pam_kwallet5 selon bureau na yo."
+"Notification ya bureau elakisaka tango Ubuntu Hello azali koluka elongi na "
+"yo, sima ezo lakisa résultat. Ba tentatives oyo elongi te etikalaka na liste "
+"ya notification."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Ezalela ya lelo:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Lakisa mayebisi"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Ko vérifier..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Activer Auto-Déverrouillage"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Désactiver Déverrouillage automatique"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Keyring ya ba clés"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Monɔkɔ ya efanímí"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Lokota"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Otomatik elandaka monɔkɔ ya système. Mbongwana etelama mbala moko."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Authentification ya elongi mpo na Linux"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "Version eyebani te"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"One card per face-authentication attempt, updated in place with the result."
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Fungola lien ya G"
-"itHub</a>"
+"Carte moko na tentative moko ya authentification ya elongi, mise à jour na "
+"esika na résultat."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "Pene"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Notification ezo yokana"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Boyei malamu na Ubuntu Hello ."
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Beta son ya système mpo na komeka oyo eyebani to oyo elongi te."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "Setup esalemi!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Salá mpe ba diagnostics"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"Tosilisi! Ubuntu Hello ezali sikoyo activé na ordinateur oyo. Meká kos"
-"ala eloko nyonso oyo olingaki normalement kokoma mot de passe na yo mp"
-"o na ko authentiquer, lokola kosala commande na sudo. Soki o activer a"
-"uto-déverrouillage ya ba clés, clé ya login to KWallet na yo eko déver"
-"rouiller pe automatiquement na login.\n\nOkoki kofungola Configurateur"
-" Ubuntu Hello sima mpo na kobongola ba paramètres ya likolo to kobakis"
-"a ba modèles ya kobakisa. Finá Silisa na nse mpo na kokanga lininisa o"
-"yo mpe kofungola Configurateur Ubuntu Hello."
+"Bakisa modèle, certitude vs seuil, cadres, caméra na timing na carte moko na "
+"moko. Ezali na ntina ntango ozali koyebisa mokakatano moko."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Libateli"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ubuntu Hello ekoki ko débloquer automatiquement clé ya bokɔti na yo to"
-" KWallet na kosalelaka authentification ya elongi, kopekisa ba prompts"
-" ya mot de passe sima ya kokota."
+"Ndenge elongi na yo esengeli kokokana, mpe soki Ubuntu Hello asengi yo "
+"kondima ete ozali mpenza awa."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Activer clé automatique/KWallet déverrouillage"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Bokasi ya bokokani ya elongi"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Confirmer mot de passe"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "Kobongisa politiki ya bondimi"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"Na ntina na mbongwana ya ba angles, distance, mpe makambo mosusu match"
-" match ya elongi ezalaka jamais exactement ndenge moko na modèle ya el"
-"ongi oyo ebombami. Na page oyo okoki ko setting ndenge nini Ubuntu Hel"
-"lo esengeli ezala strict."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "Noki"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Epesi nzela na ba matchs flou mingi, . \nkasi esalaka ete mosala ya sc"
-"anner esalaka nokinoki mpenza."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Ezali na bokatikati"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"Encore détection relativement noki, . \nkasi ekoki kozala ete okɔta na"
-" site te ntango ozali mosika."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Libateli"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Sengá ngai naningisa motó mpo na kondima"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"Option oyo ezali mwa libateli, . \nkasi ekozwa ntango molai mingi mpo "
-"na kondimisa yo"
+"Sima elongi na yo ekokani, notification moko ekosenga yo koningisa motó. "
+"Foto oyo batelemisi liboso ya kamera ekoki koningisa motó te."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Kobakisa modèle ya elongi"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Clé / KWallet Déverrouillage automatique"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Pona ko authentiquer yo Ubuntu Hello esengeli o sauver modèle ya elong"
-"i na yo po a reconnaître yo. Finá butɔ Scan oyo ezali awa na nse mpo n"
-"a kobanda kosala scanner ya elongi."
+"Pelisá bondimi ya elongi mpo na kofungola yango moko keyring ya bokɔti na yo "
+"to KWallet na ntango ya bokɔti. Yango ebombaka mot de passe na yo na "
+"libateli, ekangami na kati ya TPM soki ezali, to ebombami na AES-256-GCM na "
+"fungola ya monene oyo kaka root akoki kosalela. Bondimi ya elongi etiaka "
+"PAM_AUTHTOK mpo na pam_gnome_keyring to pam_kwallet5, engebene na bureau na "
+"yo."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Ezalela ya lelo:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Ko vérifier..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Activer Auto-Déverrouillage"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Keyring ya ba clés"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Monɔkɔ ya efanímí"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Otomatik elandaka monɔkɔ ya système. Mbongwana etelama mbala moko."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Lokota"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Authentification ya elongi mpo na Linux"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "Version eyebani te"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Fungola lien ya GitHub</"
+"a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Koyebisa "
+"mokakatano to kopesa likanisi ya eloko moko</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "Pene"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Boyei malamu na Ubuntu Hello ."
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "Setup esalemi!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Tosilisi! Ubuntu Hello ezali sikoyo activé na ordinateur oyo. Meká kosala "
+"eloko nyonso oyo olingaki normalement kokoma mot de passe na yo mpo na ko "
+"authentiquer, lokola kosala commande na sudo. Soki o activer auto-"
+"déverrouillage ya ba clés, clé ya login to KWallet na yo eko déverrouiller "
+"pe automatiquement na login.\n"
+"\n"
+"Okoki kofungola Configurateur Ubuntu Hello sima mpo na kobongola ba "
+"paramètres ya likolo to kobakisa ba modèles ya kobakisa. Finá Silisa na nse "
+"mpo na kokanga lininisa oyo mpe kofungola Configurateur Ubuntu Hello."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "Kobongisa politiki ya bondimi"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Na ntina na mbongwana ya ba angles, distance, mpe makambo mosusu match match "
+"ya elongi ezalaka jamais exactement ndenge moko na modèle ya elongi oyo "
+"ebombami. Na page oyo okoki ko setting ndenge nini Ubuntu Hello esengeli "
+"ezala strict."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"Bokokani ya pɛtɛɛ koleka mpe ya mbangu mpo okɔta noki. Poná oyo soki pete "
+"ezali na ntina koleka bokasi."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"Bokokani ya makasi kasi ekɔtisaka yo naino nokí. Ekoki koyeba yo te soki "
+"elongi ezali na ngambo mingi to ozali mosika."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"Bokokani ya makasi koleka nyonso, kozanga litambe ya kobakisa tango ozali "
+"kokɔta. Tolendisi oyo."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Salá koleka mpo na sikoyo"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"Okoki kobakisa ba modèles ya elongi mosusu sima uta na Paramètres to na: "
+"sudo ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Kobongisa webcam"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "Est-ce que émetteur infrarouge ezali ko clignoter ?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "Iyo"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "Te"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Ubuntu Hello ekoluka na système na yo automatiquement ba caméras nions"
-"o oyo ezali, yango wana sala que webcam na yo ezala connecté. Sima ya "
-"détection liste ya ba webcams oyo ekoki kosalelama ekolakisama. Poná o"
-"yo olingi kosalela mpe finá na Suivant."
+"Tala caméra oyo oponi : caméra infrarouge elakisaka mwinda ya moke oyo ezali "
+"ko clignoter tango Ubuntu Hello ezali komeka yango. Yango eyebisi biso soki "
+"ekoki komona elongi na yo na molili."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Ɛɛ, ezali kongɛnga"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Te, eloko moko te ezali kongɛnga"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello ekoluka na système na yo automatiquement ba caméras nionso oyo "
+"ezali, yango wana sala que webcam na yo ezala connecté. Sima ya détection "
+"liste ya ba webcams oyo ekoki kosalelama ekolakisama. Poná oyo olingi "
+"kosalela mpe finá na Suivant."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Komeka ba webcams na yo, svp zela..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Kozwa ba fichiers ya ba données"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Ubuntu Hello esengeli na ba ensembles de données misato ya reconnaissa"
-"nce facial pré formée po ezala na makoki ya koyeba yo, oyo eko télécha"
-"rger sikoyo. Okoki komona ndenge oyo téléchargement ezali kokende na n"
-"se."
+"Ubuntu Hello esengeli na ba ensembles de données misato ya reconnaissance "
+"facial pré formée po ezala na makoki ya koyeba yo, oyo eko télécharger "
+"sikoyo. Okoki komona ndenge oyo téléchargement ezali kokende na nse."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Kobanda kozwa téléchargement..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Boyei malamu na Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Ya"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Assistant oyo ekotambola na yo na processus ya configuration pe eko co"
-"nfigurer automatiquement Ubuntu Hello pona yo. Finá pembeni mpo na kok"
-"oba."
+"Assistant oyo ekotambola na yo na processus ya configuration pe eko "
+"configurer automatiquement Ubuntu Hello pona yo. Finá pembeni mpo na kokoba."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Kolongola"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello ekoki ko débloquer automatiquement clé ya bokɔti na yo to "
+"KWallet na kosalelaka authentification ya elongi, kopekisa ba prompts ya mot "
+"de passe sima ya kokota."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Oyo elandi"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Activer clé automatique/KWallet déverrouillage"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "Confirmer mot de passe"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Mukongo"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Silisa setup"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Oyo elandi"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

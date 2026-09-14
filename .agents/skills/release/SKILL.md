@@ -118,7 +118,7 @@ git diff --cached -- <touched staged paths>
 | File | Purpose |
 |------|---------|
 | `docs/releases/vX.Y.Z.md` | Full release page (install + changelog) |
-| `docs/releases/vX.Y.Z_github_description.md` | GitHub Release body (title line = H1) |
+| `docs/releases/vX.Y.Z_github_description.md` | GitHub Release **body** only. The release **title** is always the bare tag (`vX.Y.Z`), pinned as `name:` in `.github/workflows/release.yml`; the H1 inside this file is the body's heading, never the title. |
 
 Mirror the tone and section shape of the latest prior files in `docs/releases/`
 (e.g. `v1.0.4.md` / `v1.0.4_github_description.md`): welcome blurb, key

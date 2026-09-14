@@ -17,7 +17,7 @@ sudo ubuntu-hello add
 sudo ubuntu-hello -y add              # non-interactive (default label; used by SUW / Settings)
 ```
 
-Follow interactive prompts to save face profile descriptors. Without a TTY (or with `-y`), `add` skips the label prompt and uses the default. Do **not** use `argparse.REMAINDER` for CLI extras — it swallows `-y` after `add` and breaks the setup wizard (`EOFError` on `input()`). Top-level `--all` is for `keyring restore --all`.
+`add` guides the user through six poses (`enroll_capture.GUIDE_STEPS`) and stores up to 13 descriptors per model; it prints `@guide <pose>` / `@progress n/total` lines that the GTK apps (`ubuntu-hello-gtk/src/enroll.py`) turn into live prompts, and mirrors the prompt on a notification card (`notify.EnrollNotifier`). Anything that indexes `models[...]` from a match must go through `enroll_capture.flatten_models()` (descriptor index ≠ model index). Without a TTY (or with `-y`), `add` skips the label prompt and uses the default. Do **not** use `argparse.REMAINDER` for CLI extras — it swallows `-y` after `add` and breaks the setup wizard (`EOFError` on `input()`). Top-level `--all` is for `keyring restore --all`.
 
 ## List / remove / clear
 

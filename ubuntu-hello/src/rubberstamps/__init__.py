@@ -13,6 +13,10 @@ class RubberStamp:
 	UI_TEXT = "ui_text"
 	UI_SUBTEXT = "ui_subtext"
 
+	# Set by execute(); the challenge is mirrored here because the auth overlay
+	# has no display under PAM's minimal environment and is never seen.
+	notifier = None
+
 	def set_ui_text(self, text, type=None):
 		"""Convert an ui string to input ubuntu-hello-gtk understands"""
 		typedec = "M"
@@ -20,7 +24,24 @@ class RubberStamp:
 		if type == self.UI_SUBTEXT:
 			typedec = "S"
 
+		if type == self.UI_SUBTEXT:
+			self._ui_subtext = text
+		else:
+			self._ui_text = text
+		self._notify_ui()
+
 		return self.send_ui_raw(typedec + "=" + text)
+
+	def _notify_ui(self):
+		"""Mirror the current challenge onto the desktop notification card."""
+		notifier = getattr(self, "notifier", None)
+		prompt = getattr(self, "_ui_text", "")
+		if notifier is None or not prompt:
+			return
+		try:
+			notifier.liveness(prompt, getattr(self, "_ui_subtext", ""))
+		except Exception:
+			pass   # a card is never allowed to affect the auth result
 
 	def send_ui_raw(self, command):
 		"""Write raw command to ubuntu-hello-gtk stdin"""
@@ -32,16 +53,24 @@ class RubberStamp:
 
 		# If we're connected to the ui
 		if self.gtk_proc:
-			# Send the command as bytes
-			self.gtk_proc.stdin.write(bytearray(command.encode("utf-8")))
-			self.gtk_proc.stdin.flush()
+			try:
+				# Send the command as bytes
+				self.gtk_proc.stdin.write(bytearray(command.encode("utf-8")))
+				self.gtk_proc.stdin.flush()
 
-			# Write a padding line to force the command through any buffers
-			self.gtk_proc.stdin.write(bytearray("P=_PADDING \n".encode("utf-8")))
-			self.gtk_proc.stdin.flush()
+				# Write a padding line to force the command through any buffers
+				self.gtk_proc.stdin.write(bytearray("P=_PADDING \n".encode("utf-8")))
+				self.gtk_proc.stdin.flush()
+			except (OSError, ValueError):
+				# The overlay is optional and, under PAM, cannot open a window at
+				# all: compare.py is started with an explicit minimal environment
+				# (PATH only), so GTK has no display and the process exits, leaving
+				# a broken pipe here. The prompt still reaches the user on the
+				# notification card; a dead overlay must never fail authentication.
+				self.gtk_proc = None
 
 
-def execute(config, gtk_proc, opencv):
+def execute(config, gtk_proc, opencv, notifier=None):
 	verbose = config.getboolean("debug", "verbose_stamps", fallback=False)
 	dir_path = os.path.dirname(os.path.realpath(__file__))
 	installed_stamps = []
@@ -81,6 +110,9 @@ def execute(config, gtk_proc, opencv):
 			continue
 
 		type = regex_result.group(1)
+		# failsafe (the default) aborts when the check does not pass; faildeadly
+		# lets authentication through. Same vocabulary as the config file.
+		rule_failsafe = regex_result.group(3).lower() != "faildeadly"
 
 		# Error out if the stamp name in the rule is not a file
 		if type not in installed_stamps:
@@ -102,6 +134,7 @@ def execute(config, gtk_proc, opencv):
 		instance.verbose = verbose
 		instance.config = config
 		instance.gtk_proc = gtk_proc
+		instance.notifier = notifier
 		instance.opencv = opencv
 
 		# Set some opensv shorthands
@@ -163,6 +196,10 @@ def execute(config, gtk_proc, opencv):
 
 			import traceback
 			traceback.print_exc()
+			# `continue` here skipped the result check below and fell through to
+			# sys.exit(0): a crashing liveness check authenticated the user.
+			if rule_failsafe:
+				sys.exit(15)
 			continue
 
 		if verbose: print("Stamp \"" + type + "\" returned: " + str(result))

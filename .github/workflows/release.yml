@@ -74,7 +74,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.2.0
+        uses: docker/setup-qemu-action@v4.3.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -128,7 +128,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.2.0
+        uses: docker/setup-qemu-action@v4.3.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -182,7 +182,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.2.0
+        uses: docker/setup-qemu-action@v4.3.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -293,7 +293,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.2.0
+        uses: docker/setup-qemu-action@v4.3.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -430,8 +430,11 @@ jobs:
 
       - name: Create GitHub Release (authored notes)
         if: steps.notes.outputs.use_body == 'true'
-        uses: softprops/action-gh-release@v3.0.2
+        uses: softprops/action-gh-release@v3.0.3
         with:
+          # The title is the bare tag, nothing else. The action defaults to this
+          # today, but it is a requirement, not a default we happen to rely on.
+          name: v${{ env.VERSION }}
           body_path: docs/releases/v${{ env.VERSION }}_github_description.md
           files: |
             release-artifacts/*
@@ -440,8 +443,9 @@ jobs:
 
       - name: Create GitHub Release (generated notes fallback)
         if: steps.notes.outputs.use_body == 'false'
-        uses: softprops/action-gh-release@v3.0.2
+        uses: softprops/action-gh-release@v3.0.3
         with:
+          name: v${{ env.VERSION }}
           generate_release_notes: true
           files: |
             release-artifacts/*

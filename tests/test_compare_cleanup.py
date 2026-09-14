@@ -345,3 +345,66 @@ def test_watch_session_idle_never_raises_on_unexpected_error(compare_mod, monkey
     # Must not propagate -- this runs on a daemon thread and must never
     # crash or interfere with the normal auth flow.
     compare_mod._watch_session_idle(poll_interval=0)
+
+
+def test_auth_overlay_uses_absolute_gtk_path(compare_mod):
+    """Root helper must never resolve ubuntu-hello-gtk via PATH (privesc)."""
+    assert compare_mod.GTK_BIN_PATH == "/usr/bin/ubuntu-hello-gtk"
+    src = open(compare_mod.__file__, encoding="utf-8").read()
+    assert 'Popen(["ubuntu-hello-gtk"' not in src
+    assert 'Popen([GTK_BIN_PATH, "--start-auth-ui"]' in src
+
+
+def test_signal_exit_sends_cancelled_notification(compare_mod, monkeypatch):
+    """SIGTERM mid-scan (Esc / session idle) updates the card to 'cancelled' before exiting."""
+    notifier = MagicMock()
+    compare_mod.notifier = notifier
+    monkeypatch.setattr(compare_mod, "cleanup", MagicMock())
+    monkeypatch.setattr(compare_mod.os, "_exit", MagicMock())
+    compare_mod._signal_exit(signal.SIGTERM, None)
+    notifier.cancelled.assert_called_once()
+    compare_mod.os._exit.assert_called_once_with(12)
+
+
+def test_notify_helper_is_noop_without_notifier_and_swallows_errors(compare_mod, capsys):
+    compare_mod.notifier = None
+    compare_mod._notify("success")  # no notifier -> nothing
+    broken = MagicMock()
+    broken.success.side_effect = RuntimeError("bus gone")
+    compare_mod.notifier = broken
+    compare_mod._notify("success", 1, 2)  # must never raise into the auth path
+    assert "Notification failed" in capsys.readouterr().out
+
+
+def test_success_card_is_sent_only_after_liveness_decides(compare_mod):
+    """Source-level guard for the review finding: rubberstamps.execute() exits
+    the process itself (0 = all stamps passed, 15 = rejected); the success
+    card must be emitted inside that SystemExit handling, never before, and
+    exit 15 must produce the rejection card."""
+    src = open(compare_mod.__file__, encoding="utf-8").read()
+    stamps = src.index("rubberstamps.execute(config, gtk_proc, {")
+    handler = src.index("except SystemExit as stamp_exit:", stamps)
+    assert 'notify_success()' in src[handler:handler + 400]
+    assert '_notify("rejected")' in src[handler:handler + 400]
+    # The only success notification before the rubberstamp block is the deferred definition
+    before = src[:stamps]
+    assert before.count('_notify(\n\t\t\t\t\t\t"success"') == 1 and "def notify_success():" in before
+    assert "notify_success()" not in before.split("def notify_success():")[1].split("# Make snapshot")[0]
+
+
+def test_no_model_card_is_reachable(compare_mod):
+    """The notifier is built before the model file is read, so a missing
+    model produces the 'authentication unavailable' card (exit 10)."""
+    src = open(compare_mod.__file__, encoding="utf-8").read()
+    notifier_at = src.index("notifier = AuthNotifier(")
+    models_at = src.index("models = json.load(open(paths_factory.user_model_path(user)))")
+    assert notifier_at < models_at
+    assert src.count('_notify("no_model")\n\t\texit(10)') == 2
+
+
+def test_target_user_language_preference_applied_after_validation(compare_mod):
+    src = open(compare_mod.__file__, encoding="utf-8").read()
+    validate = src.index('print("Invalid username format")')
+    pref = src.index('os.environ["UH_TARGET_USER"] = user')
+    assert validate < pref < src.index("notifier = AuthNotifier(")
+    assert "i18n.reload_from_preferences()" in src

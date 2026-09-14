@@ -1,6 +1,6 @@
 """End-to-End scenario tests for the Setup Wizard (SUW / Onboarding).
 
-Executes against real GTK3 widgets, real Glade XML parsing, and real video/crypto pipelines.
+Executes against real GTK 4 widgets, real Builder .ui XML parsing, and real video/crypto pipelines.
 Run with:
     UH_REAL_GTK=1 xvfb-run -a pytest tests/e2e/test_onboarding_e2e.py
 """
@@ -16,18 +16,19 @@ import numpy as np
 import cv2
 
 import gi
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("Gdk", "4.0")
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf
 
 import onboarding
+import gtk4compat
 import paths_factory
 import auth_helper
 import keyring_crypto
 
 
 class TestOnboardingWindowConstructAndTheme:
-	def test_window_constructs_real_glade(self, isolated_fs, gtk_pump):
+	def test_window_constructs_real_ui(self, isolated_fs, gtk_pump):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
 			assert ob.window is not None
@@ -50,7 +51,7 @@ class TestOnboardingWindowConstructAndTheme:
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
 			gtk_pump()
-			width, height = ob.window.get_size()
+			width, height = ob.window.get_default_size()
 			assert width >= 750
 			assert height >= 600
 		finally:
@@ -108,7 +109,7 @@ class TestOnboardingSlide1Datafiles:
 
 
 class TestOnboardingSlide2CameraScan:
-	def test_scan_cameras_and_populate_treeview(self, isolated_fs, real_video_frames, monkeypatch, gtk_pump):
+	def test_scan_cameras_and_populate_camera_table(self, isolated_fs, real_video_frames, monkeypatch, gtk_pump):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
 			# Mock /dev/v4l/by-path listing with 2 devices
@@ -121,6 +122,8 @@ class TestOnboardingSlide2CameraScan:
 				return orig_listdir(*args, **kwargs)
 
 			monkeypatch.setattr(os, "listdir", fake_listdir)
+			import glob as _glob
+			monkeypatch.setattr(_glob, "glob", lambda pattern: [])   # no real /dev/video* nodes in the test
 
 			class FakeCapture:
 				def __init__(self, path):
@@ -147,21 +150,19 @@ class TestOnboardingSlide2CameraScan:
 			ob.window.current_slide = 1
 			ob.go_next_slide()
 
-			# Wait for scan thread to populate treeview with 2 rows
+			# Wait for scan thread to populate the camera table with 2 rows
 			for _ in range(50):
 				gtk_pump(10)
-				if hasattr(ob, "treeview") and ob.treeview is not None:
-					model = ob.treeview.get_model()
-					if model is not None and len(model) == 2:
-						break
+				if getattr(ob, "cameras", None) is not None and len(ob.cameras) == 2:
+					break
 				time.sleep(0.05)
 
 			assert ob.window.current_slide == 2
-			assert hasattr(ob, "treeview") and ob.treeview is not None
-			model = ob.treeview.get_model()
-			assert model is not None
+			assert getattr(ob, "cameras", None) is not None
+			model = ob.cameras
 			assert len(model) == 2
 			assert model[0][3] is True  # is_gray boolean
+			assert model.selected_index() == 0
 			assert ob.nextbutton.get_sensitive()
 		finally:
 			ob.stop_preview()
@@ -173,11 +174,9 @@ class TestOnboardingSlide3IREmitter:
 	def test_slide3_ir_camera_yes_flow(self, isolated_fs, fake_video_capture, monkeypatch, gtk_pump):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
-			ob.treeview = Gtk.TreeView()
-			listmodel = Gtk.ListStore(str, str, str, bool)
-			listmodel.append(["IR Camera", "Yes, compatible", "/dev/video0", True])
-			ob.treeview.set_model(listmodel)
-			ob.treeview.set_cursor(0)
+			ob.cameras = gtk4compat.ColumnList(["Camera", "Recommended"])
+			ob.cameras.append(["IR Camera", "Yes, compatible", "/dev/video0", True])
+			ob.cameras.select(0)
 
 			monkeypatch.setattr(cv2, "VideoCapture", lambda path: fake_video_capture(path))
 
@@ -199,11 +198,9 @@ class TestOnboardingSlide3IREmitter:
 	def test_slide3_non_ir_camera_auto_skips(self, isolated_fs, fake_video_capture, monkeypatch, gtk_pump):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
-			ob.treeview = Gtk.TreeView()
-			listmodel = Gtk.ListStore(str, str, str, bool)
-			listmodel.append(["RGB Camera", "No, not infrared", "/dev/video1", False])
-			ob.treeview.set_model(listmodel)
-			ob.treeview.set_cursor(0)
+			ob.cameras = gtk4compat.ColumnList(["Camera", "Recommended"])
+			ob.cameras.append(["RGB Camera", "No, not infrared", "/dev/video1", False])
+			ob.cameras.select(0)
 
 			monkeypatch.setattr(cv2, "VideoCapture", lambda path: fake_video_capture(path))
 
@@ -222,11 +219,9 @@ class TestOnboardingSlide4And5FaceScan:
 	def test_slide4_scan_button_runs_add(self, isolated_fs, monkeypatch, gtk_pump):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
-			ob.treeview = Gtk.TreeView()
-			listmodel = Gtk.ListStore(str, str, str, bool)
-			listmodel.append(["IR Camera", "Yes", "/dev/video0", True])
-			ob.treeview.set_model(listmodel)
-			ob.treeview.set_cursor(0)
+			ob.cameras = gtk4compat.ColumnList(["Camera", "Recommended"])
+			ob.cameras.append(["IR Camera", "Yes", "/dev/video0", True])
+			ob.cameras.select(0)
 
 			# Ensure subprocess Popen succeeds for ubuntu-hello set device_path
 			real_popen = subprocess.Popen
@@ -237,28 +232,169 @@ class TestOnboardingSlide4And5FaceScan:
 			gtk_pump()
 			assert ob.window.current_slide == 4
 
-			# Intercept ubuntu-hello add
-			def fake_run(cmd, *a, **k):
+			# Intercept ubuntu-hello add: replay the guided-capture protocol slowly
+			# enough for the page to show every prompt (enroll.run_add streams stdout).
+			added_labels = []
+			guide_lines = ["@guide center\n", "Please look straight into the camera\n", "@progress 1/13\n",
+			               "@guide left\n", "@progress 2/13\n", "@progress 3/13\n",
+			               "@guide right\n", "@progress 4/13\n",
+			               "@guide up\n", "@progress 5/13\n",
+			               "@guide down\n", "@progress 6/13\n",
+			               "Captured 6 face samples\nScan complete\n"]
+
+			class FakeAdd:
+				returncode = 0
+
+				def __init__(self, cmd):
+					added_labels.append(cmd[-1])
+
+				@property
+				def stdout(self):
+					for line in guide_lines:
+						time.sleep(0.03)
+						yield line
+
+				def wait(self):
+					return 0
+
+			def fake_popen(cmd, *a, **k):
 				if "add" in cmd:
-					return subprocess.CompletedProcess(cmd, 0, stdout="Face model added successfully\n", stderr="")
-				return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
+					return FakeAdd(cmd)
+				return real_popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-			monkeypatch.setattr(subprocess, "run", fake_run)
+			monkeypatch.setattr(subprocess, "Popen", fake_popen)
+			instruction = ob.builder.get_object("slide4_instruction_label")
+			seen_prompts, seen_buttons = [], []
+			# Record every prompt the page showed (the main loop pumps may miss a fast one).
+			real_guide = ob.on_scan_guide
 
-			# Click scan button
+			def recording_guide(key):
+				result = real_guide(key)
+				if instruction.get_visible():
+					seen_prompts.append(instruction.get_text())
+				return result
+			monkeypatch.setattr(ob, "on_scan_guide", recording_guide)
+			# Same for the button: polling its label between main-loop pumps misses a
+			# value the worker sets and replaces in between, which is exactly what
+			# happens when the machine is loaded. Record every label instead.
+
+			# Pass 1: click scan, let the scheduled run_add fire
 			scan_btn = ob.builder.get_object("scanbutton")
-			ob.on_scanbutton_click(scan_btn)
-			gtk_pump(20)
+			real_set_label = scan_btn.set_label
 
-			# Execute run_add directly and pump timeout
-			ob.run_add()
-			for _ in range(20):
+			def recording_set_label(text):
+				seen_buttons.append(text)
+				return real_set_label(text)
+			monkeypatch.setattr(scan_btn, "set_label", recording_set_label)
+			skip_btn = ob.builder.get_object("skipsecondbutton")
+			assert not skip_btn.get_visible()  # first scan is required; only the second can be skipped
+			assert "few angles" in ob.builder.get_object("label5").get_text()  # guided capture explained up front
+			assert "second, optional scan" in ob.builder.get_object("label5").get_text()
+			ob.on_scanbutton_click(scan_btn)
+			deadline = time.monotonic() + 20
+			while time.monotonic() < deadline:
+				gtk_pump(10)
+				if ob.scan_pass == 2:
+					break
+				time.sleep(0.01)
+			gtk_pump(10)
+
+			# Live guidance (Windows Hello style) was shown on the page while add ran…
+			for prompt in ("Look straight at the camera", "Turn your head slightly to the left",
+			               "Turn your head slightly to the right", "Tilt your chin up a little",
+			               "Tilt your chin down a little"):
+				assert prompt in seen_prompts, (prompt, seen_prompts)
+			assert any(b.startswith("Recording… ") and b.endswith(" of 13") for b in seen_buttons), seen_buttons
+			# …and is hidden again once the model is saved
+			assert not instruction.get_visible()
+
+			# First model saved -> still on slide 4, now in second-model mode
+			assert added_labels == ["Setup lighting 1"]
+			assert ob.window.current_slide == 4
+			assert ob.scan_pass == 2
+			assert skip_btn.get_visible()
+			assert scan_btn.get_sensitive()
+			assert scan_btn.get_label() == "Scan second model"
+			assert "Second scan" in ob.builder.get_object("label4").get_text()
+			assert "change the light" in ob.builder.get_object("label5").get_text()
+			assert "face login already works" in ob.builder.get_object("label5").get_text()
+
+			# Pass 2: scan again -> advances to slide 5
+			ob.on_scanbutton_click(scan_btn)
+			for _ in range(200):
 				gtk_pump(10)
 				if ob.window.current_slide == 5:
 					break
 				time.sleep(0.02)
 
+			assert added_labels == ["Setup lighting 1", "Setup lighting 2"]
 			assert ob.window.current_slide == 5
+			assert ob.nextbutton.get_sensitive()
+		finally:
+			ob.stop_preview()
+			ob.window.destroy()
+			gtk_pump()
+
+	def test_slide4_skip_second_model_advances(self, isolated_fs, monkeypatch, gtk_pump):
+		ob = onboarding.OnboardingWindow(run_main_loop=False)
+		try:
+			ob.cameras = gtk4compat.ColumnList(["Camera", "Recommended"])
+			ob.cameras.append(["IR Camera", "Yes", "/dev/video0", True])
+			ob.cameras.select(0)
+			real_popen = subprocess.Popen
+			monkeypatch.setattr(subprocess, "Popen", lambda *a, **k: real_popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT))
+			monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(cmd, 0, stdout="", stderr=""))
+
+			ob.window.current_slide = 3
+			ob.go_next_slide()
+			gtk_pump()
+			assert ob.window.current_slide == 4
+			skip_btn = ob.builder.get_object("skipsecondbutton")
+			assert not skip_btn.get_visible()
+
+			# A skip click before any model is enrolled does nothing
+			ob.on_skipsecondbutton_click(None)
+			gtk_pump(10)
+			assert ob.window.current_slide == 4 and ob.models_enrolled == 0
+
+			ob.on_add_finished(0, "Scan complete\n")  # pass 1 saved -> second-scan mode, Skip appears
+			gtk_pump(10)
+			assert ob.scan_pass == 2 and ob.models_enrolled == 1
+			assert skip_btn.get_visible()
+
+			skip_btn.emit("clicked")
+			for _ in range(40):
+				gtk_pump(10)
+				if ob.window.current_slide == 5:
+					break
+				time.sleep(0.02)
+			assert ob.window.current_slide == 5
+		finally:
+			ob.stop_preview()
+			ob.window.destroy()
+			gtk_pump()
+
+
+class TestOnboardingNavigation:
+	def test_cancel_only_on_first_page_and_back(self, isolated_fs, monkeypatch, gtk_pump):
+		ob = onboarding.OnboardingWindow(run_main_loop=False)
+		try:
+			cancel = ob.builder.get_object("cancelbutton")
+			back = ob.builder.get_object("backbutton")
+			assert cancel.get_visible() and not back.get_visible()
+
+			# Slide 1 (datafiles already present -> no download)
+			monkeypatch.setattr(os.path, "exists", lambda p: True)
+			ob.go_next_slide()
+			gtk_pump()
+			assert ob.window.current_slide == 1
+			assert not cancel.get_visible() and back.get_visible()
+
+			back.emit("clicked")
+			gtk_pump()
+			assert ob.window.current_slide == 0
+			assert ob.slides[0].get_visible() and not ob.slides[1].get_visible()
+			assert cancel.get_visible() and not back.get_visible()
 			assert ob.nextbutton.get_sensitive()
 		finally:
 			ob.stop_preview()
@@ -351,21 +487,18 @@ class TestOnboardingSlide6KeyringUnlock:
 
 
 class TestOnboardingSlide7SensitivityFinish:
-	def test_slide7_certainty_and_finish_button(self, isolated_fs, monkeypatch, gtk_pump):
+	def test_slide7_certainty_and_finish_button(self, isolated_fs, monkeypatch, gtk_pump, tmp_path):
 		ob = onboarding.OnboardingWindow(run_main_loop=False)
 		try:
 			ob.window.current_slide = 6
 			ob.builder.get_object("keyring_checkbox").set_active(False)
 
-			captured_certainty = []
-			real_popen = subprocess.Popen
-
-			def fake_popen(cmd, *a, **k):
-				if "certainty" in cmd:
-					captured_certainty.append(cmd[-1])
-				return real_popen(["true"])
-
-			monkeypatch.setattr(subprocess, "Popen", fake_popen)
+			# The wizard writes the config directly through the comment-preserving
+			# editor: `ubuntu-hello set` can only replace a key the file already has,
+			# so a config written before `confirmations` existed would half-apply.
+			config = tmp_path / "config.ini"
+			config.write_text("[video]\ncertainty = 4.2\n", encoding="utf-8")
+			monkeypatch.setattr(onboarding.paths_factory, "config_file_path", lambda: str(config))
 
 			# Select balanced radio
 			radio_balanced = ob.builder.get_object("radiobalanced")
@@ -377,15 +510,29 @@ class TestOnboardingSlide7SensitivityFinish:
 
 			assert ob.window.current_slide == 7
 			assert ob.slides[7].get_visible()
-			assert any("3.5" in str(c) for c in captured_certainty)
-
 			finish_btn = ob.builder.get_object("finishbutton")
 			assert finish_btn.get_visible()
 			assert not ob.nextbutton.get_visible()
+			# Arriving writes nothing: the level used to be saved the moment this
+			# page appeared, so a choice made on it afterwards was lost.
+			assert "certainty = 4.2" in config.read_text(encoding="utf-8")
 
-			# Click finish
+			# The user changes their mind on the page itself, and turns the nod on.
+			ob.builder.get_object("radiosecure").set_active(True)
+			switch = ob.builder.get_object("liveness_switch")
+			assert not switch.get_active(), "the nod ships off"
+			switch.set_active(True)
+			gtk_pump(20)
+
 			ob.on_finishbutton_click(finish_btn)
 			assert ob.completed is True
+			# A level is two settings: how close the match must be, and how many
+			# separate frames have to agree before it is trusted. Plus the nod.
+			written = config.read_text(encoding="utf-8")
+			assert "certainty = %s" % onboarding.SECURITY_PRESETS["radiosecure"] in written
+			assert "confirmations = %d" % onboarding.SECURITY_CONFIRMATIONS["radiosecure"] in written
+			assert "enabled = true" in written
+			assert "failsafe" in written and "faildeadly" not in written
 		finally:
 			ob.stop_preview()
 			ob.window.destroy()

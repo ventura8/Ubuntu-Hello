@@ -3,6 +3,56 @@ import os
 import sys
 import shutil
 
+# Agreeing frames to require for a config that predates the `confirmations` key,
+# chosen from the threshold the user already has. Mirrors the levels in
+# ubuntu-hello-gtk/src/tab_security.py, which this script cannot import (that
+# module pulls in GTK); tests/test_install_config.py asserts the two agree.
+CONFIRMATION_LADDER = ((2.6, 4), (3.0, 3), (3.5, 2))
+
+
+def confirmations_for(certainty):
+    """Frames to demand at *certainty*: stricter thresholds ask for more.
+
+    Below the strictest shipped level the answer is 1, not 4. A threshold that low
+    is one someone set by hand, and it already lets very few frames through; adding
+    a demand for several agreeing ones on top would turn a login that mostly worked
+    into one that never completes. Those users opt in from Settings instead.
+    """
+    if certainty < CONFIRMATION_LADDER[0][0]:
+        return 1
+    for threshold, frames in CONFIRMATION_LADDER:
+        if certainty <= threshold:
+            return frames
+    return CONFIRMATION_LADDER[-1][1]
+
+
+def add_missing_confirmations(target_path):
+    """Give an upgraded config the `[video] confirmations` key it never had.
+
+    Accepting on the first frame under the threshold decides on the best of the
+    dozens of looks a scan takes, so one outlier frame is enough to authenticate.
+    Existing installs keep their own threshold -- only the missing key is added,
+    at the count matching the strictness they already chose.
+    """
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import configparser
+
+        import config_edit
+
+        parser = configparser.ConfigParser()
+        parser.read(target_path)
+        if parser.has_option('video', 'confirmations'):
+            return
+        certainty = parser.getfloat('video', 'certainty', fallback=3.5)
+        frames = confirmations_for(certainty)
+        config_edit.set_option(target_path, 'video', 'confirmations', frames)
+        print(f"Migrated existing config: added confirmations = {frames} "
+              f"for certainty = {certainty}")
+    except Exception as e:
+        print(f"Warning: Failed to add confirmations to existing config: {e}")
+
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: install_config.py <src_config_ini> <conf_dir>")
@@ -30,6 +80,7 @@ def main():
         print(f"Installed default config.ini to {target_path}")
     else:
         print(f"{target_path} already exists, not overwriting.")
+        add_missing_confirmations(target_path)
         try:
             import configparser
             config = configparser.ConfigParser()
@@ -46,6 +97,17 @@ def main():
         except Exception as e:
             print(f"Warning: Failed to migrate existing config: {e}")
 
+    # The polkit helper drop-in below grants ReadWritePaths=/etc/ubuntu-hello/tpm-keys;
+    # systemd refuses to start the unit when that path is missing, so create it
+    # here for standalone Meson installs (install.sh / package-configure.sh do the
+    # same in their permission step). Root-only: it holds transient TPM contexts.
+    tpm_keys_dir = os.path.join(conf_dir, 'tpm-keys')
+    try:
+        os.makedirs(tpm_keys_dir, mode=0o700, exist_ok=True)
+        os.chmod(tpm_keys_dir, 0o700)
+    except OSError as e:
+        print(f"Warning: Failed to create {tpm_keys_dir}: {e}")
+
     # Configure Polkit systemd helper override for face authentication
     override_dir = '/etc/systemd/system/polkit-agent-helper@.service.d'
     if destdir:
@@ -54,7 +116,27 @@ def main():
     override_file = os.path.join(override_dir, 'override.conf')
     try:
         with open(override_file, 'w') as f:
-            f.write("[Service]\nPrivateDevices=no\nDeviceAllow=char-video4linux rw\nDeviceAllow=/dev/uinput rw\n")
+            f.write(
+                "[Service]\n"
+                "PrivateDevices=no\n"
+                "DeviceAllow=char-video4linux rw\n"
+                "DeviceAllow=/dev/uinput rw\n"
+                # TPM-sealed keyring unlock: polkit >= 126 sandboxes the helper
+                # with DevicePolicy=strict + ProtectSystem=strict, which blocks
+                # /dev/tpmrm0 and the transient .ctx files under tpm-keys/.
+                "DeviceAllow=char-tpm rw\n"
+                "DeviceAllow=/dev/tpm0 rw\n"
+                "ReadWritePaths=/etc/ubuntu-hello/tpm-keys\n"
+                # ProtectHome=yes also hides /run/user (the session bus): the
+                # desktop notification could never reach the user from a
+                # polkit prompt. tmpfs keeps /home and /root EMPTY inside the
+                # unit and only /run/user is bound back in (the notifier drops
+                # to the target uid before touching its bus socket).
+                # /run/ubuntu-hello: root-only notification state.
+                "ProtectHome=tmpfs\n"
+                "BindReadOnlyPaths=-/run/user\n"
+                "ReadWritePaths=-/run/ubuntu-hello\n"
+            )
         os.chmod(override_file, 0o644)
         print(f"Configured Polkit systemd helper override at {override_file}")
     except OSError as e:

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,666 +15,882 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "உருவாக்கப்பட்டது"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "லேபிள்"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "தானியங்கி"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "கீரிங்/KWallet திறப்பதை இயக்கவும்"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "உங்கள் முக மாதிரிகளைச் சேர்த்தல்"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "{} ({}) திறக்க பயனர் <b>{}</b>க்கான கடவுச்சொல்லை உள்ளிடவும்:"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "கடவுச்சொல்"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"தரவு கோப்புகள் ஏற்கனவே பதிவிறக்கம் செய்யப்பட்டுள்ளன!\nதொடர அடுத்து என்"
-"பதைக் கிளிக் செய்யவும்"
+"Ubuntu Hello சுமார் ஒரு நிமிடத்தில் உங்கள் முகத்தைப் பல கோணங்களில் பதிவு செய்கிறது: "
+"முகத்தை முன்னோட்டத்திற்குள் வைத்து அறிவுறுத்தல்களைப் பின்பற்றுங்கள் (நேராகப் பாருங்கள், சற்று "
+"இடது வலது திருப்புங்கள், தாடையை மேலே கீழே). அதன்பின் விருப்பத்தேர்வான இரண்டாவது ஸ்கேன் — "
+"கண்ணாடியுடன், வேறு தாடி-மீசையுடன் அல்லது வேறு வெளிச்சத்தில் — நாளின் எந்த நேரத்திலும் "
+"அடையாளத்தை இன்னும் நம்பகமானதாக்குகிறது."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "தரவுக் கோப்புகளைப் பதிவிறக்குவதில் பிழை"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"முடிந்தது!\nதொடர அடுத்து என்பதைக் கிளிக் செய்யவும்"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "OpenCV2 இறக்குமதி செய்யும் போது பிழை"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "cv2 ஐ மீண்டும் நிறுவ முயற்சிக்கவும்"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "கணினியில் வெப்கேம்கள் எதுவும் இல்லை"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"இணக்கமான கேமரா இணைக்கப்பட்டிருப்பதை உறுதிசெய்தால், உங்கள் கேமராவை நீங்"
-"களே உள்ளமைக்கவும்"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "இல்லை, கேமராவைத் திறக்க முடியாது"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "இல்லை, அகச்சிவப்பு கேமரா அல்ல"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "ஆம், இணக்கமான அகச்சிவப்பு கேமரா"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "கேமரா அடையாளங்காட்டி அல்லது பாதை"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "பரிந்துரைக்கப்படுகிறது"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "கேமராவைத் தேர்ந்தெடுப்பதில் பிழை"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கேமராவைத் திறக்க முடியாது"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "இன்னொன்றைத் தேர்ந்தெடுக்க முயற்சிக்கவும்"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"பார்வையிடவும்\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-e"
-"mitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nஉங்க"
-"ளின் உமிழ்ப்பானை இயக்க"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "கேமராவை நேரடியாகப் பார்க்கவும்"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "முகத்தை ஸ்கேன் செய்யத் தொடங்கவும்"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"தரவு கோப்புகள் ஏற்கனவே பதிவிறக்கம் செய்யப்பட்டுள்ளன!\n"
+"தொடர அடுத்து என்பதைக் கிளிக் செய்யவும்"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "தரவுக் கோப்புகளைப் பதிவிறக்குவதில் பிழை"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"முடிந்தது!\n"
+"தொடர அடுத்து என்பதைக் கிளிக் செய்யவும்"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "OpenCV2 இறக்குமதி செய்யும் போது பிழை"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "cv2 ஐ மீண்டும் நிறுவ முயற்சிக்கவும்"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "கணினியில் வெப்கேம்கள் எதுவும் இல்லை"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"இணக்கமான கேமரா இணைக்கப்பட்டிருப்பதை உறுதிசெய்தால், உங்கள் கேமராவை நீங்களே உள்ளமைக்கவும்"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "இல்லை, கேமராவைத் திறக்க முடியாது"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "இல்லை, அகச்சிவப்பு கேமரா அல்ல"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "ஆம், இணக்கமான அகச்சிவப்பு கேமரா"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "கேமரா அடையாளங்காட்டி அல்லது பாதை"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "பரிந்துரைக்கப்படுகிறது"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "கேமராவைத் தேர்ந்தெடுப்பதில் பிழை"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "தேர்ந்தெடுக்கப்பட்ட கேமராவைத் திறக்க முடியாது"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "இன்னொன்றைத் தேர்ந்தெடுக்க முயற்சிக்கவும்"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"பார்வையிடவும்\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"உங்களின் உமிழ்ப்பானை இயக்க"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "அமைப்பு வெளிச்சம் 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "அமைப்பு வெளிச்சம் 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "முக மாதிரியைச் சேமிக்க முடியவில்லை"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "இரண்டாவது மாதிரியை ஸ்கேன் செய்"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "இரண்டாவது மாதிரியைப் பதிவு செய்ய முடியவில்லை"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்"
-"கலாம் (கண்டறியப்பட்ட பணப்பை: {}).\n\n<b>TPM நிலை:</b> TPM வன்பொருள் மற"
-"்றும் கருவிகளைச் சரிபார்க்கிறது..."
+"உங்கள் முதல் மாடல் சேமிக்கப்பட்டது, எனவே முக உள்நுழைவு ஏற்கனவே வேலை செய்கிறது. உங்கள் "
+"முகத்தைப் பார்க்கும் அளவுக்கு அறை இன்னும் பிரகாசமாக இருக்க வேண்டும் — ஒளியை அணைக்காமல் "
+"மாற்றவும் — பிறகு மீண்டும் முயலவும் அல்லது அமைப்புகளில் இருந்து மாடலைத் தவிர்த்து பின்னர் "
+"சேர்க்கவும்."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "இரண்டாவது ஸ்கேன்: கண்ணாடி, தாடி-மீசை அல்லது வேறு வெளிச்சம்"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்"
-"கலாம் (கண்டறியப்பட்ட பணப்பை: {}).\n\n<b>TPM நிலை:</b> TPM வன்பொருள் கண"
-"்டறியப்பட்டது. <i>tpm2-tools</i> ஐ தானாக நிறுவுகிறது..."
+"முதல் மாதிரி சேமிக்கப்பட்டது: முக உள்நுழைவு ஏற்கனவே செயல்படுகிறது. ஏதாவது மாறும்போது "
+"இரண்டாவது மாதிரி அடையாளத்தை நம்பகமானதாக்குகிறது: சில நேரங்களில் அணியும் கண்ணாடியை "
+"அணியுங்கள் (அல்லது கழற்றுங்கள்), வேறு தாடி-மீசையுடன் பதிவு செய்யுங்கள், வெளிச்சத்தை "
+"மாற்றுங்கள் — விளக்கை போடுங்கள் அல்லது அணையுங்கள், ஜன்னலிலிருந்து விலகுங்கள். முகம் "
+"தெளிவாகத் தெரியும்படி வைத்து மீண்டும் ஸ்கேன் அழுத்துங்கள்; அதே குறுகிய வழிகாட்டப்பட்ட "
+"பதிவு தொடரும்."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்"
-"கலாம் (கண்டறியப்பட்ட பணப்பை: {}).\n\n<b>TPM நிலை:</b> வன்பொருள் TPM 2."
-"0 செயலில் உள்ளது. உங்கள் கடவுச்சொல் TPM க்குள் பாதுகாப்பாக சீல் வைக்கப"
-"்படும்."
+"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்கலாம் (கண்டறியப்பட்ட "
+"பணப்பை: {}).\n"
+"\n"
+"<b>TPM நிலை:</b> TPM வன்பொருள் மற்றும் கருவிகளைச் சரிபார்க்கிறது..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்"
-"கலாம் (கண்டறியப்பட்ட பணப்பை: {}).\n\n<b>TPM நிலை:</b> TPM வன்பொருள் கண"
-"்டறியப்பட்டது, ஆனால் <i>tpm2-tools</i> இன் தானியங்கி நிறுவல் தோல்வியடை"
-"ந்தது. <code>sudo apt install tpm2-tools</code>ஐ இயக்கவும். மென்பொருள்"
-" அடிப்படையிலான நற்சான்றிதழ் கேச்சிங்கிற்கு மீண்டும் வீழ்ச்சி."
+"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்கலாம் (கண்டறியப்பட்ட "
+"பணப்பை: {}).\n"
+"\n"
+"<b>TPM நிலை:</b> TPM வன்பொருள் கண்டறியப்பட்டது. <i>tpm2-tools</i> ஐ தானாக "
+"நிறுவுகிறது..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்"
-"கலாம் (கண்டறியப்பட்ட பணப்பை: {}).\n\n<b>TPM நிலை:</b> TPM வன்பொருள் எத"
-"ுவும் கண்டறியப்படவில்லை. மென்பொருள் அடிப்படையிலான நற்சான்றிதழ் தேக்ககத"
-"்தைப் பயன்படுத்துதல் (AES-256-GCM)."
+"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்கலாம் (கண்டறியப்பட்ட "
+"பணப்பை: {}).\n"
+"\n"
+"<b>TPM நிலை:</b> வன்பொருள் TPM 2.0 செயலில் உள்ளது. உங்கள் கடவுச்சொல் TPM க்குள் "
+"பாதுகாப்பாக சீல் வைக்கப்படும்."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"கீரிங் அன்லாக் செய்வதற்கு ரூட் சிஸ்டம் அல்லாத பயனரை அடையாளம் காண முடிய"
-"வில்லை"
+"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்கலாம் (கண்டறியப்பட்ட "
+"பணப்பை: {}).\n"
+"\n"
+"<b>TPM நிலை:</b> TPM வன்பொருள் கண்டறியப்பட்டது, ஆனால் <i>tpm2-tools</i> இன் "
+"தானியங்கி நிறுவல் தோல்வியடைந்தது. <code>sudo apt install tpm2-tools</code>ஐ "
+"இயக்கவும். மென்பொருள் அடிப்படையிலான நற்சான்றிதழ் கேச்சிங்கிற்கு மீண்டும் வீழ்ச்சி."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "கடவுச்சொல் காலியாக இருக்கக்கூடாது"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"முக அங்கீகாரத்தைப் பயன்படுத்தி Ubuntu Hello தானாகவே உங்கள் {}ஐத் திறக்கலாம் (கண்டறியப்பட்ட "
+"பணப்பை: {}).\n"
+"\n"
+"<b>TPM நிலை:</b> TPM வன்பொருள் எதுவும் கண்டறியப்படவில்லை. மென்பொருள் அடிப்படையிலான "
+"நற்சான்றிதழ் தேக்ககத்தைப் பயன்படுத்துதல் (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "பயனருக்கு தவறான கடவுச்சொல் {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "அறியப்படாத பிழை"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "கீரிங் திறப்பதை இயக்குவதில் தோல்வி: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "கீரிங் திறப்பதை முடக்குவதில் தோல்வி: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "கீரிங் அன்லாக் செய்வதற்கு root அல்லாத சிஸ்டம் பயனரை அடையாளம் காண முடியவில்லை"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "கடவுச்சொல் காலியாக இருக்கக்கூடாது"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "பயனருக்கு தவறான கடவுச்சொல் {}"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "அறியப்படாத பிழை"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "கீரிங் திறப்பதை இயக்குவதில் தோல்வி: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr "கீரிங் திறப்பை இயக்க முடியவில்லை: ubuntu-hello இயங்குகோப்பு கிடைக்கவில்லை"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"கீரிங் திறப்பை இயக்க முடியவில்லை: இயக்கத்திற்காகக் காத்திருக்கும்போது நேரம் முடிந்தது "
+"(keyring enable)"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "கீரிங் திறப்பதில் பிழை"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "ரேடியோ பொத்தான்களைப் படிப்பதில் பிழை"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello அமைவு எச்சரிக்கை"
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
+msgstr "பாதுகாப்பு அமைப்புகளைச் சேமிக்க முடியவில்லை, இல்லையெனில் அமைவு முடிந்தது."
 
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
-msgstr ""
-"உறுதியான விருப்பத்தேர்வைச் சேமிக்க முடியவில்லை, இல்லையெனில் அமைவு முடி"
-"ந்தது."
-
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello பிழை"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "ஏற்றுகிறது..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello அங்கீகாரம்"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "பயனர் உருவாக்கத்தை உறுதிப்படுத்தவும்"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Ubuntu Hello இல் நீங்கள் சேர்க்க விரும்பும் பயனரின் பயனர்பெயரை உள்ளிடவ"
-"ும்"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "பயனர் பெயர்:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "மாதிரி உருவாக்கத்தை உறுதிப்படுத்தவும்"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "ரத்து செய்"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "சேர்"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "புதிய மாடலுக்கு அதிகபட்சம் 24 எழுத்துகள் உள்ள பெயரை உள்ளிடவும்"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "மாதிரி பெயர்:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "மாதிரியை உருவாக்குதல்"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"மாதிரியைச் சேர்க்கும்போது பிழை, பிழைக் குறியீடு {}:\n\n"
+"முகத்தை கேமராவின் பார்வைக்குள் வைத்து அறிவுறுத்தல்களைப் பின்பற்றுங்கள்; இதற்கு சுமார் ஒரு "
+"நிமிடம் ஆகும்."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "மாதிரி நீக்குதலை உறுதிப்படுத்தவும்"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "கேமராவை நேராகப் பாருங்கள்"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"மாதிரியைச் சேர்க்கும்போது பிழை, பிழைக் குறியீடு {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "{id} ({name}) மாதிரியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"மாதிரியை நீக்குவதில் பிழை, பிழைக் குறியீடு {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "நீக்கு"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"மாதிரியை நீக்குவதில் பிழை, பிழைக் குறியீடு {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "தலையை சற்று இடதுபுறம் திருப்புங்கள்"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "தலையை சற்று வலதுபுறம் திருப்புங்கள்"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "தாடையை சற்று மேலே உயர்த்துங்கள்"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "தாடையை சற்று கீழே தாழ்த்துங்கள்"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "பதிவு செய்கிறது… {total} இல் {count}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "கேமராவைத் திறக்க முடியவில்லை"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "OpenCV2ஐ இறக்குமதி செய்ய முடியவில்லை"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "தெரியவில்லை"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "கீரிங்/KWallet திறப்பதை இயக்கவும்"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "சரி"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "{} ({}) திறக்க பயனர் <b>{}</b>க்கான கடவுச்சொல்லை உள்ளிடவும்:"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>பயனர் யாரும் தேர்ந்தெடுக்கப்படவில்லை</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
-msgstr ""
-"<span foreground='green'><b>இயக்கப்பட்டது (TPM வன்பொருள்)</b></span> —"
-" {}"
+msgstr "<span foreground='green'><b>இயக்கப்பட்டது (TPM வன்பொருள்)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>இயக்கப்பட்டது (மென்பொருள் கேச்சிங்)</b></s"
-"pan> — {}"
+"<span foreground='green'><b>இயக்கப்பட்டது (மென்பொருள் கேச்சிங்)</b></span> — {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>இயக்கப்பட்டது (கடவுச்சொல் உள்ளீடு நிலுவைய"
-"ில் உள்ளது)</b></span> — {}"
+"<span foreground='orange'><b>இயக்கப்பட்டது (கடவுச்சொல் உள்ளீடு நிலுவையில் உள்ளது)</"
+"b></span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>முடக்கப்பட்டது</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "பிழை"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "வெற்றி"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "{} பயனருக்கு கீரிங்/KWallet திறத்தல் வெற்றிகரமாக இயக்கப்பட்டது."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "கீரிங்/KWallet திறப்பதை முடக்கு"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr "{} பயனருக்கு கீரிங்/KWallet திறப்பதை முடக்க விரும்புகிறீர்களா?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "தானாக திறத்தல் முடக்கு"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "பயனருக்கு கீரிங்/KWallet திறப்பது முடக்கப்பட்டுள்ளது {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "அறிவிப்பு அமைப்பைச் சேமிக்க முடியவில்லை"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "பாதுகாப்பு அமைப்பைச் சேமிக்க முடியவில்லை"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello கட்டமைப்பு"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello கட்டமைப்பு"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "தேடல் அமைப்புகள்"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello கட்டமைப்பு"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "முக மாதிரிகள்"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Ubuntu Hello ஒப்பிடும் உங்கள் முகத்தின் ஸ்னாப்ஷாட்கள். வெவ்வேறு விளக்குகளில் பதிவு "
+"செய்யப்பட்ட குறைந்தது இரண்டையாவது வைத்திருங்கள்."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "சேமித்த மாதிரிகளைக் காட்டுகிறது:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "புதிய பயனரைச் சேர்க்கவும்"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"ஒரே ஒரு முக மாதிரி மட்டுமே பதிவு செய்யப்பட்டுள்ளது. கண்ணாடி, தாடி-மீசை மாற்றம் அல்லது "
+"வேறு வெளிச்சம் கேமராவுக்கு உங்கள் முகம் தெரியும் விதத்தை மாற்றுகிறது, எனவே ஒரே மாதிரி "
+"தோல்வியடையலாம் (உதாரணமாக மாலையில் விளக்கு வெளிச்சத்தில்). திறத்தல் நம்பகமாக இருக்க "
+"கண்ணாடியுடன் அல்லது இல்லாமல், உங்கள் மற்றொரு தோற்றத்தில், அல்லது வேறு வெளிச்சத்தில் "
+"இரண்டாவது மாதிரியைச் சேர்க்கவும்."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "சேர்"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "இரண்டாவது மாதிரியைச் சேர்க்கவும்"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "நீக்கு"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "மாதிரிகள்"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "கேமரா"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"கேமரா Ubuntu Hello நேரலை மாதிரிக்காட்சியுடன் உங்கள் முகத்தைத் தேடப் பயன்படுத்துகிறது."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "கேமரா ஐடி:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "உண்மையான தீர்மானம்:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "பயன்படுத்திய தீர்மானம்:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "ரெக்கார்டர்:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
 msgstr "வீடியோ"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "கீரிங் / KWallet தானியங்கு-திறத்தல்"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "அறிவிப்புகள்"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"உங்கள் உள்நுழைவு கீரிங் அல்லது உள்நுழைவில் KWallet தானாகவே திறக்க முக "
-"அங்கீகாரத்தை இயக்கவும். இது TPM இல் சீல் செய்யப்பட்ட உங்கள் கடவுச்சொல்"
-"லைப் பாதுகாப்பாகச் சேமிக்கும் அல்லது ரூட்-மட்டும் முதன்மை விசையைப் பயன"
-"்படுத்தி AES-256-GCM உடன் குறியாக்கம் செய்யப்படும். உங்கள் டெஸ்க்டாப்ப"
-"ைப் பொறுத்து pam_gnome_keyring அல்லது pam_kwallet5 க்கு முக அங்கீகாரம்"
-" PAM_AUTHTOK அமைக்கிறது."
+"Ubuntu Hello உங்கள் முகத்தைத் தேடும் போது டெஸ்க்டாப் அறிவிப்பு காண்பிக்கப்படும், பின்னர் "
+"முடிவைப் புகாரளிக்கும். தோல்வியுற்ற முயற்சிகள் அறிவிப்புப் பட்டியலில் இருக்கும்."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "தற்போதைய நிலை:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "அறிவிப்புகளைக் காட்டு"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "சரிபார்க்கிறது..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "தானாக திறத்தல் இயக்கு"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "தானாக திறத்தல் முடக்கு"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "கீரிங்"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "காட்சி மொழி"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "மொழி"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "தானியங்கி கணினி மொழியைப் பின்பற்றும். மாற்றங்கள் உடனடி செயல்படும்."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Linux க்கான முக அங்கீகாரம்"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "பதிப்பு தெரியவில்லை"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
-msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub இணைப்பைத் "
-"திற</a>"
+"One card per face-authentication attempt, updated in place with the result."
+msgstr "ஒரு முக அங்கீகார முயற்சிக்கு ஒரு கார்டு, முடிவுடன் மாற்றப்பட்டது."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "பற்றி"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "அறிவிப்பு ஒலிகள்"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Ubuntu Helloக்கு வரவேற்கிறோம்"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "அங்கீகரிக்கப்பட்ட அல்லது தோல்வியுற்ற முயற்சிக்கு கணினி ஒலியை இயக்கவும்."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "அமைவு முடிந்தது!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "நோய் கண்டறிதல் அடங்கும்"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"முடித்துவிட்டோம்! Ubuntu Hello இப்போது இந்தக் கணினியில் செயலில் உள்ளது"
-". sudo உடன் கட்டளையை இயக்குவது போன்று, அங்கீகரிக்க உங்கள் கடவுச்சொல்லை"
-" உள்ளிட வேண்டியதைச் செய்ய முயற்சிக்கவும். நீங்கள் கீரிங் தானாகத் திறப்"
-"பதை இயக்கியிருந்தால், உங்கள் உள்நுழைவு கீரிங் அல்லது KWallet உள்நுழையு"
-"ம் போது தானாகவே திறக்கப்படும்.\n\nமேலும் மேம்பட்ட அமைப்புகளை மாற்ற அல்"
-"லது கூடுதல் மாடல்களைச் சேர்க்க நீங்கள் Ubuntu Hello கன்ஃபிகரேட்டரை பின"
-"்னர் திறக்கலாம். இந்தச் சாளரத்தை மூடிவிட்டு, Ubuntu Hello Configurator"
-"ஐத் திறக்க கீழே உள்ள Finish ஐ அழுத்தவும்."
+"ஒவ்வொரு கார்டிலும் மாடல், நிச்சயத்தன்மை மற்றும் வாசல், பிரேம்கள், கேமரா மற்றும் நேரத்தைச் "
+"சேர்க்கவும். சிக்கலைப் புகாரளிக்கும் போது பயனுள்ளதாக இருக்கும்."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "பாதுகாப்பு"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ubuntu Hello முக அங்கீகாரத்தைப் பயன்படுத்தி உங்கள் உள்நுழைவு கீரிங் அல"
-"்லது KWallet தானாகவே திறக்க முடியும், உள்நுழைந்த பிறகு கடவுச்சொல் கேட்"
-"கப்படுவதைத் தடுக்கிறது."
+"உங்கள் முகம் எவ்வளவு துல்லியமாகப் பொருந்த வேண்டும், மேலும் நீங்கள் உண்மையிலேயே அங்கு "
+"இருக்கிறீர்களா என்பதை உறுதிப்படுத்தும்படி Ubuntu Hello கேட்குமா என்பது."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "தானியங்கி கீரிங்/KWallet திறப்பதை இயக்கவும்"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "முகப் பொருத்தத்தின் கண்டிப்பு"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "உறுதியான கொள்கையை அமைத்தல்"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"கோணங்கள், தூரம் மற்றும் பிற காரணிகளில் ஏற்படும் மாற்றங்கள் காரணமாக, மு"
-"கப் பொருத்தம் எப்போதும் சேமிக்கப்பட்ட முக மாதிரியைப் போலவே இருக்காது. "
-"இந்தப் பக்கத்தில் Ubuntu Hello எவ்வளவு கண்டிப்பாக இருக்க வேண்டும் என்ப"
-"தை அமைக்கலாம்."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "வேகமாக"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"மேலும் தெளிவற்ற போட்டிகளை அனுமதிக்கிறது, \nஆனால் ஸ்கேனிங் செயல்முறையை "
-"பெரிதும் துரிதப்படுத்துகிறது."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "சமச்சீர்"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"இன்னும் ஒப்பீட்டளவில் விரைவான கண்டறிதல், \nஆனால் தொலைவில் இருக்கும்போத"
-"ு உங்களை உள்நுழையாமல் போகலாம்."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "பாதுகாப்பானது"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "உறுதிப்படுத்த தலையசைக்கச் சொல்லவும்"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"சற்று பாதுகாப்பான விருப்பம், \nஆனால் உங்களை அங்கீகரிக்க அதிக நேரம் எடு"
-"க்கும்"
+"உங்கள் முகம் பொருந்திய பிறகு, தலையசைக்குமாறு ஓர் அறிவிப்பு கேட்கும். கேமராவின் முன் "
+"காட்டப்படும் புகைப்படத்தால் தலையசைக்க முடியாது."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "முக மாதிரியைச் சேர்த்தல்"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "கீரிங் / KWallet தானியங்கு-திறத்தல்"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"உங்களை அங்கீகரிக்க, Ubuntu Hello உங்களை அடையாளம் காண உங்கள் முகத்தின் "
-"மாதிரியைச் சேமிக்க வேண்டும். முகத்தை ஸ்கேன் செய்ய கீழே உள்ள ஸ்கேன் பட்"
-"டனை அழுத்தவும்."
+"உங்கள் உள்நுழைவு கீரிங் அல்லது உள்நுழைவில் KWallet தானாகவே திறக்க முக அங்கீகாரத்தை "
+"இயக்கவும். இது TPM இல் சீல் செய்யப்பட்ட உங்கள் கடவுச்சொல்லைப் பாதுகாப்பாகச் சேமிக்கும் அல்லது "
+"root-மட்டும் முதன்மை விசையைப் பயன்படுத்தி AES-256-GCM உடன் குறியாக்கம் செய்யப்படும். "
+"உங்கள் டெஸ்க்டாப்பைப் பொறுத்து pam_gnome_keyring அல்லது pam_kwallet5 க்கு முக அங்கீகாரம் "
+"PAM_AUTHTOK அமைக்கிறது."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "தற்போதைய நிலை:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "சரிபார்க்கிறது..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "தானாக திறத்தல் இயக்கு"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "கீரிங்"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "காட்சி மொழி"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "தானியங்கி கணினி மொழியைப் பின்பற்றும். மாற்றங்கள் உடனடி செயல்படும்."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "மொழி"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Linux க்கான முக அங்கீகாரம்"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "பதிப்பு தெரியவில்லை"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub இணைப்பைத் திற</a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">சிக்கலைப் "
+"புகாரளிக்கவும் அல்லது அம்சத்தைப் பரிந்துரைக்கவும்</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "பற்றி"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Ubuntu Helloக்கு வரவேற்கிறோம்"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "அமைவு முடிந்தது!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"முடித்துவிட்டோம்! Ubuntu Hello இப்போது இந்தக் கணினியில் செயலில் உள்ளது. sudo உடன் "
+"கட்டளையை இயக்குவது போன்று, அங்கீகரிக்க உங்கள் கடவுச்சொல்லை உள்ளிட வேண்டியதைச் செய்ய "
+"முயற்சிக்கவும். நீங்கள் கீரிங் தானாகத் திறப்பதை இயக்கியிருந்தால், உங்கள் உள்நுழைவு கீரிங் "
+"அல்லது KWallet உள்நுழையும் போது தானாகவே திறக்கப்படும்.\n"
+"\n"
+"மேலும் மேம்பட்ட அமைப்புகளை மாற்ற அல்லது கூடுதல் மாடல்களைச் சேர்க்க நீங்கள் Ubuntu Hello "
+"கன்ஃபிகரேட்டரை பின்னர் திறக்கலாம். இந்தச் சாளரத்தை மூடிவிட்டு, Ubuntu Hello "
+"Configuratorஐத் திறக்க கீழே உள்ள Finish ஐ அழுத்தவும்."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "உறுதியான கொள்கையை அமைத்தல்"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"கோணங்கள், தூரம் மற்றும் பிற காரணிகளில் ஏற்படும் மாற்றங்கள் காரணமாக, முகப் பொருத்தம் "
+"எப்போதும் சேமிக்கப்பட்ட முக மாதிரியைப் போலவே இருக்காது. இந்தப் பக்கத்தில் Ubuntu Hello "
+"எவ்வளவு கண்டிப்பாக இருக்க வேண்டும் என்பதை அமைக்கலாம்."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"மிகவும் தளர்வான பொருத்தம், உங்களை மிக விரைவாக உள்ளே அனுமதிக்கும். கண்டிப்பை விட வசதி "
+"முக்கியம் எனில் இதைத் தேர்ந்தெடுக்கவும்."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"கடுமையான பொருத்தம், இருப்பினும் விரைவாக உள்நுழைய அனுமதிக்கும். கூரிய கோணத்திலோ அல்லது "
+"தொலைவிலிருந்தோ உங்களை அடையாளம் காணாமல் போகலாம்."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"மிகக் கண்டிப்பான பொருத்தம், உள்நுழையும்போது கூடுதல் படி எதுவும் இல்லை. "
+"பரிந்துரைக்கப்படுகிறது."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "இப்போதைக்குத் தவிர்"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"பின்னர் அமைப்புகளில் இருந்து அல்லது இந்தக் கட்டளையால் மேலும் முக மாதிரிகளைச் சேர்க்கலாம்: "
+"sudo ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "வெப்கேமை உள்ளமைக்கிறது"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "அகச்சிவப்பு உமிழ்ப்பான் ஒளிரும்?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "ஆம்"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "இல்லை"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Ubuntu Hello உங்கள் கணினியில் ஏதேனும் கிடைக்கக்கூடிய கேமராக்களைத் தானா"
-"கத் தேடும், எனவே உங்கள் வெப்கேம் இணைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத"
-"்தவும். கண்டறியப்பட்ட பிறகு, பயன்படுத்தக்கூடிய வெப்கேம்களின் பட்டியல் "
-"காண்பிக்கப்படும். நீங்கள் பயன்படுத்த விரும்பும் ஒன்றைத் தேர்ந்தெடுத்து"
-" அடுத்து என்பதைக் கிளிக் செய்யவும்."
+"நீங்கள் தேர்ந்தெடுத்த கேமராவைப் பார்க்கவும்: அகச்சிவப்பு கேமரா சிறிய ஒளியைக் காட்டுகிறது, "
+"அது Ubuntu Hello சோதனை செய்யும் போது ஒளிரும். இருட்டில் உங்கள் முகத்தைப் பார்க்க "
+"முடியுமா என்பதை இது எங்களிடம் கூறுகிறது."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "ஆம், அது ஒளிரும்"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "இல்லை, எதுவும் ஒளிரவில்லை"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello உங்கள் கணினியில் ஏதேனும் கிடைக்கக்கூடிய கேமராக்களைத் தானாகத் தேடும், எனவே "
+"உங்கள் வெப்கேம் இணைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்தவும். கண்டறியப்பட்ட பிறகு, "
+"பயன்படுத்தக்கூடிய வெப்கேம்களின் பட்டியல் காண்பிக்கப்படும். நீங்கள் பயன்படுத்த விரும்பும் ஒன்றைத் "
+"தேர்ந்தெடுத்து அடுத்து என்பதைக் கிளிக் செய்யவும்."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "உங்கள் வெப்கேம்களை சோதிக்கிறது, காத்திருக்கவும்..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "தரவு கோப்புகளைப் பதிவிறக்குகிறது"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"உங்களை அடையாளம் காண Ubuntu Helloக்கு மூன்று முன் பயிற்சி பெற்ற முக அங்"
-"கீகார தரவுத் தொகுப்புகள் தேவை, அவை இப்போது பதிவிறக்கப்படும். பதிவிறக்க"
-" முன்னேற்றத்தை கீழே காணலாம்."
+"உங்களை அடையாளம் காண Ubuntu Helloக்கு மூன்று முன் பயிற்சி பெற்ற முக அங்கீகார தரவுத் "
+"தொகுப்புகள் தேவை, அவை இப்போது பதிவிறக்கப்படும். பதிவிறக்க முன்னேற்றத்தை கீழே காணலாம்."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "பதிவிறக்கம் தொடங்குகிறது..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Ubuntu Helloக்கு வரவேற்கிறோம்!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "பதிப்பு"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"இந்த வழிகாட்டி அமைவு செயல்முறையின் மூலம் உங்களை அழைத்துச் சென்று உங்கள"
-"ுக்காக தானாகவே Ubuntu Hello ஐ உள்ளமைக்கும். தொடர அடுத்ததை அழுத்தவும்."
+"இந்த வழிகாட்டி அமைவு செயல்முறையின் மூலம் உங்களை அழைத்துச் சென்று உங்களுக்காக தானாகவே "
+"Ubuntu Hello ஐ உள்ளமைக்கும். தொடர அடுத்ததை அழுத்தவும்."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "ரத்து செய்"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello முக அங்கீகாரத்தைப் பயன்படுத்தி உங்கள் உள்நுழைவு கீரிங் அல்லது KWallet "
+"தானாகவே திறக்க முடியும், உள்நுழைந்த பிறகு கடவுச்சொல் கேட்கப்படுவதைத் தடுக்கிறது."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "அடுத்து"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "தானியங்கி கீரிங்/KWallet திறப்பதை இயக்கவும்"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "மீண்டும்"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "அமைவை முடிக்கவும்"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "அடுத்து"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

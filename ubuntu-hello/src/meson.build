@@ -44,10 +44,14 @@ py_sources = [
     'cli/test.py',
     'cli.py',
     'compare.py',
+    'enroll_capture.py',
+    'frame_text.py',
     py_i18n,
+    'config_edit.py',
     'config_ensure.py',
     'keyring_crypto.py',
     'keyring_restore.py',
+    'notify.py',
     'paths_factory.py',
     'wallet_backend.py',
     'recorders/__init__.py',
@@ -114,6 +118,13 @@ else
 endif
 
 install_data('logo.png', install_tag: 'meta')
+# /run/ubuntu-hello (face-skip markers, notification ids) exists from boot.
+install_data(
+    '../tmpfiles.d/ubuntu-hello.conf',
+    install_dir: get_option('prefix') / 'lib' / 'tmpfiles.d',
+    install_mode: 'rw-r--r--',
+    install_tag: 'meta',
+)
 # Immutable default used by postinst / CLI when dpkg skips a deleted conffile.
 install_data(
     'config.ini',

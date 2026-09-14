@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,642 +15,861 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Maħluq"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Tikketta"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Awtomatiku"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Ippermetti Keyring/KWallet Il-ftuħ"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Iż-żieda tal-mudelli tal-wiċċ tiegħek"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Daħħal il-password għall-utent <b>{}</b> biex tiftaħ {} ({}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Password"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Datafiles diġà ġew imniżżla!\nIkklikkja Li jmiss biex tkompli"
+"Ubuntu Hello jirrekordja wiċċek minn ftit angoli f'madwar minuta: żomm "
+"wiċċek ġewwa l-previżjoni u segwi l-istruzzjonijiet (ħares dritt, dawwar "
+"ftit lejn ix-xellug u l-lemin, geddum 'il fuq u 'l isfel). Wara, skan ieħor "
+"fakultattiv — bin-nuċċali, b'xagħar tal-wiċċ differenti jew b'dawl ieħor — "
+"jagħmel ir-rikonoxximent saħansitra iktar affidabbli fi kwalunkwe ħin tal-"
+"ġurnata."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Żball waqt it-tniżżil ta' datafiles"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Magħmul!\nIkklikkja Li jmiss biex tkompli"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Żball waqt l-importazzjoni OpenCV2"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Ipprova installa mill-ġdid cv2"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Ebda webcams misjuba fis-sistema"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Jekk jogħġbok ikkonfigura l-kamera tiegħek innifsek jekk tkun ċert li "
-"hija konnessa kamera kompatibbli"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Le, il-kamera ma tistax tinfetaħ"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Le, mhux kamera infrared"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Iva, kamera infrared kompatibbli"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Identifikatur tal-kamera jew mogħdija"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Rakkomandat"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Żball fl-għażla tal-kamera"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Il-kamera magħżula ma tistax tinfetaħ"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Ipprova agħżel ieħor"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Jekk jogħġbok żur\n<a href=\"https://github.com/EmixamPP/linux-enable-"
-"ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
-"biex tippermetti l-emittent ir tiegħek"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Jekk jogħġbok ħares direttament fil-kamera"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Ibda l-iskan tal-wiċċ"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Datafiles diġà ġew imniżżla!\n"
+"Ikklikkja Li jmiss biex tkompli"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Żball waqt it-tniżżil ta' datafiles"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Magħmul!\n"
+"Ikklikkja Li jmiss biex tkompli"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Żball waqt l-importazzjoni OpenCV2"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Ipprova installa mill-ġdid cv2"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "Ebda webcams misjuba fis-sistema"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Jekk jogħġbok ikkonfigura l-kamera tiegħek innifsek jekk tkun ċert li hija "
+"konnessa kamera kompatibbli"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Le, il-kamera ma tistax tinfetaħ"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Le, mhux kamera infrared"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Iva, kamera infrared kompatibbli"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Identifikatur tal-kamera jew mogħdija"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "Rakkomandat"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Żball fl-għażla tal-kamera"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "Il-kamera magħżula ma tistax tinfetaħ"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Ipprova agħżel ieħor"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Jekk jogħġbok żur\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"biex tippermetti l-emittent ir tiegħek"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Konfigurazzjoni dawl 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Konfigurazzjoni dawl 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Ma tistax issalva l-mudell tal-wiċċ"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Skennja t-tieni mudell"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Ma setax jiġi rrekordjat it-tieni mudell"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-a"
-"wtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n\n<b>Status TPM:</b>"
-" Tiċċekkja l-ħardwer u l-għodod tat-TPM..."
+"L-ewwel mudell tiegħek huwa salvat, għalhekk il-login tal-wiċċ diġà jaħdem. "
+"Il-kamra xorta trid tkun tleqq biżżejjed biex tara wiċċek — ibdel id-dawl "
+"aktar milli itfih — imbagħad erġa' pprova, jew aqbeż u żid mudell aktar tard "
+"mis-Settings."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "It-tieni skan: nuċċali, xagħar tal-wiċċ jew dawl differenti"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-a"
-"wtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n\n<b>Status TPM:</b>"
-" Ħardwer TPM misjub. Installazzjoni ta' <i>tpm2-tools</i> awtomatikame"
-"nt..."
+"L-ewwel mudell ġie salvat: il-login bil-wiċċ diġà jaħdem. It-tieni mudell "
+"jagħmel ir-rikonoxximent iktar affidabbli meta xi ħaġa tinbidel: ilbes in-"
+"nuċċali li xi drabi tilbes (jew neħħih), irrekordjah b'xagħar tal-wiċċ "
+"differenti, u biddel id-dawl — ixgħel jew itfi lampa, tbiegħed mit-tieqa. "
+"Żomm wiċċek jidher sew u erġa' agħfas Skennja; isegwi l-istess qbid qasir "
+"iggwidat."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-a"
-"wtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n\n<b>Status TPM:</b>"
-" Ħardwer TPM 2.0 attiv. Il-password tiegħek se tkun issiġillata b'mod "
-"sigur ġewwa t-TPM."
+"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-"
+"awtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n"
+"\n"
+"<b>Status TPM:</b> Tiċċekkja l-ħardwer u l-għodod tat-TPM..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-a"
-"wtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n\n<b>Status TPM:</b>"
-" Instab ħardwer TPM, iżda l-installazzjoni awtomatika ta' <i>tpm2-tool"
-"s</i> falliet. Mexxi <code>sudo apt install tpm2-tools</code>. Jaqa 'l"
-"ura għall-caching tal-kredenzjali bbażat fuq softwer."
+"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-"
+"awtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n"
+"\n"
+"<b>Status TPM:</b> Ħardwer TPM misjub. Installazzjoni ta' <i>tpm2-tools</i> "
+"awtomatikament..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-a"
-"wtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n\n<b>Status TPM:</b>"
-" L-ebda ħardwer TPM misjub. Bl-użu ta' caching ta' kredenzjali bbażat "
-"fuq softwer (AES-256-GCM)."
+"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-"
+"awtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n"
+"\n"
+"<b>Status TPM:</b> Ħardwer TPM 2.0 attiv. Il-password tiegħek se tkun "
+"issiġillata b'mod sigur ġewwa t-TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Ma setgħetx tidentifika utent tas-sistema mhux root għall-ftuħ taċ-ċwi"
-"evet"
+"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-"
+"awtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n"
+"\n"
+"<b>Status TPM:</b> Instab ħardwer TPM, iżda l-installazzjoni awtomatika ta' "
+"<i>tpm2-tools</i> falliet. Mexxi <code>sudo apt install tpm2-tools</code>. "
+"Jaqa 'lura għall-caching tal-kredenzjali bbażat fuq softwer."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Il-password ma tistax tkun vojta"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello tista' awtomatikament tiftaħ il-{} tiegħek billi tuża l-"
+"awtentikazzjoni tal-wiċċ (kartiera skoperta: {}).\n"
+"\n"
+"<b>Status TPM:</b> L-ebda ħardwer TPM misjub. Bl-użu ta' caching ta' "
+"kredenzjali bbażat fuq softwer (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Password mhux korretta għall-utent {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "żball mhux magħruf"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Naqas milli jippermetti l-ftuħ taċ-ċwievet: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Naqas milli tiddiżattiva l-ftuħ taċ-ċwievet: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Ma setgħetx tidentifika utent tas-sistema mhux root għall-ftuħ taċ-ċwievet"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Il-password ma tistax tkun vojta"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Password mhux korretta għall-utent {}"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "żball mhux magħruf"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Naqas milli jippermetti l-ftuħ taċ-ċwievet: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Ma setax jiġi attivat l-iftuħ tal-keyring: l-eżegwibbli ubuntu-hello ma "
+"nstabx"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Ma setax jiġi attivat l-iftuħ tal-keyring: skada l-ħin ta' stennija għal "
+"keyring enable"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Żball fil-ftuħ taċ-ċwievet"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Żball fil-qari tal-buttuni tar-radju"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Twissija ta' Setup"
-
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
-"Ma setgħetx tissejvja l-preferenza taċ-ċertezza, iżda s-setup huwa mod"
-" ieħor komplut."
+"L-issettjar tas-sigurtà ma setax jiġi salvat, imma l-bqija tal-"
+"konfigurazzjoni tlestiet."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Żball"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Tagħbija..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Awtentikazzjoni"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Ikkonferma l-Ħolqien tal-Utent"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr "Jekk jogħġbok daħħal l-isem tal-utent li trid iżżid miegħu Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Username:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Ikkonferma l-Ħolqien tal-Mudell"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Ikkanċella"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Żid"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Jekk jogħġbok daħħal isem għall-mudell il-ġdid, 24 karattru massimu"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Isem tal-mudell:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Ħolqien tal-Mudell"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Żball waqt li żżid il-mudell, il-kodiċi tal-iżball {}:\n\n"
+"Żomm wiċċek fil-veduta tal-kamera u segwi l-istruzzjonijiet; dan jieħu "
+"madwar minuta."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Ikkonferma t-Tħassir tal-Mudell"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Ħares dritt lejn il-kamera"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Żball waqt li żżid il-mudell, il-kodiċi tal-iżball {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Int żgur li trid tħassar il-mudell {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Żball waqt it-tħassir tal-mudell, kodiċi tal-iżball {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Ħassar"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Żball waqt it-tħassir tal-mudell, kodiċi tal-iżball {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Dawwar rasek ftit lejn ix-xellug"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Dawwar rasek ftit lejn il-lemin"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Għolli ftit geddumek"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Baxxi ftit geddumek"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "Qed jirrekordja… {count} minn {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "Ma tistax tiftaħ kamera"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Ma tistax timporta OpenCV2"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Mhux magħruf"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Ippermetti Keyring/KWallet Il-ftuħ"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "Tajjeb"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Daħħal il-password għall-utent <b>{}</b> biex tiftaħ {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Il-password"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Ebda utent magħżul</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Ippermettiet (Ħardwer TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Ippermettiet (Software Caching)</b></span>"
-" — {}"
+"<span foreground='green'><b>Ippermettiet (Software Caching)</b></span> — {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Ippermettiet (Pendenti Dħul tal-Password)"
-"</b></span> — {}"
+"<span foreground='orange'><b>Ippermettiet (Pendenti Dħul tal-Password)</b></"
+"span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Diżabilità</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Żball"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Suċċess"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "Il-ftuħ taċ-ċwievet/KWallet attivat b'suċċess għall-utent {}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Iddiżattiva Keyring/KWallet Jinfetaħ"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
-msgstr "Int żgur li trid tiddiżattiva ċ-ċwievet/KWallet il-ftuħ għall-utent {}?"
+msgstr ""
+"Int żgur li trid tiddiżattiva ċ-ċwievet/KWallet il-ftuħ għall-utent {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Itfi Auto-Unlock"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring/KWallet ftuħ diżattivat għall-utent {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Ma setgħetx issalva l-issettjar tan-notifika"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Ma setax jiġi salvat l-issettjar tas-sigurtà"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigurazzjoni"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Konfigurazzjoni"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Fittex settings"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfigurazzjoni"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Mudelli tal-wiċċ"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Snapshots ta' wiċċek li Ubuntu Hello jitqabbel magħhom. Żomm mill-inqas "
+"tnejn, irreġistrati f'dawl differenti."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Li juru mudelli salvati għal:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Żid utent ġdid"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Hemm reġistrat mudell wieħed biss tal-wiċċ. In-nuċċali, bidla fix-xagħar tal-"
+"wiċċ jew dawl differenti jibdlu kif il-kamera tara wiċċek, għalhekk mudell "
+"wieħed jista' jfalli (pereżempju filgħaxija taħt il-lampi). Żid it-tieni "
+"mudell bin-nuċċali jew mingħajru, bid-dehra l-oħra tiegħek, jew f'dawl "
+"differenti biex il-ftuħ jibqa' affidabbli."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Żid"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Żid it-tieni mudell"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Ħassar"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Mudelli"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr "Il-kamera Ubuntu Hello tuża biex tfittex wiċċek, bi preview live."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "ID tal-kamera:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Riżoluzzjoni reali:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Riżoluzzjoni użata:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Reġistratur:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
-msgstr "Video"
+msgstr "Vidjo"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Keyring / KWallet Awto-Unlock"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Notifiki"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Ippermetti l-awtentikazzjoni tal-wiċċ biex tiftaħ awtomatikament iċ-ċw"
-"ievet tal-login tiegħek jew KWallet mal-login. Dan jaħżen b'mod sikur "
-"il-password tiegħek issiġillat fit-TPM meta disponibbli, jew kriptat b"
-"'AES-256-GCM billi tuża ċavetta prinċipali tal-għeruq biss. Issettja t"
-"a' awtorizzazzjoni tal-wiċċ PAM_AUTHTOK għal pam_gnome_keyring jew pam"
-"_kwallet5 skont id-desktop tiegħek."
+"Notifika tad-desktop turi waqt li Ubuntu Hello tfittex wiċċek, imbagħad "
+"tirrapporta r-riżultat. It-tentattivi falluti jibqgħu fil-lista tan-notifika."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Status kurrenti:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Uri notifiki"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Tiċċekkja..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Ippermetti l-Awto-Unlock"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Itfi Auto-Unlock"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Keyring"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Lingwa tal-wiri"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Lingwa"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Awtomatiku jsegwi l-lingwa tas-sistema. Il-bidliet japplikaw mill-ewwel."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Awtentikazzjoni tal-wiċċ għal Linux"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "Verżjoni mhux magħrufa"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"One card per face-authentication attempt, updated in place with the result."
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a>"
+"Karta waħda għal kull tentattiv ta' awtentikazzjoni tal-wiċċ, aġġornata mar-"
+"riżultat."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "Dwar"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Ħsejjes tan-notifika"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Merħba għal Ubuntu Hello"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Iddoqq il-ħoss tas-sistema għal tentattiv rikonoxxut jew fallut."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "Is-setup sar!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Inkludi dijanjostiċi"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"Aħna lesti! Ubuntu Hello issa hija attiva fuq dan il-kompjuter. Ipprov"
-"a agħmel xi ħaġa li normalment ikollok ittajpja l-password tiegħek bie"
-"x tawtentika, bħal tmexxi kmand b'sudo. Jekk ippermettit il-ftuħ awtom"
-"atiku taċ-ċwievet, iċ-ċwievet tal-login tiegħek jew KWallet jinfetaħ u"
-"koll awtomatikament mal-login.\n\nTista' tiftaħ il-Ubuntu Hello Konfig"
-"uratur aktar tard biex tibdel settings aktar avvanzati jew iżżid mudel"
-"li addizzjonali. Agħfas Finish hawn taħt biex tagħlaq din it-tieqa u t"
-"iftaħ il-Konfiguratur Ubuntu Hello."
+"Żid il-mudell, iċ-ċertezza vs il-limitu, il-frejms, il-kamera u l-ħin għal "
+"kull karta. Utli meta tirrapporta problema."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Sigurtà"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ubuntu Hello jista’ awtomatikament jiftaħ iċ-ċwievet tal-login tiegħek"
-" jew KWallet billi juża l-awtentikazzjoni tal-wiċċ, u jipprevjeni l-pr"
-"ompts tal-password wara li tidħol."
+"Kemm irid jaqbel eżatt wiċċek, u jekk Ubuntu Hello jitolbokx tikkonferma li "
+"verament qiegħed hemm."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Ippermetti l-ftuħ awtomatiku taċ-ċwievet/KWallet"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Kemm għandha tkun stretta t-taqbila tal-wiċċ"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Ikkonferma l-password"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "It-twaqqif ta' politika ta' ċertezza"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"Minħabba bidliet fl-angoli, id-distanza, u fatturi oħra taqbila tal-wi"
-"ċċ qatt ma hija eżattament l-istess bħall-mudell tal-wiċċ maħżun. F'di"
-"n il-paġna tista' tissettja kemm għandha tkun stretta Ubuntu Hello."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
-msgstr "Fast"
+msgstr "Mgħaġġel"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Jippermetti logħbiet aktar fuzzy, \niżda tħaffef il-proċess tal-iskann"
-"jar ħafna."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Ibbilanċjat"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"Għadha skoperta relattivament malajr, \nimma jista' ma jilloggjax meta"
-" tkun 'il bogħod."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Sikura"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Itlobni nbaxxi rasi biex nikkonferma"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"L-għażla kemmxejn aktar sigura, \niżda se tieħu ħafna aktar żmien biex"
-" jawtentikak"
+"Wara li wiċċek jaqbel, notifika titolbok tbaxxi rasek. Ritratt miżmum "
+"quddiem il-kamera ma jistax ibaxxi rasu."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Żieda ta 'mudell tal-wiċċ"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Keyring / KWallet Awto-Unlock"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Biex jawtentikak Ubuntu Hello jeħtieġ li tissejvja mudell ta' wiċċek b"
-"iex tagħrafek. Agħfas il-buttuna Scan hawn taħt biex tibda l-iskan tal"
-"-wiċċ."
+"Attiva l-awtentikazzjoni tal-wiċċ biex il-keyring tal-login tiegħek jew "
+"KWallet jinfetħu awtomatikament mal-login. Dan jaħżen il-password tiegħek "
+"b'mod sigur: issiġillata fit-TPM meta jkun disponibbli, jew kriptata "
+"b'AES-256-GCM b'ċavetta prinċipali li root biss jista' juża. L-"
+"awtentikazzjoni tal-wiċċ tissettja PAM_AUTHTOK għal pam_gnome_keyring jew "
+"pam_kwallet5, skont id-desktop tiegħek."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Status kurrenti:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Tiċċekkja..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Ippermetti l-Awto-Unlock"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Ċurkett taċ-ċwievet"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Lingwa tal-wiri"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr ""
+"Awtomatiku jsegwi l-lingwa tas-sistema. Il-bidliet japplikaw mill-ewwel."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Lingwa"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Awtentikazzjoni tal-wiċċ għal Linux"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "Verżjoni mhux magħrufa"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Iftaħ il-link ta' "
+"GitHub</a> "
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Irrapporta "
+"problema jew tissuġġerixxi karatteristika</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "Dwar"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Merħba għal Ubuntu Hello"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "Is-setup sar!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Aħna lesti! Ubuntu Hello issa hija attiva fuq dan il-kompjuter. Ipprova "
+"agħmel xi ħaġa li normalment ikollok ittajpja l-password tiegħek biex "
+"tawtentika, bħal tmexxi kmand b'sudo. Jekk ippermettit il-ftuħ awtomatiku "
+"taċ-ċwievet, iċ-ċwievet tal-login tiegħek jew KWallet jinfetaħ ukoll "
+"awtomatikament mal-login.\n"
+"\n"
+"Tista' tiftaħ il-Ubuntu Hello Konfiguratur aktar tard biex tibdel settings "
+"aktar avvanzati jew iżżid mudelli addizzjonali. Agħfas Finish hawn taħt biex "
+"tagħlaq din it-tieqa u tiftaħ il-Konfiguratur Ubuntu Hello."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "It-twaqqif ta' politika ta' ċertezza"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Minħabba bidliet fl-angoli, id-distanza, u fatturi oħra taqbila tal-wiċċ "
+"qatt ma hija eżattament l-istess bħall-mudell tal-wiċċ maħżun. F'din il-"
+"paġna tista' tissettja kemm għandha tkun stretta Ubuntu Hello."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"It-taqbila l-aktar permissiva u l-aktar mgħaġġla biex iddaħħlek. Agħżel din "
+"jekk il-konvenjenza tiswa aktar mis-strettezza."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"Taqbila stretta li xorta waħda ddaħħlek malajr. Jista' jkun li ma tagħrfekx "
+"minn angolu qawwi jew minn iktar 'il bogħod."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"It-taqbila l-aktar stretta, mingħajr pass żejjed meta tidħol. Rakkomandata."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Aqbeż għalissa"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"Tista' żżid aktar mudelli tal-wiċċ aktar tard mis-Settings jew bi: sudo "
+"ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Konfigurazzjoni tal-webcam"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "L-emittent infra-aħmar qed iteptep?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "iva"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "le"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Ubuntu Hello se tfittex is-sistema tiegħek awtomatikament għal kwalunk"
-"we kameras disponibbli, għalhekk kun żgur li l-webcam tiegħek hija kon"
-"nessa. Wara l-iskoperta se tintwera lista ta' webcams li jistgħu jintu"
-"żaw. Agħżel dik li trid tuża u kklikkja Li jmiss."
+"Ħares lejn il-kamera li għażilt: kamera infrared turi dawl żgħir li jteptep "
+"waqt li Ubuntu Hello jittestjaha. Dan jgħidilna jekk tistax tara wiċċek fid-"
+"dlam."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Iva, itteptep"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Le, xejn ma jteptep"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello se tfittex is-sistema tiegħek awtomatikament għal kwalunkwe "
+"kameras disponibbli, għalhekk kun żgur li l-webcam tiegħek hija konnessa. "
+"Wara l-iskoperta se tintwera lista ta' webcams li jistgħu jintużaw. Agħżel "
+"dik li trid tuża u kklikkja Li jmiss."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Tittestja l-webcams tiegħek, jekk jogħġbok stenna..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Tniżżil ta' fajls tad-dejta"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Ubuntu Hello jeħtieġ tliet settijiet ta' dejta ta' rikonoxximent tal-w"
-"iċċ imħarrġa minn qabel biex ikunu jistgħu jagħrfuk, li se jitniżżlu i"
-"ssa. Tista 'tara l-progress tat-tniżżil hawn taħt."
+"Ubuntu Hello jeħtieġ tliet settijiet ta' dejta ta' rikonoxximent tal-wiċċ "
+"imħarrġa minn qabel biex ikunu jistgħu jagħrfuk, li se jitniżżlu issa. Tista "
+"'tara l-progress tat-tniżżil hawn taħt."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Nibda niżżel..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Merħba għal Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Verżjoni"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -658,17 +877,34 @@ msgstr ""
 "Dan l-wizard se jimxik permezz tal-proċess tas-setup u awtomatikament "
 "tikkonfigura Ubuntu Hello għalik. Agħfas li jmiss biex tkompli."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Ikkanċella"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello jista’ awtomatikament jiftaħ iċ-ċwievet tal-login tiegħek jew "
+"KWallet billi juża l-awtentikazzjoni tal-wiċċ, u jipprevjeni l-prompts tal-"
+"password wara li tidħol."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Li jmiss"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Ippermetti l-ftuħ awtomatiku taċ-ċwievet/KWallet"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "Ikkonferma l-password"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Lura"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Temm is-setup"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Li jmiss"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

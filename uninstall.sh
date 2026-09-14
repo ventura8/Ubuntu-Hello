@@ -156,6 +156,14 @@ success "Man page removed"
 rm -f /usr/share/bash-completion/completions/ubuntu-hello 2>/dev/null || true
 success "Bash completion removed"
 
+# Translation catalogs: two per language under the system locale tree. Left
+# behind, a stale .mo would keep serving old strings after a reinstall that
+# failed to ship its own, which hides exactly the kind of catalog problem a
+# clean reinstall is meant to reveal.
+rm -f /usr/share/locale/*/LC_MESSAGES/ubuntu-hello.mo 2>/dev/null || true
+rm -f /usr/share/locale/*/LC_MESSAGES/ubuntu-hello-gtk.mo 2>/dev/null || true
+success "Translation catalogs removed"
+
 # ─────────────────────────────────────────────────────────────────────
 # Step 4: Restore OS wallet password, then remove configuration & data
 # ─────────────────────────────────────────────────────────────────────

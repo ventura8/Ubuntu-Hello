@@ -228,6 +228,15 @@ run_no_suppressions_lint() {
   python3 scripts/no-suppressions-lint.py
 }
 
+run_ui_validate() {
+  echo "==> gtk4-builder-tool validate (GtkBuilder .ui files)"
+  # The tool calls gtk_init(), so it needs a display even for validation.
+  local ui
+  for ui in ubuntu-hello-gtk/src/*.ui; do
+    xvfb-run -a gtk4-builder-tool validate "${ui}"
+  done
+}
+
 run_shellcheck() {
   echo "==> shellcheck (packaging + shared scripts)"
   local files=(
@@ -266,9 +275,12 @@ run_pytest_coverage() {
   export COVERAGE_FILE="${BUILD_DIR}/.coverage"
   rm -f "${COVERAGE_FILE}" "${COVERAGE_FILE}".*
   echo "==> pytest (project coverage >= 90%) [COVERAGE_FILE=${COVERAGE_FILE}]"
-  # Ignore real-GTK E2E (compat-only under xvfb).
-  pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello --cov-fail-under=90 tests/ --ignore=tests/e2e
-  # pytest-cov can round the printed % while still being under the floor; enforce with coverage CLI.
+  # Unit suite (gi mocked) + real-GTK E2E under xvfb, one combined coverage DB:
+  # the GTK 4 Settings/wizard code (window.py, onboarding.py) is exercised for
+  # real by the E2E, which is where its behaviour is actually verified.
+  pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello tests/ --ignore=tests/e2e
+  UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello --cov-append tests/e2e/
+  # The floor is enforced once on the combined data (pytest-cov rounds its printed %).
   python3 -m coverage report --data-file="${COVERAGE_FILE}" --precision=2 --fail-under=90
   echo "==> pytest keyring feature coverage == 100%"
   pytest tests/test_keyring_crypto.py tests/test_cli_keyring_aes.py tests/test_keyring_restore.py tests/test_gtk_tabs.py tests/test_onboarding.py \
@@ -286,7 +298,8 @@ run_pytest_compat() {
   pytest tests/ --ignore=tests/e2e
   echo "==> Settings E2E / UI smoke (real GTK + xvfb) [stage=compat de=${UH_CI_DE}]"
   # Fail-fast: every UH_CI_DE cell must pass Settings E2E (not mocks-only).
-  UH_REAL_GTK=1 xvfb-run -a pytest tests/e2e/ -v --tb=short
+  # GSK_RENDERER=cairo: headless Xvfb has no GL; keep GTK 4 rendering deterministic.
+  UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest tests/e2e/ -v --tb=short
 }
 
 run_meson_tests() {
@@ -303,6 +316,7 @@ run_inside() {
       run_py_compile
       run_i18n_lint
       run_no_suppressions_lint
+      run_ui_validate
       run_shellcheck
       ;;
     coverage)

@@ -9,8 +9,10 @@ import sys
 import time
 import dlib
 import cv2
+import frame_text
 import numpy as np
 import paths_factory
+import enroll_capture
 
 from i18n import _
 from recorders.video_capture import VideoCapture
@@ -50,7 +52,7 @@ def mouse(event, x, y, flags, param):
 
 def print_text(line_number, text):
 	"""Print the status text by line number"""
-	cv2.putText(overlay, text, (10, height - 10 - (10 * line_number)), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 255, 0), 0, cv2.LINE_AA)
+	frame_text.draw_text(overlay, text, (10, height - 10 - (10 * line_number)), .3, (0, 255, 0))
 
 
 use_cnn = config.getboolean('core', 'use_cnn', fallback=False)
@@ -71,9 +73,7 @@ models = None
 try:
 	user = builtins.ubuntu_hello_user
 	models = json.load(open(paths_factory.user_model_path(user)))
-
-	for model in models:
-		encodings += model["data"]
+	encodings, model_owner = enroll_capture.flatten_models(models)
 except FileNotFoundError:
 	pass
 
@@ -152,15 +152,15 @@ try:
 
 		# Show that slow mode is on, if it's on
 		if slow_mode:
-			cv2.putText(overlay, _("SLOW MODE"), (width - 66, height - 10), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 0, 255), 0, cv2.LINE_AA)
+			frame_text.draw_text(overlay, _("SLOW MODE"), (width - 66, height - 10), .3, (0, 0, 255))
 
 		# Ignore dark frames
 		if hist_perc[0] > dark_threshold:
 			# Show that this is an ignored frame in the top right
-			cv2.putText(overlay, _("DARK FRAME"), (width - 68, 16), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 0, 255), 0, cv2.LINE_AA)
+			frame_text.draw_text(overlay, _("DARK FRAME"), (width - 68, 16), .3, (0, 0, 255))
 		else:
 			# Show that this is an active frame
-			cv2.putText(overlay, _("SCAN FRAME"), (width - 68, 16), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 255, 0), 0, cv2.LINE_AA)
+			frame_text.draw_text(overlay, _("SCAN FRAME"), (width - 68, 16), .3, (0, 255, 0))
 
 			rec_tm = time.time()
 
@@ -205,11 +205,11 @@ try:
 						color = (0, 230, 0)
 
 						# Print the name of the model next to the circle
-						circle_text = "{} (certainty: {})".format(models[match_index]["label"], round(match * 10, 3))
-						cv2.putText(overlay, circle_text, (int(x + r / 3), y - r), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 255, 0), 0, cv2.LINE_AA)
+						circle_text = "{} (certainty: {})".format(models[model_owner[match_index]]["label"], round(match * 10, 3))
+						frame_text.draw_text(overlay, circle_text, (int(x + r / 3), y - r), .3, (0, 255, 0))
 					# If no approved matches, show red text
 					else:
-						cv2.putText(overlay, "no match", (int(x + r / 3), y - r), cv2.FONT_HERSHEY_SIMPLEX, .3, (0, 0, 255), 0, cv2.LINE_AA)
+						frame_text.draw_text(overlay, _("no match"), (int(x + r / 3), y - r), .3, (0, 0, 255))
 
 				# Draw the Circle in green
 				cv2.circle(overlay, (x, y), r, color, 2)

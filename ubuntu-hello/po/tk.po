@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,35 +15,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Şowsuzlyk, wagt gutardy"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Ectionüzi kesgitlemek şekili gaty garaňky"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Näbelli ýalňyşlyk:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "%s diýip kesgitlenen ýüzi"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Enter pressini ibermek üçin ýeterlik rugsatlar, ulanyjynyň ýerine basm"
-"agyna garaşýar"
+"Enter pressini ibermek üçin ýeterlik rugsatlar, ulanyjynyň ýerine basmagyna "
+"garaşýar"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Enter pressini iberip bilmedi, ýerine ulanyjynyň basmagyna garaşýar"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Ialüzüň hakykylygyny barlamak"
 
@@ -65,24 +66,23 @@ msgstr "argumentler"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Goldaw üçin baryp görmegiňizi haýyş edýäris\nhttps://github.com/ventur"
-"a8/ubuntu-hello"
+"Goldaw üçin baryp görmegiňizi haýyş edýäris\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"Executeerine ýetirmek üçin buýruk opsiýasy aşakdakylardan biri bolup b"
-"iler: goşmak, arassalamak, düzmek, öçürmek, açarlamak, sanawlamak, aýy"
-"rmak, surata düşürmek, düzmek, synag ýa-da wersiýa."
+"Ýerine ýetirilmeli buýruk opsiýasy şulardan biri bolup biler: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test ýa-da version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr "Buýruklary goşmak, öçürmek, aýyrmak we düzmek üçin goşmaça argumentler."
+msgstr "add, disable, remove we set buýruklary üçin goşmaça argumentler."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -98,7 +98,9 @@ msgstr "Maşyn üçin amatly çap ediň."
 
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
-msgstr "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"«keyring restore» bilen: ähli ulanyjylaryň möhürlenen giriş parollaryny "
+"dikeldiň."
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
@@ -113,134 +115,302 @@ msgid "Invalid username format"
 msgstr "Ulanyjy adynyň formaty nädogry"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Bu buýrugy kök hökmünde işlediň:\n"
+msgid "Please run this command as root:\n"
+msgstr "Bu buýrugy root hökmünde işlediň:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Ubuntu-salam buýruklaryny kök hökmünde işledip bolmaýar, bu buýrugy --"
-"user baýdagy bilen işlediň"
+"ubuntu-hello buýruklaryny root hökmünde işledip bolmaýar, bu buýrugy --user "
+"baýdagy bilen işlediň"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:272 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Maglumat faýllary göçürilmedi, aşakdaky buýruklary işlediň:"
 
-#: src/compare.py:154
+#: src/compare.py:302
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:303 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Sene:"
 
-#: src/compare.py:156
+#: src/compare.py:304
 msgid "Scan time: "
 msgstr "Skaneriň wagty:"
 
-#: src/compare.py:157
+#: src/compare.py:305
 msgid "Frames: "
 msgstr "Çarçuwalar:"
 
-#: src/compare.py:158
+#: src/compare.py:306
 msgid "Hostname: "
 msgstr "Host ady:"
 
-#: src/compare.py:159
+#: src/compare.py:307
 msgid "Best certainty value: "
 msgstr "Iň oňat baha:"
 
-#: src/compare.py:266
+#: src/compare.py:463
 msgid "Starting up..."
 msgstr "Başlamak ..."
 
-#: src/compare.py:319
+#: src/compare.py:495
+msgid "Face recognition could not start: {}"
+msgstr "Ýüz tanamagy başladyp bolmady: {}"
+
+#: src/compare.py:531
 msgid "Identifying you..."
 msgstr "Seni tanamak ..."
 
-#: src/compare.py:351
+#: src/compare.py:563
 msgid "FAILED"
 msgstr "FAAL .YŞ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:566 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
-msgstr "Framehli ramkalar gaty garaňkydy, konfigurasiýada dark_threshold barlaň"
+msgstr ""
+"Framehli ramkalar gaty garaňkydy, konfigurasiýada dark_threshold barlaň"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:567 src/cli/add.py:231
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Ortaça garaňkylyk: {avg}, bosagasy: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:690
 msgid "Time spent"
 msgstr "Wagt sarp edildi"
 
-#: src/compare.py:457
+#: src/compare.py:691
 msgid "Starting up"
 msgstr "Başlamak"
 
-#: src/compare.py:458
+#: src/compare.py:692
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Kamera + ýük ýüklerini açyň: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:693
 msgid "  Opening the camera"
 msgstr "Kamerany açmak"
 
-#: src/compare.py:460
+#: src/compare.py:694
 msgid "  Importing recognition libs"
 msgstr "Tanaýyş kitaplaryny import etmek"
 
-#: src/compare.py:461
+#: src/compare.py:695
 msgid "Searching for known face"
 msgstr "Belli ýüz gözlemek"
 
-#: src/compare.py:462
+#: src/compare.py:696
 msgid "Total time"
 msgstr "Jemi wagt"
 
-#: src/compare.py:464
+#: src/compare.py:698
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nKarar"
+"\n"
+"Karar"
 
-#: src/compare.py:466
+#: src/compare.py:700
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Ativeerli: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:703
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Ulanylan: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:706
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nÇarçuwalar gözlendi: %d (%.2f fps)"
+"\n"
+"Çarçuwalar gözlendi: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:707
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Gara çarçuwalar hasaba alynmady: %d"
 
-#: src/compare.py:474
+#: src/compare.py:708
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Garaňky çarçuwalar hasaba alynmady: %d"
 
-#: src/compare.py:475
+#: src/compare.py:709
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Winningeňiji çarçuwanyň ynamy: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:711
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Ningeňiji model: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:726
 msgid "SUCCESSFUL"
 msgstr "ÜSTÜNLIK"
+
+#: src/enroll_capture.py:22
+msgid "Look straight at the camera"
+msgstr "Kamera göni serediň"
+
+#: src/enroll_capture.py:23
+msgid "Turn your head slightly to the left"
+msgstr "Kelläňizi azajyk çepe öwrüň"
+
+#: src/enroll_capture.py:24
+msgid "Turn your head slightly to the right"
+msgstr "Kelläňizi azajyk saga öwrüň"
+
+#: src/enroll_capture.py:25
+msgid "Tilt your chin up a little"
+msgstr "Eňegiňizi azajyk ýokary galdyryň"
+
+#: src/enroll_capture.py:26
+msgid "Tilt your chin down a little"
+msgstr "Eňegiňizi azajyk aşak egiň"
+
+#: src/enroll_capture.py:27
+msgid "Look straight at the camera again"
+msgstr "Kamera ýene göni serediň"
+
+#: src/notify.py:375
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:377
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:379
+msgid "authorization"
+msgstr "ygtyýarnama"
+
+#: src/notify.py:381
+msgid "screen unlock"
+msgstr "ekrany açmak"
+
+#: src/notify.py:418
+msgid "timeout"
+msgstr "gutarmak"
+
+#: src/notify.py:420
+msgid "load"
+msgstr "ýük"
+
+#: src/notify.py:440
+#, python-format
+msgid "%s frames"
+msgstr "%s çarçuwalary"
+
+#: src/notify.py:442
+#, python-format
+msgid "%s dark"
+msgstr "%s garaňky"
+
+#: src/notify.py:460
+msgid "Looking for your face…"
+msgstr "Faceüzüňizi gözleýärsiňiz ..."
+
+#: src/notify.py:470 src/notify.py:499
+msgid "Face authentication"
+msgstr "Autentüz tanamak"
+
+#: src/notify.py:514
+msgid "Face recognized"
+msgstr "Recognizedüz tanady"
+
+#: src/notify.py:525
+msgid "add a model in this light"
+msgstr "bu ýagtylykda bir model goşuň"
+
+#: src/notify.py:527
+msgid "check the camera"
+msgstr "kamerany barlaň"
+
+#: src/notify.py:532
+#, python-format
+msgid "No match in %s"
+msgstr "%s-da hiç hili oýun ýok"
+
+#: src/notify.py:534 src/notify.py:568
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "hasaba almak: sudo ubuntu-hello add"
+
+#: src/notify.py:535
+msgid "closest"
+msgstr "iň ýakyn"
+
+#: src/notify.py:540 src/notify.py:553 src/notify.py:561
+msgid "Face not recognized"
+msgstr "Faceüz tanalmaýar"
+
+#: src/notify.py:546
+msgid "Too dark"
+msgstr "Gaty garaňky"
+
+#: src/notify.py:547
+msgid "turn on a light"
+msgstr "çyra ýakyň"
+
+#: src/notify.py:548
+msgid "darkness"
+msgstr "garaňkylyk"
+
+#: src/notify.py:559
+msgid "Liveness check failed"
+msgstr "Durmuş barlagy şowsuz"
+
+#: src/notify.py:567
+#, python-format
+msgid "No face model for %s"
+msgstr "%s üçin ýüz modeli ýok"
+
+#: src/notify.py:572
+msgid "Face authentication unavailable"
+msgstr "Autentüz tanamak mümkin däl"
+
+#: src/notify.py:577
+msgid "Cancelled"
+msgstr "Atyryldy"
+
+#: src/notify.py:579
+msgid "Face authentication cancelled"
+msgstr "Autentüz tanamaklyk ýatyryldy"
+
+#: src/notify.py:609
+#, python-brace-format
+msgid "{count} of {total}"
+msgstr "{total}-dan {count}"
+
+#: src/notify.py:611 src/notify.py:620 src/notify.py:625
+msgid "Face enrollment"
+msgstr "Ýüz hasaba almak"
+
+#: src/notify.py:616
+msgid "Face model saved"
+msgstr "Ýüz modeli ýatda saklandy"
+
+#: src/notify.py:618
+#, python-brace-format
+msgid "{n} sample"
+msgid_plural "{n} samples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/notify.py:624
+msgid "Could not record a face model"
+msgstr "Ýüz modelini ýazyp bolmady"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -252,7 +422,7 @@ msgstr "GNOME Keyring"
 
 #: src/wallet_backend.py:65
 msgid "None"
-msgstr "None"
+msgstr "Ýok"
 
 #: src/wallet_backend.py:74
 msgid "login keyring"
@@ -262,71 +432,81 @@ msgstr "giriş açary"
 msgid "login keyring or KWallet"
 msgstr "giriş açary ýa-da KWallet"
 
-#: src/cli/add.py:23
+#: src/cli/add.py:25
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nDlib modulyny import edip bolmaýar, çykyşyny barlaň"
+"\n"
+"dlib modulyny import edip bolmaýar, çykyşyny barlaň"
 
-#: src/cli/add.py:58
+#: src/cli/add.py:60
 msgid "No face model folder found, creating one"
 msgstr "Birini döredýän ýüz keşbi bukjasy tapylmady"
 
-#: src/cli/add.py:69
+#: src/cli/add.py:71
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "BELLIK: Her goşmaça model ýüz tanamak motoryny birneme haýalladýar"
 
-#: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Cancelatyrmak üçin Ctrl + C basyň\n"
+#: src/cli/add.py:72
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Ýatyrmak üçin Ctrl+C basyň\n"
 
-#: src/cli/add.py:74
+#: src/cli/add.py:76
 msgid "Adding face model for the user "
 msgstr "Ulanyjy üçin ýüz modelini goşmak"
 
-#: src/cli/add.py:88
+#: src/cli/add.py:90
 msgid "Model #"
-msgstr "Model #"
+msgstr "Model №"
 
-#: src/cli/add.py:93
+#: src/cli/add.py:95
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
-msgstr "Baýdak sebäpli \"%s\" belligini ulanmak"
+msgstr "-y baýdagy sebäpli \"%s\" bellik ulanylýar"
 
-#: src/cli/add.py:97
+#: src/cli/add.py:99
 msgid "Enter a label for this new model [{}]: "
 msgstr "Bu täze model üçin bellik giriziň [{}]:"
 
-#: src/cli/add.py:107
+#: src/cli/add.py:109
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "BELLIK: Bikanun häsiýeti \",\" modeliň adyndan aýyrmak"
 
-#: src/cli/add.py:121
+#: src/cli/add.py:157
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nKameranyň içine göni serediň"
+"\n"
+"Kameranyň içine göni serediň"
 
-#: src/cli/add.py:186
+#: src/cli/add.py:228
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Kamera diňe gara çarçuwalary gördi - IR emitter işleýärmi?"
 
-#: src/cli/add.py:191
+#: src/cli/add.py:233
 msgid "No face detected, aborting"
 msgstr "Abort düşürilmedi"
 
-#: src/cli/add.py:196
+#: src/cli/add.py:241 src/cli/add.py:242
 msgid "Multiple faces detected, aborting"
 msgstr "Birnäçe ýüz ýüze çykaryldy, ýatyryldy"
 
-#: src/cli/add.py:218
+#: src/cli/add.py:263
+msgid "Captured {} face samples"
+msgstr "{} ýüz nusgasy alyndy"
+
+#: src/cli/add.py:275
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nTamamlaň\nTäze model goşuldy"
+"\n"
+"Tamamlaň\n"
+"Täze model goşuldy"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -342,25 +522,31 @@ msgstr "Munuň üçin ähli modelleri arassalaýar"
 
 #: src/cli/clear.py:28 src/cli/remove.py:53
 msgid "Do you want to continue [y/N]: "
-msgstr "Dowam etmek isleýärsiňizmi [y / N]:"
+msgstr "Dowam etmek isleýärsiňizmi [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\n\"\" OK \"diýip düşündirmek, ýatyrmak"
+"\n"
+"\"\" OK \"diýip düşündirmek, ýatyrmak"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nModeller arassalandy"
+"\n"
+"Modeller arassalandy"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "{editor}-da config.ini açmak"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Redaktor açyp bilmedi: {error}"
 
@@ -370,21 +556,22 @@ msgstr "Roralňyşlyk: laýyk tekst redaktoryny tapyp bilmedim."
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr "'Nano' ýa-da 'vi' guruň ýa-da EDITOR gurşawyny üýtgediň."
+msgstr ""
+"Haýyş edýäris, 'nano' ýa-da 'vi' guruň ýa-da EDITOR gurşaw üýtgeýjisini "
+"düzüň."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Bu buýrugy sudo bilen işleýän bolsaňyz, EDITOR üýtgeýjiňizi saklamak ü"
-"çin 'sudo -E ubuntu-salam konfigurasiýasyny' synap görüň."
+"Bu buýrugy sudo bilen işleýän bolsaňyz, EDITOR üýtgeýjiňizi saklamak üçin "
+"'sudo -E ubuntu-hello config' synap görüň."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr ""
-"Argument hökmünde 0 (işletmek) ýa-da 1 (öçürmek) goşmagyňyzy haýyş edý"
-"äris"
+"Argument hökmünde 0 (işletmek) ýa-da 1 (öçürmek) goşmagyňyzy haýyş edýäris"
 
 #: src/cli/disable.py:35
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
@@ -402,107 +589,106 @@ msgstr "Ubuntu Hello ýapyldy"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello işledildi"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:148
-msgid "Usage: keyring [enable|disable|restore [--all]]"
-msgstr "Ulanylyşy: açarlamak [işlet | öçürmek | dikeltmek] [--all]"
+#: src/cli/keyring.py:36 src/cli/keyring.py:156
+msgid "Usage:"
+msgstr "Ulanylyşy:"
 
-#: src/cli/keyring.py:49
+#: src/cli/keyring.py:53
 msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ulanyjynyň parolyny giriziň, {} açmak üçin ({}): "
 
-#: src/cli/keyring.py:51
+#: src/cli/keyring.py:55
 msgid "Password cannot be empty"
 msgstr "Parol boş bolup bilmez"
 
-#: src/cli/keyring.py:54
+#: src/cli/keyring.py:58
 msgid "Confirm password: "
 msgstr "Paroly tassykla:"
 
-#: src/cli/keyring.py:56
+#: src/cli/keyring.py:60
 msgid "Passwords do not match"
 msgstr "Parollar gabat gelenok"
 
-#: src/cli/keyring.py:65
+#: src/cli/keyring.py:69
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
-msgstr "TPM enjamlary tapyldy. AutoTPM2⟧ awtomatiki gurnamak ..."
+msgstr "TPM enjamy tapyldy. tpm2-tools awtomatiki gurnalýar..."
 
-#: src/cli/keyring.py:74
+#: src/cli/keyring.py:78
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM enjamlary işjeň. TPM-de paroly möhürlemek ..."
 
-#: src/cli/keyring.py:100
+#: src/cli/keyring.py:104
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Keyring / KWallet gulpy açmak, TPM (gapjyk: {}) ulanyp, {} ulanyjy üçi"
-"n üstünlikli işledildi."
+"Keyring / KWallet gulpy açmak, TPM (gapjyk: {}) ulanyp, {} ulanyjy üçin "
+"üstünlikli işledildi."
 
-#: src/cli/keyring.py:102
+#: src/cli/keyring.py:106
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPM-de paroly möhürläp bilmedi: {}"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:110
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"TPM işjeň däl. Programma üpjünçiligine esaslanýan şahsyýet keşini ulan"
-"mak ..."
+"TPM işjeň däl. Programma üpjünçiligine esaslanýan şahsyýet keşini ulanmak ..."
 
-#: src/cli/keyring.py:122
+#: src/cli/keyring.py:126
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"{} ulanyjy üçin Keyring/KWallet açmak üstünlikli işjeňleşdirildi (programma "
+"keşi, gapjyk: {})."
 
-#: src/cli/keyring.py:124
+#: src/cli/keyring.py:128
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Düwmeleriň gulpuny açyp bilmedi: {}"
 
-#: src/cli/keyring.py:135
+#: src/cli/keyring.py:139
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Düwmeleriň açylmagyny öçürip bilmedi: {}"
 
-#: src/cli/keyring.py:138
+#: src/cli/keyring.py:142
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "KeyP0 user ulanyjy üçin açar / KWallet açmak ýapyk. {}"
 
-#: src/cli/keyring.py:140
+#: src/cli/keyring.py:144
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "{} ulanyjy üçin açar / KWallet açmak mümkinçiligi ýokdy."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:161
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Möhürlenen giriş parollary tapylmady; dikeltmeli zat ýok."
 
-#: src/cli/keyring.py:155
+#: src/cli/keyring.py:163
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} ulanyjy üçin giriş gapjygynyň paroly dikeldildi."
 
-#: src/cli/keyring.py:157
+#: src/cli/keyring.py:165
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} ulanyjy üçin giriş gapjygynyň parolyny dikeldip bolmady."
 
-#: src/cli/keyring.py:158
+#: src/cli/keyring.py:166
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Soraglar dowam etse, Seahorse / Ulgam sazlamalarynda giriş açarlygy ýa"
-"-da KWallet parolyny belläň."
+"Soraglar dowam etse, Seahorse / Ulgam sazlamalarynda giriş açarlygy ýa-da "
+"KWallet parolyny belläň."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:169
 msgid "Restored login wallet password for user {}."
 msgstr "{} ulanyjysy üçin giriş gapjygynyň paroly dikeldildi."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:171
 msgid "Could not restore login wallet password for user {}."
 msgstr "{} ulanyjysy üçin giriş gapjygynyň parolyny dikeldip bolmady."
 
-#: src/cli/keyring.py:167
-msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "Nädogry hereket. 'işlet', 'öçürmek' ýa-da 'dikeltmek' ulanyň."
+#: src/cli/keyring.py:177
+msgid "Invalid action. Use one of:"
+msgstr "Nädogry hereket. Şulardan birini ulanyň:"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -523,8 +709,8 @@ msgstr "Şahsyýet belgisi belgisi [0m"
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
 msgstr ""
-"Argument hökmünde aýyrmak isleýän modeliňiziň şahsyýetini goşmagyňyzy "
-"haýyş edýäris"
+"Argument hökmünde aýyrmak isleýän modeliňiziň şahsyýetini goşmagyňyzy haýyş "
+"edýäris"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -535,23 +721,26 @@ msgid "You can find the IDs by running:"
 msgstr "Şahsyýetnamalary işledip tapyp bilersiňiz:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Bu, {user} üçin \"{label}\" modelini aýyrar"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
-msgstr "IDP1⟧ üçin ID ⟧P0⟧ bolan model ýok {id} {user}"
+msgstr "{user} üçin {id} ID-li model ýok"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
-msgstr "Iň soňky modeli aýyrdy, ulanyjy üçin ubuntu-salam ýapyldy"
+msgstr "Iň soňky model aýryldy, ubuntu-hello bu ulanyjy üçin öçürildi"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
-msgstr "Öçürilen model ⟧P0⟧ {}"
+msgstr "{} modeli öçürildi"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr "Üýtgetmek isleýän sazlamaňyzy we bellemek üçin baha goşuň"
 
 #: src/cli/set.py:37
@@ -578,35 +767,45 @@ msgstr "Ygtybarly sazlama:"
 msgid "Generated snapshot saved as"
 msgstr "Döredilen surat ýaly saklandy"
 
-#: src/cli/test.py:23
+#: src/cli/test.py:25
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello henizem synag buýrugyny goldamaýan, ýatyrylan magnitafony"
-" ulanmak üçin düzüldi"
+"Ubuntu Hello henizem test buýrugyny goldamaýan ýazgy enjamyny ulanmak üçin "
+"düzüldi, ýatyrylýar"
 
-#: src/cli/test.py:34
+#: src/cli/test.py:36
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nSynag iýmiti bilen penjire açmak\n\nÇykmak üçin bu terminalda ctrl +"
-" C basyň\nHaýal re modeimi işletmek ýa-da öçürmek üçin surata basyň\n"
+"\n"
+"Synag akymy bilen penjire açylýar\n"
+"\n"
+"Çykmak üçin bu terminalda ctrl+C basyň\n"
+"Haýal tertibi açmak ýa-da ýapmak üçin surata basyň\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "Çözgüt: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "Çarçuwalar: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "BELLIK: %dms"
 
@@ -622,29 +821,35 @@ msgstr "Garaňky çarçuwa"
 msgid "SCAN FRAME"
 msgstr "Çarçuwany gözden geçiriň"
 
+#: src/cli/test.py:212
+msgid "no match"
+msgstr "gabat gelmedi"
+
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nPenjiräni ýapmak"
+"\n"
+"Penjiräni ýapmak"
 
-#: src/rubberstamps/__init__.py:80
+#: src/rubberstamps/__init__.py:109
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Kauçuk marka düzgünini derňemekde säwlik: {}"
 
-#: src/rubberstamps/__init__.py:87
+#: src/rubberstamps/__init__.py:119
 msgid "Stamp not installed: {}"
 msgstr "Marka gurulmady: {}"
 
-#: src/rubberstamps/__init__.py:97
+#: src/rubberstamps/__init__.py:129
 msgid "Stamp error: Class {} not found"
 msgstr "Marka ýalňyşlygy: {} synp tapylmady"
 
-#: src/rubberstamps/__init__.py:123
+#: src/rubberstamps/__init__.py:156
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Kauçuk marka konfigurasiýa deklarasiýasynyň içerki ýalňyşlygy:"
 
-#: src/rubberstamps/__init__.py:162
+#: src/rubberstamps/__init__.py:195
 msgid "Internal error in rubberstamp:"
 msgstr "Kauçuk markadaky içerki ýalňyşlyk:"
 
@@ -657,6 +862,7 @@ msgid "Authorising in {}"
 msgstr "{}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Abort etmek üçin {abort_key}, ygtyýar bermek üçin {confirm_key} basyň"
 
@@ -664,50 +870,49 @@ msgstr "Abort etmek üçin {abort_key}, ygtyýar bermek üçin {confirm_key} bas
 msgid "Authentication aborted"
 msgstr "Hakyky tassyklamak ýatyryldy"
 
-#: src/rubberstamps/nod.py:17
+#: src/rubberstamps/nod.py:30
 msgid "Nod to confirm"
 msgstr "Tassyklamak üçin baş at"
 
-#: src/rubberstamps/nod.py:18
+#: src/rubberstamps/nod.py:31
 msgid "Shake your head to abort"
 msgstr "Abort etmek üçin kelläňizi silkitiň"
 
-#: src/rubberstamps/nod.py:81
+#: src/rubberstamps/nod.py:97
 msgid "Confirmed authentication"
 msgstr "Tassyklanyldy"
 
-#: src/rubberstamps/nod.py:84
+#: src/rubberstamps/nod.py:100
 msgid "Aborted authentication"
 msgstr "Hakyky tassyklamak"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
-msgstr "Ffmpeg moduly ýok, haýyş:"
+msgstr "ffmpeg moduly ýok, şuny işlediň:"
 
 #: src/recorders/pyv4l2_reader.py:15
 msgid "Missing pyv4l2 module, please run:"
-msgstr "Pyv4l2 moduly ýok, işlediň:"
+msgstr "pyv4l2 moduly ýok, şuny işlediň:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello konfigurasiýa faýlynda görkezilen ýolda kamera enjamyny t"
-"apyp bilmedi."
+"Ubuntu Hello konfigurasiýa faýlynda görkezilen ýolda kamera enjamyny tapyp "
+"bilmedi."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
 "Patholuň dogry düzülmedik bolmagy gaty ähtimal, işledip 'device_path' "
 "konfigurasiýa bahasyny redaktirläň:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"\"Enjam_path\" konfigurasiýa opsiýasynda görkezilen kamerany ýatyryp, "
-"ýatyryldy"
+"'device_path' konfigurasiýa opsiýasynda görkezilen kamerany okamak "
+"başartmady, ýatyrylýar"

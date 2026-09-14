@@ -17,14 +17,26 @@ def logo_path() -> str:
     return str(paths.data_dir / "logo.png")
 
 
+def about_logo_path() -> str:
+    """Return the path to the About-page logo (GtkPicture needs an absolute file)"""
+    return str(paths.data_dir / "logo_about.png")
+
+
+def set_picture_file(picture, path) -> None:
+    """Point a GtkPicture at *path*; missing files leave the picture empty."""
+    import os
+    if picture is not None and os.path.isfile(path):
+        picture.set_filename(path)
+
+
 def onboarding_wireframe_path() -> str:
     """Return the path to the onboarding wireframe file"""
-    return str(paths.data_dir / "onboarding.glade")
+    return str(paths.data_dir / "onboarding.ui")
 
 
 def main_window_wireframe_path() -> str:
     """Return the path to the main window wireframe file"""
-    return str(paths.data_dir / "main.glade")
+    return str(paths.data_dir / "main.ui")
 
 
 def dlib_data_dir_path() -> PurePath:
@@ -85,10 +97,10 @@ def init_custom_css() -> None:
                     print(f"Error loading CSS from {path}: {e}", file=sys.stderr)
 
         if loaded:
-            screen = gdk.Screen.get_default()
-            if screen:
-                gtk.StyleContext.add_provider_for_screen(
-                    screen,
+            display = gdk.Display.get_default()
+            if display:
+                gtk.StyleContext.add_provider_for_display(
+                    display,
                     css_provider,
                     gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
                 )

@@ -1,4 +1,4 @@
-"""Multi-Desktop Environment (DE) integration tests in real GTK3 / Xvfb.
+"""Multi-Desktop Environment (DE) integration tests in real GTK 4 / Xvfb.
 
 Validates that both the Setup Wizard (Onboarding) and Administrative Settings App
 correctly detect DE identity, apply dark/light themes, render correct wallet phrasing,
@@ -23,8 +23,8 @@ from pathlib import Path
 import pytest
 
 import gi
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("Gdk", "4.0")
 from gi.repository import Gtk, Gdk, GLib
 
 import theme_detect
@@ -123,7 +123,7 @@ class TestDesktopEnvironmentParity:
 		try:
 			gtk_pump()
 			assert win.window.get_visible()
-			assert win.notebook.get_n_pages() == 5
+			assert win.notebook.get_n_pages() == 7   # Models, Video, Notifications, Security, Keyring, Language, About
 		finally:
 			win.window.destroy()
 			gtk_pump()

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,47 +15,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Грешка, истекло је временско ограничење"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Слика детекције лица је превише тамна"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Непозната грешка:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
-msgstr "Идентификовано лице као ⟦П0⟧ %s"
+msgstr "Идентификовано лице као %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Недовољне дозволе за слање Ентер притисните, чека се да га корисник ум"
-"есто тога притисне"
+"Недовољне дозволе за слање Ентер притисните, чека се да га корисник уместо "
+"тога притисне"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Слање притиска Ентер није успело, чека се да га корисник уместо тога п"
-"ритисне"
+"Слање притиска Ентер није успело, чека се да га корисник уместо тога притисне"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Покушај аутентификације лица"
 
 #: src/cli.py:26
 msgid "Could not determine user, please use the --user flag"
-msgstr "Није могуће одредити корисника, користите ознаку --усер"
+msgstr "Није могуће одредити корисника, користите ознаку --user"
 
 #: src/cli.py:31
 msgid "Command line interface for Ubuntu Hello face authentication."
-msgstr "Интерфејс командне линије за ⟦УХ⟧ аутентификацију лица."
+msgstr "Интерфејс командне линије за Ubuntu Hello аутентификацију лицем."
 
 #: src/cli.py:35
 msgid "command"
@@ -67,25 +67,23 @@ msgstr "аргументима"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"За подршку посетите\n⟦У0000⟧"
+"За подршку посетите\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"Опција команде за извршење може бити једна од следећих: додај, брисање"
-", конфигурисање, онемогућавање, привезак за кључеве, листа, уклањање, "
-"снимак, подешавање, тестирање или верзија."
+"Опција команде за извршење може бити једна од следећих: add, clear, config, "
+"disable, keyring, list, remove, snapshot, set, test или version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr ""
-"Опциони аргументи за команде за додавање, онемогућавање, уклањање и по"
-"стављање."
+msgstr "Опциони аргументи за команде add, disable, remove и set."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -102,8 +100,7 @@ msgstr "Штампајте штампање прилагођено машини.
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
 msgstr ""
-"Uz keyring restore: vrati zapečaćene lozinke za prijavu za sve korisni"
-"ke."
+"Uz keyring restore: vrati zapečaćene lozinke za prijavu za sve korisnike."
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
@@ -118,136 +115,302 @@ msgid "Invalid username format"
 msgstr "Неважећи формат корисничког имена"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Покрените ову команду као роот:\n"
+msgid "Please run this command as root:\n"
+msgstr "Покрените ову команду као root:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Не могу да покренем убунту-хелло команде као роот, покрените ову коман"
-"ду са --усер заставицом"
+"Не могу да покренем ubuntu-hello команде као root, покрените ову команду са "
+"--user заставицом"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:272 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Датотеке са подацима нису преузете, покрените следеће команде:"
 
-#: src/compare.py:154
+#: src/compare.py:302
 msgid " LOGIN"
-msgstr "ЛОГИН"
+msgstr " ПРИЈАВЉИВАЊЕ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:303 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Датум:"
 
-#: src/compare.py:156
+#: src/compare.py:304
 msgid "Scan time: "
 msgstr "Време скенирања:"
 
-#: src/compare.py:157
+#: src/compare.py:305
 msgid "Frames: "
 msgstr "Оквири:"
 
-#: src/compare.py:158
+#: src/compare.py:306
 msgid "Hostname: "
 msgstr "Име хоста:"
 
-#: src/compare.py:159
+#: src/compare.py:307
 msgid "Best certainty value: "
 msgstr "Најбоља вредност сигурности:"
 
-#: src/compare.py:266
+#: src/compare.py:463
 msgid "Starting up..."
 msgstr "Покретање..."
 
-#: src/compare.py:319
+#: src/compare.py:495
+msgid "Face recognition could not start: {}"
+msgstr "Није могуће покренути препознавање лица: {}"
+
+#: src/compare.py:531
 msgid "Identifying you..."
 msgstr "Идентификовање вас..."
 
-#: src/compare.py:351
+#: src/compare.py:563
 msgid "FAILED"
-msgstr "ФАИЛЕД"
+msgstr "НЕУСПЕШНО"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:566 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Сви оквири су били превише тамни, проверите дарк_тхресхолд у конфигура"
-"цији"
+"Сви оквири су били превише тамни, проверите dark_threshold у конфигурацији"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:567 src/cli/add.py:231
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
-msgstr "Просечна тама: ⟦П0⟧, праг: ⟦П1⟧ {avg} {threshold}"
+msgstr "Просечна тама: {avg}, праг: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:690
 msgid "Time spent"
 msgstr "Утрошено време"
 
-#: src/compare.py:457
+#: src/compare.py:691
 msgid "Starting up"
 msgstr "Покретање"
 
-#: src/compare.py:458
+#: src/compare.py:692
+#, python-format
 msgid "  Open cam + load libs: %dms"
-msgstr "Отворени цам + лоад либс: ⟦П0⟧мс %d"
+msgstr "  Отварање камере + учитавање библиотека: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:693
 msgid "  Opening the camera"
 msgstr "Отварање камере"
 
-#: src/compare.py:460
+#: src/compare.py:694
 msgid "  Importing recognition libs"
 msgstr "Увоз библиотека за препознавање"
 
-#: src/compare.py:461
+#: src/compare.py:695
 msgid "Searching for known face"
 msgstr "Трагање за познатим лицем"
 
-#: src/compare.py:462
+#: src/compare.py:696
 msgid "Total time"
 msgstr "Укупно време"
 
-#: src/compare.py:464
+#: src/compare.py:698
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nРезолуција"
+"\n"
+"Резолуција"
 
-#: src/compare.py:466
+#: src/compare.py:700
+#, python-format
 msgid "  Native: %dx%d"
-msgstr "  Native: %dx%d"
+msgstr "  Изворна: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:703
+#, python-format
 msgid "  Used: %dx%d"
-msgstr "  Used: %dx%d"
+msgstr "  Коришћена: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:706
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nТражени оквири: ⟦П0⟧ (⟦П1⟧ фпс) %d %.2f"
+"\n"
+"Претражено оквира: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:707
+#, python-format
 msgid "Black frames ignored: %d "
-msgstr "Игнорисани црни оквири: ⟦П0⟧ %d"
+msgstr "Занемарено црних оквира: %d "
 
-#: src/compare.py:474
+#: src/compare.py:708
+#, python-format
 msgid "Dark frames ignored: %d "
-msgstr "Тамни оквири игнорисани: ⟦П0⟧ %d"
+msgstr "Занемарено тамних оквира: %d "
 
-#: src/compare.py:475
+#: src/compare.py:709
+#, python-format
 msgid "Certainty of winning frame: %.3f"
-msgstr "Извесност победничког оквира: ⟦П0⟧ %.3f"
+msgstr "Поузданост победничког оквира: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:711
+#, python-format
 msgid "Winning model: %d (\"%s\")"
-msgstr "Победнички модел: ⟦П0⟧ („⟦П1⟧“) %d %s"
+msgstr "Победнички модел: %d („%s“)"
 
-#: src/compare.py:481
+#: src/compare.py:726
 msgid "SUCCESSFUL"
 msgstr "УСПЕШНО"
+
+#: src/enroll_capture.py:22
+msgid "Look straight at the camera"
+msgstr "Гледајте право у камеру"
+
+#: src/enroll_capture.py:23
+msgid "Turn your head slightly to the left"
+msgstr "Окрените главу мало улево"
+
+#: src/enroll_capture.py:24
+msgid "Turn your head slightly to the right"
+msgstr "Окрените главу мало удесно"
+
+#: src/enroll_capture.py:25
+msgid "Tilt your chin up a little"
+msgstr "Мало подигните браду"
+
+#: src/enroll_capture.py:26
+msgid "Tilt your chin down a little"
+msgstr "Мало спустите браду"
+
+#: src/enroll_capture.py:27
+msgid "Look straight at the camera again"
+msgstr "Поново гледајте право у камеру"
+
+#: src/notify.py:375
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:377
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:379
+msgid "authorization"
+msgstr "овлашћење"
+
+#: src/notify.py:381
+msgid "screen unlock"
+msgstr "откључавање екрана"
+
+#: src/notify.py:418
+msgid "timeout"
+msgstr "временско ограничење"
+
+#: src/notify.py:420
+msgid "load"
+msgstr "оптерећење"
+
+#: src/notify.py:440
+#, python-format
+msgid "%s frames"
+msgstr "%s кадрова"
+
+#: src/notify.py:442
+#, python-format
+msgid "%s dark"
+msgstr "%s тамних"
+
+#: src/notify.py:460
+msgid "Looking for your face…"
+msgstr "Тражим твоје лице…"
+
+#: src/notify.py:470 src/notify.py:499
+msgid "Face authentication"
+msgstr "Потврда идентитета лица"
+
+#: src/notify.py:514
+msgid "Face recognized"
+msgstr "Препознато лице"
+
+#: src/notify.py:525
+msgid "add a model in this light"
+msgstr "додајте модел у овом светлу"
+
+#: src/notify.py:527
+msgid "check the camera"
+msgstr "провери камеру"
+
+#: src/notify.py:532
+#, python-format
+msgid "No match in %s"
+msgstr "Нема подударања у %s"
+
+#: src/notify.py:534 src/notify.py:568
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "упис: sudo ubuntu-hello add"
+
+#: src/notify.py:535
+msgid "closest"
+msgstr "најближи"
+
+#: src/notify.py:540 src/notify.py:553 src/notify.py:561
+msgid "Face not recognized"
+msgstr "Лице није препознато"
+
+#: src/notify.py:546
+msgid "Too dark"
+msgstr "Превише мрачно"
+
+#: src/notify.py:547
+msgid "turn on a light"
+msgstr "упали светло"
+
+#: src/notify.py:548
+msgid "darkness"
+msgstr "мрак"
+
+#: src/notify.py:559
+msgid "Liveness check failed"
+msgstr "Провера животности није успела"
+
+#: src/notify.py:567
+#, python-format
+msgid "No face model for %s"
+msgstr "Нема модела лица за %s"
+
+#: src/notify.py:572
+msgid "Face authentication unavailable"
+msgstr "Потврда идентитета лица није доступна"
+
+#: src/notify.py:577
+msgid "Cancelled"
+msgstr "Отказано"
+
+#: src/notify.py:579
+msgid "Face authentication cancelled"
+msgstr "Потврда идентитета лица је отказана"
+
+#: src/notify.py:609
+#, python-brace-format
+msgid "{count} of {total}"
+msgstr "{count} од {total}"
+
+#: src/notify.py:611 src/notify.py:620 src/notify.py:625
+msgid "Face enrollment"
+msgstr "Регистрација лица"
+
+#: src/notify.py:616
+msgid "Face model saved"
+msgstr "Модел лица је сачуван"
+
+#: src/notify.py:618
+#, python-brace-format
+msgid "{n} sample"
+msgid_plural "{n} samples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/notify.py:624
+msgid "Could not record a face model"
+msgstr "Није могуће снимити модел лица"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -259,83 +422,92 @@ msgstr "GNOME Keyring"
 
 #: src/wallet_backend.py:65
 msgid "None"
-msgstr "None"
+msgstr "Ниједан"
 
 #: src/wallet_backend.py:74
 msgid "login keyring"
-msgstr "логин кеиринг"
+msgstr "привезак за пријаву"
 
 #: src/wallet_backend.py:75
 msgid "login keyring or KWallet"
-msgstr "привезак за пријаву или ⟦КВ⟧"
+msgstr "привезак за пријаву или KWallet"
 
-#: src/cli/add.py:23
+#: src/cli/add.py:25
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nНије могуће увести длиб модул, проверите излаз"
+"\n"
+"Није могуће увести dlib модул, проверите излаз"
 
-#: src/cli/add.py:58
+#: src/cli/add.py:60
 msgid "No face model folder found, creating one"
 msgstr "Није пронађена фасцикла са моделом лица, креира се"
 
-#: src/cli/add.py:69
+#: src/cli/add.py:71
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr ""
-"НАПОМЕНА: Сваки додатни модел мало успорава механизам за препознавање "
-"лица"
+"НАПОМЕНА: Сваки додатни модел мало успорава механизам за препознавање лица"
 
-#: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Притисните Цтрл+Ц да откажете\n"
+#: src/cli/add.py:72
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Притисните Ctrl+C да откажете\n"
 
-#: src/cli/add.py:74
+#: src/cli/add.py:76
 msgid "Adding face model for the user "
 msgstr "Додавање модела лица за корисника"
 
-#: src/cli/add.py:88
+#: src/cli/add.py:90
 msgid "Model #"
 msgstr "Модел #"
 
-#: src/cli/add.py:93
+#: src/cli/add.py:95
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
-msgstr "Коришћење подразумеване ознаке „⟦П0⟧“ због ознаке -и %s"
+msgstr "Користи се подразумевана ознака „%s“ због опције -y"
 
-#: src/cli/add.py:97
+#: src/cli/add.py:99
 msgid "Enter a label for this new model [{}]: "
-msgstr "Унесите ознаку за овај нови модел [⟦П0⟧]: {}"
+msgstr "Унесите ознаку за овај нови модел [{}]: "
 
-#: src/cli/add.py:107
+#: src/cli/add.py:109
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "ОБАВЕШТЕЊЕ: Уклањање недозвољеног знака \",\" из назива модела"
 
-#: src/cli/add.py:121
+#: src/cli/add.py:157
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nМолимо погледајте право у камеру"
+"\n"
+"Молимо погледајте право у камеру"
 
-#: src/cli/add.py:186
+#: src/cli/add.py:228
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Камера је видела само црне оквире - да ли ради ИР емитер?"
 
-#: src/cli/add.py:191
+#: src/cli/add.py:233
 msgid "No face detected, aborting"
 msgstr "Није откривено лице, прекидам"
 
-#: src/cli/add.py:196
+#: src/cli/add.py:241 src/cli/add.py:242
 msgid "Multiple faces detected, aborting"
 msgstr "Откривено више лица, поништавање"
 
-#: src/cli/add.py:218
+#: src/cli/add.py:263
+msgid "Captured {} face samples"
+msgstr "Снимљено {} узорака лица"
+
+#: src/cli/add.py:275
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nСкенирање је завршено\nДодат је нови модел у"
+"\n"
+"Скенирање је завршено\n"
+"Додат је нови модел у"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -343,7 +515,7 @@ msgstr "Још нема креираних модела, не могу да их
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
-msgstr "⟦П0⟧ нема моделе или су они већ обрисани {}"
+msgstr "{} нема ниједан модел или су они већ обрисани"
 
 #: src/cli/clear.py:27
 msgid "This will clear all models for "
@@ -351,27 +523,33 @@ msgstr "Ово ће обрисати све моделе за"
 
 #: src/cli/clear.py:28 src/cli/remove.py:53
 msgid "Do you want to continue [y/N]: "
-msgstr "Да ли желите да наставите [и/Н]:"
+msgstr "Да ли желите да наставите [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nТумачење као \"НЕ\", прекид"
+"\n"
+"Тумачење као \"НЕ\", прекид"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nМодели су очишћени"
+"\n"
+"Модели су очишћени"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
-msgstr "Отварање цонфиг.ини у ⟦П0⟧ {editor}"
+msgstr "Отварање датотеке config.ini у програму {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
-msgstr "Отварање уређивача није успело: ⟦П0⟧ {error}"
+msgstr "Отварање уређивача није успело: {error}"
 
 #: src/cli/config.py:40
 msgid "Error: Could not find a suitable text editor."
@@ -380,16 +558,16 @@ msgstr "Грешка: Није могуће пронаћи одговарају�
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"Молимо инсталирајте 'нано' или 'ви', или поставите променљиву окружења"
-" ЕДИТОР."
+"Молимо инсталирајте 'nano' или 'vi', или поставите променљиву окружења "
+"EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Ако ову команду покрећете са судо, покушајте са 'судо -Е убунту-хелло "
-"цонфиг' да сачувате своју променљиву ЕДИТОР."
+"Ако ову команду покрећете са sudo, покушајте са 'sudo -E ubuntu-hello "
+"config' да сачувате своју променљиву EDITOR."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -405,113 +583,112 @@ msgstr "Опција онемогућавања је већ подешена н�
 
 #: src/cli/disable.py:49
 msgid "Ubuntu Hello has been disabled"
-msgstr "⟦УХ⟧ је онемогућено"
+msgstr "Ubuntu Hello је онемогућен"
 
 #: src/cli/disable.py:51
 msgid "Ubuntu Hello has been enabled"
-msgstr "⟦УХ⟧ је омогућено"
+msgstr "Ubuntu Hello је омогућен"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:148
-msgid "Usage: keyring [enable|disable|restore [--all]]"
-msgstr "Употреба: привезак за кључеве [омогући|онемогући|врати] [--all]"
+#: src/cli/keyring.py:36 src/cli/keyring.py:156
+msgid "Usage:"
+msgstr "Употреба:"
 
-#: src/cli/keyring.py:49
+#: src/cli/keyring.py:53
 msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Enter password for user {} to unlock {} ({}): "
+msgstr "Унесите лозинку корисника {} да бисте откључали {} ({}): "
 
-#: src/cli/keyring.py:51
+#: src/cli/keyring.py:55
 msgid "Password cannot be empty"
 msgstr "Лозинка не може бити празна"
 
-#: src/cli/keyring.py:54
+#: src/cli/keyring.py:58
 msgid "Confirm password: "
 msgstr "Потврдите лозинку:"
 
-#: src/cli/keyring.py:56
+#: src/cli/keyring.py:60
 msgid "Passwords do not match"
 msgstr "Лозинке се не поклапају"
 
-#: src/cli/keyring.py:65
+#: src/cli/keyring.py:69
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
-msgstr "Откривен је ТПМ хардвер. Аутоматска инсталација ⟦ТПМ2⟧..."
+msgstr "Откривен је TPM хардвер. Аутоматска инсталација пакета tpm2-tools..."
 
-#: src/cli/keyring.py:74
+#: src/cli/keyring.py:78
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "ТПМ хардвер је активан. Затварање лозинке у ТПМ-у..."
 
-#: src/cli/keyring.py:100
+#: src/cli/keyring.py:104
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
-
-#: src/cli/keyring.py:102
-msgid "Failed to seal password to TPM: {}"
-msgstr "Није успело запечатити лозинку за ТПМ: ⟦П0⟧ {}"
+"Откључавање Keyring/KWallet је успешно омогућено за корисника {} помоћу TPM-"
+"а (новчаник: {})."
 
 #: src/cli/keyring.py:106
+msgid "Failed to seal password to TPM: {}"
+msgstr "Запечаћивање лозинке у TPM није успело: {}"
+
+#: src/cli/keyring.py:110
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Није активан ТПМ. Коришћење софтверског кеширања акредитива..."
 
-#: src/cli/keyring.py:122
+#: src/cli/keyring.py:126
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Откључавање Keyring/KWallet је успешно омогућено за корисника {} (софтверско "
+"кеширање, новчаник: {})."
 
-#: src/cli/keyring.py:124
+#: src/cli/keyring.py:128
 msgid "Failed to enable keyring unlocking: {}"
-msgstr "Омогућавање откључавања кључева није успело: ⟦П0⟧ {}"
+msgstr "Омогућавање откључавања привеска кључева није успело: {}"
 
-#: src/cli/keyring.py:135
+#: src/cli/keyring.py:139
 msgid "Failed to disable keyring unlocking: {}"
-msgstr "Онемогућавање откључавања кључева није успело: ⟦П0⟧ {}"
+msgstr "Онемогућавање откључавања привеска кључева није успело: {}"
 
-#: src/cli/keyring.py:138
+#: src/cli/keyring.py:142
 msgid "Keyring/KWallet unlocking disabled for user {}."
-msgstr ""
-"Привезак за кључеве/⟦КВ⟧ откључавање је онемогућено за корисника ⟦П0⟧."
-" {}"
+msgstr "Откључавање привеска кључева/KWallet-а онемогућено је за корисника {}."
 
-#: src/cli/keyring.py:140
+#: src/cli/keyring.py:144
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
-msgstr "Откључавање кључева/⟦КВ⟧ није било омогућено за корисника ⟦П0⟧. {}"
+msgstr ""
+"Откључавање привеска кључева/KWallet-а није било омогућено за корисника {}."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:161
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Нијесу пронађене запечаћене лозинке за пријаву; нема шта вратити."
 
-#: src/cli/keyring.py:155
+#: src/cli/keyring.py:163
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Лозинка новчаника за пријаву враћена за {} корисника."
 
-#: src/cli/keyring.py:157
+#: src/cli/keyring.py:165
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Није могуће вратити лозинку новчаника за пријаву за {} корисника."
 
-#: src/cli/keyring.py:158
+#: src/cli/keyring.py:166
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Ако упити потрају, поставите лозинку привеска за пријаву или KWallet у"
-" Seahorse / Подешавањима система."
+"Ако упити потрају, поставите лозинку привеска за пријаву или KWallet у "
+"Seahorse / Подешавањима система."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:169
 msgid "Restored login wallet password for user {}."
 msgstr "Лозинка новчаника за пријаву враћена за корисника {}."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:171
 msgid "Could not restore login wallet password for user {}."
 msgstr "Није могуће вратити лозинку новчаника за пријаву за корисника {}."
 
-#: src/cli/keyring.py:167
-msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "Неважећа радња. Користите „омогући“, „онемогући“ или „врати“."
+#: src/cli/keyring.py:177
+msgid "Invalid action. Use one of:"
+msgstr "Неважећа радња. Користите једну од следећих:"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -519,11 +696,11 @@ msgstr "Модели лица још увек нису иницијализов�
 
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
-msgstr "Није познат модел лица за корисника ⟦П0⟧, покрените: {}"
+msgstr "Није познат ниједан модел лица за корисника {}, покрените:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
-msgstr "Познати модели лица за ⟦П0⟧: {}"
+msgstr "Познати модели лица за корисника {}:"
 
 #: src/cli/list.py:36
 msgid "ID  Date                 Label[0m"
@@ -542,30 +719,33 @@ msgid "You can find the IDs by running:"
 msgstr "ИД-ове можете пронаћи тако што ћете покренути:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
-msgstr "Ово ће уклонити модел под називом \"⟦П0⟧\" за ⟦П1⟧ {label} {user}"
+msgstr "Ово ће уклонити модел под називом „{label}“ за корисника {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
-msgstr "Не постоји модел са ИД-ом ⟦П0⟧ за ⟦П1⟧ {id} {user}"
+msgstr "Не постоји модел са ИД-ом {id} за корисника {user}"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
-msgstr "Уклоњен последњи модел, убунту-хелло онемогућен за корисника"
+msgstr "Уклоњен последњи модел, ubuntu-hello онемогућен за корисника"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
-msgstr "Уклоњен модел ⟦П0⟧ {}"
+msgstr "Уклоњен је модел {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Додајте подешавање које желите да промените и вредност на коју ћете га"
-" поставити"
+"Додајте подешавање које желите да промените и вредност на коју ћете га "
+"поставити"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
-msgstr "Није могуће пронаћи опцију конфигурације „⟦П0⟧“ за подешавање {}"
+msgstr "Није пронађена опција конфигурације „{}“ коју треба подесити"
 
 #: src/cli/set.py:44
 msgid "Config option updated"
@@ -587,139 +767,152 @@ msgstr "Конфигурација сигурности:"
 msgid "Generated snapshot saved as"
 msgstr "Генерисани снимак је сачуван као"
 
-#: src/cli/test.py:23
+#: src/cli/test.py:25
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"⟦УХ⟧ је конфигурисан да користи диктафон који још увек не подржава тес"
-"т команду, прекида се"
+"Ubuntu Hello је подешен да користи снимач који још увек не подржава команду "
+"test, прекида се"
 
-#: src/cli/test.py:34
+#: src/cli/test.py:36
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nОтварање прозора са тест фидом\n\nПритисните цтрл+Ц у овом терминалу"
-" да бисте изашли\nКликните на слику да бисте омогућили или онемогућили"
-" спори режим\n"
+"\n"
+"Отварање прозора са тест фидом\n"
+"\n"
+"Притисните ctrl+C у овом терминалу да бисте изашли\n"
+"Кликните на слику да бисте омогућили или онемогућили спори режим\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
-msgstr "RESOLUTION: %dx%d"
+msgstr "РЕЗОЛУЦИЈА: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
-msgstr "ФПС: ⟦П0⟧ %d"
+msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
-msgstr "Оквири: ⟦П0⟧ %d"
+msgstr "ОКВИРИ: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
-msgstr "ПРЕПОЗНАВАЊЕ: ⟦П0⟧мс %d"
+msgstr "ПРЕПОЗНАВАЊЕ: %dms"
 
 #: src/cli/test.py:155
 msgid "SLOW MODE"
-msgstr "СЛОВ МОДЕ"
+msgstr "СПОРИ РЕЖИМ"
 
 #: src/cli/test.py:160
 msgid "DARK FRAME"
-msgstr "ДАРК ФРАМЕ"
+msgstr "ТАМНИ КАДАР"
 
 #: src/cli/test.py:163
 msgid "SCAN FRAME"
-msgstr "СЦАН ФРАМЕ"
+msgstr "КАДАР СКЕНИРАЊА"
+
+#: src/cli/test.py:212
+msgid "no match"
+msgstr "нема подударања"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nЗатварање прозора"
+"\n"
+"Затварање прозора"
 
-#: src/rubberstamps/__init__.py:80
+#: src/rubberstamps/__init__.py:109
 msgid "Error parsing rubberstamp rule: {}"
-msgstr "Грешка при рашчлањивању правила гуменог печата: ⟦П0⟧ {}"
+msgstr "Грешка при рашчлањивању правила гуменог печата: {}"
 
-#: src/rubberstamps/__init__.py:87
+#: src/rubberstamps/__init__.py:119
 msgid "Stamp not installed: {}"
-msgstr "Печат није инсталиран: ⟦П0⟧ {}"
+msgstr "Печат није инсталиран: {}"
 
-#: src/rubberstamps/__init__.py:97
+#: src/rubberstamps/__init__.py:129
 msgid "Stamp error: Class {} not found"
-msgstr "Грешка печата: Класа ⟦П0⟧ није пронађена {}"
+msgstr "Грешка печата: класа {} није пронађена"
 
-#: src/rubberstamps/__init__.py:123
+#: src/rubberstamps/__init__.py:156
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Интерна грешка у декларацији конфигурације рубберстамп:"
 
-#: src/rubberstamps/__init__.py:162
+#: src/rubberstamps/__init__.py:195
 msgid "Internal error in rubberstamp:"
 msgstr "Унутрашња грешка у гуменом печату:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
-msgstr "Поништавање ауторизације у ⟦П0⟧ {}"
+msgstr "Прекидање ауторизације за {}"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Authorising in {}"
-msgstr "Овлашћење у ⟦П0⟧ {}"
+msgstr "Ауторизација за {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
-msgstr ""
-"Притисните ⟦П0⟧ да бисте прекинули, ⟦П1⟧ да бисте ауторизовали {abort_"
-"key} {confirm_key}"
+msgstr "Притисните {abort_key} за прекид, {confirm_key} за ауторизацију"
 
 #: src/rubberstamps/hotkey.py:50
 msgid "Authentication aborted"
 msgstr "Аутентификација је прекинута"
 
-#: src/rubberstamps/nod.py:17
+#: src/rubberstamps/nod.py:30
 msgid "Nod to confirm"
 msgstr "Климните да потврдите"
 
-#: src/rubberstamps/nod.py:18
+#: src/rubberstamps/nod.py:31
 msgid "Shake your head to abort"
 msgstr "Одмахните главом да прекинете"
 
-#: src/rubberstamps/nod.py:81
+#: src/rubberstamps/nod.py:97
 msgid "Confirmed authentication"
 msgstr "Потврђена аутентификација"
 
-#: src/rubberstamps/nod.py:84
+#: src/rubberstamps/nod.py:100
 msgid "Aborted authentication"
 msgstr "Прекинута аутентификација"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
-msgstr "Недостаје ффмпег модул, покрените:"
+msgstr "Недостаје ffmpeg модул, покрените:"
 
 #: src/recorders/pyv4l2_reader.py:15
 msgid "Missing pyv4l2 module, please run:"
-msgstr "Недостаје пив4л2 модул, покрените:"
+msgstr "Недостаје pyv4l2 модул, покрените:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"⟦УХ⟧ није могао да пронађе уређај камере на путањи наведеној у конфигу"
-"рационој датотеци."
+"Ubuntu Hello није могао да пронађе уређај камере на путањи наведеној у "
+"конфигурационој датотеци."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Врло је вероватно да путања није исправно конфигурисана, измените конф"
-"игурациону вредност 'девице_патх' тако што ћете покренути:"
+"Врло је вероватно да путања није исправно конфигурисана, измените "
+"конфигурациону вредност 'device_path' тако што ћете покренути:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"Неуспешно читање камере наведене у конфигурационој опцији 'девице_патх"
-"', прекидање"
+"Неуспешно читање камере наведене у конфигурационој опцији 'device_path', "
+"прекидање"

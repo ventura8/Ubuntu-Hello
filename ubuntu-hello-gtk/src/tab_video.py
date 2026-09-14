@@ -5,30 +5,41 @@ import glob
 from i18n import _
 import paths_factory
 
+import gi
+gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk as gtk
+import gtk4compat
+import camera_names
 from gi.repository import Gdk as gdk
 from gi.repository import GdkPixbuf as pixbuf
 from gi.repository import GObject as gobject
+from gi.repository import GLib
 
 MAX_HEIGHT = 300
 MAX_WIDTH = 300
 
 
+def get_camera_entries():
+	"""[(stable device path, brand/model label)] — one per real capture node."""
+	try:
+		return camera_names.list_capture_devices()
+	except Exception:
+		return []
+
+
 def get_camera_devices():
-	devices = []
-	if os.path.exists("/dev/v4l/by-path"):
-		try:
-			for dev in os.listdir("/dev/v4l/by-path"):
-				devices.append("/dev/v4l/by-path/" + dev)
-		except Exception:
-			pass
-	for dev in glob.glob("/dev/video*"):
-		if dev not in devices:
-			devices.append(dev)
-	return sorted(devices)
+	return [path for path, _label in get_camera_entries()]
 
 
 def on_page_switch(self, notebook, page, page_num):
+	# GtkNotebook moves keyboard focus into the new page; when the first
+	# focusable widget is a GtkDropDown that lands inside its popover and pops
+	# the list open. Settle focus (and close such a popover) once the switch
+	# is done.
+	settle = getattr(self, "settle_page_focus", None)
+	if callable(settle):
+		GLib.idle_add(settle)
+
 	# Undo search filters that hid this page's widgets (e.g. Video preview).
 	reveal = getattr(self, "reveal_search_page", None)
 	if callable(reveal):
@@ -75,19 +86,21 @@ def on_page_switch(self, notebook, page, page_num):
 
 		# Populate the camera list
 		self.populating_cameras = True
-		cameraselect = self.builder.get_object("cameraselect")
+		cameraselect = gtk4compat.dropdown(self.builder.get_object("cameraselect"))
 		cameraselect.remove_all()
 
-		devices = get_camera_devices()
+		entries = get_camera_entries()
+		devices = [dev for dev, _label in entries]
 		active_index = -1
 
-		for idx, dev in enumerate(devices):
-			cameraselect.append_text(dev)
-			if dev == path:
+		for idx, (dev, label) in enumerate(entries):
+			cameraselect.append(dev, label)   # id = device path, text = brand/model
+			if camera_names.same_device(dev, path):
 				active_index = idx
 
-		if path != "none" and path not in devices:
-			cameraselect.append_text(path)
+		if path != "none" and active_index == -1:
+			# configured path is not an alias of any listed node (unplugged?): keep it selectable
+			cameraselect.append(path, camera_names.describe_camera(path))
 			active_index = len(devices)
 
 		if active_index != -1:
@@ -153,7 +166,7 @@ def on_camera_change(self, combo):
 	if getattr(self, "populating_cameras", False):
 		return
 
-	path = combo.get_active_text()
+	path = combo.get_active_id() if hasattr(combo, "get_active_id") else combo.get_active_text()
 	if not path:
 		return
 
@@ -192,7 +205,7 @@ def capture_frame(self):
 			loader.close()
 			pix = loader.get_pixbuf()
 			if pix is not None and hasattr(self, "opencvimage") and self.opencvimage:
-				self.opencvimage.set_from_pixbuf(pix)
+				self.opencvimage.set_paintable(gtk4compat.pixbuf_to_texture(pix))
 	except Exception as e:
 		import sys
 		print(f"Error updating video preview frame: {e}", file=sys.stderr)

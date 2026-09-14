@@ -195,6 +195,12 @@ class TestExecute:
             mock_exit.assert_called_once_with(0)
 
     def test_execute_run_exception(self):
+        """A failsafe rule whose stamp crashes must ABORT, not authenticate.
+
+        This asserted exit(0) until 2026-09-16: `except Exception: continue` skipped the
+        result check and fell through to the success exit, so a crashing liveness check
+        let the user in. `failsafe` means the check must pass or authentication fails.
+        """
         config = self._make_config("hotkey 5.0 failsafe")
         mock_module = MagicMock()
         mock_hotkey_class = MagicMock()
@@ -218,7 +224,7 @@ class TestExecute:
                     "pose_predictor": None,
                     "clahe": None
                 })
-            mock_exit.assert_called_once_with(0)
+            mock_exit.assert_called_once_with(15)
 
     def test_execute_unknown_option(self):
         config = self._make_config("hotkey 5.0 failsafe unknown_opt=1")
@@ -505,3 +511,216 @@ class TestNod:
         with patch("time.sleep"):
             result = n.run()
             assert result is True
+
+
+class TestLivenessFailsClosedOnCrash:
+    """A liveness check that STARTED and then crashed must deny under a failsafe rule.
+
+    `except Exception: continue` skipped the result check below it and fell through to
+    sys.exit(0), so a crashing check authenticated the user. Configuration errors
+    (unknown stamp, unparseable rule) keep the upstream warn-and-skip behaviour so a
+    renamed stamp cannot lock anyone out. Names come from Howdy: `failsafe` aborts when
+    the check does not pass, `faildeadly` lets authentication through anyway.
+    """
+
+    def _execute(self, rule, run_impl, monkeypatch):
+        import rubberstamps
+        config = MagicMock()
+        config.get.return_value = rule
+        config.getboolean.return_value = False
+
+        class Stamp:
+            def declare_config(self):
+                pass
+
+            run = run_impl
+
+        module = MagicMock()
+        module.hotkey = Stamp
+        monkeypatch.setattr(rubberstamps, "SourceFileLoader",
+                            lambda *a, **k: MagicMock(load_module=lambda: module))
+        with pytest.raises(SystemExit) as exit_info:
+            rubberstamps.execute(config, None, {"video_capture": MagicMock(), "face_detector": MagicMock(),
+                                                "pose_predictor": MagicMock(), "clahe": MagicMock()})
+        return exit_info.value.code
+
+    def test_crashing_stamp_denies_when_failsafe(self, monkeypatch):
+        def boom(self):
+            raise RuntimeError("camera exploded")
+        assert self._execute("hotkey 5s failsafe", boom, monkeypatch) == 15
+
+    def test_crashing_stamp_passes_when_faildeadly(self, monkeypatch):
+        def boom(self):
+            raise RuntimeError("camera exploded")
+        assert self._execute("hotkey 5s faildeadly", boom, monkeypatch) == 0
+
+    def test_stamp_returning_false_still_denies(self, monkeypatch):
+        assert self._execute("hotkey 5s failsafe", lambda self: False, monkeypatch) == 15
+
+
+class TestChallengeReachesTheUser:
+    """The auth overlay never gets a display (PAM hands compare.py PATH only), so the
+    stamp's prompt is mirrored onto the desktop notification card."""
+
+    def _stamp(self, notifier):
+        import rubberstamps
+        s = rubberstamps.RubberStamp()
+        s.config = MagicMock()
+        s.config.getboolean.return_value = False
+        s.gtk_proc = None
+        s.notifier = notifier
+        return s
+
+    def test_main_text_and_subtext_are_sent_to_the_card(self):
+        notifier = MagicMock()
+        s = self._stamp(notifier)
+        s.set_ui_text("Nod to confirm", s.UI_TEXT)
+        s.set_ui_text("Shake your head to abort", s.UI_SUBTEXT)
+        assert notifier.liveness.call_args_list[-1].args == ("Nod to confirm", "Shake your head to abort")
+
+    def test_a_broken_card_never_affects_authentication(self):
+        notifier = MagicMock()
+        notifier.liveness.side_effect = RuntimeError("bus gone")
+        s = self._stamp(notifier)
+        s.set_ui_text("Nod to confirm", s.UI_TEXT)   # must not raise
+
+    def test_no_notifier_is_fine(self):
+        s = self._stamp(None)
+        s.set_ui_text("Nod to confirm", s.UI_TEXT)
+
+    def test_execute_passes_the_notifier_to_the_stamp(self, monkeypatch):
+        import rubberstamps
+        config = MagicMock()
+        config.get.return_value = "hotkey 5s failsafe"
+        config.getboolean.return_value = False
+        seen = {}
+
+        class Stamp:
+            def declare_config(self):
+                pass
+
+            def run(self):
+                seen["notifier"] = self.notifier
+                return True
+
+        module = MagicMock()
+        module.hotkey = Stamp
+        monkeypatch.setattr(rubberstamps, "SourceFileLoader",
+                            lambda *a, **k: MagicMock(load_module=lambda: module))
+        notifier = MagicMock()
+        with pytest.raises(SystemExit):
+            rubberstamps.execute(config, None, {"video_capture": MagicMock(), "face_detector": MagicMock(),
+                                                "pose_predictor": MagicMock(), "clahe": MagicMock()}, notifier=notifier)
+        assert seen["notifier"] is notifier
+
+
+class TestDeadOverlayNeverBreaksAuth:
+    """compare.py runs with PATH only, so the GTK overlay exits immediately and its pipe
+    breaks. That raised out of set_ui_text and the stamp was reported as crashed."""
+
+    def _stamp(self, proc):
+        import rubberstamps
+        s = rubberstamps.RubberStamp()
+        s.config = MagicMock()
+        s.config.getboolean.return_value = False
+        s.gtk_proc = proc
+        s.notifier = None
+        return s
+
+    def test_broken_pipe_is_swallowed_and_the_overlay_is_dropped(self):
+        proc = MagicMock()
+        proc.stdin.write.side_effect = BrokenPipeError(32, "Broken pipe")
+        s = self._stamp(proc)
+        s.set_ui_text("Nod to confirm", s.UI_TEXT)     # must not raise
+        assert s.gtk_proc is None, "a dead overlay must not be written to again"
+        s.set_ui_text("again", s.UI_TEXT)
+
+    def test_closed_stdin_is_swallowed(self):
+        proc = MagicMock()
+        proc.stdin.write.side_effect = ValueError("I/O operation on closed file")
+        s = self._stamp(proc)
+        s.set_ui_text("Nod to confirm", s.UI_TEXT)
+        assert s.gtk_proc is None
+
+
+class TestNodRobustness:
+    """Properties the frame-to-frame version did not have.
+
+    Eye distance is 100 px in these fixtures, so `min_distance=12` means the nose must
+    travel 12 px from its anchor. The detector only finds a face in roughly a quarter
+    of the frames on an IR camera, which is what made a per-frame delta unreliable.
+    """
+
+    def _nod(self, positions, timeout=5.0, min_distance=12, faces_per_frame=1):
+        n = nod()
+        n.config = configparser.ConfigParser()
+        n.config.add_section("debug")
+        n.config.set("debug", "verbose_stamps", "False")
+        n.gtk_proc = None
+        n.notifier = None
+        n.options = {"timeout": timeout, "failsafe": True}
+        n.declare_config()
+        n.options["min_distance"] = min_distance
+        n.video_capture = MagicMock()
+        n.video_capture.read_frame.return_value = (True, MagicMock())
+        n.face_detector = MagicMock(return_value=["face"] * faces_per_frame)
+        n.clahe = MagicMock()
+        n.set_ui_text = MagicMock()
+
+        def landmarks(pos):
+            x, y = pos
+            lm = MagicMock()
+            parts = {0: MagicMock(x=200), 2: MagicMock(x=100), 4: MagicMock(x=x, y=y)}
+            lm.part.side_effect = lambda i: parts.get(i, MagicMock())
+            return lm
+
+        # Cycle: the mocked loop runs far more iterations than there are positions,
+        # and a jitter fixture has to keep jittering for the whole window.
+        import itertools
+        frames = itertools.cycle([landmarks(p) for p in positions])
+        n.pose_predictor = MagicMock(side_effect=lambda *a, **k: next(frames))
+        return n
+
+    def test_a_slow_nod_still_registers(self):
+        """Each step is only 5 px, under the 12 px bar, but the nose travels 20 px down
+        and 20 px back. A per-frame delta never saw this; displacement from an anchor does."""
+        down = [(150, 150 + step) for step in range(0, 25, 5)]
+        up = [(150, 170 - step) for step in range(0, 45, 5)]
+        n = self._nod(down + up)
+        with patch("time.sleep"):
+            assert n.run() is True
+
+    def test_jitter_below_the_threshold_never_confirms(self):
+        """Holding still: the nose wobbles a few pixels around one spot for the whole
+        window. This used to accumulate into a 'nod' and authenticate the user."""
+        jitter = [(150 + (i % 3) - 1, 150 + (i % 5) - 2) for i in range(60)]
+        n = self._nod(jitter, timeout=0.3)
+        with patch("time.sleep"):
+            assert n.run() is False
+
+    def test_a_nod_with_sideways_drift_is_not_read_as_a_shake(self):
+        """Vertical travel dominates, so the confirm axis wins even though the head
+        also drifts sideways. Reading it as a shake aborted authentication."""
+        positions = [(150, 150), (154, 175), (158, 150), (162, 175)]
+        n = self._nod(positions)
+        with patch("time.sleep"):
+            assert n.run() is True
+
+    def test_a_deliberate_shake_still_aborts(self):
+        positions = [(150, 150), (185, 152), (145, 154), (185, 152)]
+        n = self._nod(positions)
+        with patch("time.sleep"):
+            assert n.run() is False
+
+    def test_eye_distance_is_used_as_a_magnitude(self, monkeypatch):
+        """A mirrored camera reports the eyes in the other order, making the scale
+        negative; the movement then became a huge number and any jitter passed."""
+        n = self._nod([(150, 150), (150, 156)])
+        lm = MagicMock()
+        parts = {0: MagicMock(x=100), 2: MagicMock(x=200), 4: MagicMock(x=150, y=156)}
+        lm.part.side_effect = lambda i: parts.get(i, MagicMock())
+        n.pose_predictor = MagicMock(return_value=lm)
+        n.options["timeout"] = 0.2
+        with patch("time.sleep"):
+            # 6 px of 100 px eye distance is 6%, under the 12% bar: no confirmation
+            assert n.run() is False

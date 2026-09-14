@@ -29,7 +29,11 @@ def run_keyring(user=None, arguments=None):
 		arguments = builtins.ubuntu_hello_args.arguments
 
 	if not arguments:
-		print(_("Usage: keyring [enable|disable|restore [--all]]"))
+		# The command name and its subcommands are literals the user has to type,
+		# so only the label is translatable. Machine translation localised the
+		# whole line in 91 of 98 catalogs, which told people to run commands that
+		# do not exist ("clavèr activar", "klíčenka povolit").
+		print(_("Usage:") + " keyring [enable|disable|restore [--all]]")
 		sys.exit(1)
 
 	action = arguments[0].lower()
@@ -145,7 +149,11 @@ def run_keyring(user=None, arguments=None):
 		rest = arguments[1:]
 		want_all = bool(getattr(builtins.ubuntu_hello_args, "all", False)) or rest == ["--all"]
 		if rest and rest != ["--all"]:
-			print(_("Usage: keyring [enable|disable|restore [--all]]"))
+			# The command name and its subcommands are literals the user has to type,
+			# so only the label is translatable. Machine translation localised the
+			# whole line in 91 of 98 catalogs, which told people to run commands that
+			# do not exist ("clavèr activar", "klíčenka povolit").
+			print(_("Usage:") + " keyring [enable|disable|restore [--all]]")
 			sys.exit(1)
 		if want_all:
 			ok, fail = restore_all_users()
@@ -164,7 +172,9 @@ def run_keyring(user=None, arguments=None):
 			sys.exit(1)
 
 	else:
-		print(_("Invalid action. Use 'enable', 'disable', or 'restore'."))
+		# Same reasoning as the usage line above: the three words in quotes are
+		# what the user types, so they stay out of the translatable part.
+		print(_("Invalid action. Use one of:") + " 'enable', 'disable', 'restore'.")
 		sys.exit(1)
 
 
