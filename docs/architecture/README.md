@@ -159,6 +159,7 @@ The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/s
      - If the lowest distance is below `certainty / 10`, matches are accepted.
   5. Executes post-auth checks (Rubberstamps) if enabled.
   6. Exits with corresponding status codes (`0` on success, or error status codes); cleanup always releases the camera before exit.
+* **Auth notifications** (`notify.py`): one desktop card per attempt, updated in place on the target user's session bus. Privileged PAM compare stores the notification id and `.done` watchdog marker under `/run/ubuntu-hello/notify/<uid>/` (`0700`, `O_NOFOLLOW`); it must not write those files under user-owned `/run/user/<uid>/`. Unprivileged dry runs may still use the XDG runtime-dir files.
 
 ### 2.3 GTK Graphical Interface (`ubuntu-hello-gtk/src/`)
 
