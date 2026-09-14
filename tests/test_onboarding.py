@@ -1239,13 +1239,15 @@ def test_open_camera_for_preview_errors():
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
         ob = onboarding.OnboardingWindow()
         
-        # 1. cap.isOpened is False
+        # 1. cap.isOpened is False: retried briefly (camera settling after
+        #    `ubuntu-hello add`), each failed handle released, then gives up
         ob.current_preview_path = "/dev/video0"
         mock_cap = MagicMock()
         mock_cap.isOpened.return_value = False
-        with patch("cv2.VideoCapture", return_value=mock_cap):
+        with patch("cv2.VideoCapture", return_value=mock_cap) as vc, patch("time.sleep"):
             ob.open_camera_for_preview("/dev/video0")
-            mock_cap.release.assert_called_once()
+            assert vc.call_count == 6
+            assert mock_cap.release.call_count == 6
             
         # 2. current_preview_path != device_path immediately
         ob.current_preview_path = "/dev/video1"
@@ -1322,3 +1324,363 @@ def test_exit_func():
         ob.completed = False
         with pytest.raises(SystemExit):
             ob.exit()
+
+
+# ── Second-model enrollment (slide 4, two passes) ────────────────────
+
+def _wizard_with_widgets():
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
+        ob = onboarding.OnboardingWindow()
+    widgets = {name: MagicMock() for name in (
+        "label4", "label5", "slide4_instruction_label", "scanbutton", "skipsecondbutton")}
+    ob.builder.get_object.side_effect = lambda name: widgets.get(name, MagicMock())
+    ob.window = MagicMock()
+    ob.slide4_preview_image = MagicMock()
+    ob.slide4_device_path = "/dev/video0"
+    return ob, widgets
+
+
+def test_first_scan_success_switches_to_second_pass_instead_of_advancing():
+    ob, w = _wizard_with_widgets()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+    with patch("subprocess.run", return_value=MagicMock(returncode=0, stdout="", stderr="")) as run, \
+         patch("threading.Thread") as thread, \
+         patch.object(ob, "go_next_slide") as go_next:
+        assert ob.run_add() is False
+    run.assert_called_once_with(["ubuntu-hello", "-y", "add", "Setup lighting 1"], capture_output=True, text=True)
+    go_next.assert_not_called()
+    assert ob.scan_pass == 2 and ob.models_enrolled == 1
+    # Second pass: short copy (the why/how was on the slide up front), scan re-enabled, Skip now offered
+    assert "Second scan" in w["label4"].set_text.call_args.args[0]
+    assert "change the light" in w["label5"].set_text.call_args.args[0]
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].show.assert_called_once()
+    thread.assert_called_once()
+
+
+def test_second_scan_success_advances_with_distinct_label():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch("subprocess.run", return_value=MagicMock(returncode=0, stdout="", stderr="")) as run, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.run_add()
+    run.assert_called_once_with(["ubuntu-hello", "-y", "add", "Setup lighting 2"], capture_output=True, text=True)
+    assert ob.models_enrolled == 2
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_second_scan_failure_is_non_fatal_and_allows_retry():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch("subprocess.run", return_value=MagicMock(returncode=1, stdout="No face", stderr="")), \
+         patch("threading.Thread"), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "show_warning") as show_warning, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_not_called()      # show_error exits the wizard; first model is already saved
+    show_warning.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.models_enrolled == 1
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].set_sensitive.assert_called_with(True)
+
+
+def test_first_scan_failure_still_fatal():
+    ob, w = _wizard_with_widgets()
+    with patch("subprocess.run", return_value=MagicMock(returncode=1, stdout="No face", stderr="")), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+
+
+def test_skip_is_a_no_op_before_first_model():
+    """Only the second scan can be skipped: a click with no model enrolled does nothing."""
+    ob, w = _wizard_with_widgets()
+    with patch("gi.repository.GObject.timeout_add") as timeout_add, \
+         patch.object(ob, "stop_preview") as stop, \
+         patch.object(ob, "prepare_second_scan") as prep:
+        ob.on_skipsecondbutton_click(None)
+    timeout_add.assert_not_called()
+    stop.assert_not_called()
+    prep.assert_not_called()
+    assert ob.scan_pass == 1
+
+
+def test_skip_second_model_advances_when_first_enrolled():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch.object(ob, "stop_preview") as stop, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.on_skipsecondbutton_click(None)
+    stop.assert_called_once()
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_execute_slide4_hides_skip_on_first_pass():
+    ob, w = _wizard_with_widgets()
+    sel = MagicMock(); model = MagicMock(); it = MagicMock()
+    sel.get_selected.return_value = (model, it)
+    model.get_value.side_effect = lambda i, col: "/dev/video0" if col == 2 else None
+    ob.treeview = MagicMock(); ob.treeview.get_selection.return_value = sel
+    with patch("subprocess.Popen"), patch("threading.Thread"), patch.object(ob, "stop_preview"):
+        ob.execute_slide4()
+    assert ob.slide4_device_path == "/dev/video0"
+    assert w["skipsecondbutton"].hide.called
+    w["skipsecondbutton"].show.assert_not_called()
+    assert ob.scan_pass == 1
+
+
+def test_go_next_slide_stops_preview_when_leaving_slide4():
+    ob, w = _wizard_with_widgets()
+    ob.window.current_slide = 4
+    ob.slides = [MagicMock() for _ in range(8)]
+    ob.nextbutton = MagicMock()
+    ob.slidecontainer = MagicMock()
+    with patch.object(ob, "stop_preview") as stop, \
+         patch.object(ob, "execute_slide5"):
+        ob.go_next_slide()
+    stop.assert_called_once()
+
+
+# ── Back / Cancel-only-on-first-page ────────────────────────────────
+
+def _wizard_with_nav():
+    ob, w = _wizard_with_widgets()
+    w.update({name: MagicMock() for name in ("cancelbutton", "backbutton", "finishbutton")})
+    ob.builder.get_object.side_effect = lambda name: w.get(name, MagicMock())
+    ob.slides = [MagicMock() for _ in range(8)]
+    ob.nextbutton = MagicMock()
+    ob.slidecontainer = MagicMock()
+    return ob, w
+
+
+def test_cancel_only_on_first_page_and_back_afterwards():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    ob.update_navigation_buttons()
+    w["cancelbutton"].set_visible.assert_called_with(True)
+    w["backbutton"].set_visible.assert_called_with(False)
+    ob.window.current_slide = 3
+    ob.update_navigation_buttons()
+    w["cancelbutton"].set_visible.assert_called_with(False)
+    w["backbutton"].set_visible.assert_called_with(True)
+
+
+def test_go_next_slide_updates_navigation_buttons():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    with patch.object(ob, "execute_slide1"), patch.object(ob, "update_navigation_buttons") as nav:
+        ob.go_next_slide()
+    nav.assert_called_once()
+    assert ob.window.current_slide == 1
+
+
+def test_back_from_first_page_is_a_no_op():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    ob.go_prev_slide()
+    assert ob.window.current_slide == 0
+    ob.slides[0].hide.assert_not_called()
+
+
+def test_back_from_scan_page_stops_preview_and_skips_auto_advanced_ir_page():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 4
+    ob.slide3_shown = False   # non-IR camera: page 3 auto-advanced, never shown
+    with patch.object(ob, "stop_preview") as stop, patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.go_prev_slide()
+    stop.assert_called_once_with(clear_image=True)
+    ob.slides[4].hide.assert_called_once()
+    ob.slides[2].show.assert_called_once()
+    assert ob.window.current_slide == 2
+    assert timeout_add.call_args.args[1] == ob.execute_slide2
+    ob.nextbutton.set_sensitive.assert_called_with(True)
+    w["cancelbutton"].set_visible.assert_called_with(False)
+    w["backbutton"].set_visible.assert_called_with(True)
+
+
+def test_back_from_scan_page_returns_to_ir_page_when_it_was_shown():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 4
+    ob.slide3_shown = True
+    with patch.object(ob, "stop_preview"):
+        ob.go_prev_slide()
+    assert ob.window.current_slide == 3
+
+
+def test_back_from_ir_page_releases_capture():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 3
+    ob.capture = MagicMock()
+    cap = ob.capture
+    with patch("gi.repository.GObject.timeout_add"):
+        ob.go_prev_slide()
+    cap.release.assert_called_once()
+    assert ob.capture is None and ob.window.current_slide == 2
+
+
+def test_back_from_finish_page_restores_next_button():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 7
+    with patch.object(ob, "execute_slide6"):
+        ob.go_prev_slide()
+    w["finishbutton"].hide.assert_called_once()
+    ob.nextbutton.show.assert_called_once()
+    assert ob.window.current_slide == 6
+
+
+def test_reentering_scan_page_resumes_at_second_scan_when_a_model_exists():
+    ob, w = _wizard_with_widgets()
+    sel = MagicMock(); model = MagicMock(); it = MagicMock()
+    sel.get_selected.return_value = (model, it)
+    model.get_value.side_effect = lambda i, col: "/dev/video0" if col == 2 else None
+    ob.treeview = MagicMock(); ob.treeview.get_selection.return_value = sel
+    ob.models_enrolled = 1
+    with patch("subprocess.Popen"), patch("threading.Thread"), patch.object(ob, "stop_preview"), \
+         patch.object(ob, "prepare_second_scan") as prep:
+        ob.execute_slide4()
+    prep.assert_called_once()
+    assert ob.scan_pass == 2
+
+
+def test_execute_slide2_removes_previous_device_list_on_reentry():
+    ob, w = _wizard_with_nav()
+    devicelistbox = MagicMock(); loadinglabel = MagicMock()
+    w["devicelistbox"] = devicelistbox; w["loadinglabel"] = loadinglabel
+    old_list = MagicMock()
+    ob.scrolled_window = old_list
+    with patch("threading.Thread") as thread:
+        ob.execute_slide2()
+    devicelistbox.remove.assert_called_once_with(old_list)
+    assert ob.scrolled_window is None
+    loadinglabel.show.assert_called_once()
+    thread.assert_called_once()
+
+
+def test_leaving_camera_page_cancels_scan_and_stale_results_are_dropped():
+    ob, w = _wizard_with_nav()
+    devicelistbox = MagicMock(); loadinglabel = MagicMock()
+    w["devicelistbox"] = devicelistbox; w["loadinglabel"] = loadinglabel
+    ob.window.current_slide = 2
+    with patch("threading.Thread") as thread:
+        ob.execute_slide2()
+    gen = thread.call_args.kwargs["args"][0]
+    assert gen == ob.scan_generation == 1
+
+    # Back (or Next) while the scan runs -> generation bumps, thread stops at its next device
+    with patch.object(ob, "stop_preview"), patch.object(ob, "execute_slide1"):
+        ob.go_prev_slide()
+    assert ob.scan_generation == 2
+    with patch("os.listdir", return_value=["cam0", "cam1"]), patch("time.sleep"), \
+         patch("onboarding.GLib.idle_add") as idle:
+        ob.scan_cameras_thread(gen)          # the old thread body
+    idle.assert_not_called()                 # nothing posted for a stale generation
+
+    # A stale result arriving on the main loop is ignored; a current one replaces the list
+    ob.scrolled_window = None
+    assert ob.update_camera_list_gui([], gen) is False
+    devicelistbox.add.assert_not_called()
+
+
+def test_next_from_camera_page_cancels_scan():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 2
+    ob.scan_generation = 5
+    with patch.object(ob, "stop_preview"), patch.object(ob, "execute_slide3"):
+        ob.go_next_slide()
+    assert ob.scan_generation == 6
+
+
+def test_camera_list_preselects_remembered_device():
+    """Going Back to the camera page keeps the chosen camera selected (config untouched)."""
+    ob, w = _wizard_with_nav()
+    ob.devicelistbox = MagicMock(); ob.loadinglabel = MagicMock()
+    ob.slide4_device_path = "/dev/v4l/by-path/cam-B"
+    rows = [["A", "/dev/v4l/by-path/cam-A", 5, "yes"], ["B", "/dev/v4l/by-path/cam-B", 5, "yes"]]
+    with patch("onboarding.gtk.TreeView") as tv, patch("onboarding.gtk.ListStore"), \
+         patch("onboarding.gtk.ScrolledWindow"), patch("onboarding.gtk.TreeViewColumn"), \
+         patch("onboarding.gtk.CellRendererText"), patch("threading.Thread"):
+        ob.update_camera_list_gui(rows)
+    tv.return_value.set_cursor.assert_called_once_with(1)
+
+
+def test_remembered_device_falls_back_to_config():
+    ob, w = _wizard_with_nav()
+    ob.slide4_device_path = None
+    with patch("onboarding.paths_factory.config_file_path", return_value="/nonexistent.ini"):
+        assert ob.remembered_device_path() == ""
+    import configparser, tempfile, os
+    fd, path = tempfile.mkstemp(suffix=".ini"); os.close(fd)
+    open(path, "w").write("[video]\ndevice_path = /dev/v4l/by-path/cam-Z\n")
+    with patch("onboarding.paths_factory.config_file_path", return_value=path):
+        assert ob.remembered_device_path() == "/dev/v4l/by-path/cam-Z"
+
+
+def test_next_disabled_on_camera_page_until_scan_posts_and_slides_guard_missing_list():
+    ob, w = _wizard_with_nav()
+    ob.devicelistbox = MagicMock(); ob.loadinglabel = MagicMock()
+    ob.treeview = MagicMock()
+    with patch("threading.Thread"):
+        ob.execute_slide2()
+    ob.nextbutton.set_sensitive.assert_called_with(False)
+    assert ob.treeview is None                 # old list dropped with the widget
+    assert ob.selected_camera() == (None, None)
+    # Slides 3/4 must not crash when the list is gone (Next pressed mid-rescan)
+    with patch.object(ob, "show_error") as err:
+        ob.execute_slide4()
+        ob.execute_slide3()
+    assert err.call_count == 2
+
+
+def test_scan_button_tolerates_missing_set_device_proc():
+    ob, w = _wizard_with_nav()
+    if hasattr(ob, "proc"):
+        del ob.proc
+    with patch.object(ob, "stop_preview"), patch("gi.repository.GObject.timeout_add") as t:
+        ob.on_scanbutton_click(None)
+    t.assert_called_once()
+
+
+def test_back_to_download_page_reattaches_running_download():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 2
+    ob.proc = MagicMock(); ob.proc.poll.return_value = None      # still downloading
+    ob.download_queue = MagicMock()
+    with patch("os.path.exists", return_value=False), \
+         patch("gi.repository.GObject.timeout_add") as timeout_add, \
+         patch("subprocess.Popen") as popen, patch.object(ob, "stop_preview"):
+        ob.go_prev_slide()
+    popen.assert_not_called()                                    # no second install.sh
+    assert timeout_add.call_args.args[1] == ob.update_download_gui
+    ob.nextbutton.set_sensitive.assert_called_with(False)
+
+
+def test_back_from_ir_page_swallows_release_errors():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 3
+    ob.capture = MagicMock(); ob.capture.release.side_effect = RuntimeError("busy")
+    with patch("gi.repository.GObject.timeout_add"):
+        ob.go_prev_slide()
+    assert ob.capture is None and ob.window.current_slide == 2
+
+
+def test_remembered_device_ignores_unreadable_config():
+    ob, w = _wizard_with_nav()
+    ob.slide4_device_path = None
+    with patch("onboarding.paths_factory.config_file_path", side_effect=RuntimeError("boom")):
+        assert ob.remembered_device_path() == ""
+
+
+def test_scan_button_swallows_set_device_wait_errors():
+    ob, w = _wizard_with_nav()
+    ob.proc = MagicMock(); ob.proc.wait.side_effect = RuntimeError("timeout")
+    with patch.object(ob, "stop_preview"), patch("gi.repository.GObject.timeout_add") as t:
+        ob.on_scanbutton_click(None)
+    t.assert_called_once()

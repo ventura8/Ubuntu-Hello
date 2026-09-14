@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,92 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Ajoute yon dezyèm modèl"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Kreye"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Mete etikèt sou"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "Otomatik"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Pèmèt Keyring/KWallet Debloke"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Antre modpas pou itilizatè <b>{}</b> pou déblotché {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "Modpas"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "Ajoute modèl figi ou"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello pral eskane figi ou de fwa: yon fwa kounye a, ak yon lòt "
+"fwa ankò nan diferan ekleraj (pa egzanp lanp aswè olye pou yo lajounen"
+"), kidonk li rekonèt ou seryezman nenpòt ki lè nan jounen an. Peze Sca"
+"n pou anrejistre premye modèl la."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "Tanpri gade dirèkteman nan kamera a"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "Kòmanse eskanè figi"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Fichye done yo deja telechaje!\nKlike sou Next pou kontinye"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "Erè pandan w ap telechaje fichye done yo"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Fè!\nKlike sou Next pou kontinye"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "Erè pandan w ap enpòte OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "Eseye réinstaller cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "Pa gen kamera yo jwenn sou sistèm lan"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +108,39 @@ msgstr ""
 "Tanpri konfigirasyon kamera ou tèt ou si ou sèten yon kamera konpatib "
 "konekte"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "Non, kamera pa ka louvri"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "Non, pa yon kamera enfrawouj"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "Wi, konpatib kamera enfrawouj"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "Idantifyan kamera oswa chemen"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "Rekòmande"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "Erè lè w ap chwazi kamera"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "Kamera chwazi a pa ka louvri"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "Eseye chwazi yon lòt"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +150,57 @@ msgstr ""
 "mitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\npou "
 "pèmèt émetteur ir ou a"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "Tanpri gade dirèkteman nan kamera a"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "Enstalasyon ekleraj 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "Kòmanse eskanè figi"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "Enstalasyon ekleraj 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "Pa ka sove modèl figi"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "Eskane dezyèm modèl"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "Pa t 'kapab anrejistre dezyèm modèl la"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"Premye modèl ou a sove, kidonk koneksyon figi deja ap travay. Chanm na"
+"n dwe toujou klere ase pou wè figi ou - chanje limyè a olye ke etenn l"
+"i - Lè sa a, eseye ankò, oswa sote epi ajoute yon modèl pita nan Anviw"
+"ònman."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "Dezyèm eskanè: ekleraj diferan"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"Premye modèl sove. Koulye a, chanje limyè a - pou egzanp limen oswa et"
+"enn yon lanp, ale lwen fenèt la, oswa itilize limyè nan lòt chanm - ke"
+"nbe figi ou byen vizib, Lè sa a, peze Scan ankò."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello Enstalasyon"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +210,7 @@ msgstr ""
 "n figi (bous detekte: {}).\n\n<b>Estati TPM:</b> Tcheke pyès ki nan ko"
 "npitè ak zouti TPM..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +220,7 @@ msgstr ""
 "n figi (bous detekte: {}).\n\n<b>Estati TPM:</b> Materyèl TPM detekte."
 " Enstale <i>tpm2-tools</i> otomatikman..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +230,7 @@ msgstr ""
 "n figi (bous detekte: {}).\n\n<b>Estati TPM:</b> Materyèl TPM 2.0 akti"
 "f. Modpas ou a pral byen sele andedan TPM la."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -177,7 +244,7 @@ msgstr ""
 "ode>sudo apt install tpm2-tools</code>. Tonbe tounen nan lojisyèl ki b"
 "aze sou kachèt kalifikasyon."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -188,47 +255,56 @@ msgstr ""
 "npitè TPM detekte. Sèvi ak kachèt kalifikasyon ki baze sou lojisyèl (A"
 "ES-256-GCM)."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "Pa t 'kapab idantifye itilizatè sistèm ki pa rasin pou déblotché keyring"
-
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Modpas pa ka vid"
-
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Move modpas pou itilizatè {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "erè enkoni"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Echwe pou pèmèt debloke bag kle: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:916 src/tab_keyring.py:166
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Echwe pou enfim déblotché trou kle: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:922
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "Pa t 'kapab idantifye itilizatè sistèm ki pa rasin pou déblotché keyring"
+
+#: src/onboarding.py:935 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Modpas pa ka vid"
+
+#: src/onboarding.py:939 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Move modpas pou itilizatè {}"
+
+#: src/onboarding.py:951 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "erè enkoni"
+
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Echwe pou pèmèt debloke bag kle: {}"
+
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr "Echwe pou pèmèt déblotché keyring: ubuntu-hello ègzekutabl pa jwenn"
+
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr "Echwe pou pèmèt déblotché keyring: tan ap tann pou keyring pèmèt"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "Erè debloke keyring"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "Erè nan lekti bouton radyo yo"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Avètisman Enstalasyon"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr "Pa t 'kapab sove preferans sètitid, men konfigirasyon se otreman konplè."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Erè"
 
@@ -240,49 +316,37 @@ msgstr "Chaje..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Otantifikasyon"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Konfime kreyasyon itilizatè"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr "Tanpri antre non itilizatè a ou vle ajoute nan Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Non itilizatè:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "Konfime Kreyasyon Modèl"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Tanpri antre yon non pou nouvo modèl la, 24 karaktè max"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Non modèl:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "Kreye modèl"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "Erè pandan w ap ajoute modèl, kòd erè {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "Konfime sipresyon modèl"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Èske w sèten ou vle efase modèl {id} ({name})?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -349,64 +413,121 @@ msgstr "Èske w sèten ou vle enfim kle/KWallet déblotché pou itilizatè {}?"
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring/KWallet déblotché enfim pou itilizatè {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "Pa t 'kapab sove anviwònman notifikasyon an"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigirasyon"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigirasyon"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "Anviwònman rechèch"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "Montre modèl sove pou:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Ajoute nouvo itilizatè"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Se sèlman yon modèl figi ki enskri. Ekleraj chanje fason figi ou gade "
+"nan kamera a, kidonk yon sèl modèl ka echwe nan aswè a anba lanp (oswa"
+" nan lajounen). Ajoute yon dezyèm modèl ki anrejistre nan diferan limy"
+"è pou kenbe déblotché serye nenpòt ki lè nan jounen an."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "Ajoute"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "Efase"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "Modèl"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "ID kamera:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "Rezolisyon reyèl:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "Rezolisyon itilize:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "Anrejistrè:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "Videyo"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "Notifikasyon"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Yon notifikasyon sou biwo a parèt pandan Ubuntu Hello kap chèche figi "
+"ou, epi li rapòte rezilta a. Tantativ ki echwe yo rete nan lis notifik"
+"asyon an."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "Montre notifikasyon"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr ""
+"Yon kat pou chak tantativ otantifikasyon figi, mete ajou an plas ak re"
+"zilta a."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "Son notifikasyon"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Jwe son sistèm lan pou yon tantativ rekonèt oswa echwe."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "Mete dyagnostik"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"Ajoute modèl la, sètitid kont papòt, ankadreman, kamera ak distribisyo"
+"n nan chak kat. Li itil lè w rapòte yon pwoblèm."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Keyring / KWallet Auto-Debloke"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -420,51 +541,51 @@ msgstr ""
 " sèlman. Ansanm otorizasyon figi PAM_AUTHTOK pou pam_gnome_keyring osw"
 "a pam_kwallet5 selon Desktop ou."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "Estati aktyèl:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "Tcheke..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "Pèmèt Auto-Debloke"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "Enfim Auto-Debloke"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "Keyring"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "Lang ajou"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "Lang"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Otomatik swiv lang sistèm nan. Chanjman yo aplike touswit."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "Otantifikasyon vizaj pou Linux"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "Vèsyon enkoni"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -472,19 +593,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Louvri lyen GitHu"
 "b</a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "Konsènan"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "Byenveni nan Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "Enstalasyon fini!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -502,7 +623,7 @@ msgstr ""
 "ute modèl adisyonèl. Peze Fini anba a pou fèmen fenèt sa a epi ouvri U"
 "buntu Hello Configurator la."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -511,19 +632,19 @@ msgstr ""
 "i avèk otantifikasyon figi, pou anpeche modpas envit apre ou fin konek"
 "te."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Pèmèt kle otomatik/KWallet déblotché"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "Konfime modpas"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "Mete yon politik sètitid"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -533,22 +654,22 @@ msgstr ""
 "zakteman menm jan ak modèl figi ki estoke. Nan paj sa a ou ka fikse ki"
 " jan strik Ubuntu Hello ta dwe."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "Vit"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
 msgstr ""
 "Pèmèt plis alimèt flou, \nmen akselere pwosesis optik la anpil."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "Ekilibre"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -556,11 +677,11 @@ msgstr ""
 "Deteksyon toujou relativman rapid, \nmen ta ka pa konekte ou lè pi lwe"
 "n."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "Sekirize"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -568,35 +689,35 @@ msgstr ""
 "Opsyon yon ti kras pi an sekirite, \nmen pral pran anpil tan pou otant"
 "ifye ou"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Ajoute yon modèl figi"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "Sote pou kounye a"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"Pou otantifye w Ubuntu Hello bezwen sove yon modèl figi w pou rekonèt "
-"ou. Peze bouton Scan anba a pou kòmanse eskanè vizaj la."
+"Ou ka ajoute plis modèl figi pita nan Anviwònman oswa avèk: sudo ubunt"
+"u-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "Konfigirasyon webcam"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "Èske emeteur enfrawouj la ap flache?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "wi"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "non"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -608,15 +729,15 @@ msgstr ""
 "ebcam ka itilize yo pral montre. Chwazi youn nan ou vle itilize epi kl"
 "ike sou Next."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "Tès webcam ou yo, tanpri tann..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "Telechaje dosye done yo"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -626,19 +747,19 @@ msgstr ""
 "ou kapab rekonèt ou, ki pral telechaje kounye a. Ou ka wè pwogrè nan t"
 "elechaje anba a."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "Kòmanse telechaje..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Byenveni nan Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "Version"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -646,15 +767,19 @@ msgstr ""
 "Sòsye sa a pral gide w nan pwosesis konfigirasyon an epi otomatikman k"
 "onfigirasyon Ubuntu Hello pou ou. Peze pwochen pou kontinye."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "Anile"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "Retounen"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "Next"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "Fini konfigirasyon"
 

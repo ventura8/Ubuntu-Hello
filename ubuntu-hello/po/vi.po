@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,33 +15,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Thất bại, đã hết thời gian chờ"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Hình ảnh nhận diện khuôn mặt quá tối"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Lỗi không xác định:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
 msgid "Identified face as %s"
 msgstr "Khuôn mặt được xác định là %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:400
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
 msgstr "Không đủ quyền để gửi nhấn Enter, thay vào đó đang chờ người dùng nhấn"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:419 src/pam/main.cc:424
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Không gửi được nút nhấn Enter, đang đợi người dùng nhấn nút thay thế"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:536
 msgid "Attempting facial authentication"
 msgstr "Đang cố gắng xác thực khuôn mặt"
 
@@ -126,123 +126,223 @@ msgstr ""
 "Không thể chạy lệnh ubuntu-hello với quyền root, vui lòng chạy lệnh nà"
 "y với cờ --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Tệp dữ liệu chưa được tải xuống, vui lòng chạy các lệnh sau:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "ĐĂNG NHẬP"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Ngày:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "Thời gian quét:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "Khung:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "Tên máy chủ:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "Giá trị chắc chắn tốt nhất:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "Bắt đầu..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "Đang xác định bạn..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "THẤT ​​BẠI"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Tất cả các khung hình đều quá tối, vui lòng kiểm tra dark_threshold tr"
 "ong config"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Độ tối trung bình: {avg}, Ngưỡng: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "Thời gian dành"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "Khởi động"
 
-#: src/compare.py:458
+#: src/compare.py:647
 msgid "  Open cam + load libs: %dms"
 msgstr "Mở cam + tải lib: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "Mở máy ảnh"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "Nhập lib nhận dạng"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "Tìm kiếm khuôn mặt đã biết"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "Tổng thời gian"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
 "\nResolution"
 msgstr ""
 "\nNghị quyết"
 
-#: src/compare.py:466
+#: src/compare.py:655
 msgid "  Native: %dx%d"
 msgstr "Bản địa: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
 msgid "  Used: %dx%d"
 msgstr "Đã sử dụng: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nCác khung được tìm kiếm: %d (%.2f khung hình / giây)"
 
-#: src/compare.py:473
+#: src/compare.py:662
 msgid "Black frames ignored: %d "
 msgstr "Khung màu đen bị bỏ qua: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
 msgid "Dark frames ignored: %d "
 msgstr "Khung tối bị bỏ qua: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
 msgid "Certainty of winning frame: %.3f"
 msgstr "Độ chắc chắn của khung chiến thắng: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
 msgid "Winning model: %d (\"%s\")"
 msgstr "Mô hình chiến thắng: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "THÀNH CÔNG"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "ủy quyền"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "mở khóa màn hình"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "hết thời gian"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "trọng tải"
+
+#: src/notify.py:419
+msgid "%s frames"
+msgstr "khung %s"
+
+#: src/notify.py:421
+msgid "%s dark"
+msgstr "%s tối"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "Đang tìm kiếm khuôn mặt của bạn…"
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "Xác thực khuôn mặt"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "Đã nhận diện được khuôn mặt"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "thêm một mô hình trong ánh sáng này"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "kiểm tra máy ảnh"
+
+#: src/notify.py:491
+msgid "No match in %s"
+msgstr "Không có kết quả phù hợp trong %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "đăng ký: sudo ubuntu-xin chào thêm"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "gần nhất"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "Khuôn mặt không được nhận dạng"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "Quá tối"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "bật đèn"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "bóng tối"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "Kiểm tra độ sống không thành công"
+
+#: src/notify.py:526
+msgid "No face model for %s"
+msgstr "Không có mẫu khuôn mặt cho %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "Xác thực khuôn mặt không khả dụng"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "Đã hủy xác thực khuôn mặt"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

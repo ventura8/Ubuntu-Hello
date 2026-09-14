@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "فشل، وصلت المهلة"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "صورة اكتشاف الوجه داكنة جدًا"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "خطأ غير معروف:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
 msgid "Identified face as %s"
 msgstr "تم تحديد الوجه على أنه %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:400
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,11 +39,11 @@ msgstr ""
 "الأذونات غير كافية لإرسال مفتاح Enter، في انتظار قيام المستخدم بالضغط "
 "عليه بدلاً من ذلك"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:419 src/pam/main.cc:424
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "فشل إرسال مفتاح Enter، في انتظار قيام المستخدم بالضغط عليه بدلاً من ذلك"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:536
 msgid "Attempting facial authentication"
 msgstr "محاولة التحقق من الوجه"
 
@@ -127,121 +127,221 @@ msgstr ""
 "لا يمكن تشغيل أوامر ubuntu-hello كجذر، يرجى تشغيل هذا الأمر باستخدام ع"
 "لامة --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "لم يتم تنزيل ملفات البيانات، يرجى تشغيل الأوامر التالية:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "تسجيل الدخول"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "تاريخ:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "وقت المسح:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "إطارات:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "اسم المضيف:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "أفضل قيمة اليقين:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "البدء..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "التعرف عليك..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "فشل"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "كانت جميع الإطارات داكنة جدًا، يرجى التحقق من dark_threshold في التكوين"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "متوسط ​​الظلام: {avg}، العتبة: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "الوقت الذي يقضيه"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "البدء"
 
-#: src/compare.py:458
+#: src/compare.py:647
 msgid "  Open cam + load libs: %dms"
 msgstr "فتح الكاميرا + تحميل libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "فتح الكاميرا"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "استيراد libs الاعتراف"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "البحث عن الوجه المعروف"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "الوقت الإجمالي"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
 "\nResolution"
 msgstr ""
 "\nدقة"
 
-#: src/compare.py:466
+#: src/compare.py:655
 msgid "  Native: %dx%d"
 msgstr "اللغة الأصلية: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
 msgid "  Used: %dx%d"
 msgstr "المستخدمة: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nالإطارات التي تم البحث عنها: %d (%.2f إطارًا في الثانية)"
 
-#: src/compare.py:473
+#: src/compare.py:662
 msgid "Black frames ignored: %d "
 msgstr "تم تجاهل الإطارات السوداء: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
 msgid "Dark frames ignored: %d "
 msgstr "تم تجاهل الإطارات الداكنة: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
 msgid "Certainty of winning frame: %.3f"
 msgstr "يقين الإطار الفائز: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
 msgid "Winning model: %d (\"%s\")"
 msgstr "النموذج الفائز: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "ناجح"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "إذن"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "فتح الشاشة"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "نفذ الوقت"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "حمولة"
+
+#: src/notify.py:419
+msgid "%s frames"
+msgstr "%s الإطارات"
+
+#: src/notify.py:421
+msgid "%s dark"
+msgstr "%s داكن"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "أبحث عن وجهك..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "مصادقة الوجه"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "تم التعرف على الوجه"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "إضافة نموذج في هذا الضوء"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "تحقق من الكاميرا"
+
+#: src/notify.py:491
+msgid "No match in %s"
+msgstr "لا يوجد تطابق في %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "التسجيل: إضافة Sudo ubuntu-hello"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "الأقرب"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "لم يتم التعرف على الوجه"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "مظلمة للغاية"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "تشغيل الضوء"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "الظلام"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "فشل التحقق من الحيوية"
+
+#: src/notify.py:526
+msgid "No face model for %s"
+msgstr "لا يوجد نموذج وجه لـ %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "مصادقة الوجه غير متاحة"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "تم إلغاء مصادقة الوجه"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

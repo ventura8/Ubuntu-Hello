@@ -50,6 +50,7 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │       ├── config_ensure.py       # restore /etc config.ini when the conffile is missing
 │       ├── keyring_crypto.py
 │       ├── keyring_restore.py
+│       ├── notify.py              # desktop notification per attempt (org.freedesktop.Notifications)
 │       └── wallet_backend.py
 └── ubuntu-hello-gtk/
     ├── bin/run_after_install.py # postinst wizard; lock/log under /run/ubuntu-hello
@@ -202,13 +203,16 @@ The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/s
 
 ### 3.1 C++ to Python Subprocess Launch
 
-The PAM module starts Python as a subprocess in its own process group:
+The PAM module starts Python as a subprocess in its own process group, with an explicit minimal environment (only a fixed system `PATH`; the calling user's `PATH`, `PYTHONPATH`, `LD_PRELOAD`, … are never inherited) and interpreter flags `-E -s`:
 
 ```cpp
 posix_spawnattr_setflags(&spawn_attr, POSIX_SPAWN_SETPGROUP);
 posix_spawnattr_setpgroup(&spawn_attr, 0);
-posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, &spawn_attr, args, nullptr);
+// args = {python, "-E", "-s", compare.py, username, pam_service}; envp = {"PATH=/usr/sbin:/usr/bin:/sbin:/bin", validated LANG/LANGUAGE/LC_*}
+posix_spawn(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, &spawn_attr, args, envp);
 ```
+
+`compare.py` in turn spawns its own helpers by absolute path (`BUSCTL_PATH`, `GTK_BIN_PATH`), never by bare name.
 
 C++ evaluates the return code using standard wait macros:
 
@@ -224,7 +228,7 @@ On lock/screensaver services, a non-zero compare exit sets `/run/ubuntu-hello/fa
 `compare.py` starts `ubuntu-hello-gtk` and keeps a handle to standard input:
 
 ```python
-gtk_proc = subprocess.Popen(["ubuntu-hello-gtk", "--start-auth-ui"], stdin=subprocess.PIPE)
+gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE)  # GTK_BIN_PATH = "/usr/bin/ubuntu-hello-gtk"
 ```
 
 Status updates are written as short formatted line structures:

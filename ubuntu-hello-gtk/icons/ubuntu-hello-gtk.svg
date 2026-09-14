@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+<!-- App icon in the host desktop's own idiom. Structure, palette and shadow follow
+     Ubuntu's Yaru Settings icon (org.gnome.Settings): a light circular badge with
+     Yaru's horizontal tonal band (upper #d5d5d5, lighter #eaeaea below), a dark inner
+     disc (#5d5d5d), a light glyph (#d8d8d8) and a soft drop shadow. The glyph is a
+     face with a check badge: large shapes only, so it still reads at 16-32px. -->
+  <title>Ubuntu Hello</title>
+  <defs>
+    <clipPath id="badge">
+      <circle cx="64" cy="63" r="54"/>
+    </clipPath>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5"
+                    flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <!-- Light badge carrying Yaru's tonal split: lighter below, as the light is above. -->
+    <g clip-path="url(#badge)">
+      <rect x="0" y="0" width="128" height="64" fill="#d5d5d5"/>
+      <rect x="0" y="64" width="128" height="64" fill="#eaeaea"/>
+    </g>
+    <!-- Dark inner disc in Yaru's dominant tone; flat so every rasteriser matches. -->
+    <circle cx="64" cy="63" r="42" fill="#5d5d5d"/>
+    <!-- Glyph: a face, light on the disc; features knocked out in the disc tone. -->
+    <circle cx="60" cy="60" r="25" fill="#d8d8d8"/>
+    <circle cx="51" cy="54" r="3.6" fill="#5d5d5d"/>
+    <circle cx="69" cy="54" r="3.6" fill="#5d5d5d"/>
+    <path d="M48 66 q12 11 24 0" fill="none" stroke="#5d5d5d" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Check badge: recognised. Dark ring separates it from the face. -->
+    <circle cx="83" cy="80" r="14.5" fill="#5d5d5d"/>
+    <circle cx="83" cy="80" r="11.5" fill="#d8d8d8"/>
+    <path d="M76.5 80.5l4.5 4.5 9-9.5" fill="none" stroke="#5d5d5d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

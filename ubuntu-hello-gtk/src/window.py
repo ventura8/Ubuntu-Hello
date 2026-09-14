@@ -67,6 +67,13 @@ class MainWindow(gtk.Window):
 		self.window = self.builder.get_object("mainwindow")
 		self.userlist = self.builder.get_object("userlist")
 		self.modellistbox = self.builder.get_object("modellistbox")
+		# Reminder shown while exactly one model is enrolled: a single model
+		# recorded in one kind of light fails intermittently in another (see
+		# onboarding.prepare_second_scan), so nudge towards a second one.
+		self.single_model_infobar = self.builder.get_object("single_model_infobar")
+		if self.single_model_infobar:
+			self.single_model_infobar.add_button(i18n._("Add a second model"), gtk.ResponseType.OK)
+			self.single_model_infobar.connect("response", self.on_single_model_infobar_response)
 		self.opencvimage = self.builder.get_object("opencvimage")
 
 		self.keyring_status_label = self.builder.get_object("keyring_status_label")
@@ -104,6 +111,7 @@ class MainWindow(gtk.Window):
 
 		self.load_model_list()
 		self.update_keyring_status()
+		self.load_notification_settings()
 
 		# Restore notebook / search / geometry after rebuild
 		if restore.get("page") is not None and self.notebook is not None:
@@ -300,6 +308,10 @@ class MainWindow(gtk.Window):
 		def walk(node):
 			if node is None:
 				return
+			# A collapsed InfoBar (e.g. the single-model reminder) is not on
+			# screen: its text must not attract the fuzzy search.
+			if isinstance(node, gtk.InfoBar) and not node.get_revealed():
+				return
 			try:
 				if isinstance(node, gtk.Label):
 					text = node.get_text() or ""
@@ -402,6 +414,7 @@ class MainWindow(gtk.Window):
 		query = (entry.get_text() or "").strip()
 		best_tab = None
 		best_score = -1.0
+		best_tab_label_match = False
 
 		for page_info in self._search_row_baselines:
 			page_index = page_info["page_index"]
@@ -440,9 +453,16 @@ class MainWindow(gtk.Window):
 
 			page_info["page"].set_visible(True)
 
-			if page_match and page_best > best_score:
+			# A hit on the tab label itself outranks an equal-score hit buried
+			# in a page's body text (subsequence matching is generous on long
+			# descriptions: "kyrng" also matches a paragraph on another page).
+			tab_label_match = fuzzy_match(query, tab_text)
+			better = page_best > best_score or (
+				page_best == best_score and tab_label_match and not best_tab_label_match)
+			if page_match and better:
 				best_score = page_best
 				best_tab = page_index
+				best_tab_label_match = tab_label_match
 
 		if query and best_tab is not None and self.notebook is not None:
 			if self.notebook.get_current_page() != best_tab:
@@ -505,6 +525,18 @@ class MainWindow(gtk.Window):
 				self.listmodel.append(items)
 
 		self.treeview.set_model(self.listmodel)
+		self.update_single_model_reminder()
+
+	def update_single_model_reminder(self):
+		"""Reveal the second-model reminder only while exactly one model exists."""
+		if not getattr(self, "single_model_infobar", None):
+			return
+		count = len(self.listmodel) if getattr(self, "listmodel", None) is not None else 0
+		self.single_model_infobar.set_revealed(count == 1)
+
+	def on_single_model_infobar_response(self, infobar, response):
+		if response == gtk.ResponseType.OK:
+			self.on_model_add(None)
 
 	def on_about_link(self, label, uri):
 		"""Open links on about page as a non-root user"""
@@ -705,7 +737,6 @@ def setup_theme():
 
 # Class is split so it isn't too long, import split functions
 import tab_models
-MainWindow.on_user_add = tab_models.on_user_add
 MainWindow.on_user_change = tab_models.on_user_change
 MainWindow.on_model_add = tab_models.on_model_add
 MainWindow.on_model_delete = tab_models.on_model_delete
@@ -713,6 +744,11 @@ import tab_video
 MainWindow.on_page_switch = tab_video.on_page_switch
 MainWindow.capture_frame = tab_video.capture_frame
 MainWindow.on_camera_change = tab_video.on_camera_change
+import tab_notifications
+MainWindow.load_notification_settings = tab_notifications.load_notification_settings
+MainWindow.on_notifications_enabled_state_set = tab_notifications.on_notifications_enabled_state_set
+MainWindow.on_notifications_sound_state_set = tab_notifications.on_notifications_sound_state_set
+MainWindow.on_notifications_details_state_set = tab_notifications.on_notifications_details_state_set
 import tab_keyring
 MainWindow.update_keyring_status = tab_keyring.update_keyring_status
 MainWindow.on_keyring_enable = tab_keyring.on_keyring_enable

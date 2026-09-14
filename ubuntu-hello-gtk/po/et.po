@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,92 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Lisage teine ​​mudel"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Loodud"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Silt"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "Automaatne"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Luba võtmehoidja/KWallet avamine"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Sisestage kasutaja <b>{}</b> parool {} ({}) avamiseks:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "Parool"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "Näomudelite lisamine"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello skannib teie nägu kaks korda: üks kord praegu ja veel kor"
+"d erineva valgustuse korral (näiteks õhtuvalgustid päevavalguse asemel"
+"), nii et tuvastab teid usaldusväärselt igal kellaajal. Esimese mudeli"
+" salvestamiseks vajutage nuppu Scan."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "Palun vaadake otse kaamerasse"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "Käivitage näo skaneerimine"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Andmefailid on juba alla laaditud!\nJätkamiseks klõpsake nuppu Edasi"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "Viga andmefailide allalaadimisel"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Valmis!\nJätkamiseks klõpsake nuppu Edasi"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "Viga OpenCV2 importimisel"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "Proovige cv2 uuesti installida"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "Süsteemist ei leitud ühtegi veebikaamerat"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +108,39 @@ msgstr ""
 "Kui olete kindel, et ühilduv kaamera on ühendatud, konfigureerige oma "
 "kaamera ise"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "Ei, kaamerat ei saa avada"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "Ei, mitte infrapunakaamera"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "Jah, ühilduv infrapunakaamera"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "Kaamera identifikaator või tee"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "Soovitatav"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "Viga kaamera valimisel"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "Valitud kaamerat ei saa avada"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "Proovige valida mõni muu"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +150,58 @@ msgstr ""
 "-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nIR"
 "-saatja lubamiseks"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "Palun vaadake otse kaamerasse"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "Seadistus valgustus 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "Käivitage näo skaneerimine"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "Seadistus valgustus 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "Näomudelit ei saa salvestada"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "Skanni teine mudel"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "Teist mudelit ei õnnestunud salvestada"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"Teie esimene mudel on salvestatud, nii et näoga sisselogimine juba toi"
+"mib. Ruum peab ikka olema piisavalt hele, et näha teie nägu – muutke v"
+"algustust, mitte ei lülita seda välja – ja proovige uuesti või jätke v"
+"ahele ja lisage mudel hiljem menüüst Seaded."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "Teine skaneerimine: erinev valgustus"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"Esimene mudel salvestatud. Nüüd muutke valgustust – näiteks lülitage l"
+"amp sisse või välja, liikuge aknast eemale või kasutage muud ruumivalg"
+"ustit – hoidke oma nägu selgelt nähtaval, seejärel vajutage uuesti nup"
+"pu Skanni."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello seadistus"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +211,7 @@ msgstr ""
 "t (tuvastatud rahakott: {}).\n\n<b>TPM-i olek:</b> TPM-i riistvara ja "
 "tööriistade kontrollimine..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +221,7 @@ msgstr ""
 "t (tuvastatud rahakott: {}).\n\n<b>TPM-i olek:</b> tuvastati TPM-i rii"
 "stvara. <i>tpm2-tools</i> automaatne installimine..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +231,7 @@ msgstr ""
 "t (tuvastatud rahakott: {}).\n\n<b>TPM-i olek:</b> riistvara TPM 2.0 a"
 "ktiivne. Teie parool on TPM-is turvaliselt suletud."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -177,7 +245,7 @@ msgstr ""
 "ivitage <code>sudo apt install tpm2-tools</code>. Naasmine tarkvarapõh"
 "ise mandaadi vahemällu."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -188,51 +256,62 @@ msgstr ""
 "tuvastatud. Tarkvarapõhise mandaadi vahemällu (AES-256-GCM) kasutamine"
 "."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:916 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Võtmehoidja avamise keelamine ebaõnnestus: {}"
+
+#: src/onboarding.py:922
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Võtmehoidja avamiseks ei õnnestunud tuvastada mittejuursüsteemi kasuta"
 "jat"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:935 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Parool ei tohi olla tühi"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:939 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Kasutaja {} vale parool"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:951 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "tundmatu viga"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Võtmehoidja avamise lubamine ebaõnnestus: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Võtmehoidja avamise keelamine ebaõnnestus: {}"
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Võtmerõnga avamise lubamine ebaõnnestus: käivitatavat faili ubuntu-hel"
+"lo ei leitud"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr "Võtmerõnga avamise lubamine ebaõnnestus: lubamise ootamine aegus"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "Viga võtmehoidja avamisel"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "Viga raadionuppude lugemisel"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Seadistamise hoiatus"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Kindluseelistust ei saanud salvestada, kuid muidu on häälestus lõpule "
 "viidud."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Viga"
 
@@ -244,51 +323,37 @@ msgstr "Laadimine..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Autentimine"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Kinnitage kasutaja loomine"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Sisestage selle kasutaja kasutajanimi, kelle soovite kausta Ubuntu Hel"
-"lo lisada"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Kasutajanimi:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "Kinnitage mudeli loomine"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Palun sisestage uue mudeli nimi, maksimaalselt 24 tähemärki"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Mudeli nimi:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "Mudeli loomine"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "Viga mudeli lisamisel, veakood {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "Kinnitage mudeli kustutamine"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Kas olete kindel, et soovite mudeli {id} ({name}) kustutada?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -357,64 +422,120 @@ msgstr "Kas soovite kindlasti keelata kasutaja {} võtmehoidja/KWallet avamise?"
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Võtmehoidja/KWallet avamine on kasutaja {} jaoks keelatud."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "Märguandeseadet ei saanud salvestada"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfiguratsioon"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfiguratsioon"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "Otsinguseaded"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "Kuvatakse salvestatud mudelid:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Lisa uus kasutaja"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Registreeritud on ainult üks näomudel. Valgustus muudab seda, kuidas t"
+"eie nägu kaamerale paistab, nii et üks mudel võib õhtul lampide all (v"
+"õi päevavalguses) ebaõnnestuda. Lisage teine ​​mudel, mis on salvestat"
+"ud erinevas valguses, et hoida lukustuse avamine igal kellaajal usaldu"
+"sväärsena."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "Lisa"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "Mudelid"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "Kaamera ID:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "Tegelik eraldusvõime:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "Kasutatud eraldusvõime:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "Salvesti:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "Märguanded"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Töölaua märguanne kuvatakse samal ajal, kui Ubuntu Hello otsib teie nä"
+"gu ja edastab seejärel tulemuse. Ebaõnnestunud katsed jäävad teavitust"
+"e loendisse."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "Kuva märguanded"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr "Üks kaart näo autentimise katse kohta, mida värskendatakse tulemusega."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "Märguandehelid"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Esitage süsteemiheli tuvastatud või ebaõnnestunud katse korral."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "Kaasake diagnostika"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"Lisage igale kaardile mudel, kindlus vs läviväärtus, raamid, kaamera j"
+"a ajastus. Kasulik probleemist teatamisel."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Võtmehoidja / KWallet automaatne avamine"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -428,51 +549,51 @@ msgstr ""
 "inult juurjuurdepääsu põhivõtit. Näo autentimine määrab PAM_AUTHTOK pa"
 "m_gnome_keyring või pam_kwallet5 jaoks olenevalt teie töölauast."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "Praegune olek:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "Kontrollimine..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "Luba automaatne avamine"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "Keela automaatne avamine"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "Võtmehoidja"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "Kuvakeel"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "Keel"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Automaatne järgib süsteemi keelt. Muudatused rakenduvad kohe."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "Näo autentimine Linuxi jaoks"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "Versioon teadmata"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -480,19 +601,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Ava GitHubi link<"
 "/a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "Umbes"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "Tere tulemast Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "Seadistamine on tehtud!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -511,7 +632,7 @@ msgstr ""
 "Selle akna sulgemiseks ja Ubuntu Hello konfiguraatori avamiseks vajuta"
 "ge allpool nuppu Lõpeta."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -520,19 +641,19 @@ msgstr ""
 "t avada, kasutades näo autentimist, vältides pärast sisselogimist paro"
 "oli küsimist."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Luba automaatne võtmehoidja/KWallet avamine"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "Kinnitage parool"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "Kindluspoliitika määramine"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -542,11 +663,11 @@ msgstr ""
 "nagi täpselt sama, mis salvestatud näomudel. Sellel lehel saate määrat"
 "a, kui range peab Ubuntu Hello olema."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "Kiire"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -554,11 +675,11 @@ msgstr ""
 "Võimaldab hägusamaid vasteid, \nkuid kiirendab oluliselt skannimisprot"
 "sessi."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "Tasakaalustatud"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -566,11 +687,11 @@ msgstr ""
 "Ikka suhteliselt kiire avastamine, \nkuid kaugemal olles ei pruugi tei"
 "d sisse logida."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "Turvaline"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -578,35 +699,35 @@ msgstr ""
 "Veidi turvalisem variant, \nkuid teie autentimine võtab palju kauem ae"
 "ga"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Näomudeli lisamine"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "Jäta praegu vahele"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"Teie autentimiseks peab Ubuntu Hello salvestama teie näomudeli, et tei"
-"d ära tunda. Näoskannimise alustamiseks vajutage allolevat nuppu Scan."
+"Rohkem näomudeleid saad hiljem lisada Seadetest või käsuga: sudo ubunt"
+"u-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "Veebikaamera seadistamine"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "Kas infrapuna kiirgaja vilgub?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "jah"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "ei"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -618,15 +739,15 @@ msgstr ""
 "uvastamist kuvatakse kasutatavate veebikaamerate loend. Valige see, mi"
 "da soovite kasutada, ja klõpsake nuppu Edasi."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "Teie veebikaamerate testimine, palun oodake..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "Andmefailide allalaadimine"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -636,19 +757,19 @@ msgstr ""
 " andmestikku, mis laaditakse kohe alla. Allalaadimise edenemist näete "
 "allpool."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "Allalaadimise alustamine..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Tere tulemast Ubuntu Hello-sse!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "Versioon"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -656,15 +777,19 @@ msgstr ""
 "See viisard juhendab teid häälestusprotsessis ja konfigureerib automaa"
 "tselt Ubuntu Hello teie eest. Jätkamiseks vajutage Next."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "Tühista"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "Tagasi"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "Edasi"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "Lõpetage seadistamine"
 

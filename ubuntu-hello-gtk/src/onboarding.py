@@ -107,6 +107,16 @@ class OnboardingWindow(gtk.Window):
 		self.preview_capture = None
 		self.current_preview_path = None
 		self.preview_thread = None
+		# Slide 4 enrolls two models: pass 1 in the current light (required),
+		# pass 2 after the user changes the lighting (may be skipped) -- see
+		# prepare_second_scan for why. The why/how is explained up front on
+		# the slide so the second pass only needs a short instruction.
+		self.scan_pass = 1
+		self.models_enrolled = 0
+		self.slide4_device_path = None
+		# Bumped on every entry to / exit from the camera page: a scan thread
+		# from an earlier visit stops at its next device and never posts a list.
+		self.scan_generation = 0
 
 		self.window.set_default_size(800, 680)
 		self.window.set_position(gtk.WindowPosition.CENTER)
@@ -143,6 +153,8 @@ class OnboardingWindow(gtk.Window):
 		self.builder.get_object("finishbutton").hide()
 
 		self.window.current_slide = 0
+		# show_all() above also revealed "Start over": first page shows Cancel only.
+		self.update_navigation_buttons()
 
 		# Start GTK main loop if requested
 		if run_main_loop:
@@ -156,15 +168,18 @@ class OnboardingWindow(gtk.Window):
 
 		self.nextbutton.set_sensitive(False)
 
-		# Stop camera preview if moving away from slide 2
-		if self.window.current_slide == 2:
+		# Stop camera preview if moving away from slide 2 or 4
+		if self.window.current_slide in (2, 4):
 			self.stop_preview()
+		if self.window.current_slide == 2:
+			self.cancel_camera_scan()
 
 		self.slides[self.window.current_slide].hide()
 		self.slides[self.window.current_slide + 1].show()
 		self.window.current_slide += 1
 		# the shown child may have zero/wrong dimensions
 		self.slidecontainer.queue_resize()
+		self.update_navigation_buttons()
 
 		if self.window.current_slide == 1:
 			self.execute_slide1()
@@ -181,6 +196,88 @@ class OnboardingWindow(gtk.Window):
 		elif self.window.current_slide == 7:
 			self.execute_slide7()
 
+	def update_navigation_buttons(self):
+		"""Cancel only on the first page; every later page offers Back."""
+		on_first = self.window.current_slide == 0
+		cancel = self.builder.get_object("cancelbutton")
+		back = self.builder.get_object("backbutton")
+		if cancel:
+			cancel.set_visible(on_first)
+		if back:
+			back.set_visible(not on_first)
+
+	def reset_slide4(self):
+		"""Put the face-scan slide's widgets back into their first-pass state."""
+		self.scan_pass = 1
+		heading = self.builder.get_object("label4")
+		if heading:
+			heading.set_text(_("Adding your face models"))
+		description = self.builder.get_object("label5")
+		if description:
+			description.set_text(_("Ubuntu Hello will scan your face twice: once now, and once more in different lighting (for example evening lamps instead of daylight), so it recognises you reliably at any time of day. Press Scan to record the first model."))
+		instruction = self.builder.get_object("slide4_instruction_label")
+		if instruction:
+			instruction.set_text(_("Please look directly into the camera"))
+		scanbutton = self.builder.get_object("scanbutton")
+		if scanbutton:
+			scanbutton.set_label(_("Start face scan"))
+			scanbutton.set_sensitive(True)
+		skipbutton = self.builder.get_object("skipsecondbutton")
+		if skipbutton:
+			skipbutton.hide()
+
+	def go_prev_slide(self, button=None):
+		"""Go back one page, undoing what the current page started.
+
+		Models already saved on the face-scan page stay saved: coming back to
+		that page resumes at the second scan instead of recording a third.
+		"""
+		current = self.window.current_slide
+		if current <= 0:
+			return
+		target = current - 1
+
+		# Leave the current page cleanly.
+		if current in (2, 4):
+			self.stop_preview(clear_image=True)
+		if current == 2:
+			self.cancel_camera_scan()
+		if current == 3 and getattr(self, "capture", None) is not None:
+			try:
+				self.capture.release()
+			except Exception:
+				pass
+			self.capture = None
+		if current == 7:
+			# The last page swapped Next for Finish; undo that.
+			finish = self.builder.get_object("finishbutton")
+			if finish:
+				finish.hide()
+			self.nextbutton.show()
+		# The IR-emitter question is skipped automatically for non-IR cameras:
+		# never land the user on a page that would bounce them forward again.
+		if target == 3 and not getattr(self, "slide3_shown", False):
+			target = 2
+
+		self.slides[current].hide()
+		self.slides[target].show()
+		self.window.current_slide = target
+		self.slidecontainer.queue_resize()
+		self.update_navigation_buttons()
+		self.enable_next()
+
+		# Re-enter the previous page.
+		if target == 1:
+			self.execute_slide1()
+		elif target == 2:
+			gobject.timeout_add(10, self.execute_slide2)
+		elif target == 4:
+			self.execute_slide4()
+		elif target == 5:
+			self.execute_slide5()
+		elif target == 6:
+			self.execute_slide6()
+
 	def execute_slide1(self):
 		self.downloadoutputlabel = self.builder.get_object("downloadoutputlabel")
 		eventbox = self.builder.get_object("downloadeventbox")
@@ -189,6 +286,13 @@ class OnboardingWindow(gtk.Window):
 		if os.path.exists(paths_factory.dlib_data_dir_path() / "shape_predictor_5_face_landmarks.dat"):
 			self.downloadoutputlabel.set_text(_("Datafiles have already been downloaded!\nClick Next to continue"))
 			self.enable_next()
+			return
+
+		# Came back while a download is still running: just watch it again.
+		proc = getattr(self, "proc", None)
+		if proc is not None and getattr(self, "download_queue", None) is not None and proc.poll() is None:
+			self.nextbutton.set_sensitive(False)
+			gobject.timeout_add(50, self.update_download_gui)
 			return
 
 		self.proc = subprocess.Popen(["./install.sh"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=paths_factory.dlib_data_dir_path())
@@ -240,10 +344,35 @@ class OnboardingWindow(gtk.Window):
 		self.loadinglabel = self.builder.get_object("loadinglabel")
 		self.devicelistbox = self.builder.get_object("devicelistbox")
 
-		threading.Thread(target=self.scan_cameras_thread, daemon=True).start()
+		# Re-entered via Back: drop the previous device list before rescanning,
+		# otherwise every visit stacks another list under the preview. Next
+		# stays disabled until the new scan has posted its list.
+		self.clear_camera_list()
+		self.loadinglabel.show()
+		self.nextbutton.set_sensitive(False)
 
-	def scan_cameras_thread(self):
+		self.scan_generation += 1
+		threading.Thread(target=self.scan_cameras_thread, args=(self.scan_generation,), daemon=True).start()
+
+	def clear_camera_list(self):
+		"""Remove the device list (if any) from the camera page."""
+		previous = getattr(self, "scrolled_window", None)
+		if previous is not None and getattr(self, "devicelistbox", None) is not None:
+			try:
+				self.devicelistbox.remove(previous)
+			except Exception:
+				pass
+		self.scrolled_window = None
+		self.treeview = None
+
+	def cancel_camera_scan(self):
+		"""Stop a running camera scan (user left the page with Back or Next)."""
+		self.scan_generation += 1
+
+	def scan_cameras_thread(self, generation=None):
 		import numpy as np
+		if generation is None:
+			generation = self.scan_generation
 		try:
 			import cv2
 		except Exception:
@@ -259,6 +388,8 @@ class OnboardingWindow(gtk.Window):
 
 		# Loop though all devices
 		for dev in device_ids:
+			if generation != self.scan_generation:
+				return  # the user left the page: stop probing, post nothing
 			time.sleep(.5)
 
 			# The full path to the device is the default name
@@ -365,9 +496,16 @@ class OnboardingWindow(gtk.Window):
 
 		device_rows = sorted(device_rows, key=lambda k: -k[2])
 
-		GLib.idle_add(self.update_camera_list_gui, device_rows)
+		if generation != self.scan_generation:
+			return
+		GLib.idle_add(self.update_camera_list_gui, device_rows, generation)
 
-	def update_camera_list_gui(self, device_rows):
+	def update_camera_list_gui(self, device_rows, generation=None):
+		# A scan that finished after the user left (or re-entered) the page
+		# must not add a second list.
+		if generation is not None and generation != self.scan_generation:
+			return False
+		self.clear_camera_list()
 		self.treeview = gtk.TreeView()
 		self.treeview.set_vexpand(True)
 
@@ -412,24 +550,32 @@ class OnboardingWindow(gtk.Window):
 		self.enable_next()
 
 		self.treeview.get_selection().connect("changed", self.on_camera_selection_changed)
+		# Keep the camera the user already chose (this run, or the one saved
+		# in the config) selected; fall back to the best-ranked device.
+		default_index = 0
+		remembered = self.remembered_device_path()
+		if remembered:
+			for index, row in enumerate(device_rows):
+				if row[1] == remembered:
+					default_index = index
+					break
 		if len(device_rows) > 0:
-			self.treeview.set_cursor(0)
+			self.treeview.set_cursor(default_index)
 
-		# Ensure preview is started for the first device if selection did not trigger it
+		# Ensure preview is started for the selected device if selection did not trigger it
 		if device_rows and not self.current_preview_path and not self.preview_thread:
-			default_path = device_rows[0][1]
+			default_path = device_rows[default_index][1]
 			self.preview_image = self.builder.get_object("preview_image")
 			self.current_preview_path = default_path
 			self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(default_path,), daemon=True)
 			self.preview_thread.start()
 
-	def execute_slide3(self):
-		try:
-			import cv2
-		except Exception:
-			self.show_error(_("Error while importing OpenCV2"), _("Try reinstalling cv2"))
-
-		selection = self.treeview.get_selection()
+	def selected_camera(self):
+		"""(model, iter) of the camera selected on the camera page, or (None, None)."""
+		treeview = getattr(self, "treeview", None)
+		selection = treeview.get_selection() if treeview is not None else None
+		if selection is None:
+			return None, None
 		model, treeiter = selection.get_selected()
 		if treeiter is None:
 			model, rowlist = selection.get_selected_rows()
@@ -437,15 +583,37 @@ class OnboardingWindow(gtk.Window):
 				try:
 					treeiter = model.get_iter(rowlist[0])
 				except Exception:
-					pass
-		
+					treeiter = None
+		return model, treeiter
+
+	def remembered_device_path(self):
+		"""The camera to preselect: chosen earlier in this run, else the configured one."""
+		chosen = getattr(self, "slide4_device_path", None)
+		if chosen:
+			return chosen
+		try:
+			import configparser
+			parser = configparser.ConfigParser()
+			parser.read(paths_factory.config_file_path())
+			return parser.get("video", "device_path", fallback="") or ""
+		except Exception:
+			return ""
+
+	def execute_slide3(self):
+		try:
+			import cv2
+		except Exception:
+			self.show_error(_("Error while importing OpenCV2"), _("Try reinstalling cv2"))
+
+		model, treeiter = self.selected_camera()
 		if treeiter is None:
 			self.show_error(_("Error selecting camera"))
 			return
-   
+
 		device_path = model.get_value(treeiter, 2)
 		is_gray = model.get_value(treeiter, 3)
 
+		self.slide3_shown = bool(is_gray)
 		if is_gray:
 			# test if linux-enable-ir-emitter help should be displayed, 
 			# the user must click on the yes/no button which calls the method slide3_button_yes|no
@@ -473,16 +641,7 @@ class OnboardingWindow(gtk.Window):
 		self.builder.get_object("leienobutton").hide()
 
 	def execute_slide4(self):
-		selection = self.treeview.get_selection()
-		model, treeiter = selection.get_selected()
-		if treeiter is None:
-			model, rowlist = selection.get_selected_rows()
-			if len(rowlist) == 1:
-				try:
-					treeiter = model.get_iter(rowlist[0])
-				except Exception:
-					pass
-
+		model, treeiter = self.selected_camera()
 		if treeiter is None:
 			self.show_error(_("Error selecting camera"))
 			return
@@ -494,8 +653,12 @@ class OnboardingWindow(gtk.Window):
 			self.proc = subprocess.Popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 		self.window.set_focus(self.builder.get_object("scanbutton"))
+		skipbutton = self.builder.get_object("skipsecondbutton")
+		if skipbutton:
+			skipbutton.hide()  # only the second scan can be skipped
 
 		# Start preview on slide 4 preview image
+		self.slide4_device_path = device_path
 		self.preview_image = self.slide4_preview_image
 		self.current_preview_path = None
 		self.stop_preview()
@@ -503,38 +666,147 @@ class OnboardingWindow(gtk.Window):
 		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
 		self.preview_thread.start()
 
+		# Back to this page after the first scan: resume at the second one.
+		if self.models_enrolled >= 1:
+			self.scan_pass = 2
+			self.prepare_second_scan()
+		else:
+			self.reset_slide4()
+
 	def on_scanbutton_click(self, button):
 		# Stop camera preview to avoid device-busy conflict during face scan, but keep the image visible
 		self.stop_preview(clear_image=False)
 
-		status = self.proc.wait(2)
+		if self.scan_pass == 1:
+			proc = getattr(self, "proc", None)
+			if proc is not None:
+				try:
+					proc.wait(2)
+				except Exception:
+					pass
 
 		# Change button label to instruction text and disable it
 		scanbutton = button or self.builder.get_object("scanbutton")
 		if scanbutton:
 			scanbutton.set_label(_("Please look directly into the camera"))
 			scanbutton.set_sensitive(False)
+		skipbutton = self.builder.get_object("skipsecondbutton")
+		if skipbutton:
+			skipbutton.set_sensitive(False)
 
 		# Wait a bit to allow the user to read the message
 		gobject.timeout_add(600, self.run_add)
 
+	# Model labels are passed explicitly so `ubuntu-hello list` / Settings show
+	# which lighting each wizard model was recorded in (max 24 chars, no commas).
+	def scan_model_label(self):
+		if self.models_enrolled == 0:
+			return _("Setup lighting 1")
+		return _("Setup lighting 2")
+
 	def run_add(self):
-		res = subprocess.run(["ubuntu-hello", "-y", "add"], capture_output=True, text=True)
+		res = subprocess.run(["ubuntu-hello", "-y", "add", self.scan_model_label()], capture_output=True, text=True)
 		status, output = res.returncode, res.stdout + res.stderr
 
 		print("ubuntu-hello add output:")
 		print(output)
 
+		scanbutton = self.builder.get_object("scanbutton")
+		skipbutton = self.builder.get_object("skipsecondbutton")
+
 		if status != 0:
-			# Restore button state in case of error (though exit will close the app)
-			scanbutton = self.builder.get_object("scanbutton")
-			if scanbutton:
-				scanbutton.set_label(_("Start face scan"))
-				scanbutton.set_sensitive(True)
-			self.show_error(_("Can't save face model"), output)
+			if self.models_enrolled == 0:
+				# First (required) scan failed: restore the button; show_error exits.
+				if scanbutton:
+					scanbutton.set_label(_("Start face scan"))
+					scanbutton.set_sensitive(True)
+				self.show_error(_("Can't save face model"), output)
+			else:
+				# The first model is already saved: a failed second scan must not
+				# kill the wizard. Explain, and let the user retry or skip.
+				if scanbutton:
+					scanbutton.set_label(_("Scan second model"))
+					scanbutton.set_sensitive(True)
+				if skipbutton:
+					skipbutton.set_sensitive(True)
+				reason = output.strip().splitlines()[-1] if output.strip() else ""
+				self.show_warning(
+					_("Couldn't record the second model"),
+					_("Your first model is saved, so face login already works. The room must still be bright enough to see your face — change the light rather than turning it off — then try again, or skip and add a model later from Settings.")
+					+ ("\n\n" + reason if reason else ""),
+				)
+				self.restart_slide4_preview()
+			return False
+
+		self.models_enrolled += 1
+
+		if self.scan_pass == 1:
+			self.scan_pass = 2
+			self.prepare_second_scan()
+			return False
 
 		gobject.timeout_add(10, self.go_next_slide)
 		return False
+
+	def prepare_second_scan(self):
+		"""Turn slide 4 into the second pass.
+
+		Why a second model: a face match is a distance to the stored model, and
+		lighting moves that distance a lot. A single model recorded in daylight
+		often lands just past the certainty threshold in the evening under lamps
+		(or the other way round), which shows up as intermittent "timeout
+		reached" failures rather than a clean error. A second model recorded in
+		different light gives the matcher a close neighbour for both cases.
+		The user was told this up front on the slide, so the copy here is short.
+		"""
+		heading = self.builder.get_object("label4")
+		description = self.builder.get_object("label5")
+		instruction = self.builder.get_object("slide4_instruction_label")
+		scanbutton = self.builder.get_object("scanbutton")
+		skipbutton = self.builder.get_object("skipsecondbutton")
+
+		if heading:
+			heading.set_text(_("Second scan: different lighting"))
+		if description:
+			description.set_text(_("First model saved. Now change the light — for example turn a lamp on or off, move away from the window, or use the other room light — keep your face clearly visible, then press Scan again."))
+		if instruction:
+			instruction.set_text(_("Please look directly into the camera"))
+		if scanbutton:
+			scanbutton.set_label(_("Scan second model"))
+			scanbutton.set_sensitive(True)
+		if skipbutton:
+			skipbutton.set_sensitive(True)
+			skipbutton.show()
+		self.restart_slide4_preview()
+		if scanbutton:
+			self.window.set_focus(scanbutton)
+
+	def restart_slide4_preview(self):
+		"""Re-open the live preview on slide 4 after `ubuntu-hello add` released the camera."""
+		device_path = getattr(self, "slide4_device_path", None)
+		if not device_path:
+			return
+		self.preview_image = self.slide4_preview_image
+		self.stop_preview(clear_image=False)
+		self.current_preview_path = device_path
+		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
+		self.preview_thread.start()
+
+	def on_skipsecondbutton_click(self, button=None):
+		"""Skip the second scan (only offered once the first model is saved)."""
+		if self.models_enrolled == 0:
+			return
+		self.stop_preview(clear_image=False)
+		gobject.timeout_add(10, self.go_next_slide)
+
+	def show_warning(self, text, secondary=""):
+		"""Non-fatal dialog (show_error exits the wizard)."""
+		dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.WARNING, buttons=gtk.ButtonsType.CLOSE)
+		dialog.set_title(_("Ubuntu Hello Setup"))
+		dialog.props.text = text
+		dialog.format_secondary_text(secondary)
+		dialog.run()
+		dialog.destroy()
 
 	def execute_slide5(self):
 		self.enable_next()
@@ -818,8 +1090,21 @@ class OnboardingWindow(gtk.Window):
 			# leave this loop spinning on failed reads with no visible
 			# preview and no error ("stuck testing webcams").
 			real_path = os.path.realpath(device_path)
-			cap = cv2.VideoCapture(real_path)
-			if not cap.isOpened():
+			# The device needs a moment to settle after `ubuntu-hello add`
+			# released it; retry briefly instead of leaving a dead preview.
+			for attempt in range(6):
+				cap = cv2.VideoCapture(real_path)
+				if cap.isOpened():
+					break
+				try:
+					cap.release()
+				except Exception:
+					pass
+				cap = None
+				if self.current_preview_path != device_path:
+					return
+				time.sleep(0.4)
+			if cap is None:
 				return
 
 			if self.current_preview_path != device_path:

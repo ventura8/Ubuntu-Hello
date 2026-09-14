@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,92 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "לייג אַ צווייט מאָדעל"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "באשאפן"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "לאַבעל"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "אָטאַמאַטיק"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "געבן Keyring / KWallet אַנלאַקינג"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "אַרייַן פּאַראָל פֿאַר באַניצער <b>{}</b> צו ופשליסן {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "שפּריכוואָרט"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "אַדינג דיין פּנים מאָדעלס"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello וועט יבערקוקן דיין פּנים צוויי מאָל: אַמאָל איצט, און אַמ"
+"אָל מער אין פאַרשידענע לייטינג (למשל אָוונט לאַמפּס אַנשטאָט פון טאָגל"
+"יכט), אַזוי עס אנערקענט איר רילייאַבלי אין קיין צייט פון טאָג. דרוק סק"
+"אַן צו רעקאָרדירן דער ערשטער מאָדעל."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "ביטע קוק גלייַך אין די אַפּאַראַט"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "אָנהייב פּנים יבערקוקן"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "דאַטאַפילעס האָבן שוין דאַונלאָודיד!\nדריקט ווייַטער צו פאָרזעצן"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "טעות בשעת דאַונלאָודינג דאַטן טעקעס"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "געטאן!\nדריקט ווייַטער צו פאָרזעצן"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "טעות בשעת ימפּאָרטינג OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "פּרוּווט ריינסטאַלירן cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "קיין וועבקאַמס געפונען אויף סיסטעם"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +108,39 @@ msgstr ""
 "ביטע קאַנפיגיער דיין אַפּאַראַט זיך אויב איר זענט זיכער אַז אַ קאַמפּא"
 "ַטאַבאַל אַפּאַראַט איז קאָננעקטעד"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "ניין, די אַפּאַראַט קענען ניט זיין געעפנט"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "ניין, נישט אַן ינפרערעד אַפּאַראַט"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "יאָ, קאַמפּאַטאַבאַל ינפרערעד אַפּאַראַט"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "אַפּאַראַט ידענטיפיער אָדער דרך"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "רעקאַמענדיד"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "טעות סאַלעקטינג אַפּאַראַט"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "די אויסגעקליבן אַפּאַראַט קענען ניט זיין געעפנט"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "פּרוּווט צו אויסקלייַבן אנדערן איינער"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -120,19 +149,58 @@ msgstr ""
 "ביטע באַזוכן\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">⟦0001⟧</a>\nצו געבן דיין יר עמיטער"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "ביטע קוק גלייַך אין די אַפּאַראַט"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "סעטאַפּ לייטינג 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "אָנהייב פּנים יבערקוקן"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "סעטאַפּ לייטינג 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "קענען ניט ראַטעווען פּנים מאָדעל"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "יבערקוקן צווייט מאָדעל"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "קען נישט רעקאָרדירן די צווייטע מאָדעל"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"דיין ערשטער מאָדעל איז געראטעוועט, אַזוי פּנים לאָגין אַרבעט שוין. די "
+"צימער מוזן נאָך זיין העל גענוג צו זען דיין פּנים - טוישן די ליכט אלא ו"
+"וי קערן עס אַוועק - און פּרובירן ווידער, אָדער האָפּקען און לייגן אַ מ"
+"אָדעל שפּעטער פֿון סעטטינגס."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "צווייטע יבערקוקן: פאַרשידענע לייטינג"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"ערשטער מאָדעל געראטעוועט. איצט טוישן די ליכט - פֿאַר בייַשפּיל קער אַ "
+"לאָמפּ אויף אָדער אַוועק, מאַך אַוועק פון די פֿענצטער, אָדער נוצן די א"
+"נדערע צימער ליכט - האַלטן דיין פּנים קלאר קענטיק, און דריקן סקאַן וויד"
+"ער."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello סעטאַפּ"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -142,7 +210,7 @@ msgstr ""
 "שאַן (דיטעקטאַד בייַטל: {}).\n\n<b>טפּם סטאַטוס:</b> קאָנטראָלירן די ט"
 "פּם ייַזנוואַרג און מכשירים ..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -152,7 +220,7 @@ msgstr ""
 "שאַן (דיטעקטאַד בייַטל: {}).\n\n<b>טפּם סטאַטוס:</b> טפּם ייַזנוואַרג "
 "דיטעקטאַד. ינסטאָלינג <i>tpm2-tools</i> אויטאָמאַטיש ..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -162,7 +230,7 @@ msgstr ""
 "שאַן (דיטעקטאַד בייַטל: {}).\n\n<b>טפּם סטאַטוס:</b> האַרדוואַרע טפּם "
 "2.0 אַקטיוו. דיין פּאַראָל וועט זיין סיקיורלי געחתמעט אין די TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -176,7 +244,7 @@ msgstr ""
 "ניט אַנדערש. לויפן <code>sudo apt install tpm2-tools</code>. פאַלן צור"
 "יק צו ווייכווארג-באזירט קראַדענטשאַל קאַטשינג."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -187,51 +255,64 @@ msgstr ""
 "אַרג דיטעקטאַד. ניצן ווייכווארג-באזירט קראַדענטשאַל קאַטשינג (AES-256-"
 "GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:916 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "ניט אַנדערש צו דיסייבאַל אַנלאַקינג שליסל: {}"
+
+#: src/onboarding.py:922
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "קען נישט ידענטיפיצירן ניט-וואָרצל סיסטעם באַניצער פֿאַר אַנלאַקינג שלי"
 "סלען"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:935 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "שפּריכוואָרט קען נישט זיין ליידיק"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:939 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "אומרעכט פּאַראָל פֿאַר באַניצער {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:951 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "אומבאַקאַנט טעות"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "ניט אַנדערש צו געבן אַנלאַקינג שליסלרינג: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "ניט אַנדערש צו דיסייבאַל אַנלאַקינג שליסל: {}"
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"ניט אַנדערש צו געבן אַנלאַקינג אַנלאַקינג: ubuntu-hello עקסעקוטאַבלע נ"
+"יט געפֿונען"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"ניט אַנדערש צו געבן אַנלאַקינג שליסלרינג: טיימד אויס ווארטן פֿאַר שליס"
+"לרינג געבן"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "קיירינג אַנלאַקינג טעות"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "טעות לייענען ראַדיאָ קנעפּלעך"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello סעטאַפּ ווארענונג"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "קען נישט ראַטעווען זיכערקייט ייבערהאַנט, אָבער סעטאַפּ איז אַנדערש גאַ"
 "נץ."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello טעות"
 
@@ -243,51 +324,37 @@ msgstr "לאָדן..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello אָטענטאַקיישאַן"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "באַשטעטיקן באַניצער קרעאַטיאָן"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"ביטע אַרייַן די באַניצער נאָמען פון די באַניצער איר ווילן צו לייגן צו "
-"Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "באנוצער נאמען:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "באַשטעטיקן מאָדעל קרעאַטיאָן"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "ביטע אַרייַן אַ נאָמען פֿאַר די נייַע מאָדעל, מאַקסימום 24 אותיות"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "מאָדעל נאָמען:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "שאפן מאָדעל"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "טעות בשעת אַדינג מאָדעל, טעות קאָד {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "באַשטעטיקן מאָדעל דילעשאַן"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "זענט איר זיכער אַז איר ווילט ויסמעקן די מאָדעל {id} ({name})?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -358,64 +425,122 @@ msgstr ""
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "אַנלאַקינג שליסלרינג / KWallet פאַרקריפּלט פֿאַר באַניצער {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "קען נישט ראַטעווען די אָנזאָג באַשטעטיקן"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello קאַנפיגיעריישאַן"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello קאַנפיגיעריישאַן"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "זוכן סעטטינגס"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "ווייזונג געראטעוועט מאָדעלס פֿאַר:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "לייג אַ נייַע באַניצער"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"בלויז איין פּנים מאָדעל איז ענראָולד. לייטינג ענדערונגען ווי דיין פּני"
+"ם קוקט צו די אַפּאַראַט, אַזוי אַ איין מאָדעל קענען פאַרלאָזן אין די א"
+"ָוונט אונטער לאַמפּס (אָדער אין טאָגליכט). לייג אַ צווייט מאָדעל רעקאָ"
+"רדעד אין פאַרשידענע ליכט צו האַלטן אַנלאַקינג פאַרלאָזלעך אין קיין ציי"
+"ט פון טאָג."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "לייג"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "ויסמעקן"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "מאָדעלס"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "אַפּאַראַט ID:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "פאַקטיש האַכלאָטע:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "געוויינט האַכלאָטע:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "רעקאָרדער:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "ווידעא"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "נאָוטאַפאַקיישאַנז"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"א דעסקטאַפּ אָנזאָג ווייזט בשעת Ubuntu Hello קוקט פֿאַר דיין פּנים, או"
+"ן ריפּאָרץ דער רעזולטאַט. ניט אַנדערש פרווון בלייבן אין דער אָנזאָג רש"
+"ימה."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "ווייַזן נאָוטאַפאַקיישאַנז"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr ""
+"איין קאָרט פּער פּנים-אָטענטאַקיישאַן פּרווון, דערהייַנטיקט אין פּלאַץ"
+" מיט דער רעזולטאַט."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "אָנזאָג סאָונדס"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "שפּיל די סיסטעם געזונט פֿאַר אַ דערקענט אָדער ניט אַנדערש פּרווון."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "אַרייַננעמען דיאַגנאָסטיקס"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"לייג די מאָדעל, זיכערקייט ווס שוועל, ראָמען, אַפּאַראַט און טיימינג צו"
+" יעדער קאָרט. נוציק ווען ריפּאָרטינג אַ פּראָבלעם."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "קיירינג / KWallet אַוטאָ ופשליסן"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -429,53 +554,53 @@ msgstr ""
 "אָרצל-בלויז בעל שליסל. PAM_AUTHTOK פֿאַר pam_gnome_keyring אָדער pam_k"
 "wallet5 דיפּענדינג אויף דיין דעסקטאַפּ."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "יעצטיגע סטאטוס:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "טשעק..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "געבן אַוטאָ ופשליסן"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "דיסייבאַל אַוטאָ ופשליסן"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "קיירינג"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "וויַז־שפּראַך"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "שפּראַך"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "אויטאָמאַטיש פֿאָלגט די סיסטעם־שפּראַך. ענדערונגען ווערן גלײַך אָנגעוו"
 "ענדט."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "פאַסיאַל אָטענטאַקיישאַן פֿאַר לינוקס"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "ווערסיע אומבאַקאַנט"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -483,19 +608,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">עפֿן GitHub לינק<"
 "/a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "וועגן"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "ברוכים הבאים צו Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "סעטאַפּ איז געטאן!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -514,7 +639,7 @@ msgstr ""
 " סעטטינגס אָדער לייגן נאָך מאָדעלס. דרוק ענדיקן אונטן צו פאַרמאַכן דעם"
 " פֿענצטער און עפענען די Ubuntu Hello קאָנפיגוראַטאָר."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -523,19 +648,19 @@ msgstr ""
 "Wallet ניצן פּנים אָטענטאַקיישאַן, פּרעווענטינג פּאַראָל פּראַמפּס נאָ"
 "ך לאָגינג אין."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "געבן אָטאַמאַטיק שליסלרינג / KWallet אַנלאַקינג"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "באַשטעטיקן פּאַראָל"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "באַשטעטיקן אַ זיכערקייט פּאָליטיק"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -545,11 +670,11 @@ msgstr ""
 "ם גלייַכן איז קיינמאָל פּונקט די זעלבע ווי די סטאָרד פּנים מאָדעל. אוי"
 "ף דעם בלאַט איר קענען שטעלן ווי שטרענג Ubuntu Hello זאָל זיין."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "שנעל"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -557,11 +682,11 @@ msgstr ""
 "אַלאַוז מער פאַזי שוועבעלעך, \nאָבער ספּידז אַרויף די סקאַנינג פּראָצע"
 "ס זייער."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "באַלאַנסט"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -569,47 +694,46 @@ msgstr ""
 "נאָך לעפיערעך שנעל דיטעקשאַן, \nאָבער קען נישט קלאָץ אין ווען ווייַטער"
 " אַוועק."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "זיכער"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
 msgstr ""
 "די ביסל סאַפער אָפּציע, \nאָבער וועט נעמען פיל מער צו אָטענטאַקייט איר"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "אַדינג אַ פּנים מאָדעל"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "האָפּקען פֿאַר איצט"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"צו אָטענטאַקייט איר Ubuntu Hello דאַרף ראַטעווען אַ מאָדעל פון דיין פּ"
-"נים צו דערקענען איר. דריקן די סקאַן קנעפּל אונטן צו אָנהייבן די פיישאַ"
-"ל יבערקוקן."
+"איר קענען לייגן מער פּנים מאָדעלס שפּעטער פֿון סעטטינגס אָדער מיט: sud"
+"o ubuntu-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "קאַנפיגיערינג וועבקאַם"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "איז די ינפרערעד עמיטער פלאַשינג?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "יאָ"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "ניין"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -621,15 +745,15 @@ msgstr ""
 "of usable webcams will be shown. קלייַבן דער איינער איר ווילן צו נוצן "
 "און גיט ווייַטער."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "טעסטינג דיין וועבקאַמס, ביטע וואַרטן ..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "דאַונלאָודינג דאַטן טעקעס"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -639,19 +763,19 @@ msgstr ""
 "ען צו דערקענען איר, וואָס וועט זיין דאַונלאָודיד איצט. איר קענען זען ד"
 "י אראפקאפיע פּראָגרעס אונטן."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "סטאַרטינג אראפקאפיע ..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "ברוכים הבאים צו Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "ווערסיע"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -659,15 +783,19 @@ msgstr ""
 "דער מאַזעק וועט פירן איר דורך די סעטאַפּ פּראָצעס און אויטאָמאַטיש קאַ"
 "נפיגיער Ubuntu Hello פֿאַר איר. דרוק ווייַטער צו פאָרזעצן."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "באָטל מאַכן"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "צוריק"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "ווייַטער"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "ענדיקן סעטאַפּ"
 

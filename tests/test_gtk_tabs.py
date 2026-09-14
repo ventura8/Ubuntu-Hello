@@ -643,42 +643,6 @@ class TestKeyringDetails:
 # ── Additional tab_models tests ──────────────────────────────────────
 
 class TestTabModelsDetails:
-    def test_on_user_add_ok(self):
-        mock = MagicMock()
-        mock.userlist = MagicMock()
-        mock.userlist.items = 5
-        
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 1  # ResponseType.OK
-        
-        mock_entry = MagicMock()
-        mock_entry.get_text.return_value = "newuser"
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("tab_models.gtk.Entry", return_value=mock_entry):
-            
-            tab_models.on_user_add(mock, MagicMock())
-            mock.userlist.append_text.assert_called_with("newuser")
-            mock.userlist.set_active.assert_called_with(5)
-            assert mock.userlist.items == 6
-            assert mock.active_user == "newuser"
-            mock.load_model_list.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
-
-    def test_on_user_add_cancel(self):
-        mock = MagicMock()
-        mock.userlist = MagicMock()
-        mock.userlist.items = 5
-
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 2  # ResponseType.CANCEL
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("tab_models.gtk.Entry"):
-            
-            tab_models.on_user_add(mock, MagicMock())
-            mock.userlist.append_text.assert_not_called()
-
     def test_on_model_add_no_user(self):
         mock = MagicMock()
         mock.userlist.items = 0

@@ -39,6 +39,7 @@ sources = files(
     'src/search_fuzzy.py',
     'src/tab_keyring.py',
     'src/tab_models.py',
+    'src/tab_notifications.py',
     'src/tab_video.py',
     'src/theme_detect.py',
     'src/version_display.py',
@@ -86,6 +87,19 @@ install_data(
     'src/logo.png',
     install_dir: get_option('prefix') / get_option('datadir') / 'pixmaps',
     rename: 'ubuntu-hello-gtk.png',
+    install_tag: 'meta'
+)
+
+# Vector app icon (Yaru Settings idiom) + symbolic variant for the shell;
+# src/logo*.png are rasterised from icons/ubuntu-hello-gtk.svg.
+install_data(
+    'icons/ubuntu-hello-gtk.svg',
+    install_dir: get_option('prefix') / get_option('datadir') / 'icons' / 'hicolor' / 'scalable' / 'apps',
+    install_tag: 'meta'
+)
+install_data(
+    'icons/ubuntu-hello-gtk-symbolic.svg',
+    install_dir: get_option('prefix') / get_option('datadir') / 'icons' / 'hicolor' / 'symbolic' / 'apps',
     install_tag: 'meta'
 )
 

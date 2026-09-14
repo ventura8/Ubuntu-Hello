@@ -101,6 +101,8 @@ def settings_ui(prefs_file):
 		def walk(node):
 			if node is None:
 				return
+			if isinstance(node, Gtk.InfoBar) and not node.get_revealed():
+				return  # collapsed reminder text is not on screen
 			if isinstance(node, Gtk.Label):
 				text = node.get_text() or node.get_label() or ""
 				if text:
@@ -186,9 +188,9 @@ class TestSettingsWindowSmoke:
 
 	def test_notebook_tabs_present_and_switchable(self, settings_ui):
 		notebook = settings_ui["notebook"]
-		assert notebook.get_n_pages() == 5
+		assert notebook.get_n_pages() == 6
 		labels = []
-		for i in range(5):
+		for i in range(6):
 			page = notebook.get_nth_page(i)
 			tab = notebook.get_tab_label(page)
 			labels.append((tab.get_text() if tab else "") or "")
@@ -198,6 +200,7 @@ class TestSettingsWindowSmoke:
 		joined = " ".join(labels).casefold()
 		assert "models" in joined
 		assert "video" in joined
+		assert "notifications" in joined
 		assert "keyring" in joined
 		assert "language" in joined
 		assert "about" in joined
@@ -320,7 +323,7 @@ class TestSettingsWindowSmoke:
 		rows_by_page = settings_ui["rows_by_page"]
 		# Fuzzy typo for Language tab content
 		apply_search("langag")
-		language = rows_by_page[3]
+		language = rows_by_page[4]   # Models, Video, Notifications, Keyring, Language
 		assert any(r.get_visible() for r in language["rows"])
 		apply_search("")
 		for info in rows_by_page:
@@ -332,7 +335,7 @@ class TestSettingsWindowSmoke:
 		_pump()
 		# Subsequence / fuzzy for Keyring
 		settings_ui["apply_search"]("kyrng")
-		assert notebook.get_current_page() == 2
+		assert notebook.get_current_page() == 3   # Models, Video, Notifications, Keyring
 
 	def test_no_restart_note_on_language_tab(self, settings_ui):
 		note = settings_ui["builder"].get_object("language_restart_note")

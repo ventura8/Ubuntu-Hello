@@ -9,6 +9,7 @@ from __future__ import annotations
 import os
 import sys
 import subprocess
+from unittest.mock import patch
 from pathlib import Path
 import pytest
 import numpy as np
@@ -33,7 +34,7 @@ class TestSettingsWindowLifecycleAndTheme:
 			assert win.window is not None
 			assert win.window.get_visible()
 			assert win.notebook is not None
-			assert win.notebook.get_n_pages() == 5
+			assert win.notebook.get_n_pages() == 6
 			assert win.settings_search is not None
 			assert win.language_combo is not None
 			assert win.version_label is not None
@@ -65,6 +66,26 @@ class TestSettingsModelsTab:
 			assert len(model) == 2
 			assert model[0][0] == "0"
 			assert model[0][2] == "MyFace"
+			# Two models -> no second-model reminder
+			infobar = win.builder.get_object("single_model_infobar")
+			assert infobar is not None
+			assert not infobar.get_revealed()
+
+			# Exactly one model -> reminder revealed with an "Add a second model" action
+			monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(
+				cmd, 0, stdout="0,2026-08-21 12:00:00,MyFace\n" if "list" in cmd else "Success\n", stderr=""))
+			win.load_model_list()
+			gtk_pump()
+			assert len(win.treeview.get_model()) == 1
+			assert infobar.get_revealed()
+			assert "second model" in win.builder.get_object("single_model_label").get_text()
+			with patch.object(win, "on_model_add") as add:
+				infobar.response(Gtk.ResponseType.OK)
+				add.assert_called_once()
+			monkeypatch.setattr(subprocess, "run", fake_run)
+			win.load_model_list()
+			gtk_pump()
+			assert not infobar.get_revealed()
 
 			# Test Add Model
 			add_btn = win.builder.get_object("addbutton")
@@ -207,13 +228,70 @@ class TestSettingsFuzzySearch:
 			win.on_settings_search_changed(search_entry)
 			gtk_pump()
 
-			# Should switch notebook to Keyring tab (index 2)
-			assert win.notebook.get_current_page() == 2
+			# Should switch notebook to Keyring tab (index 3: Models, Video, Notifications, Keyring, ...)
+			assert win.notebook.get_current_page() == 3
 
 			# Clear search entry
 			search_entry.set_text("")
 			win.on_settings_search_changed(search_entry)
 			gtk_pump()
+		finally:
+			win.window.destroy()
+			gtk_pump()
+
+
+class TestNotificationsTab:
+	def test_switches_reflect_and_write_config(self, isolated_fs, monkeypatch, gtk_pump):
+		import configparser
+		import paths_factory
+		cfg = paths_factory.config_file_path()
+		monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(cmd, 0, stdout="", stderr=""))
+		# Start from: enabled, no sound, no details (with a comment that must survive)
+		with open(cfg, "a", encoding="utf-8") as fh:
+			fh.write("\n[notifications]\n# keep me\nenabled = true\nsound = false\ndetails = false\n")
+
+		win = window.MainWindow(run_main_loop=False)
+		try:
+			tab = win.builder.get_object("notificationstab")
+			assert tab is not None and tab.get_text() == "Notifications"
+			en = win.builder.get_object("notifications_enabled_switch")
+			snd = win.builder.get_object("notifications_sound_switch")
+			det = win.builder.get_object("notifications_details_switch")
+			assert en.get_active() and not snd.get_active() and not det.get_active()
+			assert snd.get_sensitive() and det.get_sensitive()
+
+			# Toggle sound on -> written to [notifications] sound, comment preserved
+			snd.set_active(True)
+			gtk_pump()
+			text = open(cfg, encoding="utf-8").read()
+			assert "# keep me" in text
+			parser = configparser.ConfigParser()
+			parser.read(cfg)
+			assert parser.getboolean("notifications", "sound") is True
+			assert parser.getboolean("notifications", "enabled") is True
+			# Other sections untouched
+			assert parser.get("core", "certainty") == "3.5"
+
+			# Disabling notifications greys out the dependent switches
+			en.set_active(False)
+			gtk_pump()
+			assert not snd.get_sensitive() and not det.get_sensitive()
+			parser.read(cfg)
+			assert parser.getboolean("notifications", "enabled") is False
+		finally:
+			win.window.destroy()
+			gtk_pump()
+
+	def test_search_finds_notifications_tab(self, isolated_fs, monkeypatch, gtk_pump):
+		monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(cmd, 0, stdout="", stderr=""))
+		win = window.MainWindow(run_main_loop=False)
+		try:
+			entry = win.builder.get_object("settings_search")
+			entry.set_text("sounds")
+			win.on_settings_search_changed(entry)
+			gtk_pump()
+			assert win.notebook.get_current_page() == 2
+			assert win.builder.get_object("notifications_sound_switch_row").get_visible()
 		finally:
 			win.window.destroy()
 			gtk_pump()

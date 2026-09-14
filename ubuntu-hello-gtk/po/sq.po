@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Shtoni një model të dytë"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Krijuar"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Etiketa"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "Automatik"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Aktivizo zhbllokimin e kyçjes/KWallet"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Fut fjalëkalimin për përdoruesin <b>{}</b> për të zhbllokuar {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "Fjalëkalimi"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "Shtimi i modeleve të fytyrës suaj"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello do të skanojë fytyrën tuaj dy herë: një herë tani dhe një"
+" herë tjetër në ndriçim të ndryshëm (për shembull llambat e mbrëmjes n"
+"ë vend të dritës së ditës), në mënyrë që t'ju njohë me siguri në çdo k"
+"ohë të ditës. Shtypni Scan për të regjistruar modelin e parë."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "Ju lutemi shikoni direkt në kamerë"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "Filloni skanimin e fytyrës"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Skedarët e të dhënave tashmë janë shkarkuar!\nKliko Next për të vazhdu"
 "ar"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "Gabim gjatë shkarkimit të skedarëve të të dhënave"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "U krye!\nKliko Next për të vazhduar"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "Gabim gjatë importimit të OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "Provoni të riinstaloni cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "Nuk u gjet asnjë webcam në sistem"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +109,39 @@ msgstr ""
 "Ju lutemi konfiguroni vetë kamerën tuaj nëse jeni i sigurt se është li"
 "dhur një kamerë e përputhshme"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "Jo, kamera nuk mund të hapet"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "Jo, jo një aparat fotografik infra të kuqe"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "Po, kamera e përputhshme me rreze infra të kuqe"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "Identifikuesi ose shtegu i kamerës"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "Rekomanduar"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "Gabim në zgjedhjen e kamerës"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "Kamera e zgjedhur nuk mund të hapet"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "Mundohuni të zgjidhni një tjetër"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +151,58 @@ msgstr ""
 "-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>"
 "\npër të aktivizuar emetuesin tuaj ir"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "Ju lutemi shikoni direkt në kamerë"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "Konfigurim ndriçimi 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "Filloni skanimin e fytyrës"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "Konfigurim ndriçimi 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "Modeli i fytyrës nuk mund të ruhet"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "Skano modelin e dytë"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "Modeli i dytë nuk u regjistrua dot"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"Modeli juaj i parë është ruajtur, kështu që identifikimi me fytyrë tas"
+"hmë funksionon. Dhoma duhet të jetë ende mjaft e ndritshme për të parë"
+" fytyrën tuaj - ndryshoni dritën në vend që ta fikni - më pas provoni "
+"përsëri ose kaloni dhe shtoni një model më vonë nga \"Cilësimet\"."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "Skanimi i dytë: ndriçim i ndryshëm"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"Modeli i parë u ruajt. Tani ndryshoni dritën - për shembull ndizni ose"
+" fikni një llambë, largohuni nga dritarja ose përdorni dritën tjetër t"
+"ë dhomës - mbajeni fytyrën tuaj të dukshme, më pas shtypni përsëri Ska"
+"no."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Konfigurimi i Ubuntu Hello"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -144,7 +212,7 @@ msgstr ""
 "rtetimin e fytyrës (portofoli i zbuluar: {}).\n\n<b>Statusi TPM:</b> P"
 "o kontrollon pajisjen dhe mjetet e TPM..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -154,7 +222,7 @@ msgstr ""
 "rtetimin e fytyrës (portofoli i zbuluar: {}).\n\n<b>Statusi TPM:</b> U"
 " zbulua hardueri TPM. Po instalohet automatikisht <i>tpm2-tools</i>..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -165,7 +233,7 @@ msgstr ""
 "ardware TPM 2.0 aktiv. Fjalëkalimi juaj do të vuloset në mënyrë të sig"
 "urt brenda TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -179,7 +247,7 @@ msgstr ""
 "toi. Ekzekutoni <code>sudo apt install tpm2-tools</code>. Rikthimi te "
 "ruajtja e kredencialeve të bazuara në softuer."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -190,51 +258,64 @@ msgstr ""
 "uk u zbulua asnjë pajisje TPM. Përdorimi i ruajtjes së kredencialeve t"
 "ë bazuara në softuer (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:916 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Dështoi në çaktivizimin e shkyçjes së çelësave: {}"
+
+#: src/onboarding.py:922
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Nuk mund të identifikohej përdoruesi i sistemit jo-root për zhbllokimi"
 "n e çelësave"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:935 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Fjalëkalimi nuk mund të jetë bosh"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:939 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Fjalëkalim i pasaktë për përdoruesin {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:951 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "gabim i panjohur"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Aktivizimi i shkyçjes së çelësave dështoi: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Dështoi në çaktivizimin e shkyçjes së çelësave: {}"
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Aktivizimi i shkyçjes së unazës së çelësave dështoi: skedari i ekzekut"
+"ueshëm ubuntu-hello nuk u gjet"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Aktivizimi i shkyçjes së unazës së çelësave dështoi: kaloi koha e prit"
+"jes për aktivizimin"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "Gabim në zhbllokimin e tastës"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "Gabim gjatë leximit të butonave të radios"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Paralajmërim i konfigurimit"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Preferenca e sigurisë nuk mund të ruhej, por përndryshe konfigurimi ka"
 " përfunduar."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Gabim"
 
@@ -246,51 +327,37 @@ msgstr "Po ngarkohet..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Autentifikimi"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Konfirmo krijimin e përdoruesit"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Ju lutemi shkruani emrin e përdoruesit të përdoruesit që dëshironi të "
-"shtoni te Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Emri i përdoruesit:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "Konfirmo krijimin e modelit"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Ju lutemi vendosni një emër për modelin e ri, maksimumi 24 karaktere"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Emri i modelit:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "Krijimi i modelit"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "Gabim gjatë shtimit të modelit, kodi i gabimit {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "Konfirmo fshirjen e modelit"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Jeni i sigurt që dëshironi të fshini modelin {id} ({name})?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -361,64 +428,122 @@ msgstr ""
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Zhbllokimi i çelësave/KWallet është çaktivizuar për përdoruesin {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "Cilësimi i njoftimit nuk mund të ruhej"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigurimi"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigurimi"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "Cilësimet e kërkimit"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "Duke shfaqur modelet e ruajtura për:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Shto përdorues të ri"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Është regjistruar vetëm një model fytyre. Ndriçimi ndryshon pamjen e f"
+"ytyrës suaj ndaj kamerës, kështu që një model i vetëm mund të dështojë"
+" në mbrëmje nën llamba (ose në dritën e ditës). Shto një model të dytë"
+" të regjistruar në dritë të ndryshme për të mbajtur zhbllokimin të bes"
+"ueshëm në çdo kohë të ditës."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "Shtoni"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "Fshije"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "Modelet"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "ID-ja e kamerës:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "Rezolucioni i vërtetë:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "Rezolucioni i përdorur:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "Regjistruesi:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "Njoftimet"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Një njoftim desktopi shfaqet ndërsa Ubuntu Hello kërkon fytyrën tuaj d"
+"he më pas raporton rezultatin. Përpjekjet e dështuara qëndrojnë në lis"
+"tën e njoftimeve."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "Shfaq njoftimet"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr ""
+"Një kartë për çdo përpjekje për vërtetim të fytyrës, e përditësuar në "
+"vend me rezultatin."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "Tingujt e njoftimit"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Luaj tingullin e sistemit për një përpjekje të njohur ose të dështuar."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "Përfshini diagnostikimin"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"Shtoni modelin, sigurinë kundrejt pragut, kornizat, kamerën dhe kohën "
+"në secilën kartë. E dobishme kur raportoni një problem."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Tastiera / KWallet Zhbllokimi automatik"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -433,51 +558,51 @@ msgstr ""
 "një. Face auth vendos PAM_AUTHTOK për pam_gnome_keyring ose pam_kwalle"
 "t5 në varësi të desktopit tuaj."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "Statusi aktual:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "Po kontrollon..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "Aktivizo shkyçjen automatike"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "Çaktivizo shkyçjen automatike"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "Mbajtëse çelësash"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "Gjuha e shfaqjes"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "Gjuha"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Automatike ndjek gjuhën e sistemit. Ndryshimet zbatohen menjëherë."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "Autentifikimi i fytyrës për Linux"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "Versioni i panjohur"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -485,19 +610,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Hap lidhjen GitHu"
 "b</a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "Rreth"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "Mirë se vini në Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "Konfigurimi është bërë!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -517,7 +642,7 @@ msgstr ""
 "htypni Finish më poshtë për të mbyllur këtë dritare dhe për të hapur K"
 "onfiguratorin Ubuntu Hello."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -526,19 +651,19 @@ msgstr ""
 "se KWallet duke përdorur vërtetimin e fytyrës, duke parandaluar kërkes"
 "at e fjalëkalimit pas hyrjes."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Aktivizo zhbllokimin automatik të çelësave/KWallet"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "Konfirmo fjalëkalimin"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "Vendosja e një politike sigurie"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -549,11 +674,11 @@ msgstr ""
 "ur të fytyrës. Në këtë faqe mund të vendosni se sa strikte duhet të je"
 "të Ubuntu Hello."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "Shpejt"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -561,11 +686,11 @@ msgstr ""
 "Lejon më shumë ndeshje të paqarta, \npor shpejton shumë procesin e ska"
 "nimit."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "E ekuilibruar"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -573,11 +698,11 @@ msgstr ""
 "Zbulim ende relativisht i shpejtë, \npor mund të mos ju identifikojë k"
 "ur jeni më larg."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "Sigurt"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -585,36 +710,35 @@ msgstr ""
 "Opsioni pak më i sigurt, \npor do të duhet shumë më tepër kohë për t'j"
 "u vërtetuar"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Shtimi i një modeli fytyre"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "Kapërce për tani"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"Për t'ju vërtetuar Ubuntu Hello duhet të ruani një model të fytyrës tu"
-"aj për t'ju njohur. Shtypni butonin Skano më poshtë për të filluar ska"
-"nimin e fytyrës."
+"Mund të shtoni më shumë modele fytyre më vonë nga Cilësimet ose me: su"
+"do ubuntu-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "Konfigurimi i kamerës së internetit"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "A pulson emetuesi infra të kuqe?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "po"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "nr"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -627,15 +751,15 @@ msgstr ""
 "hme në internet. Zgjidhni atë që dëshironi të përdorni dhe klikoni Nex"
 "t."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "Po teston kamerat tuaja të internetit, ju lutemi prisni..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "Shkarkimi i skedarëve të të dhënave"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -645,19 +769,19 @@ msgstr ""
 "sht për njohjen e fytyrës që të mund t'ju njohë, të cilat do të shkark"
 "ohen tani. Ju mund të shihni përparimin e shkarkimit më poshtë."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "Po fillon shkarkimi..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Mirë se vini në Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "Versioni"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -666,15 +790,19 @@ msgstr ""
 "nfigurojë automatikisht Ubuntu Hello për ju. Shtypni tjetër për të vaz"
 "hduar."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "Anulo"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "Mbrapa"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "Tjetra"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "Përfundo konfigurimin"
 

@@ -2,6 +2,12 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
+  <object class="GtkImage" id="iconback">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="margin-right">4</property>
+    <property name="icon-name">go-previous-symbolic</property>
+  </object>
   <object class="GtkImage" id="iconcancel">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -439,7 +445,7 @@ but will take much longer to authenticate you</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="margin-top">20</property>
-                <property name="label" translatable="yes">Adding a face model</property>
+                <property name="label" translatable="yes">Adding your face models</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -458,7 +464,7 @@ but will take much longer to authenticate you</property>
                 <property name="margin-right">10</property>
                 <property name="margin-top">10</property>
                 <property name="margin-bottom">20</property>
-                <property name="label" translatable="yes">To authenticate you Ubuntu Hello needs to save a model of your face to recognise you. Press the Scan button below to start the facial scan.</property>
+                <property name="label" translatable="yes">Ubuntu Hello will scan your face twice: once now, and once more in different lighting (for example evening lamps instead of daylight), so it recognises you reliably at any time of day. Press Scan to record the first model.</property>
                 <property name="justify">center</property>
                 <property name="wrap">True</property>
               </object>
@@ -534,7 +540,21 @@ but will take much longer to authenticate you</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkButton" id="skipsecondbutton">
+                    <property name="label" translatable="yes">Skip for now</property>
+                    <property name="visible">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="margin-right">50</property>
+                    <property name="relief">none</property>
+                    <property name="tooltip-text" translatable="yes">You can add more face models later from Settings or with: sudo ubuntu-hello add</property>
+                    <signal name="clicked" handler="on_skipsecondbutton_click" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>
@@ -907,6 +927,23 @@ but will take much longer to authenticate you</property>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="backbutton">
+                <property name="label" translatable="yes">Back</property>
+                <property name="visible">False</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="margin-left">10</property>
+                <property name="image">iconback</property>
+                <property name="always-show-image">True</property>
+                <signal name="clicked" handler="go_prev_slide" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>

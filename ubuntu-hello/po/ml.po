@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "പരാജയം, സമയപരിധി എത്തി"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "മുഖം തിരിച്ചറിയൽ ചിത്രം വളരെ ഇരുണ്ടതാണ്"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "അജ്ഞാത പിശക്:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
 msgid "Identified face as %s"
 msgstr "മുഖം %s ആയി തിരിച്ചറിഞ്ഞു"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:400
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "എൻ്റർ പ്രസ്സ് അയയ്‌ക്കുന്നതിന് അപര്യാപ്തമായ അനുമതികൾ, പകരം ഉപയോക്താവ് "
 "അമർത്തുന്നതിനായി കാത്തിരിക്കുന്നു"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:419 src/pam/main.cc:424
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "എൻ്റർ അമർത്തുന്നത് അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു, പകരം ഉപയോക്താവ് അമർത"
 "്തുന്നതിനായി കാത്തിരിക്കുന്നു"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:536
 msgid "Attempting facial authentication"
 msgstr "മുഖത്തിൻ്റെ ആധികാരികത ഉറപ്പാക്കാൻ ശ്രമിക്കുന്നു"
 
@@ -131,125 +131,225 @@ msgstr ""
 "ubuntu-hello കമാൻഡുകൾ റൂട്ടായി പ്രവർത്തിപ്പിക്കാൻ കഴിയില്ല, ദയവായി --u"
 "ser ഫ്ലാഗ് ഉപയോഗിച്ച് ഈ കമാൻഡ് പ്രവർത്തിപ്പിക്കുക"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "ഡാറ്റ ഫയലുകൾ ഡൗൺലോഡ് ചെയ്തിട്ടില്ല, ദയവായി ഇനിപ്പറയുന്ന കമാൻഡുകൾ പ്രവർ"
 "ത്തിപ്പിക്കുക:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "ലോഗിൻ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "തീയതി:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "സ്കാൻ സമയം:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "ഫ്രെയിമുകൾ:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "ഹോസ്റ്റിൻ്റെ പേര്:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "മികച്ച ഉറപ്പായ മൂല്യം:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "ആരംഭിക്കുന്നു..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "നിങ്ങളെ തിരിച്ചറിയുന്നു..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "പരാജയപ്പെട്ടു"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "എല്ലാ ഫ്രെയിമുകളും വളരെ ഇരുണ്ടതായിരുന്നു, കോൺഫിഗറിൽ ഇരുണ്ട_ത്രെഷോൾഡ് പ"
 "രിശോധിക്കുക"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ശരാശരി ഇരുട്ട്: {avg}, ത്രെഷോൾഡ്: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "ചെലവഴിച്ച സമയം"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "ആരംഭിക്കുന്നു"
 
-#: src/compare.py:458
+#: src/compare.py:647
 msgid "  Open cam + load libs: %dms"
 msgstr "ക്യാം + ലോഡ് ലിബുകൾ തുറക്കുക: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "ക്യാമറ തുറക്കുന്നു"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "തിരിച്ചറിയൽ ലിബുകൾ ഇറക്കുമതി ചെയ്യുന്നു"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "അറിയാവുന്ന മുഖം തിരയുന്നു"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "ആകെ സമയം"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
 "\nResolution"
 msgstr ""
 "\nറെസലൂഷൻ"
 
-#: src/compare.py:466
+#: src/compare.py:655
 msgid "  Native: %dx%d"
 msgstr "സ്വദേശി: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
 msgid "  Used: %dx%d"
 msgstr "ഉപയോഗിച്ചത്: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nഫ്രെയിമുകൾ തിരഞ്ഞു: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
 msgid "Black frames ignored: %d "
 msgstr "കറുത്ത ഫ്രെയിമുകൾ അവഗണിച്ചു: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
 msgid "Dark frames ignored: %d "
 msgstr "ഇരുണ്ട ഫ്രെയിമുകൾ അവഗണിച്ചു: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
 msgid "Certainty of winning frame: %.3f"
 msgstr "വിജയിച്ച ഫ്രെയിമിൻ്റെ ഉറപ്പ്: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
 msgid "Winning model: %d (\"%s\")"
 msgstr "വിജയിക്കുന്ന മോഡൽ: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "വിജയകരം"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "അംഗീകാരം"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "സ്ക്രീൻ അൺലോക്ക്"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "ടൈം ഔട്ട്"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "ലോഡ്"
+
+#: src/notify.py:419
+msgid "%s frames"
+msgstr "%s ഫ്രെയിമുകൾ"
+
+#: src/notify.py:421
+msgid "%s dark"
+msgstr "%s ഇരുണ്ട"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "നിൻ്റെ മുഖം തിരയുന്നു..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "മുഖം പ്രാമാണീകരണം"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "മുഖം തിരിച്ചറിഞ്ഞു"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "ഈ വെളിച്ചത്തിൽ ഒരു മോഡൽ ചേർക്കുക"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "ക്യാമറ പരിശോധിക്കുക"
+
+#: src/notify.py:491
+msgid "No match in %s"
+msgstr "%s-ൽ പൊരുത്തമില്ല"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "എൻറോൾ ചെയ്യുക: സുഡോ ഉബുണ്ടു-ഹലോ ചേർക്കുക"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "ഏറ്റവും അടുത്തത്"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "മുഖം തിരിച്ചറിഞ്ഞില്ല"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "വളരെ ഇരുട്ട്"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "ഒരു ലൈറ്റ് ഓണാക്കുക"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "ഇരുട്ട്"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "തത്സമയ പരിശോധന പരാജയപ്പെട്ടു"
+
+#: src/notify.py:526
+msgid "No face model for %s"
+msgstr "%s എന്നതിന് മുഖ മോഡലില്ല"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "മുഖം പ്രാമാണീകരണം ലഭ്യമല്ല"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "റദ്ദാക്കി"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "മുഖം പ്രാമാണീകരണം റദ്ദാക്കി"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

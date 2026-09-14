@@ -54,7 +54,23 @@ def main():
     override_file = os.path.join(override_dir, 'override.conf')
     try:
         with open(override_file, 'w') as f:
-            f.write("[Service]\nPrivateDevices=no\nDeviceAllow=char-video4linux rw\nDeviceAllow=/dev/uinput rw\n")
+            f.write(
+                "[Service]\n"
+                "PrivateDevices=no\n"
+                "DeviceAllow=char-video4linux rw\n"
+                "DeviceAllow=/dev/uinput rw\n"
+                # TPM-sealed keyring unlock: polkit >= 126 sandboxes the helper
+                # with DevicePolicy=strict + ProtectSystem=strict, which blocks
+                # /dev/tpmrm0 and the transient .ctx files under tpm-keys/.
+                "DeviceAllow=char-tpm rw\n"
+                "DeviceAllow=/dev/tpm0 rw\n"
+                "ReadWritePaths=/etc/ubuntu-hello/tpm-keys\n"
+                # ProtectHome=yes also hides /run/user (the session bus): the
+                # desktop notification could never reach the user from a
+                # polkit prompt. /run/ubuntu-hello: root-only notification state.
+                "ProtectHome=read-only\n"
+                "ReadWritePaths=-/run/ubuntu-hello\n"
+            )
         os.chmod(override_file, 0o644)
         print(f"Configured Polkit systemd helper override at {override_file}")
     except OSError as e:

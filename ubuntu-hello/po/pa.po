@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "ਅਸਫਲਤਾ, ਸਮਾਂ ਸਮਾਪਤ ਹੋ ਗਿਆ"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "ਚਿਹਰਾ ਪਛਾਣ ਚਿੱਤਰ ਬਹੁਤ ਗੂੜ੍ਹਾ ਹੈ"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "ਅਗਿਆਤ ਤਰੁੱਟੀ:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
 msgid "Identified face as %s"
 msgstr "%s ਵਜੋਂ ਪਛਾਣਿਆ ਚਿਹਰਾ"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:400
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "ਐਂਟਰ ਦਬਾਓ ਭੇਜਣ ਲਈ ਨਾਕਾਫ਼ੀ ਅਨੁਮਤੀਆਂ, ਇਸਦੀ ਬਜਾਏ ਉਪਭੋਗਤਾ ਨੂੰ ਦਬਾਉਣ ਦੀ ਉਡੀ"
 "ਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:419 src/pam/main.cc:424
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "ਐਂਟਰ ਦਬਾਓ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ, ਇਸਦੀ ਬਜਾਏ ਉਪਭੋਗਤਾ ਇਸਨੂੰ ਦਬਾਉਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹ"
 "ਾ ਹੈ"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:536
 msgid "Attempting facial authentication"
 msgstr "ਚਿਹਰੇ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
@@ -126,125 +126,225 @@ msgstr ""
 "ubuntu-hello ਕਮਾਂਡਾਂ ਨੂੰ ਰੂਟ ਵਜੋਂ ਨਹੀਂ ਚਲਾਇਆ ਜਾ ਸਕਦਾ, ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਕਮ"
 "ਾਂਡ ਨੂੰ --user ਫਲੈਗ ਨਾਲ ਚਲਾਓ"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "ਡਾਟਾ ਫਾਈਲਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਕਮਾਂ"
 "ਡਾਂ ਚਲਾਓ:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "ਲਾਗਿਨ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ਮਿਤੀ:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "ਸਕੈਨ ਸਮਾਂ:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "ਫਰੇਮ:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "ਹੋਸਟਨਾਮ:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "ਵਧੀਆ ਨਿਸ਼ਚਿਤਤਾ ਮੁੱਲ:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "ਤੁਹਾਡੀ ਪਛਾਣ..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "ਅਸਫਲ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "ਸਾਰੇ ਫਰੇਮ ਬਹੁਤ ਹਨੇਰੇ ਸਨ, ਕਿਰਪਾ ਕਰਕੇ ਸੰਰਚਨਾ ਵਿੱਚ ਡਾਰਕ_ਥ੍ਰੈਸ਼ਹੋਲਡ ਦੀ ਜਾਂ"
 "ਚ ਕਰੋ"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ਔਸਤ ਹਨੇਰਾ: {avg}, ਥ੍ਰੈਸ਼ਹੋਲਡ: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "ਸਮਾਂ ਬਿਤਾਇਆ"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:458
+#: src/compare.py:647
 msgid "  Open cam + load libs: %dms"
 msgstr "ਕੈਮ + ਲੋਡ ਲਿਬਸ ਖੋਲ੍ਹੋ: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "ਕੈਮਰਾ ਖੋਲ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "ਮਾਨਤਾ libs ਨੂੰ ਆਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "ਜਾਣੇ-ਪਛਾਣੇ ਚਿਹਰੇ ਦੀ ਖੋਜ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "ਕੁੱਲ ਸਮਾਂ"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
 "\nResolution"
 msgstr ""
 "\nਮਤਾ"
 
-#: src/compare.py:466
+#: src/compare.py:655
 msgid "  Native: %dx%d"
 msgstr "ਮੂਲ: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
 msgid "  Used: %dx%d"
 msgstr "ਵਰਤਿਆ ਗਿਆ: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nਫ੍ਰੇਮ ਖੋਜੇ ਗਏ: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
 msgid "Black frames ignored: %d "
 msgstr "ਕਾਲੇ ਫਰੇਮਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕੀਤਾ ਗਿਆ: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
 msgid "Dark frames ignored: %d "
 msgstr "ਗੂੜ੍ਹੇ ਫਰੇਮਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕੀਤਾ ਗਿਆ: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
 msgid "Certainty of winning frame: %.3f"
 msgstr "ਫਰੇਮ ਜਿੱਤਣ ਦੀ ਨਿਸ਼ਚਿਤਤਾ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
 msgid "Winning model: %d (\"%s\")"
 msgstr "ਜੇਤੂ ਮਾਡਲ: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "ਸਫਲ"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "ਅਧਿਕਾਰ"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "ਸਕਰੀਨ ਅਨਲੌਕ"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "ਸਮਾਂ ਖ਼ਤਮ"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "ਲੋਡ"
+
+#: src/notify.py:419
+msgid "%s frames"
+msgstr "%s ਫਰੇਮ"
+
+#: src/notify.py:421
+msgid "%s dark"
+msgstr "%s ਹਨੇਰਾ"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "ਤੁਹਾਡਾ ਚਿਹਰਾ ਲੱਭ ਰਿਹਾ ਹੈ..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "ਚਿਹਰਾ ਪ੍ਰਮਾਣਿਕਤਾ"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "ਚਿਹਰਾ ਪਛਾਣਿਆ"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "ਇਸ ਰੋਸ਼ਨੀ ਵਿੱਚ ਇੱਕ ਮਾਡਲ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "ਕੈਮਰੇ ਦੀ ਜਾਂਚ ਕਰੋ"
+
+#: src/notify.py:491
+msgid "No match in %s"
+msgstr "%s ਵਿੱਚ ਕੋਈ ਮੇਲ ਨਹੀਂ"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "ਨਾਮ ਦਰਜ ਕਰੋ: ਸੁਡੋ ਉਬੰਟੂ-ਹੈਲੋ ਐਡ"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "ਸਭ ਤੋਂ ਨੇੜੇ"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "ਚਿਹਰਾ ਪਛਾਣਿਆ ਨਹੀਂ ਗਿਆ"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "ਬਹੁਤ ਹਨੇਰਾ"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "ਇੱਕ ਰੋਸ਼ਨੀ ਚਾਲੂ ਕਰੋ"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "ਹਨੇਰਾ"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "ਜੀਵਿਤਤਾ ਜਾਂਚ ਅਸਫਲ ਰਹੀ"
+
+#: src/notify.py:526
+msgid "No face model for %s"
+msgstr "%s ਲਈ ਚਿਹਰੇ ਦਾ ਕੋਈ ਮਾਡਲ ਨਹੀਂ"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "ਚਿਹਰਾ ਪ੍ਰਮਾਣੀਕਰਨ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "ਰੱਦ ਕਰ ਦਿੱਤਾ"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "ਚਿਹਰਾ ਪ੍ਰਮਾਣੀਕਰਨ ਰੱਦ ਕੀਤਾ ਗਿਆ"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

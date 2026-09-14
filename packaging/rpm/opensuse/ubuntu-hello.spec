@@ -36,6 +36,7 @@ Requires:       curl
 Requires:       bzip2
 Requires:       v4l-utils
 Requires:       tpm2.0-tools
+Requires:       glib2-tools
 Requires:       pam
 Recommends:     ubuntu-hello-gtk = %{version}-%{release}
 
@@ -104,6 +105,7 @@ fi
 /usr/share/bash-completion/completions/ubuntu-hello
 /usr/share/man/man1/ubuntu-hello.1*
 /usr/share/pam-configs/ubuntu-hello
+/usr/lib/tmpfiles.d/ubuntu-hello.conf
 /etc/pam.d/ubuntu-hello-verify
 /usr/share/ubuntu-hello/
 %dir /etc/ubuntu-hello
@@ -117,6 +119,8 @@ fi
 %{_libdir}/ubuntu-hello-gtk/
 /usr/share/applications/ubuntu-hello-gtk.desktop
 /usr/share/pixmaps/ubuntu-hello-gtk.png
+/usr/share/icons/hicolor/scalable/apps/ubuntu-hello-gtk.svg
+/usr/share/icons/hicolor/symbolic/apps/ubuntu-hello-gtk-symbolic.svg
 /usr/share/ubuntu-hello-gtk/
 /usr/share/polkit-1/actions/com.github.ventura8.ubuntu-hello-gtk.policy
 /usr/share/locale/*/LC_MESSAGES/ubuntu-hello-gtk.mo

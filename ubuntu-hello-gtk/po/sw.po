@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,92 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Ongeza mfano wa pili"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Imeundwa"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Lebo"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "Otomatiki"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Washa Uwekaji Ufunguo/KWallet Kufungua"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Weka nenosiri la mtumiaji <b>{}</b> ili kufungua {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "Nenosiri"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "Kuongeza vielelezo vya uso wako"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello itachanganua uso wako mara mbili: mara moja sasa, na tena"
+" kwa mwanga tofauti (kwa mfano taa za jioni badala ya mchana), kwa hiv"
+"yo inakutambua kwa uhakika wakati wowote wa siku. Bonyeza Changanua il"
+"i kurekodi muundo wa kwanza."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "Tafadhali angalia moja kwa moja kwenye kamera"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "Anza kuchanganua uso"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Data tayari zimepakuliwa!\nBofya Inayofuata ili kuendelea"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "Hitilafu wakati wa kupakua faili za data"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Imekamilika!\nBofya Inayofuata ili kuendelea"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "Hitilafu wakati wa kuleta OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "Jaribu kusakinisha upya cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "Hakuna kamera za wavuti zilizopatikana kwenye mfumo"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +108,39 @@ msgstr ""
 "Tafadhali sanidi kamera yako mwenyewe ikiwa una uhakika kuwa kamera in"
 "ayooana imeunganishwa"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "Hapana, kamera haiwezi kufunguliwa"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "Hapana, si kamera ya infrared"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "Ndiyo, kamera inayolingana ya infrared"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "Kitambulisho cha kamera au njia"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "Imependekezwa"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "Hitilafu katika kuchagua kamera"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "Kamera iliyochaguliwa haiwezi kufunguliwa"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "Jaribu kuchagua nyingine"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +150,57 @@ msgstr ""
 "-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>"
 "\nkuwezesha mtoaji wako wa umeme"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "Tafadhali angalia moja kwa moja kwenye kamera"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "Kuweka taa 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "Anza kuchanganua uso"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "Kuweka taa 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "Haiwezi kuhifadhi muundo wa uso"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "Changanua mfano wa pili"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "Haikuweza kurekodi muundo wa pili"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"Muundo wako wa kwanza umehifadhiwa, kwa hivyo kuingia kwa uso tayari k"
+"unafanya kazi. Chumba lazima bado kiwe na angavu vya kutosha ili kuona"
+" uso wako - badilisha mwanga badala ya kuizima - kisha ujaribu tena, a"
+"u uruke na uongeze muundo baadaye kutoka kwa Mipangilio."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "Scan ya pili: taa tofauti"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"Muundo wa kwanza umehifadhiwa. Sasa badilisha mwanga - kwa mfano washa"
+" au uzime taa, sogea mbali na dirisha, au tumia mwanga wa chumba kingi"
+"ne - weka uso wako uonekane vizuri, kisha ubonyeze Changanua tena."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello Weka Mipangilio"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +210,7 @@ msgstr ""
 "shaji wa uso (pochi iliyotambuliwa: {}).\n\n<b>Hali ya TPM:</b> Inakag"
 "ua maunzi na zana za TPM..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +220,7 @@ msgstr ""
 "shaji wa uso (pochi iliyotambuliwa: {}).\n\n<b>Hali ya TPM:</b> maunzi"
 " ya TPM yamegunduliwa. Inasakinisha <i>tpm2-tools</i> kiotomatiki..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -164,7 +231,7 @@ msgstr ""
 "vya TPM 2.0 vinatumika. Nenosiri lako litafungwa kwa usalama ndani ya "
 "TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -178,7 +245,7 @@ msgstr ""
 "s</i> haukufaulu. Endesha <code>sudo apt install tpm2-tools</code>. In"
 "arudi kwenye uhifadhi wa kitambulisho kulingana na programu."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -189,49 +256,62 @@ msgstr ""
 " maunzi ya TPM yaliyogunduliwa. Kwa kutumia uakibishaji wa kitambulish"
 "o kulingana na programu (AES-256-GCM)."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "Haikuweza kutambua mtumiaji wa mfumo usio wa mizizi kwa kufungua ufunguo"
-
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Nenosiri haliwezi kuwa tupu"
-
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Nenosiri si sahihi kwa mtumiaji {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "kosa lisilojulikana"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Imeshindwa kuwezesha ufunguaji wa vitufe: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:916 src/tab_keyring.py:166
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Imeshindwa kuzima ufunguaji wa vitufe: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:922
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "Haikuweza kutambua mtumiaji wa mfumo usio wa mizizi kwa kufungua ufunguo"
+
+#: src/onboarding.py:935 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Nenosiri haliwezi kuwa tupu"
+
+#: src/onboarding.py:939 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Nenosiri si sahihi kwa mtumiaji {}"
+
+#: src/onboarding.py:951 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "kosa lisilojulikana"
+
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Imeshindwa kuwezesha ufunguaji wa vitufe: {}"
+
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Imeshindwa kuwezesha ufunguaji wa vitufe: ubuntu-hello inayoweza kutek"
+"elezeka haipatikani"
+
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Imeshindwa kuwezesha ufunguaji wa vitufe: muda umeisha kusubiri ufungu"
+"o uwezeshwe"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "Hitilafu ya Kufungua Ufunguo"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "Hitilafu katika kusoma vitufe vya redio"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Weka Onyo"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Haikuweza kuhifadhi mapendeleo ya uhakika, lakini usanidi umekamilika "
 "vinginevyo."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Hitilafu"
 
@@ -243,51 +323,37 @@ msgstr "Inapakia..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Uthibitishaji"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Thibitisha Uundaji wa Mtumiaji"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Tafadhali weka jina la mtumiaji la mtumiaji unayetaka kumuongeza Ubunt"
-"u Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Jina la mtumiaji:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "Thibitisha Uundaji wa Mfano"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Tafadhali weka jina la muundo mpya, usiozidi herufi 24"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Jina la mfano:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "Kuunda Mfano"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "Hitilafu wakati wa kuongeza muundo, msimbo wa hitilafu {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "Thibitisha Ufutaji wa Muundo"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Je, una uhakika unataka kufuta muundo {id} ({name})?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -358,64 +424,121 @@ msgstr ""
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Ufunguo/KWallet kufungua kumezimwa kwa mtumiaji {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "Haikuweza kuhifadhi mpangilio wa arifa"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Usanidi"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Usanidi"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "Mipangilio ya utafutaji"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "Inaonyesha miundo iliyohifadhiwa ya:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Ongeza mtumiaji mpya"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Muundo mmoja tu wa uso umeandikishwa. Taa hubadilisha jinsi uso wako u"
+"navyoonekana kwenye kamera, hivyo mfano mmoja unaweza kushindwa jioni "
+"chini ya taa (au mchana). Ongeza muundo wa pili uliorekodiwa kwa mwang"
+"a tofauti ili kuendelea kufungua kutegemewa wakati wowote wa siku."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "Ongeza"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "Futa"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "Mifano"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "Kitambulisho cha Kamera:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "Azimio la kweli:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "Azimio lililotumika:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "Kinasa sauti:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "Arifa"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Arifa ya eneo-kazi huonyesha wakati Ubuntu Hello inatafuta uso wako, k"
+"isha inaripoti matokeo. Majaribio yaliyoshindikana yabaki kwenye orodh"
+"a ya arifa."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "Onyesha arifa"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr ""
+"Kadi moja kwa kila jaribio la uthibitishaji wa uso, imesasishwa mahali"
+" pake na tokeo."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "Sauti za arifa"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Cheza sauti ya mfumo kwa jaribio linalotambuliwa au lisilofanikiwa."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "Jumuisha uchunguzi"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"Ongeza muundo, uhakika dhidi ya kizingiti, fremu, kamera na muda kwa k"
+"ila kadi. Inafaa wakati wa kuripoti tatizo."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Uwekaji ufunguo / KWallet Fungua Kiotomatiki"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -430,51 +553,51 @@ msgstr ""
 "o PAM_AUTHTOK kwa pam_gnome_keyring au pam_kwallet5 kulingana na eneo-"
 "kazi lako."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "Hali ya Sasa:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "Inaangalia..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "Washa Kufungua Kiotomatiki"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "Lemaza Kufungua Kiotomatiki"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "Kuweka ufunguo"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "Lugha ya kuonyesha"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "Lugha"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Otomatiki hufuata lugha ya mfumo. Mabadiliko yanatumika mara moja."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "Uthibitishaji wa uso kwa Linux"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "Toleo halijulikani"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -482,19 +605,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Fungua kiungo cha"
 " GitHub</a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "Kuhusu"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "Karibu Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "Usanidi umekamilika!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -513,7 +636,7 @@ msgstr ""
 "o ya ziada. Bonyeza Maliza hapa chini ili kufunga dirisha hili na ufun"
 "gue Ubuntu Hello Configurator."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -522,19 +645,19 @@ msgstr ""
 "Wallet kwa kutumia uthibitishaji wa uso, kuzuia maongozi ya nenosiri b"
 "aada ya kuingia."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Washa ufunguo wa kiotomatiki/KWallet kufungua"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "Thibitisha nenosiri"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "Kuweka sera ya uhakika"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -544,11 +667,11 @@ msgstr ""
 "nifu wa uso haufanani kabisa na muundo wa uso uliohifadhiwa. Kwenye uk"
 "urasa huu unaweza kuweka jinsi Ubuntu Hello inavyopaswa kuwa kali."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "Haraka"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -556,22 +679,22 @@ msgstr ""
 "Inaruhusu mechi nyingi zisizoeleweka, \nlakini huharakisha mchakato wa"
 " skanning sana."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "Imesawazishwa"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
 msgstr ""
 "Bado kugundua haraka, \nlakini huenda isikuingie ukiwa mbali zaidi."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "Salama"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -579,36 +702,35 @@ msgstr ""
 "Chaguo salama kidogo, \nlakini itachukua muda mrefu zaidi kukuthibitis"
 "ha"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Kuongeza mfano wa uso"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "Ruka kwa sasa"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"Ili kukuthibitisha Ubuntu Hello inahitaji kuhifadhi kielelezo cha uso "
-"wako ili kukutambua. Bonyeza kitufe cha Kuchanganua hapa chini ili uan"
-"ze kutambaza usoni."
+"Unaweza kuongeza miundo zaidi ya uso baadaye kutoka kwa Mipangilio au "
+"kwa: sudo ubuntu-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "Inasanidi kamera ya wavuti"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "Je, emitter ya infrared inawaka?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "ndio"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "hapana"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -620,15 +742,15 @@ msgstr ""
 "nganishwa. Baada ya kugundua orodha ya kamera za wavuti zinazoweza kut"
 "umika itaonyeshwa. Chagua unayotaka kutumia na ubofye Ijayo."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "Inajaribu kamera zako za wavuti, tafadhali subiri..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "Inapakua faili za data"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -638,19 +760,19 @@ msgstr ""
 "wa mapema ili ziweze kukutambua, ambazo zitapakuliwa sasa. Unaweza kuo"
 "na maendeleo ya upakuaji hapa chini."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "Inaanza kupakua..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Karibu kwenye Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "Toleo"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -658,15 +780,19 @@ msgstr ""
 "Mchawi huyu atakupitisha katika mchakato wa kusanidi na kukuwekea mipa"
 "ngilio kiotomatiki Ubuntu Hello. Bonyeza inayofuata ili kuendelea."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "Ghairi"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "Nyuma"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "Inayofuata"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "Maliza kusanidi"
 

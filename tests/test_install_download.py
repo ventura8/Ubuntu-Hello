@@ -134,6 +134,34 @@ class TestInstallConfig:
                 call(["systemctl", "enable", "--now", "polkit-agent-helper.socket"], check=True)
             ])
 
+    def test_polkit_override_allows_tpm_for_keyring_unseal(self):
+        """polkit >= 126 sandboxes the agent helper (DevicePolicy=strict +
+        ProtectSystem=strict); the drop-in must re-allow the TPM devices and
+        make tpm-keys/ writable, or TPM-sealed keyring unlock fails under
+        polkit while still working at GDM login."""
+        m = mock_open()
+        with patch("sys.argv", ["install_config.py", "src.ini", "/etc/uh"]), \
+             patch.dict(os.environ, {}, clear=True), \
+             patch("os.makedirs"), \
+             patch("os.path.exists", return_value=False), \
+             patch("shutil.copy"), \
+             patch("os.chmod"), \
+             patch("builtins.open", m), \
+             patch("subprocess.run"):
+            install_config_main()
+        written = "".join(str(c.args[0]) for c in m().write.call_args_list)
+        for line in (
+            "PrivateDevices=no",
+            "DeviceAllow=char-video4linux rw",
+            "DeviceAllow=/dev/uinput rw",
+            "DeviceAllow=char-tpm rw",
+            "DeviceAllow=/dev/tpm0 rw",
+            "ReadWritePaths=/etc/ubuntu-hello/tpm-keys",
+        "ProtectHome=read-only",
+        "ReadWritePaths=-/run/ubuntu-hello",
+        ):
+            assert line in written, line
+
 
 # ── download_models ─────────────────────────────────────────────────
 

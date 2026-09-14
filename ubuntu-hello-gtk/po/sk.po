@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Pridajte druhý model"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Vytvorené"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Označenie"
 
-#: src/window.py:189
+#: src/window.py:198
 msgid "Automatic"
 msgstr "Automaticky"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Povoliť odblokovanie prívesku na kľúče/KWallet"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Zadajte heslo pre používateľa <b>{}</b> na odomknutie {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:176
 msgid "Password"
 msgstr "heslo"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:214 src/onboarding.glade:448
+msgid "Adding your face models"
+msgstr "Pridávanie modelov tváre"
+
+#: src/onboarding.py:217 src/onboarding.glade:467
+msgid ""
+"Ubuntu Hello will scan your face twice: once now, and once more in dif"
+"ferent lighting (for example evening lamps instead of daylight), so it"
+" recognises you reliably at any time of day. Press Scan to record the "
+"first model."
+msgstr ""
+"Ubuntu Hello naskenuje vašu tvár dvakrát: raz teraz a ešte raz pri ino"
+"m osvetlení (napríklad večerné lampy namiesto denného svetla), takže v"
+"ás spoľahlivo rozpozná kedykoľvek počas dňa. Stlačením tlačidla Skenov"
+"ať zaznamenáte prvý model."
+
+#: src/onboarding.py:220 src/onboarding.py:691 src/onboarding.py:773
+#: src/tab_models.py:44 src/onboarding.glade:497
+msgid "Please look directly into the camera"
+msgstr "Pozerajte sa priamo do fotoaparátu"
+
+#: src/onboarding.py:223 src/onboarding.py:721 src/onboarding.glade:519
+msgid "Start face scan"
+msgstr "Spustite skenovanie tváre"
+
+#: src/onboarding.py:287
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Dátové súbory už boli stiahnuté!\nPokračujte kliknutím na tlačidlo Ďal"
 "ej"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:324
 msgid "Error while downloading datafiles"
 msgstr "Chyba pri sťahovaní dátových súborov"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:327
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Hotovo!\nPokračujte kliknutím na tlačidlo Ďalej"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Error while importing OpenCV2"
 msgstr "Chyba pri importovaní OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:379 src/onboarding.py:606
 msgid "Try reinstalling cv2"
 msgstr "Skúste preinštalovať cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid "No webcams found on system"
 msgstr "V systéme sa nenašli žiadne webové kamery"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:386
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +109,39 @@ msgstr ""
 "Ak ste si istí, že je pripojená kompatibilná kamera, nakonfigurujte si"
 " kameru sami"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:478
 msgid "No, camera can't be opened"
 msgstr "Nie, fotoaparát sa nedá otvoriť"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:490
 msgid "No, not an infrared camera"
 msgstr "Nie, nie infračervená kamera"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:494
 msgid "Yes, compatible infrared camera"
 msgstr "Áno, kompatibilná infračervená kamera"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Camera identifier or path"
 msgstr "Identifikátor kamery alebo cesta"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:519
 msgid "Recommended"
 msgstr "Odporúčané"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:610 src/onboarding.py:646
 msgid "Error selecting camera"
 msgstr "Chyba pri výbere fotoaparátu"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "The selected camera cannot be opened"
 msgstr "Vybratú kameru nie je možné otvoriť"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:624
 msgid "Try to select another one"
 msgstr "Skúste vybrať iný"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:639
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +151,58 @@ msgstr ""
 "r-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\na"
 "ktivovať váš ir žiarič"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
-msgid "Please look directly into the camera"
-msgstr "Pozerajte sa priamo do fotoaparátu"
+#: src/onboarding.py:704
+msgid "Setup lighting 1"
+msgstr "Nastavenie osvetlenie 1"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
-msgid "Start face scan"
-msgstr "Spustite skenovanie tváre"
+#: src/onboarding.py:705
+msgid "Setup lighting 2"
+msgstr "Nastavenie osvetlenie 2"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:723
 msgid "Can't save face model"
 msgstr "Model tváre nie je možné uložiť"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:728 src/onboarding.py:775
+msgid "Scan second model"
+msgstr "Naskenovať druhý model"
+
+#: src/onboarding.py:734
+msgid "Couldn't record the second model"
+msgstr "Druhý model sa nepodarilo zaznamenať"
+
+#: src/onboarding.py:735
+msgid ""
+"Your first model is saved, so face login already works. The room must "
+"still be bright enough to see your face — change the light rather than"
+" turning it off — then try again, or skip and add a model later from S"
+"ettings."
+msgstr ""
+"Váš prvý model je uložený, takže prihlásenie tvárou už funguje. Miestn"
+"osť musí byť stále dostatočne jasná, aby bolo vidieť vašu tvár – namie"
+"sto vypnutia zmeňte svetlo – potom to skúste znova alebo preskočte a p"
+"ridajte model neskôr v Nastaveniach."
+
+#: src/onboarding.py:769
+msgid "Second scan: different lighting"
+msgstr "Druhý sken: iné osvetlenie"
+
+#: src/onboarding.py:771
+msgid ""
+"First model saved. Now change the light — for example turn a lamp on o"
+"r off, move away from the window, or use the other room light — keep y"
+"our face clearly visible, then press Scan again."
+msgstr ""
+"Prvý model uložený. Teraz zmeňte svetlo – napríklad zapnite alebo vypn"
+"ite lampu, vzdiaľte sa od okna alebo použite iné svetlo v miestnosti –"
+" nechajte svoju tvár jasne viditeľnú a potom znova stlačte tlačidlo Sk"
+"enovať."
+
+#: src/onboarding.py:805
+msgid "Ubuntu Hello Setup"
+msgstr "Nastavenie Ubuntu Hello"
+
+#: src/onboarding.py:818
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -144,7 +212,7 @@ msgstr ""
 "rozpoznaná peňaženka: {}).\n\n<b>Stav TPM:</b> Kontroluje sa hardvér a"
 " nástroje TPM..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:838
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -154,7 +222,7 @@ msgstr ""
 "rozpoznaná peňaženka: {}).\n\n<b>Stav TPM:</b> Rozpoznal sa hardvér TP"
 "M. Automatická inštalácia <i>tpm2-tools</i>..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:850
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -165,7 +233,7 @@ msgstr ""
 "0 je aktívny. Vaše heslo bude bezpečne zapečatené vo vnútri modulu TPM"
 "."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:852
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -179,7 +247,7 @@ msgstr ""
 "e>sudo apt install tpm2-tools</code>. Návrat k softvérovému ukladaniu "
 "poverení do vyrovnávacej pamäte."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:854
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -190,49 +258,62 @@ msgstr ""
 "vér TPM. Používanie softvérového ukladania poverení do vyrovnávacej pa"
 "mäte (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:916 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Nepodarilo sa zakázať odomykanie prívesku na kľúče: {}"
+
+#: src/onboarding.py:922
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Nepodarilo sa identifikovať používateľa systému bez root na odomknutie"
 " zväzku kľúčov"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:935 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Heslo nemôže byť prázdne"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:939 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Nesprávne heslo pre používateľa {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:951 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "neznáma chyba"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:952 src/onboarding.py:961 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Nepodarilo sa povoliť odomknutie prívesku kľúčov: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Nepodarilo sa zakázať odomykanie prívesku na kľúče: {}"
+#: src/onboarding.py:955
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Nepodarilo sa zapnúť odomykanie zväzku kľúčov: spustiteľný súbor ubunt"
+"u-hello sa nenašiel"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:958
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Nepodarilo sa zapnúť odomykanie zväzku kľúčov: vypršal čas čakania na "
+"zapnutie"
+
+#: src/onboarding.py:968
 msgid "Keyring Unlocking Error"
 msgstr "Chyba pri odomykaní prívesku na kľúče"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:983
 msgid "Error reading radio buttons"
 msgstr "Chyba pri čítaní prepínačov"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:1010
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Upozornenie na nastavenie"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:1011
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr "Predvoľbu istoty sa nepodarilo uložiť, ale inak je nastavenie dokončené."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:1030 src/tab_models.py:64 src/tab_models.py:92
+#: src/tab_notifications.py:60
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Chyba"
 
@@ -244,51 +325,37 @@ msgstr "Načítava sa..."
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Autentifikácia"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Potvrďte vytvorenie používateľa"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Zadajte používateľské meno používateľa, ktorého chcete pridať do Ubunt"
-"u Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Používateľské meno:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:20
 msgid "Confirm Model Creation"
 msgstr "Potvrďte vytvorenie modelu"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:21
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Zadajte názov nového modelu, max. 24 znakov"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Názov modelu:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:43
 msgid "Creating Model"
 msgstr "Vytváranie modelu"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:65
 msgid ""
 "Error while adding model, error code {}: \n\n"
 msgstr ""
 "Chyba pri pridávaní modelu, kód chyby {}:\n\n"
 
-#: src/tab_models.py:115
+#: src/tab_models.py:81
 msgid "Confirm Model Deletion"
 msgstr "Potvrďte vymazanie modelu"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:82
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Naozaj chcete vymazať model {id} ({name})?"
 
-#: src/tab_models.py:127
+#: src/tab_models.py:93
 msgid ""
 "Error while deleting model, error code {}: \n\n"
 msgstr ""
@@ -359,64 +426,121 @@ msgstr ""
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Odblokovanie kľúčenky/KWallet je pre používateľa {} zakázané."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:61
+msgid "Could not save the notification setting"
+msgstr "Nepodarilo sa uložiť nastavenie upozornení"
+
+#: src/main.glade:20
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigurácia"
 
-#: src/main.glade:33
+#: src/main.glade:27
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfigurácia"
 
-#: src/main.glade:41
+#: src/main.glade:35
 msgid "Search settings"
 msgstr "Nastavenia vyhľadávania"
 
-#: src/main.glade:77
+#: src/main.glade:71
 msgid "Showing saved models for:"
 msgstr "Zobrazujú sa uložené modely pre:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Pridať nového používateľa"
+#: src/main.glade:122
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Je zaregistrovaný iba jeden model tváre. Osvetlenie mení vzhľad vašej "
+"tváre pred kamerou, takže jeden model môže večer pod lampami (alebo pr"
+"i dennom svetle) zlyhať. Pridajte druhý model zaznamenaný v inom svetl"
+"e, aby bolo odomykanie spoľahlivé kedykoľvek počas dňa."
 
-#: src/main.glade:162
+#: src/main.glade:170
 msgid "Add"
 msgstr "Pridať"
 
-#: src/main.glade:183
+#: src/main.glade:191
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: src/main.glade:218
+#: src/main.glade:226
 msgid "Models"
 msgstr "Modelky"
 
-#: src/main.glade:244
+#: src/main.glade:252
 msgid "Camera ID:"
 msgstr "ID fotoaparátu:"
 
-#: src/main.glade:273
+#: src/main.glade:281
 msgid "Real resolution:"
 msgstr "Skutočné rozlíšenie:"
 
-#: src/main.glade:303
+#: src/main.glade:311
 msgid "Used resolution:"
 msgstr "Použité rozlíšenie:"
 
-#: src/main.glade:333
+#: src/main.glade:341
 msgid "Recorder:"
 msgstr "rekordér:"
 
-#: src/main.glade:401
+#: src/main.glade:409
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:431 src/main.glade:633
+msgid "Notifications"
+msgstr "Upozornenia"
+
+#: src/main.glade:448
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, t"
+"hen reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Keď Ubuntu Hello hľadá vašu tvár, zobrazí sa upozornenie na pracovnej "
+"ploche a potom oznámi výsledok. Neúspešné pokusy zostanú v zozname upo"
+"zornení."
+
+#: src/main.glade:475
+msgid "Show notifications"
+msgstr "Zobraziť upozornenia"
+
+#: src/main.glade:483
+msgid ""
+"One card per face-authentication attempt, updated in place with the re"
+"sult."
+msgstr ""
+"Jedna karta na pokus o overenie tváre, aktualizovaná na mieste s výsle"
+"dkom."
+
+#: src/main.glade:530
+msgid "Notification sounds"
+msgstr "Zvuky upozornenia"
+
+#: src/main.glade:538
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Prehrajte systémový zvuk pri rozpoznanom alebo neúspešnom pokuse."
+
+#: src/main.glade:585
+msgid "Include diagnostics"
+msgstr "Zahrňte diagnostiku"
+
+#: src/main.glade:593
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to e"
+"ach card. Useful when reporting a problem."
+msgstr ""
+"Ku každej karte pridajte model, istotu verzus prah, rámy, fotoaparát a"
+" načasovanie. Užitočné pri hlásení problému."
+
+#: src/main.glade:655 src/onboarding.glade:116
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Kľúčenka / KWallet Automatické odomykanie"
 
-#: src/main.glade:440
+#: src/main.glade:672
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -431,51 +555,51 @@ msgstr ""
 "am_gnome_keyring alebo pam_kwallet5 v závislosti od vašej pracovnej pl"
 "ochy."
 
-#: src/main.glade:471
+#: src/main.glade:703
 msgid "Current Status:"
 msgstr "Aktuálny stav:"
 
-#: src/main.glade:486
+#: src/main.glade:718
 msgid "Checking..."
 msgstr "Prebieha kontrola..."
 
-#: src/main.glade:509
+#: src/main.glade:741
 msgid "Enable Auto-Unlock"
 msgstr "Povoliť automatické odomykanie"
 
-#: src/main.glade:526
+#: src/main.glade:758
 msgid "Disable Auto-Unlock"
 msgstr "Zakázať automatické odomykanie"
 
-#: src/main.glade:559
+#: src/main.glade:791
 msgid "Keyring"
 msgstr "Kľúčenka"
 
-#: src/main.glade:581
+#: src/main.glade:813
 msgid "Display language"
 msgstr "Jazyk rozhrania"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:835 src/main.glade:894
 msgid "Language"
 msgstr "Jazyk"
 
-#: src/main.glade:637
+#: src/main.glade:869
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Automaticky sa riadi jazykom systému. Zmeny sa prejavia okamžite."
 
-#: src/main.glade:694
+#: src/main.glade:926
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:942
 msgid "Facial authentication for Linux"
 msgstr "Autentifikácia tváre pre Linux"
 
-#: src/main.glade:723
+#: src/main.glade:955
 msgid "Version unknown"
 msgstr "Verzia neznáma"
 
-#: src/main.glade:746
+#: src/main.glade:978
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -483,19 +607,19 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Otvoriť odkaz na "
 "GitHub</a>"
 
-#: src/main.glade:778
+#: src/main.glade:1010
 msgid "About"
 msgstr "O"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.glade:41 src/onboarding.glade:49
 msgid "Welcome to Ubuntu Hello"
 msgstr "Vitajte v Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:68
 msgid "Setup is done!"
 msgstr "Nastavenie je hotové!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:87
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -514,7 +638,7 @@ msgstr ""
 " pridať ďalšie modely. Stlačením Dokončiť nižšie toto okno zatvoríte a"
 " otvoríte konfigurátor Ubuntu Hello."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:135
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -523,19 +647,19 @@ msgstr ""
 "bo KWallet pomocou autentifikácie tvárou, čím zabráni výzvam na zadani"
 "e hesla po prihlásení."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:147
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Povoliť automatické odomykanie príveskom na kľúče/KWallet"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:189
 msgid "Confirm password"
 msgstr "Potvrďte heslo"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:221
 msgid "Setting a certainty policy"
 msgstr "Nastavenie politiky istoty"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:240
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -545,22 +669,22 @@ msgstr ""
 " nikdy úplne rovnaká ako uložený model tváre. Na tejto stránke si môže"
 "te nastaviť, aké prísne má byť Ubuntu Hello."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:279
 msgid "Fast"
 msgstr "Rýchlo"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:295
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
 msgstr ""
 "Umožňuje viac fuzzy zhôd, \nale výrazne urýchľuje proces skenovania."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:334
 msgid "Balanced"
 msgstr "Vyvážený"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:350
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -568,11 +692,11 @@ msgstr ""
 "Stále pomerne rýchla detekcia, \nale nemusí vás prihlásiť, keď budete "
 "ďalej."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:389
 msgid "Secure"
 msgstr "Zabezpečte"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:405
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -580,36 +704,35 @@ msgstr ""
 "O niečo bezpečnejšia možnosť, \nale bude trvať oveľa dlhšie, kým vás o"
 "verí"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Pridanie modelu tváre"
+#: src/onboarding.glade:544
+msgid "Skip for now"
+msgstr "Zatiaľ preskočiť"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:550
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
 msgstr ""
-"Aby vás Ubuntu Hello mohol overiť, musí si uložiť model vašej tváre, a"
-"by vás rozpoznal. Stlačením tlačidla Skenovať nižšie spustíte skenovan"
-"ie tváre."
+"Ďalšie modely tváre môžete pridať neskôr v Nastaveniach alebo príkazom"
+": sudo ubuntu-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:583 src/onboarding.glade:674
 msgid "Configuring webcam"
 msgstr "Konfigurácia webovej kamery"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:600
 msgid "Is the infrared emitter flashing ?"
 msgstr "Bliká infračervený žiarič?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:618
 msgid "yes"
 msgstr "áno"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:635
 msgid "no"
 msgstr "č"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:693
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -621,15 +744,15 @@ msgstr ""
 "sa zobrazí zoznam použiteľných webových kamier. Vyberte ten, ktorý chc"
 "ete použiť, a kliknite na tlačidlo Ďalej."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:715
 msgid "Testing your webcams, please wait..."
 msgstr "Testujú sa vaše webové kamery, čakajte..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:767
 msgid "Downloading data files"
 msgstr "Sťahovanie dátových súborov"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:786
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -639,19 +762,19 @@ msgstr ""
 "anie tváre, aby vás dokázalo rozpoznať, ktoré sa teraz stiahnu. Priebe"
 "h sťahovania si môžete pozrieť nižšie."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:807
 msgid "Starting download..."
 msgstr "Spúšťa sa sťahovanie..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:856
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Vitajte v Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:872
 msgid "Version"
 msgstr "Verzia"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:893
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -659,15 +782,19 @@ msgstr ""
 "Tento sprievodca vás prevedie procesom nastavenia a automaticky vám na"
 "konfiguruje Ubuntu Hello. Pokračujte stlačením tlačidla Ďalej."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:917
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:934
+msgid "Back"
+msgstr "Späť"
+
+#: src/onboarding.glade:954
 msgid "Next"
 msgstr "Ďalej"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:979
 msgid "Finish setup"
 msgstr "Dokončite nastavenie"
 

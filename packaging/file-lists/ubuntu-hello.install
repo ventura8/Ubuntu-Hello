@@ -15,6 +15,9 @@ usr/share/bash-completion/completions/ubuntu-hello
 
 # PAM config
 usr/share/pam-configs/ubuntu-hello
+
+# Runtime directory (/run/ubuntu-hello) created at boot
+usr/lib/tmpfiles.d/ubuntu-hello.conf
 etc/pam.d/ubuntu-hello-verify
 
 # Man page

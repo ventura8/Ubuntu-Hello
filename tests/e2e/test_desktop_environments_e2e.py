@@ -123,7 +123,7 @@ class TestDesktopEnvironmentParity:
 		try:
 			gtk_pump()
 			assert win.window.get_visible()
-			assert win.notebook.get_n_pages() == 5
+			assert win.notebook.get_n_pages() == 6
 		finally:
 			win.window.destroy()
 			gtk_pump()
