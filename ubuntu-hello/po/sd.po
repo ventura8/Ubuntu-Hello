@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "ناڪامي، وقت ختم ٿيڻ"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "منهن جي سڃاڻپ واري تصوير تمام اونداهي"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "اڻڄاتل غلطي:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "سڃاڻپ ٿيل چهرو %s طور"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"انٽر پريس موڪلڻ لاءِ ڪافي اجازتون نه آھن، ان کي دٻائڻ لاءِ استعمال ڪند"
-"ڙ جي انتظار ۾"
+"انٽر پريس موڪلڻ لاءِ ڪافي اجازتون نه آھن، ان کي دٻائڻ لاءِ استعمال ڪندڙ جي "
+"انتظار ۾"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"موڪلڻ ۾ ناڪام ٿيو داخل ڪريو پريس، انتظار ڪري رھيو آھي استعمال ڪندڙ کي "
-"دٻائڻ بدران"
+"موڪلڻ ۾ ناڪام ٿيو داخل ڪريو پريس، انتظار ڪري رھيو آھي استعمال ڪندڙ کي دٻائڻ "
+"بدران"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "منهن جي تصديق جي ڪوشش"
 
@@ -67,20 +68,19 @@ msgstr "دليل"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"حمايت لاء مهرباني ڪري دورو ڪريو\nhttps://github.com/ventura8/ubuntu-he"
-"llo"
+"حمايت لاء مهرباني ڪري دورو ڪريو\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"ڪمانڊ آپشن تي عمل ڪرڻ لاءِ، ھيٺين مان ھڪڙو ٿي سگھي ٿو: شامل ڪريو، صاف "
-"ڪريو، ترتيب ڏيو، غير فعال ڪريو، ڪيئرنگ، فهرست، هٽايو، سنيپ شاٽ، سيٽ، ٽ"
-"يسٽ يا ورزن."
+"ڪمانڊ آپشن تي عمل ڪرڻ لاءِ، ھيٺين مان ھڪڙو ٿي سگھي ٿو: شامل ڪريو، صاف ڪريو، "
+"ترتيب ڏيو، غير فعال ڪريو، ڪيئرنگ، فهرست، هٽايو، سنيپ شاٽ، سيٽ، ٽيسٽ يا ورزن."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -115,138 +115,251 @@ msgid "Invalid username format"
 msgstr "غلط يوزر نالو فارميٽ"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"مھرباني ڪري ھن حڪم کي روٽ طور ھلايو:\n"
+msgid "Please run this command as root:\n"
+msgstr "مھرباني ڪري ھن حڪم کي روٽ طور ھلايو:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"ubuntu-hello ڪمانڊ کي روٽ جي طور تي نه ٿو هلائي سگھجي، مھرباني ڪري ھن "
-"حڪم کي --user پرچم سان هلايو"
+"ubuntu-hello ڪمانڊ کي روٽ جي طور تي نه ٿو هلائي سگھجي، مھرباني ڪري ھن حڪم کي "
+"--user پرچم سان هلايو"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"ڊيٽا فائلن کي ڊائون لوڊ نه ڪيو ويو آهي، مهرباني ڪري هيٺ ڏنل حڪمن کي هل"
-"ائڻ:"
+"ڊيٽا فائلن کي ڊائون لوڊ نه ڪيو ويو آهي، مهرباني ڪري هيٺ ڏنل حڪمن کي هلائڻ:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "لاگ ان"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "تاريخ:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "اسڪين جو وقت:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "فريم:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "ميزبان نالو:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "بهترين يقيني قدر:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "شروع ڪندي..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "توھان کي سڃاڻڻ..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "ناڪام ٿيو"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"سڀئي فريم تمام اونداهي هئا، مهرباني ڪري چيڪ ڪريو dark_threshold in con"
-"fig"
+"سڀئي فريم تمام اونداهي هئا، مهرباني ڪري چيڪ ڪريو dark_threshold in config"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "سراسري اونداهي: {avg}، حد: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "وقت گذاريو"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "شروع ٿيڻ"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "اوپن ڪيم + لوڊ ليبز: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "ڪئميرا کولڻ"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "شناختي ليبز درآمد ڪندي"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "سڃاتل چهرو ڳولهڻ"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "ڪُل وقت"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nقرارداد"
+"\n"
+"قرارداد"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "ڏيهي: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "استعمال ٿيل: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nفريم ڳولها: %d (%.2f fps)"
+"\n"
+"فريم ڳولها: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "ڪارو فريم نظر انداز ڪيو ويو: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "اونداهي فريم نظر انداز ڪيا ويا: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "کٽڻ واري فريم جي پڪ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "کٽڻ وارو ماڊل: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "ڪامياب"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "اختيار ڏيڻ"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "اسڪرين کوليو"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "وقت ختم ٿي ويو"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "لوڊ"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s فريم"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s اونداهو"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "تنهنجي چهري کي ڳوليندي..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "منهن جي تصديق"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "منهن سڃاڻي"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "ھن روشني ۾ ھڪڙو نمونو شامل ڪريو"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "ڪئميرا چيڪ ڪريو"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "%s ۾ ڪابه ميچ ناهي"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "enroll: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "ويجھو"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "چهرو نه سڃاڻي"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "تمام ڳرو"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "هڪ روشني ڦيرايو"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "اوندهه"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "زندگي جي چڪاس ناڪام ٿي"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "%s لاءِ ڪوبه چهرو ماڊل ناهي"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "منهن جي تصديق دستياب ناهي"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "منسوخ ٿيل"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "منهن جي تصديق منسوخ ڪئي وئي"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -270,9 +383,11 @@ msgstr "لاگ ان ڪيرنگ يا KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\ndlib module درآمد نه ٿو ڪري سگھجي، جي آئوٽ پڙتال ڪريو"
+"\n"
+"dlib module درآمد نه ٿو ڪري سگھجي، جي آئوٽ پڙتال ڪريو"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -280,15 +395,12 @@ msgstr "ڪو به چهرو ماڊل فولڊر نه مليو، هڪ ٺاهي ر�
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "نوٽس: هر اضافي ماڊل منهن جي سڃاڻڻ واري انجڻ کي ٿورو سست ڪري ٿو"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"منسوخ ڪرڻ لاءِ Ctrl+C کي دٻايو\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "منسوخ ڪرڻ لاءِ Ctrl+C کي دٻايو\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -299,6 +411,7 @@ msgid "Model #"
 msgstr "ماڊل #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "ڊفالٽ ليبل استعمال ڪندي \"%s\" جي ڪري -y پرچم"
 
@@ -312,9 +425,11 @@ msgstr "نوٽس: غير قانوني ڪردار کي هٽائڻ \"،\" ماڊل
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nمهرباني ڪري سڌو ڪئميرا ۾ ڏسو"
+"\n"
+"مهرباني ڪري سڌو ڪئميرا ۾ ڏسو"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -330,15 +445,19 @@ msgstr "گھڻا منھن ڏٺا، ابتو ڪرڻ"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nاسڪين مڪمل\n۾ نئون ماڊل شامل ڪيو ويو"
+"\n"
+"اسڪين مڪمل\n"
+"۾ نئون ماڊل شامل ڪيو ويو"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"اڃان تائين ڪي به ماڊل نه ٺاهيا ويا آهن، انهن کي صاف نه ٿا ڪري سگهون جي"
-"ڪڏهن اهي موجود نه آهن"
+"اڃان تائين ڪي به ماڊل نه ٺاهيا ويا آهن، انهن کي صاف نه ٿا ڪري سگهون جيڪڏهن "
+"اهي موجود نه آهن"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -354,21 +473,27 @@ msgstr "ڇا توھان جاري رکڻ چاھيو ٿا [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\n”نه“ جي معنيٰ ۾ تعبير ڪرڻ، ختم ڪرڻ"
+"\n"
+"”نه“ جي معنيٰ ۾ تعبير ڪرڻ، ختم ڪرڻ"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nماڊل صاف ڪيا ويا"
+"\n"
+"ماڊل صاف ڪيا ويا"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "config.ini {editor} ۾ کولڻ"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "ايڊيٽر کولڻ ۾ ناڪام ٿيو: {error}"
 
@@ -379,16 +504,15 @@ msgstr "مسئلو: مناسب ٽيڪسٽ ايڊيٽر نه ملي سگهيو."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"مھرباني ڪري انسٽال ڪريو 'نانو' يا 'vi'، يا سيٽ ڪريو EDITOR ماحوليات مت"
-"غير."
+"مھرباني ڪري انسٽال ڪريو 'نانو' يا 'vi'، يا سيٽ ڪريو EDITOR ماحوليات متغير."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"جيڪڏھن توھان ھلائي رھيا آھيو ھي حڪم sudo سان، ڪوشش ڪريو 'sudo -E ubunt"
-"u-hello config' پنھنجي EDITOR variable کي محفوظ ڪرڻ لاءِ."
+"جيڪڏھن توھان ھلائي رھيا آھيو ھي حڪم sudo سان، ڪوشش ڪريو 'sudo -E ubuntu-"
+"hello config' پنھنجي EDITOR variable کي محفوظ ڪرڻ لاءِ."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -440,11 +564,11 @@ msgstr "TPM هارڊويئر فعال. TPM ۾ پاسورڊ مهر ڪرڻ..."
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"ڪيئرنگ/KWallet انلاڪ ڪرڻ ڪاميابيءَ سان فعال ڪيو ويو صارف {} لاءِ TPM ا"
-"ستعمال ڪندي (والٽ: {})."
+"ڪيئرنگ/KWallet انلاڪ ڪرڻ ڪاميابيءَ سان فعال ڪيو ويو صارف {} لاءِ TPM استعمال "
+"ڪندي (والٽ: {})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -456,11 +580,11 @@ msgstr "ڪوبه TPM فعال ناهي. سافٽ ويئر تي ٻڌل سندي �
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Keyring/KWallet ان لاڪ ڪرڻ ڪاميابيءَ سان استعمال ڪندڙ لاءِ فعال ڪيو وي"
-"و {} (سافٽ ويئر ڪيشنگ، والٽ: {})."
+"Keyring/KWallet ان لاڪ ڪرڻ ڪاميابيءَ سان استعمال ڪندڙ لاءِ فعال ڪيو ويو {} "
+"(سافٽ ويئر ڪيشنگ، والٽ: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -492,11 +616,11 @@ msgstr "{} يوزر(ن) لاءِ لاگ ان والٽ پاسورڊ بحال نه
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"جيڪڏهن پرامپٽ جاري رهن ته Seahorse / سسٽم سيٽنگس ۾ لاگ ان ڪيئرنگ يا KW"
-"allet پاسورڊ سيٽ ڪريو."
+"جيڪڏهن پرامپٽ جاري رهن ته Seahorse / سسٽم سيٽنگس ۾ لاگ ان ڪيئرنگ يا KWallet "
+"پاسورڊ سيٽ ڪريو."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -529,8 +653,7 @@ msgstr "سڃاڻپ جي تاريخ جو ليبل [0m"
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
 msgstr ""
-"مھرباني ڪري ان ماڊل جي ID شامل ڪريو جنھن کي توھان ھٽائڻ چاھيو ٿا دليل "
-"طور"
+"مھرباني ڪري ان ماڊل جي ID شامل ڪريو جنھن کي توھان ھٽائڻ چاھيو ٿا دليل طور"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -541,10 +664,12 @@ msgid "You can find the IDs by running:"
 msgstr "توھان ھلائي سگھوٿا IDs کي هلائڻ سان:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "هي {user} لاءِ \"{label}\" نالي ماڊل کي هٽائي ڇڏيندو"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "{user} لاءِ ID {id} موجود ناهي"
 
@@ -557,10 +682,11 @@ msgid "Removed model {}"
 msgstr "هٽايو ويو ماڊل {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"مھرباني ڪري ھڪڙو سيٽنگ شامل ڪريو جيڪو توھان تبديل ڪرڻ چاھيو ٿا ۽ قيمت "
-"ان کي سيٽ ڪرڻ لاء"
+"مھرباني ڪري ھڪڙو سيٽنگ شامل ڪريو جيڪو توھان تبديل ڪرڻ چاھيو ٿا ۽ قيمت ان کي "
+"سيٽ ڪرڻ لاء"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -588,33 +714,43 @@ msgstr "ٺاهيل سنيپ شاٽ محفوظ ڪيو ويو جيئن"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello هڪ رڪارڊر استعمال ڪرڻ لاءِ ترتيب ڏنو ويو آهي جيڪو اڃا تائ"
-"ين ٽيسٽ ڪمانڊ کي سپورٽ نٿو ڪري، ختم ڪري رهيو آهي"
+"Ubuntu Hello هڪ رڪارڊر استعمال ڪرڻ لاءِ ترتيب ڏنو ويو آهي جيڪو اڃا تائين ٽيسٽ "
+"ڪمانڊ کي سپورٽ نٿو ڪري، ختم ڪري رهيو آهي"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nٽيسٽ فيڊ سان ونڊو کولڻ\n\nڇڏڻ لاءِ هن ٽرمينل ۾ ctrl+C کي دٻايو\nسست "
-"موڊ کي فعال يا غير فعال ڪرڻ لاء تصوير تي ڪلڪ ڪريو\n"
+"\n"
+"ٽيسٽ فيڊ سان ونڊو کولڻ\n"
+"\n"
+"ڇڏڻ لاءِ هن ٽرمينل ۾ ctrl+C کي دٻايو\n"
+"سست موڊ کي فعال يا غير فعال ڪرڻ لاء تصوير تي ڪلڪ ڪريو\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "حل: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "فريم: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "سڃاڻپ: %dms"
 
@@ -632,9 +768,11 @@ msgstr "اسڪين فريم"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nونڊو بند ڪرڻ"
+"\n"
+"ونڊو بند ڪرڻ"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -665,6 +803,7 @@ msgid "Authorising in {}"
 msgstr "{} ۾ اختيار ڏيڻ"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "دٻايو {abort_key} ختم ڪرڻ لاءِ، {confirm_key} اختيار ڪرڻ لاءِ"
 
@@ -698,20 +837,20 @@ msgstr "غائب pyv4l2 ماڊل، مھرباني ڪري ھلايو:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
-msgstr "Ubuntu Hello config فائل ۾ بيان ڪيل رستي تي ڪئميرا ڊيوائس نه ڳولي سگھي."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello config فائل ۾ بيان ڪيل رستي تي ڪئميرا ڊيوائس نه ڳولي سگھي."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"اهو تمام گهڻو امڪان آهي ته رستو صحيح طرح سان ترتيب نه ڏنو ويو آهي، مهر"
-"باني ڪري 'device_path' ترتيب جي قيمت کي هلائڻ سان تبديل ڪريو:"
+"اهو تمام گهڻو امڪان آهي ته رستو صحيح طرح سان ترتيب نه ڏنو ويو آهي، مهرباني "
+"ڪري 'device_path' ترتيب جي قيمت کي هلائڻ سان تبديل ڪريو:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr "'device_path' ترتيب اختيار ۾ بيان ڪيل ڪيمرا پڙهڻ ۾ ناڪام ٿيو، ختم ڪرڻ"

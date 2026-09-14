@@ -1,8 +1,9 @@
 import os
 import subprocess
 import gi
-gi.require_version("Gtk", "3.0")
+gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk as gtk
+import gtk4compat
 from i18n import _
 import auth_helper
 from wallet_backend import wallet_backend_label, wallet_unlock_phrase
@@ -10,34 +11,26 @@ from wallet_backend import wallet_backend_label, wallet_unlock_phrase
 
 KEYRING_KEYS_DIR = "/etc/ubuntu-hello/keyring-keys"
 
-class KeyringPasswordDialog(gtk.Dialog):
+class KeyringPasswordDialog(gtk4compat.PromptWindow):
 	def __init__(self, parent, user):
-		gtk.Dialog.__init__(self, title=_("Enable Keyring/KWallet Unlocking"), parent=parent, flags=gtk.DialogFlags.MODAL)
-		self.add_buttons(gtk.STOCK_CANCEL, gtk.ResponseType.CANCEL, gtk.STOCK_OK, gtk.ResponseType.OK)
-		self.set_default_response(gtk.ResponseType.OK)
-		self.set_resizable(False)
+		gtk4compat.PromptWindow.__init__(self, parent, _("Enable Keyring/KWallet Unlocking"))
+		self.add_action(_("Cancel"), gtk.ResponseType.CANCEL)
+		self.add_action(_("OK"), gtk.ResponseType.OK, suggested=True)
 
-		box = self.get_content_area()
-		box.set_spacing(10)
-		box.set_margin_left(15)
-		box.set_margin_right(15)
-		box.set_margin_top(15)
-		box.set_margin_bottom(15)
+		box = self.content
 
 		label = gtk.Label()
 		label.set_markup(_("Enter password for user <b>{}</b> to unlock {} ({}):").format(
 			user, wallet_unlock_phrase(), wallet_backend_label()))
-		label.set_alignment(0.0, 0.5)
-		box.pack_start(label, False, False, 0)
+		label.set_xalign(0.0)
+		box.append(label)
 
 		self.entry1 = gtk.Entry()
 		self.entry1.set_visibility(False)
 		self.entry1.set_placeholder_text(_("Password"))
 		# Connect the 'activate' signal of the entry to respond with OK when user hits Enter
-		self.entry1.connect("activate", lambda entry: self.response(gtk.ResponseType.OK))
-		box.pack_start(self.entry1, False, False, 0)
-
-		self.show_all()
+		self.entry1.connect("activate", lambda entry: self.respond(gtk.ResponseType.OK))
+		box.append(self.entry1)
 
 def update_keyring_status(self):
 	if not self.active_user or self.userlist.items == 0:
@@ -77,7 +70,7 @@ def on_keyring_enable(self, button):
 		return
 
 	dialog = KeyringPasswordDialog(self.window, self.active_user)
-	response = dialog.run()
+	response = gtk4compat.run_dialog(dialog)
 
 	passwd1 = dialog.entry1.get_text()
 	dialog.destroy()
@@ -86,19 +79,11 @@ def on_keyring_enable(self, button):
 		return
 
 	if not passwd1:
-		error_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-		error_dialog.set_title(_("Error"))
-		error_dialog.props.text = _("Password cannot be empty")
-		error_dialog.run()
-		error_dialog.destroy()
+		gtk4compat.alert(self.window, _("Password cannot be empty"))
 		return
 
 	if not auth_helper.verify_user_password(self.active_user, passwd1):
-		error_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-		error_dialog.set_title(_("Error"))
-		error_dialog.props.text = _("Incorrect password for user {}").format(self.active_user)
-		error_dialog.run()
-		error_dialog.destroy()
+		gtk4compat.alert(self.window, _("Incorrect password for user {}").format(self.active_user))
 		return
 
 	try:
@@ -113,17 +98,9 @@ def on_keyring_enable(self, button):
 			detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
 			raise Exception(detail)
 
-		success_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.INFO, buttons=gtk.ButtonsType.CLOSE)
-		success_dialog.set_title(_("Success"))
-		success_dialog.props.text = _("Keyring/KWallet unlocking enabled successfully for user {}.").format(self.active_user)
-		success_dialog.run()
-		success_dialog.destroy()
+		gtk4compat.alert(self.window, _("Keyring/KWallet unlocking enabled successfully for user {}.").format(self.active_user))
 	except Exception as e:
-		error_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-		error_dialog.set_title(_("Error"))
-		error_dialog.props.text = _("Failed to enable keyring unlocking: {}").format(str(e))
-		error_dialog.run()
-		error_dialog.destroy()
+		gtk4compat.alert(self.window, _("Failed to enable keyring unlocking: {}").format(str(e)))
 
 	self.update_keyring_status()
 
@@ -131,13 +108,11 @@ def on_keyring_disable(self, button):
 	if not self.active_user:
 		return
 
-	confirm_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.QUESTION, buttons=gtk.ButtonsType.YES_NO)
-	confirm_dialog.set_title(_("Disable Keyring/KWallet Unlocking"))
-	confirm_dialog.props.text = _("Are you sure you want to disable keyring/KWallet unlocking for user {}?").format(self.active_user)
-	response = confirm_dialog.run()
-	confirm_dialog.destroy()
-
-	if response != gtk.ResponseType.YES:
+	choice = gtk4compat.alert(
+		self.window,
+		_("Are you sure you want to disable keyring/KWallet unlocking for user {}?").format(self.active_user),
+		buttons=(_("Cancel"), _("Disable Auto-Unlock")), default=1, cancel=0)
+	if choice != 1:
 		return
 
 	keyring_keys_dir = KEYRING_KEYS_DIR
@@ -154,17 +129,8 @@ def on_keyring_disable(self, button):
 			if os.path.exists(path):
 				os.unlink(path)
 		
-		# Success dialog
-		success_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.INFO, buttons=gtk.ButtonsType.CLOSE)
-		success_dialog.set_title(_("Success"))
-		success_dialog.props.text = _("Keyring/KWallet unlocking disabled for user {}.").format(self.active_user)
-		success_dialog.run()
-		success_dialog.destroy()
+		gtk4compat.alert(self.window, _("Keyring/KWallet unlocking disabled for user {}.").format(self.active_user))
 	except Exception as e:
-		error_dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-		error_dialog.set_title(_("Error"))
-		error_dialog.props.text = _("Failed to disable keyring unlocking: {}").format(str(e))
-		error_dialog.run()
-		error_dialog.destroy()
+		gtk4compat.alert(self.window, _("Failed to disable keyring unlocking: {}").format(str(e)))
 
 	self.update_keyring_status()

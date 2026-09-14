@@ -1,4 +1,4 @@
-# Shows a floating window when authenticating
+# Shows a floating window when authenticating (GTK 4)
 import cairo
 import gi
 import signal
@@ -9,13 +9,13 @@ import os
 from i18n import _
 
 # Make sure we have the libs we need
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("Gdk", "4.0")
 
 # Import them
 from gi.repository import Gtk as gtk
 from gi.repository import Gdk as gdk
-from gi.repository import GObject as gobject
+from gi.repository import GLib
 from gi.repository import Gio
 
 
@@ -101,16 +101,21 @@ def get_theme_preference():
 windowWidth = 400
 windowHeight = 100
 
+# Transparent window background: the drawing area paints the translucent panel.
+_CSS = b"window.uh-overlay { background-color: transparent; }"
+
 
 class StickyWindow(gtk.Window):
 	# Set default messages to show in the popup
 	message = _("Loading...  ")
 	subtext = ""
 
-	def __init__(self):
+	def __init__(self, run_main_loop=True):
 		"""Initialize the sticky window"""
 		# Make the class a GTK window
 		gtk.Window.__init__(self)
+		self.run_main_loop = run_main_loop
+		self.loop = GLib.MainLoop() if run_main_loop else None
 
 		# Get the absolute or relative path to the logo file
 		logo_path = paths_factory.logo_path()
@@ -122,56 +127,43 @@ class StickyWindow(gtk.Window):
 		# Set the title of the window
 		self.set_title(_("Ubuntu Hello Authentication"))
 
-		# Set a bunch of options to make the window stick and be on top of everything
-		self.stick()
-		self.set_gravity(gdk.Gravity.STATIC)
+		# GTK 4 / Wayland: no keep-above, gravity or explicit placement; the
+		# compositor positions the undecorated, fixed-size overlay.
 		self.set_resizable(False)
-		self.set_keep_above(True)
-		self.set_app_paintable(True)
-		self.set_skip_pager_hint(True)
-		self.set_skip_taskbar_hint(True)
-		self.set_can_focus(False)
-		self.set_can_default(False)
-		self.set_focus(None)
-		self.set_type_hint(gdk.WindowTypeHint.NOTIFICATION)
 		self.set_decorated(False)
+		self.set_default_size(windowWidth, windowHeight)
+		self.add_css_class("uh-overlay")
+		provider = gtk.CssProvider()
+		provider.load_from_data(_CSS)
+		gtk.StyleContext.add_provider_for_display(
+			gdk.Display.get_default(), provider, gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-		# Listen for a window redraw
-		self.connect("draw", self.draw)
 		# Listen for a force close or click event and exit
-		self.connect("destroy", self.exit)
-		self.connect("delete_event", self.exit)
-		self.connect("button-press-event", self.exit)
-		self.connect("button-release-event", self.exit)
+		self.connect("close-request", self.exit)
 
-		# Create a GDK drawing, restricts the window size
+		# Create a drawing area, restricts the window size
 		darea = gtk.DrawingArea()
 		darea.set_size_request(windowWidth, windowHeight)
-		self.add(darea)
+		darea.set_draw_func(self.draw)
+		darea.set_cursor(gdk.Cursor.new_from_name("pointer"))
+		click = gtk.GestureClick()
+		click.connect("released", lambda *_a: self.exit())
+		darea.add_controller(click)
+		self.darea = darea
+		self.set_child(darea)
 
-		# Get the default screen
-		screen = gdk.Screen.get_default()
-		visual = screen.get_rgba_visual()
-		self.set_visual(visual)
+		# Show window
+		self.present()
 
-		# Move the window to the center top of the default window, where a webcam usually is
-		self.move((screen.get_width() / 2) - (windowWidth / 2), 0)
+		# Redraw on every line compare.py writes to our stdin (non-blocking)
+		GLib.io_add_watch(sys.stdin, GLib.PRIORITY_DEFAULT, GLib.IO_IN | GLib.IO_HUP, self.catch_stdin)
 
-		# Show window and force a resize again
-		self.show_all()
-		self.resize(windowWidth, windowHeight)
+		# Start the main loop
+		if run_main_loop:
+			self.loop.run()
 
-		# Add a timeout to catch input passed from compare.py
-		gobject.timeout_add(100, self.catch_stdin)
-
-		# Start GTK main loop
-		gtk.main()
-
-	def draw(self, widget, ctx):
+	def draw(self, widget, ctx, width, height):
 		"""Draw the UI"""
-		# Change cursor to the kill icon
-		self.get_window().set_cursor(gdk.Cursor(gdk.CursorType.PIRATE))
-
 		theme = get_theme_preference()
 
 		# Draw a semi transparent background
@@ -201,7 +193,7 @@ class StickyWindow(gtk.Window):
 		else:
 			ctx.set_source_rgba(0, 0, 0, .95)
 		ctx.set_font_size(80)
-		ctx.select_font_face("Arial", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+		ctx.select_font_face("Ubuntu", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
 		ctx.show_text(self.message)
 
 		# Draw the subtext if there is one
@@ -212,38 +204,38 @@ class StickyWindow(gtk.Window):
 			else:
 				ctx.set_source_rgba(50, 50, 50, .85)
 			ctx.set_font_size(40)
-			ctx.select_font_face("Arial", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+			ctx.select_font_face("Ubuntu", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
 			ctx.show_text(self.subtext)
 
-	def catch_stdin(self):
+	def handle_line(self, comm):
+		"""Apply one protocol line from compare.py (M=message, S=subtext)."""
+		if not comm:
+			return
+		if comm[0] == "M":
+			self.message = comm[2:].strip()
+		if comm[0] == "S":
+			self.subtext = comm[2:].strip()
+
+	def catch_stdin(self, source=None, condition=None):
 		"""Catch input from stdin and redraw"""
-		# Wait for a line on stdin
-		comm = sys.stdin.readline()[:-1]
+		line = sys.stdin.readline()
+		if not line:
+			# EOF: compare.py went away, so should the overlay
+			self.exit()
+			return False
+		self.handle_line(line.rstrip("\n"))
+		self.darea.queue_draw()
+		return True
 
-		# If the line is not empty
-		if comm:
-			# Parse a message
-			if comm[0] == "M":
-				self.message = comm[2:].strip()
-			# Parse subtext
-			if comm[0] == "S":
-				# self.subtext += " "
-				self.subtext = comm[2:].strip()
-
-		# Redraw the ui
-		self.queue_draw()
-
-		# Fire this function again in 10ms, as we're waiting on IO in readline anyway
-		gobject.timeout_add(10, self.catch_stdin)
-
-	def exit(self, widget, context):
+	def exit(self, *args):
 		"""Cleanly exit"""
-		gtk.main_quit()
+		if self.loop is not None and self.loop.is_running():
+			self.loop.quit()
 		return True
 
 
 # Make sure we quit on a SIGINT
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-# Open the GTK window
+# Open the GTK window (module is executed by init.py for --start-auth-ui)
 window = StickyWindow()

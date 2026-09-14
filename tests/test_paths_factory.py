@@ -40,12 +40,12 @@ class TestPathsFactoryGtk:
     def test_onboarding_wireframe_path(self):
         pf = self._load_gtk_paths_factory()
         result = pf.onboarding_wireframe_path()
-        assert "onboarding.glade" in result
+        assert "onboarding.ui" in result
 
     def test_main_window_wireframe_path(self):
         pf = self._load_gtk_paths_factory()
         result = pf.main_window_wireframe_path()
-        assert "main.glade" in result
+        assert "main.ui" in result
 
     def test_dlib_data_dir_path(self):
         pf = self._load_gtk_paths_factory()
@@ -93,7 +93,7 @@ class TestPathsFactoryGtk:
             called = None
 
             @staticmethod
-            def add_provider_for_screen(screen, provider, priority):
+            def add_provider_for_display(display, provider, priority):
                 FakeStyleContext.called = True
 
         fake_gtk = types.SimpleNamespace(
@@ -102,7 +102,7 @@ class TestPathsFactoryGtk:
             STYLE_PROVIDER_PRIORITY_APPLICATION=600,
         )
         fake_gdk = types.SimpleNamespace(
-            Screen=types.SimpleNamespace(get_default=lambda: object())
+            Display=types.SimpleNamespace(get_default=lambda: object())
         )
         monkeypatch.setitem(
             sys.modules,

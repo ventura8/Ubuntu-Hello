@@ -97,7 +97,7 @@ Install dependencies on Ubuntu/Debian:
 sudo apt-get update && sudo apt-get install -y \
   python3 python3-pip python3-dev python3-setuptools python3-wheel \
   python3-numpy python3-opencv python3-gi python3-gi-cairo \
-  gir1.2-gtk-3.0 \
+  gir1.2-gtk-4.0 \
   cmake make build-essential g++ \
   libpam0g-dev libinih-dev libevdev-dev libopencv-dev \
   libboost-all-dev pkg-config \

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Nabigo, naabot ang timeout"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Masyadong madilim ang larawan ng pag-detect ng mukha"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Hindi kilalang error:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "Kinilala ang mukha bilang %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Hindi sapat ang mga pahintulot na magpadala ng Enter press, naghihinta"
-"y na pindutin ito ng user sa halip"
+"Hindi sapat ang mga pahintulot na magpadala ng Enter press, naghihintay na "
+"pindutin ito ng user sa halip"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Nabigong ipadala ang Enter press, naghihintay sa user na pindutin ito "
-"sa halip"
+"Nabigong ipadala ang Enter press, naghihintay sa user na pindutin ito sa "
+"halip"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Sinusubukang pagpapatunay ng mukha"
 
@@ -67,26 +68,26 @@ msgstr "mga argumento"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Para sa suporta mangyaring bisitahin\nhttps://github.com/ventura8/ubun"
-"tu-hello"
+"Para sa suporta mangyaring bisitahin\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
 "Ang command na opsyon na isasagawa, ay maaaring isa sa mga sumusunod: "
-"idagdag, i-clear, i-configure, i-disable, keyring, ilista, alisin, sna"
-"pshot, itakda, subukan o bersyon."
+"idagdag, i-clear, i-configure, i-disable, keyring, ilista, alisin, snapshot, "
+"itakda, subukan o bersyon."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"Mga opsyonal na argumento para sa magdagdag, huwag paganahin, alisin a"
-"t itakda ang mga utos."
+"Mga opsyonal na argumento para sa magdagdag, huwag paganahin, alisin at "
+"itakda ang mga utos."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -117,138 +118,253 @@ msgid "Invalid username format"
 msgstr "Di-wastong format ng username"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Mangyaring patakbuhin ang utos na ito bilang ugat:\n"
+msgid "Please run this command as root:\n"
+msgstr "Mangyaring patakbuhin ang utos na ito bilang ugat:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Hindi makapagpatakbo ng mga ubuntu-hello na command bilang root, mangy"
-"aring patakbuhin ang command na ito gamit ang --user flag"
+"Hindi makapagpatakbo ng mga ubuntu-hello na command bilang root, mangyaring "
+"patakbuhin ang command na ito gamit ang --user flag"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"Ang mga file ng data ay hindi pa nai-download, mangyaring patakbuhin a"
-"ng mga sumusunod na command:"
+"Ang mga file ng data ay hindi pa nai-download, mangyaring patakbuhin ang mga "
+"sumusunod na command:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Petsa:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "Oras ng pag-scan:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "Mga frame:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "Hostname:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "Pinakamahusay na halaga ng katiyakan:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "Nagsisimula..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "Kinikilala ka..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "NABIGO"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Masyadong madilim ang lahat ng frame, pakitingnan ang dark_threshold s"
-"a config"
+"Masyadong madilim ang lahat ng frame, pakitingnan ang dark_threshold sa "
+"config"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Average na dilim: {avg}, Threshold: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "Oras na ginugol"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "Nagsisimula"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Buksan ang cam + load libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "Pagbukas ng camera"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "Pag-import ng recognition libs"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "Naghahanap ng kilalang mukha"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "Kabuuang oras"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nResolusyon"
+"\n"
+"Resolusyon"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Katutubo: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Ginamit: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nHinanap ang mga frame: %d (%.2f fps)"
+"\n"
+"Hinanap ang mga frame: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Binalewala ang mga itim na frame: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Binalewala ang mga madilim na frame: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Katiyakan ng panalong frame: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Panalong modelo: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "MATAGUMPAY"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "awtorisasyon"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "pag-unlock ng screen"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "timeout"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "load"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s mga frame"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s madilim"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "Hinahanap ang iyong mukha..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "Pagpapatunay ng mukha"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "Kinikilala ang mukha"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "magdagdag ng modelo sa ganitong liwanag"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "suriin ang camera"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "Walang tugma sa %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "mag-enroll: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "pinakamalapit"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "Hindi nakikilala ang mukha"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "Masyadong madilim"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "buksan ang ilaw"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "kadiliman"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "Nabigo ang liveness check"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "Walang modelo ng mukha para sa %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "Hindi available ang pagpapatotoo sa mukha"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "Kinansela"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "Kinansela ang pagpapatotoo sa mukha"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -272,9 +388,11 @@ msgstr "keyring sa pag-log in o KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nHindi ma-import ang dlib module, tingnan ang output ng"
+"\n"
+"Hindi ma-import ang dlib module, tingnan ang output ng"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -282,17 +400,14 @@ msgstr "Walang nakitang folder ng modelo ng mukha, na gumagawa ng isa"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr ""
-"PAUNAWA: Ang bawat karagdagang modelo ay bahagyang nagpapabagal sa mak"
-"ina ng pagkilala sa mukha"
+"PAUNAWA: Ang bawat karagdagang modelo ay bahagyang nagpapabagal sa makina ng "
+"pagkilala sa mukha"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Pindutin ang Ctrl+C para kanselahin\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Pindutin ang Ctrl+C para kanselahin\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -303,6 +418,7 @@ msgid "Model #"
 msgstr "Model #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Gamit ang default na label na \"%s\" dahil sa -y flag"
 
@@ -312,13 +428,16 @@ msgstr "Maglagay ng label para sa bagong modelong ito [{}]:"
 
 #: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
-msgstr "PAUNAWA: Pag-alis ng ilegal na karakter \",\" mula sa pangalan ng modelo"
+msgstr ""
+"PAUNAWA: Pag-alis ng ilegal na karakter \",\" mula sa pangalan ng modelo"
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nMangyaring tumingin nang diretso sa camera"
+"\n"
+"Mangyaring tumingin nang diretso sa camera"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -334,15 +453,19 @@ msgstr "Maramihang mukha ang nakita, nagpapalaglag"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nTapos na ang pag-scan\nNagdagdag ng bagong modelo sa"
+"\n"
+"Tapos na ang pag-scan\n"
+"Nagdagdag ng bagong modelo sa"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"Wala pang ginawang mga modelo, hindi ma-clear ang mga ito kung wala an"
-"g mga ito"
+"Wala pang ginawang mga modelo, hindi ma-clear ang mga ito kung wala ang mga "
+"ito"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -358,21 +481,27 @@ msgstr "Gusto mo bang ipagpatuloy [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nPagbibigay-kahulugan bilang isang \"HINDI\", pagpapalaglag"
+"\n"
+"Pagbibigay-kahulugan bilang isang \"HINDI\", pagpapalaglag"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nNa-clear ang mga modelo"
+"\n"
+"Na-clear ang mga modelo"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Binubuksan ang config.ini sa {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Nabigong buksan ang editor: {error}"
 
@@ -383,16 +512,15 @@ msgstr "Error: Hindi makahanap ng angkop na text editor."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"Paki-install ang 'nano' o 'vi', o itakda ang EDITOR environment variab"
-"le."
+"Paki-install ang 'nano' o 'vi', o itakda ang EDITOR environment variable."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Kung pinapatakbo mo ang command na ito gamit ang sudo, subukan ang 'su"
-"do -E ubuntu-hello config' upang mapanatili ang iyong EDITOR variable."
+"Kung pinapatakbo mo ang command na ito gamit ang sudo, subukan ang 'sudo -E "
+"ubuntu-hello config' upang mapanatili ang iyong EDITOR variable."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -401,8 +529,7 @@ msgstr "Mangyaring magdagdag ng 0 (enable) o 1 (disable) bilang argumento"
 #: src/cli/disable.py:35
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr ""
-"Mangyaring gumamit lamang ng 0 (paganahin) o 1 (paganahin) bilang argu"
-"mento"
+"Mangyaring gumamit lamang ng 0 (paganahin) o 1 (paganahin) bilang argumento"
 
 #: src/cli/disable.py:40
 msgid "The disable option has already been set to "
@@ -446,11 +573,11 @@ msgstr "Aktibo ang TPM hardware. Tinatakpan ang password sa TPM..."
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Matagumpay na na-enable ang keyring/KWallet unlocking para sa user na "
-"{} gamit ang TPM (wallet: {})."
+"Matagumpay na na-enable ang keyring/KWallet unlocking para sa user na {} "
+"gamit ang TPM (wallet: {})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -459,16 +586,15 @@ msgstr "Nabigong i-seal ang password sa TPM: {}"
 #: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Walang TPM na aktibo. Gumagamit ng software-based na credential cachin"
-"g..."
+"Walang TPM na aktibo. Gumagamit ng software-based na credential caching..."
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Matagumpay na pinagana ang keyring/KWallet unlocking para sa user na {"
-"} (Software Caching, wallet: {})."
+"Matagumpay na pinagana ang keyring/KWallet unlocking para sa user na {} "
+"(Software Caching, wallet: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -484,7 +610,8 @@ msgstr "Na-disable ang keyring/KWallet unlocking para sa user na {}."
 
 #: src/cli/keyring.py:140
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
-msgstr "Ang pag-unlock ng keyring/KWallet ay hindi pinagana para sa user na {}."
+msgstr ""
+"Ang pag-unlock ng keyring/KWallet ay hindi pinagana para sa user na {}."
 
 #: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
@@ -500,11 +627,11 @@ msgstr "Hindi maibalik ang password ng login wallet para sa {} (na) user."
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Kung magpatuloy ang mga prompt, itakda ang password ng login keyring o"
-" KWallet sa Seahorse / Mga Setting ng System."
+"Kung magpatuloy ang mga prompt, itakda ang password ng login keyring o "
+"KWallet sa Seahorse / Mga Setting ng System."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -517,20 +644,18 @@ msgstr "Hindi maibalik ang password ng login wallet para sa user na {}."
 #: src/cli/keyring.py:167
 msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
 msgstr ""
-"Hindi wastong aksyon. Gamitin ang 'paganahin', 'i-disable', o 'i-resto"
-"re'."
+"Hindi wastong aksyon. Gamitin ang 'paganahin', 'i-disable', o 'i-restore'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
 msgstr ""
-"Ang mga modelo ng mukha ay hindi pa nasisimulan, mangyaring patakbuhin"
-" ang:"
+"Ang mga modelo ng mukha ay hindi pa nasisimulan, mangyaring patakbuhin ang:"
 
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
 msgstr ""
-"Walang modelo ng mukha na kilala para sa gumagamit {}, mangyaring pata"
-"kbuhin ang:"
+"Walang modelo ng mukha na kilala para sa gumagamit {}, mangyaring patakbuhin "
+"ang:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
@@ -553,10 +678,12 @@ msgid "You can find the IDs by running:"
 msgstr "Mahahanap mo ang mga ID sa pamamagitan ng pagpapatakbo ng:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Aalisin nito ang modelong tinatawag na \"{label}\" para sa {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Walang modelong may ID na {id} ang umiiral para sa {user}"
 
@@ -569,10 +696,11 @@ msgid "Removed model {}"
 msgstr "Inalis ang modelo {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Mangyaring magdagdag ng setting na gusto mong baguhin at ang halaga ku"
-"ng saan ito itatakda"
+"Mangyaring magdagdag ng setting na gusto mong baguhin at ang halaga kung "
+"saan ito itatakda"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -600,34 +728,43 @@ msgstr "Na-save ang nabuong snapshot bilang"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ang Ubuntu Hello ay na-configure na gumamit ng isang recorder na hindi"
-" pa sumusuporta sa test command, aborting"
+"Ang Ubuntu Hello ay na-configure na gumamit ng isang recorder na hindi pa "
+"sumusuporta sa test command, aborting"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nPagbubukas ng window na may test feed\n\nPindutin ang ctrl+C sa term"
-"inal na ito para umalis\nMag-click sa larawan upang paganahin o huwag "
-"paganahin ang slow mode\n"
+"\n"
+"Pagbubukas ng window na may test feed\n"
+"\n"
+"Pindutin ang ctrl+C sa terminal na ito para umalis\n"
+"Mag-click sa larawan upang paganahin o huwag paganahin ang slow mode\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RESOLUSYON: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "MGA FRAME: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "PAGKILALA: %dms"
 
@@ -645,9 +782,11 @@ msgstr "I-SCAN FRAME"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nPagsasara ng bintana"
+"\n"
+"Pagsasara ng bintana"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -678,6 +817,7 @@ msgid "Authorising in {}"
 msgstr "Pagpapahintulot sa {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Pindutin ang {abort_key} para i-abort, {confirm_key} para pahintulutan"
 
@@ -711,24 +851,23 @@ msgstr "Nawawalang pyv4l2 module, mangyaring patakbuhin ang:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello hindi makahanap ng camera device sa path na tinukoy sa co"
-"nfig file."
+"Ubuntu Hello hindi makahanap ng camera device sa path na tinukoy sa config "
+"file."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Malamang na ang path ay hindi na-configure nang tama, paki-edit ang 'd"
-"evice_path' na halaga ng config sa pamamagitan ng pagpapatakbo:"
+"Malamang na ang path ay hindi na-configure nang tama, paki-edit ang "
+"'device_path' na halaga ng config sa pamamagitan ng pagpapatakbo:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"Nabigong basahin ang camera na tinukoy sa 'device_path' na opsyon sa c"
-"onfig, ibinabagsak"
+"Nabigong basahin ang camera na tinukoy sa 'device_path' na opsyon sa config, "
+"ibinabagsak"

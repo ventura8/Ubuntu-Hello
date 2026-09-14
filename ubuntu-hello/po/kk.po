@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Сәтсіздік, күту уақыты аяқталды"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Бетті анықтау кескіні тым күңгірт"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Белгісіз қате:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "Анықталған бет %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Enter пернесін жіберуге рұқсаттар жеткіліксіз, оның орнына пайдаланушы"
-" оны басқанша күтуде"
+"Enter пернесін жіберуге рұқсаттар жеткіліксіз, оның орнына пайдаланушы оны "
+"басқанша күтуде"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Enter пернесін жіберу мүмкін болмады, оның орнына пайдаланушы оны басу"
-"ын күтуде"
+"Enter пернесін жіберу мүмкін болмады, оның орнына пайдаланушы оны басуын "
+"күтуде"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Бет аутентификациясына әрекеттену"
 
@@ -67,19 +68,20 @@ msgstr "аргументтер"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Қолдау үшін кіріңіз\nhttps://github.com/ventura8/ubuntu-hello"
+"Қолдау үшін кіріңіз\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"Орындалатын пәрмен опциясы келесілердің бірі болуы мүмкін: қосу, тазал"
-"ау, конфигурациялау, өшіру, кілттеу, тізімдеу, жою, суретке түсіру, ор"
-"нату, сынақ немесе нұсқа."
+"Орындалатын пәрмен опциясы келесілердің бірі болуы мүмкін: қосу, тазалау, "
+"конфигурациялау, өшіру, кілттеу, тізімдеу, жою, суретке түсіру, орнату, "
+"сынақ немесе нұсқа."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -114,136 +116,251 @@ msgid "Invalid username format"
 msgstr "Пайдаланушы аты пішімі жарамсыз"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Бұл пәрменді түбір ретінде іске қосыңыз:\n"
+msgid "Please run this command as root:\n"
+msgstr "Бұл пәрменді түбір ретінде іске қосыңыз:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Ubuntu-hello пәрмендерін түбір ретінде іске қосу мүмкін емес, осы пәрм"
-"енді --user жалаушасымен іске қосыңыз"
+"Ubuntu-hello пәрмендерін түбір ретінде іске қосу мүмкін емес, осы пәрменді --"
+"user жалаушасымен іске қосыңыз"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Деректер файлдары жүктелмеді, келесі пәрмендерді орындаңыз:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "КІРУ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Күні:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "Сканерлеу уақыты:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "Жақтаулар:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "Хост аты:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "Ең жақсы сенімділік мәні:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "Іске қосылуда..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "Сізді анықтауда..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "СӘТСІЗ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Барлық кадрлар тым қараңғы болды, конфигурацияда dark_threshold параме"
-"трін тексеріңіз"
+"Барлық кадрлар тым қараңғы болды, конфигурацияда dark_threshold параметрін "
+"тексеріңіз"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Орташа қараңғылық: {avg}, шегі: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "Өткізілген уақыт"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "Іске қосу"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Камераны ашыңыз + жүктеу дискілері: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "Камераны ашу"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "Тану кітапханаларын импорттау"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "Белгілі бет ізделуде"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "Жалпы уақыт"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nАжыратымдылық"
+"\n"
+"Ажыратымдылық"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Жергілікті: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Қолданылған: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nІзденген кадрлар: %d (%.2f кадр/сек)"
+"\n"
+"Ізденген кадрлар: %d (%.2f кадр/сек)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Қара жақтаулар еленбеді: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Қараңғы жақтаулар еленбеді: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Жеңімпаз кадрдың сенімділігі: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Жеңімпаз модель: %d («%s»)"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "СӘТТІ"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "рұқсат"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "экран құлпын ашу"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "үзіліс"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "жүк"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s жақтаулары"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s қараңғы"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "Сіздің бетіңізді іздеп…"
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "Бет аутентификациясы"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "Бет танылды"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "осы тұрғыда үлгі қосыңыз"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "камераны тексеріңіз"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "%s ішінде сәйкестік жоқ"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "тіркелу: sudo ubuntu-hello қосу"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "ең жақын"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "Бет танылмады"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "Тым қараңғы"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "шамды қосыңыз"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "қараңғылық"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "Тіршілікті тексеру сәтсіз аяқталды"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "%s үшін бет үлгісі жоқ"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "Бет аутентификациясы қолжетімді емес"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "Бас тартылды"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "Бет аутентификациясы тоқтатылды"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -267,9 +384,11 @@ msgstr "кіру кілті немесе KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\ndlib модулін импорттау мүмкін емес, шығысын тексеріңіз"
+"\n"
+"dlib модулін импорттау мүмкін емес, шығысын тексеріңіз"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -277,15 +396,13 @@ msgstr "Бет үлгісі қалтасы табылмады, біреуі жа
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
-msgstr "ЕСКЕРТПЕ: Әрбір қосымша модель бетті тану қозғалтқышын аздап баяулатады"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr ""
+"ЕСКЕРТПЕ: Әрбір қосымша модель бетті тану қозғалтқышын аздап баяулатады"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Бас тарту үшін Ctrl+C пернелер тіркесімін басыңыз\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Бас тарту үшін Ctrl+C пернелер тіркесімін басыңыз\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -296,6 +413,7 @@ msgid "Model #"
 msgstr "Үлгі №"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y жалауына байланысты әдепкі \"%s\" белгісін пайдалану"
 
@@ -309,9 +427,11 @@ msgstr "ЕСКЕРТУ: Үлгі атынан заңсыз «,» таңбасы�
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nТіке камераға қараңыз"
+"\n"
+"Тіке камераға қараңыз"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -327,15 +447,19 @@ msgstr "Бірнеше бет анықталды, тоқтатылуда"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nСканерлеу аяқталды\nЖаңа үлгі қосылды"
+"\n"
+"Сканерлеу аяқталды\n"
+"Жаңа үлгі қосылды"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"Әзірге ешқандай үлгілер жасалмаған, егер олар жоқ болса, оларды тазала"
-"у мүмкін емес"
+"Әзірге ешқандай үлгілер жасалмаған, егер олар жоқ болса, оларды тазалау "
+"мүмкін емес"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -351,21 +475,27 @@ msgstr "Жалғастыруды қалайсыз ба [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\n«ЖОҚ» деп түсіндіру, тоқтату"
+"\n"
+"«ЖОҚ» деп түсіндіру, тоқтату"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nМодельдер тазартылды"
+"\n"
+"Модельдер тазартылды"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "config.ini {editor} ішінде ашылуда"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Редакторды ашу мүмкін болмады: {error}"
 
@@ -376,17 +506,16 @@ msgstr "Қате: сәйкес мәтін өңдегіші табылмады."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"\"nano\" немесе \"vi\" орнатыңыз немесе EDITOR ортасының айнымалы мәні"
-"н орнатыңыз."
+"\"nano\" немесе \"vi\" орнатыңыз немесе EDITOR ортасының айнымалы мәнін "
+"орнатыңыз."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Егер сіз осы пәрменді sudo көмегімен іске қосып жатсаңыз, EDITOR айным"
-"алы мәнін сақтау үшін «sudo -E ubuntu-hello конфигурациясын» қолданып "
-"көріңіз."
+"Егер сіз осы пәрменді sudo көмегімен іске қосып жатсаңыз, EDITOR айнымалы "
+"мәнін сақтау үшін «sudo -E ubuntu-hello конфигурациясын» қолданып көріңіз."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -431,8 +560,7 @@ msgstr "Құпия сөздер сәйкес келмейді"
 #: src/cli/keyring.py:65
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr ""
-"TPM аппараттық құралы анықталды. tpm2-tools автоматты түрде орнатылуда"
-"..."
+"TPM аппараттық құралы анықталды. tpm2-tools автоматты түрде орнатылуда..."
 
 #: src/cli/keyring.py:74
 msgid "TPM hardware active. Sealing password in TPM..."
@@ -440,11 +568,11 @@ msgstr "TPM аппараттық құралы белсенді. TPM жүйесі
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Кілт/KWallet құлпын ашу TPM (әмиян: {}) арқылы {} пайдаланушысы үшін с"
-"әтті қосылды."
+"Кілт/KWallet құлпын ашу TPM (әмиян: {}) арқылы {} пайдаланушысы үшін сәтті "
+"қосылды."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -453,16 +581,16 @@ msgstr "TPM құпия сөзін жабу мүмкін болмады: {}"
 #: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Белсенді TPM жоқ. Бағдарламаға негізделген тіркелгі деректерін кэштеуд"
-"і пайдалану..."
+"Белсенді TPM жоқ. Бағдарламаға негізделген тіркелгі деректерін кэштеуді "
+"пайдалану..."
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Keyring/KWallet құлпын ашу {} пайдаланушысы үшін сәтті қосылды (Бағдар"
-"ламалық құралды кэштеу, әмиян: {})."
+"Keyring/KWallet құлпын ашу {} пайдаланушысы үшін сәтті қосылды "
+"(Бағдарламалық құралды кэштеу, әмиян: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -491,16 +619,15 @@ msgstr "{} пайдаланушының кіру әмиянының құпияс
 #: src/cli/keyring.py:157
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
-"{} пайдаланушының кіру әмиянының құпиясөзін қалпына келтіру мүмкін бол"
-"мады."
+"{} пайдаланушының кіру әмиянының құпиясөзін қалпына келтіру мүмкін болмады."
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Сұраулар жалғасса, Seahorse / Жүйе параметрлерінде кіру кілттерінің не"
-"месе KWallet құпиясөзін орнатыңыз."
+"Сұраулар жалғасса, Seahorse / Жүйе параметрлерінде кіру кілттерінің немесе "
+"KWallet құпиясөзін орнатыңыз."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -509,12 +636,12 @@ msgstr "{} пайдаланушысының кіру әмиянының құпи
 #: src/cli/keyring.py:163
 msgid "Could not restore login wallet password for user {}."
 msgstr ""
-"{} пайдаланушысының кіру әмиянының құпиясөзін қалпына келтіру мүмкін б"
-"олмады."
+"{} пайдаланушысының кіру әмиянының құпиясөзін қалпына келтіру мүмкін болмады."
 
 #: src/cli/keyring.py:167
 msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "Жарамсыз әрекет. «қосу», «өшіру» немесе «қалпына келтіру» пайдаланыңыз."
+msgstr ""
+"Жарамсыз әрекет. «қосу», «өшіру» немесе «қалпына келтіру» пайдаланыңыз."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -545,10 +672,12 @@ msgid "You can find the IDs by running:"
 msgstr "Идентификаторларды іске қосу арқылы табуға болады:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Бұл {user} үшін \"{label}\" деп аталатын үлгіні жояды."
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "{user} үшін {id} идентификаторы бар үлгі жоқ"
 
@@ -561,7 +690,8 @@ msgid "Removed model {}"
 msgstr "Жойылған үлгі {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr "Өзгерткіңіз келетін параметрді және оған орнатылатын мәнді қосыңыз"
 
 #: src/cli/set.py:37
@@ -590,34 +720,43 @@ msgstr "Жасалған сурет ретінде сақталды"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello сынақ пәрменіне әлі қолдау көрсетпейтін жазу құрылғысын п"
-"айдалану үшін конфигурацияланған, тоқтатылады"
+"Ubuntu Hello сынақ пәрменіне әлі қолдау көрсетпейтін жазу құрылғысын "
+"пайдалану үшін конфигурацияланған, тоқтатылады"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nСынақ арнасы бар терезені ашу\n\nШығу үшін осы терминалда ctrl+C пер"
-"нелер тіркесімін басыңыз\nБаяу режимді қосу немесе өшіру үшін суретті "
-"басыңыз\n"
+"\n"
+"Сынақ арнасы бар терезені ашу\n"
+"\n"
+"Шығу үшін осы терминалда ctrl+C пернелер тіркесімін басыңыз\n"
+"Баяу режимді қосу немесе өшіру үшін суретті басыңыз\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "ШЕШІМ: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "ЖАҢАЛЫҚТАР: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "ТАНУ: %dms"
 
@@ -635,9 +774,11 @@ msgstr "ЖАҢАДЫ СКАНЕРУ"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nТерезені жабу"
+"\n"
+"Терезені жабу"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -668,10 +809,11 @@ msgid "Authorising in {}"
 msgstr "{} ішінде авторизациялау"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr ""
-"Тоқтату үшін {abort_key} түймесін, авторизациялау үшін {confirm_key} т"
-"үймесін басыңыз"
+"Тоқтату үшін {abort_key} түймесін, авторизациялау үшін {confirm_key} "
+"түймесін басыңыз"
 
 #: src/rubberstamps/hotkey.py:50
 msgid "Authentication aborted"
@@ -703,24 +845,23 @@ msgstr "pyv4l2 модулі жоқ, іске қосыңыз:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello конфигурация файлында көрсетілген жолда камера құрылғысын"
-" таба алмады."
+"Ubuntu Hello конфигурация файлында көрсетілген жолда камера құрылғысын таба "
+"алмады."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Жол дұрыс конфигурацияланбаған болуы әбден мүмкін, «құрылғы_жолы» конф"
-"игурация мәнін келесі іске қосу арқылы өңдеңіз:"
+"Жол дұрыс конфигурацияланбаған болуы әбден мүмкін, «құрылғы_жолы» "
+"конфигурация мәнін келесі іске қосу арқылы өңдеңіз:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"\"Device_path\" конфигурация опциясында көрсетілген камераны оқу сәтсі"
-"з аяқталды, тоқтатылады"
+"\"Device_path\" конфигурация опциясында көрсетілген камераны оқу сәтсіз "
+"аяқталды, тоқтатылады"

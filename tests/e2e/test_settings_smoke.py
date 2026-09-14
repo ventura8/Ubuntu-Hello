@@ -1,6 +1,6 @@
-"""Settings E2E / UI smoke under real GTK3 (xvfb).
+"""Settings E2E / UI smoke under real GTK 4 (xvfb).
 
-Not mocked: loads main.glade via gi.repository.Gtk. Run only with:
+Not mocked: loads main.ui via gi.repository.Gtk. Run only with:
 
   UH_REAL_GTK=1 xvfb-run -a pytest tests/e2e/
 
@@ -18,8 +18,10 @@ import pytest
 if os.environ.get("UH_REAL_GTK") != "1":
 	pytest.skip("Settings E2E requires UH_REAL_GTK=1 (real gi.repository.Gtk)", allow_module_level=True)
 
-gi.require_version("Gtk", "3.0")
+gi.require_version("Gtk", "4.0")
 Gtk = importlib.import_module("gi.repository.Gtk")
+GLib = importlib.import_module("gi.repository.GLib")
+gtk4compat = importlib.import_module("gtk4compat")
 languages = importlib.import_module("languages")
 preferences = importlib.import_module("preferences")
 theme_detect = importlib.import_module("theme_detect")
@@ -27,12 +29,27 @@ _search_fuzzy = importlib.import_module("search_fuzzy")
 fuzzy_match = _search_fuzzy.fuzzy_match
 fuzzy_score = _search_fuzzy.fuzzy_score
 
-GLADE = Path(__file__).resolve().parents[2] / "ubuntu-hello-gtk" / "src" / "main.glade"
+GLADE = Path(__file__).resolve().parents[2] / "ubuntu-hello-gtk" / "src" / "main.ui"
 
 
 def _pump():
-	while Gtk.events_pending():
-		Gtk.main_iteration_do(False)
+	context = GLib.MainContext.default()
+	for _ in range(10):
+		while context.pending():
+			context.iteration(False)
+
+
+def _children(widget):
+	return list(gtk4compat.iter_children(widget))
+
+
+class _NullScope:
+	"""GTK 4 Builder resolves <signal handler> names at load time; stub them all."""
+
+	def __getattr__(self, name):
+		if name.startswith("__"):
+			raise AttributeError(name)
+		return lambda *_args, **_kwargs: None
 
 
 @pytest.fixture
@@ -44,16 +61,16 @@ def prefs_file(tmp_path, monkeypatch):
 
 @pytest.fixture
 def settings_ui(prefs_file):
-	"""Load Settings Glade with stock widgets; populate language combo + search hooks."""
-	assert GLADE.is_file(), f"missing Glade: {GLADE}"
-	builder = Gtk.Builder()
+	"""Load the Settings Builder UI with stock widgets; populate language combo + search hooks."""
+	assert GLADE.is_file(), f"missing Builder UI: {GLADE}"
+	builder = Gtk.Builder(_NullScope())
 	builder.set_translation_domain("ubuntu-hello-gtk")
 	builder.add_from_file(str(GLADE))
 
 	window = builder.get_object("mainwindow")
 	notebook = builder.get_object("notebook")
 	search = builder.get_object("settings_search")
-	combo = builder.get_object("language_combo")
+	combo = gtk4compat.dropdown(builder.get_object("language_combo"))
 	assert window is not None
 	assert notebook is not None
 	assert search is not None
@@ -80,11 +97,11 @@ def settings_ui(prefs_file):
 	for page_index in range(notebook.get_n_pages()):
 		page = notebook.get_nth_page(page_index)
 		tab = notebook.get_tab_label(page)
-		candidates = list(page.get_children()) if isinstance(page, Gtk.Container) else [page]
+		candidates = _children(page) or [page]
 		expanded = []
 		for child in candidates:
 			if isinstance(child, Gtk.Box) and child.get_orientation() == Gtk.Orientation.VERTICAL:
-				expanded.extend(child.get_children())
+				expanded.extend(_children(child))
 			else:
 				expanded.append(child)
 		rows_by_page.append({
@@ -101,6 +118,8 @@ def settings_ui(prefs_file):
 		def walk(node):
 			if node is None:
 				return
+			if isinstance(node, Gtk.Revealer) and not node.get_reveal_child():
+				return  # collapsed reminder text is not on screen
 			if isinstance(node, Gtk.Label):
 				text = node.get_text() or node.get_label() or ""
 				if text:
@@ -109,13 +128,12 @@ def settings_ui(prefs_file):
 				label = node.get_label()
 				if label:
 					parts.append(label)
-			elif isinstance(node, Gtk.ComboBoxText):
-				active = node.get_active_text()
-				if active:
-					parts.append(active)
-			if isinstance(node, Gtk.Container):
-				for child in node.get_children():
-					walk(child)
+			elif isinstance(node, Gtk.DropDown):
+				selected = node.get_selected_item()
+				if selected is not None:
+					parts.append(selected.get_string())
+			for child in _children(node):
+				walk(child)
 
 		walk(widget)
 		return " ".join(parts)
@@ -160,7 +178,7 @@ def settings_ui(prefs_file):
 			notebook.set_current_page(best_tab)
 		_pump()
 
-	window.show_all()
+	window.present()
 	_pump()
 
 	harness = {
@@ -186,9 +204,9 @@ class TestSettingsWindowSmoke:
 
 	def test_notebook_tabs_present_and_switchable(self, settings_ui):
 		notebook = settings_ui["notebook"]
-		assert notebook.get_n_pages() == 5
+		assert notebook.get_n_pages() == 6
 		labels = []
-		for i in range(5):
+		for i in range(6):
 			page = notebook.get_nth_page(i)
 			tab = notebook.get_tab_label(page)
 			labels.append((tab.get_text() if tab else "") or "")
@@ -198,6 +216,7 @@ class TestSettingsWindowSmoke:
 		joined = " ".join(labels).casefold()
 		assert "models" in joined
 		assert "video" in joined
+		assert "notifications" in joined
 		assert "keyring" in joined
 		assert "language" in joined
 		assert "about" in joined
@@ -240,13 +259,13 @@ class TestSettingsWindowSmoke:
 		about = b.get_object("box5")
 		assert about is not None
 		settings_ui["apply_search"]("facial")
-		for child in about.get_children():
+		for child in _children(about):
 			assert child.get_visible(), f"About child hidden after tagline search: {child}"
 		settings_ui["apply_search"]("linux")
-		for child in about.get_children():
+		for child in _children(about):
 			assert child.get_visible(), f"About child hidden after linux search: {child}"
 		# Title / tagline / version still present
-		texts = " ".join(settings_ui["widget_text"](c) for c in about.get_children()).casefold()
+		texts = " ".join(settings_ui["widget_text"](c) for c in _children(about)).casefold()
 		assert "ubuntu hello" in texts
 		assert "facial authentication" in texts
 		settings_ui["apply_search"]("")
@@ -271,9 +290,8 @@ class TestSettingsWindowSmoke:
 
 		def show_tree(widget):
 			widget.set_visible(True)
-			if isinstance(widget, Gtk.Container):
-				for child in widget.get_children():
-					show_tree(child)
+			for child in _children(widget):
+				show_tree(child)
 
 		show_tree(video)
 		notebook.set_current_page(video_index)
@@ -304,8 +322,8 @@ class TestSettingsWindowSmoke:
 		if hasattr(i18n_mod, "reload_from_preferences"):
 			i18n_mod.reload_from_preferences()
 			assert callable(i18n_mod._)
-		# Glade rebuild path: fresh Builder with domain (same as Settings instant apply).
-		builder = Gtk.Builder()
+		# Builder rebuild path: fresh Builder with domain (same as Settings instant apply).
+		builder = Gtk.Builder(_NullScope())
 		builder.set_translation_domain("ubuntu-hello-gtk")
 		builder.add_from_file(str(GLADE))
 		label = builder.get_object("languagetab")
@@ -320,7 +338,7 @@ class TestSettingsWindowSmoke:
 		rows_by_page = settings_ui["rows_by_page"]
 		# Fuzzy typo for Language tab content
 		apply_search("langag")
-		language = rows_by_page[3]
+		language = rows_by_page[4]   # Models, Video, Notifications, Keyring, Language
 		assert any(r.get_visible() for r in language["rows"])
 		apply_search("")
 		for info in rows_by_page:
@@ -332,7 +350,7 @@ class TestSettingsWindowSmoke:
 		_pump()
 		# Subsequence / fuzzy for Keyring
 		settings_ui["apply_search"]("kyrng")
-		assert notebook.get_current_page() == 2
+		assert notebook.get_current_page() == 3   # Models, Video, Notifications, Keyring
 
 	def test_no_restart_note_on_language_tab(self, settings_ui):
 		note = settings_ui["builder"].get_object("language_restart_note")
@@ -350,12 +368,15 @@ class TestSettingsWindowSmoke:
 		search = b.get_object("settings_search")
 		header = b.get_object("headerbar")
 		assert isinstance(search, Gtk.SearchEntry)
-		assert isinstance(b.get_object("language_combo"), Gtk.ComboBoxText)
+		assert isinstance(b.get_object("language_combo"), Gtk.DropDown)
 		assert isinstance(header, Gtk.HeaderBar)
 		assert isinstance(b.get_object("notebook"), Gtk.Notebook)
-		# Search lives on the left of the title bar (HeaderBar pack start).
-		assert search.get_parent() is header
-		assert header.child_get_property(search, "pack-type") == Gtk.PackType.START
+		# Search lives on the left of the title bar (HeaderBar start slot).
+		assert search.get_ancestor(Gtk.HeaderBar) is header
+		# GTK 4 packs start children into the first internal box, before the title.
+		start_box = search.get_parent()
+		assert start_box is not None
+		assert start_box.get_prev_sibling() is None
 
 	def test_i18n_preference_env_honored(self, tmp_path, monkeypatch):
 		path = tmp_path / "preferences.ini"

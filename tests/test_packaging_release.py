@@ -621,3 +621,55 @@ def test_packaging_installers_complete() -> None:
         check=True,
         timeout=900,
     )
+
+
+@pytest.mark.parametrize("path", ["install.sh", "scripts/package-configure.sh"])
+def test_polkit_helper_dropin_allows_tpm_unseal(path: str) -> None:
+    """Every writer of the polkit-agent-helper drop-in must grant TPM device
+    access and a writable tpm-keys dir, otherwise TPM-sealed keyring unlock
+    fails under polkit's hardened helper unit (works at GDM, fails on pkexec)."""
+    text = _read_repo(path)
+    for line in (
+        "DeviceAllow=char-video4linux rw",
+        "DeviceAllow=/dev/uinput rw",
+        "DeviceAllow=char-tpm rw",
+        "DeviceAllow=/dev/tpm0 rw",
+        "ReadWritePaths=/etc/ubuntu-hello/tpm-keys",
+        "ProtectHome=tmpfs",
+        "BindPaths=/run/user",
+        "ReadWritePaths=-/run/ubuntu-hello",
+    ):
+        assert line in text, f"{path}: missing {line}"
+
+
+def test_debian_gtk_install_list_ships_hicolor_icons() -> None:
+    """dh_missing fails the deb cell when a Meson-installed file is not claimed:
+    the hicolor SVG icons must be listed in debian/ubuntu-hello-gtk.install."""
+    text = _read_repo("debian/ubuntu-hello-gtk.install")
+    for path in (
+        "usr/share/pixmaps/ubuntu-hello-gtk.png",
+        "usr/share/icons/hicolor/scalable/apps/ubuntu-hello-gtk.svg",
+        "usr/share/icons/hicolor/symbolic/apps/ubuntu-hello-gtk-symbolic.svg",
+    ):
+        assert path in text, path
+
+
+def test_meson_installs_every_gtk_python_module():
+    """Every importable module under ubuntu-hello-gtk/src must be in the meson install list
+    (v1.2.0 shipped without gtk4compat.py once: the Settings app failed at import)."""
+    import re
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / "ubuntu-hello-gtk"
+    meson = (root / "meson.build").read_text(encoding="utf-8")
+    listed = set(re.findall(r"'src/([A-Za-z0-9_]+\.py)'", meson))
+    on_disk = {p.name for p in (root / "src").glob("*.py")}
+    assert on_disk - listed == set(), f"not installed by meson: {sorted(on_disk - listed)}"
+
+
+def test_polkit_dropin_never_exposes_home_trees() -> None:
+    """ProtectHome=read-only exposed /home and /root to the root helper; only /run/user may be re-exposed."""
+    for path in ("install.sh", "scripts/package-configure.sh", "ubuntu-hello/src/install_config.py"):
+        text = _read_repo(path)
+        assert "ProtectHome=read-only" not in text and "ProtectHome=no" not in text, path
+        assert "ProtectHome=tmpfs" in text and "BindPaths=/run/user" in text, path
+        assert "BindPaths=/home" not in text and "BindPaths=/root" not in text, path

@@ -54,6 +54,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   │   ├── config_ensure.py   # Restore live config.ini if the dpkg conffile is missing
 │   │   ├── keyring_crypto.py  # UH1 AES-GCM helpers
 │   │   ├── keyring_restore.py # Unseal + restore login wallet password
+│   │   ├── notify.py          # Desktop notification per auth attempt (updated in place)
 │   │   ├── wallet_backend.py  # gnome-keyring / kwallet / none labels
 │   │   └── paths_factory.py
 │   ├── po/                    # gettext domain ubuntu-hello
@@ -82,7 +83,7 @@ On Debian/Ubuntu (baseline **26.04 / resolute**):
 sudo apt-get update && sudo apt-get install -y \
   python3 python3-pip python3-dev python3-setuptools python3-wheel \
   python3-numpy python3-opencv python3-cryptography python3-babel \
-  python3-gi python3-gi-cairo gir1.2-gtk-3.0 \
+  python3-gi python3-gi-cairo gir1.2-gtk-4.0 \
   cmake make build-essential g++ gettext \
   libpam0g-dev libinih-dev libevdev-dev libopencv-dev libssl-dev \
   libboost-all-dev pkg-config \
@@ -138,9 +139,9 @@ sudo meson install -C build
 
 - Catalogs install to `$prefix/share/locale/<lang>/LC_MESSAGES/<domain>.mo`.
 - Language list: `po/whisper-languages.txt` (98 Whisper codes, omit `en`); both `LINGUAS` must match.
-- **Settings → Language**: Automatic (default), English, or another locale; writes `~/.config/ubuntu-hello/preferences.ini` (`[ui] language=…`). Combo labels use Babel/CLDR (`python3-babel`) in the active UI language, with each language’s native name in parentheses when it differs (e.g. `German (Deutsch)`). Applies **instantly** in the open Settings window (gettext reload + Glade rebuild; no restart). Automatic always remains in the list. PAM ignores this file; CLI/compare pick it up on next start.
+- **Settings → Language**: Automatic (default), English, or another locale; writes `~/.config/ubuntu-hello/preferences.ini` (`[ui] language=…`). Combo labels use Babel/CLDR (`python3-babel`) in the active UI language, with each language’s native name in parentheses when it differs (e.g. `German (Deutsch)`). Applies **instantly** in the open Settings window (gettext reload + Builder UI rebuild; no restart). Automatic always remains in the list. PAM ignores this file; CLI/compare pick it up on next start.
 - **Settings search**: header-bar `Gtk.SearchEntry` on the **left** (`pack_type=start`) with **fuzzy** match (stdlib `difflib` + subsequence) over currently displayed (translated) labels; rebuilds after language switch.
-- **Native multi-DE**: Settings remains GTK3+Glade on GNOME/KDE/XFCE/Cinnamon/MATE/Budgie/LXQt; use `theme_detect`; do not introduce web UI.
+- **Native multi-DE**: Settings is GTK 4 + GtkBuilder `.ui` on GNOME/KDE/XFCE/Cinnamon/MATE/Budgie/LXQt; use `theme_detect`; do not introduce web UI.
 - Refresh: `./scripts/i18n-update.sh` (asserts LINGUAS, refreshes `.pot`, `msgmerge`s `.po` without wiping msgstr).
 - Lint catalogs: `python3 scripts/i18n-lint.py` (CI lint stage; JSON UTF-8/parse, `msgfmt --check`, no empty/fuzzy `msgstr`, placeholder parity, fill-pack ↔ `.pot` completeness). Pytest: `tests/test_i18n_lint.py::test_all_translations_filled`.
 - **Mandatory**: after any translatable string add/change/remove, refresh catalogs and fill **all** Whisper languages in the same change (`i18n-fill-translations.py`); do not leave empty `msgstr` or fuzzy gaps. See AGENTS.md §4.7.0 and the i18n skill.
@@ -149,7 +150,7 @@ sudo meson install -C build
 
 #### Native Settings UX checklist (manual)
 
-Settings stays **native GTK3 + Glade** (stock `HeaderBar` / `Notebook` / `SearchEntry` / `ComboBoxText` / dialogs). Do **not** introduce web/Electron/custom chrome. Automated smoke: Settings E2E under xvfb in every `UH_CI_DE` compat cell. On each supported DE (Ubuntu **26.04**), also verify subjectively:
+Settings stays **native GTK 4 + GtkBuilder `.ui`** (stock `HeaderBar` / `Notebook` / `SearchEntry` / `ComboBoxText` / dialogs; `gtk4compat.py` wraps the removed GTK 3 calls). Do **not** introduce web/Electron/custom chrome. Automated smoke: Settings E2E under xvfb in every `UH_CI_DE` compat cell. On each supported DE (Ubuntu **26.04**), also verify subjectively:
 
 | Check | GNOME | KDE/Plasma | XFCE | Cinnamon | MATE | Budgie | LXQt |
 |---|---|---|---|---|---|---|---|
@@ -293,7 +294,14 @@ Debug knobs in `/etc/ubuntu-hello/config.ini`:
 end_report = true
 verbose_stamps = true
 gtk_stdout = true
+
+[notifications]
+enabled = true         # one desktop card per attempt, updated in place with the result
+details = true         # add model, certainty/threshold, frames, camera, pid, timeout, load
+success_linger = 3     # seconds the "Face recognized" card stays before it is removed
 ```
+
+The notification card is the quickest way to see *why* an attempt failed without touching logs. Release text is one short line (`✓ Full Name · 1.3 s`, `✗ No match in 8 s · 💡 add a model in this light`, titled with the requester: `· sudo`, `· authorization`, `· screen unlock`); `details = true` adds model, `certainty/threshold`, frames, dark frames, camera, pid, timeout and load. "Looking for your face…" stays on screen for the whole scan; the success card disappears after `success_linger` seconds, failure cards stay in the notification list. A near-miss (`X` just above `Y`) is almost always lighting — enroll a second model in that light (`sudo ubuntu-hello add`, or the setup wizard's second pass). Nothing is shown at the login greeter (no user session bus yet); on a headless host or without `gdbus` (`libglib2.0-bin`) the feature silently disables itself for that run.
 
 ### 4.3 PAM Lockout Recovery
 
@@ -356,7 +364,7 @@ UH_CI_STAGE=compat UH_CI_DE=kde ./scripts/ci-docker.sh
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
-Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.15.4`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.26.0`. Never pin by commit SHA; never use a `latest` alias.
+Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
 
 Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 

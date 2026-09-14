@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,35 +15,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Gagal, batas waktu tercapai"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Gambar deteksi wajah terlalu gelap"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Kesalahan tidak diketahui:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "Wajah yang teridentifikasi sebagai %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Izin tidak memadai untuk mengirim Enter tekan, menunggu pengguna untuk"
-" menekannya"
+"Izin tidak memadai untuk mengirim Enter tekan, menunggu pengguna untuk "
+"menekannya"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Gagal mengirim tekan Enter, malah menunggu pengguna yang menekannya"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Mencoba otentikasi wajah"
 
@@ -65,20 +66,20 @@ msgstr "argumen"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Untuk dukungan silakan kunjungi\nhttps://github.com/ventura8/ubuntu-he"
-"llo"
+"Untuk dukungan silakan kunjungi\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
 "Opsi perintah yang akan dijalankan, dapat berupa salah satu dari yang "
-"berikut: tambah, hapus, konfigurasi, nonaktifkan, gantungan kunci, daf"
-"tar, hapus, snapshot, setel, uji, atau versi."
+"berikut: tambah, hapus, konfigurasi, nonaktifkan, gantungan kunci, daftar, "
+"hapus, snapshot, setel, uji, atau versi."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -99,8 +100,8 @@ msgstr "Hasil cetak yang ramah mesin."
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
 msgstr ""
-"Dengan keyring restore: pulihkan kata sandi masuk tersegel untuk semua"
-" pengguna."
+"Dengan keyring restore: pulihkan kata sandi masuk tersegel untuk semua "
+"pengguna."
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
@@ -115,134 +116,249 @@ msgid "Invalid username format"
 msgstr "Format nama pengguna tidak valid"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Silakan jalankan perintah ini sebagai root:\n"
+msgid "Please run this command as root:\n"
+msgstr "Silakan jalankan perintah ini sebagai root:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Tidak dapat menjalankan perintah ubuntu-hello sebagai root, jalankan p"
-"erintah ini dengan flag --user"
+"Tidak dapat menjalankan perintah ubuntu-hello sebagai root, jalankan "
+"perintah ini dengan flag --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "File data belum terdownload, silakan jalankan perintah berikut:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Tanggal:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "Waktu pemindaian:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "Bingkai:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "Nama host:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "Nilai kepastian terbaik:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "Memulai..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "Mengidentifikasi Anda..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "GAGAL"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Semua frame terlalu gelap, harap periksa dark_threshold di konfigurasi"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Kegelapan rata-rata: {avg}, Ambang Batas: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "Waktu yang dihabiskan"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "Memulai"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Buka cam + muat lib: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "Membuka kamera"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "Mengimpor lib pengenalan"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "Mencari wajah yang dikenal"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "Total waktu"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nResolusi"
+"\n"
+"Resolusi"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Asli: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Digunakan: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nBingkai yang dicari: %d (%.2f fps)"
+"\n"
+"Bingkai yang dicari: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Bingkai hitam diabaikan: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Bingkai gelap diabaikan: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Kepastian bingkai kemenangan: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Model pemenang: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "SUKSES"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "otorisasi"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "membuka kunci layar"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "batas waktu"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "memuat"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s bingkai"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s gelap"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "Mencari wajahmu…"
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "Otentikasi wajah"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "Wajah dikenali"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "tambahkan model dalam cahaya ini"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "periksa kameranya"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "Tidak ada kecocokan di %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "daftar: sudo ubuntu-halo tambahkan"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "terdekat"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "Wajah tidak dikenali"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "Terlalu gelap"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "menyalakan lampu"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "kegelapan"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "Pemeriksaan keaktifan gagal"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "Tidak ada model wajah untuk %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "Otentikasi wajah tidak tersedia"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "Otentikasi wajah dibatalkan"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -266,9 +382,11 @@ msgstr "gantungan kunci masuk atau KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nTidak dapat mengimpor modul dlib, periksa hasilnya"
+"\n"
+"Tidak dapat mengimpor modul dlib, periksa hasilnya"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -276,17 +394,14 @@ msgstr "Tidak ditemukan folder model wajah, jadi buatlah folder tersebut"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr ""
-"PEMBERITAHUAN: Setiap model tambahan sedikit memperlambat mesin pengen"
-"alan wajah"
+"PEMBERITAHUAN: Setiap model tambahan sedikit memperlambat mesin pengenalan "
+"wajah"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Tekan Ctrl+C untuk membatalkan\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Tekan Ctrl+C untuk membatalkan\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -297,6 +412,7 @@ msgid "Model #"
 msgstr "Model #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Menggunakan label default \"%s\" karena tanda -y"
 
@@ -310,9 +426,11 @@ msgstr "PEMBERITAHUAN: Menghapus karakter ilegal \",\" dari nama model"
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nSilakan lihat langsung ke kamera"
+"\n"
+"Silakan lihat langsung ke kamera"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -328,9 +446,13 @@ msgstr "Beberapa wajah terdeteksi, dibatalkan"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nPemindaian selesai\nMenambahkan model baru ke"
+"\n"
+"Pemindaian selesai\n"
+"Menambahkan model baru ke"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -350,21 +472,27 @@ msgstr "Apakah Anda ingin melanjutkan [y/T]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nMenafsirkan sebagai \"TIDAK\", dibatalkan"
+"\n"
+"Menafsirkan sebagai \"TIDAK\", dibatalkan"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nModel dibersihkan"
+"\n"
+"Model dibersihkan"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Membuka config.ini di {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Gagal membuka editor: {error}"
 
@@ -378,11 +506,11 @@ msgstr "Silakan instal 'nano' atau 'vi', atau atur variabel lingkungan EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Jika Anda menjalankan perintah ini dengan sudo, coba 'sudo -E ubuntu-h"
-"ello config' untuk mempertahankan variabel EDITOR Anda."
+"Jika Anda menjalankan perintah ini dengan sudo, coba 'sudo -E ubuntu-hello "
+"config' untuk mempertahankan variabel EDITOR Anda."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -434,11 +562,11 @@ msgstr "Perangkat keras TPM aktif. Menyegel kata sandi di TPM..."
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Gantungan kunci/pembukaan kunci KWallet berhasil diaktifkan untuk peng"
-"guna {} menggunakan TPM (dompet: {})."
+"Gantungan kunci/pembukaan kunci KWallet berhasil diaktifkan untuk pengguna "
+"{} menggunakan TPM (dompet: {})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -447,13 +575,13 @@ msgstr "Gagal menyegel kata sandi ke TPM: {}"
 #: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Tidak ada TPM yang aktif. Menggunakan cache kredensial berbasis perang"
-"kat lunak..."
+"Tidak ada TPM yang aktif. Menggunakan cache kredensial berbasis perangkat "
+"lunak..."
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
 "Pembukaan kunci keyring/KWallet berhasil diaktifkan untuk pengguna {} "
 "(Caching Perangkat Lunak, dompet: {})."
@@ -488,11 +616,11 @@ msgstr "Tidak dapat memulihkan kata sandi dompet masuk untuk {} pengguna."
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Jika perintah tetap muncul, atur kata sandi gantungan kunci masuk atau"
-" KWallet di Seahorse / Pengaturan Sistem."
+"Jika perintah tetap muncul, atur kata sandi gantungan kunci masuk atau "
+"KWallet di Seahorse / Pengaturan Sistem."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -505,8 +633,7 @@ msgstr "Tidak dapat memulihkan kata sandi dompet masuk untuk pengguna {}."
 #: src/cli/keyring.py:167
 msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
 msgstr ""
-"Tindakan tidak valid. Gunakan 'aktifkan', 'nonaktifkan', atau 'pulihka"
-"n'."
+"Tindakan tidak valid. Gunakan 'aktifkan', 'nonaktifkan', atau 'pulihkan'."
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -514,7 +641,8 @@ msgstr "Model wajah belum diinisialisasi, silakan jalankan:"
 
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
-msgstr "Tidak ada model wajah yang diketahui oleh pengguna {}, silakan jalankan:"
+msgstr ""
+"Tidak ada model wajah yang diketahui oleh pengguna {}, silakan jalankan:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
@@ -537,10 +665,12 @@ msgid "You can find the IDs by running:"
 msgstr "Anda dapat menemukan ID dengan menjalankan:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Ini akan menghapus model yang disebut \"{label}\" untuk {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Tidak ada model dengan ID {id} untuk {user}"
 
@@ -553,7 +683,8 @@ msgid "Removed model {}"
 msgstr "Model yang dihapus {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
 "Silakan tambahkan pengaturan yang ingin Anda ubah dan nilai yang akan "
 "ditetapkan"
@@ -584,34 +715,43 @@ msgstr "Snapshot yang dihasilkan disimpan sebagai"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
 "Ubuntu Hello telah dikonfigurasi untuk menggunakan perekam yang belum "
 "mendukung perintah pengujian, dibatalkan"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nMembuka jendela dengan umpan uji\n\nTekan ctrl+C di terminal ini unt"
-"uk keluar\nKlik pada gambar untuk mengaktifkan atau menonaktifkan mode"
-" lambat\n"
+"\n"
+"Membuka jendela dengan umpan uji\n"
+"\n"
+"Tekan ctrl+C di terminal ini untuk keluar\n"
+"Klik pada gambar untuk mengaktifkan atau menonaktifkan mode lambat\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "RESOLUSI: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "BINGKAI: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "PENGAKUAN: %dms"
 
@@ -629,9 +769,11 @@ msgstr "PINDAI BINGKAI"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nMenutup jendela"
+"\n"
+"Menutup jendela"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -662,6 +804,7 @@ msgid "Authorising in {}"
 msgstr "Otorisasi di {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Tekan {abort_key} untuk membatalkan, {confirm_key} untuk mengotorisasi"
 
@@ -695,24 +838,23 @@ msgstr "Modul pyv4l2 tidak ada, jalankan:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello tidak dapat menemukan perangkat kamera di jalur yang dite"
-"ntukan dalam file konfigurasi."
+"Ubuntu Hello tidak dapat menemukan perangkat kamera di jalur yang ditentukan "
+"dalam file konfigurasi."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Kemungkinan besar jalurnya tidak dikonfigurasi dengan benar, harap edi"
-"t nilai konfigurasi 'device_path' dengan menjalankan:"
+"Kemungkinan besar jalurnya tidak dikonfigurasi dengan benar, harap edit "
+"nilai konfigurasi 'device_path' dengan menjalankan:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"Gagal membaca kamera yang ditentukan dalam opsi konfigurasi 'device_pa"
-"th', dibatalkan"
+"Gagal membaca kamera yang ditentukan dalam opsi konfigurasi 'device_path', "
+"dibatalkan"

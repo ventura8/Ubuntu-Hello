@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "דורכפאַל, טיימאַוט ריטשט"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "די בילד פון די פּנים דיטעקשאַן איז אויך טונקל"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "אומבאַקאַנט טעות:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "יידענאַפייד פּנים ווי %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"ניט גענוגיק פּערמישאַנז צו שיקן אַרייַן דרוק, ווארטן פֿאַר באַניצער צו"
-" דריקן עס אַנשטאָט"
+"ניט גענוגיק פּערמישאַנז צו שיקן אַרייַן דרוק, ווארטן פֿאַר באַניצער צו דריקן עס "
+"אַנשטאָט"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
-msgstr ""
-"ניט אַנדערש צו שיקן אַרייַן דרוק, ווארטן פֿאַר באַניצער צו דריקן עס אַ"
-"נשטאָט"
+msgstr "ניט אַנדערש צו שיקן אַרייַן דרוק, ווארטן פֿאַר באַניצער צו דריקן עס אַנשטאָט"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "פּרווון פאַסיאַל אָטענטאַקיישאַן"
 
@@ -67,25 +66,24 @@ msgstr "אַרגומענטן"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"פֿאַר שטיצן ביטע באַזוכן\nhttps://github.com/ventura8/ubuntu-hello"
+"פֿאַר שטיצן ביטע באַזוכן\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"די באַפֿעלן אָפּציע צו ויספירן קענען זיין איינער פון די פאלגענדע: לייג"
-"ן, קלאָר, קאָנפיג, דיסייבאַל, קיירינג, רשימה, אַראָפּנעמען, מאָמענטביל"
-"ד, שטעלן, פּרובירן אָדער ווערסיע."
+"די באַפֿעלן אָפּציע צו ויספירן קענען זיין איינער פון די פאלגענדע: לייגן, קלאָר, "
+"קאָנפיג, דיסייבאַל, קיירינג, רשימה, אַראָפּנעמען, מאָמענטבילד, שטעלן, פּרובירן אָדער "
+"ווערסיע."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr ""
-"אַפּשאַנאַל אַרגומענטן פֿאַר די לייגן, דיסייבאַל, אַראָפּנעמען און שטע"
-"לן קאַמאַנדז."
+msgstr "אַפּשאַנאַל אַרגומענטן פֿאַר די לייגן, דיסייבאַל, אַראָפּנעמען און שטעלן קאַמאַנדז."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -116,134 +114,249 @@ msgid "Invalid username format"
 msgstr "אומגילטיק באנוצער נאמען פֿאָרמאַט"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"ביטע לויפן דעם באַפֿעל ווי וואָרצל:\n"
+msgid "Please run this command as root:\n"
+msgstr "ביטע לויפן דעם באַפֿעל ווי וואָרצל:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"קענען ניט לויפן ובונטו-העלא קאַמאַנדז ווי וואָרצל, ביטע לויפן דעם באַפ"
-"ֿעל מיט די -- באַניצער פאָן"
+"קענען ניט לויפן ובונטו-העלא קאַמאַנדז ווי וואָרצל, ביטע לויפן דעם באַפֿעל מיט די "
+"-- באַניצער פאָן"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "דאַטן טעקעס זענען נישט דאַונלאָודיד, ביטע לויפן די פאלגענדע קאַמאַנדז:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "לאָגין"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "טאָג:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "סקאַן צייט:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "ראַמען:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "האָסט נאָמען:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "בעסטער זיכערקייט ווערט:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "אָנהייב אַרויף ..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "ידענטיפיצירן איר ..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "FAILED"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "אַלע ראָמען זענען געווען צו טונקל, ביטע טשעק dark_threshold אין קאָנפיג"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "דורכשניטלעך פינצטערניש: {avg}, שוועל: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "צייט פארבראכט"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "סטאַרטינג אַרויף"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "עפֿן קאַם + מאַסע ליבס: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "עפן די אַפּאַראַט"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "ימפּאָרטינג דערקענונג ליבס"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "זוכן פֿאַר באקאנט פּנים"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "גאַנץ צייט"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nהאַכלאָטע"
+"\n"
+"האַכלאָטע"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "געבוירן: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "געוויינט: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nגעזוכט ראָמען: %d (%.2f fps)"
+"\n"
+"געזוכט ראָמען: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "שוואַרץ ראָמען איגנאָרירט: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "טונקל ראָמען איגנאָרירט: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "זיכערקייט פון ווינינג ראַם: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "געווינער מאָדעל: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "געראָטן"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "דערלויבעניש"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "פאַרשטעלן ופשליסן"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "טיימאַוט"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "מאַסע"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s ראָמען"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s טונקל"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "איר זוכט פֿאַר דיין פּנים ..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "פּנים אָטענטאַקיישאַן"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "פּנים דערקענט"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "לייגן אַ מאָדעל אין דעם ליכט"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "טשעק די אַפּאַראַט"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "קיין גלייַכן אין %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "פאַרשרייַבן: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "קלאָוסאַסט"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "פּנים נישט דערקענט"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "צו טונקל"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "turn on a light"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "פינצטערניש"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "לייוונעסס טשעק ניט אַנדערש"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "קיין פּנים מאָדעל פֿאַר %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "פּנים אָטענטאַקיישאַן ניט בנימצא"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "קאַנסאַלד"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "פּנים אָטענטאַקיישאַן קאַנסאַלד"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -267,9 +380,11 @@ msgstr "לאָגין שליסל רינג אָדער KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nקענען ניט אַרייַנפיר די dlib מאָדולע, קאָנטראָלירן די רעזולטאַט פון"
+"\n"
+"קענען ניט אַרייַנפיר די dlib מאָדולע, קאָנטראָלירן די רעזולטאַט פון"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -277,17 +392,12 @@ msgstr "קיין פּנים מאָדעל טעקע געפונען, קריייטי
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
-msgstr ""
-"נאָטיץ: יעדער נאָך מאָדעל סלאָוז אַראָפּ די פּנים דערקענונג מאָטאָר אַ"
-" ביסל"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
+msgstr "נאָטיץ: יעדער נאָך מאָדעל סלאָוז אַראָפּ די פּנים דערקענונג מאָטאָר אַ ביסל"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"דרוק קטרל + C צו באָטל מאַכן\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "דרוק קטרל + C צו באָטל מאַכן\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -298,6 +408,7 @@ msgid "Model #"
 msgstr "מאָדעל #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "ניצן פעליקייַט פירמע \"%s\" ווייַל פון -י פאָן"
 
@@ -311,9 +422,11 @@ msgstr "נאָטיץ: רימוווינג ומלעגאַל כאַראַקטער \
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nביטע קוק גלייך אין די אַפּאַראַט"
+"\n"
+"ביטע קוק גלייך אין די אַפּאַראַט"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -329,15 +442,18 @@ msgstr "קייפל פנימער דיטעקטאַד, אַבאָרטינג"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nסקאַן גאַנץ\nצוגעגעבן אַ נייַע מאָדעל צו"
+"\n"
+"סקאַן גאַנץ\n"
+"צוגעגעבן אַ נייַע מאָדעל צו"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"קיין מאָדעלס באשאפן נאָך, קענען נישט ויסמעקן זיי אויב זיי טאָן ניט עקס"
-"יסטירן"
+"קיין מאָדעלס באשאפן נאָך, קענען נישט ויסמעקן זיי אויב זיי טאָן ניט עקסיסטירן"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -353,21 +469,27 @@ msgstr "צי איר ווילן צו פאָרזעצן [י/ען]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nינטערפּריטינג ווי אַ \"ניין\", אַבאָרטינג"
+"\n"
+"ינטערפּריטינג ווי אַ \"ניין\", אַבאָרטינג"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nמאָדעלס קלירד"
+"\n"
+"מאָדעלס קלירד"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "עפן config.ini אין {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "ניט אַנדערש צו עפענען רעדאַקטאָר: {error}"
 
@@ -378,16 +500,15 @@ msgstr "טעות: קען נישט געפֿינען אַ פּאַסיק טעקס�
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"ביטע ינסטאַלירן 'נאַנאָ' אָדער 'ווי', אָדער שטעלן די EDITOR סוויווע בי"
-"יַטעוודיק."
+"ביטע ינסטאַלירן 'נאַנאָ' אָדער 'ווי', אָדער שטעלן די EDITOR סוויווע בייַטעוודיק."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"אויב איר לויפן דעם באַפֿעל מיט sudo, פּרוּווט 'sudo -E ubuntu-hello co"
-"nfig' צו ופהיטן דיין EDITOR בייַטעוודיק."
+"אויב איר לויפן דעם באַפֿעל מיט sudo, פּרוּווט 'sudo -E ubuntu-hello config' צו "
+"ופהיטן דיין EDITOR בייַטעוודיק."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -439,11 +560,11 @@ msgstr "טפּם ייַזנוואַרג אַקטיוו. סילינג פּאַר�
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"אַנלאַקינג קיירינג / KWallet הצלחה ענייבאַלד פֿאַר באַניצער {} ניצן טפ"
-"ּם (בייַטל: {})."
+"אַנלאַקינג קיירינג / KWallet הצלחה ענייבאַלד פֿאַר באַניצער {} ניצן טפּם (בייַטל: "
+"{})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -455,11 +576,11 @@ msgstr "קיין TPM אַקטיוו. ניצן ווייכווארג-באזירט 
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"קיירינג / KWallet אַנלאַקינג הצלחה ענייבאַלד פֿאַר באַניצער {} (סאָפטו"
-"ואַרע קאַטשינג, בייַטל: {})."
+"קיירינג / KWallet אַנלאַקינג הצלחה ענייבאַלד פֿאַר באַניצער {} (סאָפטוואַרע קאַטשינג, "
+"בייַטל: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -491,11 +612,11 @@ msgstr "נישט געקענט צוריקשטעלן לאָגין בייַטל פ�
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"אויב פּראָמפּטן בלייבן, שטעלט די לאָגין שליסלרינג אָדער KWallet פּאַרא"
-"ָל אין Seahorse / סיסטעם סעטטינגס."
+"אויב פּראָמפּטן בלייבן, שטעלט די לאָגין שליסלרינג אָדער KWallet פּאַראָל אין "
+"Seahorse / סיסטעם סעטטינגס."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -538,10 +659,12 @@ msgid "You can find the IDs by running:"
 msgstr "איר קענען געפֿינען די IDs דורך לויפן:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "דאָס וועט באַזייַטיקן די מאָדעל גערופֿן \"{label}\" פֿאַר {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "קיין מאָדעל מיט שייַן {id} יגזיסץ פֿאַר {user}"
 
@@ -554,10 +677,10 @@ msgid "Removed model {}"
 msgstr "אַוועקגענומען מאָדעל {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"ביטע לייג אַ באַשטעטיקן איר וואָלט ווי צו טוישן און די ווערט צו שטעלן "
-"עס צו"
+"ביטע לייג אַ באַשטעטיקן איר וואָלט ווי צו טוישן און די ווערט צו שטעלן עס צו"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -585,34 +708,43 @@ msgstr "דזשענערייטאַד מאָמענטבילד געראטעוועט �
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello איז קאַנפיגיערד צו נוצן אַ רעקאָרדער וואָס שטיצט נאָך ניש"
-"ט די פּראָבע באַפֿעל, אַבאָרטינג"
+"Ubuntu Hello איז קאַנפיגיערד צו נוצן אַ רעקאָרדער וואָס שטיצט נאָך נישט די פּראָבע "
+"באַפֿעל, אַבאָרטינג"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nעפן אַ פֿענצטער מיט אַ פּרובירן פיטער\n\nדרוק קטרל + C אין דעם וואָק"
-"זאַל צו פאַרלאָזן\nדריקט אויף די בילד צו געבן אָדער דיסייבאַל פּאַמעלע"
-"ך מאָדע\n"
+"\n"
+"עפן אַ פֿענצטער מיט אַ פּרובירן פיטער\n"
+"\n"
+"דרוק קטרל + C אין דעם וואָקזאַל צו פאַרלאָזן\n"
+"דריקט אויף די בילד צו געבן אָדער דיסייבאַל פּאַמעלעך מאָדע\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "רעזאלוציע: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "פפּס: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "פראַמעס: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "דערקענונג: %dms"
 
@@ -630,9 +762,11 @@ msgstr "יבערקוקן ראַם"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nקלאָוזינג פֿענצטער"
+"\n"
+"קלאָוזינג פֿענצטער"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -648,9 +782,7 @@ msgstr "שטעמפּל טעות: קלאַס {} ניט געפֿונען"
 
 #: src/rubberstamps/__init__.py:123
 msgid "Internal error in rubberstamp configuration declaration:"
-msgstr ""
-"ינערלעך טעות אין די דעקלאַראַציע פון ​​די ראַבערסטאַמפּ קאַנפיגיעריישא"
-"ַן:"
+msgstr "ינערלעך טעות אין די דעקלאַראַציע פון ​​די ראַבערסטאַמפּ קאַנפיגיעריישאַן:"
 
 #: src/rubberstamps/__init__.py:162
 msgid "Internal error in rubberstamp:"
@@ -665,6 +797,7 @@ msgid "Authorising in {}"
 msgstr "דערלויבן אין {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "דרוק {abort_key} צו אַבאָרט, {confirm_key} צו דערלויבן"
 
@@ -698,24 +831,23 @@ msgstr "פעלנדיק pyv4l2 מאָדולע, ביטע לויפן:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello קען נישט געפֿינען אַ אַפּאַראַט מיטל אויף דעם דרך ספּעסיפ"
-"יעד אין די קאָנפיג טעקע."
+"Ubuntu Hello קען נישט געפֿינען אַ אַפּאַראַט מיטל אויף דעם דרך ספּעסיפיעד אין די "
+"קאָנפיג טעקע."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"עס איז זייער מסתּמא אַז דער דרך איז נישט קאַנפיגיערד ריכטיק, ביטע רעדא"
-"ַגירן די 'device_path' קאַנפיגיעריישאַן ווערט דורך פליסנדיק:"
+"עס איז זייער מסתּמא אַז דער דרך איז נישט קאַנפיגיערד ריכטיק, ביטע רעדאַגירן די "
+"'device_path' קאַנפיגיעריישאַן ווערט דורך פליסנדיק:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"ניט אַנדערש צו לייענען אַפּאַראַט ספּעסיפיעד אין די 'device_path' קאַנ"
-"פיגיעריישאַן אָפּציע, אַבאָרטינג"
+"ניט אַנדערש צו לייענען אַפּאַראַט ספּעסיפיעד אין די 'device_path' קאַנפיגיעריישאַן "
+"אָפּציע, אַבאָרטינג"

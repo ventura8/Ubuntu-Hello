@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,35 +15,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "ناموفق، به پایان رسیده است"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "تصویر تشخیص چهره خیلی تاریک است"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "خطای ناشناخته:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "چهره شناسایی شده به عنوان %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"مجوزهای کافی برای ارسال Enter را فشار دهید، منتظر می ماند تا کاربر به "
-"جای آن آن را فشار دهد"
+"مجوزهای کافی برای ارسال Enter را فشار دهید، منتظر می ماند تا کاربر به جای آن "
+"آن را فشار دهد"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
-msgstr "مطبوعات Enter ارسال نشد، منتظر می ماند تا کاربر به جای آن آن را فشار دهد"
+msgstr ""
+"مطبوعات Enter ارسال نشد، منتظر می ماند تا کاربر به جای آن آن را فشار دهد"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "تلاش برای احراز هویت چهره"
 
@@ -65,24 +67,24 @@ msgstr "استدلال ها"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"برای پشتیبانی لطفا مراجعه کنید\nhttps://github.com/ventura8/ubuntu-hel"
-"lo"
+"برای پشتیبانی لطفا مراجعه کنید\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"گزینه فرمان برای اجرا، می تواند یکی از موارد زیر باشد: افزودن، پاک کرد"
-"ن، پیکربندی، غیرفعال کردن، کلید زدن، فهرست، حذف، عکس فوری، تنظیم، تست "
-"یا نسخه."
+"گزینه فرمان برای اجرا، می تواند یکی از موارد زیر باشد: افزودن، پاک کردن، "
+"پیکربندی، غیرفعال کردن، کلید زدن، فهرست، حذف، عکس فوری، تنظیم، تست یا نسخه."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr "آرگومان های اختیاری برای دستورات افزودن، غیرفعال کردن، حذف و تنظیم کردن."
+msgstr ""
+"آرگومان های اختیاری برای دستورات افزودن، غیرفعال کردن، حذف و تنظیم کردن."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -113,136 +115,250 @@ msgid "Invalid username format"
 msgstr "قالب نام کاربری نامعتبر است"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"لطفا این دستور را به صورت روت اجرا کنید:\n"
+msgid "Please run this command as root:\n"
+msgstr "لطفا این دستور را به صورت روت اجرا کنید:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"نمی توان دستورات ubuntu-hello را به عنوان root اجرا کرد، لطفاً این دست"
-"ور را با پرچم --user اجرا کنید"
+"نمی توان دستورات ubuntu-hello را به عنوان root اجرا کرد، لطفاً این دستور را "
+"با پرچم --user اجرا کنید"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "فایل های داده دانلود نشده اند، لطفا دستورات زیر را اجرا کنید:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "وارد شوید"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "تاریخ:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "زمان اسکن:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "قاب ها:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "نام میزبان:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "بهترین ارزش اطمینان:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "راه اندازی ..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "شناسایی شما..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "ناموفق"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"همه فریم ها خیلی تاریک بودند، لطفا dark_threshold را در پیکربندی بررسی"
-" کنید"
+"همه فریم ها خیلی تاریک بودند، لطفا dark_threshold را در پیکربندی بررسی کنید"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "میانگین تاریکی: {avg}، آستانه: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "زمان صرف شده"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "راه اندازی"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "بادامک را باز کنید + load libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "باز کردن دوربین"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "واردات شناسه‌ها"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "جستجو برای چهره شناخته شده"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "کل زمان"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nقطعنامه"
+"\n"
+"قطعنامه"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "بومی: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "استفاده شده: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nفریم های جستجو شده: %d (%.2f فریم در ثانیه)"
+"\n"
+"فریم های جستجو شده: %d (%.2f فریم در ثانیه)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "فریم های سیاه نادیده گرفته شده: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "فریم های تیره نادیده گرفته شده: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "قطعیت فریم برنده: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "مدل برنده: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "موفق"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "مجوز"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "باز کردن قفل صفحه"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "تایم اوت"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "بار"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "قاب %s"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s تاریک"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "در جستجوی صورتت…"
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "احراز هویت چهره"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "چهره شناخته شد"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "یک مدل در این زمینه اضافه کنید"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "دوربین را بررسی کنید"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "هیچ مسابقه ای در %s وجود ندارد"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "ثبت نام: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "نزدیکترین"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "چهره شناسایی نشد"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "خیلی تاریکه"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "یک چراغ روشن کن"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "تاریکی"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "بررسی زنده بودن ناموفق بود"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "بدون مدل صورت برای %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "احراز هویت چهره در دسترس نیست"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "لغو شد"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "احراز هویت چهره لغو شد"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -266,9 +382,11 @@ msgstr "کلید ورود به سیستم یا KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nنمی‌توان ماژول dlib را وارد کرد، خروجی آن را بررسی کنید"
+"\n"
+"نمی‌توان ماژول dlib را وارد کرد، خروجی آن را بررسی کنید"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -276,15 +394,12 @@ msgstr "پوشه مدل چهره یافت نشد، یکی ایجاد شد"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "توجه: هر مدل اضافی موتور تشخیص چهره را اندکی کند می کند"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Ctrl+C را برای لغو فشار دهید\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Ctrl+C را برای لغو فشار دهید\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -295,6 +410,7 @@ msgid "Model #"
 msgstr "مدل #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "استفاده از برچسب پیش‌فرض \"%s\" به دلیل پرچم -y"
 
@@ -308,9 +424,11 @@ msgstr "توجه: حذف نویسه غیرقانونی \",\" از نام مدل"
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nلطفا مستقیم به دوربین نگاه کنید"
+"\n"
+"لطفا مستقیم به دوربین نگاه کنید"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -326,15 +444,18 @@ msgstr "چند چهره شناسایی شد، سقط شد"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nاسکن کامل شد\nیک مدل جدید به"
+"\n"
+"اسکن کامل شد\n"
+"یک مدل جدید به"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
 msgstr ""
-"هنوز هیچ مدلی ایجاد نشده است، اگر وجود نداشته باشد، نمی توان آنها را پ"
-"اک کرد"
+"هنوز هیچ مدلی ایجاد نشده است، اگر وجود نداشته باشد، نمی توان آنها را پاک کرد"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
@@ -350,21 +471,27 @@ msgstr "آیا می خواهید ادامه دهید [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nتعبیر به \"نه\"، سقط"
+"\n"
+"تعبیر به \"نه\"، سقط"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nمدل ها پاک شدند"
+"\n"
+"مدل ها پاک شدند"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "باز کردن config.ini در {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "ویرایشگر باز نشد: {error}"
 
@@ -378,11 +505,11 @@ msgstr "لطفاً 'nano' یا 'vi' را نصب کنید یا متغیر محی�
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"اگر این دستور را با sudo اجرا می‌کنید، \"sudo -E ubuntu-hello config\""
-" را امتحان کنید تا متغیر EDITOR خود را حفظ کنید."
+"اگر این دستور را با sudo اجرا می‌کنید، \"sudo -E ubuntu-hello config\" را "
+"امتحان کنید تا متغیر EDITOR خود را حفظ کنید."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -434,11 +561,11 @@ msgstr "سخت افزار TPM فعال است. مهر و موم کردن رمز 
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"باز کردن قفل کلید/KWallet برای کاربر {} با استفاده از TPM (کیف پول: {}"
-") با موفقیت فعال شد."
+"باز کردن قفل کلید/KWallet برای کاربر {} با استفاده از TPM (کیف پول: {}) با "
+"موفقیت فعال شد."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -446,15 +573,16 @@ msgstr "رمز عبور به TPM مهر و موم نشد: {}"
 
 #: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
-msgstr "هیچ TPM فعال نیست. استفاده از حافظه پنهان اطلاعات مبتنی بر نرم افزار..."
+msgstr ""
+"هیچ TPM فعال نیست. استفاده از حافظه پنهان اطلاعات مبتنی بر نرم افزار..."
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"باز کردن قفل کلید/KWallet برای کاربر {} با موفقیت فعال شد (حافظه پنهان"
-" نرم افزار، کیف پول: {})."
+"باز کردن قفل کلید/KWallet برای کاربر {} با موفقیت فعال شد (حافظه پنهان نرم "
+"افزار، کیف پول: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -486,11 +614,11 @@ msgstr "بازیابی گذرواژه کیف ورود برای {} کاربر م�
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"اگر درخواست‌ها ادامه داشت، گذرواژه حلقه کلید ورود یا KWallet را در Sea"
-"horse / تنظیمات سیستم تنظیم کنید."
+"اگر درخواست‌ها ادامه داشت، گذرواژه حلقه کلید ورود یا KWallet را در Seahorse / "
+"تنظیمات سیستم تنظیم کنید."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -533,10 +661,12 @@ msgid "You can find the IDs by running:"
 msgstr "شما می توانید شناسه ها را با اجرای:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "با این کار مدلی به نام \"{label}\" برای {user} حذف می‌شود."
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "هیچ مدلی با شناسه {id} برای {user} وجود ندارد"
 
@@ -549,10 +679,10 @@ msgid "Removed model {}"
 msgstr "مدل حذف شده {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"لطفاً تنظیمی را که می‌خواهید تغییر دهید و مقداری که آن را تنظیم کنید ا"
-"ضافه کنید"
+"لطفاً تنظیمی را که می‌خواهید تغییر دهید و مقداری که آن را تنظیم کنید اضافه کنید"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -580,34 +710,43 @@ msgstr "عکس فوری ایجاد شده به عنوان ذخیره شد"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello برای استفاده از ضبط‌کننده‌ای پیکربندی شده است که هنوز فرم"
-"ان تست را پشتیبانی نمی‌کند و لغو می‌شود"
+"Ubuntu Hello برای استفاده از ضبط‌کننده‌ای پیکربندی شده است که هنوز فرمان تست "
+"را پشتیبانی نمی‌کند و لغو می‌شود"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nباز کردن یک پنجره با فید آزمایشی\n\nبرای خروج، کلیدهای ctrl+C را در "
-"این ترمینال فشار دهید\nبرای فعال یا غیرفعال کردن حالت آهسته روی تصویر "
-"کلیک کنید\n"
+"\n"
+"باز کردن یک پنجره با فید آزمایشی\n"
+"\n"
+"برای خروج، کلیدهای ctrl+C را در این ترمینال فشار دهید\n"
+"برای فعال یا غیرفعال کردن حالت آهسته روی تصویر کلیک کنید\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "وضوح: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "قاب ها: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "تشخیص: %dms"
 
@@ -625,9 +764,11 @@ msgstr "اسکن قاب"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nبسته شدن پنجره"
+"\n"
+"بسته شدن پنجره"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -658,6 +799,7 @@ msgid "Authorising in {}"
 msgstr "مجوز در {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "{abort_key} را برای سقط، {confirm_key} را برای مجوز فشار دهید"
 
@@ -691,22 +833,22 @@ msgstr "ماژول pyv4l2 وجود ندارد، لطفا اجرا کنید:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello نتوانست دستگاه دوربینی را در مسیر مشخص شده در فایل پیکربن"
-"دی پیدا کند."
+"Ubuntu Hello نتوانست دستگاه دوربینی را در مسیر مشخص شده در فایل پیکربندی "
+"پیدا کند."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"به احتمال زیاد مسیر به درستی پیکربندی نشده است، لطفاً مقدار پیکربندی «"
-"device_path» را با اجرای زیر ویرایش کنید:"
+"به احتمال زیاد مسیر به درستی پیکربندی نشده است، لطفاً مقدار پیکربندی "
+"«device_path» را با اجرای زیر ویرایش کنید:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
-msgstr "خواندن دوربین مشخص شده در گزینه پیکربندی «device_path» انجام نشد، لغو شد"
+"Failed to read camera specified in the 'device_path' config option, aborting"
+msgstr ""
+"خواندن دوربین مشخص شده در گزینه پیکربندی «device_path» انجام نشد، لغو شد"

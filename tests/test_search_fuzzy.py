@@ -31,3 +31,17 @@ def test_empty_haystack_and_subsequence_edges():
 	assert fuzzy_match("   ", "Models")  # whitespace-only query → show all
 	# Subsequence scoring path
 	assert 0.75 <= fuzzy_score("kyr", "keyring") <= 0.99
+
+
+def test_fold_strips_accents_and_case():
+	import search_fuzzy
+	assert search_fuzzy.fold("Notificații") == "notificatii"
+	assert search_fuzzy.fold("Română") == "romana"
+	assert search_fuzzy.fold("") == ""
+
+
+def test_fuzzy_is_accent_and_case_insensitive():
+	import search_fuzzy
+	assert search_fuzzy.fuzzy_score("notificatii", "Notificații") == 1.0
+	assert search_fuzzy.fuzzy_score("NOTIFICĂȚII", "notificatii") == 1.0
+	assert search_fuzzy.fuzzy_match("romana", "Romanian (Română)")

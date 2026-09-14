@@ -31,7 +31,9 @@ def _preferences_path():
 	home = None
 	try:
 		import pwd
-		user = os.environ.get("SUDO_USER")
+		# UH_TARGET_USER: set by compare.py (PAM) for the user being
+		# authenticated, whose Settings language preference should apply.
+		user = os.environ.get("UH_TARGET_USER") or os.environ.get("SUDO_USER")
 		if user and user != "root":
 			home = pwd.getpwnam(user).pw_dir
 		elif os.environ.get("PKEXEC_UID"):
@@ -89,7 +91,7 @@ def _apply_locale_env(code=None):
 
 
 def _install_translation():
-	global translation, _, ngettext
+	global translation
 	gettext.bindtextdomain(DOMAIN, LOCALEDIR)
 	try:
 		gettext.bind_textdomain_codeset(DOMAIN, "UTF-8")
@@ -97,9 +99,17 @@ def _install_translation():
 		pass
 	translation = gettext.translation(DOMAIN, localedir=LOCALEDIR, fallback=True)
 	translation.install()
-	_ = translation.gettext
-	ngettext = translation.ngettext
 	return translation
+
+
+def _(message):
+	"""gettext through the *current* catalog, so a module that did
+	`from i18n import _` before reload_from_preferences() still follows it."""
+	return translation.gettext(message)
+
+
+def ngettext(singular, plural, n):
+	return translation.ngettext(singular, plural, n)
 
 
 def reload_from_preferences():

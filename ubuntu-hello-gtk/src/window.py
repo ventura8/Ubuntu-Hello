@@ -7,6 +7,7 @@ import os
 os.umask(0o077)
 
 import subprocess
+import threading
 
 from i18n import _
 import i18n
@@ -26,12 +27,14 @@ for arg in list(sys.argv):
 		sys.argv.remove(arg)
 
 # Make sure we have the libs we need
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("Gdk", "4.0")
 
 # Import them
 from gi.repository import Gtk as gtk
 from gi.repository import Gio
+from gi.repository import GLib
+import gtk4compat
 
 
 class MainWindow(gtk.Window):
@@ -53,21 +56,40 @@ class MainWindow(gtk.Window):
 		self._build_ui(initial=True)
 
 		if run_main_loop:
-			gtk.main()
+			gtk4compat.run_main()
 
 	def _build_ui(self, initial=True, restore=None):
 		"""Load Glade UI (also used for instant language rebuild)."""
 		restore = restore or {}
 
-		self.builder = gtk.Builder()
-		self.builder.set_translation_domain("ubuntu-hello-gtk")
-		self.builder.add_from_file(paths_factory.main_window_wireframe_path())
-		self.builder.connect_signals(self)
+		# Right-to-left languages mirror the whole window (must precede widget creation).
+		rtl = gtk4compat.apply_text_direction(preferences.read_language())
+		self.builder = gtk4compat.builder(self, paths_factory.main_window_wireframe_path(), "ubuntu-hello-gtk")
 
-		self.window = self.builder.get_object("mainwindow")
-		self.userlist = self.builder.get_object("userlist")
+		built_window = self.builder.get_object("mainwindow")
+		if initial or getattr(self, "window", None) is None:
+			self.window = built_window
+		else:
+			# Language rebuild: keep the ONE toplevel and transplant the new
+			# content into it. Destroying and recreating the toplevel while
+			# popups/stacking state still referenced it crashed mutter 50
+			# (meta_window_set_stack_position assertions, then SIGSEGV).
+			content = built_window.get_child()
+			header = built_window.get_titlebar()
+			built_window.set_child(None)
+			built_window.set_titlebar(None)
+			self.window.set_titlebar(header)
+			self.window.set_child(content)
+			self.window.set_title(built_window.get_title() or "")
+			built_window.destroy()   # never realized, never shown
+		self.userlist = gtk4compat.dropdown(self.builder.get_object("userlist"), self.on_user_change)
 		self.modellistbox = self.builder.get_object("modellistbox")
+		# Reminder shown while exactly one model is enrolled: a single model
+		# recorded in one kind of light fails intermittently in another (see
+		# onboarding.prepare_second_scan), so nudge towards a second one.
+		self.single_model_infobar = self.builder.get_object("single_model_infobar")
 		self.opencvimage = self.builder.get_object("opencvimage")
+		paths_factory.set_picture_file(self.builder.get_object("image1"), paths_factory.about_logo_path())
 
 		self.keyring_status_label = self.builder.get_object("keyring_status_label")
 		self.keyring_enable_button = self.builder.get_object("keyring_enable_button")
@@ -78,23 +100,34 @@ class MainWindow(gtk.Window):
 			self.version_label.set_text(self.get_display_version())
 
 		self.notebook = self.builder.get_object("notebook")
+		# GtkNotebook's tab position is literal (LEFT stays left in RTL): keep the
+		# sidebar on the reading-start side.
+		if self.notebook is not None:
+			self.notebook.set_tab_pos(gtk.PositionType.RIGHT if rtl else gtk.PositionType.LEFT)
 		self.settings_search = self.builder.get_object("settings_search")
-		self.language_combo = self.builder.get_object("language_combo")
+		if self.settings_search is not None and initial:
+			shortcuts = gtk.ShortcutController()
+			shortcuts.set_scope(gtk.ShortcutScope.GLOBAL)
+			shortcuts.add_shortcut(gtk.Shortcut.new(gtk.ShortcutTrigger.parse_string("<Control>f"),
+				gtk.CallbackAction.new(self.focus_settings_search)))
+			self.window.add_controller(shortcuts)
+		self.language_combo = gtk4compat.dropdown(self.builder.get_object("language_combo"), self.on_language_changed)
+		self.cameraselect = gtk4compat.dropdown(self.builder.get_object("cameraselect"), self.on_camera_change)
 
-		self.window.connect("destroy", self.exit)
-		self.window.connect("delete_event", self.exit)
+		if initial:
+			self.window.set_icon_name("ubuntu-hello-gtk")
+			self.window.connect("close-request", self.exit)
 
-		# Create a treeview that will list the model data
-		self.treeview = gtk.TreeView()
-		self.treeview.set_vexpand(True)
-
-		# Set the columns (Python _() follows reloaded catalog after language switch)
-		for i, column in enumerate([i18n._("ID"), i18n._("Created"), i18n._("Label")]):
-			col = gtk.TreeViewColumn(column, gtk.CellRendererText(), text=i)
-			self.treeview.append_column(col)
-
-		# Add the treeview
-		self.modellistbox.add(self.treeview)
+		# Model table (Python _() follows reloaded catalog after language switch)
+		self.models = gtk4compat.ColumnList([i18n._("ID"), i18n._("Created"), i18n._("Label")])
+		self.listmodel = self.models
+		scroller = gtk.ScrolledWindow()
+		scroller.set_policy(gtk.PolicyType.NEVER, gtk.PolicyType.AUTOMATIC)
+		scroller.set_has_frame(True)
+		scroller.set_vexpand(True)
+		scroller.set_min_content_height(160)
+		scroller.set_child(self.models.widget)
+		self.modellistbox.append(scroller)
 
 		self._populate_users(restore.get("active_user"))
 		self._language_combo_ready = False
@@ -104,6 +137,7 @@ class MainWindow(gtk.Window):
 
 		self.load_model_list()
 		self.update_keyring_status()
+		self.load_notification_settings()
 
 		# Restore notebook / search / geometry after rebuild
 		if restore.get("page") is not None and self.notebook is not None:
@@ -114,11 +148,14 @@ class MainWindow(gtk.Window):
 			self.settings_search.set_text(restore["search"])
 		if restore.get("width") and restore.get("height"):
 			try:
-				self.window.resize(restore["width"], restore["height"])
+				self.window.set_default_size(restore["width"], restore["height"])
 			except Exception:
 				pass
+		else:
+			# GTK 4 windows grow to their content's natural size; pin a sane default.
+			self.window.set_default_size(900, 620)
 
-		self.window.show_all()
+		self.window.present()
 		# Re-apply fuzzy filter after show (haystacks use displayed labels)
 		if self.settings_search is not None and (self.settings_search.get_text() or "").strip():
 			self.on_settings_search_changed(self.settings_search)
@@ -216,8 +253,7 @@ class MainWindow(gtk.Window):
 			"height": None,
 		}
 		try:
-			w, h = self.window.get_size()
-			snap["width"], snap["height"] = w, h
+			snap["width"], snap["height"] = self.window.get_width(), self.window.get_height()
 		except Exception:
 			pass
 		if self.language_combo is not None and hasattr(self.language_combo, "get_active_id"):
@@ -249,20 +285,9 @@ class MainWindow(gtk.Window):
 				pass
 			self.capture = None
 
-		old_window = self.window
-		# Prevent destroy handler from quitting during rebuild
-		try:
-			old_window.disconnect_by_func(self.exit)
-		except Exception:
-			pass
-
 		i18n.reload_from_preferences()
 
-		try:
-			old_window.destroy()
-		except Exception:
-			pass
-
+		# Same toplevel, new content (see _build_ui): no window destroy/recreate.
 		self._build_ui(initial=False, restore=snap)
 		self._rebuilding = False
 
@@ -291,7 +316,25 @@ class MainWindow(gtk.Window):
 			except OSError:
 				pass
 			return
-		self._apply_language_rebuild(code)
+		# We are inside the DropDown's notify::selected handler while its list
+		# popover still holds the pointer grab. Destroying the window from here
+		# leaves that grab dangling and the whole app unresponsive ("Tried to
+		# map a grabbing popup with a non-top most parent"). Close the popover,
+		# let it unmap, then rebuild from the main loop.
+		self._rebuilding = True
+		self.settle_page_focus()
+		GLib.timeout_add(200, self._deferred_language_rebuild, code)
+
+	def _deferred_language_rebuild(self, code):
+		self._rebuilding = False
+		try:
+			self.settle_page_focus()
+			self._apply_language_rebuild(code)
+		except Exception as exc:
+			# Never leave the window stuck in "rebuilding" (dead handlers).
+			print(f"Language rebuild failed: {exc}", file=sys.stderr)
+			self._rebuilding = False
+		return False
 
 	def _widget_display_text(self, widget):
 		"""Collect currently displayed (translated) text from a widget subtree."""
@@ -299,6 +342,10 @@ class MainWindow(gtk.Window):
 
 		def walk(node):
 			if node is None:
+				return
+			# A collapsed InfoBar (e.g. the single-model reminder) is not on
+			# screen: its text must not attract the fuzzy search.
+			if isinstance(node, gtk.Revealer) and not node.get_reveal_child():
 				return
 			try:
 				if isinstance(node, gtk.Label):
@@ -319,33 +366,31 @@ class MainWindow(gtk.Window):
 					label = node.get_label()
 					if label:
 						parts.append(label)
-					child = node.get_child()
-					if child is not None:
-						walk(child)
+					walk(node.get_child())
 					return
 				elif isinstance(node, gtk.Entry):
 					pass
-				elif isinstance(node, gtk.ComboBoxText):
+				elif isinstance(node, gtk.DropDown):
 					# Include all entries (Automatic + locales), not only the active one,
 					# so search still finds Language after the selection changes.
 					model = node.get_model()
 					if model is not None:
-						for i in range(len(model)):
+						for i in range(model.get_n_items()):
 							try:
-								parts.append(str(model[i][0]))
+								parts.append(str(model.get_string(i)))
 							except Exception:
 								pass
-					active = node.get_active_text()
-					if active:
-						parts.append(active)
+					selected = node.get_selected_item()
+					if selected is not None:
+						parts.append(selected.get_string())
 			except Exception:
 				pass
-			if isinstance(node, gtk.Container):
-				try:
-					for child in node.get_children():
+			try:
+				for child in gtk4compat.iter_children(node):
+					if not isinstance(child, (gtk.Popover, gtk.Native)):
 						walk(child)
-				except Exception:
-					pass
+			except Exception:
+				pass
 
 		walk(widget)
 		return " ".join(parts)
@@ -370,18 +415,12 @@ class MainWindow(gtk.Window):
 			page = notebook.get_nth_page(page_index)
 			if page is None:
 				continue
-			candidates = []
-			if isinstance(page, gtk.Box):
-				candidates = list(page.get_children())
-			elif isinstance(page, gtk.Container):
-				candidates = list(page.get_children())
-			else:
-				candidates = [page]
+			candidates = list(gtk4compat.iter_children(page)) or [page]
 
 			expanded = []
 			for child in candidates:
 				if isinstance(child, gtk.Box) and child.get_orientation() == gtk.Orientation.VERTICAL:
-					expanded.extend(child.get_children())
+					expanded.extend(gtk4compat.iter_children(child))
 				else:
 					expanded.append(child)
 			if not expanded:
@@ -397,11 +436,24 @@ class MainWindow(gtk.Window):
 				"atomic": page in atomic_pages,
 			})
 
+	def on_settings_search_stop(self, entry):
+		"""Escape in the search field clears the query (restores every page)."""
+		if entry.get_text():
+			entry.set_text("")
+		return True
+
+	def focus_settings_search(self, *_args):
+		"""Ctrl+F: jump to the search field."""
+		if self.settings_search is not None:
+			self.settings_search.grab_focus()
+		return True
+
 	def on_settings_search_changed(self, entry):
 		"""Fuzzy-filter Settings rows by currently displayed translated label text."""
 		query = (entry.get_text() or "").strip()
 		best_tab = None
 		best_score = -1.0
+		best_tab_label_match = False
 
 		for page_info in self._search_row_baselines:
 			page_index = page_info["page_index"]
@@ -440,9 +492,16 @@ class MainWindow(gtk.Window):
 
 			page_info["page"].set_visible(True)
 
-			if page_match and page_best > best_score:
+			# A hit on the tab label itself outranks an equal-score hit buried
+			# in a page's body text (subsequence matching is generous on long
+			# descriptions: "kyrng" also matches a paragraph on another page).
+			tab_label_match = fuzzy_match(query, tab_text)
+			better = page_best > best_score or (
+				page_best == best_score and tab_label_match and not best_tab_label_match)
+			if page_match and better:
 				best_score = page_best
 				best_tab = page_index
+				best_tab_label_match = tab_label_match
 
 		if query and best_tab is not None and self.notebook is not None:
 			if self.notebook.get_current_page() != best_tab:
@@ -461,16 +520,22 @@ class MainWindow(gtk.Window):
 			return
 
 		def show_tree(widget):
+			# A DropDown's list is a Gtk.Popover child: setting it visible MAPS
+			# a grabbing popup. On Wayland that fails when our window is not
+			# the topmost surface (e.g. right after the language rebuild) and
+			# leaves the whole app unresponsive; on any backend it is the
+			# "dropdown opens by itself when switching tabs" bug.
+			if isinstance(widget, (gtk.Popover, gtk.Native)):
+				return
 			try:
 				widget.set_visible(True)
 			except Exception:
 				return
-			if isinstance(widget, gtk.Container):
-				try:
-					for child in widget.get_children():
-						show_tree(child)
-				except Exception:
-					pass
+			try:
+				for child in gtk4compat.iter_children(widget):
+					show_tree(child)
+			except Exception:
+				pass
 
 		show_tree(page)
 
@@ -490,32 +555,61 @@ class MainWindow(gtk.Window):
 		except (OSError, subprocess.SubprocessError) as e:
 			print(f"Error executing ubuntu-hello list: {e}", file=sys.stderr)
 
-		# Create a datamodel
-		self.listmodel = gtk.ListStore(str, str, str)
+		self.models.clear()
 
 		# If there was no error
 		if status == 0:
 			# Split the output per line
 			lines = output.split("\n")
 
-			# Add the models to the datamodel
+			# Add the models to the table
 			for i in range(len(lines)):
 				items = lines[i].split(",")
 				if len(items) < 3: continue
-				self.listmodel.append(items)
+				self.models.append(items)
 
-		self.treeview.set_model(self.listmodel)
+		self.update_single_model_reminder()
+
+	def update_single_model_reminder(self):
+		"""Reveal the second-model reminder only while exactly one model exists."""
+		if not getattr(self, "single_model_infobar", None):
+			return
+		count = len(self.models) if getattr(self, "models", None) is not None else 0
+		self.single_model_infobar.set_reveal_child(count == 1)
+
+	def settle_page_focus(self):
+		"""After a notebook page switch: no widget focused, no dropdown list popped open."""
+		for combo in (getattr(self, "userlist", None), getattr(self, "cameraselect", None), getattr(self, "language_combo", None)):
+			widget = getattr(combo, "widget", None)
+			if widget is not None:
+				gtk4compat.close_popover(widget)
+		try:
+			self.window.set_focus(None)
+		except Exception:
+			pass
+		return False
+
+	def on_single_model_button_clicked(self, button):
+		self.on_model_add(None)
 
 	def on_about_link(self, label, uri):
-		"""Open links on about page as a non-root user"""
-		try:
-			user = os.getlogin()
-		except Exception:
-			user = os.environ.get("SUDO_USER")
+		"""Open About-page links in the *user's* browser (we run as root under pkexec).
 
+		xdg-open needs the user's session (display, Wayland socket, session
+		bus) to reach their default browser; without it the browser is either
+		not found or launched without the URL. Forward exactly those variables
+		(pkexec already handed them to us) and never block the UI on it.
+		"""
 		import re
-		if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
-			subprocess.run(["sudo", "-u", user, "timeout", "10", "xdg-open", uri], capture_output=True)
+		user = get_real_user()
+		if not user or user == "root" or not re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+			return True
+		if not re.match(r"^https?://", uri or ""):
+			return True
+		session_env = [f"{var}={os.environ[var]}" for var in (
+			"DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR", "DBUS_SESSION_BUS_ADDRESS",
+			"XDG_CURRENT_DESKTOP", "XDG_DATA_DIRS", "XDG_DATA_HOME", "XDG_CONFIG_HOME", "XAUTHORITY") if os.environ.get(var)]
+		threading.Thread(target=open_uri_as_user, args=(user, uri, session_env), daemon=True).start()
 		return True
 
 	def exit(self, widget=None, context=None):
@@ -529,7 +623,7 @@ class MainWindow(gtk.Window):
 				pass
 		if getattr(self, "run_main_loop", True):
 			try:
-				gtk.main_quit()
+				gtk4compat.quit_main()
 			except RuntimeError:
 				pass
 			sys.exit(0)
@@ -561,6 +655,8 @@ def elevate():
 			"XDG_CURRENT_DESKTOP",
 			"DESKTOP_SESSION",
 			"XDG_CONFIG_HOME",
+			"XDG_DATA_HOME",
+			"XDG_DATA_DIRS",   # snap/flatpak .desktop dirs: without it xdg-open picks the wrong browser
 			"LANG",
 			"LANGUAGE",
 			"LC_ALL",
@@ -579,6 +675,32 @@ def elevate():
 
 # Make sure we run as sudo
 elevate()
+
+
+def open_uri_as_user(user, uri, session_env):
+	"""Open *uri* in *user*'s default browser from a root process.
+
+	1. The desktop portal (org.freedesktop.portal.OpenURI) on the user's
+	   session bus: it runs inside the session, so it resolves the browser
+	   exactly like a click in any app (snap Firefox, Flatpak, mimeapps).
+	2. Fallback: xdg-open as the user with the session env forwarded.
+	"""
+	as_user = ["sudo", "-u", user, "-H", "env", *session_env]
+	try:
+		res = subprocess.run(as_user + ["gdbus", "call", "--session", "--dest", "org.freedesktop.portal.Desktop",
+			"--object-path", "/org/freedesktop/portal/desktop", "--method", "org.freedesktop.portal.OpenURI.OpenURI",
+			"", uri, "{}"], stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=10)
+		if res.returncode == 0:
+			return "portal"
+	except (OSError, subprocess.SubprocessError):
+		pass
+	try:
+		subprocess.Popen(as_user + ["xdg-open", uri], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+			stderr=subprocess.DEVNULL, start_new_session=True)
+		return "xdg-open"
+	except OSError as exc:
+		print(f"Could not open {uri}: {exc}", file=sys.stderr)
+		return None
 
 
 def get_real_user():
@@ -646,15 +768,32 @@ def get_user_animations_preference():
 	return True
 
 
+def apply_gtk_theme_name(theme_name, prefer_dark, icon_theme=""):
+	"""Follow the desktop theme (Yaru accent + light/dark, icon theme) — GTK 4 has no auto theme as root."""
+	import theme_detect
+	resolved = theme_detect.resolve_gtk4_theme(theme_name, prefer_dark)
+	gtk_settings = gtk.Settings.get_default()
+	if resolved and gtk_settings:
+		gtk_settings.set_property("gtk-theme-name", resolved)
+	if icon_theme and gtk_settings:
+		gtk_settings.set_property("gtk-icon-theme-name", icon_theme)
+	return resolved
+
+
 def setup_theme():
 	try:
 		if os.geteuid() == 0:
+			import theme_detect
+			user = get_real_user()
 			prefer_dark = (get_user_theme_preference() == "dark")
 			enable_animations = get_user_animations_preference()
 			gtk_settings = gtk.Settings.get_default()
 			if gtk_settings:
 				gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
 				gtk_settings.set_property("gtk-enable-animations", enable_animations)
+			if user and user != "root":
+				apply_gtk_theme_name(theme_detect.get_gtk_theme_name(user=user), prefer_dark,
+					theme_detect.get_icon_theme_name(user=user))
 		else:
 			# Check if the schema exists
 			schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
@@ -694,6 +833,7 @@ def setup_theme():
 					if gtk_settings:
 						gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
 						gtk_settings.set_property("gtk-enable-animations", enable_animations)
+					apply_gtk_theme_name(gtk_theme, prefer_dark)
 				except Exception as e:
 					print(f"Error updating theme: {e}", file=sys.stderr)
 
@@ -705,7 +845,6 @@ def setup_theme():
 
 # Class is split so it isn't too long, import split functions
 import tab_models
-MainWindow.on_user_add = tab_models.on_user_add
 MainWindow.on_user_change = tab_models.on_user_change
 MainWindow.on_model_add = tab_models.on_model_add
 MainWindow.on_model_delete = tab_models.on_model_delete
@@ -713,6 +852,11 @@ import tab_video
 MainWindow.on_page_switch = tab_video.on_page_switch
 MainWindow.capture_frame = tab_video.capture_frame
 MainWindow.on_camera_change = tab_video.on_camera_change
+import tab_notifications
+MainWindow.load_notification_settings = tab_notifications.load_notification_settings
+MainWindow.on_notifications_enabled_state_set = tab_notifications.on_notifications_enabled_state_set
+MainWindow.on_notifications_sound_state_set = tab_notifications.on_notifications_sound_state_set
+MainWindow.on_notifications_details_state_set = tab_notifications.on_notifications_details_state_set
 import tab_keyring
 MainWindow.update_keyring_status = tab_keyring.update_keyring_status
 MainWindow.on_keyring_enable = tab_keyring.on_keyring_enable

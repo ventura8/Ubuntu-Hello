@@ -2,9 +2,16 @@
 from __future__ import annotations
 
 import difflib
+import unicodedata
 
 # Ratio threshold for SequenceMatcher on short Settings labels.
 _SEQUENCE_RATIO = 0.55
+
+
+def fold(text: str) -> str:
+	"""Casefold and strip diacritics so "notificatii" finds "Notificații" and "Deutsch" finds "Dèutsch"."""
+	decomposed = unicodedata.normalize("NFKD", text or "")
+	return "".join(ch for ch in decomposed if not unicodedata.combining(ch)).casefold()
 
 
 def is_subsequence(query: str, haystack: str) -> bool:
@@ -22,8 +29,8 @@ def is_subsequence(query: str, haystack: str) -> bool:
 
 def fuzzy_score(query: str, haystack: str) -> float:
 	"""Return match score in [0, 1]. Empty query → 1.0 (show all)."""
-	q = (query or "").strip().casefold()
-	h = (haystack or "").casefold()
+	q = fold((query or "").strip())
+	h = fold(haystack)
 	if not q:
 		return 1.0
 	if not h:

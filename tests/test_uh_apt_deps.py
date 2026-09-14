@@ -26,7 +26,7 @@ def test_runtime_deps_include_gtk_babel_and_de_tools():
         "python3-babel",
         "python3-cryptography",
         "python3-gi",
-        "gir1.2-gtk-3.0",
+        "gir1.2-gtk-4.0",
         "dconf-cli",
         "libglib2.0-bin",
         "xfconf",
