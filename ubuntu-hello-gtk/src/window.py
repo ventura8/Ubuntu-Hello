@@ -67,6 +67,13 @@ class MainWindow(gtk.Window):
 		self.window = self.builder.get_object("mainwindow")
 		self.userlist = self.builder.get_object("userlist")
 		self.modellistbox = self.builder.get_object("modellistbox")
+		# Reminder shown while exactly one model is enrolled: a single model
+		# recorded in one kind of light fails intermittently in another (see
+		# onboarding.prepare_second_scan), so nudge towards a second one.
+		self.single_model_infobar = self.builder.get_object("single_model_infobar")
+		if self.single_model_infobar:
+			self.single_model_infobar.add_button(i18n._("Add a second model"), gtk.ResponseType.OK)
+			self.single_model_infobar.connect("response", self.on_single_model_infobar_response)
 		self.opencvimage = self.builder.get_object("opencvimage")
 
 		self.keyring_status_label = self.builder.get_object("keyring_status_label")
@@ -505,6 +512,18 @@ class MainWindow(gtk.Window):
 				self.listmodel.append(items)
 
 		self.treeview.set_model(self.listmodel)
+		self.update_single_model_reminder()
+
+	def update_single_model_reminder(self):
+		"""Reveal the second-model reminder only while exactly one model exists."""
+		if not getattr(self, "single_model_infobar", None):
+			return
+		count = len(self.listmodel) if getattr(self, "listmodel", None) is not None else 0
+		self.single_model_infobar.set_revealed(count == 1)
+
+	def on_single_model_infobar_response(self, infobar, response):
+		if response == gtk.ResponseType.OK:
+			self.on_model_add(None)
 
 	def on_about_link(self, label, uri):
 		"""Open links on about page as a non-root user"""

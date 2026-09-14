@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,33 +15,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "失败，超时"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "人脸检测图像太暗"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "未知错误："
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "识别人脸为%s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
 msgstr "权限不足，无法发送 Enter 按键，而是等待用户按下它"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "无法发送 Enter 按键，等待用户按下它"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "尝试面部认证"
 
@@ -118,121 +118,217 @@ msgid ""
 "the --user flag"
 msgstr "无法以 root 身份运行 ubuntu-hello 命令，请使用 --user 标志运行此命令"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "数据文件尚未下载，请运行以下命令："
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "登录"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "日期："
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "扫描时间："
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "框架："
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "主机名："
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "最佳确定值："
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "正在启动..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "识别你..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "失败的"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "所有帧都太暗，请检查配置中的 dark_threshold"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "平均暗度：{avg}，阈值：{threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "花费时间"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "正在启动"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "打开凸轮+加载库：%dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "打开相机"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "导入识别库"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "搜索已知面孔"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "总时间"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\n解决"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "本机：%dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "使用：%dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\n搜索帧数：%d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "忽略黑框：%d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "忽略黑框：%d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "胜局确定性：%.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "获胜模型：%d（“%s”）"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "成功的"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "授权"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "屏幕解锁"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "暂停"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "加载"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s帧"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s 黑暗"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "寻找你的脸……"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "人脸认证"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "人脸识别"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "根据这个情况添加模型"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "检查相机"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "%s 没有匹配项"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "注册： sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "最接近的"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "人脸无法识别"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "太暗"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "开灯"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "黑暗"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "%s 无脸部模型"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "人脸认证不可用"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "取消"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "人脸认证已取消"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

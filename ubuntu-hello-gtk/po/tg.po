@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Модели дуюмро илова кунед"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Эҷод карда шуд"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Нишон"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Автоматӣ"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Калидвожа/KWallet Қулфро фаъол созед"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Барои кушодани {} ({}) паролро барои корбар <b>{}</b> ворид кунед:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Рамз"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Файлҳои маълумот аллакай бор карда шудаанд!\nБарои идома додан Next кл"
 "ик кунед"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Хатогӣ ҳангоми зеркашии файлҳои маълумот"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Иҷро шуд!\nБарои идома додан Next клик кунед"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Хатогӣ ҳангоми воридоти OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Кӯшиш кунед, ки cv2-ро аз нав насб кунед"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Дар система ягон веб-камера ёфт нашуд"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +84,39 @@ msgstr ""
 "Лутфан камераи худро худатон танзим кунед, агар шумо боварӣ дошта боше"
 "д, ки камераи мувофиқ васл шудааст"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Не, камера кушода намешавад"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Не, камераи инфрасурх нест"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Бале, камераи инфрасурх мувофиқ"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Муайянкунандаи камера ё роҳ"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Тавсия дода мешавад"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Хатогӣ ҳангоми интихоби камера"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Камераи интихобшуда кушода намешавад"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Кӯшиш кунед, ки дигареро интихоб кунед"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +126,104 @@ msgstr ""
 "e-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>"
 "\nбарои фаъол кардани эмитенти худ"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Лутфан мустақиман ба камера нигаред"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Танзими равшанӣ 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Танзими равшанӣ 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Сканкунии чеҳраро оғоз кунед"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Модели чеҳраро скан кунед"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Модели чеҳраро захира кардан мумкин нест"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Модели дуюмро скан кунед"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "Намунаи дуюмро сабт карда натавонист"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"Модели аввалини шумо захира карда шуд, бинобар ин воридшавии чеҳра алл"
+"акай кор мекунад. Боварӣ ҳосил кунед, ки чеҳраи шумо хуб равшан ва мар"
+"казонида шудааст, пас аз нав кӯшиш кунед -- ё гузаред ва баъдтар аз Та"
+"нзимот модел илова кунед."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Илова кардани модели чеҳра (ҳатмӣ)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Барои воридшавӣ ба чеҳра ҳадди аққал як модели чеҳра лозим аст, аз ин "
+"рӯ ин сканро гузаронидан мумкин нест. Онро дар рӯшноие, ки одатан дар "
+"он менишинед, сабт кунед. Равшанӣ намуди зоҳирии чеҳраи шуморо ба каме"
+"ра тағир медиҳад, аз ин рӯ илова кунед, ки баъдтар аз Танзимот модели "
+"дуюмро, ки бо нурҳои гуногун сабт шудааст (масалан, чароғҳои шом ба ҷо"
+"и нури рӯз) илова кунед."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Модели дуюми чеҳраро илова кунед (тавсия дода мешавад)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"Модели аввалини шумо захира карда шуд. Равшанӣ намуди зоҳирии чеҳраи ш"
+"умо ба камераро тағир медиҳад: моделе, ки дар рӯзона сабт шудааст, мет"
+"авонад бегоҳ дар зери чароғҳо (ё ба таври дигар) ноком шавад ва Ubuntu"
+" Hello ба ҷои кушодани қулф вақт тамом шавад. Модели дуюм, ки дар равш"
+"ании гуногун сабт шудааст, эътирофро дар ҳар вақти рӯз боэътимод нигоҳ"
+" медорад."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Пеш аз ҳама рӯшноиро иваз кунед: чароғҳои хона ё чароғи мизи корӣ ё ча"
+"роғи мизро фурӯзон ё хомӯш кунед, аз тиреза рӯй гардонед ё айнакҳоеро,"
+" ки баъзан мепӯшед, пӯшед. Пас рост ба камера нигоҳ кунед ва Сканро па"
+"хш кунед."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Танзими Ubuntu Hello"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -144,7 +233,7 @@ msgstr ""
 "нтификатсияи чеҳра кушояд (ҳамьёни ошкоршуда: {}).\n\n<b> Ҳолати TPM:<"
 "/b> Тафтиши сахтафзор ва асбобҳои TPM..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -155,7 +244,7 @@ msgstr ""
 "/b> Таҷҳизоти TPM муайян карда шуд. Насб кардани <i>tpm2-tools</i> ба "
 "таври худкор..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -166,7 +255,7 @@ msgstr ""
 "/b> Таҷҳизоти TPM 2.0 фаъол. Рамзи шумо дар дохили TPM бехатар мӯҳр ка"
 "рда мешавад."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -180,7 +269,7 @@ msgstr ""
 " шуд. <code>sudo apt install tpm2-tools</code>-ро иҷро кунед. Бозгашт "
 "ба кэшкунии эътимоднома дар асоси нармафзор."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -191,49 +280,61 @@ msgstr ""
 "/b> Ягон сахтафзори TPM ошкор нашудааст. Using software-based credenti"
 "al caching (AES-256-GCM)."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "Корбари системаи решавӣ барои кушодани калид муайян карда нашуд"
-
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Рамз холӣ буда наметавонад"
-
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Пароли нодуруст барои корбар {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "хатои номаълум"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Кушодани қулфи калидҳоро фаъол карда натавонист: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:771 src/tab_keyring.py:166
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Хомӯш кардани қулфи калидҳо муяссар нашуд: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:777
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "Корбари системаи решавӣ барои кушодани калид муайян карда нашуд"
+
+#: src/onboarding.py:790 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Рамз холӣ буда наметавонад"
+
+#: src/onboarding.py:794 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Пароли нодуруст барои корбар {}"
+
+#: src/onboarding.py:806 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "хатои номаълум"
+
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Кушодани қулфи калидҳоро фаъол карда натавонист: {}"
+
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Барои фаъол кардани қулфи калидҳо муяссар нашуд: ubuntu-hello иҷрошава"
+"нда ёфт нашуд"
+
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Барои фаъол кардани қулфи калидҳо муяссар нашуд: интизории фаъолсозии "
+"калид ба охир расид"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Хатои кушодани калид"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Хатогии хондани тугмаҳои радио"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Огоҳии насб"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Афзалияти итминонро ҳифз карда натавонист, аммо танзим дар акси ҳол ан"
 "ҷом шудааст."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Хатогӣ"
 
@@ -379,43 +480,55 @@ msgstr "Намоиши моделҳои захирашуда барои:"
 msgid "Add new user"
 msgstr "Илова кардани корбари нав"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Танҳо як модели чеҳра сабт шудааст. Равшанӣ чеҳраи шуморо ба камера та"
+"ғир медиҳад, аз ин рӯ модели ягона метавонад бегоҳ дар зери чароғҳо (ё"
+" дар равшанӣ) ноком шавад. Модели дуюми бо нури гуногун сабтшударо ило"
+"ва кунед, то қуфлро дар ҳар вақти рӯз боэътимод нигоҳ доред."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Илова"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Нобуд кунед"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Моделҳо"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "ID камера:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Қарори воқеӣ:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Қарори истифодашуда:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Сабткунанда:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Видео"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Калидҳо / KWallet Қулфи худкор"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -430,53 +543,53 @@ msgstr ""
 "Вобаста ба мизи кории шумо PAM_AUTHTOK барои pam_gnome_keyring ё pam_k"
 "wallet5 муқаррар мекунад."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Ҳолати ҷорӣ:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Санҷиш..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Қулфи худкорро фаъол созед"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Қулфи худкорро хомӯш кунед"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Ҳалқаи калид"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Забони намоиш"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Забон"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Худкор забони системаро пайгирӣ мекунад. Тағйирот фавран татбиқ мешава"
 "нд."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Аутентификатсияи чеҳра барои Linux"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Версияи номаълум"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -484,7 +597,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Истиноди GitHub-р"
 "о кушоед</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Дар бораи"
 
@@ -492,11 +605,11 @@ msgstr "Дар бораи"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Хуш омадед ба Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "Танзимот анҷом ёфт!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -516,7 +629,7 @@ msgstr ""
 "ӯшидани ин равзана ва кушодани Ubuntu Hello Configurator-ро дар поён А"
 "нҷом пахш кунед."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -525,19 +638,19 @@ msgstr ""
 "кунад ё KWallet бо истифода аз аутентификатсияи чеҳра, пешгирӣ кардани"
 " дархости парол пас аз ворид шудан."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Кушодани калидҳои автоматӣ/KWalletро фаъол созед"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Калидвожаро Тасдиқ Кунед"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Муқаррар намудани сиёсати боварӣ"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -548,11 +661,11 @@ msgstr ""
 "метавонед муқаррар кунед, ки то чӣ андоза Ubuntu Hello бояд сахт бошад"
 "."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Тез"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -560,11 +673,11 @@ msgstr ""
 "Имкон медиҳад, ки мувофиқатҳои норавшан бештар, \nбалки процесси сканр"
 "о хеле метезонад."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Мувозинат"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -572,11 +685,11 @@ msgstr ""
 "Муайянкунии нисбатан зуд, \nаммо ҳангоми дуртар аз шумо шояд ворид наш"
 "авад."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Бехатар"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -584,11 +697,11 @@ msgstr ""
 "Варианти каме бехатартар, \nаммо барои тасдиқи шумо вақти зиёд лозим м"
 "ешавад"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Илова кардани модели чеҳра"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -597,23 +710,35 @@ msgstr ""
 "ра кунад, то шуморо эътироф кунад. Барои оғоз кардани скани чеҳра тугм"
 "аи Сканро дар зер пахш кунед."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Ҳоло гузаред"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Шумо метавонед моделҳои чеҳраи бештарро дертар аз Танзимотҳо илова кун"
+"ед ё бо: sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Танзими веб-камера"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Оё эмиттери инфрасурх медурахшад?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "бале"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "не"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -626,15 +751,15 @@ msgstr ""
 "ишон дода мешавад. Онеро, ки мехоҳед истифода баред, интихоб кунед ва "
 "Next-ро пахш кунед."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Веб-камераҳои шумо санҷида мешавад, лутфан интизор шавед..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Зеркашии файлҳои маълумот"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -644,19 +769,19 @@ msgstr ""
 "шуда ниёз дорад, то шуморо шинохт, ки ҳоло зеркашӣ карда мешавад. Шумо"
 " метавонед ҷараёни зеркашӣро дар зер бубинед."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Оғози зеркашӣ..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Хуш омадед ба Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Версия"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -665,15 +790,15 @@ msgstr ""
 "кор Ubuntu Hello-ро барои шумо танзим мекунад. Барои идома додан оянда"
 "ро пахш кунед."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Бекор кардан"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Баъдӣ"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Танзимотро анҷом диҳед"
 

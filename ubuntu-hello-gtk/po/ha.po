@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Ƙara samfuri na biyu"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Ƙirƙiri"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Lakabi"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Na atomatik"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Kunna Maɓalli/KWallet Buɗewa"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Shigar da kalmar sirri don mai amfani <b>{}</b> don buše {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Kalmar wucewa"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "An riga an zazzage fayilolin bayanai!\nDanna Gaba don ci gaba"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Kuskure yayin zazzage fayilolin bayanai"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Anyi!\nDanna Gaba don ci gaba"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Kuskure yayin shigo da OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Gwada sake sakawa cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Ba a sami kyamarar gidan yanar gizo akan tsarin ba"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +83,39 @@ msgstr ""
 "Da fatan za a saita kyamarar ku da kanku idan kun tabbata an haɗa kyam"
 "arar da ta dace"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "A'a, ba za a iya buɗe kamara ba"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "A'a, ba kyamarar infrared ba"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Ee, kyamarar infrared mai jituwa"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Mai gano kyamara ko hanya"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Nasiha"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Kuskuren zabar kamara"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Ba za a iya buɗe kyamarar da aka zaɓa ba"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Yi ƙoƙarin zaɓar wani"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +125,103 @@ msgstr ""
 "ble-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</"
 "a>\ndon kunna ir emitter"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Da fatan za a duba kai tsaye cikin kyamarar"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Saita hasken wuta 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Saita hasken wuta 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Fara duba fuska"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Duba samfurin fuska"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Ba za a iya ajiye samfurin fuska ba"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Duba samfurin na biyu"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "An kasa yin rikodin samfurin na biyu"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"An ajiye samfurin ku na farko, don haka shiga fuska ya riga ya yi aiki"
+". Tabbatar cewa fuskarka tana da haske sosai kuma tana tsakiya, sannan"
+" a sake gwadawa -- ko tsallake kuma ƙara samfurin daga baya daga Saitu"
+"na."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Ƙara samfurin fuska (da ake buƙata)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Shigar da fuska yana buƙatar aƙalla samfurin fuska ɗaya, don haka ba z"
+"a a iya tsallake wannan sikanin ba. Yi rikodin shi a cikin hasken da k"
+"uka saba zama a ciki. Haske yana canza yadda fuskarku ke kallon kyamar"
+"a, don haka la'akari da ƙara samfuri na biyu daga baya daga Saituna, w"
+"anda aka rubuta a cikin haske daban-daban (misali fitilu na yamma maim"
+"akon hasken rana)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Ƙara samfurin fuska na biyu (an bada shawarar)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"An ajiye samfurin ku na farko. Haske yana canza yadda fuskarka ke kall"
+"on kyamara: samfurin da aka yi rikodin a cikin hasken rana zai iya kas"
+"awa da maraice a ƙarƙashin fitilu (ko kuma wata hanyar zagaye), kuma U"
+"buntu Hello sannan lokuta ya fita maimakon buɗewa. Samfurin na biyu da"
+" aka yi rikodin a cikin haske daban-daban yana kiyaye abin dogaro a ko"
+"wane lokaci na rana."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Canja hasken da farko: kunna ko kashe fitilar ɗakin ko tebur, kau da k"
+"ai daga taga, ko sanya gilashin da kuke sawa a wasu lokuta. Sannan dub"
+"a kai tsaye cikin kamara kuma danna Scan."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello Saita"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +231,7 @@ msgstr ""
 " (wallet ɗin da aka gano: {}).\n\n<b>Matsalar TPM:</b> Ana duba kayan "
 "aikin TPM da kayan aikin..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +241,7 @@ msgstr ""
 " (wallet ɗin da aka gano: {}).\n\n<b>Matsalar TPM:</b> An gano kayan a"
 "ikin TPM. Ana shigar da <i>tpm2-tools</i> kai tsaye..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +251,7 @@ msgstr ""
 " (wallet ɗin da aka gano: {}).\n\n<b>Matsalar TPM:</b> Hardware TPM 2."
 "0 yana aiki. Za a rufe kalmar sirri ta amintaccen cikin TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -177,7 +265,7 @@ msgstr ""
 "<code>sudo dace shigar tpm2-tools</code>. Faɗuwa zuwa tushen caching n"
 "a tushen software."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -187,47 +275,55 @@ msgstr ""
 " (wallet ɗin da aka gano: {}).\n\n<b>Matsalar TPM:</b> Ba a gano kayan"
 " aikin TPM ba. Yin amfani da caching na tushen software (AES-256-GCM)."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "An kasa gano mai amfani da tsarin mara tushe don buɗe maɓalli"
-
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Kalmar wucewa ba za ta iya zama fanko ba"
-
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Kalmar sirri mara daidai don mai amfani {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "kuskuren da ba a sani ba"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "An kasa kunna buɗe maɓalli: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:771 src/tab_keyring.py:166
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "An kasa kashe buɗe buɗe maɓalli: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:777
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "An kasa gano mai amfani da tsarin mara tushe don buɗe maɓalli"
+
+#: src/onboarding.py:790 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "Kalmar wucewa ba za ta iya zama fanko ba"
+
+#: src/onboarding.py:794 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "Kalmar sirri mara daidai don mai amfani {}"
+
+#: src/onboarding.py:806 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "kuskuren da ba a sani ba"
+
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "An kasa kunna buɗe maɓalli: {}"
+
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr "An kasa kunna buɗewar maɓalli: ubuntu-hello executable ba a samu ba"
+
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr "An kasa kunna buɗe maɓalli: an ƙare lokacin jiran kunna maɓallin"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Kuskuren Buɗe Maɓalli"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Kuskuren karanta maɓallan rediyo"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Saita Gargadi"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr "Ba za a iya ajiye takamaiman zaɓi ba, amma saitin in ba haka ba ya cika."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Kuskure"
 
@@ -373,43 +469,56 @@ msgstr "Nuna samfura da aka adana don:"
 msgid "Add new user"
 msgstr "Ƙara sabon mai amfani"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Samfurin fuska ɗaya kawai aka yi rajista. Haske yana canza yadda fuska"
+"rka ke kallon kyamara, don haka ƙirar guda ɗaya na iya yin kasala da y"
+"amma a ƙarƙashin fitilu (ko a cikin hasken rana). Ƙara samfurin na biy"
+"u da aka yi rikodin a cikin haske daban-daban don ci gaba da buɗe abin"
+" dogaro a kowane lokaci na rana."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Ƙara"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Share"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Samfura"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "ID na kyamara:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Ƙuduri na gaske:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Ƙaddamar da aka yi amfani da shi:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Mai rikodi:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Bidiyo"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Maɓalli / KW⟧ Buɗewa ta atomatik"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -423,51 +532,51 @@ msgstr ""
 "lli na tushen kawai. Face auth saita PAM_AUTHTOK don pam_gnome_keyring"
 " ko pam_kwallet5 dangane da tebur ɗin ku."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Matsayin Yanzu:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Ana dubawa..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Kunna Buɗewa ta atomatik"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Kashe Buɗewa ta atomatik"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Keyring"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Harshen nunawa"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Harshe"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Atomatik yana bin harshen tsarin. Canje-canje suna aiki nan take."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Tabbatar da fuska don Linux"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Sigar da ba a sani ba"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -475,7 +584,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Bude hanyar haɗin"
 " GitHub</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Game da"
 
@@ -483,11 +592,11 @@ msgstr "Game da"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Barka da zuwa Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "An yi saiti!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -505,7 +614,7 @@ msgstr ""
 "ci gaba ko ƙara ƙarin ƙira. Danna Finish a ƙasa don rufe wannan taga k"
 "uma buɗe Ubuntu Hello Configurator."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -513,19 +622,19 @@ msgstr ""
 "Ubuntu Hello na iya buše makullin shiga ta atomatik ko KWallet ta amfa"
 "ni da tantancewar fuska, hana shigar da kalmar sirri bayan shiga."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Kunna maɓalli ta atomatik/KWallet buɗewa"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Tabbata kalmar shiga"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Ƙaddamar da manufar tabbatarwa"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -536,11 +645,11 @@ msgstr ""
 "nan shafin zaku iya saita yadda ya kamata Ubuntu Hello ya kasance mai "
 "tsauri."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Mai sauri"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -548,11 +657,11 @@ msgstr ""
 "Yana ba da damar ƙarin ashana, \namma yana hanzarta aiwatar da aikin d"
 "ubawa sosai."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Daidaitacce"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -560,11 +669,11 @@ msgstr ""
 "Har yanzu ingantacciyar ganowa cikin sauri, \namma maiyuwa bazai shiga"
 "r da ku ba lokacin da ya nisa."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Amintacce"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -572,11 +681,11 @@ msgstr ""
 "Zaɓin mafi aminci, \namma zai ɗauki lokaci mai tsawo don tabbatar da k"
 "u"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Ƙara samfurin fuska"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -584,23 +693,35 @@ msgstr ""
 "Don tabbatar da ku Ubuntu Hello yana buƙatar adana samfurin fuskar ku "
 "don gane ku. Danna maɓallin Scan da ke ƙasa don fara duban fuska."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Tsallake don yanzu"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Kuna iya ƙara ƙarin samfuran fuska daga baya daga Saituna ko tare da: "
+"sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Yana daidaita kyamarar gidan yanar gizo"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Shin infrared emitter yana walƙiya?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "iya"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "a'a"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -612,15 +733,15 @@ msgstr ""
 "yan gano jerin kyamarorin yanar gizo masu amfani za a nuna. Zaɓi wanda"
 " kake son amfani da shi kuma danna Next."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Gwada kyamarorin yanar gizonku, da fatan za a jira..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Zazzage fayilolin bayanai"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -630,19 +751,19 @@ msgstr ""
 "ɗanda aka riga aka horar don su iya gane ku, waɗanda za a sauke su yan"
 "zu. Kuna iya ganin ci gaban saukewa a ƙasa."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Ana fara zazzagewa..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Barka da zuwa Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Sigar"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -650,15 +771,15 @@ msgstr ""
 "Wannan mayen zai bi ku ta hanyar saitin kuma ya tsara muku Ubuntu Hell"
 "o ta atomatik. Danna gaba don ci gaba."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Soke"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Na gaba"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Kammala saitin"
 

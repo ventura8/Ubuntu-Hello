@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,33 +15,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "አለመሳካት፣ ጊዜው አልቋል"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "የፊት ለይቶ ማወቅ ምስል በጣም ጨለማ ነው።"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "ያልታወቀ ስህተት፡-"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "ተለይቶ የሚታወቅ ፊት ​​%s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
 msgstr "አስገባን ለመላክ በቂ ያልሆኑ ፈቃዶች፣ በምትኩ ተጠቃሚው እንዲጫን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "አስገባን መላክ አልተሳካም፣ በምትኩ ተጠቃሚው እስኪጭን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "የፊት ማረጋገጥን በመሞከር ላይ"
 
@@ -120,121 +120,217 @@ msgid ""
 "the --user flag"
 msgstr "የኡቡንቱ-ሄሎ ትዕዛዞችን እንደ ስር ማስኬድ አይቻልም፣ እባክዎ ይህን ትዕዛዝ በ --ተጠቃሚ ባንዲራ ያሂዱ"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "የውሂብ ፋይሎች አልተወረዱም፣ እባክዎ የሚከተሉትን ትዕዛዞችን ያሂዱ፡-"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "ግባ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ቀን፡-"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "የፍተሻ ጊዜ፡"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "ፍሬሞች፡"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "የአስተናጋጅ ስም"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "የምርጥ እርግጠኝነት ዋጋ፡-"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "በመጀመር ላይ..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "እርስዎን በመለየት ላይ..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "አልተሳካም።"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "ሁሉም ክፈፎች በጣም ጨለማዎች ነበሩ፣እባክዎ በማዋቀር ውስጥ dark_thresholdን ያረጋግጡ"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "አማካይ ጨለማ፡ {avg}፣ ገደብ፡ {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "የጠፋው ጊዜ"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "በመጀመር ላይ"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "ካሜራ ክፈት + ሎድ ሊብስ፡ %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "ካሜራውን በመክፈት ላይ"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "የማወቂያ libs በማስመጣት ላይ"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "የሚታወቅ ፊት ​​በመፈለግ ላይ"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "ጠቅላላ ጊዜ"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nጥራት"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "ቤተኛ፡ %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "ጥቅም ላይ የዋለ: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nፍሬሞች ተፈልገው፡ %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "ጥቁር ፍሬሞች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "ጨለማ ክፈፎች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "የማሸነፍ እርግጠኝነት፡ %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "አሸናፊ ሞዴል፡ %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "ተሳክቷል።"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "ፍቃድ መስጠት"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "የስክሪን መክፈቻ"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "ጊዜው አልቋል"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "ጭነት"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s ክፈፎች"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s ጨለማ"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "ፊትህን በመፈለግ ላይ…"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "የፊት ማረጋገጫ"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "ፊት ታወቀ"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "በዚህ ብርሃን ውስጥ ሞዴል ጨምር"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "ካሜራውን ይፈትሹ"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "No match in %s"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "መመዝገብ፡ sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "በጣም ቅርብ"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "ፊት አልታወቀም።"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "በጣም ጨለማ"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "መብራት ያብሩ"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "ጨለማ"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "ለ %s ምንም የፊት ሞዴል የለም"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "የመልክ ማረጋገጥ የለም።"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "ተሰርዟል።"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "የፊት ማረጋገጥ ተሰርዟል።"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

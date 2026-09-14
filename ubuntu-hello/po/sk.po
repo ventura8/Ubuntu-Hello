@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "Zlyhanie, časový limit uplynul"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "Obraz detekcie tváre je príliš tmavý"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "Neznáma chyba:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "Identifikovaná tvár ako %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "Nedostatočné povolenia na odoslanie stlačenia klávesu Enter, čaká sa, "
 "kým ho používateľ stlačí"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Nepodarilo sa odoslať stlačenie klávesu Enter, čaká sa, kým ho používa"
 "teľ stlačí"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "Pokus o overenie tváre"
 
@@ -130,123 +130,219 @@ msgstr ""
 "Nie je možné spustiť príkazy ubuntu-hello ako root, spustite tento prí"
 "kaz s príznakom --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Dátové súbory neboli stiahnuté, spustite nasledujúce príkazy:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "PRIHLÁSIŤ SA"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "dátum:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "Čas skenovania:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "Rámy:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "Názov hostiteľa:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "Najlepšia hodnota istoty:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "Spúšťa sa..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "Identifikujem vás..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "Zlyhal"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Všetky snímky boli príliš tmavé, skontrolujte dark_threshold v konfigu"
 "rácii"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Priemerná tmavosť: {avg}, Prahová hodnota: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "Strávený čas"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "Spustenie"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "Otvorená vačka + limity zaťaženia: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "Otváranie fotoaparátu"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "Importovanie knižníc na rozpoznávanie"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "Hľadanie známej tváre"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "Celkový čas"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nRozlíšenie"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "Natívne: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "Použité: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nVyhľadávané snímky: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "Ignorované čierne rámy: %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "Tmavé rámy sú ignorované: %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "Istota výherného rámca: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "Víťazný model: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "ÚSPEŠNÝ"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "autorizáciu"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "odomknutie obrazovky"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "časový limit"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "zaťaženie"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s snímky"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s tmavý"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "Hľadáte svoju tvár…"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "Autentifikácia tváre"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "Rozpoznaná tvár"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "pridať model v tomto svetle"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "skontrolujte fotoaparát"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "Žiadna zhoda v %s"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "zapísať sa: sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "najbližšie"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "Tvár nebola rozpoznaná"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "Príliš tmavé"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "zapnúť svetlo"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "tma"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "Žiadny model tváre pre %s"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "Overenie tváre nie je k dispozícii"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "Zrušené"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "Overenie tváre bolo zrušené"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

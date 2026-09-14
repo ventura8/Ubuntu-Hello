@@ -534,7 +534,21 @@ but will take much longer to authenticate you</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkButton" id="skipsecondbutton">
+                    <property name="label" translatable="yes">Skip for now</property>
+                    <property name="visible">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="margin-right">50</property>
+                    <property name="relief">none</property>
+                    <property name="tooltip-text" translatable="yes">You can add more face models later from Settings or with: sudo ubuntu-hello add</property>
+                    <signal name="clicked" handler="on_skipsecondbutton_click" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>

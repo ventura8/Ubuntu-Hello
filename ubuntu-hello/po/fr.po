@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "Échec, délai d'attente atteint"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "Image de détection de visage trop sombre"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "Erreur inconnue :"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "Visage identifié comme %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "Autorisations insuffisantes pour envoyer la touche Entrée, en attendan"
 "t que l'utilisateur appuie dessus à la place"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Échec de l'envoi de la touche Entrée, en attendant que l'utilisateur a"
 "ppuie dessus à la place"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "Tentative d'authentification faciale"
 
@@ -134,125 +134,221 @@ msgstr ""
 "Impossible d'exécuter les commandes Ubuntu-hello en tant que root, veu"
 "illez exécuter cette commande avec l'indicateur --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "Les fichiers de données n'ont pas été téléchargés, veuillez exécuter l"
 "es commandes suivantes :"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "SE CONNECTER"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Date:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "Temps de numérisation :"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "Cadres :"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "Nom d'hôte :"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "Meilleure valeur de certitude :"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "Démarrage..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "Vous identifier..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "ÉCHOUÉ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Toutes les images étaient trop sombres, veuillez vérifier dark_thresho"
 "ld dans la configuration"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Obscurité moyenne : {avg}, Seuil : {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "Temps passé"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "Démarrage"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "Ouvrir la caméra + charger les bibliothèques : %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "Ouverture de la caméra"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "Importer des bibliothèques de reconnaissance"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "Recherche d'un visage connu"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "Durée totale"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nRésolution"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "Natif : %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "Utilisé : %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nImages recherchées : %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "Cadres noirs ignorés : %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "Trames sombres ignorées : %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "Certitude de la trame gagnante : %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "Modèle gagnant : %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "RÉUSSI"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "autorisation"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "déverrouillage de l'écran"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "temps mort"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "charger"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "Cadres %s"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s sombre"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "Je cherche ton visage…"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "Authentification faciale"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "Visage reconnu"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "ajouter un modèle dans cette optique"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "vérifie la caméra"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "Aucune correspondance dans %s"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "inscription : sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "le plus proche"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "Visage non reconnu"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "Trop sombre"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "allumer une lumière"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "obscurité"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "Aucun modèle de visage pour %s"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "Authentification faciale indisponible"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "Authentification faciale annulée"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

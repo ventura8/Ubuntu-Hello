@@ -245,21 +245,94 @@ class TestOnboardingSlide4And5FaceScan:
 
 			monkeypatch.setattr(subprocess, "run", fake_run)
 
-			# Click scan button
-			scan_btn = ob.builder.get_object("scanbutton")
-			ob.on_scanbutton_click(scan_btn)
-			gtk_pump(20)
+			added_labels = []
+			real_fake_run = fake_run
 
-			# Execute run_add directly and pump timeout
-			ob.run_add()
-			for _ in range(20):
+			def fake_run_recording(cmd, *a, **k):
+				if "add" in cmd:
+					added_labels.append(cmd[-1])
+				return real_fake_run(cmd, *a, **k)
+
+			monkeypatch.setattr(subprocess, "run", fake_run_recording)
+
+			# Pass 1: click scan, let the scheduled run_add fire
+			scan_btn = ob.builder.get_object("scanbutton")
+			skip_btn = ob.builder.get_object("skipsecondbutton")
+			assert skip_btn.get_visible()  # either pass may be skipped (never both)
+			ob.on_scanbutton_click(scan_btn)
+			for _ in range(40):
+				gtk_pump(10)
+				if added_labels:
+					break
+				time.sleep(0.02)
+			gtk_pump(10)
+
+			# First model saved -> still on slide 4, now in second-model mode
+			assert added_labels == ["Setup lighting 1"]
+			assert ob.window.current_slide == 4
+			assert ob.scan_pass == 2
+			assert skip_btn.get_visible()
+			assert scan_btn.get_sensitive()
+			assert scan_btn.get_label() == "Scan second model"
+			assert "second face model" in ob.builder.get_object("label4").get_text()
+			assert "Lighting" in ob.builder.get_object("label5").get_text()
+			assert "Change the lighting" in ob.builder.get_object("slide4_instruction_label").get_text()
+
+			# Pass 2: scan again -> advances to slide 5
+			ob.on_scanbutton_click(scan_btn)
+			for _ in range(60):
 				gtk_pump(10)
 				if ob.window.current_slide == 5:
 					break
 				time.sleep(0.02)
 
+			assert added_labels == ["Setup lighting 1", "Setup lighting 2"]
 			assert ob.window.current_slide == 5
 			assert ob.nextbutton.get_sensitive()
+		finally:
+			ob.stop_preview()
+			ob.window.destroy()
+			gtk_pump()
+
+	def test_slide4_skip_first_pass_makes_second_required(self, isolated_fs, monkeypatch, gtk_pump):
+		ob = onboarding.OnboardingWindow(run_main_loop=False)
+		try:
+			ob.treeview = Gtk.TreeView()
+			listmodel = Gtk.ListStore(str, str, str, bool)
+			listmodel.append(["IR Camera", "Yes", "/dev/video0", True])
+			ob.treeview.set_model(listmodel)
+			ob.treeview.set_cursor(0)
+			real_popen = subprocess.Popen
+			monkeypatch.setattr(subprocess, "Popen", lambda *a, **k: real_popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT))
+			monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(cmd, 0, stdout="", stderr=""))
+
+			ob.window.current_slide = 3
+			ob.go_next_slide()
+			gtk_pump()
+			assert ob.window.current_slide == 4
+
+			skip_btn = ob.builder.get_object("skipsecondbutton")
+			scan_btn = ob.builder.get_object("scanbutton")
+			assert skip_btn.get_visible()
+
+			# Skip pass 1 -> pass 2 becomes required: Skip hidden, still on slide 4
+			skip_btn.clicked()
+			gtk_pump(10)
+			assert ob.scan_pass == 2 and ob.models_enrolled == 0
+			assert ob.window.current_slide == 4
+			assert not skip_btn.get_visible()
+			assert "required" in ob.builder.get_object("label4").get_text()
+			assert scan_btn.get_label() == "Scan face model"
+
+			# Scanning now enrolls the (only) model and advances
+			ob.run_add()
+			for _ in range(40):
+				gtk_pump(10)
+				if ob.window.current_slide == 5:
+					break
+				time.sleep(0.02)
+			assert ob.models_enrolled == 1
+			assert ob.window.current_slide == 5
 		finally:
 			ob.stop_preview()
 			ob.window.destroy()

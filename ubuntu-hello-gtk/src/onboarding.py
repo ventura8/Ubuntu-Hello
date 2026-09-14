@@ -107,6 +107,13 @@ class OnboardingWindow(gtk.Window):
 		self.preview_capture = None
 		self.current_preview_path = None
 		self.preview_thread = None
+		# Slide 4 enrolls two models: pass 1 in the current light, pass 2 after
+		# the user changes the lighting (see prepare_second_scan for why).
+		# Either pass may be skipped, but not both: at least one model must be
+		# enrolled before the wizard moves on.
+		self.scan_pass = 1
+		self.models_enrolled = 0
+		self.slide4_device_path = None
 
 		self.window.set_default_size(800, 680)
 		self.window.set_position(gtk.WindowPosition.CENTER)
@@ -156,8 +163,8 @@ class OnboardingWindow(gtk.Window):
 
 		self.nextbutton.set_sensitive(False)
 
-		# Stop camera preview if moving away from slide 2
-		if self.window.current_slide == 2:
+		# Stop camera preview if moving away from slide 2 or 4
+		if self.window.current_slide in (2, 4):
 			self.stop_preview()
 
 		self.slides[self.window.current_slide].hide()
@@ -494,8 +501,13 @@ class OnboardingWindow(gtk.Window):
 			self.proc = subprocess.Popen(["true"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 		self.window.set_focus(self.builder.get_object("scanbutton"))
+		skipbutton = self.builder.get_object("skipsecondbutton")
+		if skipbutton:
+			skipbutton.set_sensitive(True)
+			skipbutton.show()
 
 		# Start preview on slide 4 preview image
+		self.slide4_device_path = device_path
 		self.preview_image = self.slide4_preview_image
 		self.current_preview_path = None
 		self.stop_preview()
@@ -507,34 +519,149 @@ class OnboardingWindow(gtk.Window):
 		# Stop camera preview to avoid device-busy conflict during face scan, but keep the image visible
 		self.stop_preview(clear_image=False)
 
-		status = self.proc.wait(2)
+		if self.scan_pass == 1:
+			status = self.proc.wait(2)
 
 		# Change button label to instruction text and disable it
 		scanbutton = button or self.builder.get_object("scanbutton")
 		if scanbutton:
 			scanbutton.set_label(_("Please look directly into the camera"))
 			scanbutton.set_sensitive(False)
+		skipbutton = self.builder.get_object("skipsecondbutton")
+		if skipbutton:
+			skipbutton.set_sensitive(False)
 
 		# Wait a bit to allow the user to read the message
 		gobject.timeout_add(600, self.run_add)
 
+	# Model labels are passed explicitly so `ubuntu-hello list` / Settings show
+	# which lighting each wizard model was recorded in (max 24 chars, no commas).
+	def scan_model_label(self):
+		if self.models_enrolled == 0:
+			return _("Setup lighting 1")
+		return _("Setup lighting 2")
+
 	def run_add(self):
-		res = subprocess.run(["ubuntu-hello", "-y", "add"], capture_output=True, text=True)
+		res = subprocess.run(["ubuntu-hello", "-y", "add", self.scan_model_label()], capture_output=True, text=True)
 		status, output = res.returncode, res.stdout + res.stderr
 
 		print("ubuntu-hello add output:")
 		print(output)
 
+		scanbutton = self.builder.get_object("scanbutton")
+		skipbutton = self.builder.get_object("skipsecondbutton")
+
 		if status != 0:
-			# Restore button state in case of error (though exit will close the app)
-			scanbutton = self.builder.get_object("scanbutton")
-			if scanbutton:
-				scanbutton.set_label(_("Start face scan"))
-				scanbutton.set_sensitive(True)
-			self.show_error(_("Can't save face model"), output)
+			if self.models_enrolled == 0:
+				# No model yet: this scan was required (pass 1, or pass 2 after
+				# pass 1 was skipped). Restore the button; show_error exits.
+				if scanbutton:
+					scanbutton.set_label(_("Start face scan") if self.scan_pass == 1 else _("Scan face model"))
+					scanbutton.set_sensitive(True)
+				if skipbutton and self.scan_pass == 1:
+					skipbutton.set_sensitive(True)
+				self.show_error(_("Can't save face model"), output)
+			else:
+				# The first model is already saved: a failed second scan must not
+				# kill the wizard. Explain, and let the user retry or skip.
+				if scanbutton:
+					scanbutton.set_label(_("Scan second model"))
+					scanbutton.set_sensitive(True)
+				if skipbutton:
+					skipbutton.set_sensitive(True)
+				self.show_warning(_("Couldn't record the second model"), _("Your first model is saved, so face login already works. Make sure your face is well lit and centred, then try again -- or skip and add a model later from Settings."))
+				self.restart_slide4_preview()
+			return False
+
+		self.models_enrolled += 1
+
+		if self.scan_pass == 1:
+			self.scan_pass = 2
+			self.prepare_second_scan()
+			return False
 
 		gobject.timeout_add(10, self.go_next_slide)
 		return False
+
+	def prepare_second_scan(self):
+		"""Turn slide 4 into the second pass.
+
+		Why a second model: a face match is a distance to the stored model, and
+		lighting moves that distance a lot. A single model recorded in daylight
+		often lands just past the certainty threshold in the evening under lamps
+		(or the other way round), which shows up as intermittent "timeout
+		reached" failures rather than a clean error. A second model recorded in
+		different light gives the matcher a close neighbour for both cases.
+
+		If pass 1 was skipped, this pass is the only model and cannot be skipped.
+		"""
+		required = self.models_enrolled == 0
+		heading = self.builder.get_object("label4")
+		description = self.builder.get_object("label5")
+		instruction = self.builder.get_object("slide4_instruction_label")
+		scanbutton = self.builder.get_object("scanbutton")
+		skipbutton = self.builder.get_object("skipsecondbutton")
+
+		if required:
+			if heading:
+				heading.set_text(_("Add a face model (required)"))
+			if description:
+				description.set_text(_("Face login needs at least one face model, so this scan can't be skipped. Record it in the light you usually sit in. Lighting changes how your face looks to the camera, so consider adding a second model later from Settings, recorded in different light (for example evening lamps instead of daylight)."))
+			if instruction:
+				instruction.set_text(_("Please look directly into the camera"))
+			if scanbutton:
+				scanbutton.set_label(_("Scan face model"))
+			if skipbutton:
+				skipbutton.hide()
+		else:
+			if heading:
+				heading.set_text(_("Add a second face model (recommended)"))
+			if description:
+				description.set_text(_("Your first model is saved. Lighting changes how your face looks to the camera: a model recorded in daylight can fail in the evening under lamps (or the other way round), and Ubuntu Hello then times out instead of unlocking. A second model recorded in different light keeps recognition reliable at any time of day."))
+			if instruction:
+				instruction.set_text(_("Change the lighting first: switch the room light or desk lamp on or off, turn away from the window, or put on the glasses you sometimes wear. Then look straight into the camera and press Scan."))
+			if scanbutton:
+				scanbutton.set_label(_("Scan second model"))
+			if skipbutton:
+				skipbutton.set_sensitive(True)
+				skipbutton.show()
+		if scanbutton:
+			scanbutton.set_sensitive(True)
+		self.restart_slide4_preview()
+		if scanbutton:
+			self.window.set_focus(scanbutton)
+
+	def restart_slide4_preview(self):
+		"""Re-open the live preview on slide 4 after `ubuntu-hello add` released the camera."""
+		device_path = getattr(self, "slide4_device_path", None)
+		if not device_path:
+			return
+		self.preview_image = self.slide4_preview_image
+		self.stop_preview(clear_image=False)
+		self.current_preview_path = device_path
+		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
+		self.preview_thread.start()
+
+	def on_skipsecondbutton_click(self, button=None):
+		"""Skip the current pass. Skipping pass 1 makes pass 2 mandatory; skipping
+		pass 2 is only offered once a model exists -- never both."""
+		if self.scan_pass == 1:
+			self.scan_pass = 2
+			self.prepare_second_scan()
+			return
+		if self.models_enrolled == 0:
+			return
+		self.stop_preview(clear_image=False)
+		gobject.timeout_add(10, self.go_next_slide)
+
+	def show_warning(self, text, secondary=""):
+		"""Non-fatal dialog (show_error exits the wizard)."""
+		dialog = gtk.MessageDialog(parent=self.window, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.WARNING, buttons=gtk.ButtonsType.CLOSE)
+		dialog.set_title(_("Ubuntu Hello Setup"))
+		dialog.props.text = text
+		dialog.format_secondary_text(secondary)
+		dialog.run()
+		dialog.destroy()
 
 	def execute_slide5(self):
 		self.enable_next()

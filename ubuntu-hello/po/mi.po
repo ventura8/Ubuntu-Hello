@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "I rahua, kua tae ki te wa mutunga"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "He pouri rawa te ahua kitenga kanohi"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "Hapa tē mōhiotia:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "Ko te kanohi kua tautuhia ko %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "He iti rawa nga whakaaetanga ki te tuku i te perehi Enter, e tatari an"
 "a kia pehia e te kaiwhakamahi"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "I rahua te tuku i te perehi Enter, e tatari ana kia pehia e te kaiwhak"
 "amahi"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "E ngana ana ki te motuhēhēnga kanohi"
 
@@ -129,123 +129,219 @@ msgstr ""
 "Kaore e taea te whakahaere i nga tono ubuntu-hello hei putake, whakaha"
 "erea tenei tono me te haki --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "Ko nga konae raraunga kaore ano kia tikiakehia, mahia nga whakahau e w"
 "hai ake nei:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "TOHUTOHU"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Rā:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "Wā matawai:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "Tāpare:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "Ingoa Kaihautū:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "Uara tino pai:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "Ka timata..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "Te tautuhi i a koe..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "I rahua"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "He pouri rawa nga papa katoa, tirohia te dark_threshold i te whirihora"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Te pouri toharite: {avg}, Paepae: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "Te wa i pau"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "Ka timata"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "Whakatuwherahia te kamera + utaina nga pukapuka: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "Te whakatuwhera i te kamera"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "Te kawemai i nga pukapuka tohu"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "Kei te rapu kanohi mohio"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "Te wa katoa"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nWhakatau"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "Maori: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "Kua whakamahia: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nI rapua nga papa: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "Ka warewarehia nga papa pango: %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "Ko nga papa pouri kua warewarehia: %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "Tino o te anga toa: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "Tauira toa: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "ANGitu"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "whakamanatanga"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "iriti mata"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "whakawātea"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "utaina"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s tāpare"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s pouri"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "Kei te rapu i to kanohi…"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "Motuhēhēnga kanohi"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "I mohiotia te kanohi"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "tāpirihia he tauira i tēnei marama"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "tirohia te kamera"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "Karekau he whakataetae i roto i te %s"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "whakauru: sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "tino tata"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "Ko te kanohi kaore i te mohiotia"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "Pouri rawa"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "whakakā rama"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "pouri"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "Karekau he tauira kanohi mo %s"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "Kaore i te waatea te motuhēhē kanohi"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "Kua whakakorehia"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "Kua whakakorehia te motuhēhēnga kanohi"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

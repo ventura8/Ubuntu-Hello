@@ -54,6 +54,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   │   ├── config_ensure.py   # Restore live config.ini if the dpkg conffile is missing
 │   │   ├── keyring_crypto.py  # UH1 AES-GCM helpers
 │   │   ├── keyring_restore.py # Unseal + restore login wallet password
+│   │   ├── notify.py          # Desktop notification per auth attempt (updated in place)
 │   │   ├── wallet_backend.py  # gnome-keyring / kwallet / none labels
 │   │   └── paths_factory.py
 │   ├── po/                    # gettext domain ubuntu-hello
@@ -293,7 +294,14 @@ Debug knobs in `/etc/ubuntu-hello/config.ini`:
 end_report = true
 verbose_stamps = true
 gtk_stdout = true
+
+[notifications]
+enabled = true         # one desktop card per attempt, updated in place with the result
+details = true         # add model, certainty/threshold, frames, camera, pid, timeout, load
+success_linger = 3     # seconds the "Face recognized" card stays before it is removed
 ```
+
+The notification card is the quickest way to see *why* an attempt failed without touching logs. Release text is one short line (`✓ Full Name · 1.3 s`, `✗ No match in 8 s · 💡 add a model in this light`, titled with the requester: `· sudo`, `· authorization`, `· screen unlock`); `details = true` adds model, `certainty/threshold`, frames, dark frames, camera, pid, timeout and load. "Looking for your face…" stays on screen for the whole scan; the success card disappears after `success_linger` seconds, failure cards stay in the notification list. A near-miss (`X` just above `Y`) is almost always lighting — enroll a second model in that light (`sudo ubuntu-hello add`, or the setup wizard's second pass). Nothing is shown at the login greeter (no user session bus yet); on a headless host or without `gdbus` (`libglib2.0-bin`) the feature silently disables itself for that run.
 
 ### 4.3 PAM Lockout Recovery
 
@@ -356,7 +364,7 @@ UH_CI_STAGE=compat UH_CI_DE=kde ./scripts/ci-docker.sh
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
-Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.15.4`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.26.0`. Never pin by commit SHA; never use a `latest` alias.
+Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
 
 Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 

@@ -48,6 +48,7 @@ py_sources = [
     'config_ensure.py',
     'keyring_crypto.py',
     'keyring_restore.py',
+    'notify.py',
     'paths_factory.py',
     'wallet_backend.py',
     'recorders/__init__.py',

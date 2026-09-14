@@ -128,6 +128,37 @@
                 <property name="margin_right">10</property>
                 <property name="orientation">vertical</property>
                 <child>
+                  <object class="GtkInfoBar" id="single_model_infobar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">10</property>
+                    <property name="message_type">warning</property>
+                    <property name="revealed">False</property>
+                    <property name="show_close_button">False</property>
+                    <child internal-child="content_area">
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="spacing">16</property>
+                        <child>
+                          <object class="GtkLabel" id="single_model_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Only one face model is enrolled. Lighting changes how your face looks to the camera, so a single model can fail in the evening under lamps (or in daylight). Add a second model recorded in different light to keep unlocking reliable at any time of day.</property>
+                            <property name="wrap">True</property>
+                            <property name="xalign">0</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkSeparator" id="separator1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>

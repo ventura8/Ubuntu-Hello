@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Dodajte drugi model"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Ustvarjeno"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Oznaka"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Samodejno"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Omogoči obesek za ključe/KWallet odklepanje"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Vnesite geslo za uporabnika <b>{}</b> za odklepanje {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Geslo"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Podatkovne datoteke so že prenesene!\nZa nadaljevanje kliknite Naprej"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Napaka pri prenosu podatkovnih datotek"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Končano!\nZa nadaljevanje kliknite Naprej"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Napaka pri uvozu OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Poskusite znova namestiti cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "V sistemu ni najdenih spletnih kamer"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +83,39 @@ msgstr ""
 "Če ste prepričani, da je združljiva kamera priključena, konfigurirajte"
 " svojo kamero sami"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Ne, fotoaparata ni mogoče odpreti"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Ne, ne infrardeča kamera"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Da, združljiva infrardeča kamera"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Identifikator ali pot kamere"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Priporočeno"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Napaka pri izbiri kamere"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Izbrane kamere ni mogoče odpreti"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Poskusite izbrati drugega"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +125,101 @@ msgstr ""
 "-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nda"
 " omogočite svoj IR oddajnik"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Poglejte naravnost v kamero"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Nastavitev osvetlitev 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Nastavitev osvetlitev 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Zaženi skeniranje obraza"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Optično preberi model obraza"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Modela obraza ni mogoče shraniti"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Optično preberi drugi model"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "Drugega modela ni bilo mogoče posneti"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"Vaš prvi model je shranjen, zato prijava z obrazom že deluje. Poskrbit"
+"e, da je vaš obraz dobro osvetljen in na sredini, nato poskusite znova"
+" — ali preskočite in model dodajte pozneje v Nastavitvah."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Dodaj model obraza (obvezno)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Prijava z obrazom potrebuje vsaj en model obraza, zato tega branja ni "
+"mogoče preskočiti. Posnemite ga pri svetlobi, v kateri običajno sedite"
+". Osvetlitev spremeni, kako kamera vidi vaš obraz, zato razmislite, da"
+" pozneje v Nastavitvah dodate drugi model, posnet pri drugačni svetlob"
+"i (na primer zvečer pri svetilkah namesto pri dnevni svetlobi)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Dodaj drugi model obraza (priporočeno)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"Vaš prvi model je shranjen. Osvetlitev spremeni, kako kamera vidi vaš "
+"obraz: model, posnet pri dnevni svetlobi, lahko zvečer pri svetilkah o"
+"dpove (ali obratno) in Ubuntu Hello takrat poteče, namesto da bi odkle"
+"nil. Drugi model, posnet pri drugačni svetlobi, ohranja prepoznavanje "
+"zanesljivo ob kateri koli uri dneva."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Najprej spremenite osvetlitev: prižgite ali ugasnite luč v sobi ali na"
+"mizno svetilko, obrnite se stran od okna ali si nadenite očala, ki jih"
+" včasih nosite. Nato poglejte naravnost v kamero in pritisnite Preberi"
+"."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Nastavitev Ubuntu Hello"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +229,7 @@ msgstr ""
 "tnosti obraza (zaznana denarnica: {}).\n\n<b>Stanje TPM:</b> Preverjan"
 "je strojne opreme in orodij TPM ..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +239,7 @@ msgstr ""
 "tnosti obraza (zaznana denarnica: {}).\n\n<b>Stanje TPM:</b> zaznana s"
 "trojna oprema TPM. Samodejna namestitev <i>tpm2-tools</i> ..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +249,7 @@ msgstr ""
 "tnosti obraza (zaznana denarnica: {}).\n\n<b>Stanje TPM:</b> Strojna o"
 "prema TPM 2.0 je aktivna. Vaše geslo bo varno zapečateno znotraj TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -177,7 +263,7 @@ msgstr ""
 "pela. Zaženite <code>sudo apt install tpm2-tools</code>. Vrnitev na pr"
 "ogramsko predpomnjenje poverilnic."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -188,51 +274,63 @@ msgstr ""
 "e strojne opreme TPM. Uporaba programskega predpomnjenja poverilnic (A"
 "ES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Odklepanja obeska za ključe ni bilo mogoče onemogočiti: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Ni bilo mogoče prepoznati nekorenskega uporabnika sistema za odklepanj"
 "e obeska ključev"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Geslo ne sme biti prazno"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Napačno geslo za uporabnika {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "neznana napaka"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Omogočanje odklepanja obeska za ključe ni uspelo: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Odklepanja obeska za ključe ni bilo mogoče onemogočiti: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Odklepanja zbirke ključev ni bilo mogoče omogočiti: izvedljive datotek"
+"e ubuntu-hello ni mogoče najti"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Odklepanja zbirke ključev ni bilo mogoče omogočiti: čakanje na omogoči"
+"tev je poteklo"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Napaka pri odklepanju obeska za ključe"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Napaka pri branju izbirnih gumbov"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Opozorilo za nastavitev"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Nastavitve gotovosti ni bilo mogoče shraniti, vendar je nastavitev sic"
 "er končana."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Napaka"
 
@@ -382,43 +480,55 @@ msgstr "Prikaz shranjenih modelov za:"
 msgid "Add new user"
 msgstr "Dodaj novega uporabnika"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Prijavljen je samo en model obraza. Osvetlitev spremeni videz vašega o"
+"braza v kameri, zato lahko en sam model zvečer pod svetilkami (ali pod"
+"nevi) odpove. Dodajte drugi model, posnet pri drugačni svetlobi, da bo"
+" odklepanje zanesljivo kadar koli v dnevu."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Dodaj"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Izbriši"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Modeli"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "ID kamere:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Realna ločljivost:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Uporabljena ločljivost:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Snemalnik:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Obesek za ključe / KWallet Samodejno odklepanje"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -432,51 +542,51 @@ msgstr ""
 "lavnim ključem samo za root. Preverjanje obraza nastavi PAM_AUTHTOK za"
 " pam_gnome_keyring ali pam_kwallet5, odvisno od vašega namizja."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Trenutno stanje:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Preverjanje ..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Omogoči samodejno odklepanje"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Onemogoči samodejno odklepanje"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Obesek za ključe"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Jezik prikaza"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Jezik"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Samodejno sledi jeziku sistema. Spremembe se uporabijo takoj."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Preverjanje pristnosti obraza za Linux"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Različica neznana"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -484,7 +594,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Odpri povezavo Gi"
 "tHub</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "O tem"
 
@@ -492,11 +602,11 @@ msgstr "O tem"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Dobrodošli v Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "Nastavitev je končana!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -515,7 +625,7 @@ msgstr ""
 "te dodatne modele. Pritisnite Dokončaj spodaj, da zaprete to okno in o"
 "dprete konfigurator Ubuntu Hello."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -524,19 +634,19 @@ msgstr ""
 "li KWallet z uporabo preverjanja pristnosti obraza, kar prepreči poziv"
 "e za geslo po prijavi."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Omogoči samodejno odklepanje obeska za ključe/KWallet"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Potrdite geslo"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Nastavitev politike gotovosti"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -546,11 +656,11 @@ msgstr ""
 "ikoli ni povsem enako shranjenemu modelu obraza. Na tej strani lahko n"
 "astavite, kako strog mora biti Ubuntu Hello."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "hitro"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -558,11 +668,11 @@ msgstr ""
 "Omogoča bolj mehka ujemanja, \nvendar močno pospeši postopek skeniranj"
 "a."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Uravnotežen"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -570,11 +680,11 @@ msgstr ""
 "Še vedno relativno hitro odkrivanje, \nvendar vas morda ne bo prijavil"
 ", ko bo dlje."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Varno"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -582,11 +692,11 @@ msgstr ""
 "Nekoliko varnejša možnost, \nvendar bo trajalo veliko dlje, da vas pot"
 "rdi"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Dodajanje modela obraza"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -595,23 +705,35 @@ msgstr ""
 "as prepozna. Za začetek skeniranja obraza pritisnite spodnji gumb Sken"
 "iraj."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Za zdaj preskoči"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Več modelov obraza lahko dodate pozneje v Nastavitvah ali z ukazom: su"
+"do ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Konfiguracija spletne kamere"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Ali infrardeči oddajnik utripa?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "ja"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "št"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -623,15 +745,15 @@ msgstr ""
 "avi se prikaže seznam uporabnih spletnih kamer. Izberite tisto, ki jo "
 "želite uporabiti, in kliknite Naprej."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Preizkušanje vaših spletnih kamer, počakajte ..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Prenašanje podatkovnih datotek"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -641,19 +763,19 @@ msgstr ""
 "poznavanje obraza, da vas lahko prepozna, ki bodo zdaj preneseni. Napr"
 "edek prenosa si lahko ogledate spodaj."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Začetek prenosa ..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Dobrodošli v Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Različica"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -661,15 +783,15 @@ msgstr ""
 "Ta čarovnik vas bo vodil skozi postopek namestitve in samodejno konfig"
 "uriral Ubuntu Hello za vas. Za nadaljevanje pritisnite Naprej."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Naprej"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Dokončaj nastavitev"
 

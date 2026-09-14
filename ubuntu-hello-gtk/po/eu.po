@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Gehitu bigarren eredu bat"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Sortu"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Etiketa"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Automatikoa"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Gaitu giltza-erraztea/KWallet desblokeatzea"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Sartu <b>{}</b> erabiltzailearen pasahitza {} ({}) desblokeatzeko:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Pasahitza"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Datu-fitxategiak deskargatu dira dagoeneko!\nSakatu Hurrengoa jarraitz"
 "eko"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Errore bat gertatu da datu-fitxategiak deskargatzean"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Eginda!\nSakatu Hurrengoa jarraitzeko"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Errore bat gertatu da OpenCV2 inportatzean"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Saiatu cv2 berriro instalatzen"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Ez da aurkitu sisteman kamerarik"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +84,39 @@ msgstr ""
 "Mesedez, konfiguratu kamera zuk zeuk kamera bateragarri bat konektatut"
 "a dagoela ziur bazaude"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Ez, kamera ezin da ireki"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Ez, ez infragorri kamera bat"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Bai, kamera infragorri bateragarria"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Kameraren identifikatzailea edo bidea"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Gomendagarria"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Errore bat gertatu da kamera hautatzen"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Hautatutako kamera ezin da ireki"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Saiatu beste bat hautatzen"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +126,104 @@ msgstr ""
 "ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "zure ir igorlea gaitzeko"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Mesedez, begiratu zuzenean kamerara"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Konfigurazioa argiztapena 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Konfigurazioa argiztapena 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Hasi aurpegia eskaneatzen"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Eskaneatu aurpegi-eredua"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Ezin da aurpegiaren eredua gorde"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Eskaneatu bigarren eredua"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "Ezin izan da bigarren eredua grabatu"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"Zure lehen eredua gordeta dago, beraz aurpegi bidezko saio-hasierak da"
+"goeneko funtzionatzen du. Ziurtatu aurpegia ondo argiztatuta eta erdia"
+"n dagoela, eta saiatu berriro — edo saltatu eta gehitu eredu bat geroa"
+"go Ezarpenetatik."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Gehitu aurpegi-eredu bat (beharrezkoa)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Aurpegi bidezko saio-hasierak gutxienez aurpegi-eredu bat behar du, be"
+"raz eskaneatze hau ezin da saltatu. Grabatu normalean esertzen zaren a"
+"rgian. Argiztapenak aldatu egiten du kamerak zure aurpegia nola ikuste"
+"n duen; beraz, pentsatu geroago Ezarpenetatik bigarren eredu bat gehit"
+"zea, beste argi batean grabatua (adibidez, gauez lanparekin egun-argia"
+"ren ordez)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Gehitu bigarren aurpegi-eredu bat (gomendatua)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"Zure lehen eredua gordeta dago. Argiztapenak aldatu egiten du kamerak "
+"zure aurpegia nola ikusten duen: egun-argiz grabatutako eredu batek hu"
+"ts egin dezake gauez lanpen azpian (edo alderantziz), eta orduan Ubunt"
+"u Hello-k denbora agortzen du desblokeatu beharrean. Beste argi batean"
+" grabatutako bigarren eredu batek ezagutza fidagarri mantentzen du egu"
+"neko edozein ordutan."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Aldatu lehenik argiztapena: piztu edo itzali gelako argia edo mahaiko "
+"lanpara, jarri leihoari bizkarra emanda, edo jantzi noizean behin erab"
+"iltzen dituzun betaurrekoak. Ondoren begiratu zuzenean kamerara eta sa"
+"katu Eskaneatu."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello konfigurazioa"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -144,7 +233,7 @@ msgstr ""
 "fikazioa erabiliz (hautsitako zorroa: {}).\n\n<b>TPM egoera:</b> TPM h"
 "ardwarea eta tresnak egiaztatzen..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -154,7 +243,7 @@ msgstr ""
 "fikazioa erabiliz (hautsitako zorroa: {}).\n\n<b>TPM egoera:</b> TPM h"
 "ardwarea detektatu da. <i>tpm2-tools</i> automatikoki instalatzen..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -165,7 +254,7 @@ msgstr ""
 "are TPM 2.0 aktiboa. Zure pasahitza modu seguruan itxiko da TPM barrua"
 "n."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -179,7 +268,7 @@ msgstr ""
 "oak huts egin du. Exekutatu <code>sudo apt install tpm2-tools</code>. "
 "Softwarean oinarritutako kredentzialen cachean itzultzea."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -190,51 +279,63 @@ msgstr ""
 " detektatu TPM hardwarerik. Softwarean oinarritutako kredentzialen cac"
 "hea erabiliz (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Ezin izan da giltza-zerrenda desblokeatzea desgaitu: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Ezin izan da erro-sistema ez den erabiltzailea identifikatu giltza-sor"
 "ta desblokeatzeko"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Pasahitza ezin da hutsik egon"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Erabiltzailearen pasahitz okerra {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "errore ezezaguna"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Ezin izan da giltza-zerrenda desblokeatzea gaitu: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Ezin izan da giltza-zerrenda desblokeatzea desgaitu: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Ezin izan da gako-sortaren desblokeoa gaitu: ez da ubuntu-hello exekut"
+"agarria aurkitu"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Ezin izan da gako-sortaren desblokeoa gaitu: gaitzearen zain denbora a"
+"gortu da"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Gako-errantzia desblokeatzeko errorea"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Errore bat gertatu da irrati-botoiak irakurtzean"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Konfigurazio abisua"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Ezin izan da ziurtasun hobespena gorde, baina bestela konfigurazioa am"
 "aituta dago."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Errorea"
 
@@ -382,43 +483,56 @@ msgstr "Honetarako gordetako ereduak erakusten:"
 msgid "Add new user"
 msgstr "Gehitu erabiltzaile berria"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Aurpegi-eredu bakarra dago matrikulatuta. Argiak zure aurpegia kamerar"
+"en itxura aldatzen du; beraz, modelo bakar batek huts egin dezake arra"
+"tsaldean lanpararen azpian (edo egun argian). Gehitu argi ezberdinetan"
+" grabatutako bigarren modelo bat desblokeatzea fidagarria izateko egun"
+"eko edozein unetan."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Gehitu"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Ereduak"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "Kameraren IDa:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Benetako ebazpena:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Erabilitako bereizmena:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Grabagailua:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Bideoa"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Giltzarria / KWallet Desblokeo automatikoa"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -433,53 +547,53 @@ msgstr ""
 "liz. Aurpegiaren autentifikazioa PAM_AUTHTOK pam_gnome_keyring edo pam"
 "_kwallet5 ezartzen du zure mahaigainaren arabera."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Egungo egoera:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Egiaztatzen..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Gaitu desblokeo automatikoa"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Desgaitu desblokeo automatikoa"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Giltzarria"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Pantailako hizkuntza"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Hizkuntza"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Automatikoak sistemaren hizkuntza jarraitzen du. Aldaketak berehala ap"
 "likatzen dira."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Aurpegiko autentifikazioa Linuxerako"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Bertsio ezezaguna"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -487,7 +601,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Ireki GitHub este"
 "ka</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Buruz"
 
@@ -495,11 +609,11 @@ msgstr "Buruz"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Ongi etorri Ubuntu Hello-ra"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "Konfigurazioa egin da!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -518,7 +632,7 @@ msgstr ""
 " aldatzeko edo eredu gehiago gehitzeko. Sakatu Amaitu behean leiho hau"
 " ixteko eta Ubuntu Hello Konfiguratzailea irekitzeko."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -527,19 +641,19 @@ msgstr ""
 "-errantzia edo KWallet aurpegiko autentifikazioa erabiliz, saioa hasi "
 "ondoren pasahitz-eskaerak saihestuz."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Gaitu giltza-joko automatikoa/KWallet desblokeatzea"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Berretsi pasahitza"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Ziurtasun politika ezartzea"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -549,11 +663,11 @@ msgstr ""
 "pegien bat ez da inoiz gordetako aurpegiaren ereduaren berdina. Orri h"
 "onetan Ubuntu Hello zein zorrotza izan behar den ezar dezakezu."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Azkar"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -561,11 +675,11 @@ msgstr ""
 "Partidu lausoagoak ahalbidetzen ditu, \nbaina eskaneatzeko prozesua as"
 "ko bizkortzen du."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Orekatua"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -573,11 +687,11 @@ msgstr ""
 "Detekzio nahiko azkarra oraindik, \nbaina baliteke urrunago dagoenean "
 "saioa ez izatea."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Segurua"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -585,11 +699,11 @@ msgstr ""
 "Aukera apur bat seguruagoa, \nbaina askoz gehiago beharko duzu autenti"
 "fikatzeko"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Aurpegi-eredu bat gehitzea"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -598,23 +712,35 @@ msgstr ""
 "a zu ezagutzeko. Sakatu beheko Eskaneatu botoia aurpegiko miaketa hast"
 "eko."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Saltatu oraingoz"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Aurpegi-eredu gehiago gehi ditzakezu geroago Ezarpenetatik edo honekin"
+": sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Webcam konfiguratzen"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Infragorrien igorlea keinuka ari al da?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "bai"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "ez"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -626,15 +752,15 @@ msgstr ""
 "doren erabilgarri dauden webcamen zerrenda erakutsiko da. Aukeratu era"
 "bili nahi duzuna eta egin klik Hurrengoa."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Webcamak probatzen, itxaron mesedez..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Datu-fitxategiak deskargatzea"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -644,19 +770,19 @@ msgstr ""
 "hal izateko, eta orain deskargatuko dira. Deskargaren aurrerapena behe"
 "an ikus dezakezu."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Deskargatzen hasten..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Ongi etorri Ubuntu Hello-ra!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Bertsioa"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -664,15 +790,15 @@ msgstr ""
 "Morroi honek konfigurazio-prozesuan zehar gidatuko zaitu eta automatik"
 "oki konfiguratuko dizu Ubuntu Hello. Sakatu hurrengoa jarraitzeko."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Hurrengoa"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Amaitu konfigurazioa"
 

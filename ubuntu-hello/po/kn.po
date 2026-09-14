@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "ವೈಫಲ್ಯ, ಸಮಯ ಮೀರಿದೆ"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "ಮುಖ ಪತ್ತೆ ಚಿತ್ರ ತುಂಬಾ ಗಾಢವಾಗಿದೆ"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "ಅಜ್ಞಾತ ದೋಷ:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "ಮುಖವನ್ನು %s ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "Enter ಪ್ರೆಸ್ ಅನ್ನು ಕಳುಹಿಸಲು ಸಾಕಷ್ಟು ಅನುಮತಿಗಳಿಲ್ಲ, ಬದಲಿಗೆ ಬಳಕೆದಾರರು ಅದನ"
 "್ನು ಒತ್ತಲು ಕಾಯುತ್ತಿದ್ದಾರೆ"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Enter ಪ್ರೆಸ್ ಅನ್ನು ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ, ಬದಲಿಗೆ ಬಳಕೆದಾರರು ಅದನ್ನು ಒತ್ತಲು"
 " ಕಾಯುತ್ತಿದ್ದಾರೆ"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "ಮುಖದ ದೃಢೀಕರಣವನ್ನು ಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ"
 
@@ -130,125 +130,221 @@ msgstr ""
 "ubuntu-hello ಆಜ್ಞೆಗಳನ್ನು ರೂಟ್ ಆಗಿ ಚಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ದಯವಿಟ್ಟು --user"
 " ಧ್ವಜದೊಂದಿಗೆ ಈ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಿ"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "ಡೇಟಾ ಫೈಲ್‌ಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿಲ್ಲ, ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಆಜ್ಞೆಗಳನ್ನು ಚ"
 "ಲಾಯಿಸಿ:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "ಲಾಗಿನ್"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ದಿನಾಂಕ:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "ಸ್ಕ್ಯಾನ್ ಸಮಯ:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "ಚೌಕಟ್ಟುಗಳು:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "ಹೋಸ್ಟ್ ಹೆಸರು:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "ಅತ್ಯುತ್ತಮ ನಿಶ್ಚಿತ ಮೌಲ್ಯ:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "ನಿಮ್ಮನ್ನು ಗುರುತಿಸಲಾಗುತ್ತಿದೆ..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "ವಿಫಲವಾಗಿದೆ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "ಎಲ್ಲಾ ಫ್ರೇಮ್‌ಗಳು ತುಂಬಾ ಗಾಢವಾಗಿವೆ, ದಯವಿಟ್ಟು ಸಂರಚನೆಯಲ್ಲಿ ಡಾರ್ಕ್_ಥ್ರೆಶೋಲ್"
 "ಡ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ಸರಾಸರಿ ಕತ್ತಲೆ: {avg}, ಮಿತಿ: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "ಸಮಯ ಕಳೆದಿದೆ"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "ಓಪನ್ ಕ್ಯಾಮ್ + ಲೋಡ್ ಲಿಬ್ಸ್: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "ಕ್ಯಾಮರಾ ತೆರೆಯಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "ಗುರುತಿಸುವಿಕೆ ಲಿಬ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "ಪರಿಚಿತ ಮುಖವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "ಒಟ್ಟು ಸಮಯ"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nರೆಸಲ್ಯೂಶನ್"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "ಸ್ಥಳೀಯ: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "ಬಳಸಲಾಗಿದೆ: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nಚೌಕಟ್ಟುಗಳನ್ನು ಹುಡುಕಲಾಗಿದೆ: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "ಕಪ್ಪು ಚೌಕಟ್ಟುಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "ಡಾರ್ಕ್ ಫ್ರೇಮ್‌ಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "ಗೆಲ್ಲುವ ಚೌಕಟ್ಟಿನ ಖಚಿತತೆ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "ವಿಜೇತ ಮಾದರಿ: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "ಯಶಸ್ವಿಯಾಗಿದೆ"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "ಅಧಿಕಾರ"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "ಪರದೆಯ ಅನ್ಲಾಕ್"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "ಸಮಯ ಮೀರಿದೆ"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "ಲೋಡ್"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s ಚೌಕಟ್ಟುಗಳು"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s ಡಾರ್ಕ್"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "ನಿಮ್ಮ ಮುಖವನ್ನು ಹುಡುಕುತ್ತಿದೆ..."
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "ಮುಖದ ದೃಢೀಕರಣ"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "ಮುಖ ಗುರುತಿಸಲಾಗಿದೆ"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "ಈ ಬೆಳಕಿನಲ್ಲಿ ಒಂದು ಮಾದರಿಯನ್ನು ಸೇರಿಸಿ"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "ಕ್ಯಾಮೆರಾವನ್ನು ಪರಿಶೀಲಿಸಿ"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "%s ನಲ್ಲಿ ಯಾವುದೇ ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "ನೋಂದಾಯಿಸಿ: ಸುಡೋ ಉಬುಂಟು-ಹಲೋ ಸೇರಿಸಿ"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "ಹತ್ತಿರದ"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "ಮುಖ ಗುರುತಿಸಲಾಗಿಲ್ಲ"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "ತುಂಬಾ ಕತ್ತಲು"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "ದೀಪವನ್ನು ಆನ್ ಮಾಡಿ"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "ಕತ್ತಲೆ"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "%s ಗೆ ಮುಖದ ಮಾದರಿ ಇಲ್ಲ"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "ಮುಖದ ದೃಢೀಕರಣ ಲಭ್ಯವಿಲ್ಲ"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "ಮುಖದ ದೃಢೀಕರಣವನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

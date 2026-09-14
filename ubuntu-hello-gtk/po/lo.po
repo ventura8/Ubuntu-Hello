@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "ເພີ່ມຮູບແບບທີສອງ"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "ສ້າງແລ້ວ"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "ປ້າຍກຳກັບ"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "ອັດຕະໂນມັດ"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "ເປີດໃຊ້ການປົດລັອກກະແຈ/KWallet"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "ໃສ່ລະຫັດຜ່ານສຳລັບຜູ້ໃຊ້ <b>{}</b> ເພື່ອປົດລັອກ {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "ລະຫັດຜ່ານ"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "ໄຟລ໌ຂໍ້ມູນໄດ້ຖືກດາວໂຫຼດແລ້ວ!\nຄລິກຕໍ່ໄປເພື່ອສືບຕໍ່"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການດາວໂຫຼດໄຟລ໌ຂໍ້ມູນ"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "ສຳເລັດແລ້ວ!\nຄລິກຕໍ່ໄປເພື່ອສືບຕໍ່"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "ຜິດພາດໃນຂະນະທີ່ນໍາເຂົ້າ OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "ລອງຕິດຕັ້ງຄືນໃໝ່ cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "ບໍ່ພົບ webcams ໃນລະບົບ"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +83,39 @@ msgstr ""
 "ກະລຸນາຕັ້ງຄ່າກ້ອງຖ່າຍຮູບຂອງທ່ານເອງຖ້າທ່ານແນ່ໃຈວ່າກ້ອງຖ່າຍຮູບທີ່ເຂົ້າກັ"
 "ນໄດ້ເຊື່ອມຕໍ່ກັນ"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "ບໍ່, ກ້ອງບໍ່ສາມາດເປີດໄດ້"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "ບໍ່, ບໍ່ແມ່ນກ້ອງອິນຟາເຣດ"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "ແມ່ນແລ້ວ, ກ້ອງອິນຟາເລດເຂົ້າກັນໄດ້"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "ຕົວລະບຸກ້ອງຖ່າຍຮູບ ຫຼືເສັ້ນທາງ"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "ແນະນຳ"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "ເລືອກກ້ອງຖ່າຍຮູບຜິດພາດ"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "ບໍ່ສາມາດເປີດກ້ອງທີ່ເລືອກໄດ້"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "ພະຍາຍາມເລືອກອັນອື່ນ"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +125,97 @@ msgstr ""
 "-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nເພ"
 "ື່ອເປີດໃຊ້ ir emitter ຂອງທ່ານ"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "ກະລຸນາເບິ່ງໂດຍກົງໃນກ້ອງຖ່າຍຮູບ"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "ການຕັ້ງຄ່າ ແສງ 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "ການຕັ້ງຄ່າ ແສງ 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "ເລີ່ມການສະແກນໃບໜ້າ"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "ສະແກນໂມເດວໃບໜ້າ"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "ບໍ່ສາມາດບັນທຶກຮູບແບບໃບໜ້າໄດ້"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "ສະແກນໂມເດວທີສອງ"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "ບໍ່ສາມາດບັນທຶກໂມເດວທີສອງໄດ້"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"ໂມເດວທຳອິດຂອງທ່ານຖືກບັນທຶກແລ້ວ ດັ່ງນັ້ນການເຂົ້າສູ່ລະບົບດ້ວຍໃບໜ້າຈຶ່ງໃຊ"
+"້ໄດ້ແລ້ວ. ກວດໃຫ້ແນ່ໃຈວ່າໃບໜ້າຂອງທ່ານມີແສງພຽງພໍ ແລະ ຢູ່ກາງ ແລ້ວລອງອີກຄັ"
+"້ງ — ຫຼືຂ້າມໄປກ່ອນ ແລ້ວເພີ່ມໂມເດວພາຍຫຼັງຈາກການຕັ້ງຄ່າ."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "ເພີ່ມໂມເດວໃບໜ້າ (ຈຳເປັນ)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"ການເຂົ້າສູ່ລະບົບດ້ວຍໃບໜ້າຕ້ອງມີໂມເດວໃບໜ້າຢ່າງໜ້ອຍໜຶ່ງອັນ ດັ່ງນັ້ນຈຶ່ງບ"
+"ໍ່ສາມາດຂ້າມການສະແກນນີ້ໄດ້. ບັນທຶກໃນແສງທີ່ທ່ານມັກນັ່ງ. ແສງປ່ຽນລັກສະນະໃບ"
+"ໜ້າທີ່ກ້ອງເຫັນ ດັ່ງນັ້ນຄວນພິຈາລະນາເພີ່ມໂມເດວທີສອງພາຍຫຼັງຈາກການຕັ້ງຄ່າ "
+"ໂດຍບັນທຶກໃນແສງທີ່ຕ່າງກັນ (ເຊັ່ນ ແສງໂຄມໄຟຕອນແລງ ແທນແສງກາງເວັນ)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "ເພີ່ມໂມເດວໃບໜ້າທີສອງ (ແນະນຳ)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"ໂມເດວທຳອິດຂອງທ່ານຖືກບັນທຶກແລ້ວ. ແສງປ່ຽນລັກສະນະໃບໜ້າທີ່ກ້ອງເຫັນ: ໂມເດວທ"
+"ີ່ບັນທຶກໃນແສງກາງເວັນອາດລົ້ມເຫຼວຕອນແລງພາຍໃຕ້ແສງໂຄມໄຟ (ຫຼືກົງກັນຂ້າມ) ແລ"
+"ະ Ubuntu Hello ຈະໝົດເວລາແທນທີ່ຈະປົດລັອກ. ໂມເດວທີສອງທີ່ບັນທຶກໃນແສງທີ່ຕ່"
+"າງກັນຊ່ວຍໃຫ້ການຈື່ຈຳເຊື່ອຖືໄດ້ຕະຫຼອດເວລາ."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"ປ່ຽນແສງກ່ອນ: ເປີດຫຼືປິດໄຟຫ້ອງ ຫຼື ໂຄມໄຟໂຕະ, ຫັນອອກຈາກປ່ອງຢ້ຽມ, ຫຼືໃສ່ແ"
+"ວ່ນຕາທີ່ທ່ານໃສ່ບາງຄັ້ງ. ຈາກນັ້ນເບິ່ງກົງໄປທີ່ກ້ອງ ແລ້ວກົດສະແກນ."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "ການຕັ້ງຄ່າ Ubuntu Hello"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +225,7 @@ msgstr ""
 "າ (ກະເປົາເງິນທີ່ກວດພົບ: {}).\n\n<b>ສະຖານະ TPM:</b> ກຳລັງກວດສອບຮາດແວ TP"
 "M ແລະເຄື່ອງມື..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +235,7 @@ msgstr ""
 "າ (ກະເປົາເງິນທີ່ກວດພົບ: {}).\n\n<b>ສະຖານະ TPM:</b> ກວດພົບຮາດແວ TPM. ກຳ"
 "ລັງຕິດຕັ້ງ <i>tpm2-tools</i> ໂດຍອັດຕະໂນມັດ..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +245,7 @@ msgstr ""
 "າ (ກະເປົາເງິນທີ່ກວດພົບ: {}).\n\n<b>ສະຖານະ TPM:</b> ຮາດແວ TPM 2.0 ເຮັດວ"
 "ຽກຢູ່. ລະຫັດຜ່ານຂອງທ່ານຈະຖືກປະທັບຕາຢ່າງປອດໄພພາຍໃນ TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -176,7 +258,7 @@ msgstr ""
 "່ການຕິດຕັ້ງອັດຕະໂນມັດ <i>tpm2-tools</i> ລົ້ມເຫລວ. ແລ່ນ <code>sudo apt "
 "install tpm2-tools</code>. ກັບຄືນໄປຫາການເກັບຂໍ້ມູນການຮັບຮອງຈາກຊອບແວ."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -186,49 +268,57 @@ msgstr ""
 "າ (ກະເປົາເງິນທີ່ກວດພົບ: {}).\n\n<b>ສະຖານະ TPM:</b> ບໍ່ພົບຮາດແວ TPM. ກາ"
 "ນ​ນໍາ​ໃຊ້​ການ​ຖານ​ຄວາມ​ຈໍາ​ທີ່​ອີງ​ໃສ່​ຊອບ​ແວ (AES-256-GCM​)​."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "ບໍ່ສາມາດລະບຸຜູ້ໃຊ້ລະບົບທີ່ບໍ່ແມ່ນຮາກສໍາລັບການປົດລັອກກະແຈ"
-
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "ລະຫັດຜ່ານບໍ່ສາມາດຫວ່າງເປົ່າໄດ້"
-
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງສຳລັບຜູ້ໃຊ້ {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "ຄວາມຜິດພາດທີ່ບໍ່ຮູ້ຈັກ"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "ເປີດໃຊ້ການປົດລັອກກະແຈບໍ່ສຳເລັດ: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:771 src/tab_keyring.py:166
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "ລົ້ມເຫລວໃນການປິດການປົດລັອກກະແຈ: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:777
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "ບໍ່ສາມາດລະບຸຜູ້ໃຊ້ລະບົບທີ່ບໍ່ແມ່ນຮາກສໍາລັບການປົດລັອກກະແຈ"
+
+#: src/onboarding.py:790 src/tab_keyring.py:91
+msgid "Password cannot be empty"
+msgstr "ລະຫັດຜ່ານບໍ່ສາມາດຫວ່າງເປົ່າໄດ້"
+
+#: src/onboarding.py:794 src/tab_keyring.py:99
+msgid "Incorrect password for user {}"
+msgstr "ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງສຳລັບຜູ້ໃຊ້ {}"
+
+#: src/onboarding.py:806 src/tab_keyring.py:113
+msgid "unknown error"
+msgstr "ຄວາມຜິດພາດທີ່ບໍ່ຮູ້ຈັກ"
+
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "ເປີດໃຊ້ການປົດລັອກກະແຈບໍ່ສຳເລັດ: {}"
+
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr "ບໍ່ສາມາດເປີດໃຊ້ການປົດລັອກ keyring ໄດ້: ບໍ່ພົບໄຟລ໌ປະຕິບັດການ ubuntu-hello"
+
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr "ບໍ່ສາມາດເປີດໃຊ້ການປົດລັອກ keyring ໄດ້: ໝົດເວລາລໍຖ້າການເປີດໃຊ້"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "ການປົດລັອກກະແຈຜິດພາດ"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "ເກີດຄວາມຜິດພາດໃນການອ່ານປຸ່ມວິທະຍຸ"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Helloເຕືອນການຕັ້ງຄ່າ"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "ບໍ່​ສາ​ມາດ​ບັນ​ທຶກ​ຄວາມ​ຕ້ອງ​ການ​ຄວາມ​ແນ່​ນອນ, ແຕ່​ການ​ຕັ້ງ​ຄ່າ​ແມ່ນ​ບ"
 "ໍ່​ດັ່ງ​ນັ້ນ​ສໍາ​ເລັດ."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Helloຜິດພາດ"
 
@@ -372,43 +462,55 @@ msgstr "ກຳລັງສະແດງຕົວແບບທີ່ບັນທຶ
 msgid "Add new user"
 msgstr "ເພີ່ມຜູ້ໃຊ້ໃໝ່"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"ມີການລົງທະບຽນແບບໃບໜ້າອັນດຽວເທົ່ານັ້ນ. ແສງສະຫວ່າງປ່ຽນແປງວິທີທີ່ໃບຫນ້າຂອ"
+"ງທ່ານເບິ່ງກັບກ້ອງຖ່າຍຮູບ, ດັ່ງນັ້ນຮູບແບບດຽວສາມາດລົ້ມເຫລວໃນຕອນແລງພາຍໃຕ້"
+"ໂຄມໄຟ (ຫຼືໃນແສງສະຫວ່າງ). ເພີ່ມຮູບແບບທີສອງທີ່ບັນທຶກໄວ້ໃນແສງສະຫວ່າງທີ່ແຕ"
+"ກຕ່າງກັນເພື່ອຮັກສາການປົດລັອກທີ່ເຊື່ອຖືໄດ້ໄດ້ທຸກເວລາຂອງມື້."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "ເພີ່ມ"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "ລຶບ"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "ຕົວແບບ"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "ID ກ້ອງຖ່າຍຮູບ:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "ຄວາມລະອຽດຈິງ:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "ຄວາມລະອຽດທີ່ໃຊ້ແລ້ວ:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "ເຄື່ອງບັນທຶກ:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "ວິດີໂອ"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "ກະແຈ / KWallet ປົດລັອກອັດຕະໂນມັດ"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -422,57 +524,57 @@ msgstr ""
 "ໃຊ້ລະຫັດຫຼັກເທົ່ານັ້ນ. ຊຸດການກວດສອບໃບໜ້າ PAM_AUTHTOK ສຳລັບ pam_gnome_k"
 "eyring ຫຼື pam_kwallet5 ຂຶ້ນກັບເດັສທັອບຂອງທ່ານ."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "ສະຖານະປັດຈຸບັນ:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "ກຳລັງກວດສອບ..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "ເປີດໃຊ້ການປົດລັອກອັດຕະໂນມັດ"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "ປິດການປົດລັອກອັດຕະໂນມັດ"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "ກະແຈ"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "ພາສາສະແດງຜົນ"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "ພາສາ"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "ອັດຕະໂນມັດຕາມພາສາລະບົບ. ການປ່ຽນແປງຖືກນຳໃຊ້ທັນທີ."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "ການພິສູດຢືນຢັນໃບໜ້າສຳລັບ Linux"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "ບໍ່ຮູ້ຈັກລຸ້ນ"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
 msgstr "<a href=\"https://github.com/ventura8/ubuntu-hello\">ເປີດລິ້ງ GitHub</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "ກ່ຽວກັບ"
 
@@ -480,11 +582,11 @@ msgstr "ກ່ຽວກັບ"
 msgid "Welcome to Ubuntu Hello"
 msgstr "ຍິນດີຕ້ອນຮັບສູ່ Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "ການຕິດຕັ້ງສຳເລັດແລ້ວ!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -502,7 +604,7 @@ msgstr ""
 "ນການຕັ້ງຄ່າຂັ້ນສູງ ຫຼື ເພີ່ມຮູບແບບເພີ່ມເຕີມ. ກົດ Finish ຂ້າງລຸ່ມນີ້ເພື"
 "່ອປິດໜ້າຈໍນີ້ ແລະເປີດ Ubuntu Hello Configurator."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -511,19 +613,19 @@ msgstr ""
 "let ໂດຍໃຊ້ການພິສູດຢືນຢັນໃບໜ້າ, ປ້ອງກັນການເຕືອນລະຫັດຜ່ານຫຼັງຈາກເຂົ້າສູ່"
 "ລະບົບ."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "ເປີດໃຊ້ການປົດລັອກກະແຈອັດຕະໂນມັດ/KWallet"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "ຢືນຢັນລະຫັດຜ່ານ"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "ກໍານົດນະໂຍບາຍຄວາມແນ່ນອນ"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -533,11 +635,11 @@ msgstr ""
 "ນບໍ່ເຄີຍຄືກັນກັບຮູບແບບໃບຫນ້າທີ່ເກັບໄວ້. ໃນຫນ້ານີ້ທ່ານສາມາດກໍານົດວ່າ Ub"
 "untu Hello ຄວນເຂັ້ມງວດຫຼາຍປານໃດ."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "ໄວ"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -545,22 +647,22 @@ msgstr ""
 "ອະ​ນຸ​ຍາດ​ໃຫ້​ການ​ແຂ່ງ​ຂັນ fuzzy ຫຼາຍ​, \nແຕ່ເລັ່ງຂະບວນການສະແກນຢ່າງຫຼວ"
 "ງຫຼາຍ."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "ດຸ່ນດ່ຽງ"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
 msgstr ""
 "ການ​ກວດ​ພົບ​ຍັງ​ຂ້ອນ​ຂ້າງ​ໄວ​, \nແຕ່ອາດຈະບໍ່ເຂົ້າເຈົ້າເມື່ອໄກອອກໄປ."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "ປອດໄພ"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -568,11 +670,11 @@ msgstr ""
 "ທາງເລືອກທີ່ປອດໄພກວ່າເລັກນ້ອຍ, \nແຕ່ຈະໃຊ້ເວລາດົນກວ່າທີ່ຈະພິສູດຢືນຢັນຕົວ"
 "ເຈົ້າ"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "ການເພີ່ມຮູບແບບໃບຫນ້າ"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -580,23 +682,35 @@ msgstr ""
 "ເພື່ອພິສູດຢືນຢັນທ່ານ Ubuntu Hello ຈໍາເປັນຕ້ອງບັນທຶກຮູບແບບຂອງໃບຫນ້າຂອງທ"
 "່ານເພື່ອຮັບຮູ້ທ່ານ. ກົດປຸ່ມສະແກນທາງລຸ່ມເພື່ອເລີ່ມການສະແກນໃບໜ້າ."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "ຂ້າມໄປກ່ອນ"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"ທ່ານສາມາດເພີ່ມໂມເດວໃບໜ້າເພີ່ມເຕີມພາຍຫຼັງໄດ້ຈາກການຕັ້ງຄ່າ ຫຼືດ້ວຍຄຳສັ່ງ"
+": sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "ກຳນົດຄ່າເວັບແຄມ"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "ຕົວປ່ອຍອິນຟາເຣດກະພິບບໍ?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "ແມ່ນແລ້ວ"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "ບໍ່"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -608,15 +722,15 @@ msgstr ""
 "າຍ​ການ​ຂອງ webcams ທີ່​ສາ​ມາດ​ໃຊ້​ໄດ້​ຈະ​ໄດ້​ຮັບ​ການ​ສະ​ແດງ​ໃຫ້​ເຫັນ​."
 " ເລືອກອັນທີ່ທ່ານຕ້ອງການໃຊ້ ແລະຄລິກຕໍ່ໄປ."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "ກຳລັງທົດສອບ webcams ຂອງທ່ານ, ກະລຸນາລໍຖ້າ..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "ກຳລັງດາວໂຫລດໄຟລ໌ຂໍ້ມູນ"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -626,19 +740,19 @@ msgstr ""
 "ື່ອໃຫ້ສາມາດຮັບຮູ້ທ່ານໄດ້, ເຊິ່ງຈະດາວໂຫຼດໄດ້ໃນຕອນນີ້. ທ່ານສາມາດເບິ່ງຄວາ"
 "ມຄືບຫນ້າການດາວໂຫຼດຂ້າງລຸ່ມນີ້."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "ກຳລັງເລີ່ມດາວໂຫລດ..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "ຍິນດີຕ້ອນຮັບສູ່ Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "ຮຸ່ນ"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -646,15 +760,15 @@ msgstr ""
 "ຕົວຊ່ວຍນີ້ຈະບອກທ່ານຜ່ານຂັ້ນຕອນການຕິດຕັ້ງ ແລະກຳນົດຄ່າ Ubuntu Hello ໃຫ້ທ"
 "່ານໂດຍອັດຕະໂນມັດ. ກົດຕໍ່ໄປເພື່ອສືບຕໍ່."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "ຍົກເລີກ"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "ຕໍ່ໄປ"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "ສຳເລັດການຕັ້ງຄ່າ"
 

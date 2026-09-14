@@ -621,3 +621,19 @@ def test_packaging_installers_complete() -> None:
         check=True,
         timeout=900,
     )
+
+
+@pytest.mark.parametrize("path", ["install.sh", "scripts/package-configure.sh"])
+def test_polkit_helper_dropin_allows_tpm_unseal(path: str) -> None:
+    """Every writer of the polkit-agent-helper drop-in must grant TPM device
+    access and a writable tpm-keys dir, otherwise TPM-sealed keyring unlock
+    fails under polkit's hardened helper unit (works at GDM, fails on pkexec)."""
+    text = _read_repo(path)
+    for line in (
+        "DeviceAllow=char-video4linux rw",
+        "DeviceAllow=/dev/uinput rw",
+        "DeviceAllow=char-tpm rw",
+        "DeviceAllow=/dev/tpm0 rw",
+        "ReadWritePaths=/etc/ubuntu-hello/tpm-keys",
+    ):
+        assert line in text, f"{path}: missing {line}"

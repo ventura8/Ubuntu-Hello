@@ -353,11 +353,19 @@ step "Configuring Polkit"
 
 OVERRIDE_DIR="/etc/systemd/system/polkit-agent-helper@.service.d"
 mkdir -p "$OVERRIDE_DIR"
+# polkit >= 126 runs polkit-agent-helper-1 as a hardened transient unit
+# (DevicePolicy=strict, ProtectSystem=strict, ...). Re-allow what face auth
+# needs: the camera, the Enter-key uinput device, and -- for TPM-sealed
+# keyring unlock -- the TPM character devices plus write access to the
+# tpm-keys dir where tpm2_createprimary/tpm2_load save transient .ctx files.
 cat > "$OVERRIDE_DIR/override.conf" <<EOF
 [Service]
 PrivateDevices=no
 DeviceAllow=char-video4linux rw
 DeviceAllow=/dev/uinput rw
+DeviceAllow=char-tpm rw
+DeviceAllow=/dev/tpm0 rw
+ReadWritePaths=/etc/ubuntu-hello/tpm-keys
 EOF
 chmod 644 "$OVERRIDE_DIR/override.conf"
 systemctl daemon-reload 2>/dev/null || true

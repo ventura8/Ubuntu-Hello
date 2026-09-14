@@ -1322,3 +1322,153 @@ def test_exit_func():
         ob.completed = False
         with pytest.raises(SystemExit):
             ob.exit()
+
+
+# ── Second-model enrollment (slide 4, two passes) ────────────────────
+
+def _wizard_with_widgets():
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
+        ob = onboarding.OnboardingWindow()
+    widgets = {name: MagicMock() for name in (
+        "label4", "label5", "slide4_instruction_label", "scanbutton", "skipsecondbutton")}
+    ob.builder.get_object.side_effect = lambda name: widgets.get(name, MagicMock())
+    ob.window = MagicMock()
+    ob.slide4_preview_image = MagicMock()
+    ob.slide4_device_path = "/dev/video0"
+    return ob, widgets
+
+
+def test_first_scan_success_switches_to_second_pass_instead_of_advancing():
+    ob, w = _wizard_with_widgets()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+    with patch("subprocess.run", return_value=MagicMock(returncode=0, stdout="", stderr="")) as run, \
+         patch("threading.Thread") as thread, \
+         patch.object(ob, "go_next_slide") as go_next:
+        assert ob.run_add() is False
+    run.assert_called_once_with(["ubuntu-hello", "-y", "add", "Setup lighting 1"], capture_output=True, text=True)
+    go_next.assert_not_called()
+    assert ob.scan_pass == 2 and ob.models_enrolled == 1
+    # Slide 4 re-labelled with the why/how, scan re-enabled, skip offered, preview restarted
+    assert "second face model" in w["label4"].set_text.call_args.args[0]
+    assert "Lighting" in w["label5"].set_text.call_args.args[0]
+    assert "Change the lighting" in w["slide4_instruction_label"].set_text.call_args.args[0]
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].show.assert_called_once()
+    w["skipsecondbutton"].hide.assert_not_called()
+    thread.assert_called_once()
+
+
+def test_second_scan_success_advances_with_distinct_label():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch("subprocess.run", return_value=MagicMock(returncode=0, stdout="", stderr="")) as run, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.run_add()
+    run.assert_called_once_with(["ubuntu-hello", "-y", "add", "Setup lighting 2"], capture_output=True, text=True)
+    assert ob.models_enrolled == 2
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_second_scan_failure_is_non_fatal_and_allows_retry():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch("subprocess.run", return_value=MagicMock(returncode=1, stdout="No face", stderr="")), \
+         patch("threading.Thread"), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "show_warning") as show_warning, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_not_called()      # show_error exits the wizard; first model is already saved
+    show_warning.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.models_enrolled == 1
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].set_sensitive.assert_called_with(True)
+
+
+def test_first_scan_failure_still_fatal():
+    ob, w = _wizard_with_widgets()
+    with patch("subprocess.run", return_value=MagicMock(returncode=1, stdout="No face", stderr="")), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+
+
+def test_skip_first_pass_makes_second_pass_required():
+    """Skip is allowed on either pass but never both: skipping pass 1 hides Skip on pass 2."""
+    ob, w = _wizard_with_widgets()
+    with patch("threading.Thread"), \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.on_skipsecondbutton_click(None)
+    go_next.assert_not_called()
+    assert ob.scan_pass == 2 and ob.models_enrolled == 0
+    assert "required" in w["label4"].set_text.call_args.args[0]
+    assert "can't be skipped" in w["label5"].set_text.call_args.args[0]
+    w["scanbutton"].set_label.assert_called_with("Scan face model")
+    w["skipsecondbutton"].hide.assert_called_once()
+    w["skipsecondbutton"].show.assert_not_called()
+    # Second-pass scan after a skipped first pass is labelled as the first model and advances
+    with patch("subprocess.run", return_value=MagicMock(returncode=0, stdout="", stderr="")) as run, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.run_add()
+    run.assert_called_once_with(["ubuntu-hello", "-y", "add", "Setup lighting 1"], capture_output=True, text=True)
+    assert ob.models_enrolled == 1
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_required_second_pass_failure_is_fatal_and_cannot_be_skipped():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 0
+    with patch("subprocess.run", return_value=MagicMock(returncode=1, stdout="No face", stderr="")), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "show_warning") as show_warning:
+        ob.run_add()
+    show_error.assert_called_once()
+    show_warning.assert_not_called()
+    w["scanbutton"].set_label.assert_called_with("Scan face model")
+    # A skip click with no model enrolled on pass 2 is a no-op
+    with patch("gi.repository.GObject.timeout_add") as timeout_add, \
+         patch.object(ob, "stop_preview") as stop:
+        ob.on_skipsecondbutton_click(None)
+    timeout_add.assert_not_called()
+    stop.assert_not_called()
+
+
+def test_skip_second_model_advances_when_first_enrolled():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch.object(ob, "stop_preview") as stop, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.on_skipsecondbutton_click(None)
+    stop.assert_called_once()
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_execute_slide4_offers_skip_on_first_pass():
+    ob, w = _wizard_with_widgets()
+    sel = MagicMock(); model = MagicMock(); it = MagicMock()
+    sel.get_selected.return_value = (model, it)
+    model.get_value.side_effect = lambda i, col: "/dev/video0" if col == 2 else None
+    ob.treeview = MagicMock(); ob.treeview.get_selection.return_value = sel
+    with patch("subprocess.Popen"), patch("threading.Thread"), patch.object(ob, "stop_preview"):
+        ob.execute_slide4()
+    assert ob.slide4_device_path == "/dev/video0"
+    w["skipsecondbutton"].show.assert_called_once()
+
+
+def test_go_next_slide_stops_preview_when_leaving_slide4():
+    ob, w = _wizard_with_widgets()
+    ob.window.current_slide = 4
+    ob.slides = [MagicMock() for _ in range(8)]
+    ob.nextbutton = MagicMock()
+    ob.slidecontainer = MagicMock()
+    with patch.object(ob, "stop_preview") as stop, \
+         patch.object(ob, "execute_slide5"):
+        ob.go_next_slide()
+    stop.assert_called_once()

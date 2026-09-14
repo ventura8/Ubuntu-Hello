@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "Echec, timeout ekomi"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "Image ya détection ya elongi trop molili"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "Libunga eyebani te:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "Elongi oyo eyebani lokola %s ."
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "Ndingisa ekoki te mpo na kotinda Enter finá, kozela mosaleli afina yan"
 "go na esika na yango"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Elongi te kotinda Enter press, kozela mosaleli a presser yango na esik"
 "a na yango"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "Komeka kosala authentification ya elongi"
 
@@ -132,125 +132,221 @@ msgstr ""
 "Ekoki te kosala ba commandes ubuntu-hello lokola root, svp tambuisa co"
 "mmande oyo na drapeau --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "Ba fichiers ya ba données e téléchargé te, svp sala ba commandes oyo e"
 "landi:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "KOKOTA NA LOGIN"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Dati:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "Ntango ya kosala scanner:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "Ba cadres:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "Nkombo ya moyambi:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "Valeur ya certitude ya malamu koleka:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "Kobanda na mosala..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "Ko identifier yo..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "KOLONGA TE"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "Ba cadres nionso ezalaki trop molili, svp vérifier dark_threshold na c"
 "onfig"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Molili ya moyenne: {avg}, Seuil: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "Ntango oyo elekisami"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "Kobanda likolo"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "Cam ya polele + libs ya chargement: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "Kofungola kamera"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "Kokɔtisa libs ya reconnaissance"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "Koluka elongi oyo eyebani"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "Ntango mobimba"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nEkateli"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "Moto ya mboka: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "Esalemi: %dx%d ."
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nBa cadres oyo balukaki: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "Ba cadres ya moindo oyo ba ignorer: %d ."
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "Ba cadres ya molili oyo ba ignorer: %d ."
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "Certitude ya cadre ya gagner: %.3f ."
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "Modèle oyo elongi: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "KOLONGA"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "ndingisa ya kopesa ndingisa"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "déverrouillage ya écran"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "ntango ya kosila"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "kokotisa biloko"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s ba cadres"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s molili"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "Koluka elongi na yo..."
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "Bondimi ya elongi"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "Elongi eyebanaki"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "bakisa modèle na lumière oyo"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "vérifier na caméra"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "Match moko te na %s ."
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "bokomisa nkombo: sudo ubuntu-mbote bakisa"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "oyo eleki penepene"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "Elongi eyebani te"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "Molili mingi"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "kofungola mwinda moko"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "molili"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "Modèle ya elongi te pona %s ."
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "Authentification ya elongi ezali te"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "Elongolami"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "Authentification ya elongi elongolami"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

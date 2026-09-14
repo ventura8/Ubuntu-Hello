@@ -35,6 +35,7 @@ Requires:       curl
 Requires:       bzip2
 Requires:       v4l-utils
 Requires:       tpm2-tools
+Requires:       glib2
 Requires:       pam
 Requires:       authselect
 Recommends:     ubuntu-hello-gtk = %{version}-%{release}

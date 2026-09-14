@@ -1,3 +1,4 @@
+#include <cctype>
 #include <cerrno>
 #include <csignal>
 #include <cstdlib>
@@ -537,9 +538,40 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     }
   }
 
-  std::array<char *, 4> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
+  // Run the interpreter with -E (ignore PYTHON* variables) and -s (no user
+  // site-packages) so nothing outside the packaged install can inject code
+  // into the root helper. -I is not used: it would also drop the script's own
+  // directory from sys.path, which compare.py needs for its sibling modules.
+  // argv[2] for compare.py: the PAM service (sudo, polkit-1, gdm-password,
+  // ...) so the desktop notification can say what is being authenticated.
+  // Only plain identifier characters are forwarded; anything else becomes
+  // an empty string (service names are set by the caller of PAM, not by
+  // the user, but the helper's argv must never carry arbitrary bytes).
+  std::string service_arg;
+  if (service != nullptr) {
+    for (const char *p = service; *p != '\0'; ++p) {
+      const unsigned char c = static_cast<unsigned char>(*p);
+      if (isalnum(c) == 0 && c != '-' && c != '_' && c != '.') {
+        service_arg.clear();
+        break;
+      }
+      service_arg.push_back(static_cast<char>(c));
+    }
+  }
+  std::array<char *, 7> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
+                                const_cast<char *>("-E"),
+                                const_cast<char *>("-s"),
                                 const_cast<char *>(COMPARE_PROCESS_PATH),
-                                username, nullptr};
+                                username,
+                                const_cast<char *>(service_arg.c_str()),
+                                nullptr};
+
+  // Never inherit the caller's environment into the root helper: no PATH,
+  // PYTHONPATH, LD_PRELOAD, etc. Only a fixed system PATH is provided so
+  // compare.py's own absolute-path spawns (busctl, ubuntu-hello-gtk) and any
+  // library-internal lookups can't be redirected by an unprivileged caller.
+  std::array<char *, 2> envp = {
+      const_cast<char *>("PATH=/usr/sbin:/usr/bin:/sbin:/bin"), nullptr};
   pid_t child_pid = -1;
 
   posix_spawn_file_actions_t actions;
@@ -555,8 +587,8 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   posix_spawnattr_setpgroup(&spawn_attr, 0);
 
   // Start the python subprocess
-  int spawn_err = posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions,
-                               &spawn_attr, args.data(), nullptr);
+  int spawn_err = posix_spawn(&child_pid, PYTHON_EXECUTABLE_PATH, &actions,
+                              &spawn_attr, args.data(), envp.data());
   posix_spawnattr_destroy(&spawn_attr);
   posix_spawn_file_actions_destroy(&actions);
 

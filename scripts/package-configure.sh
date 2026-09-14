@@ -165,11 +165,19 @@ uh_configure_polkit_override() {
 	local override_dir
 	override_dir="$(uh_pkg_path "/etc/systemd/system/polkit-agent-helper@.service.d")"
 	mkdir -p "$override_dir"
+	# polkit >= 126 runs polkit-agent-helper-1 as a hardened transient unit
+	# (DevicePolicy=strict, ProtectSystem=strict, ...). Re-allow what face auth
+	# needs: the camera, the Enter-key uinput device, and -- for TPM-sealed
+	# keyring unlock -- the TPM character devices plus write access to the
+	# tpm-keys dir where tpm2_createprimary/tpm2_load save transient .ctx files.
 	cat >"${override_dir}/ubuntu-hello.conf" <<'POLKIT_EOF'
 [Service]
 PrivateDevices=no
 DeviceAllow=char-video4linux rw
 DeviceAllow=/dev/uinput rw
+DeviceAllow=char-tpm rw
+DeviceAllow=/dev/tpm0 rw
+ReadWritePaths=/etc/ubuntu-hello/tpm-keys
 POLKIT_EOF
 	chmod 644 "${override_dir}/ubuntu-hello.conf"
 	systemctl daemon-reload 2>/dev/null || true
@@ -188,7 +196,7 @@ uh_ensure_dlib() {
 		return 0
 	fi
 	local python_bin pip_bin marker
-	local dlib_spec="${UH_DLIB_PIP_SPEC:-dlib==19.24.9}"
+	local dlib_spec="${UH_DLIB_PIP_SPEC:-dlib==20.0.1}"
 	local marker_rel="${UH_DLIB_PIP_MARKER:-/var/lib/ubuntu-hello/.dlib-pip-installed}"
 
 	python_bin="$(command -v python3 || true)"
@@ -216,8 +224,10 @@ uh_ensure_dlib() {
 	fi
 
 	echo ">>> Installing ${dlib_spec} via pip (required for face auth)..."
-	# dlib 19.24.x ships an old pybind11 cmake_minimum_required (<3.5).
-	# CMake 4+ on Ubuntu 26.04 / Fedora 44 / Arch rejects that unless we bump policy.
+	# Older dlib (19.24.x) shipped a pybind11 with cmake_minimum_required (<3.5),
+	# which CMake 4+ on Ubuntu 26.04 / Fedora 44 / Arch rejects unless the policy
+	# floor is raised. Kept for UH_DLIB_PIP_SPEC overrides to those versions; it
+	# is a harmless no-op for the default dlib 20.x.
 	local -a pip_cmd=(
 		env "CMAKE_POLICY_VERSION_MINIMUM=${UH_DLIB_CMAKE_POLICY_VERSION_MINIMUM:-3.5}"
 		"$pip_bin" install "${dlib_spec}"

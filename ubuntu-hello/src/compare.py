@@ -29,6 +29,7 @@ import _thread as thread
 import paths_factory
 from recorders.video_capture import VideoCapture
 from i18n import _
+from notify import AuthNotifier
 
 # Tracked so cleanup can release the camera even on signal abort
 video_capture = None
@@ -68,6 +69,21 @@ def _recognition_timeout_kind(now, loop_start, scan_start, timeout, acquisition_
     if now - scan_start >= timeout:
         return "recognition"
     return None
+
+
+# Desktop notification for this attempt (best-effort, see notify.py); None
+# until the config has been read.
+notifier = None
+
+
+def _notify(event, *args, **kwargs):
+	"""Call notifier.<event>(...) if notifications are active; never raise."""
+	if notifier is None:
+		return
+	try:
+		getattr(notifier, event)(*args, **kwargs)
+	except Exception as err:
+		print("Notification failed:", err)
 
 
 def cleanup():
@@ -127,14 +143,16 @@ def _signal_exit(signum, frame):
 	"""
 	if _cleaned_up:
 		return
+	_notify("cancelled")
 	cleanup()
 	os._exit(12)
 
 
-# Absolute path: this module runs as root during PAM authentication (see the
-# file header note above about PATH), so the session-idle probe below must
-# not resolve "busctl" via an inherited PATH.
+# Absolute paths: this module runs as root during PAM authentication (see the
+# file header note above about PATH), so neither the session-idle probe nor
+# the auth overlay may resolve their binaries via an inherited PATH.
 BUSCTL_PATH = "/usr/bin/busctl"
+GTK_BIN_PATH = "/usr/bin/ubuntu-hello-gtk"
 
 
 def _session_idle_hint():
@@ -300,6 +318,10 @@ if __name__ == "__main__":
 
 	# The username of the user being authenticated
 	user = sys.argv[1]
+	# Optional: the PAM service that asked (sudo, polkit-1, gdm-password, ...),
+	# forwarded by the PAM module so the notification can say what is being
+	# authenticated. Dry runs (`compare.py <user>`) leave it empty.
+	pam_service = sys.argv[2] if len(sys.argv) > 2 else ""
 
 	# Validate username format to prevent path traversal or malicious inputs
 	import re
@@ -360,12 +382,24 @@ if __name__ == "__main__":
 	gtk_stdout = config.getboolean("debug", "gtk_stdout", fallback=False)
 	rotate = config.getint("video", "rotate", fallback=0)
 
+	# Desktop notification card for this attempt: created now (in progress),
+	# then updated in place with the result and the numbers behind it.
+	notifier = AuthNotifier(
+		user,
+		service=pam_service,
+		enabled=config.getboolean("notifications", "enabled", fallback=True),
+		details=config.getboolean("notifications", "details", fallback=False),
+		success_linger=config.getfloat("notifications", "success_linger", fallback=3.0),
+	)
+	if notifier.disabled_reason and end_report:
+		print("Notifications off:", notifier.disabled_reason)
+
 	# Send the gtk output to the terminal if enabled in the config
 	gtk_pipe = sys.stdout if gtk_stdout else subprocess.DEVNULL
 
 	# Start the auth ui, register it to be always be closed on exit
 	try:
-		gtk_proc = subprocess.Popen(["ubuntu-hello-gtk", "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
+		gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
 		atexit.register(exit)
 	except FileNotFoundError:
 		pass
@@ -435,6 +469,15 @@ if __name__ == "__main__":
 	# Initiate histogram equalization
 	clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
 
+	_notify(
+		"start",
+		device=config.get("video", "device_path", fallback=None),
+		resolution="%dx%d" % (round(video_capture.internal.get(cv2.CAP_PROP_FRAME_WIDTH) or 0), round(height)),
+		threshold="%.2f" % (video_certainty * 10),
+		timeout="%ds" % timeout,
+		max_seconds=float(timeout) + float(acquisition_timeout),
+	)
+
 	# Let the ui know that we're ready
 	send_to_ui("M", _("Identifying you..."))
 
@@ -473,8 +516,18 @@ if __name__ == "__main__":
 			if timeout_kind == "acquisition" or dark_tries == valid_frames:
 				print(_("All frames were too dark, please check dark_threshold in config"))
 				print(_("Average darkness: {avg}, Threshold: {threshold}").format(avg=str(dark_running_total / max(1, valid_frames)), threshold=str(dark_threshold)))
+				_notify("too_dark", dark_running_total / max(1, valid_frames), dark_threshold, valid_frames)
 				exit(13)
 			else:
+				_notify(
+					"timeout",
+					lowest_certainty * 10 if lowest_certainty < 10 else None,
+					video_certainty * 10,
+					frames,
+					time.time() - (timings["fr"] or timings["loop"]),
+					timeout,
+					dark_frames=dark_tries,
+				)
 				exit(11)
 
 		# Grab a single frame of video
@@ -595,6 +648,16 @@ if __name__ == "__main__":
 					print(_("Certainty of winning frame: %.3f") % (match * 10, ))
 
 					print(_("Winning model: %d (\"%s\")") % (match_index, models[match_index]["label"]))
+
+				_notify(
+					"success",
+					match * 10,
+					video_certainty * 10,
+					models[match_index]["label"] if match_index < len(models) else str(match_index),
+					frames,
+					timings["fl"],
+					dark_frames=dark_tries,
+				)
 
 				# Make snapshot if enabled
 				if save_successful:

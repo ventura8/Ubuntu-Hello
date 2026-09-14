@@ -345,3 +345,32 @@ def test_watch_session_idle_never_raises_on_unexpected_error(compare_mod, monkey
     # Must not propagate -- this runs on a daemon thread and must never
     # crash or interfere with the normal auth flow.
     compare_mod._watch_session_idle(poll_interval=0)
+
+
+def test_auth_overlay_uses_absolute_gtk_path(compare_mod):
+    """Root helper must never resolve ubuntu-hello-gtk via PATH (privesc)."""
+    assert compare_mod.GTK_BIN_PATH == "/usr/bin/ubuntu-hello-gtk"
+    src = open(compare_mod.__file__, encoding="utf-8").read()
+    assert 'Popen(["ubuntu-hello-gtk"' not in src
+    assert 'Popen([GTK_BIN_PATH, "--start-auth-ui"]' in src
+
+
+def test_signal_exit_sends_cancelled_notification(compare_mod, monkeypatch):
+    """SIGTERM mid-scan (Esc / session idle) updates the card to 'cancelled' before exiting."""
+    notifier = MagicMock()
+    compare_mod.notifier = notifier
+    monkeypatch.setattr(compare_mod, "cleanup", MagicMock())
+    monkeypatch.setattr(compare_mod.os, "_exit", MagicMock())
+    compare_mod._signal_exit(signal.SIGTERM, None)
+    notifier.cancelled.assert_called_once()
+    compare_mod.os._exit.assert_called_once_with(12)
+
+
+def test_notify_helper_is_noop_without_notifier_and_swallows_errors(compare_mod, capsys):
+    compare_mod.notifier = None
+    compare_mod._notify("success")  # no notifier -> nothing
+    broken = MagicMock()
+    broken.success.side_effect = RuntimeError("bus gone")
+    compare_mod.notifier = broken
+    compare_mod._notify("success", 1, 2)  # must never raise into the auth path
+    assert "Notification failed" in capsys.readouterr().out

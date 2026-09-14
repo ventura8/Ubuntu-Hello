@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Bættu við annarri gerð"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Búið til"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Merki"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Sjálfvirk"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Virkja lyklakippu/KWallet opnun"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Sláðu inn lykilorð fyrir notanda <b>{}</b> til að opna {} ({}):"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Lykilorð"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Gagnaskrám hefur þegar verið hlaðið niður!\nSmelltu á Next til að hald"
 "a áfram"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Villa við að hlaða niður gagnaskrám"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Búið!\nSmelltu á Next til að halda áfram"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Villa við innflutning OpenCV2"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Prófaðu að setja upp cv2 aftur"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Engar vefmyndavélar fundust á kerfinu"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +84,39 @@ msgstr ""
 "Vinsamlega stilltu myndavélina þína sjálfur ef þú ert viss um að samhæ"
 "f myndavél sé tengd"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Nei, ekki er hægt að opna myndavélina"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Nei, ekki innrauð myndavél"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Já, samhæf innrauð myndavél"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Auðkenni eða slóð myndavélar"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Mælt er með"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Villa við að velja myndavél"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Ekki er hægt að opna valda myndavél"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Reyndu að velja annan"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +126,101 @@ msgstr ""
 "able-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter<"
 "/a>\ntil að virkja ir sendanda þinn"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Vinsamlegast horfðu beint í myndavélina"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Uppsetning lýsing 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Uppsetning lýsing 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Byrjaðu andlitsskönnun"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Skanna andlitslíkan"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Ekki er hægt að vista andlitslíkan"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Skanna annað líkan"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "Ekki tókst að taka upp annað líkanið"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"Fyrsta líkanið þitt er vistað, svo innskráning með andliti virkar nú þ"
+"egar. Gættu þess að andlitið sé vel lýst og fyrir miðju og reyndu aftu"
+"r – eða slepptu þessu og bættu við líkani síðar í Stillingum."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Bæta við andlitslíkani (nauðsynlegt)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Innskráning með andliti þarf að minnsta kosti eitt andlitslíkan, svo e"
+"kki er hægt að sleppa þessari skönnun. Taktu það upp í þeirri birtu se"
+"m þú situr venjulega í. Lýsing breytir því hvernig myndavélin sér andl"
+"itið þitt, svo íhugaðu að bæta síðar við öðru líkani í Stillingum, tek"
+"nu upp í annarri birtu (til dæmis við lampaljós á kvöldin í stað dagsb"
+"irtu)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Bæta við öðru andlitslíkani (mælt með)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"Fyrsta líkanið þitt er vistað. Lýsing breytir því hvernig myndavélin s"
+"ér andlitið þitt: líkan sem tekið er upp í dagsbirtu getur brugðist á "
+"kvöldin við lampaljós (eða öfugt), og þá rennur tími Ubuntu Hello út í"
+" stað þess að aflæsa. Annað líkan tekið upp í annarri birtu heldur gre"
+"iningunni áreiðanlegri á hvaða tíma dags sem er."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Breyttu lýsingunni fyrst: kveiktu eða slökktu á loftljósinu eða borðla"
+"mpanum, snúðu þér frá glugganum eða settu upp gleraugun sem þú notar s"
+"tundum. Horfðu síðan beint í myndavélina og ýttu á Skanna."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Uppsetning Ubuntu Hello"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +229,7 @@ msgstr ""
 "Ubuntu Hello getur sjálfkrafa opnað {} þinn með andlitsvottun (greint "
 "veski: {}).\n\n<b>TPM Staða:</b> Athugar TPM vélbúnað og verkfæri..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +239,7 @@ msgstr ""
 "veski: {}).\n\n<b>TPM Staða:</b> TPM vélbúnaður fannst. Setur <i>tpm2-"
 "tools</i> upp sjálfkrafa..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +249,7 @@ msgstr ""
 "veski: {}).\n\n<b>TPM Staða:</b> Vélbúnaður TPM 2.0 virkur. Lykilorðið"
 " þitt verður tryggt innsiglað inni í TPM."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -177,7 +263,7 @@ msgstr ""
 "m2-tools</code>. Að falla aftur í skyndiminni hugbúnaðar sem byggir á "
 "skilríkjum."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -187,49 +273,61 @@ msgstr ""
 "veski: {}).\n\n<b>TPM Staða:</b> Enginn TPM vélbúnaður fannst. Að nota"
 " hugbúnað sem byggir á skilríkjum í skyndiminni (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Mistókst að slökkva á lyklakippuopnun: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Gat ekki borið kennsl á notanda sem ekki er rótkerfi fyrir opnun lykla"
 "hrings"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Lykilorð má ekki vera tómt"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Rangt lykilorð fyrir notanda {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "óþekkt villa"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Mistókst að virkja lyklakippuopnun: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Mistókst að slökkva á lyklakippuopnun: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Ekki tókst að virkja aflæsingu lyklakippu: keyrsluskráin ubuntu-hello "
+"fannst ekki"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Ekki tókst að virkja aflæsingu lyklakippu: tíminn rann út meðan beðið "
+"var eftir virkjun"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Villa við að opna lyklakippu"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Villa við að lesa útvarpshnappa"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Uppsetningarviðvörun"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr "Ekki tókst að vista vissuvalið, en uppsetningu er að öðru leyti lokið."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Villa"
 
@@ -377,43 +475,55 @@ msgstr "Sýnir vistaðar gerðir fyrir:"
 msgid "Add new user"
 msgstr "Bæta við nýjum notanda"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Aðeins ein andlitsmódel er skráð. Lýsing breytir því hvernig andlit þi"
+"tt lítur út fyrir myndavélinni, þannig að ein gerð getur bilað á kvöld"
+"in undir lömpum (eða í dagsbirtu). Bættu við annarri gerð sem er tekin"
+" upp í öðru ljósi til að halda opnun áreiðanlega hvenær sem er dags."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Bæta við"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Eyða"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Fyrirmyndir"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "Auðkenni myndavélar:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Raunveruleg upplausn:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Notuð upplausn:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Upptökutæki:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Myndband"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Lyklahringur / KWallet Sjálfvirk opnun"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -427,51 +537,51 @@ msgstr ""
 "-256-GCM með því að nota rótarlykil. Andlitsvottorð setur PAM_AUTHTOK "
 "fyrir pam_gnome_keyring eða pam_kwallet5 eftir skjáborðinu þínu."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Núverandi staða:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Athugar..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Virkjaðu sjálfvirka opnun"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Slökktu á sjálfvirkri opnun"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Lyklahringur"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Tungumál viðmóts"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Tungumál"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Sjálfvirkt fylgir kerfistungumáli. Breytingar taka gildi strax."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Andlitsvottun fyrir Linux"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Útgáfa óþekkt"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -479,7 +589,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Opna GitHub hlekk"
 "</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Um"
 
@@ -487,11 +597,11 @@ msgstr "Um"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Velkomin á Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "Uppsetning er lokið!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -510,7 +620,7 @@ msgstr ""
 "iri gerðum. Ýttu á Finish fyrir neðan til að loka þessum glugga og opn"
 "a Ubuntu Hello Configurator."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -519,19 +629,19 @@ msgstr ""
 "a KWallet með því að nota andlitsvottun, sem kemur í veg fyrir að beði"
 "ð sé um lykilorð eftir innskráningu."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Virkjaðu sjálfvirka lyklakippu/KWallet aflæsingu"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Staðfestu lykilorð"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Að setja sér öryggisstefnu"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -541,22 +651,22 @@ msgstr ""
 " aldrei nákvæmlega eins og geymt andlitslíkan. Á þessari síðu geturðu "
 "stillt hversu strangt Ubuntu Hello á að vera."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Hratt"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
 msgstr ""
 "Leyfir óljósari samsvörun, \nen flýtir mjög fyrir skönnunarferlinu."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Jafnvægi"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -564,11 +674,11 @@ msgstr ""
 "Samt tiltölulega fljót uppgötvun, \nen gætir ekki skráð þig inn þegar "
 "þú ert lengra í burtu."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Öruggt"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -576,11 +686,11 @@ msgstr ""
 "Örlítið öruggari kosturinn, \nen mun taka mun lengri tíma að sannvotta"
 " þig"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Bætir við andlitslíkani"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -589,23 +699,35 @@ msgstr ""
 "il að þekkja þig. Ýttu á Skanna hnappinn hér að neðan til að hefja and"
 "litsskönnun."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Sleppa í bili"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Þú getur bætt við fleiri andlitslíkönum síðar í Stillingum eða með: su"
+"do ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Stillir vefmyndavél"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Er innrauði sendirinn að blikka?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "já"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "nei"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -617,15 +739,15 @@ msgstr ""
 "vun birtist listi yfir nothæfar vefmyndavélar. Veldu þann sem þú vilt "
 "nota og smelltu á Næsta."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Er að prófa vefmyndavélarnar þínar, vinsamlegast bíddu..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Að sækja gagnaskrár"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -635,19 +757,19 @@ msgstr ""
 "geta borið kennsl á þig, sem verður hlaðið niður núna. Þú getur séð ni"
 "ðurhalsframvinduna hér að neðan."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Er að hefja niðurhal..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Velkomin á Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Útgáfa"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -655,15 +777,15 @@ msgstr ""
 "Þessi töframaður mun leiða þig í gegnum uppsetningarferlið og sjálfkra"
 "fa stilla Ubuntu Hello fyrir þig. Ýttu á næsta til að halda áfram."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Hætta við"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Næst"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Ljúktu við uppsetningu"
 

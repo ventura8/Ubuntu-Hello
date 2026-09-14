@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,64 +15,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "Adjon hozzá egy második modellt"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Létrehozva"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Címke"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Automatikus"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Kulcstartó/KWallet feloldás engedélyezése"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Adja meg a(z) <b>{}</b> felhasználó jelszavát a {} ({}) feloldásához:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Jelszó"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Az adatfájlok már le lettek töltve!\nA folytatáshoz kattintson a Továb"
 "b gombra"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Hiba az adatfájlok letöltése közben"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Kész!\nA folytatáshoz kattintson a Tovább gombra"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "Hiba az OpenCV2 importálása közben"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "Próbáld meg újratelepíteni a cv2-t"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Nem található webkamera a rendszerben"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -80,39 +84,39 @@ msgstr ""
 "Kérjük, konfigurálja saját maga a kamerát, ha biztos benne, hogy kompa"
 "tibilis kamera van csatlakoztatva"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Nem, a kamerát nem lehet kinyitni"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Nem, nem infrakamera"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Igen, kompatibilis infrakamera"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Kameraazonosító vagy elérési út"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Ajánlott"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Hiba történt a kamera kiválasztásakor"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "A kiválasztott kamera nem nyitható meg"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Próbáljon másikat választani"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -122,19 +126,103 @@ msgstr ""
 "le-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a"
 ">\nhogy engedélyezze az ir-kibocsátóját"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Kérjük, nézzen közvetlenül a kamerába"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Beállítás megvilágítás 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Beállítás megvilágítás 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Indítsa el az arcvizsgálatot"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Arcmodell beolvasása"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Nem sikerült menteni az arcmodellt"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "Második modell beolvasása"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "Nem sikerült rögzíteni a második modellt"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"Az első modell mentve van, így az arccal való bejelentkezés már működi"
+"k. Ügyeljen rá, hogy az arca jól megvilágított és középen legyen, majd"
+" próbálja újra – vagy ugorja át, és adjon hozzá egy modellt később a B"
+"eállításokban."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Arcmodell hozzáadása (kötelező)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Az arccal való bejelentkezéshez legalább egy arcmodell szükséges, ezér"
+"t ez a beolvasás nem hagyható ki. Rögzítse abban a fényben, amelyben á"
+"ltalában ül. A megvilágítás megváltoztatja, hogyan látja a kamera az a"
+"rcát, ezért érdemes később a Beállításokban egy második, más fényben r"
+"ögzített modellt hozzáadni (például esti lámpafénynél a nappali fény h"
+"elyett)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "Második arcmodell hozzáadása (ajánlott)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"Az első modell mentve van. A megvilágítás megváltoztatja, hogyan látja"
+" a kamera az arcát: a nappali fényben rögzített modell este, lámpafény"
+"nél kudarcot vallhat (vagy fordítva), és az Ubuntu Hello ilyenkor felo"
+"ldás helyett túllépi az időkorlátot. Egy második, más fényben rögzítet"
+"t modell a nap bármely szakában megbízhatóvá teszi a felismerést."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Először változtassa meg a megvilágítást: kapcsolja fel vagy le a szoba"
+"i világítást vagy az asztali lámpát, forduljon el az ablaktól, vagy ve"
+"gye fel a néha viselt szemüvegét. Ezután nézzen egyenesen a kamerába, "
+"és nyomja meg a Beolvasás gombot."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello beállítása"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -144,7 +232,7 @@ msgstr ""
 "zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapota:</b> TPM hard"
 "ver és eszközök ellenőrzése..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -154,7 +242,7 @@ msgstr ""
 "zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> TPM hardv"
 "er észlelve. A <i>tpm2-tools</i> automatikus telepítése..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -164,7 +252,7 @@ msgstr ""
 "zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> A hardver"
 "es TPM 2.0 aktív. Jelszava biztonságosan lezárva lesz a TPM-ben."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -178,7 +266,7 @@ msgstr ""
 " Futtassa a <code>sudo apt install tpm2-tools</code> parancsot. Vissza"
 "térve a szoftver alapú hitelesítő adatok gyorsítótárazásához."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -189,51 +277,63 @@ msgstr ""
 "lhető TPM-hardver. Szoftver alapú hitelesítő adatok gyorsítótárazás (A"
 "ES-256-GCM) használata."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Nem sikerült letiltani a kulcstartó feloldását: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Nem sikerült azonosítani a nem gyökérrendszer-felhasználót a kulcstart"
 "ó feloldásához"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "A jelszó nem lehet üres"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "Helytelen jelszó a {} felhasználóhoz"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "ismeretlen hiba"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Nem sikerült engedélyezni a kulcstartó feloldását: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Nem sikerült letiltani a kulcstartó feloldását: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Nem sikerült engedélyezni a kulcstartó feloldását: az ubuntu-hello vég"
+"rehajtható fájl nem található"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Nem sikerült engedélyezni a kulcstartó feloldását: időtúllépés az enge"
+"délyezésre várva"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Kulcstartó feloldási hiba"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Hiba a rádiógombok olvasásakor"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Beállítási figyelmeztetés"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "Nem sikerült menteni a bizonyossági beállításokat, de a beállítás egyé"
 "bként befejeződött."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Hiba"
 
@@ -383,43 +483,56 @@ msgstr "Mentett modellek megjelenítése a következőhöz:"
 msgid "Add new user"
 msgstr "Új felhasználó hozzáadása"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Csak egy arcmodell van regisztrálva. A világítás megváltoztatja az arc"
+" megjelenését a fényképezőgép számára, így egyetlen modell esténként l"
+"ámpák alatt (vagy nappali fényben) meghibásodhat. Adjon hozzá egy mási"
+"k, eltérő fényben rögzített modellt, hogy a nap bármely szakában megbí"
+"zható legyen a feloldás."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Hozzáadás"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Töröl"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Modellek"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "Kamera azonosító:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Valódi felbontás:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Használt felbontás:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Felvevő:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Videó"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Kulcstartó / KWallet Automatikus feloldás"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -434,53 +547,53 @@ msgstr ""
 " arcalapú hitelesítés beállítja a PAM_AUTHTOK értéket a pam_gnome_keyr"
 "ing vagy a pam_kwallet5 számára az asztaltól függően."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Jelenlegi állapot:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Ellenőrzés..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Automatikus feloldás engedélyezése"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Az automatikus feloldás letiltása"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Kulcstartó"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Megjelenítési nyelv"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Nyelv"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Az Automatikus a rendszer nyelvét követi. A változtatások azonnal érvé"
 "nyesülnek."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Arcalapú hitelesítés Linuxhoz"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "A verzió ismeretlen"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -488,7 +601,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Nyissa meg a GitH"
 "ub-linket</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Körülbelül"
 
@@ -496,11 +609,11 @@ msgstr "Körülbelül"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Üdvözöljük az Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "A beállítás kész!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -520,7 +633,7 @@ msgstr ""
 "és az Ubuntu Hello Configurator megnyitásához nyomja meg az alábbi Bef"
 "ejezés gombot."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -529,19 +642,19 @@ msgstr ""
 " vagy a KWallet zárolását arcalapú azonosítással, megakadályozva a bej"
 "elentkezés utáni jelszókérést."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Az automatikus kulcstartó/KWallet feloldás engedélyezése"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Erősítse meg a jelszót"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Biztonsági politika beállítása"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -551,11 +664,11 @@ msgstr ""
 "és soha nem egyezik meg pontosan a tárolt arcmodellel. Ezen az oldalon"
 " beállíthatja, hogy az Ubuntu Hello milyen szigorú legyen."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Gyors"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -563,11 +676,11 @@ msgstr ""
 "Több homályos egyezést tesz lehetővé, \nde nagyban felgyorsítja a szke"
 "nnelési folyamatot."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Kiegyensúlyozott"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -575,11 +688,11 @@ msgstr ""
 "Még mindig viszonylag gyors észlelés, \nde előfordulhat, hogy nem jele"
 "ntkezik be, ha távolabb van."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Biztonságos"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -587,11 +700,11 @@ msgstr ""
 "A kicsit biztonságosabb lehetőség, \nde sokkal tovább tart a hitelesít"
 "és"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Arcmodell hozzáadása"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -600,23 +713,35 @@ msgstr ""
 "ak modelljét, hogy felismerje Önt. Az arcszkennelés elindításához nyom"
 "ja meg az alábbi Szkennelés gombot."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Kihagyás egyelőre"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"További arcmodelleket később a Beállításokban vagy a következő parancc"
+"sal adhat hozzá: sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Webkamera konfigurálása"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Az infravörös jeladó villog?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "igen"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "nem"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -628,15 +753,15 @@ msgstr ""
 " van. Az észlelés után megjelenik a használható webkamerák listája. Vá"
 "lassza ki a használni kívántat, majd kattintson a Tovább gombra."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Webkamerái tesztelése, kérjük, várjon..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Adatfájlok letöltése"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -646,19 +771,19 @@ msgstr ""
 "van szüksége ahhoz, hogy felismerje Önt, amelyek most letöltésre kerül"
 "nek. A letöltés folyamatát alább láthatja."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "Letöltés indítása..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Üdvözöljük az Ubuntu Hello oldalon!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Változat"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -667,15 +792,15 @@ msgstr ""
 "állítja az Ubuntu Hello-t az Ön számára. A folytatáshoz nyomja meg a T"
 "ovább gombot."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "Mégse"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Következő"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Fejezze be a beállítást"
 

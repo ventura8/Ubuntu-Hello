@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "დაამატეთ მეორე მოდელი"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "შექმნილია"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "ლეიბლი"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "ავტომატური"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "გასაღების ჩართვა/KWallet განბლოკვა"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "შეიყვანეთ მომხმარებლის <b>{}</b> პაროლი {} ({}) განბლოკვისთვის:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "პაროლი"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "მონაცემთა ფაილები უკვე გადმოწერილია!\nგასაგრძელებლად დააჭირეთ შემდეგს"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "შეცდომა მონაცემთა ფაილების ჩამოტვირთვისას"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "შესრულებულია!\nგასაგრძელებლად დააჭირეთ შემდეგს"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "შეცდომა OpenCV2 იმპორტის დროს"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "სცადეთ ხელახლა დააინსტალიროთ cv2"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "სისტემაში ვებკამერები ვერ მოიძებნა"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +83,39 @@ msgstr ""
 "გთხოვთ, თავად დააკონფიგურიროთ თქვენი კამერა, თუ დარწმუნებული ხართ, რომ"
 " თავსებადი კამერა დაკავშირებულია"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "არა, კამერა ვერ იხსნება"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "არა, არა ინფრაწითელი კამერა"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "დიახ, თავსებადი ინფრაწითელი კამერა"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "კამერის იდენტიფიკატორი ან ბილიკი"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "რეკომენდირებულია"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "შეცდომა კამერის არჩევისას"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "არჩეული კამერის გახსნა შეუძლებელია"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "შეეცადეთ აირჩიოთ სხვა"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +125,101 @@ msgstr ""
 "mitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nჩართ"
 "ოთ თქვენი ir emitter"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "გთხოვთ შეხედოთ პირდაპირ კამერას"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "განათების დაყენება 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "განათების დაყენება 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "დაიწყეთ სახის სკანირება"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "სახის მოდელის სკანირება"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "სახის მოდელის შენახვა შეუძლებელია"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "მეორე მოდელის სკანირება"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "მეორე მოდელის ჩაწერა ვერ მოხერხდა"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"თქვენი პირველი მოდელი შენახულია, ასე რომ, სახეზე შესვლა უკვე მუშაობს. "
+"დარწმუნდით, რომ თქვენი სახე კარგად არის განათებული და ცენტრში, შემდეგ "
+"სცადეთ ხელახლა -- ან გამოტოვეთ და დაამატეთ მოდელი მოგვიანებით პარამეტრ"
+"ებიდან."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "სახის მოდელის დამატება (აუცილებელია)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"სახის შესვლას სჭირდება მინიმუმ ერთი სახის მოდელი, ამიტომ ამ სკანირების"
+" გამოტოვება შეუძლებელია. ჩაწერეთ ის იმ შუქზე, რომელშიც ჩვეულებრივ ზიხა"
+"რთ. განათება ცვლის თქვენი სახის იერს კამერაზე, ამიტომ განიხილეთ მეორე "
+"მოდელის დამატება მოგვიანებით პარამეტრებიდან, რომელიც ჩაწერილია სხვადას"
+"ხვა შუქზე (მაგალითად, საღამოს ნათურები დღის სინათლის ნაცვლად)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "მეორე სახის მოდელის დამატება (რეკომენდირებულია)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"თქვენი პირველი მოდელი შენახულია. განათება ცვლის, თუ როგორ გამოიყურება "
+"თქვენი სახის კამერა: დღის შუქზე ჩაწერილი მოდელი შეიძლება ავარიდეს საღა"
+"მოს ნათურების ქვეშ (ან პირიქით) და Ubuntu Hello შემდეგ დრო ამოიწუროს გ"
+"ანბლოკვის ნაცვლად. მეორე მოდელი, რომელიც ჩაწერილია სხვადასხვა შუქზე, ი"
+"ნარჩუნებს ამოცნობას საიმედოდ დღის ნებისმიერ დროს."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"ჯერ შეცვალეთ განათება: ჩართეთ ან გამორთეთ ოთახის განათება ან მაგიდის ნ"
+"ათურა, გადაუხვიეთ ფანჯარას, ან გაიკეთეთ სათვალე, რომელსაც ხანდახან ატა"
+"რებთ. შემდეგ შეხედეთ პირდაპირ კამერას და დააჭირეთ სკანირებას."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello დაყენება"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +229,7 @@ msgstr ""
 "ციის გამოყენებით (გამოვლენილი საფულე: {}).\n\n<b>TPM სტატუსი:</b> მიმდ"
 "ინარეობს TPM აპარატურის და ხელსაწყოების შემოწმება..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -153,7 +239,7 @@ msgstr ""
 "ციის გამოყენებით (გამოვლენილი საფულე: {}).\n\n<b>TPM სტატუსი:</b> აღმო"
 "ჩენილია TPM აპარატურა. <i>tpm2-tools</i> ავტომატურად დაინსტალირდება..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -163,7 +249,7 @@ msgstr ""
 "ციის გამოყენებით (გამოვლენილი საფულე: {}).\n\n<b>TPM სტატუსი:</b> აპარ"
 "ატურა TPM 2.0 აქტიურია. თქვენი პაროლი უსაფრთხოდ დაილუქება TPM-ში."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -178,7 +264,7 @@ msgstr ""
 "ბრუნდებით პროგრამულ უზრუნველყოფაზე დაფუძნებული სერთიფიკატების ქეშირება"
 "ზე."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -189,51 +275,63 @@ msgstr ""
 "აპარატურა არ არის აღმოჩენილი. პროგრამულ უზრუნველყოფაზე დაფუძნებული სერ"
 "თიფიკატების ქეშირების გამოყენება (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "გასაღების განბლოკვის გამორთვა ვერ მოხერხდა: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "გასაღების ღილაკების განბლოკვის მიზნით სისტემის არა-root მომხმარებლის ი"
 "დენტიფიცირება ვერ მოხერხდა"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "პაროლი არ შეიძლება იყოს ცარიელი"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "არასწორი პაროლი მომხმარებლისთვის {}"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "უცნობი შეცდომა"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "გასაღების განბლოკვის ჩართვა ვერ მოხერხდა: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "გასაღების განბლოკვის გამორთვა ვერ მოხერხდა: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"გასაღების განბლოკვის ჩართვა ვერ მოხერხდა: ubuntu-hello შესრულებადი ვერ"
+" მოიძებნა"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"გასაღების განბლოკვის ჩართვა ვერ მოხერხდა: გასაღების ჩართვის მოლოდინის "
+"დრო ამოიწურა"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "გასაღების განბლოკვის შეცდომა"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "შეცდომა რადიოს ღილაკების წაკითხვისას"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello დაყენების გაფრთხილება"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
 "დაზუსტების უპირატესობის შენახვა ვერ მოხერხდა, მაგრამ სხვაგვარად დაყენე"
 "ბა დასრულებულია."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello შეცდომა"
 
@@ -381,43 +479,56 @@ msgstr "ნაჩვენებია შენახული მოდელ�
 msgid "Add new user"
 msgstr "ახალი მომხმარებლის დამატება"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"დარეგისტრირებულია მხოლოდ ერთი სახის მოდელი. განათება ცვლის, თუ როგორ გ"
+"ამოიყურება თქვენი სახე კამერაზე, ასე რომ, ერთმა მოდელმა შეიძლება ჩაიშა"
+"ლოს საღამოს ნათურების ქვეშ (ან დღის შუქზე). დაამატეთ მეორე მოდელი, რომ"
+"ელიც ჩაწერილია სხვადასხვა შუქზე, რათა განბლოკვა საიმედო იყოს დღის ნები"
+"სმიერ დროს."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "დამატება"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "წაშლა"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "მოდელები"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "კამერის ID:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "რეალური გარჩევადობა:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "გამოყენებული გარჩევადობა:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "ჩამწერი:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "ვიდეო"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "გასაღებების რგოლი / KWallet ავტომატური განბლოკვა"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -432,51 +543,51 @@ msgstr ""
 " PAM_AUTHTOK pam_gnome_keyring ან pam_kwallet5 თქვენი დესკტოპის მიხედვ"
 "ით."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "ამჟამინდელი სტატუსი:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "მიმდინარეობს შემოწმება..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "ჩართეთ ავტომატური განბლოკვა"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "გამორთეთ ავტომატური განბლოკვა"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "გასაღებები"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "ჩვენების ენა"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "ენა"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "ავტომატური მიჰყვება სისტემის ენას. ცვლილებები მაშინვე ვრცელდება."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "სახის ავთენტიფიკაცია Linux-ისთვის"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "ვერსია უცნობია"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -484,7 +595,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">გახსენით GitHub ბ"
 "მული</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "შესახებ"
 
@@ -492,11 +603,11 @@ msgstr "შესახებ"
 msgid "Welcome to Ubuntu Hello"
 msgstr "მოგესალმებით Ubuntu Hello-ში"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "დაყენება დასრულებულია!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -515,7 +626,7 @@ msgstr ""
 " დამატებითი მოდელების დასამატებლად. დააჭირეთ Finish-ს ქვემოთ, რომ დახუ"
 "როთ ეს ფანჯარა და გახსნათ Ubuntu Hello კონფიგურატორი."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -524,19 +635,19 @@ msgstr ""
 "KWallet სახის ავტორიზაციის გამოყენებით, თავიდან აიცილოს პაროლის მოთხოვ"
 "ნა სისტემაში შესვლის შემდეგ."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "ჩართეთ გასაღებების ავტომატური/KWallet განბლოკვა"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "დაადასტურეთ პაროლი"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "დარწმუნების პოლიტიკის დადგენა"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -546,11 +657,11 @@ msgstr ""
 "ისი არასოდეს არის ზუსტად იგივე, რაც შენახული სახის მოდელი. ამ გვერდზე "
 "შეგიძლიათ დააყენოთ რამდენად მკაცრი უნდა იყოს Ubuntu Hello."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "სწრაფი"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -558,11 +669,11 @@ msgstr ""
 "იძლევა უფრო ბუნდოვან მატჩებს, \nმაგრამ მნიშვნელოვნად აჩქარებს სკანირებ"
 "ის პროცესს."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "დაბალანსებული"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -570,11 +681,11 @@ msgstr ""
 "ჯერ კიდევ შედარებით სწრაფი აღმოჩენა, \nმაგრამ შეიძლება არ შეხვიდეთ სის"
 "ტემაში, როდესაც უფრო შორს ხართ."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "უსაფრთხო"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -582,11 +693,11 @@ msgstr ""
 "ოდნავ უსაფრთხო ვარიანტი, \nმაგრამ თქვენს ავთენტიფიკაციას გაცილებით მეტ"
 "ი დრო დასჭირდება"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "სახის მოდელის დამატება"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -595,23 +706,35 @@ msgstr ""
 "ელი, რომ ამოიცნოთ. დააჭირეთ სკანირების ღილაკს ქვემოთ სახის სკანირების "
 "დასაწყებად."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "ახლა გამოტოვეთ"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"შეგიძლიათ მოგვიანებით დაამატოთ სახის სხვა მოდელები პარამეტრებიდან ან: "
+"sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "მიმდინარეობს ვებკამერის კონფიგურაცია"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "ინფრაწითელი ემიტერი ციმციმებს?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "დიახ"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "არა"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -623,15 +746,15 @@ msgstr ""
 "გ გამოჩნდება გამოსაყენებელი ვებკამერების სია. აირჩიეთ ის, რომლის გამოყ"
 "ენებაც გსურთ და დააწკაპუნეთ შემდეგი."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "მიმდინარეობს თქვენი ვებკამერების ტესტირება, გთხოვთ დაელოდოთ..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "მონაცემთა ფაილების ჩამოტვირთვა"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -641,19 +764,19 @@ msgstr ""
 "თა ნაკრები, რომ შეძლოს თქვენი ამოცნობა, რომელიც ახლავე ჩამოიტვირთება. "
 "ჩამოტვირთვის პროგრესი შეგიძლიათ იხილოთ ქვემოთ."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "ჩამოტვირთვა იწყება..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "მოგესალმებით Ubuntu Hello-ში!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "ვერსია"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -661,15 +784,15 @@ msgstr ""
 "ეს ოსტატი გაგივლით დაყენების პროცესს და ავტომატურად დააკონფიგურირებს U"
 "buntu Hello თქვენთვის. გასაგრძელებლად დააჭირეთ შემდეგს."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "შემდეგი"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "დაასრულეთ დაყენება"
 

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "ناکامي، وخت پای ته ورسید"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "د مخ کشف انځور ډیر تیاره دی"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "نامعلومه تېروتنه:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "د %s په توګه پیژندل شوی مخ"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "د انټر پریس لیږلو لپاره کافي اجازې ندي ، د کارونکي لپاره انتظار باسي چ"
 "ې پرځای یې فشار ورکړي"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "د انټر پریس په لیږلو کې پاتې راغلی، د کارونکي لپاره انتظار باسي چې پر "
 "ځای یې فشار ورکړي"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "د مخ تصدیق کولو هڅه"
 
@@ -130,123 +130,219 @@ msgstr ""
 "د ubuntu-hello کمانډونه د روټ په توګه نشي چلولی، مهرباني وکړئ دا کمانډ"
 " د --user بیرغ سره پرمخ وړئ"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "د ډیټا فایلونه ډاونلوډ شوي ندي ، مهرباني وکړئ لاندې کمانډونه پرمخ وړئ:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "ننوت"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "نېټه:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "د سکین وخت:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "چوکاټونه:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "کوربه نوم:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "غوره ډاډمن ارزښت:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "پیل کول..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "ستا پېژندنه..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "ناکام شو"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "ټول چوکاټونه ډیر تیاره وو، مهرباني وکړئ په ترتیب کې تیاره_threshold وګ"
 "ورئ"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "منځنۍ تیاره: {avg}، حد: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "وخت تېر شو"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "پیل کول"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "کیم + د بار کولو لیب خلاص کړئ: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "د کیمرې خلاصول"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "د پیژندنې لیب واردول"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "د پیژندل شوي مخ په لټه کې"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "ټول وخت"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nقرارداد"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "اصلي: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "کارول شوی: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nپلټنه شوي چوکاټونه: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "تور چوکاټونه له پامه غورځول شوي: %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "تیاره چوکاټونه له پامه غورځول شوي: %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "د ګټونکي چوکاټ ډاډ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "ګټونکي ماډل: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "بریالی"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "واک ورکول"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "د سکرین خلاصول"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "وخت ختم"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "بار"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s چوکاټونه"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s تیاره"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "ستا د مخ په لټه کې..."
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "د مخ تصدیق"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "مخ پېژندل"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "په دې رڼا کې یو ماډل اضافه کړئ"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "کیمره وګورئ"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "په %s کې هیڅ لوبه نشته"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "نوم لیکنه: sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "نږدې"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "مخ نه دی پیژندل شوی"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "ډیر تیاره"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "رڼا واچوئ"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "تیاره"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "د %s لپاره د مخ ماډل نشته"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "د مخ تصدیق شتون نلري"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "لغوه شو"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "د مخ تصدیق لغوه شو"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

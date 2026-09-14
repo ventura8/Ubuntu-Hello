@@ -9,6 +9,7 @@ from __future__ import annotations
 import os
 import sys
 import subprocess
+from unittest.mock import patch
 from pathlib import Path
 import pytest
 import numpy as np
@@ -65,6 +66,26 @@ class TestSettingsModelsTab:
 			assert len(model) == 2
 			assert model[0][0] == "0"
 			assert model[0][2] == "MyFace"
+			# Two models -> no second-model reminder
+			infobar = win.builder.get_object("single_model_infobar")
+			assert infobar is not None
+			assert not infobar.get_revealed()
+
+			# Exactly one model -> reminder revealed with an "Add a second model" action
+			monkeypatch.setattr(subprocess, "run", lambda cmd, *a, **k: subprocess.CompletedProcess(
+				cmd, 0, stdout="0,2026-08-21 12:00:00,MyFace\n" if "list" in cmd else "Success\n", stderr=""))
+			win.load_model_list()
+			gtk_pump()
+			assert len(win.treeview.get_model()) == 1
+			assert infobar.get_revealed()
+			assert "second model" in win.builder.get_object("single_model_label").get_text()
+			with patch.object(win, "on_model_add") as add:
+				infobar.response(Gtk.ResponseType.OK)
+				add.assert_called_once()
+			monkeypatch.setattr(subprocess, "run", fake_run)
+			win.load_model_list()
+			gtk_pump()
+			assert not infobar.get_revealed()
 
 			# Test Add Model
 			add_btn = win.builder.get_object("addbutton")

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:108
 msgid "Failure, timeout reached"
 msgstr "Αποτυχία, έφτασε το χρονικό όριο"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:115
 msgid "Face detection image too dark"
 msgstr "Η εικόνα ανίχνευσης προσώπου είναι πολύ σκοτεινή"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:124
 msgid "Unknown error: "
 msgstr "Άγνωστο σφάλμα:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:160
 msgid "Identified face as %s"
 msgstr "Προσδιορισμένο πρόσωπο ως %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:399
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to pres"
 "s it instead"
@@ -39,13 +39,13 @@ msgstr ""
 "Ανεπαρκή δικαιώματα αποστολής πατήστε Enter, περιμένοντας να το πατήσε"
 "ι ο χρήστης"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:418 src/pam/main.cc:423
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Απέτυχε η αποστολή Enter, πατήστε Enter, περιμένοντας να το πατήσει ο "
 "χρήστης"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:535
 msgid "Attempting facial authentication"
 msgstr "Προσπάθεια ελέγχου ταυτότητας προσώπου"
 
@@ -133,121 +133,217 @@ msgstr ""
 "Δεν είναι δυνατή η εκτέλεση εντολών ubuntu-hello ως root, εκτελέστε αυ"
 "τήν την εντολή με τη σημαία --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:258 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Δεν έχει γίνει λήψη αρχείων δεδομένων, εκτελέστε τις ακόλουθες εντολές:"
 
-#: src/compare.py:154
+#: src/compare.py:284
 msgid " LOGIN"
 msgstr "ΣΥΝΔΕΣΗ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:285 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Ημερομηνία:"
 
-#: src/compare.py:156
+#: src/compare.py:286
 msgid "Scan time: "
 msgstr "Χρόνος σάρωσης:"
 
-#: src/compare.py:157
+#: src/compare.py:287
 msgid "Frames: "
 msgstr "Κορνίζες:"
 
-#: src/compare.py:158
+#: src/compare.py:288
 msgid "Hostname: "
 msgstr "Όνομα κεντρικού υπολογιστή:"
 
-#: src/compare.py:159
+#: src/compare.py:289
 msgid "Best certainty value: "
 msgstr "Καλύτερη τιμή βεβαιότητας:"
 
-#: src/compare.py:266
+#: src/compare.py:420
 msgid "Starting up..."
 msgstr "Ξεκινώντας..."
 
-#: src/compare.py:319
+#: src/compare.py:482
 msgid "Identifying you..."
 msgstr "Αναγνωρίζοντας σας..."
 
-#: src/compare.py:351
+#: src/compare.py:514
 msgid "FAILED"
 msgstr "ΑΠΟΤΥΧΗΜΕΝΟΣ"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:517 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "Όλα τα καρέ ήταν πολύ σκοτεινά, ελέγξτε το dark_threshold στη διαμόρφωση"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:518 src/cli/add.py:189
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Μέσο σκοτάδι: {avg}, Κατώφλι: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:629
 msgid "Time spent"
 msgstr "Χρόνος που ξοδεύτηκε"
 
-#: src/compare.py:457
+#: src/compare.py:630
 msgid "Starting up"
 msgstr "Εκκίνηση"
 
-#: src/compare.py:458
+#: src/compare.py:631
 msgid "  Open cam + load libs: %dms"
 msgstr "Άνοιγμα έκκεντρου + φόρτωση λωρίδων: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:632
 msgid "  Opening the camera"
 msgstr "Άνοιγμα της κάμερας"
 
-#: src/compare.py:460
+#: src/compare.py:633
 msgid "  Importing recognition libs"
 msgstr "Εισαγωγή libs αναγνώρισης"
 
-#: src/compare.py:461
+#: src/compare.py:634
 msgid "Searching for known face"
 msgstr "Αναζήτηση γνωστού προσώπου"
 
-#: src/compare.py:462
+#: src/compare.py:635
 msgid "Total time"
 msgstr "Συνολικός χρόνος"
 
-#: src/compare.py:464
+#: src/compare.py:637
 msgid ""
 "\nResolution"
 msgstr ""
 "\nΨήφισμα"
 
-#: src/compare.py:466
+#: src/compare.py:639
 msgid "  Native: %dx%d"
 msgstr "Εγγενής: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:642
 msgid "  Used: %dx%d"
 msgstr "Μεταχειρισμένο: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:645
 msgid ""
 "\nFrames searched: %d (%.2f fps)"
 msgstr ""
 "\nΑναζήτηση καρέ: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:646
 msgid "Black frames ignored: %d "
 msgstr "Τα μαύρα καρέ αγνοήθηκαν: %d"
 
-#: src/compare.py:474
+#: src/compare.py:647
 msgid "Dark frames ignored: %d "
 msgstr "Τα σκοτεινά καρέ αγνοήθηκαν: %d"
 
-#: src/compare.py:475
+#: src/compare.py:648
 msgid "Certainty of winning frame: %.3f"
 msgstr "Βεβαιότητα νικηφόρου καρέ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:650
 msgid "Winning model: %d (\"%s\")"
 msgstr "Μοντέλο που κερδίζει: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:664
 msgid "SUCCESSFUL"
 msgstr "ΕΠΙΤΥΧΗΣ"
+
+#: src/notify.py:337
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:339
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:341
+msgid "authorization"
+msgstr "εξουσιοδότηση"
+
+#: src/notify.py:343
+msgid "screen unlock"
+msgstr "ξεκλείδωμα οθόνης"
+
+#: src/notify.py:380
+msgid "timeout"
+msgstr "timeout"
+
+#: src/notify.py:382
+msgid "load"
+msgstr "φορτίο"
+
+#: src/notify.py:394
+msgid "%s frames"
+msgstr "%s πλαίσια"
+
+#: src/notify.py:396
+msgid "%s dark"
+msgstr "%s σκούρο"
+
+#: src/notify.py:418
+msgid "Looking for your face…"
+msgstr "Αναζητώντας το πρόσωπό σας…"
+
+#: src/notify.py:428
+msgid "Face authentication"
+msgstr "Έλεγχος ταυτότητας προσώπου"
+
+#: src/notify.py:446
+msgid "Face recognized"
+msgstr "Το πρόσωπο αναγνωρίζεται"
+
+#: src/notify.py:457
+msgid "add a model in this light"
+msgstr "προσθέστε ένα μοντέλο υπό αυτό το πρίσμα"
+
+#: src/notify.py:459
+msgid "check the camera"
+msgstr "ελέγξτε την κάμερα"
+
+#: src/notify.py:464
+msgid "No match in %s"
+msgstr "Κανένας αγώνας στο %s"
+
+#: src/notify.py:466 src/notify.py:492
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "εγγραφή: sudo ubuntu-hello add"
+
+#: src/notify.py:467
+msgid "closest"
+msgstr "πλησιέστερο"
+
+#: src/notify.py:472 src/notify.py:485
+msgid "Face not recognized"
+msgstr "Το πρόσωπο δεν αναγνωρίζεται"
+
+#: src/notify.py:478
+msgid "Too dark"
+msgstr "Πολύ σκοτεινό"
+
+#: src/notify.py:479
+msgid "turn on a light"
+msgstr "ανάψτε ένα φως"
+
+#: src/notify.py:480
+msgid "darkness"
+msgstr "σκοτάδι"
+
+#: src/notify.py:491
+msgid "No face model for %s"
+msgstr "Κανένα μοντέλο προσώπου για %s"
+
+#: src/notify.py:496
+msgid "Face authentication unavailable"
+msgstr "Ο έλεγχος ταυτότητας προσώπου δεν είναι διαθέσιμος"
+
+#: src/notify.py:501
+msgid "Cancelled"
+msgstr "Ακυρώθηκε"
+
+#: src/notify.py:503
+msgid "Face authentication cancelled"
+msgstr "Ο έλεγχος ταυτότητας προσώπου ακυρώθηκε"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"

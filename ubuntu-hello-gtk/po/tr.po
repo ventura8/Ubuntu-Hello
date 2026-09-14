@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.1.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
 "POT-Creation-Date: 2026-08-12 03:05+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
@@ -15,63 +15,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:75
+msgid "Add a second model"
+msgstr "İkinci bir model ekleyin"
+
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Oluşturuldu"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Etiket"
 
-#: src/window.py:189
+#: src/window.py:197
 msgid "Automatic"
 msgstr "Otomatik"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
+#: src/onboarding.py:36 src/tab_keyring.py:15
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Anahtarlığı Etkinleştir/KWallet Kilit Açma"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
+#: src/onboarding.py:49 src/tab_keyring.py:28
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "{} ({}) kilidini açmak için <b>{}</b> kullanıcısının şifresini girin:"
 
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
+#: src/onboarding.py:56 src/tab_keyring.py:35 src/onboarding.glade:170
 msgid "Password"
 msgstr "Şifre"
 
-#: src/onboarding.py:170
+#: src/onboarding.py:197
 msgid ""
 "Datafiles have already been downloaded!\nClick Next to continue"
 msgstr ""
 "Veri dosyaları zaten indirildi!\nDevam etmek için İleri'ye tıklayın"
 
-#: src/onboarding.py:200
+#: src/onboarding.py:227
 msgid "Error while downloading datafiles"
 msgstr "Veri dosyalarını indirirken hata oluştu"
 
-#: src/onboarding.py:203
+#: src/onboarding.py:230
 msgid ""
 "Done!\nClick Next to continue"
 msgstr ""
 "Tamamlamak!\nDevam etmek için İleri'ye tıklayın"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Error while importing OpenCV2"
 msgstr "OpenCV2 içe aktarılırken hata oluştu"
 
-#: src/onboarding.py:230 src/onboarding.py:336
+#: src/onboarding.py:257 src/onboarding.py:437
 msgid "Try reinstalling cv2"
 msgstr "cv2'yi yeniden yüklemeyi deneyin"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid "No webcams found on system"
 msgstr "Sistemde web kamerası bulunamadı"
 
-#: src/onboarding.py:237
+#: src/onboarding.py:264
 msgid ""
 "Please configure your camera yourself if you are sure a compatible cam"
 "era is connected"
@@ -79,39 +83,39 @@ msgstr ""
 "Uyumlu bir kameranın bağlı olduğundan eminseniz lütfen kameranızı kend"
 "iniz yapılandırın"
 
-#: src/onboarding.py:265
+#: src/onboarding.py:354
 msgid "No, camera can't be opened"
 msgstr "Hayır kamera açılamıyor"
 
-#: src/onboarding.py:274
+#: src/onboarding.py:366
 msgid "No, not an infrared camera"
 msgstr "Hayır, kızılötesi kamera değil"
 
-#: src/onboarding.py:278
+#: src/onboarding.py:370
 msgid "Yes, compatible infrared camera"
 msgstr "Evet, uyumlu kızılötesi kamera"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Camera identifier or path"
 msgstr "Kamera tanımlayıcısı veya yolu"
 
-#: src/onboarding.py:290
+#: src/onboarding.py:388
 msgid "Recommended"
 msgstr "Tavsiye edilen"
 
-#: src/onboarding.py:349 src/onboarding.py:390
+#: src/onboarding.py:450 src/onboarding.py:494
 msgid "Error selecting camera"
 msgstr "Kamera seçilirken hata oluştu"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "The selected camera cannot be opened"
 msgstr "Seçilen kamera açılamıyor"
 
-#: src/onboarding.py:362
+#: src/onboarding.py:463
 msgid "Try to select another one"
 msgstr "Başka bir tane seçmeyi deneyin"
 
-#: src/onboarding.py:374
+#: src/onboarding.py:478
 msgid ""
 "Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
 "itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
@@ -121,19 +125,101 @@ msgstr ""
 "e-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>"
 "\nIR yayıcınızı etkinleştirmek için"
 
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:528 src/onboarding.py:611 src/tab_models.py:78
+#: src/onboarding.glade:491
 msgid "Please look directly into the camera"
 msgstr "Lütfen doğrudan kameraya bakın"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:541
+msgid "Setup lighting 1"
+msgstr "Kurulum aydınlatma 1"
+
+#: src/onboarding.py:542
+msgid "Setup lighting 2"
+msgstr "Kurulum aydınlatma 2"
+
+#: src/onboarding.py:559 src/onboarding.glade:513
 msgid "Start face scan"
 msgstr "Yüz taramasını başlat"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:559 src/onboarding.py:613
+msgid "Scan face model"
+msgstr "Yüz modelini tara"
+
+#: src/onboarding.py:563
 msgid "Can't save face model"
 msgstr "Yüz modeli kaydedilemiyor"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:568 src/onboarding.py:624
+msgid "Scan second model"
+msgstr "İkinci modeli tara"
+
+#: src/onboarding.py:572
+msgid "Couldn't record the second model"
+msgstr "İkinci model kaydedilemedi"
+
+#: src/onboarding.py:572
+msgid ""
+"Your first model is saved, so face login already works. Make sure your"
+" face is well lit and centred, then try again -- or skip and add a mod"
+"el later from Settings."
+msgstr ""
+"İlk modeliniz kaydedildi, dolayısıyla yüzle oturum açma zaten çalışıyo"
+"r. Yüzünüzün iyi aydınlatılmış ve ortalanmış olduğundan emin olup yeni"
+"den deneyin — ya da atlayın ve daha sonra Ayarlar'dan bir model ekleyi"
+"n."
+
+#: src/onboarding.py:607
+msgid "Add a face model (required)"
+msgstr "Yüz modeli ekle (gerekli)"
+
+#: src/onboarding.py:609
+msgid ""
+"Face login needs at least one face model, so this scan can't be skippe"
+"d. Record it in the light you usually sit in. Lighting changes how you"
+"r face looks to the camera, so consider adding a second model later fr"
+"om Settings, recorded in different light (for example evening lamps in"
+"stead of daylight)."
+msgstr ""
+"Yüzle oturum açma en az bir yüz modeli gerektirir, bu nedenle bu taram"
+"a atlanamaz. Onu genellikle oturduğunuz ışıkta kaydedin. Aydınlatma, k"
+"ameranın yüzünüzü nasıl gördüğünü değiştirir; bu yüzden daha sonra Aya"
+"rlar'dan farklı bir ışıkta kaydedilmiş ikinci bir model eklemeyi düşün"
+"ün (örneğin gün ışığı yerine akşam lambaları)."
+
+#: src/onboarding.py:618
+msgid "Add a second face model (recommended)"
+msgstr "İkinci bir yüz modeli ekle (önerilir)"
+
+#: src/onboarding.py:620
+msgid ""
+"Your first model is saved. Lighting changes how your face looks to the"
+" camera: a model recorded in daylight can fail in the evening under la"
+"mps (or the other way round), and Ubuntu Hello then times out instead "
+"of unlocking. A second model recorded in different light keeps recogni"
+"tion reliable at any time of day."
+msgstr ""
+"İlk modeliniz kaydedildi. Aydınlatma, kameranın yüzünüzü nasıl gördüğü"
+"nü değiştirir: gün ışığında kaydedilen bir model akşam lamba ışığında "
+"başarısız olabilir (ya da tam tersi) ve Ubuntu Hello kilidi açmak yeri"
+"ne zaman aşımına uğrar. Farklı bir ışıkta kaydedilen ikinci bir model,"
+" tanımayı günün her saatinde güvenilir tutar."
+
+#: src/onboarding.py:622
+msgid ""
+"Change the lighting first: switch the room light or desk lamp on or of"
+"f, turn away from the window, or put on the glasses you sometimes wear"
+". Then look straight into the camera and press Scan."
+msgstr ""
+"Önce aydınlatmayı değiştirin: oda ışığını veya masa lambasını açın ya "
+"da kapatın, pencereden başka yöne dönün veya bazen taktığınız gözlüğü "
+"takın. Ardından doğrudan kameraya bakın ve Tara'ya basın."
+
+#: src/onboarding.py:660
+msgid "Ubuntu Hello Setup"
+msgstr "Ubuntu Hello Kurulumu"
+
+#: src/onboarding.py:673
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
@@ -143,7 +229,7 @@ msgstr ""
 "ini otomatik olarak açabilir (algılanan cüzdan: {}).\n\n<b>TPM Durumu:"
 "</b> TPM donanımı ve araçları kontrol ediliyor..."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:693
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
@@ -154,7 +240,7 @@ msgstr ""
 "</b> TPM donanımı algılandı. <i>tpm2-tools</i> otomatik olarak yükleni"
 "yor..."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:705
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
@@ -165,7 +251,7 @@ msgstr ""
 "</b> Donanım TPM 2.0 etkin. Parolanız TPM'nin içinde güvenli bir şekil"
 "de mühürlenecektir."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:707
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
@@ -180,7 +266,7 @@ msgstr ""
 " çalıştırın. Yazılım tabanlı kimlik bilgileri önbelleğe alma yöntemine"
 " geri dönme."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:709
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authenticatio"
 "n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
@@ -191,49 +277,61 @@ msgstr ""
 "</b> TPM donanımı algılanmadı. Yazılım tabanlı kimlik bilgilerini önbe"
 "lleğe almayı kullanma (AES-256-GCM)."
 
-#: src/onboarding.py:526
+#: src/onboarding.py:771 src/tab_keyring.py:166
+msgid "Failed to disable keyring unlocking: {}"
+msgstr "Anahtarlık kilidinin açılması devre dışı bırakılamadı: {}"
+
+#: src/onboarding.py:777
 msgid "Could not identify non-root system user for keyring unlocking"
 msgstr ""
 "Anahtarlığın kilidini açmak için root olmayan sistem kullanıcısı tanım"
 "lanamadı"
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
+#: src/onboarding.py:790 src/tab_keyring.py:91
 msgid "Password cannot be empty"
 msgstr "Şifre boş olamaz"
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
+#: src/onboarding.py:794 src/tab_keyring.py:99
 msgid "Incorrect password for user {}"
 msgstr "{} kullanıcısı için yanlış şifre"
 
-#: src/onboarding.py:565 src/tab_keyring.py:113
+#: src/onboarding.py:806 src/tab_keyring.py:113
 msgid "unknown error"
 msgstr "bilinmeyen hata"
 
-#: src/onboarding.py:568 src/tab_keyring.py:124
+#: src/onboarding.py:807 src/onboarding.py:816 src/tab_keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Anahtarlık kilidini açma etkinleştirilemedi: {}"
 
-#: src/onboarding.py:577 src/tab_keyring.py:166
-msgid "Failed to disable keyring unlocking: {}"
-msgstr "Anahtarlık kilidinin açılması devre dışı bırakılamadı: {}"
+#: src/onboarding.py:810
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Anahtarlık kilidi açma etkinleştirilemedi: ubuntu-hello çalıştırılabil"
+"ir dosyası bulunamadı"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:813
+msgid "Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Anahtarlık kilidi açma etkinleştirilemedi: etkinleştirme beklenirken z"
+"aman aşımı"
+
+#: src/onboarding.py:823
 msgid "Keyring Unlocking Error"
 msgstr "Anahtarlık Kilit Açma Hatası"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:838
 msgid "Error reading radio buttons"
 msgstr "Radyo düğmeleri okunurken hata oluştu"
 
-#: src/onboarding.py:626
+#: src/onboarding.py:865
 msgid "Ubuntu Hello Setup Warning"
 msgstr "Ubuntu Hello Kurulum Uyarısı"
 
-#: src/onboarding.py:627
+#: src/onboarding.py:866
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr "Kesinlik tercihi kaydedilemedi ancak bunun dışında kurulum tamamlandı."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
+#: src/onboarding.py:885 src/tab_models.py:98 src/tab_models.py:126
 msgid "Ubuntu Hello Error"
 msgstr "Ubuntu Hello Hata"
 
@@ -383,43 +481,56 @@ msgstr "Şunun için kayıtlı modeller gösteriliyor:"
 msgid "Add new user"
 msgstr "Yeni kullanıcı ekle"
 
-#: src/main.glade:162
+#: src/main.glade:147
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks "
+"to the camera, so a single model can fail in the evening under lamps ("
+"or in daylight). Add a second model recorded in different light to kee"
+"p unlocking reliable at any time of day."
+msgstr ""
+"Yalnızca bir yüz modeli kayıtlıdır. Aydınlatma yüzünüzün kameraya bakı"
+"şını değiştirir, bu nedenle tek bir model akşamları lambaların altında"
+" (veya gün ışığında) başarısız olabilir. Günün herhangi bir saatinde k"
+"ilidin açılmasını güvenilir bir şekilde sürdürmek için farklı ışıkta k"
+"aydedilmiş ikinci bir model ekleyin."
+
+#: src/main.glade:193
 msgid "Add"
 msgstr "Eklemek"
 
-#: src/main.glade:183
+#: src/main.glade:214
 msgid "Delete"
 msgstr "Silmek"
 
-#: src/main.glade:218
+#: src/main.glade:249
 msgid "Models"
 msgstr "Modeller"
 
-#: src/main.glade:244
+#: src/main.glade:275
 msgid "Camera ID:"
 msgstr "Kamera Kimliği:"
 
-#: src/main.glade:273
+#: src/main.glade:304
 msgid "Real resolution:"
 msgstr "Gerçek çözünürlük:"
 
-#: src/main.glade:303
+#: src/main.glade:334
 msgid "Used resolution:"
 msgstr "Kullanılan çözünürlük:"
 
-#: src/main.glade:333
+#: src/main.glade:364
 msgid "Recorder:"
 msgstr "Kaydedici:"
 
-#: src/main.glade:401
+#: src/main.glade:432
 msgid "Video"
 msgstr "Video"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.glade:454 src/onboarding.glade:110
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Anahtarlık / KWallet Otomatik Kilit Açma"
 
-#: src/main.glade:440
+#: src/main.glade:471
 msgid ""
 "Enable face authentication to automatically unlock your login keyring "
 "or KWallet on login. This securely stores your password sealed in the "
@@ -435,51 +546,51 @@ msgstr ""
 "lı olarak pam_gnome_keyring veya pam_kwallet5 için PAM_AUTHTOK ayarlar"
 "."
 
-#: src/main.glade:471
+#: src/main.glade:502
 msgid "Current Status:"
 msgstr "Mevcut Durum:"
 
-#: src/main.glade:486
+#: src/main.glade:517
 msgid "Checking..."
 msgstr "Kontrol ediliyor..."
 
-#: src/main.glade:509
+#: src/main.glade:540
 msgid "Enable Auto-Unlock"
 msgstr "Otomatik Kilit Açmayı Etkinleştir"
 
-#: src/main.glade:526
+#: src/main.glade:557
 msgid "Disable Auto-Unlock"
 msgstr "Otomatik Kilit Açmayı Devre Dışı Bırak"
 
-#: src/main.glade:559
+#: src/main.glade:590
 msgid "Keyring"
 msgstr "Anahtarlık"
 
-#: src/main.glade:581
+#: src/main.glade:612
 msgid "Display language"
 msgstr "Görüntüleme dili"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.glade:634 src/main.glade:693
 msgid "Language"
 msgstr "Dil"
 
-#: src/main.glade:637
+#: src/main.glade:668
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Otomatik sistem dilini izler. Değişiklikler hemen uygulanır."
 
-#: src/main.glade:694
+#: src/main.glade:725
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.glade:741
 msgid "Facial authentication for Linux"
 msgstr "Linux için yüz kimlik doğrulaması"
 
-#: src/main.glade:723
+#: src/main.glade:754
 msgid "Version unknown"
 msgstr "Sürüm bilinmiyor"
 
-#: src/main.glade:746
+#: src/main.glade:777
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
 "/a> "
@@ -487,7 +598,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub bağlantısı"
 "nı aç</a>"
 
-#: src/main.glade:778
+#: src/main.glade:809
 msgid "About"
 msgstr "Hakkında"
 
@@ -495,11 +606,11 @@ msgstr "Hakkında"
 msgid "Welcome to Ubuntu Hello"
 msgstr "Ubuntu Hello'a hoş geldiniz"
 
-#: src/onboarding.glade:63
+#: src/onboarding.glade:62
 msgid "Setup is done!"
 msgstr "Kurulum tamamlandı!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.glade:81
 msgid ""
 "We're done! Ubuntu Hello is now active on this computer. Try doing any"
 "thing you would normally have to type your password for to authenticat"
@@ -519,7 +630,7 @@ msgstr ""
 "atmak ve Ubuntu Hello Yapılandırıcıyı açmak için aşağıdaki Son'a basın"
 "."
 
-#: src/onboarding.glade:130
+#: src/onboarding.glade:129
 msgid ""
 "Ubuntu Hello can automatically unlock your login keyring or KWallet us"
 "ing face authentication, preventing password prompts after logging in."
@@ -528,19 +639,19 @@ msgstr ""
 "bilir veya KWallet yüz kimlik doğrulamasını kullanarak oturum açtıktan"
 " sonra parola sorulmasını önleyebilir."
 
-#: src/onboarding.glade:142
+#: src/onboarding.glade:141
 msgid "Enable automatic keyring/KWallet unlocking"
 msgstr "Otomatik anahtarlamayı/KWallet kilit açmayı etkinleştir"
 
-#: src/onboarding.glade:184
+#: src/onboarding.glade:183
 msgid "Confirm password"
 msgstr "Şifreyi onayla"
 
-#: src/onboarding.glade:216
+#: src/onboarding.glade:215
 msgid "Setting a certainty policy"
 msgstr "Bir kesinlik politikası belirleme"
 
-#: src/onboarding.glade:235
+#: src/onboarding.glade:234
 msgid ""
 "Because of changes in angles, distance, and other factors a face match"
 " is never exactly the same as the stored face model. On this page you "
@@ -551,11 +662,11 @@ msgstr ""
 "ayfada Ubuntu Hello'nin ne kadar katı olması gerektiğini ayarlayabilir"
 "siniz."
 
-#: src/onboarding.glade:274
+#: src/onboarding.glade:273
 msgid "Fast"
 msgstr "Hızlı"
 
-#: src/onboarding.glade:290
+#: src/onboarding.glade:289
 msgid ""
 "Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
 "y."
@@ -563,11 +674,11 @@ msgstr ""
 "Daha bulanık eşleşmelere izin verir, \nancak tarama işlemini büyük ölç"
 "üde hızlandırır."
 
-#: src/onboarding.glade:329
+#: src/onboarding.glade:328
 msgid "Balanced"
 msgstr "Dengeli"
 
-#: src/onboarding.glade:345
+#: src/onboarding.glade:344
 msgid ""
 "Still relatively quick detection, \nbut might not log you in when furt"
 "her away."
@@ -575,11 +686,11 @@ msgstr ""
 "Hala nispeten hızlı algılama, \nancak daha uzakta olduğunuzda oturum a"
 "çmayabilirsiniz."
 
-#: src/onboarding.glade:384
+#: src/onboarding.glade:383
 msgid "Secure"
 msgstr "Güvenli"
 
-#: src/onboarding.glade:400
+#: src/onboarding.glade:399
 msgid ""
 "The slightly safer option, \nbut will take much longer to authenticate"
 " you"
@@ -587,11 +698,11 @@ msgstr ""
 "Biraz daha güvenli seçenek, \nancak kimliğinizi doğrulamak çok daha uz"
 "un sürecek"
 
-#: src/onboarding.glade:443
+#: src/onboarding.glade:442
 msgid "Adding a face model"
 msgstr "Yüz modeli ekleme"
 
-#: src/onboarding.glade:462
+#: src/onboarding.glade:461
 msgid ""
 "To authenticate you Ubuntu Hello needs to save a model of your face to"
 " recognise you. Press the Scan button below to start the facial scan."
@@ -600,23 +711,35 @@ msgstr ""
 "üzünüzün bir modelini kaydetmesi gerekiyor. Yüz taramasını başlatmak i"
 "çin aşağıdaki Tara düğmesine basın."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.glade:538
+msgid "Skip for now"
+msgstr "Şimdilik atla"
+
+#: src/onboarding.glade:544
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-"
+"hello add"
+msgstr ""
+"Daha sonra Ayarlar'dan veya şu komutla daha fazla yüz modeli ekleyebil"
+"irsiniz: sudo ubuntu-hello add"
+
+#: src/onboarding.glade:577 src/onboarding.glade:668
 msgid "Configuring webcam"
 msgstr "Web kamerasını yapılandırma"
 
-#: src/onboarding.glade:581
+#: src/onboarding.glade:594
 msgid "Is the infrared emitter flashing ?"
 msgstr "Kızılötesi yayıcı yanıp sönüyor mu?"
 
-#: src/onboarding.glade:599
+#: src/onboarding.glade:612
 msgid "yes"
 msgstr "Evet"
 
-#: src/onboarding.glade:616
+#: src/onboarding.glade:629
 msgid "no"
 msgstr "HAYIR"
 
-#: src/onboarding.glade:674
+#: src/onboarding.glade:687
 msgid ""
 "Ubuntu Hello will search your system automatically for any available c"
 "ameras, so make sure your webcam is connected. After detection a list "
@@ -628,15 +751,15 @@ msgstr ""
 "ardından kullanılabilir web kameralarının bir listesi gösterilecektir."
 " Kullanmak istediğinizi seçin ve İleri'ye tıklayın."
 
-#: src/onboarding.glade:697
+#: src/onboarding.glade:709
 msgid "Testing your webcams, please wait..."
 msgstr "Web kameralarınız test ediliyor, lütfen bekleyin..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.glade:761
 msgid "Downloading data files"
 msgstr "Veri dosyalarını indirme"
 
-#: src/onboarding.glade:768
+#: src/onboarding.glade:780
 msgid ""
 "Ubuntu Hello needs three pre trained facial recognition datasets to be"
 " able to recognise you, which will be downloaded now. You can see the "
@@ -646,19 +769,19 @@ msgstr ""
 "ma veri kümesine ihtiyacı var ve bunlar şimdi indirilecek. İndirme sür"
 "ecini aşağıda görebilirsiniz."
 
-#: src/onboarding.glade:789
+#: src/onboarding.glade:801
 msgid "Starting download..."
 msgstr "İndirme başlatılıyor..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.glade:850
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Ubuntu Hello'a hoş geldiniz!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.glade:866
 msgid "Version"
 msgstr "Sürüm"
 
-#: src/onboarding.glade:875
+#: src/onboarding.glade:887
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
@@ -667,15 +790,15 @@ msgstr ""
 "izin için otomatik olarak yapılandıracaktır. Devam etmek için ileri tu"
 "şuna basın."
 
-#: src/onboarding.glade:899
+#: src/onboarding.glade:911
 msgid "Cancel"
 msgstr "İptal etmek"
 
-#: src/onboarding.glade:919
+#: src/onboarding.glade:931
 msgid "Next"
 msgstr "Sonraki"
 
-#: src/onboarding.glade:944
+#: src/onboarding.glade:956
 msgid "Finish setup"
 msgstr "Kurulumu bitir"
 
