@@ -61,6 +61,7 @@ Sources: `tests/pam_aes_gcm_uh1_test.cc`, `tests/pam_face_skip_test.cc` (wired i
 | Module | Focus |
 |---|---|
 | `tests/test_compare_cleanup.py` | SIGTERM / GTK cleanup |
+| `tests/test_notify.py` | AuthNotifier desktop cards; privileged id/done markers (`O_NOFOLLOW`) |
 | `tests/test_theme_detect.py` | Multi-DE theme probes |
 | `tests/test_wallet_backend.py` | Wallet labels |
 | `tests/test_i18n_lint.py` | JSON + gettext catalog lint; `test_all_translations_filled` fails on empty/fuzzy `.po` or fill-pack gaps vs `.pot` (`scripts/i18n-lint.py`) |

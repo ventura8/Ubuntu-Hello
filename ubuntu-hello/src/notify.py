@@ -12,8 +12,11 @@
 # (replaces_id) with the outcome, so the user sees a single card change from
 # "Looking for your face..." to "Face recognized" / "Face not recognized" with
 # the numbers that explain it (certainty vs threshold, frames, fps, elapsed).
-# The id is persisted per user (ID_FILE under /run/user/<uid>) so the *next*
-# attempt updates the same card too instead of stacking a new one per auth.
+# The id is persisted per user so the *next* attempt updates the same card
+# too instead of stacking a new one per auth. Privileged (PAM/root) compare
+# writes under /run/ubuntu-hello/notify/<uid>/ (root-owned 0700, O_NOFOLLOW)
+# so a user cannot plant a symlink for root to follow. Unprivileged dry runs
+# keep the XDG runtime-dir files.
 #
 # Body layout: ONE line. GNOME Shell replaces newlines with spaces and shows
 # the collapsed banner as a single ellipsized line, so the essentials come
@@ -22,7 +25,9 @@
 import html
 import os
 import pwd
+import stat
 import subprocess
+import sys
 import threading
 import time
 
@@ -40,10 +45,46 @@ APP_ICON = "ubuntu-hello-gtk"
 # single synchronous "status" bubble instead of stacking a new one per auth.
 SYNCHRONOUS_TAG = "ubuntu-hello-auth"
 
-# Per-user file holding the last notification id, so consecutive attempts
-# replace the same card. Lives in the user's runtime dir: writable by root
-# (PAM) and by the user (dry runs), gone on logout.
+# Unprivileged dry-run file holding the last notification id (XDG runtime
+# dir, gone on logout). Privileged PAM compare uses RUN_DIR instead.
 ID_FILE = "ubuntu-hello-notify.id"
+# Root-owned runtime tree shared with face-skip / postinstall (0700).
+RUN_DIR = "/run/ubuntu-hello"
+NOTIFY_SUBDIR = "notify"
+
+# Detached root watchdog: sleep, lstat the done marker without following a
+# symlink, then drop to the user before CloseNotification. Used when PAM
+# compare cannot let the user helper [ -e ] a 0700 /run/ubuntu-hello path.
+_CLOSE_WATCHDOG = """
+import os
+import stat
+import sys
+import time
+delay = float(sys.argv[1])
+marker = sys.argv[2]
+uid = int(sys.argv[3])
+gid = int(sys.argv[4])
+bus_path = sys.argv[5]
+nid = sys.argv[6]
+gdbus = sys.argv[7]
+time.sleep(delay)
+try:
+	if stat.S_ISREG(os.lstat(marker).st_mode):
+		raise SystemExit(0)
+except OSError:
+	pass
+os.environ["DBUS_SESSION_BUS_ADDRESS"] = "unix:path=" + bus_path
+os.environ["XDG_RUNTIME_DIR"] = os.path.dirname(bus_path)
+os.environ["PATH"] = "/usr/bin:/bin"
+if os.geteuid() == 0:
+	os.setgroups([])
+	os.setgid(gid)
+	os.setuid(uid)
+os.execv(gdbus, [gdbus, "call", "--session",
+	"--dest", "org.freedesktop.Notifications",
+	"--object-path", "/org/freedesktop/Notifications",
+	"--method", "org.freedesktop.Notifications.CloseNotification", nid])
+"""
 
 URGENCY_LOW = 0
 URGENCY_NORMAL = 1
@@ -114,31 +155,122 @@ def session_bus_for_user(user):
 	return pw.pw_uid, pw.pw_gid, bus_path
 
 
+def _privileged():
+	"""True when compare is running as root (PAM), not a user dry run."""
+	return os.geteuid() == 0
+
+
+def _nofollow_flag():
+	flag = getattr(os, "O_NOFOLLOW", 0)
+	if not flag:
+		raise OSError("O_NOFOLLOW is required")
+	return flag
+
+
+def _ensure_euid_dir(path):
+	"""Create *path* as a 0700 euid-owned directory; refuse symlinks."""
+	try:
+		os.mkdir(path, 0o700)
+	except FileExistsError:
+		pass
+	st = os.lstat(path)
+	if stat.S_ISLNK(st.st_mode):
+		raise OSError("%s: refuses symlink" % path)
+	if not stat.S_ISDIR(st.st_mode):
+		raise OSError("%s: not a directory" % path)
+	if st.st_uid != os.geteuid():
+		raise OSError("%s: unexpected owner uid %d" % (path, st.st_uid))
+	os.chmod(path, 0o700)
+
+
+def _open_nofollow(path, flags, mode=0o600):
+	"""Open *path* without following a final-component symlink.
+
+	Refuses non-regular files (O_NOFOLLOW + fstat). Parent directories are
+	not created here.
+	"""
+	cloexec = getattr(os, "O_CLOEXEC", 0)
+	fd = os.open(path, flags | _nofollow_flag() | cloexec, mode)
+	try:
+		st = os.fstat(fd)
+		if not stat.S_ISREG(st.st_mode):
+			raise OSError("%s: not a regular file" % path)
+	except Exception:
+		os.close(fd)
+		raise
+	return fd
+
+
+def notify_state_paths(uid):
+	"""Return (id_path, done_path) for *uid*.
+
+	Root PAM compare uses /run/ubuntu-hello/notify/<uid>/ so marker writes
+	cannot follow a user-controlled symlink under /run/user/<uid>/. User
+	dry runs keep ID_FILE beside the session bus.
+	"""
+	uid = int(uid)
+	if _privileged():
+		base = os.path.join(RUN_DIR, NOTIFY_SUBDIR, str(uid))
+		_ensure_euid_dir(RUN_DIR)
+		_ensure_euid_dir(os.path.join(RUN_DIR, NOTIFY_SUBDIR))
+		_ensure_euid_dir(base)
+		return os.path.join(base, "id"), os.path.join(base, "done")
+	runtime = "/run/user/%d" % uid
+	id_path = os.path.join(runtime, ID_FILE)
+	return id_path, id_path + ".done"
+
+
 def read_saved_id(path):
 	"""Return the persisted notification id at *path*, or 0."""
+	fd = -1
 	try:
-		with open(path, "r", encoding="ascii") as fh:
-			return int(fh.read().strip() or 0)
-	except (OSError, ValueError):
+		fd = _open_nofollow(path, os.O_RDONLY)
+		data = os.read(fd, 64)
+		return int(data.decode("ascii").strip() or 0)
+	except (OSError, ValueError, UnicodeDecodeError):
 		return 0
+	finally:
+		if fd >= 0:
+			try:
+				os.close(fd)
+			except OSError:
+				pass
 
 
 def write_saved_id(path, notification_id, owner=None):
 	"""Persist *notification_id* at *path* (best-effort, atomic).
 
-	*owner* is (uid, gid): when running as root the file is handed to the
-	user so their own dry runs (`ubuntu-hello test`, compare.py as the user)
-	share the same card.
+	Opens the pid-suffixed tmp with O_NOFOLLOW|O_EXCL so a planted symlink
+	is not followed. *owner* is (uid, gid) for fchown on the tmp fd when
+	running as root; privileged PAM paths stay root-owned (no chown).
 	"""
 	tmp = "%s.%d.tmp" % (path, os.getpid())
+	payload = ("%d\n" % notification_id).encode("ascii")
+	fd = -1
 	try:
-		with open(tmp, "w", encoding="ascii") as fh:
-			fh.write("%d\n" % notification_id)
-		os.chmod(tmp, 0o600)
-		if owner and os.geteuid() == 0:
-			os.chown(tmp, owner[0], owner[1])
+		for attempt in (0, 1):
+			try:
+				fd = _open_nofollow(
+					tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600
+				)
+				break
+			except FileExistsError:
+				if attempt:
+					raise
+				os.unlink(tmp)
+		os.write(fd, payload)
+		os.fchmod(fd, 0o600)
+		if owner is not None and os.geteuid() == 0:
+			os.fchown(fd, owner[0], owner[1])
+		os.close(fd)
+		fd = -1
 		os.replace(tmp, path)
 	except OSError:
+		if fd >= 0:
+			try:
+				os.close(fd)
+			except OSError:
+				pass
 		try:
 			os.unlink(tmp)
 		except OSError:
@@ -174,10 +306,15 @@ class AuthNotifier:
 		if self._bus is None:
 			self.disabled_reason = "no session bus for user"
 			return
-		self.id_path = os.path.join(os.path.dirname(self._bus[2]), ID_FILE)
-		# Touched once a result card went out; the start() watchdog checks it.
-		self.done_path = self.id_path + ".done"
-		self.notification_id = read_saved_id(self.id_path)
+		self.id_path = None
+		self.done_path = None
+		try:
+			self.id_path, self.done_path = notify_state_paths(self._bus[0])
+			self.notification_id = read_saved_id(self.id_path)
+		except OSError:
+			# Cannot create the privileged state dir: still send cards, skip
+			# persistence rather than falling back to a user-writable path.
+			self.notification_id = 0
 
 	# -- transport -----------------------------------------------------------
 
@@ -227,10 +364,6 @@ class AuthNotifier:
 		close = "%s call --session --dest org.freedesktop.Notifications " \
 			"--object-path /org/freedesktop/Notifications " \
 			"--method org.freedesktop.Notifications.CloseNotification %d" % (GDBUS_PATH, self.notification_id)
-		if unless_marker:
-			script = "sleep %s; [ -e '%s' ] || exec %s" % ("%.1f" % delay, unless_marker, close)
-		else:
-			script = "sleep %s; exec %s" % ("%.1f" % delay, close)
 		env = {
 			"DBUS_SESSION_BUS_ADDRESS": "unix:path=" + bus_path,
 			"XDG_RUNTIME_DIR": os.path.dirname(bus_path),
@@ -243,11 +376,30 @@ class AuthNotifier:
 				os.setgid(gid)
 				os.setuid(uid)
 
+		# Privileged compare stores the marker under 0700 /run/ubuntu-hello,
+		# which the user helper cannot [ -e ]. Stay root for sleep+lstat, then
+		# the watchdog drops uid before gdbus. Unprivileged dry runs keep the
+		# existing user-shell helper.
+		if unless_marker and _privileged():
+			argv = [
+				sys.executable, "-E", "-s", "-c", _CLOSE_WATCHDOG,
+				"%.1f" % delay, unless_marker, str(uid), str(gid),
+				bus_path, str(self.notification_id), GDBUS_PATH,
+			]
+			preexec = None
+		else:
+			if unless_marker:
+				script = "sleep %s; [ -e '%s' ] || exec %s" % ("%.1f" % delay, unless_marker, close)
+			else:
+				script = "sleep %s; exec %s" % ("%.1f" % delay, close)
+			argv = [SH_PATH, "-c", script]
+			preexec = demote
+
 		try:
 			subprocess.Popen(
-				[SH_PATH, "-c", script],
+				argv,
 				env=env,
-				preexec_fn=demote,
+				preexec_fn=preexec,
 				start_new_session=True,
 				stdin=subprocess.DEVNULL,
 				stdout=subprocess.DEVNULL,
@@ -260,13 +412,23 @@ class AuthNotifier:
 
 	def _mark_done(self):
 		"""Record that a result card went out (guards the start() watchdog)."""
+		if not self.done_path:
+			return
+		fd = -1
 		try:
-			with open(self.done_path, "w", encoding="ascii") as fh:
-				fh.write("1\n")
-			if os.geteuid() == 0:
-				os.chown(self.done_path, self._bus[0], self._bus[1])
+			fd = _open_nofollow(
+				self.done_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600
+			)
+			os.write(fd, b"1\n")
+			os.fchmod(fd, 0o600)
+			os.close(fd)
+			fd = -1
 		except OSError:
-			pass
+			if fd >= 0:
+				try:
+					os.close(fd)
+				except OSError:
+					pass
 
 	def _notify(self, summary, body, urgency, expire_ms, hints=None, icon=APP_ICON, final=True):
 		"""Send org.freedesktop.Notifications.Notify, reusing our id to update in place.
@@ -314,7 +476,10 @@ class AuthNotifier:
 			new_id = parse_notification_id(result.stdout)
 			if new_id and new_id != self.notification_id:
 				self.notification_id = new_id
-				write_saved_id(self.id_path, new_id, owner=self._bus[:2])
+				if self.id_path:
+					# Privileged PAM files stay root-owned under RUN_DIR.
+					owner = None if _privileged() else self._bus[:2]
+					write_saved_id(self.id_path, new_id, owner=owner)
 			return True
 
 	# -- content -------------------------------------------------------------
@@ -410,10 +575,11 @@ class AuthNotifier:
 		if self.disabled_reason:
 			return
 		self.context = dict(extra, device=device)
-		try:
-			os.unlink(self.done_path)
-		except OSError:
-			pass
+		if self.done_path:
+			try:
+				os.unlink(self.done_path)
+			except OSError:
+				pass
 		body = self._line(
 			"👀 " + html.escape(_("Looking for your face…")),
 			self._debug_part({}),

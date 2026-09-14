@@ -343,10 +343,10 @@ def test_new_id_from_server_is_persisted():
 
 def test_write_saved_id_hands_file_to_user_when_root(tmp_path):
     path = str(tmp_path / "notify.id")
-    with patch("notify.os.geteuid", return_value=0), patch("notify.os.chown") as chown:
+    with patch("notify.os.geteuid", return_value=0), patch("notify.os.fchown") as fchown:
         notify.write_saved_id(path, 5, owner=(1000, 1000))
-    chown.assert_called_once()
-    assert chown.call_args.args[1:] == (1000, 1000)
+    fchown.assert_called_once()
+    assert fchown.call_args.args[1:] == (1000, 1000)
     assert oct(os.stat(path).st_mode & 0o777) == "0o600"
     assert notify.read_saved_id(path) == 5
 
@@ -437,3 +437,135 @@ def test_details_line_includes_raw_service(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.timeout(3.7, 3.5, 40, 8.0, 8)
     assert "polkit-1" in run.call_args.args[0][13]
+
+
+# ── privileged marker paths / symlink safety ─────────────────────────
+
+def test_mark_done_does_not_follow_symlink(tmp_path):
+    """Root open(..., 'w') used to truncate a user-planted symlink target."""
+    victim = tmp_path / "victim"
+    victim.write_text("keep\n")
+    done = tmp_path / "done"
+    done.symlink_to(victim)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)), \
+         patch("notify.notify_state_paths", return_value=(str(tmp_path / "id"), str(done))):
+        n = notify.AuthNotifier("alice")
+    n._mark_done()
+    assert victim.read_text() == "keep\n"
+    assert done.is_symlink()
+
+
+def test_mark_done_writes_regular_file(tmp_path):
+    done = tmp_path / "done"
+    done.write_text("old\n")
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)), \
+         patch("notify.notify_state_paths", return_value=(str(tmp_path / "id"), str(done))):
+        n = notify.AuthNotifier("alice")
+    n._mark_done()
+    assert done.read_text() == "1\n"
+    assert not done.is_symlink()
+    assert oct(done.stat().st_mode & 0o777) == "0o600"
+
+
+def test_write_saved_id_tmp_symlink_does_not_follow(tmp_path):
+    victim = tmp_path / "victim"
+    victim.write_text("keep\n")
+    path = tmp_path / "notify.id"
+    tmp = tmp_path / ("notify.id.%d.tmp" % os.getpid())
+    tmp.symlink_to(victim)
+    notify.write_saved_id(str(path), 9)
+    assert victim.read_text() == "keep\n"
+    assert notify.read_saved_id(str(path)) == 9
+    assert not tmp.exists()
+
+
+def test_read_saved_id_does_not_follow_symlink(tmp_path):
+    victim = tmp_path / "victim"
+    victim.write_text("42\n")
+    path = tmp_path / "notify.id"
+    path.symlink_to(victim)
+    assert notify.read_saved_id(str(path)) == 0
+    assert victim.read_text() == "42\n"
+
+
+def test_open_nofollow_required(tmp_path, monkeypatch):
+    monkeypatch.setattr(notify.os, "O_NOFOLLOW", 0)
+    with pytest.raises(OSError, match="O_NOFOLLOW"):
+        notify._open_nofollow(str(tmp_path / "x"), os.O_WRONLY | os.O_CREAT)
+
+
+def test_close_watchdog_snippet_compiles():
+    compile(notify._CLOSE_WATCHDOG, "<watchdog>", "exec")
+
+
+def test_root_notify_state_uses_run_ubuntu_hello(tmp_path, monkeypatch):
+    monkeypatch.setattr(notify, "RUN_DIR", str(tmp_path / "ubuntu-hello"))
+    monkeypatch.setattr(notify, "_privileged", lambda: True)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)):
+        n = notify.AuthNotifier("alice")
+    assert n.id_path == str(tmp_path / "ubuntu-hello/notify/1000/id")
+    assert n.done_path == str(tmp_path / "ubuntu-hello/notify/1000/done")
+    mode = os.stat(str(tmp_path / "ubuntu-hello/notify/1000")).st_mode
+    assert oct(mode & 0o777) == "0o700"
+
+
+def test_root_skips_user_runtime_when_priv_dir_fails(tmp_path, monkeypatch):
+    blocked = tmp_path / "not-a-dir"
+    blocked.write_text("x")
+    monkeypatch.setattr(notify, "RUN_DIR", str(blocked))
+    monkeypatch.setattr(notify, "_privileged", lambda: True)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)):
+        n = notify.AuthNotifier("alice")
+    assert n.id_path is None and n.done_path is None
+    assert n.disabled_reason is None
+
+
+def test_priv_dir_refuses_symlink_run_dir(tmp_path, monkeypatch):
+    target = tmp_path / "target"
+    target.mkdir()
+    link = tmp_path / "ubuntu-hello"
+    link.symlink_to(target)
+    monkeypatch.setattr(notify, "RUN_DIR", str(link))
+    monkeypatch.setattr(notify, "_privileged", lambda: True)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)):
+        n = notify.AuthNotifier("alice")
+    assert n.id_path is None
+    assert n.disabled_reason is None
+
+
+def test_root_watchdog_lstats_marker_before_demote(tmp_path, monkeypatch):
+    monkeypatch.setattr(notify, "RUN_DIR", str(tmp_path / "ubuntu-hello"))
+    monkeypatch.setattr(notify, "_privileged", lambda: True)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)):
+        n = notify.AuthNotifier("alice")
+    with patch("notify.subprocess.run", return_value=_completed()), \
+         patch("notify.subprocess.Popen") as popen, \
+         patch("notify.threading.Thread") as thread:
+        n.start(max_seconds=20.0)
+        thread.call_args.kwargs["target"]()
+    argv = popen.call_args.args[0]
+    assert argv[0] == sys.executable
+    assert argv[1:4] == ["-E", "-s", "-c"]
+    assert n.done_path in argv
+    assert notify.GDBUS_PATH in argv
+    assert popen.call_args.kwargs["preexec_fn"] is None
+    assert popen.call_args.kwargs["start_new_session"] is True
+
+
+def test_root_does_not_chown_priv_id_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(notify, "RUN_DIR", str(tmp_path / "ubuntu-hello"))
+    monkeypatch.setattr(notify, "_privileged", lambda: True)
+    with patch("notify.os.path.exists", return_value=True), \
+         patch("notify.pwd.getpwnam", return_value=MagicMock(pw_uid=1000, pw_gid=1000)):
+        n = notify.AuthNotifier("alice")
+    with patch("notify.subprocess.run", return_value=_completed("(uint32 78,)\n")), \
+         patch("notify.subprocess.Popen"), \
+         patch("notify.write_saved_id") as write:
+        n.success(2.5, 3.5, "M", 10, 1.0)
+    write.assert_called_once_with(n.id_path, 78, owner=None)

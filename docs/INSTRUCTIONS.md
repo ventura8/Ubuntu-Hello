@@ -54,7 +54,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   │   ├── config_ensure.py   # Restore live config.ini if the dpkg conffile is missing
 │   │   ├── keyring_crypto.py  # UH1 AES-GCM helpers
 │   │   ├── keyring_restore.py # Unseal + restore login wallet password
-│   │   ├── notify.py          # Desktop notification per auth attempt (updated in place)
+│   │   ├── notify.py          # Desktop notification per auth attempt; PAM markers under /run/ubuntu-hello/notify/<uid>/
 │   │   ├── wallet_backend.py  # gnome-keyring / kwallet / none labels
 │   │   └── paths_factory.py
 │   ├── po/                    # gettext domain ubuntu-hello
