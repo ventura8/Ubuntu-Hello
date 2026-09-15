@@ -1,9 +1,11 @@
 import subprocess
-import time
 
 from i18n import _
+import gi
+gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk as gtk
 from gi.repository import GObject as gobject
+import gtk4compat
 
 
 def on_user_change(self, select):
@@ -12,71 +14,30 @@ def on_user_change(self, select):
 	self.update_keyring_status()
 
 
-def on_user_add(self, button):
-	# Open question dialog
-	dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.QUESTION, buttons=gtk.ButtonsType.OK_CANCEL)
-	dialog.set_title(_("Confirm User Creation"))
-	dialog.props.text = _("Please enter the username of the user you want to add to Ubuntu Hello")
-
-	# Create the input field
-	entry = gtk.Entry()
-
-	# Add a label to ask for a model name
-	hbox = gtk.HBox()
-	hbox.pack_start(gtk.Label(_("Username:")), False, 5, 5)
-	hbox.pack_end(entry, True, True, 5)
-
-	# Add the box and show the dialog
-	dialog.vbox.pack_end(hbox, True, True, 0)
-	dialog.show_all()
-
-	# Show dialog
-	response = dialog.run()
-
-	entered_user = entry.get_text()
-	dialog.destroy()
-
-	if response == gtk.ResponseType.OK:
-		self.userlist.append_text(entered_user)
-		self.userlist.set_active(self.userlist.items)
-		self.userlist.items += 1
-
-		self.active_user = entered_user
-		self.load_model_list()
-		self.update_keyring_status()
-
-
 def on_model_add(self, button):
 	if self.userlist.items == 0:
 		return
-	# Open question dialog
-	dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.QUESTION, buttons=gtk.ButtonsType.OK_CANCEL)
-	dialog.set_title(_("Confirm Model Creation"))
-	dialog.props.text = _("Please enter a name for the new model, 24 characters max")
+	# Ask for the model name in a small modal prompt
+	dialog = gtk4compat.PromptWindow(self.window, _("Confirm Model Creation"))
+	dialog.add_action(_("Cancel"), gtk.ResponseType.CANCEL)
+	dialog.add_action(_("Add"), gtk.ResponseType.OK, suggested=True)
+	dialog.content.append(gtk.Label(label=_("Please enter a name for the new model, 24 characters max"), xalign=0.0, wrap=True))
 
-	# Create the input field
 	entry = gtk.Entry()
+	entry.set_hexpand(True)
+	entry.set_placeholder_text(_("Model name:"))
+	entry.set_max_length(24)
+	entry.connect("activate", lambda *_a: dialog.respond(gtk.ResponseType.OK))
+	dialog.content.append(entry)
 
-	# Add a label to ask for a model name
-	hbox = gtk.HBox()
-	hbox.pack_start(gtk.Label(_("Model name:")), False, 5, 5)
-	hbox.pack_end(entry, True, True, 5)
-
-	# Add the box and show the dialog
-	dialog.vbox.pack_end(hbox, True, True, 0)
-	dialog.show_all()
-
-	# Show dialog
-	response = dialog.run()
-
+	response = gtk4compat.run_dialog(dialog)
 	entered_name = entry.get_text()
 	dialog.destroy()
 
 	if response == gtk.ResponseType.OK:
-		dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, buttons=gtk.ButtonsType.NONE)
-		dialog.set_title(_("Creating Model"))
-		dialog.props.text = _("Please look directly into the camera")
-		dialog.show_all()
+		dialog = gtk4compat.PromptWindow(self.window, _("Creating Model"))
+		dialog.content.append(gtk.Label(label=_("Please look directly into the camera"), wrap=True))
+		dialog.present()
 
 		# Wait a bit to allow the user to read the dialog
 		gobject.timeout_add(600, lambda: execute_add(self, dialog, entered_name))
@@ -94,39 +55,29 @@ def execute_add(box, dialog, entered_name):
 	dialog.destroy()
 
 	if status != 0:
-		dialog = gtk.MessageDialog(parent=box, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-		dialog.set_title(_("Ubuntu Hello Error"))
-		dialog.props.text = _("Error while adding model, error code {}: \n\n").format(str(status))
-		dialog.format_secondary_text(output)
-		dialog.run()
-		dialog.destroy()
+		gtk4compat.alert(box.window, _("Error while adding model, error code {}: \n\n").format(str(status)).strip(), output)
 
 	box.load_model_list()
+	return False
+
 
 def on_model_delete(self, button):
-	selection = self.treeview.get_selection()
-	(listmodel, rowlist) = selection.get_selected_rows()
+	row = self.models.selected_row()
+	if row is None:
+		return
+	id, name = row[0], row[2]
 
-	if len(rowlist) == 1:
-		id = listmodel.get_value(listmodel.get_iter(rowlist[0]), 0)
-		name = listmodel.get_value(listmodel.get_iter(rowlist[0]), 2)
+	choice = gtk4compat.alert(
+		self.window,
+		_("Are you sure you want to delete model {id} ({name})?").format(id=id, name=name),
+		buttons=(_("Cancel"), _("Delete")), default=1, cancel=0)
+	if choice != 1:
+		return
 
-		dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, buttons=gtk.ButtonsType.OK_CANCEL)
-		dialog.set_title(_("Confirm Model Deletion"))
-		dialog.props.text = _("Are you sure you want to delete model {id} ({name})?").format(id=id, name=name)
-		response = dialog.run()
-		dialog.destroy()
+	res = subprocess.run(["ubuntu-hello", "remove", str(id), "-y", "-U", self.active_user], capture_output=True, text=True)
+	status, output = res.returncode, res.stdout + res.stderr
 
-		if response == gtk.ResponseType.OK:
-			res = subprocess.run(["ubuntu-hello", "remove", str(id), "-y", "-U", self.active_user], capture_output=True, text=True)
-			status, output = res.returncode, res.stdout + res.stderr
+	if status != 0:
+		gtk4compat.alert(self.window, _("Error while deleting model, error code {}: \n\n").format(status).strip(), output)
 
-			if status != 0:
-				dialog = gtk.MessageDialog(parent=self, flags=gtk.DialogFlags.MODAL, type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.CLOSE)
-				dialog.set_title(_("Ubuntu Hello Error"))
-				dialog.props.text = _("Error while deleting model, error code {}: \n\n").format(status)
-				dialog.format_secondary_text(output)
-				dialog.run()
-				dialog.destroy()
-
-			self.load_model_list()
+	self.load_model_list()

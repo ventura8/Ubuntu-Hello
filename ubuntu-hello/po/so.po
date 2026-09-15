@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "Fashilmay, wakhtigu waa la gaadhay"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Sawirka ogaanshaha wejiga aad buu u madow yahay"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Khalad aan la garanayn:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "Wajiga loo aqoonsaday inuu yahay %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Ogolaanshaha aan ku filnayn in loo diro Press Press, sugaysa isticmaal"
-"uhu inuu riixo beddelkeeda"
+"Ogolaanshaha aan ku filnayn in loo diro Press Press, sugaysa isticmaaluhu "
+"inuu riixo beddelkeeda"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Ku guuldareystay inuu soo diro Enter press, isagoo sugaya isticmaaluhu"
-" inuu taa beddelkeeda riixo"
+"Ku guuldareystay inuu soo diro Enter press, isagoo sugaya isticmaaluhu inuu "
+"taa beddelkeeda riixo"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Isku dayga aqoonsiga wejiga"
 
@@ -67,19 +68,20 @@ msgstr "doodaha"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Taageerada fadlan booqo\n⟦U0000"
+"Taageerada fadlan booqo\n"
+"⟦U0000"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"Xulashada amarka si loo fuliyo, waxay noqon kartaa mid ka mid ah kuwan"
-" soo socda: ku dar, cad, habayn, diido, furayaasha, liiska, ka saar, s"
-"awir-qaadista, dejin, tijaabin ama version."
+"Xulashada amarka si loo fuliyo, waxay noqon kartaa mid ka mid ah kuwan soo "
+"socda: ku dar, cad, habayn, diido, furayaasha, liiska, ka saar, sawir-"
+"qaadista, dejin, tijaabin ama version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -114,136 +116,251 @@ msgid "Invalid username format"
 msgstr "Qaab isticmaale aan sax ahayn"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Fadlan u socodsii amarkan xidid ahaan:\n"
+msgid "Please run this command as root:\n"
+msgstr "Fadlan u socodsii amarkan xidid ahaan:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Ubuntu-hello uma socodsiin karo amarrada xidid ahaan, fadlan ku socods"
-"ii amarkan --user calanka"
+"Ubuntu-hello uma socodsiin karo amarrada xidid ahaan, fadlan ku socodsii "
+"amarkan --user calanka"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "Faylasha xogta lama soo dejin, fadlan socodsii amarada soo socda:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "LOGIN"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Taariikhda:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "Waqtiga sawirka:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "Frames:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "Magaca martida:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "Qiimaha ugu fiican ee la hubo:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "Bilawga..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "Ku aqoonsanaya..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "FASHILAN"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Dhammaan xayndaabyadu aad bay mugdi u ahaayeen, fadlan ka eeg dark_thr"
-"eshold habaynta"
+"Dhammaan xayndaabyadu aad bay mugdi u ahaayeen, fadlan ka eeg dark_threshold "
+"habaynta"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Dhexdhexaad mugdi: {avg}, Xadka: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "Waqti ku qaatay"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "Bilawga"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Kaamirada furan + laabta rarka: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "Furitaanka kamaradda"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "Soo dejinta libyada aqoonsiga"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "Raadinta wejiga la yaqaan"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "Wadarta wakhtiga"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nQaraarka"
+"\n"
+"Qaraarka"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Dhaladka: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Waxaa loo adeegsaday: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nFrames la raadiyay: %d (%.2f fps)"
+"\n"
+"Frames la raadiyay: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Fiimyada madow waa la iska indhatiray: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Laydhka mugdiga ah waa la iska indhatiray: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Hubinta qaabka guusha: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Qaabka guuleysiga: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "GUUL"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "oggolaansho"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "shaashadda fur"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "waqti go'an"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "raran"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s fiimooyin"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s madow"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "Raadinta wajigaaga…"
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "Xaqiijinta wajiga"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "Waji la aqoonsaday"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "ku dar model iftiinkan"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "iska hubi kamarada"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "Wax kulan ah ma jiro %s"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "isqor: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "ugu dhow"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "Waji lama aqoonsan"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "Aad u madow"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "shid iftiin"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "mugdi"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "Hubinta nolosha ayaa guuldareystay"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "Noodel waji oo loogu talagalay %s"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "Xaqiijinta wajiga lama heli karo"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "La joojiyay"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "Xaqiijinta wejiga waa la joojiyay"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -267,9 +384,11 @@ msgstr "furaha login ama KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nMa soo dejin karo moduleka dlib, hubi wax soo saarka"
+"\n"
+"Ma soo dejin karo moduleka dlib, hubi wax soo saarka"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -277,17 +396,14 @@ msgstr "Lama helin fayl model wejiga, abuuray mid"
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr ""
-"OGAYSIIS: Nooc kasta oo dheeraad ah ayaa waxyar ka dhigaya mishiinka a"
-"qoonsiga wejiga"
+"OGAYSIIS: Nooc kasta oo dheeraad ah ayaa waxyar ka dhigaya mishiinka "
+"aqoonsiga wejiga"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Taabo Ctrl+C si aad u joojiso\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Taabo Ctrl+C si aad u joojiso\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -298,6 +414,7 @@ msgid "Model #"
 msgstr "Qaabka #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Isticmaalka summada caadiga ah \"%s\" sababtoo ah -y calanka"
 
@@ -308,20 +425,21 @@ msgstr "Geli calaamad qaabkan cusub [{}]:"
 #: src/cli/add.py:107
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr ""
-"OGAYSIIS: Ka saaritaanka xarfaha sharci darrada ah \",\" magaca moodee"
-"lka"
+"OGAYSIIS: Ka saaritaanka xarfaha sharci darrada ah \",\" magaca moodeelka"
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nFadlan toos u eeg kamarada"
+"\n"
+"Fadlan toos u eeg kamarada"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr ""
-"Kamaradu waxay aragtay fareemo madow oo keliya - IR emitter miyuu shaq"
-"aynayaa?"
+"Kamaradu waxay aragtay fareemo madow oo keliya - IR emitter miyuu "
+"shaqaynayaa?"
 
 #: src/cli/add.py:191
 msgid "No face detected, aborting"
@@ -333,9 +451,13 @@ msgstr "Wajiyo badan ayaa la ogaaday, ilmo iska soo ridday"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nBaadhitaanka oo dhamaystiran\nWaxaa lagu daray qaab cusub"
+"\n"
+"Baadhitaanka oo dhamaystiran\n"
+"Waxaa lagu daray qaab cusub"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -355,21 +477,27 @@ msgstr "Ma rabtaa inaad sii waddo [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nIsagoo u turjumaya \"MAYA\", soo rididda"
+"\n"
+"Isagoo u turjumaya \"MAYA\", soo rididda"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nQaababka waa la nadiifiyay"
+"\n"
+"Qaababka waa la nadiifiyay"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Furitaanka config.ini gudaha {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "Ku guuldareystay inuu furo tafatiraha: {error}"
 
@@ -383,11 +511,11 @@ msgstr "Fadlan ku rakib 'nano' ama 'vi', ama deji isbeddelka deegaanka EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Haddii aad amarkan ku waddo sudo, isku day 'sudo -E ubuntu-hello confi"
-"g' si aad u ilaaliso doorsoomiyaha EDITOR-kaaga."
+"Haddii aad amarkan ku waddo sudo, isku day 'sudo -E ubuntu-hello config' si "
+"aad u ilaaliso doorsoomiyaha EDITOR-kaaga."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -439,11 +567,11 @@ msgstr "Qalabka TPM firfircoon. Ku xidhida erayga sirta ah ee TPM..."
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Furaha/KWallet Furitaanka si guul leh ayaa loogu sahlay isticmaalaha {"
-"} isticmaalaya TPM (wallet: {})."
+"Furaha/KWallet Furitaanka si guul leh ayaa loogu sahlay isticmaalaha {} "
+"isticmaalaya TPM (wallet: {})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -452,16 +580,15 @@ msgstr "Ku guuldareystay inuu ku xidho erayga sirta ah ee TPM: {}"
 #: src/cli/keyring.py:106
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"Ma jiro TPM firfircoon Isticmaalka kaydinta aqoonsiga ku salaysan soft"
-"ware..."
+"Ma jiro TPM firfircoon Isticmaalka kaydinta aqoonsiga ku salaysan software..."
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -482,8 +609,7 @@ msgstr "Furaha/KWallet furitaan looma darin isticmaale {}."
 #: src/cli/keyring.py:153
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
-"Lama helin furayaasha gelitaanka ee la shaabadeeyay; wax soo celin ma "
-"jiro."
+"Lama helin furayaasha gelitaanka ee la shaabadeeyay; wax soo celin ma jiro."
 
 #: src/cli/keyring.py:155
 msgid "Restored login wallet password for {} user(s)."
@@ -495,11 +621,11 @@ msgstr "Lama soo celin karin furaha jeebka gelitaanka ee {} isticmaale."
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Haddii weydiimuhu sii socdaan, deji furaha furayaasha gelitaanka ama K"
-"Wallet ee Seahorse / Dejinta Nidaamka."
+"Haddii weydiimuhu sii socdaan, deji furaha furayaasha gelitaanka ama KWallet "
+"ee Seahorse / Dejinta Nidaamka."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -542,28 +668,30 @@ msgid "You can find the IDs by running:"
 msgstr "Waxaad ku heli kartaa aqoonsiga adiga oo ordaya:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr ""
-"Tani waxay meesha ka saari doontaa qaabka loo yaqaan \"{label}\" ee {u"
-"ser}"
+"Tani waxay meesha ka saari doontaa qaabka loo yaqaan \"{label}\" ee {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Ma jiro nooc wata aqoonsiga {id} oo u jira {user}"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
 msgstr ""
-"Meesha laga saaray qaabkii u dambeeyay, ubuntu-hello waa naafo isticma"
-"ale"
+"Meesha laga saaray qaabkii u dambeeyay, ubuntu-hello waa naafo isticmaale"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
 msgstr "Qaabka meesha laga saaray {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
-msgstr "Fadlan ku dar goob aad jeceshahay inaad beddesho iyo qiimaha lagu dejiyo"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Fadlan ku dar goob aad jeceshahay inaad beddesho iyo qiimaha lagu dejiyo"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -591,34 +719,43 @@ msgstr "Sawir la soo saaray oo loo kaydiyay sidii"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello waxaa loo habeeyey in uu isticmaalo duube aan wali taagee"
-"rin amarka tijaabada, soo rididda"
+"Ubuntu Hello waxaa loo habeeyey in uu isticmaalo duube aan wali taageerin "
+"amarka tijaabada, soo rididda"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nFuritaanka daaqad leh quudin tijaabo ah\n\nRiix ctrl+C gudaha termin"
-"alka si aad u joojiso\nGuji sawirka si aad awood ugu yeelato ama u joo"
-"jiso habka gaabis ah\n"
+"\n"
+"Furitaanka daaqad leh quudin tijaabo ah\n"
+"\n"
+"Riix ctrl+C gudaha terminalka si aad u joojiso\n"
+"Guji sawirka si aad awood ugu yeelato ama u joojiso habka gaabis ah\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "Xalka: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "FRAMES: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "Aqoonsiga: %dms"
 
@@ -636,9 +773,11 @@ msgstr "SCAN FRAME"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nXiritaanka daaqada"
+"\n"
+"Xiritaanka daaqada"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -669,6 +808,7 @@ msgid "Authorising in {}"
 msgstr "Oggolaanshaha {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Riix {abort_key} si aad u riddo, {confirm_key} si aad u oggolaato"
 
@@ -702,24 +842,23 @@ msgstr "Maqan module pyv4l2, fadlan orod:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello waxay ka heli wayday qalab kamarad ah dariiqa lagu cayima"
-"y faylka habaynta."
+"Ubuntu Hello waxay ka heli wayday qalab kamarad ah dariiqa lagu cayimay "
+"faylka habaynta."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Waxay u badan tahay in dariiqa aan si sax ah loo habeynin, fadlan wax "
-"ka beddel qiimaha qaabeynta 'qalabka_path' adiga oo ordaya:"
+"Waxay u badan tahay in dariiqa aan si sax ah loo habeynin, fadlan wax ka "
+"beddel qiimaha qaabeynta 'qalabka_path' adiga oo ordaya:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"Way ku guul darreysatay inay akhrido kamarada ku qeexan 'qalabka_daadk"
-"a' ikhtiyaarka habaynta, soo rididda"
+"Way ku guul darreysatay inay akhrido kamarada ku qeexan 'qalabka_daadka' "
+"ikhtiyaarka habaynta, soo rididda"

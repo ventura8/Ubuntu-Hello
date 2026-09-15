@@ -1,3 +1,4 @@
+#include <cctype>
 #include <cerrno>
 #include <csignal>
 #include <cstdlib>
@@ -27,6 +28,7 @@
 #include <mutex>
 #include <string>
 #include <tuple>
+#include <vector>
 
 #include <INIReader.h>
 
@@ -280,6 +282,52 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
  * @return        Returns PAM_AUTHINFO_UNAVAIL if it shouldn't be enabled,
  * PAM_SUCCESS otherwise
  */
+/**
+ * True when every byte of *text* is alphanumeric or one of *extra*.
+ * Used to sanitise the few strings the root helper receives from PAM's
+ * environment / service name before they enter its argv or env.
+ */
+auto is_plain_token(const char *text, const char *extra) -> bool {
+  for (const char *cursor = text; *cursor != '\0'; ++cursor) {
+    const auto byte = static_cast<unsigned char>(*cursor);
+    if (isalnum(byte) == 0 && strchr(extra, *cursor) == nullptr) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * The PAM service name for compare.py's argv (sudo, polkit-1, gdm-password,
+ * ...), or "" when missing or containing anything but [A-Za-z0-9._-].
+ */
+auto helper_service_arg(const char *service) -> std::string {
+  if (service == nullptr || !is_plain_token(service, "-_.")) {
+    return "";
+  }
+  return service;
+}
+
+/**
+ * Environment for the root helper: never the caller's, only a fixed system
+ * PATH plus the locale variables (after a strict character check) so the
+ * overlay and the desktop notification speak the session's language instead
+ * of C/English. None of these can redirect a lookup or influence code paths.
+ */
+auto helper_environment() -> std::vector<std::string> {
+  std::vector<std::string> env;
+  env.emplace_back("PATH=/usr/sbin:/usr/bin:/sbin:/bin");
+  for (const char *key : {"LANG", "LANGUAGE", "LC_ALL", "LC_MESSAGES", "LC_CTYPE"}) {
+    const char *value = getenv(key);
+    if (value == nullptr || *value == '\0' || strlen(value) > 64 ||
+        !is_plain_token(value, "_.@:-")) {
+      continue;
+    }
+    env.emplace_back(std::string(key) + "=" + value);
+  }
+  return env;
+}
+
 auto check_enabled(const INIReader &config, const char *username) -> int {
   // Stop executing if Ubuntu Hello has been disabled in the config
   if (config.GetBoolean("core", "disabled", false)) {
@@ -537,9 +585,30 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     }
   }
 
-  std::array<char *, 4> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
+  // Run the interpreter with -E (ignore PYTHON* variables) and -s (no user
+  // site-packages) so nothing outside the packaged install can inject code
+  // into the root helper. -I is not used: it would also drop the script's own
+  // directory from sys.path, which compare.py needs for its sibling modules.
+  // argv[2] for compare.py: the PAM service (sudo, polkit-1, gdm-password,
+  // ...) so the desktop notification can say what is being authenticated.
+  std::string service_arg = helper_service_arg(service);
+  std::array<char *, 7> args = {const_cast<char *>(PYTHON_EXECUTABLE_PATH),
+                                const_cast<char *>("-E"),
+                                const_cast<char *>("-s"),
                                 const_cast<char *>(COMPARE_PROCESS_PATH),
-                                username, nullptr};
+                                username,
+                                const_cast<char *>(service_arg.c_str()),
+                                nullptr};
+
+  // Never inherit the caller's environment into the root helper: no PATH,
+  // PYTHONPATH, LD_PRELOAD, etc. (see helper_environment).
+  std::vector<std::string> env_storage = helper_environment();
+  std::vector<char *> envp;
+  envp.reserve(env_storage.size() + 1);
+  for (auto &entry : env_storage) {
+    envp.push_back(entry.data());
+  }
+  envp.push_back(nullptr);
   pid_t child_pid = -1;
 
   posix_spawn_file_actions_t actions;
@@ -555,8 +624,8 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   posix_spawnattr_setpgroup(&spawn_attr, 0);
 
   // Start the python subprocess
-  int spawn_err = posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions,
-                               &spawn_attr, args.data(), nullptr);
+  int spawn_err = posix_spawn(&child_pid, PYTHON_EXECUTABLE_PATH, &actions,
+                              &spawn_attr, args.data(), envp.data());
   posix_spawnattr_destroy(&spawn_attr);
   posix_spawn_file_actions_destroy(&actions);
 

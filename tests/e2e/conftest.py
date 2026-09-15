@@ -17,8 +17,8 @@ if os.environ.get("UH_REAL_GTK") != "1":
 	pytest.skip("E2E tests require UH_REAL_GTK=1 (real gi.repository.Gtk)", allow_module_level=True)
 
 import gi
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("Gdk", "4.0")
 from gi.repository import Gtk, Gdk, GLib
 import numpy as np
 
@@ -47,17 +47,23 @@ def default_e2e_environment(monkeypatch):
 @pytest.fixture(autouse=True)
 def auto_dialog_response(monkeypatch):
 	"""Auto-respond to modal dialogs during headless E2E testing to prevent hangs."""
-	monkeypatch.setattr(Gtk.Dialog, "run", lambda self: Gtk.ResponseType.OK)
+	import gtk4compat
+	monkeypatch.setattr(gtk4compat, "run_dialog", lambda dialog: Gtk.ResponseType.OK)
+	# AlertDialog would block on a real click; answer with the default (action) button.
+	monkeypatch.setattr(gtk4compat, "alert", lambda parent, heading, body="", buttons=("Close",), default=0, cancel=None: default)
 
 
 @pytest.fixture
 def gtk_pump():
 	"""Helper to flush all pending GTK events and background callbacks."""
 	import time
+	from gi.repository import GLib
+	context = GLib.MainContext.default()
+
 	def _pump(iterations: int = 10):
 		for _ in range(iterations):
-			while Gtk.events_pending():
-				Gtk.main_iteration_do(False)
+			while context.pending():
+				context.iteration(False)
 			time.sleep(0.01)
 	return _pump
 

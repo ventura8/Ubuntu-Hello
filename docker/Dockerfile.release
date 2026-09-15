@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.26.0
+# syntax=docker/dockerfile:1.27.0
 # AppImage and Flatpak release builds — Ubuntu 26.04
 # Snap builds use docker/Dockerfile.snap on Ubuntu 24.04 (core24 base; see check.yml / release.yml).
 FROM ubuntu:26.04
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config libpam0g-dev libinih-dev libevdev-dev \
     libssl-dev libboost-all-dev cmake g++ gettext \
     python3-numpy python3-opencv python3-gi python3-gi-cairo python3-babel \
-    gir1.2-gtk-3.0 curl bzip2 ca-certificates wget fuse \
+    gir1.2-gtk-4.0 curl bzip2 ca-certificates wget fuse \
     flatpak flatpak-builder appstream file elfutils squashfs-tools desktop-file-utils \
     && rm -rf /var/lib/apt/lists/*
 
@@ -49,7 +49,7 @@ RUN case "${TARGETARCH}" in \
     && rm -rf /tmp/appimagetool.AppImage /tmp/squashfs-root
 
 RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
-    && flatpak install -y flathub org.freedesktop.Platform//25.08 org.freedesktop.Sdk//25.08
+    && flatpak install -y flathub org.freedesktop.Platform//26.08 org.freedesktop.Sdk//26.08
 
 WORKDIR /src
 COPY . /src

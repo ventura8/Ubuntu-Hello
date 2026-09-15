@@ -40,3 +40,11 @@ def test_combo_label_falls_back_to_language_names_when_lookup_fails(monkeypatch)
     monkeypatch.setattr(langs, "_native_display_name", lambda *_a, **_k: None)
     assert langs.language_combo_label("de", "en") == langs.LANGUAGE_NAMES["de"]
     assert langs.language_combo_label("ja", "ro") == langs.LANGUAGE_NAMES["ja"]
+
+
+def test_is_rtl_codes():
+	import languages
+	assert languages.is_rtl("ar") and languages.is_rtl("he") and languages.is_rtl("fa") and languages.is_rtl("ur")
+	assert languages.is_rtl("ar_EG.UTF-8") and languages.is_rtl("ps") and languages.is_rtl("sd") and languages.is_rtl("yi")
+	assert not languages.is_rtl("en") and not languages.is_rtl("de") and not languages.is_rtl("auto")
+	assert not languages.is_rtl("") and not languages.is_rtl(None)

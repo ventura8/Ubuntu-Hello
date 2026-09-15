@@ -91,7 +91,7 @@ def _apply_locale_env(code=None):
 
 
 def _install_translation():
-	global translation, _, ngettext
+	global translation
 	gettext.bindtextdomain(DOMAIN, LOCALEDIR)
 	try:
 		gettext.bind_textdomain_codeset(DOMAIN, "UTF-8")
@@ -99,9 +99,23 @@ def _install_translation():
 		pass
 	translation = gettext.translation(DOMAIN, localedir=LOCALEDIR, fallback=True)
 	translation.install()
-	_ = translation.gettext
-	ngettext = translation.ngettext
 	return translation
+
+
+# Modules do ``from i18n import _`` once at import time, so `_`/`ngettext`
+# must be stable wrappers that always consult the *current* translation —
+# otherwise the Settings language switch leaves those modules in the old
+# language (e.g. "Unknown" on the Video tab).
+def _(message):
+	return translation.gettext(message)
+
+
+def ngettext(singular, plural, n):
+	return translation.ngettext(singular, plural, n)
+
+
+def pgettext(context, message):
+	return translation.pgettext(context, message)
 
 
 def reload_from_preferences():

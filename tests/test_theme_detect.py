@@ -236,3 +236,93 @@ class TestGetThemePreference:
 
 		monkeypatch.setattr(theme_detect, "_run_cmd", fake_run)
 		assert theme_detect.get_theme_preference(user="alice") == "light"
+
+
+class TestGtk4ThemeName:
+	def test_get_gtk_theme_name_gnome(self, monkeypatch):
+		import theme_detect
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "gnome")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda args, user=None, timeout=2.0: "Yaru-red-dark" if "gtk-theme" in args[-1] else "")
+		assert theme_detect.get_gtk_theme_name(user="alice") == "Yaru-red-dark"
+
+	def test_get_gtk_theme_name_empty(self, monkeypatch, tmp_path):
+		import theme_detect
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "mate")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: str(tmp_path))
+		assert theme_detect.get_gtk_theme_name(user="alice") == ""
+
+	def test_get_gtk_theme_name_xfce(self, monkeypatch):
+		import theme_detect
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "xfce")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda args, user=None, timeout=2.0: "Greybird-dark" if args[0] == "xfconf-query" else "")
+		assert theme_detect.get_gtk_theme_name(user="alice") == "Greybird-dark"
+
+	def test_get_gtk_theme_name_kde_and_lxqt_settings_ini(self, monkeypatch, tmp_path):
+		import theme_detect
+		ini = tmp_path / ".config" / "gtk-4.0" / "settings.ini"
+		ini.parent.mkdir(parents=True)
+		ini.write_text("[Settings]\ngtk-theme-name=Breeze-Dark\ngtk-application-prefer-dark-theme=1\n", encoding="utf-8")
+		monkeypatch.setattr(theme_detect.os, "geteuid", lambda: 1000)  # read files directly, even in root CI
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: str(tmp_path))
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		for de in ("kde", "lxqt"):
+			monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None, de=de: de)
+			assert theme_detect.get_gtk_theme_name(user="alice") == "Breeze-Dark"
+
+	def test_get_gtk_theme_name_cinnamon_falls_back_to_gnome_schema(self, monkeypatch, tmp_path):
+		import theme_detect
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "cinnamon")
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: str(tmp_path))
+		def run(args, user=None, timeout=2.0):
+			return "Mint-Y-Dark" if "org.gnome.desktop.interface" in " ".join(args) or "/org/gnome/" in " ".join(args) else ""
+		monkeypatch.setattr(theme_detect, "_run_cmd", run)
+		assert theme_detect.get_gtk_theme_name(user="alice") == "Mint-Y-Dark"
+
+	def test_get_gtk_theme_name_settings_ini_generic_fallback(self, monkeypatch, tmp_path):
+		import theme_detect
+		ini = tmp_path / ".config" / "gtk-3.0" / "settings.ini"
+		ini.parent.mkdir(parents=True)
+		ini.write_text("gtk-theme-name = 'Yaru-purple'\n", encoding="utf-8")
+		monkeypatch.setattr(theme_detect.os, "geteuid", lambda: 1000)  # read files directly, even in root CI
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: str(tmp_path))
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "budgie")
+		assert theme_detect.get_gtk_theme_name(user="alice") == "Yaru-purple"
+
+	def test_resolve_gtk4_theme_swaps_dark_suffix(self, tmp_path):
+		import theme_detect
+		for name in ("Yaru-red", "Yaru-red-dark", "Yaru-blue"):
+			(tmp_path / name / "gtk-4.0").mkdir(parents=True)
+		assert theme_detect.resolve_gtk4_theme("Yaru-red", True, str(tmp_path)) == "Yaru-red-dark"
+		assert theme_detect.resolve_gtk4_theme("Yaru-red-dark", False, str(tmp_path)) == "Yaru-red"
+		# only a light variant installed: keep it even when dark is preferred
+		assert theme_detect.resolve_gtk4_theme("Yaru-blue-dark", True, str(tmp_path)) == "Yaru-blue"
+		assert theme_detect.resolve_gtk4_theme("Nope", True, str(tmp_path)) is None
+		assert theme_detect.resolve_gtk4_theme("", True, str(tmp_path)) is None
+
+
+class TestIconThemeName:
+	def test_gnome_icon_theme_installed(self, monkeypatch, tmp_path):
+		import theme_detect
+		(tmp_path / "Yaru").mkdir()
+		(tmp_path / "Yaru" / "index.theme").write_text("[Icon Theme]\n")
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "gnome")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda args, user=None, timeout=2.0: "Yaru" if "icon-theme" in args[-1] else "")
+		assert theme_detect.get_icon_theme_name(user="alice", icons_dir=str(tmp_path)) == "Yaru"
+		# not installed system-wide (root could not load it): ignored
+		assert theme_detect.get_icon_theme_name(user="alice", icons_dir=str(tmp_path / "nope")) == ""
+
+	def test_xfce_and_settings_ini_icon_theme(self, monkeypatch, tmp_path):
+		import theme_detect
+		icons = tmp_path / "icons"; (icons / "Papirus").mkdir(parents=True); (icons / "Papirus" / "index.theme").write_text("x")
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "xfce")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda args, user=None, timeout=2.0: "Papirus" if args[0] == "xfconf-query" else "")
+		assert theme_detect.get_icon_theme_name(user="alice", icons_dir=str(icons)) == "Papirus"
+		ini = tmp_path / ".config" / "gtk-4.0" / "settings.ini"; ini.parent.mkdir(parents=True)
+		ini.write_text("gtk-icon-theme-name=Papirus\n")
+		monkeypatch.setattr(theme_detect, "detect_desktop", lambda environ=None: "kde")
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		monkeypatch.setattr(theme_detect.os, "geteuid", lambda: 1000)
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: str(tmp_path))
+		assert theme_detect.get_icon_theme_name(user="alice", icons_dir=str(icons)) == "Papirus"

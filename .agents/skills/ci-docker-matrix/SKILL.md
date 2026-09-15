@@ -74,14 +74,14 @@ Packaging-only parallel matrix (local; same cells as GHA):
 ## Dependency pins
 
 * GHA runners: `runs-on: ubuntu-26.04`
-* GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.2.0`) — never commit SHAs, never a `latest` alias
-* Docker: `FROM ubuntu:26.04`; `# syntax=docker/dockerfile:1.26.0`
-* Pip in CI images: exact pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.15.4`, `keyboard==0.13.5`)
+* GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.3.0`) — never commit SHAs, never a `latest` alias
+* Docker: `FROM ubuntu:26.04`; `# syntax=docker/dockerfile:1.27.0`
+* Pip in CI images: exact pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`)
 * Apt: distro-locked by `FROM ubuntu:26.04` (document; do not add unpinned URL installers)
 
 ## Caching
 
-* Dockerfiles: `# syntax=docker/dockerfile:1.26.0` + BuildKit apt/pip cache mounts
+* Dockerfiles: `# syntax=docker/dockerfile:1.27.0` + BuildKit apt/pip cache mounts
 * `scripts/ci-docker.sh`: `DOCKER_BUILDKIT=1`; `UH_CI_DOCKER_CACHE=local|gha|none` (default `local`)
 * Local: `.cache/docker-ci/<scope>` + skip rebuild when image label `ubuntu-hello.ci.dockerfile-digest` matches Dockerfile sha256 (`UH_CI_FORCE_BUILD=1` to rebuild). On local `buildx` failure, continue only if the loaded image’s digest label matches the current Dockerfile digest (never a stale pre-existing tag); otherwise retry without cache export.
 * GHA: `docker/setup-buildx-action@v4.3.0` + `crazy-max/ghaction-github-runtime@v4.0.0` (exposes `ACTIONS_RESULTS_URL`/`ACTIONS_RUNTIME_TOKEN`, which `setup-buildx-action` alone does not) + `UH_CI_DOCKER_CACHE=gha` (`cache-from/to: type=gha`, scope per stage/DE)

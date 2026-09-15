@@ -19,6 +19,7 @@ depends=(
 	'bzip2'
 	'v4l-utils'
 	'tpm2-tools'
+	'glib2'
 	'pam'
 	'polkit'
 )
@@ -81,7 +82,7 @@ package_ubuntu-hello-gtk() {
 		'python-babel'
 		'python-gobject'
 		'python-cairo'
-		'gtk3'
+		'gtk4'
 		'polkit'
 		'opencv'
 	)

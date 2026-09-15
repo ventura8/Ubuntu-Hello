@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "ناکامي، وخت پای ته ورسید"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "د مخ کشف انځور ډیر تیاره دی"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "نامعلومه تېروتنه:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "د %s په توګه پیژندل شوی مخ"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"د انټر پریس لیږلو لپاره کافي اجازې ندي ، د کارونکي لپاره انتظار باسي چ"
-"ې پرځای یې فشار ورکړي"
+"د انټر پریس لیږلو لپاره کافي اجازې ندي ، د کارونکي لپاره انتظار باسي چې "
+"پرځای یې فشار ورکړي"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"د انټر پریس په لیږلو کې پاتې راغلی، د کارونکي لپاره انتظار باسي چې پر "
-"ځای یې فشار ورکړي"
+"د انټر پریس په لیږلو کې پاتې راغلی، د کارونکي لپاره انتظار باسي چې پر ځای یې "
+"فشار ورکړي"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "د مخ تصدیق کولو هڅه"
 
@@ -67,26 +68,26 @@ msgstr "دلیلونه"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"د ملاتړ لپاره مهرباني وکړئ لیدنه وکړئ\nhttps://github.com/ventura8/ubu"
-"ntu-hello"
+"د ملاتړ لپاره مهرباني وکړئ لیدنه وکړئ\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"د اجرا کولو لپاره د کمانډ اختیار، کیدای شي یو له لاندې څخه وي: اضافه ک"
-"ول، پاکول، ترتیب کول، غیر فعال کول، کیرینګ، لیست، لیرې کول، سنیپ شاټ، "
-"سیټ، ازموینه یا نسخه."
+"د اجرا کولو لپاره د کمانډ اختیار، کیدای شي یو له لاندې څخه وي: اضافه کول، "
+"پاکول، ترتیب کول، غیر فعال کول، کیرینګ، لیست، لیرې کول، سنیپ شاټ، سیټ، "
+"ازموینه یا نسخه."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
 msgstr ""
-"د امرونو اضافه کولو، غیر فعالولو، لرې کولو او تنظیم کولو لپاره اختیاري"
-" دلیلونه."
+"د امرونو اضافه کولو، غیر فعالولو، لرې کولو او تنظیم کولو لپاره اختیاري "
+"دلیلونه."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -117,136 +118,250 @@ msgid "Invalid username format"
 msgstr "د کارن نوم ناسم بڼه"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"مهرباني وکړئ دا کمانډ د روټ په توګه پرمخ وړئ:\n"
+msgid "Please run this command as root:\n"
+msgstr "مهرباني وکړئ دا کمانډ د روټ په توګه پرمخ وړئ:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"د ubuntu-hello کمانډونه د روټ په توګه نشي چلولی، مهرباني وکړئ دا کمانډ"
-" د --user بیرغ سره پرمخ وړئ"
+"د ubuntu-hello کمانډونه د روټ په توګه نشي چلولی، مهرباني وکړئ دا کمانډ د --"
+"user بیرغ سره پرمخ وړئ"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "د ډیټا فایلونه ډاونلوډ شوي ندي ، مهرباني وکړئ لاندې کمانډونه پرمخ وړئ:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "ننوت"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "نېټه:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "د سکین وخت:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "چوکاټونه:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "کوربه نوم:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "غوره ډاډمن ارزښت:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "پیل کول..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "ستا پېژندنه..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "ناکام شو"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"ټول چوکاټونه ډیر تیاره وو، مهرباني وکړئ په ترتیب کې تیاره_threshold وګ"
-"ورئ"
+"ټول چوکاټونه ډیر تیاره وو، مهرباني وکړئ په ترتیب کې تیاره_threshold وګورئ"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "منځنۍ تیاره: {avg}، حد: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "وخت تېر شو"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "پیل کول"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "کیم + د بار کولو لیب خلاص کړئ: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "د کیمرې خلاصول"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "د پیژندنې لیب واردول"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "د پیژندل شوي مخ په لټه کې"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "ټول وخت"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nقرارداد"
+"\n"
+"قرارداد"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "اصلي: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "کارول شوی: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nپلټنه شوي چوکاټونه: %d (%.2f fps)"
+"\n"
+"پلټنه شوي چوکاټونه: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "تور چوکاټونه له پامه غورځول شوي: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "تیاره چوکاټونه له پامه غورځول شوي: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "د ګټونکي چوکاټ ډاډ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "ګټونکي ماډل: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "بریالی"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "واک ورکول"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "د سکرین خلاصول"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "وخت ختم"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "بار"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s چوکاټونه"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s تیاره"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "ستا د مخ په لټه کې..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "د مخ تصدیق"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "مخ پېژندل"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "په دې رڼا کې یو ماډل اضافه کړئ"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "کیمره وګورئ"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "په %s کې هیڅ لوبه نشته"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "نوم لیکنه: sudo ubuntu-hello add"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "نږدې"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "مخ نه دی پیژندل شوی"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "ډیر تیاره"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "رڼا واچوئ"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "تیاره"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "د ژوندانه معاینه ناکامه شوه"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "د %s لپاره د مخ ماډل نشته"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "د مخ تصدیق شتون نلري"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "لغوه شو"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "د مخ تصدیق لغوه شو"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -270,9 +385,11 @@ msgstr "د ننوتلو کیرینګ یا KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nد dlib ماډل وارد نشي کولی، د محصول محصول وګورئ"
+"\n"
+"د dlib ماډل وارد نشي کولی، د محصول محصول وګورئ"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -280,15 +397,12 @@ msgstr "د مخ ماډل فولډر ونه موندل شو، یو یې جوړ ک
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "خبرتیا: هر اضافي ماډل د مخ پیژندنې انجن یو څه ورو کوي"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"د لغوه کولو لپاره Ctrl+C فشار ورکړئ\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "د لغوه کولو لپاره Ctrl+C فشار ورکړئ\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -299,6 +413,7 @@ msgid "Model #"
 msgstr "ماډل #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "د -y بیرغ له امله د ډیفالټ لیبل \"%s\" کارول"
 
@@ -312,9 +427,11 @@ msgstr "خبرتیا: د ماډل نوم څخه غیرقانوني کرکټر \"
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nمهرباني وکړئ مستقیم کیمرې ته وګورئ"
+"\n"
+"مهرباني وکړئ مستقیم کیمرې ته وګورئ"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -330,9 +447,13 @@ msgstr "ډیری مخونه کشف شوي، لغوه کول"
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nسکین بشپړ شو\nیو نوی ماډل اضافه کړ"
+"\n"
+"سکین بشپړ شو\n"
+"یو نوی ماډل اضافه کړ"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -352,21 +473,27 @@ msgstr "ایا تاسو غواړئ دوام ورکړئ [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nد \"نه\" په توګه تشریح کول، لغوه کول"
+"\n"
+"د \"نه\" په توګه تشریح کول، لغوه کول"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nموډلونه پاک شول"
+"\n"
+"موډلونه پاک شول"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "په {editor} کې config.ini پرانیستل"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "د مدیر په خلاصولو کې پاتې راغلی: {error}"
 
@@ -377,16 +504,15 @@ msgstr "تېروتنه: مناسب متن ایډیټر ونه موندل شو."
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
 msgstr ""
-"مهرباني وکړئ 'نانو' یا 'vi' نصب کړئ، یا د EDITOR چاپیریال متغیر تنظیم "
-"کړئ."
+"مهرباني وکړئ 'نانو' یا 'vi' نصب کړئ، یا د EDITOR چاپیریال متغیر تنظیم کړئ."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"که تاسو دا کمانډ د sudo سره پرمخ وړئ، هڅه وکړئ 'sudo -E ubuntu-hello c"
-"onfig' د خپل EDITOR متغیر ساتلو لپاره."
+"که تاسو دا کمانډ د sudo سره پرمخ وړئ، هڅه وکړئ 'sudo -E ubuntu-hello config' "
+"د خپل EDITOR متغیر ساتلو لپاره."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -438,11 +564,11 @@ msgstr "TPM هارډویر فعال دی. په TPM کې د پټنوم مهر ک�
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"کیرینګ/KWallet خلاصول د TPM په کارولو سره د کارونکي {} لپاره په بریالی"
-"توب سره فعال شوي (بټو: {})."
+"کیرینګ/KWallet خلاصول د TPM په کارولو سره د کارونکي {} لپاره په بریالیتوب "
+"سره فعال شوي (بټو: {})."
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -454,11 +580,11 @@ msgstr "هیڅ TPM فعال نه دی. د سافټویر پر بنسټ د اعت
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"کیرینګ/KWallet خلاصول په بریالیتوب سره د کارونکي {} (د سافټویر کیشینګ،"
-" والټ: {}) لپاره فعال شوي."
+"کیرینګ/KWallet خلاصول په بریالیتوب سره د کارونکي {} (د سافټویر کیشینګ، والټ: "
+"{}) لپاره فعال شوي."
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -490,11 +616,11 @@ msgstr "د {} کارن(انو) لپاره د ننوتلو بټوې پټنوم ب
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"که غوښتنې دوام وکړي، په Seahorse / د سیسټم تنظیماتو کې د ننوتلو کیرینګ"
-" یا KWallet پټنوم وټاکئ."
+"که غوښتنې دوام وکړي، په Seahorse / د سیسټم تنظیماتو کې د ننوتلو کیرینګ یا "
+"KWallet پټنوم وټاکئ."
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -527,8 +653,7 @@ msgstr "د ID نیټه لیبل [0m"
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
 msgstr ""
-"مهرباني وکړئ د هغه ماډل ID اضافه کړئ چې تاسو یې د دلیل په توګه لرې کول"
-" غواړئ"
+"مهرباني وکړئ د هغه ماډل ID اضافه کړئ چې تاسو یې د دلیل په توګه لرې کول غواړئ"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -539,10 +664,12 @@ msgid "You can find the IDs by running:"
 msgstr "تاسو کولی شئ د چلولو له لارې IDs ومومئ:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "دا به د {user} لپاره د \"{label}\" په نوم ماډل لرې کړي"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "د {user} لپاره ID {id} سره هیڅ ماډل شتون نلري"
 
@@ -555,10 +682,11 @@ msgid "Removed model {}"
 msgstr "لرې شوی ماډل {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"مهرباني وکړئ یو ترتیب اضافه کړئ چې تاسو یې غواړئ بدل کړئ او ارزښت یې د"
-" دې لپاره تنظیم کړئ"
+"مهرباني وکړئ یو ترتیب اضافه کړئ چې تاسو یې غواړئ بدل کړئ او ارزښت یې د دې "
+"لپاره تنظیم کړئ"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -586,34 +714,43 @@ msgstr "تولید شوی سنیپ شاټ په توګه خوندي شوی"
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello د ریکارډر کارولو لپاره تنظیم شوی چې لاهم د ازموینې کمانډ "
-"ملاتړ نه کوي ، لغوه کول"
+"Ubuntu Hello د ریکارډر کارولو لپاره تنظیم شوی چې لاهم د ازموینې کمانډ ملاتړ "
+"نه کوي ، لغوه کول"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nد ازموینې فیډ سره د کړکۍ پرانستل\n\nد وتلو لپاره په دې ټرمینل کې ctr"
-"l+C فشار ورکړئ\nد سست حالت فعال یا غیر فعال کولو لپاره په عکس کلیک وکړ"
-"ئ\n"
+"\n"
+"د ازموینې فیډ سره د کړکۍ پرانستل\n"
+"\n"
+"د وتلو لپاره په دې ټرمینل کې ctrl+C فشار ورکړئ\n"
+"د سست حالت فعال یا غیر فعال کولو لپاره په عکس کلیک وکړئ\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "حل: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "چوکاټونه: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "پیژندنه: %dms"
 
@@ -631,9 +768,11 @@ msgstr "د سکین چوکاټ"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nد کړکۍ تړل"
+"\n"
+"د کړکۍ تړل"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -664,6 +803,7 @@ msgid "Authorising in {}"
 msgstr "په {} کې اجازه ورکول"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "د بندولو لپاره {abort_key} فشار ورکړئ، {confirm_key} اجازه ورکړئ"
 
@@ -697,22 +837,22 @@ msgstr "د pyv4l2 ماډل ورک شوی، مهرباني وکړئ چل کړئ:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
-msgstr "Ubuntu Hello په ترتیب فایل کې مشخص شوي لاره کې د کیمرې وسیله نشي موندلی."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
+msgstr ""
+"Ubuntu Hello په ترتیب فایل کې مشخص شوي لاره کې د کیمرې وسیله نشي موندلی."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"دا ډیر احتمال لري چې لاره په سمه توګه تنظیم شوې نه وي، مهرباني وکړئ د "
-"چلولو له لارې د 'device_path' ترتیب ارزښت ترمیم کړئ:"
+"دا ډیر احتمال لري چې لاره په سمه توګه تنظیم شوې نه وي، مهرباني وکړئ د چلولو "
+"له لارې د 'device_path' ترتیب ارزښت ترمیم کړئ:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"د 'device_path' config اختیار کې مشخص شوي کیمرې لوستلو کې پاتې راغلل، "
-"لغوه کول"
+"د 'device_path' config اختیار کې مشخص شوي کیمرې لوستلو کې پاتې راغلل، لغوه "
+"کول"

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,37 +15,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "বিফলতা, সময়সীমা পোৱা গৈছে"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "মুখ ধৰা পেলোৱা ছবিখন অতি আন্ধাৰ"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "অজ্ঞাত ভুল:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "%s হিচাপে চিনাক্ত কৰা মুখখন।"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Enter টিপক পঠিয়াবলৈ অপৰ্যাপ্ত অনুমতি, ব্যৱহাৰকাৰীয়ে ইয়াৰ পৰিবৰ্তে ই"
-"য়াক টিপিবলৈ অপেক্ষা কৰি"
+"Enter টিপক পঠিয়াবলৈ অপৰ্যাপ্ত অনুমতি, ব্যৱহাৰকাৰীয়ে ইয়াৰ পৰিবৰ্তে ইয়াক টিপিবলৈ "
+"অপেক্ষা কৰি"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
-"Enter টিপক প্ৰেৰণ কৰাত ব্যৰ্থ, ব্যৱহাৰকাৰীয়ে ইয়াৰ পৰিবৰ্তে ইয়াক টিপ"
-"িবলৈ অপেক্ষা কৰি"
+"Enter টিপক প্ৰেৰণ কৰাত ব্যৰ্থ, ব্যৱহাৰকাৰীয়ে ইয়াৰ পৰিবৰ্তে ইয়াক টিপিবলৈ অপেক্ষা কৰি"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "মুখৰ প্ৰমাণীকৰণৰ প্ৰয়াস কৰা"
 
@@ -67,19 +67,20 @@ msgstr "যুক্তিসমূহ"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"সমৰ্থনৰ বাবে অনুগ্ৰহ কৰি চাওক\n⟦উ০০০০⟧"
+"সমৰ্থনৰ বাবে অনুগ্ৰহ কৰি চাওক\n"
+"⟦উ০০০০⟧"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"এক্সিকিউট কৰিবলে আদেশ বিকল্প, নিম্নলিখিতৰ এটা হব পাৰে: যোগ কৰক, পৰিষ্ক"
-"াৰ কৰক, বিন্যাস কৰক, নিষ্ক্ৰিয় কৰক, কিৰিং, তালিকাভুক্ত কৰক, আঁতৰাওক, "
-"স্নেপশ্বট কৰক, সংহতি কৰক, পৰীক্ষা কৰক বা সংস্কৰণ ।"
+"এক্সিকিউট কৰিবলে আদেশ বিকল্প, নিম্নলিখিতৰ এটা হব পাৰে: যোগ কৰক, পৰিষ্কাৰ কৰক, "
+"বিন্যাস কৰক, নিষ্ক্ৰিয় কৰক, কিৰিং, তালিকাভুক্ত কৰক, আঁতৰাওক, স্নেপশ্বট কৰক, সংহতি "
+"কৰক, পৰীক্ষা কৰক বা সংস্কৰণ ।"
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
@@ -114,138 +115,249 @@ msgid "Invalid username format"
 msgstr "অবৈধ ব্যৱহাৰকাৰীনামৰ বিন্যাস"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"অনুগ্ৰহ কৰি এই আদেশ root হিচাপে চলাওক:\n"
+msgid "Please run this command as root:\n"
+msgstr "অনুগ্ৰহ কৰি এই আদেশ root হিচাপে চলাওক:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"ubuntu-hello আদেশসমূহ root হিচাপে চলাব নোৱাৰি, অনুগ্ৰহ কৰি এই আদেশ --u"
-"ser ফ্লেগৰ সৈতে চলাওক"
+"ubuntu-hello আদেশসমূহ root হিচাপে চলাব নোৱাৰি, অনুগ্ৰহ কৰি এই আদেশ --user ফ্লেগৰ "
+"সৈতে চলাওক"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:259 src/cli/add.py:32
 msgid "Data files have not been downloaded, please run the following commands:"
-msgstr ""
-"ডাটা ফাইলসমূহ ডাউনল'ড কৰা হোৱা নাই, অনুগ্ৰহ কৰি নিম্নলিখিত আদেশসমূহ চল"
-"াওক:"
+msgstr "ডাটা ফাইলসমূহ ডাউনল'ড কৰা হোৱা নাই, অনুগ্ৰহ কৰি নিম্নলিখিত আদেশসমূহ চলাওক:"
 
-#: src/compare.py:154
+#: src/compare.py:285
 msgid " LOGIN"
 msgstr "LOGIN কৰক"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:286 src/cli/snap.py:44
 msgid "Date: "
 msgstr "তাৰিখ:"
 
-#: src/compare.py:156
+#: src/compare.py:287
 msgid "Scan time: "
 msgstr "স্কেন সময়:"
 
-#: src/compare.py:157
+#: src/compare.py:288
 msgid "Frames: "
 msgstr "ফ্ৰেম:"
 
-#: src/compare.py:158
+#: src/compare.py:289
 msgid "Hostname: "
 msgstr "গৃহস্থৰ নাম:"
 
-#: src/compare.py:159
+#: src/compare.py:290
 msgid "Best certainty value: "
 msgstr "শ্ৰেষ্ঠ নিশ্চয়তা মূল্য:"
 
-#: src/compare.py:266
+#: src/compare.py:436
 msgid "Starting up..."
 msgstr "স্টার্টিং আপ..."
 
-#: src/compare.py:319
+#: src/compare.py:498
 msgid "Identifying you..."
 msgstr "আপোনাক চিনাক্ত কৰি..."
 
-#: src/compare.py:351
+#: src/compare.py:530
 msgid "FAILED"
 msgstr "ব্যৰ্থ হৈছিল"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:533 src/cli/add.py:188
 msgid "All frames were too dark, please check dark_threshold in config"
-msgstr ""
-"সকলো ফ্ৰেম অতি আন্ধাৰ আছিল, অনুগ্ৰহ কৰি বিন্যাসত dark_threshold পৰীক্ষ"
-"া কৰক"
+msgstr "সকলো ফ্ৰেম অতি আন্ধাৰ আছিল, অনুগ্ৰহ কৰি বিন্যাসত dark_threshold পৰীক্ষা কৰক"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:534 src/cli/add.py:189
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "গড় আন্ধাৰ: {avg}, থ্ৰেছহ'ল্ড: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:645
 msgid "Time spent"
 msgstr "সময় কটোৱা"
 
-#: src/compare.py:457
+#: src/compare.py:646
 msgid "Starting up"
 msgstr "ষ্টাৰ্ট আপ"
 
-#: src/compare.py:458
+#: src/compare.py:647
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "খোলা কেম + লোড libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:648
 msgid "  Opening the camera"
 msgstr "কেমেৰা খুলিছে"
 
-#: src/compare.py:460
+#: src/compare.py:649
 msgid "  Importing recognition libs"
 msgstr "স্বীকৃতি libs আমদানি কৰা"
 
-#: src/compare.py:461
+#: src/compare.py:650
 msgid "Searching for known face"
 msgstr "জনা মুখখন বিচাৰি"
 
-#: src/compare.py:462
+#: src/compare.py:651
 msgid "Total time"
 msgstr "মুঠ সময়"
 
-#: src/compare.py:464
+#: src/compare.py:653
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nসংকল্প"
+"\n"
+"সংকল্প"
 
-#: src/compare.py:466
+#: src/compare.py:655
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "স্থানীয়: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:658
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "ব্যৱহৃত: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:661
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nসন্ধান কৰা ফ্ৰেমসমূহ: %d (%.2f fps)"
+"\n"
+"সন্ধান কৰা ফ্ৰেমসমূহ: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:662
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "ক'লা ফ্ৰেম আওকাণ কৰা হৈছে: %d"
 
-#: src/compare.py:474
+#: src/compare.py:663
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "ডাৰ্ক ফ্ৰেম আওকাণ কৰা হৈছে: %d"
 
-#: src/compare.py:475
+#: src/compare.py:664
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "বিজয়ী ফ্ৰেমৰ নিশ্চয়তা: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:666
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "বিজয়ী মডেল: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:681
 msgid "SUCCESSFUL"
 msgstr "সফল"
+
+#: src/notify.py:354
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:356
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:358
+msgid "authorization"
+msgstr "অনুমোদন"
+
+#: src/notify.py:360
+msgid "screen unlock"
+msgstr "স্ক্ৰীণ আনলক"
+
+#: src/notify.py:397
+msgid "timeout"
+msgstr "টাইমআউট"
+
+#: src/notify.py:399
+msgid "load"
+msgstr "ভাৰ"
+
+#: src/notify.py:419
+#, python-format
+msgid "%s frames"
+msgstr "%s ফ্ৰেম"
+
+#: src/notify.py:421
+#, python-format
+msgid "%s dark"
+msgstr "%s আন্ধাৰ"
+
+#: src/notify.py:439
+msgid "Looking for your face…"
+msgstr "আপোনাৰ মুখ বিচাৰি..."
+
+#: src/notify.py:449
+msgid "Face authentication"
+msgstr "মুখৰ প্ৰমাণীকৰণ"
+
+#: src/notify.py:473
+msgid "Face recognized"
+msgstr "মুখখন চিনি পালে"
+
+#: src/notify.py:484
+msgid "add a model in this light"
+msgstr "এই পোহৰত এটা মডেল যোগ কৰক"
+
+#: src/notify.py:486
+msgid "check the camera"
+msgstr "কেমেৰাটো পৰীক্ষা কৰক"
+
+#: src/notify.py:491
+#, python-format
+msgid "No match in %s"
+msgstr "%s ত কোনো মিল নাই।"
+
+#: src/notify.py:493 src/notify.py:527
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "নামভৰ্তি: sudo ubuntu-hello যোগ কৰক"
+
+#: src/notify.py:494
+msgid "closest"
+msgstr "নিকটতম"
+
+#: src/notify.py:499 src/notify.py:512 src/notify.py:520
+msgid "Face not recognized"
+msgstr "মুখখন চিনি পোৱা নাই"
+
+#: src/notify.py:505
+msgid "Too dark"
+msgstr "বৰ আন্ধাৰ"
+
+#: src/notify.py:506
+msgid "turn on a light"
+msgstr "লাইট এটা জ্বলোৱা"
+
+#: src/notify.py:507
+msgid "darkness"
+msgstr "আন্ধাৰ"
+
+#: src/notify.py:518
+msgid "Liveness check failed"
+msgstr "লাইভনেছ পৰীক্ষা বিফল হ’ল"
+
+#: src/notify.py:526
+#, python-format
+msgid "No face model for %s"
+msgstr "%s ৰ বাবে কোনো মুখৰ মডেল নাই।"
+
+#: src/notify.py:531
+msgid "Face authentication unavailable"
+msgstr "মুখৰ প্ৰমাণীকৰণ উপলব্ধ নহয়"
+
+#: src/notify.py:536
+msgid "Cancelled"
+msgstr "বাতিল কৰা হৈছে"
+
+#: src/notify.py:538
+msgid "Face authentication cancelled"
+msgstr "মুখৰ প্ৰমাণীকৰণ বাতিল কৰা হৈছে"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -269,9 +381,11 @@ msgstr "লগইন কিৰিং বা KWallet"
 
 #: src/cli/add.py:23
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\ndlib মডিউল আমদানি কৰিব নোৱাৰি, ৰ আউটপুট পৰীক্ষা কৰক"
+"\n"
+"dlib মডিউল আমদানি কৰিব নোৱাৰি, ৰ আউটপুট পৰীক্ষা কৰক"
 
 #: src/cli/add.py:58
 msgid "No face model folder found, creating one"
@@ -279,15 +393,12 @@ msgstr "কোনো ফেচ মডেল ফোল্ডাৰ পোৱা �
 
 #: src/cli/add.py:69
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "জাননী: প্ৰতিটো অতিৰিক্ত মডেলে মুখ চিনাক্তকৰণ ইঞ্জিনটো অলপ লেহেমীয়া কৰে"
 
 #: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"বাতিল কৰিবলৈ Ctrl+C টিপক\n"
+msgid "Press Ctrl+C to cancel\n"
+msgstr "বাতিল কৰিবলৈ Ctrl+C টিপক\n"
 
 #: src/cli/add.py:74
 msgid "Adding face model for the user "
@@ -298,6 +409,7 @@ msgid "Model #"
 msgstr "মডেল #"
 
 #: src/cli/add.py:93
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "-y ফ্লেগৰ বাবে অবিকল্পিত লেবেল \"%s\" ব্যৱহাৰ কৰা"
 
@@ -311,9 +423,11 @@ msgstr "জাননী: মডেল নামৰ পৰা অবৈধ আখ
 
 #: src/cli/add.py:121
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nঅনুগ্ৰহ কৰি পোনে পোনে কেমেৰাৰ ভিতৰলৈ চাওক"
+"\n"
+"অনুগ্ৰহ কৰি পোনে পোনে কেমেৰাৰ ভিতৰলৈ চাওক"
 
 #: src/cli/add.py:186
 msgid "Camera saw only black frames - is IR emitter working?"
@@ -329,9 +443,13 @@ msgstr "একাধিক মুখ ধৰা পৰিছে, গৰ্ভপ�
 
 #: src/cli/add.py:218
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nস্কেন সম্পূৰ্ণ\nৰ এটা নতুন মডেল যোগ কৰা হৈছে"
+"\n"
+"স্কেন সম্পূৰ্ণ\n"
+"ৰ এটা নতুন মডেল যোগ কৰা হৈছে"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -351,21 +469,27 @@ msgstr "আপুনি আগবাঢ়িব বিচাৰেনে [y/N]:
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\n\"নাই\" বুলি ব্যাখ্যা কৰা, গৰ্ভপাত কৰা"
+"\n"
+"\"নাই\" বুলি ব্যাখ্যা কৰা, গৰ্ভপাত কৰা"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nমডেল ক্লিয়াৰ হ’ল"
+"\n"
+"মডেল ক্লিয়াৰ হ’ল"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "{editor} ত config.ini খোলা হৈছে"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "সম্পাদক খোলাত ব্যৰ্থ: {error}"
 
@@ -375,17 +499,15 @@ msgstr "ত্ৰুটি: এটা উপযুক্ত লিখনী স�
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr ""
-"অনুগ্ৰহ কৰি 'nano' বা 'vi' সংস্থাপন কৰক, বা EDITOR পৰিৱেশ চলক সংহতি কৰ"
-"ক ।"
+msgstr "অনুগ্ৰহ কৰি 'nano' বা 'vi' সংস্থাপন কৰক, বা EDITOR পৰিৱেশ চলক সংহতি কৰক ।"
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"যদি আপুনি এই আদেশ sudo ৰ সৈতে চলাই আছে, আপোনাৰ EDITOR চলক সংৰক্ষণ কৰিব"
-"লে 'sudo -E ubuntu-hello config' চেষ্টা কৰক ।"
+"যদি আপুনি এই আদেশ sudo ৰ সৈতে চলাই আছে, আপোনাৰ EDITOR চলক সংৰক্ষণ কৰিবলে 'sudo "
+"-E ubuntu-hello config' চেষ্টা কৰক ।"
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -393,9 +515,7 @@ msgstr "অনুগ্ৰহ কৰি এটা 0 (সামৰ্থবান
 
 #: src/cli/disable.py:35
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
-msgstr ""
-"অনুগ্ৰহ কৰি কেৱল 0 (সামৰ্থবান) বা 1 (অক্ষম) এটা যুক্তি হিচাপে ব্যৱহাৰ "
-"কৰক"
+msgstr "অনুগ্ৰহ কৰি কেৱল 0 (সামৰ্থবান) বা 1 (অক্ষম) এটা যুক্তি হিচাপে ব্যৱহাৰ কৰক"
 
 #: src/cli/disable.py:40
 msgid "The disable option has already been set to "
@@ -439,11 +559,11 @@ msgstr "TPM হাৰ্ডৱেৰ সক্ৰিয়। TPM মধ্য�
 
 #: src/cli/keyring.py:100
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"TPM (ৱালেট: {}) ব্যৱহাৰ কৰি ব্যৱহাৰকাৰী {} ৰ বাবে কিৰিং/KWallet আনলক স"
-"ফলভাৱে সামৰ্থবান কৰা হৈছে।"
+"TPM (ৱালেট: {}) ব্যৱহাৰ কৰি ব্যৱহাৰকাৰী {} ৰ বাবে কিৰিং/KWallet আনলক সফলভাৱে "
+"সামৰ্থবান কৰা হৈছে।"
 
 #: src/cli/keyring.py:102
 msgid "Failed to seal password to TPM: {}"
@@ -455,11 +575,11 @@ msgstr "কোনো টিপিএম সক্ৰিয় নাই। চ�
 
 #: src/cli/keyring.py:122
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"ব্যৱহাৰকাৰী {} (চফ্টৱেৰ কেচিং, ৱালেট: {}) ৰ বাবে কিৰিং/KWallet আনলক সফ"
-"লভাৱে সামৰ্থবান কৰা হৈছে।"
+"ব্যৱহাৰকাৰী {} (চফ্টৱেৰ কেচিং, ৱালেট: {}) ৰ বাবে কিৰিং/KWallet আনলক সফলভাৱে "
+"সামৰ্থবান কৰা হৈছে।"
 
 #: src/cli/keyring.py:124
 msgid "Failed to enable keyring unlocking: {}"
@@ -491,11 +611,11 @@ msgstr "{} জন ব্যৱহাৰকাৰীৰ বাবে লগইন
 
 #: src/cli/keyring.py:158
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"প্ৰম্প্ট অব্যাহত থাকিলে, Seahorse / ছিষ্টেম ছেটিংছত লগইন কীৰিং বা KWal"
-"let পাছৱৰ্ড ছেট কৰক।"
+"প্ৰম্প্ট অব্যাহত থাকিলে, Seahorse / ছিষ্টেম ছেটিংছত লগইন কীৰিং বা KWallet পাছৱৰ্ড "
+"ছেট কৰক।"
 
 #: src/cli/keyring.py:161
 msgid "Restored login wallet password for user {}."
@@ -538,28 +658,28 @@ msgid "You can find the IDs by running:"
 msgstr "আপুনি আইডিসমূহ বিচাৰি পাব পাৰে:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "ইয়াৰ দ্বাৰা {user} ৰ বাবে \"{label}\" নামৰ মডেলটো আঁতৰোৱা হ'ব।"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "{user} ৰ বাবে আইডি {id} থকা কোনো মডেল নাই।"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
-msgstr ""
-"শেষৰ মডেল আঁতৰোৱা হৈছে, ব্যৱহাৰকাৰীৰ বাবে ubuntu-hello নিষ্ক্ৰিয় কৰা "
-"হৈছে"
+msgstr "শেষৰ মডেল আঁতৰোৱা হৈছে, ব্যৱহাৰকাৰীৰ বাবে ubuntu-hello নিষ্ক্ৰিয় কৰা হৈছে"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
 msgstr "আঁতৰোৱা মডেল {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"অনুগ্ৰহ কৰি আপুনি সলনি কৰিব বিচৰা এটা সংহতি আৰু ইয়াক সংহতি কৰিবলগীয়া"
-" মান যোগ কৰক"
+"অনুগ্ৰহ কৰি আপুনি সলনি কৰিব বিচৰা এটা সংহতি আৰু ইয়াক সংহতি কৰিবলগীয়া মান যোগ কৰক"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -587,34 +707,43 @@ msgstr "সৃষ্টি কৰা স্নেপশ্বট হিচাপ
 
 #: src/cli/test.py:23
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello এটা ৰেকৰ্ডাৰ ব্যৱহাৰ কৰিবলে বিন্যাস কৰা হৈছে যি পৰীক্ষা আ"
-"দেশ এতিয়াও সমৰ্থন নকৰে, বাতিল কৰা হৈছে"
+"Ubuntu Hello এটা ৰেকৰ্ডাৰ ব্যৱহাৰ কৰিবলে বিন্যাস কৰা হৈছে যি পৰীক্ষা আদেশ এতিয়াও "
+"সমৰ্থন নকৰে, বাতিল কৰা হৈছে"
 
 #: src/cli/test.py:34
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nএটা পৰীক্ষা ফিডৰ সৈতে এটা উইণ্ড' খোলা\n\nএই টাৰ্মিনেলত ctrl+C টিপক ও"
-"লাই যাবলৈ\nলেহেমীয়া ধৰণ সামৰ্থবান বা নিষ্ক্ৰিয় কৰিবলৈ ছবিখনত ক্লিক ক"
-"ৰক\n"
+"\n"
+"এটা পৰীক্ষা ফিডৰ সৈতে এটা উইণ্ড' খোলা\n"
+"\n"
+"এই টাৰ্মিনেলত ctrl+C টিপক ওলাই যাবলৈ\n"
+"লেহেমীয়া ধৰণ সামৰ্থবান বা নিষ্ক্ৰিয় কৰিবলৈ ছবিখনত ক্লিক কৰক\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "সমাধান: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "এফ পি এছ: ⟦পি০⟧ %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "ফ্ৰেম: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "স্বীকৃতি: %dms"
 
@@ -632,9 +761,11 @@ msgstr "SCAN FRAME ৰ দ্বাৰা"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nবন্ধ হোৱা উইণ্ড'"
+"\n"
+"বন্ধ হোৱা উইণ্ড'"
 
 #: src/rubberstamps/__init__.py:80
 msgid "Error parsing rubberstamp rule: {}"
@@ -665,6 +796,7 @@ msgid "Authorising in {}"
 msgstr "{} ত অনুমোদন দিয়া হৈছে।"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "বাতিল কৰিবলৈ {abort_key} টিপক, অনুমোদন কৰিবলৈ {confirm_key} টিপক"
 
@@ -698,24 +830,22 @@ msgstr "অনুপস্থিত pyv4l2 মডিউল, অনুগ্ৰ�
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello বিন্যাস নথিপত্ৰত ধাৰ্য্য কৰা পথত এটা কেমেৰা ডিভাইচ বিচাৰি"
-" পোৱা নগ'ল ।"
+"Ubuntu Hello বিন্যাস নথিপত্ৰত ধাৰ্য্য কৰা পথত এটা কেমেৰা ডিভাইচ বিচাৰি পোৱা নগ'ল "
+"।"
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"অতি সম্ভাৱনা যে পথ সঠিকভাৱে বিন্যাস কৰা হোৱা নাই, অনুগ্ৰহ কৰি 'device_"
-"path' বিন্যাস মান সম্পাদনা কৰক চলাই:"
+"অতি সম্ভাৱনা যে পথ সঠিকভাৱে বিন্যাস কৰা হোৱা নাই, অনুগ্ৰহ কৰি 'device_path' "
+"বিন্যাস মান সম্পাদনা কৰক চলাই:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"'device_path' বিন্যাস বিকল্পত ধাৰ্য্য কৰা কেমেৰা পঢ়িবলৈ ব্যৰ্থ, বাতিল"
-" কৰা হৈছে"
+"'device_path' বিন্যাস বিকল্পত ধাৰ্য্য কৰা কেমেৰা পঢ়িবলৈ ব্যৰ্থ, বাতিল কৰা হৈছে"

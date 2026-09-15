@@ -1,6 +1,6 @@
-# syntax=docker/dockerfile:1.26.0
+# syntax=docker/dockerfile:1.27.0
 # Arch Linux packaging image (pinned base-devel weekly tag)
-FROM archlinux:base-devel-20260816.0.574111
+FROM archlinux:base-devel-20260906.0.587075
 
 RUN pacman -Syu --noconfirm \
     && pacman -S --noconfirm \

@@ -210,10 +210,14 @@ class TestStickyWindow:
         sw = MagicMock(spec=StickyWindow)
         # Set real methods from the class
         sw.catch_stdin = lambda: StickyWindow.catch_stdin(sw)
-        sw.exit = lambda widget, context: StickyWindow.exit(sw, widget, context)
-        sw.draw = lambda widget, ctx: StickyWindow.draw(sw, widget, ctx)
+        sw.handle_line = lambda comm: StickyWindow.handle_line(sw, comm)
+        sw.exit = lambda *args: StickyWindow.exit(sw, *args)
+        sw.draw = lambda widget, ctx: StickyWindow.draw(sw, widget, ctx, 400, 100)
         sw.message = ""
         sw.subtext = ""
+        sw.loop = MagicMock()
+        sw.loop.is_running.return_value = True
+        sw.darea = MagicMock()
         return sw, mod
 
     def test_catch_stdin_message(self):
@@ -222,9 +226,9 @@ class TestStickyWindow:
 
         with patch("sys.stdin") as mock_stdin:
             mock_stdin.readline.return_value = "M=Hello World\n"
-            with patch.object(mod.gobject, "timeout_add"):
-                sw.catch_stdin()
+            assert sw.catch_stdin() is True
         assert sw.message == "Hello World"
+        sw.darea.queue_draw.assert_called_once()
 
     def test_catch_stdin_subtext(self):
         sw, mod = self._make_sw()
@@ -232,9 +236,9 @@ class TestStickyWindow:
 
         with patch("sys.stdin") as mock_stdin:
             mock_stdin.readline.return_value = "S=Sub text here\n"
-            with patch.object(mod.gobject, "timeout_add"):
-                sw.catch_stdin()
+            assert sw.catch_stdin() is True
         assert sw.subtext == "Sub text here"
+        sw.darea.queue_draw.assert_called_once()
 
     def test_catch_stdin_empty(self):
         sw, mod = self._make_sw()
@@ -243,8 +247,18 @@ class TestStickyWindow:
 
         with patch("sys.stdin") as mock_stdin:
             mock_stdin.readline.return_value = "\n"
-            with patch.object(mod.gobject, "timeout_add"):
-                sw.catch_stdin()
+            assert sw.catch_stdin() is True
+        assert sw.message == "old"
+
+    def test_catch_stdin_eof_exits(self):
+        sw, mod = self._make_sw()
+        sw.message = "old"
+
+        with patch("sys.stdin") as mock_stdin:
+            mock_stdin.readline.return_value = ""
+            assert sw.catch_stdin() is False
+        # EOF means compare.py is gone: the overlay's main loop must stop.
+        sw.loop.quit.assert_called_once()
         assert sw.message == "old"
 
     def test_catch_stdin_padding(self):
@@ -254,16 +268,20 @@ class TestStickyWindow:
 
         with patch("sys.stdin") as mock_stdin:
             mock_stdin.readline.return_value = "P=_PADDING\n"
-            with patch.object(mod.gobject, "timeout_add"):
-                sw.catch_stdin()
+            assert sw.catch_stdin() is True
         # Padding lines don't change message or subtext
         assert sw.message == "old"
 
     def test_exit(self):
         sw, mod = self._make_sw()
-        with patch.object(mod.gtk, 'main_quit'):
-            result = sw.exit(None, None)
-            assert result is True
+        result = sw.exit(None, None)
+        assert result is True
+        sw.loop.quit.assert_called_once()
+
+    def test_exit_without_loop(self):
+        sw, mod = self._make_sw()
+        sw.loop = None
+        assert sw.exit() is True
 
     def test_draw_dark_theme(self):
         sw, mod = self._make_sw()
@@ -271,7 +289,6 @@ class TestStickyWindow:
         sw.subtext = "Sub"
         sw.logo_surface = MagicMock()
         sw.logo_ratio = 1.0
-        sw.get_window = MagicMock(return_value=MagicMock())
 
         mock_ctx = MagicMock()
         with patch.object(mod, "get_theme_preference", return_value="dark"):
@@ -285,7 +302,6 @@ class TestStickyWindow:
         sw.subtext = ""
         sw.logo_surface = MagicMock()
         sw.logo_ratio = 1.0
-        sw.get_window = MagicMock(return_value=MagicMock())
 
         mock_ctx = MagicMock()
         with patch.object(mod, "get_theme_preference", return_value="light"):
@@ -299,17 +315,30 @@ class TestStickyWindow:
         
         mock_logo_surface = MagicMock()
         mock_logo_surface.get_height.return_value = 80
-        
-        mock_screen = MagicMock()
-        mock_screen.get_width.return_value = 1920
-        mock_screen.get_rgba_visual.return_value = "visual"
-        
+
         with patch("cairo.ImageSurface.create_from_png", return_value=mock_logo_surface), \
              patch("paths_factory.logo_path", return_value="/mock/logo.png"), \
-             patch("gi.repository.Gdk.Screen.get_default", return_value=mock_screen), \
-             patch("gi.repository.GObject.timeout_add"), \
-             patch("gi.repository.Gtk.main"):
-            
-            sw = StickyWindow()
+             patch.object(mod.GLib, "io_add_watch") as io_watch:
+
+            sw = StickyWindow(run_main_loop=False)
             assert sw.logo_surface == mock_logo_surface
             assert sw.logo_ratio == (100 - 20) / 80.0
+            assert sw.loop is None
+            # stdin is polled by the GLib main context, never by a blocking read
+            io_watch.assert_called_once()
+            sw.darea.set_draw_func.assert_called_once_with(sw.draw)
+
+    def test_sticky_window_init_runs_own_loop(self):
+        mod = _get_authsticky()
+        StickyWindow = mod.StickyWindow
+
+        mock_logo_surface = MagicMock()
+        mock_logo_surface.get_height.return_value = 80
+
+        with patch("cairo.ImageSurface.create_from_png", return_value=mock_logo_surface), \
+             patch("paths_factory.logo_path", return_value="/mock/logo.png"), \
+             patch.object(mod.GLib, "io_add_watch"), \
+             patch.object(mod.GLib, "MainLoop") as main_loop:
+
+            StickyWindow()
+            main_loop.return_value.run.assert_called_once()

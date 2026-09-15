@@ -8,6 +8,18 @@ import re
 from typing import Optional
 
 # English reference names (Whisper / Whisper-Pro-ASR + English).
+# Languages written right-to-left (Arabic, Hebrew, Persian, Urdu, Pashto,
+# Sindhi, Yiddish): the whole UI mirrors when one of these is selected.
+RTL_CODES = frozenset({"ar", "he", "fa", "ur", "ps", "sd", "yi"})
+
+
+def is_rtl(code: Optional[str]) -> bool:
+	"""True when *code* (e.g. ``ar``, ``ar_EG``) is a right-to-left language."""
+	if not code:
+		return False
+	return code.split("_")[0].split("-")[0].lower() in RTL_CODES
+
+
 LANGUAGE_NAMES = {
 	"en": "English",
 	"af": "Afrikaans",

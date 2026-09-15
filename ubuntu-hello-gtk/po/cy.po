@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-15 17:18+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,670 +15,831 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Created"
 msgstr "Wedi creu"
 
-#: src/window.py:91
+#: src/window.py:99
 msgid "Label"
 msgstr "Label"
 
-#: src/window.py:189
+#: src/window.py:204
 msgid "Automatic"
 msgstr "Awtomatig"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Galluogi Cylch Bysell/KWallet Datgloi"
+#: src/onboarding.py:169 src/onboarding.ui:246
+msgid "Adding your face models"
+msgstr "Ychwanegu modelau eich wyneb"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Rhowch gyfrinair ar gyfer defnyddiwr <b>{}</b> i ddatgloi {} ({}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Cyfrinair"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:172 src/onboarding.ui:262
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello will scan your face twice: once now, and once more in different "
+"lighting (for example evening lamps instead of daylight), so it recognises "
+"you reliably at any time of day. Press Scan to record the first model."
 msgstr ""
-"Ffeiliau data eisoes wedi'u llwytho i lawr!\nCliciwch Nesaf i barhau"
+"Bydd Ubuntu Hello yn sganio'ch wyneb ddwywaith: unwaith nawr, ac unwaith eto "
+"mewn gwahanol oleuadau (er enghraifft lampau gyda'r nos yn lle golau dydd), "
+"fel ei fod yn eich adnabod yn ddibynadwy ar unrhyw adeg o'r dydd. Pwyswch "
+"Scan i gofnodi'r model cyntaf."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Gwall wrth lawrlwytho ffeiliau data"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Wedi'i wneud!\nCliciwch Nesaf i barhau"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Gwall wrth fewnforio OpenCV2"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Ceisiwch ailosod cv2"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Ni chanfuwyd gwe-gamerâu ar y system"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Ffurfweddwch eich camera eich hun os ydych chi'n siŵr bod camera cydna"
-"ws wedi'i gysylltu"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Na, ni ellir agor y camera"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Na, nid camera isgoch"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Ie, camera isgoch gydnaws"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Dynodwr camera neu lwybr"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Argymhellir"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Gwall wrth ddewis camera"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Nid oes modd agor y camera a ddewiswyd"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Ceisiwch ddewis un arall"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Ymwelwch\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitte"
-"r\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\ni alluogi"
-" eich allyrrydd ir"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:175 src/onboarding.py:630 src/onboarding.py:712
+#: src/tab_models.py:39 src/onboarding.ui:288
 msgid "Please look directly into the camera"
 msgstr "Edrychwch yn syth i mewn i'r camera"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:178 src/onboarding.py:660 src/onboarding.ui:323
 msgid "Start face scan"
 msgstr "Dechrau sgan wyneb"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:242
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Ffeiliau data eisoes wedi'u llwytho i lawr!\n"
+"Cliciwch Nesaf i barhau"
+
+#: src/onboarding.py:279
+msgid "Error while downloading datafiles"
+msgstr "Gwall wrth lawrlwytho ffeiliau data"
+
+#: src/onboarding.py:282
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Wedi'i wneud!\n"
+"Cliciwch Nesaf i barhau"
+
+#: src/onboarding.py:334 src/onboarding.py:542
+msgid "Error while importing OpenCV2"
+msgstr "Gwall wrth fewnforio OpenCV2"
+
+#: src/onboarding.py:334 src/onboarding.py:542
+msgid "Try reinstalling cv2"
+msgstr "Ceisiwch ailosod cv2"
+
+#: src/onboarding.py:341
+msgid "No webcams found on system"
+msgstr "Ni chanfuwyd gwe-gamerâu ar y system"
+
+#: src/onboarding.py:341
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Ffurfweddwch eich camera eich hun os ydych chi'n siŵr bod camera cydnaws "
+"wedi'i gysylltu"
+
+#: src/onboarding.py:433
+msgid "No, camera can't be opened"
+msgstr "Na, ni ellir agor y camera"
+
+#: src/onboarding.py:445
+msgid "No, not an infrared camera"
+msgstr "Na, nid camera isgoch"
+
+#: src/onboarding.py:449
+msgid "Yes, compatible infrared camera"
+msgstr "Ie, camera isgoch gydnaws"
+
+#: src/onboarding.py:466
+msgid "Camera identifier or path"
+msgstr "Dynodwr camera neu lwybr"
+
+#: src/onboarding.py:466
+msgid "Recommended"
+msgstr "Argymhellir"
+
+#: src/onboarding.py:546 src/onboarding.py:585
+msgid "Error selecting camera"
+msgstr "Gwall wrth ddewis camera"
+
+#: src/onboarding.py:560
+msgid "The selected camera cannot be opened"
+msgstr "Nid oes modd agor y camera a ddewiswyd"
+
+#: src/onboarding.py:560
+msgid "Try to select another one"
+msgstr "Ceisiwch ddewis un arall"
+
+#: src/onboarding.py:575
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Ymwelwch\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"i alluogi eich allyrrydd ir"
+
+#: src/onboarding.py:643
+msgid "Setup lighting 1"
+msgstr "Gosodiad goleuo 1"
+
+#: src/onboarding.py:644
+msgid "Setup lighting 2"
+msgstr "Gosodiad goleuo 2"
+
+#: src/onboarding.py:662
 msgid "Can't save face model"
 msgstr "Methu arbed model wyneb"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:667 src/onboarding.py:714
+msgid "Scan second model"
+msgstr "Sganio ail fodel"
+
+#: src/onboarding.py:673
+msgid "Couldn't record the second model"
+msgstr "Methwyd recordio'r ail fodel"
+
+#: src/onboarding.py:674
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysia"
-"d wyneb (waled canfyddedig: {}).\n\n<b>Statws TPM:</b> Wrthi'n gwirio "
-"caledwedd ac offer TPM..."
+"Mae eich model cyntaf yn cael ei gadw, felly mae mewngofnodi wyneb eisoes yn "
+"gweithio. Rhaid i'r ystafell fod yn ddigon llachar o hyd i weld eich wyneb - "
+"newidiwch y golau yn hytrach na'i ddiffodd - yna ceisiwch eto, neu sgipiwch "
+"ac ychwanegwch fodel yn ddiweddarach o'r Gosodiadau."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:708
+msgid "Second scan: different lighting"
+msgstr "Ail sgan: goleuadau gwahanol"
+
+#: src/onboarding.py:710
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved. Now change the light — for example turn a lamp on or off, "
+"move away from the window, or use the other room light — keep your face "
+"clearly visible, then press Scan again."
 msgstr ""
-"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysia"
-"d wyneb (waled canfyddedig: {}).\n\n<b>Statws TPM:</b> Wedi canfod cal"
-"edwedd TPM. Yn gosod <i>tpm2-tools</i> yn awtomatig..."
+"Model cyntaf wedi'i arbed. Nawr newidiwch y golau - er enghraifft trowch "
+"lamp ymlaen neu i ffwrdd, symudwch i ffwrdd o'r ffenestr, neu defnyddiwch "
+"olau'r ystafell arall - cadwch eich wyneb yn amlwg, yna pwyswch Scan eto."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:752
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysia"
-"d wyneb (waled canfyddedig: {}).\n\n<b>Statws TPM:</b> Caledwedd TPM 2"
-".0 yn weithredol. Bydd eich cyfrinair yn cael ei selio'n ddiogel y tu "
-"mewn i'r TPM."
+"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysiad "
+"wyneb (waled canfyddedig: {}).\n"
+"\n"
+"<b>Statws TPM:</b> Wrthi'n gwirio caledwedd ac offer TPM..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:772
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysia"
-"d wyneb (waled canfyddedig: {}).\n\n<b>Statws TPM:</b> Wedi canfod cal"
-"edwedd TPM, ond methodd gosod <i>tpm2-tools</i> yn awtomatig. Rhedeg <"
-"code>sudo apt install tpm2-tools</code>. Syrthio'n ôl i caching creden"
-"tial seiliedig ar feddalwedd."
+"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysiad "
+"wyneb (waled canfyddedig: {}).\n"
+"\n"
+"<b>Statws TPM:</b> Wedi canfod caledwedd TPM. Yn gosod <i>tpm2-tools</i> yn "
+"awtomatig..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:784
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysia"
-"d wyneb (waled canfyddedig: {}).\n\n<b>Statws TPM:</b> Dim caledwedd T"
-"PM wedi'i ganfod. Defnyddio caching credential seiliedig ar feddalwedd"
-" (AES-256-GCM)."
+"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysiad "
+"wyneb (waled canfyddedig: {}).\n"
+"\n"
+"<b>Statws TPM:</b> Caledwedd TPM 2.0 yn weithredol. Bydd eich cyfrinair yn "
+"cael ei selio'n ddiogel y tu mewn i'r TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:786
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Methu â nodi defnyddiwr system nad yw'n gwraidd ar gyfer datgloi cylch"
-" bysell"
+"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysiad "
+"wyneb (waled canfyddedig: {}).\n"
+"\n"
+"<b>Statws TPM:</b> Wedi canfod caledwedd TPM, ond methodd gosod <i>tpm2-"
+"tools</i> yn awtomatig. Rhedeg <code>sudo apt install tpm2-tools</code>. "
+"Syrthio'n ôl i caching credential seiliedig ar feddalwedd."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Ni all cyfrinair fod yn wag"
+#: src/onboarding.py:788
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Gall Ubuntu Hello ddatgloi eich {} yn awtomatig gan ddefnyddio dilysiad "
+"wyneb (waled canfyddedig: {}).\n"
+"\n"
+"<b>Statws TPM:</b> Dim caledwedd TPM wedi'i ganfod. Defnyddio caching "
+"credential seiliedig ar feddalwedd (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Cyfrinair anghywir ar gyfer defnyddiwr {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "gwall anhysbys"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Wedi methu â galluogi datgloi cylch allweddi: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:850 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Wedi methu ag analluogi datgloi cylch allweddi: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:856
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Methu â nodi defnyddiwr system nad yw'n gwraidd ar gyfer datgloi cylch bysell"
+
+#: src/onboarding.py:869 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Ni all cyfrinair fod yn wag"
+
+#: src/onboarding.py:873 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Cyfrinair anghywir ar gyfer defnyddiwr {}"
+
+#: src/onboarding.py:885 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "gwall anhysbys"
+
+#: src/onboarding.py:886 src/onboarding.py:895 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Wedi methu â galluogi datgloi cylch allweddi: {}"
+
+#: src/onboarding.py:889
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Methwyd galluogi datgloi'r cylch allweddi: ni chanfuwyd y ffeil weithredadwy "
+"ubuntu-hello"
+
+#: src/onboarding.py:892
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Methwyd galluogi datgloi'r cylch allweddi: daeth yr amser aros am alluogi i "
+"ben"
+
+#: src/onboarding.py:901
 msgid "Keyring Unlocking Error"
 msgstr "Gwall Datgloi Cylch Bysellu"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:914
 msgid "Error reading radio buttons"
 msgstr "Gwall wrth ddarllen botymau radio"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Rhybudd Gosod"
-
-#: src/onboarding.py:627
+#: src/onboarding.py:940
 msgid "Could not save certainty preference, but setup is otherwise complete."
 msgstr ""
-"Methu â chadw dewis sicrwydd, ond mae'r gosodiad wedi'i gwblhau fel ar"
-"all."
+"Methu â chadw dewis sicrwydd, ond mae'r gosodiad wedi'i gwblhau fel arall."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Gwall"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Wrthi'n llwytho..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Dilysu"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Cadarnhau Creu Defnyddiwr"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Rhowch enw defnyddiwr y defnyddiwr yr ydych am ei ychwanegu at Ubuntu "
-"Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Enw defnyddiwr:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:21
 msgid "Confirm Model Creation"
 msgstr "Cadarnhau Creu Model"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:22 src/tab_models.py:73 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:796
+msgid "Cancel"
+msgstr "Canslo"
+
+#: src/tab_models.py:23 src/main.ui:181
+msgid "Add"
+msgstr "Ychwanegu"
+
+#: src/tab_models.py:24
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Rhowch enw ar gyfer y model newydd, uchafswm o 24 nod"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:28
 msgid "Model name:"
 msgstr "Enw'r model:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:38
 msgid "Creating Model"
 msgstr "Creu Model"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:58
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Error while adding model, error code {}: \n"
+"\n"
 msgstr ""
-"Gwall wrth ychwanegu model, cod gwall {}:\n\n"
+"Gwall wrth ychwanegu model, cod gwall {}:\n"
+"\n"
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Cadarnhau Dileu Model"
-
-#: src/tab_models.py:116
+#: src/tab_models.py:72
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Ydych chi'n siŵr eich bod am ddileu model {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Gwall wrth ddileu model, cod gwall {}:\n\n"
+#: src/tab_models.py:73 src/main.ui:207
+msgid "Delete"
+msgstr "Dileu"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:81
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Gwall wrth ddileu model, cod gwall {}:\n"
+"\n"
+
+#: src/tab_video.py:67
 msgid "Can't open camera"
 msgstr "Methu agor camera"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:86
 msgid "Can't import OpenCV2"
 msgstr "Methu mewnforio OpenCV2"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:159
 msgid "Unknown"
 msgstr "Anhysbys"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Galluogi Cylch Bysell/KWallet Datgloi"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "iawn"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Rhowch gyfrinair ar gyfer defnyddiwr <b>{}</b> i ddatgloi {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:756
+msgid "Password"
+msgstr "Cyfrinair"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Dim defnyddiwr wedi'i ddewis</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Wedi'i alluogi (Caledwedd TPM)</b></span> "
-"— {}"
+"<span foreground='green'><b>Wedi'i alluogi (Caledwedd TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Wedi Galluogi (Caching Meddalwedd)</b></sp"
-"an> — {}"
+"<span foreground='green'><b>Wedi Galluogi (Caching Meddalwedd)</b></span> — "
+"{}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Wedi Galluogi (Yn Aros Mewn Mewnbynnu Cyf"
-"rinair)</b></span> — {}"
+"<span foreground='orange'><b>Wedi Galluogi (Yn Aros Mewn Mewnbynnu "
+"Cyfrinair)</b></span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Analluogi</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Gwall"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Llwyddiant"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
-"Cylch allweddi/KWallet wedi'i alluogi'n llwyddiannus ar gyfer defnyddi"
-"wr {}."
+"Cylch allweddi/KWallet wedi'i alluogi'n llwyddiannus ar gyfer defnyddiwr {}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Analluogi Cylch Bysellau/KWallet Datgloi"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Ydych chi'n siŵr eich bod am analluogi cylch allweddi/KWallet datgloi "
-"ar gyfer defnyddiwr {}?"
+"Ydych chi'n siŵr eich bod am analluogi cylch allweddi/KWallet datgloi ar "
+"gyfer defnyddiwr {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:682
+msgid "Disable Auto-Unlock"
+msgstr "Analluogi Auto-Datgloi"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Cylch allweddi/KWallet wedi'i analluogi ar gyfer y defnyddiwr {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Methu â chadw'r gosodiad hysbysu"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Ffurfwedd"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Ffurfwedd"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Gosodiadau chwilio"
 
-#: src/main.glade:77
+#: src/main.ui:19
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Ffurfwedd"
+
+#: src/main.ui:59
+msgid "Face models"
+msgstr "Modelau wyneb"
+
+#: src/main.ui:73
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Cipluniau o'ch wyneb y mae Ubuntu Hello yn cymharu ag ef. Cadwch o leiaf "
+"ddau, wedi'u cofnodi mewn gwahanol oleuadau."
+
+#: src/main.ui:95
 msgid "Showing saved models for:"
 msgstr "Yn dangos modelau sydd wedi'u cadw ar gyfer:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Ychwanegu defnyddiwr newydd"
+#: src/main.ui:135
+msgid ""
+"Only one face model is enrolled. Lighting changes how your face looks to the "
+"camera, so a single model can fail in the evening under lamps (or in "
+"daylight). Add a second model recorded in different light to keep unlocking "
+"reliable at any time of day."
+msgstr ""
+"Dim ond un model wyneb sydd wedi'i gofrestru. Mae goleuo'n newid sut mae'ch "
+"wyneb yn edrych i'r camera, felly gall model sengl fethu gyda'r nos o dan "
+"lampau (neu yng ngolau dydd). Ychwanegwch ail fodel a gofnodwyd mewn golau "
+"gwahanol i gadw datgloi yn ddibynadwy ar unrhyw adeg o'r dydd."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Ychwanegu"
+#: src/main.ui:144
+msgid "Add a second model"
+msgstr "Ychwanegu ail fodel"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Dileu"
-
-#: src/main.glade:218
+#: src/main.ui:222
 msgid "Models"
 msgstr "Modelau"
 
-#: src/main.glade:244
+#: src/main.ui:255
+msgid "Camera"
+msgstr "Camera"
+
+#: src/main.ui:269
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"Mae'r camera Ubuntu Hello yn ei ddefnyddio i chwilio am eich wyneb, gyda "
+"rhagolwg byw."
+
+#: src/main.ui:292
 msgid "Camera ID:"
 msgstr "ID camera:"
 
-#: src/main.glade:273
+#: src/main.ui:306
 msgid "Real resolution:"
 msgstr "Datrysiad go iawn:"
 
-#: src/main.glade:303
+#: src/main.ui:322
 msgid "Used resolution:"
 msgstr "Datrysiad a ddefnyddiwyd:"
 
-#: src/main.glade:333
+#: src/main.ui:338
 msgid "Recorder:"
 msgstr "Cofiadur:"
 
-#: src/main.glade:401
+#: src/main.ui:384
 msgid "Video"
 msgstr "Fideo"
 
-#: src/main.glade:423 src/onboarding.glade:111
+#: src/main.ui:421 src/main.ui:573
+msgid "Notifications"
+msgstr "Hysbysiadau"
+
+#: src/main.ui:435
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Mae hysbysiad bwrdd gwaith yn dangos tra bod Ubuntu Hello yn edrych am eich "
+"wyneb, yna'n adrodd y canlyniad. Mae ymdrechion a fethwyd yn aros yn y "
+"rhestr hysbysu."
+
+#: src/main.ui:466
+msgid "Show notifications"
+msgstr "Dangos hysbysiadau"
+
+#: src/main.ui:472
+msgid ""
+"One card per face-authentication attempt, updated in place with the result."
+msgstr ""
+"Un cerdyn fesul ymgais dilysu wyneb, wedi'i ddiweddaru yn ei le gyda'r "
+"canlyniad."
+
+#: src/main.ui:503
+msgid "Notification sounds"
+msgstr "Seiniau hysbysu"
+
+#: src/main.ui:509
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr ""
+"Chwarae sain y system ar gyfer ymgais gydnabyddedig neu ymgais aflwyddiannus."
+
+#: src/main.ui:540
+msgid "Include diagnostics"
+msgstr "Cynnwys diagnosteg"
+
+#: src/main.ui:546
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
+msgstr ""
+"Ychwanegwch y model, sicrwydd vs. trothwy, fframiau, camera ac amseriad i "
+"bob cerdyn. Defnyddiol wrth adrodd am broblem."
+
+#: src/main.ui:610 src/onboarding.ui:707
 msgid "Keyring / KWallet Auto-Unlock"
 msgstr "Cylch allweddi / KWallet Auto-Datgloi"
 
-#: src/main.glade:440
+#: src/main.ui:624
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Galluogi dilysu wynebau i ddatgloi'ch cylch allweddi mewngofnodi yn aw"
-"tomatig neu KWallet wrth fewngofnodi. Mae hyn yn storio'ch cyfrinair w"
-"edi'i selio yn y TPM yn ddiogel pan fydd ar gael, neu wedi'i amgryptio"
-" â AES-256-GCM gan ddefnyddio allwedd meistr gwraidd yn unig. Setiau a"
-"uth wyneb PAM_AUTHTOK ar gyfer pam_gnome_keyring neu pam_kwallet5 yn d"
-"ibynnu ar eich bwrdd gwaith."
+"Galluogi dilysu wynebau i ddatgloi'ch cylch allweddi mewngofnodi yn "
+"awtomatig neu KWallet wrth fewngofnodi. Mae hyn yn storio'ch cyfrinair "
+"wedi'i selio yn y TPM yn ddiogel pan fydd ar gael, neu wedi'i amgryptio â "
+"AES-256-GCM gan ddefnyddio allwedd meistr gwraidd yn unig. Setiau auth wyneb "
+"PAM_AUTHTOK ar gyfer pam_gnome_keyring neu pam_kwallet5 yn dibynnu ar eich "
+"bwrdd gwaith."
 
-#: src/main.glade:471
+#: src/main.ui:652
 msgid "Current Status:"
 msgstr "Statws Presennol:"
 
-#: src/main.glade:486
+#: src/main.ui:661
 msgid "Checking..."
 msgstr "Wrthi'n gwirio..."
 
-#: src/main.glade:509
+#: src/main.ui:672
 msgid "Enable Auto-Unlock"
 msgstr "Galluogi Auto-Datgloi"
 
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Analluogi Auto-Datgloi"
-
-#: src/main.glade:559
+#: src/main.ui:700
 msgid "Keyring"
 msgstr "Cylch allweddi"
 
-#: src/main.glade:581
+#: src/main.ui:736
 msgid "Display language"
 msgstr "Iaith arddangos"
 
-#: src/main.glade:603 src/main.glade:662
+#: src/main.ui:750
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr ""
+"Awtomatig yn dilyn iaith y system. Mae newidiadau’n cael eu cymhwyso ar "
+"unwaith."
+
+#: src/main.ui:773 src/main.ui:792
 msgid "Language"
 msgstr "Iaith"
 
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr ""
-"Awtomatig yn dilyn iaith y system. Mae newidiadau’n cael eu cymhwyso a"
-"r unwaith."
-
-#: src/main.glade:694
+#: src/main.ui:813
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.glade:710
+#: src/main.ui:823
 msgid "Facial authentication for Linux"
 msgstr "Dilysu wyneb ar gyfer Linux"
 
-#: src/main.glade:723
+#: src/main.ui:832
 msgid "Version unknown"
 msgstr "Fersiwn anhysbys"
 
-#: src/main.glade:746
+#: src/main.ui:846
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Agor dolen GitHub"
-"</a>"
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Agor dolen GitHub</a>"
 
-#: src/main.glade:778
+#: src/main.ui:853
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Rhoi gwybod am "
+"broblem neu awgrymu nodwedd</a>"
+
+#: src/main.ui:865
 msgid "About"
 msgstr "Ynghylch"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
+#: src/onboarding.ui:9 src/onboarding.ui:14
 msgid "Welcome to Ubuntu Hello"
 msgstr "Croeso i Ubuntu Hello"
 
-#: src/onboarding.glade:63
+#: src/onboarding.ui:51
 msgid "Setup is done!"
 msgstr "Mae'r gosodiad wedi'i wneud!"
 
-#: src/onboarding.glade:82
+#: src/onboarding.ui:67
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
 msgstr ""
-"Rydyn ni wedi gorffen! Mae Ubuntu Hello bellach yn weithredol ar y cyf"
-"rifiadur hwn. Ceisiwch wneud unrhyw beth y byddai'n rhaid i chi fel ar"
-"fer deipio'ch cyfrinair i'w ddilysu, fel rhedeg gorchymyn gyda sudo. O"
-"s gwnaethoch alluogi datgloi cylch allweddi yn awtomatig, bydd eich cy"
-"lch allweddi mewngofnodi neu KWallet hefyd yn cael ei datgloi'n awtoma"
-"tig wrth fewngofnodi.\n\nGallwch agor y Cyflunydd Ubuntu Hello yn nes "
-"ymlaen i newid gosodiadau mwy datblygedig neu ychwanegu modelau ychwan"
-"egol. Pwyswch Gorffen isod i gau'r ffenestr hon ac agorwch y Cyflunydd"
-" Ubuntu Hello."
+"Rydyn ni wedi gorffen! Mae Ubuntu Hello bellach yn weithredol ar y "
+"cyfrifiadur hwn. Ceisiwch wneud unrhyw beth y byddai'n rhaid i chi fel arfer "
+"deipio'ch cyfrinair i'w ddilysu, fel rhedeg gorchymyn gyda sudo. Os "
+"gwnaethoch alluogi datgloi cylch allweddi yn awtomatig, bydd eich cylch "
+"allweddi mewngofnodi neu KWallet hefyd yn cael ei datgloi'n awtomatig wrth "
+"fewngofnodi.\n"
+"\n"
+"Gallwch agor y Cyflunydd Ubuntu Hello yn nes ymlaen i newid gosodiadau mwy "
+"datblygedig neu ychwanegu modelau ychwanegol. Pwyswch Gorffen isod i gau'r "
+"ffenestr hon ac agorwch y Cyflunydd Ubuntu Hello."
 
-#: src/onboarding.glade:130
-msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
-msgstr ""
-"Gall Ubuntu Hello ddatgloi eich cylch allweddi mewngofnodi yn awtomati"
-"g neu KWallet ddefnyddio dilysu wynebau, atal awgrymiadau cyfrinair ar"
-" ôl mewngofnodi."
-
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Galluogi cylch allweddi awtomatig / datgloi KWallet"
-
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Cadarnhau cyfrinair"
-
-#: src/onboarding.glade:216
+#: src/onboarding.ui:103
 msgid "Setting a certainty policy"
 msgstr "Gosod polisi sicrwydd"
 
-#: src/onboarding.glade:235
+#: src/onboarding.ui:119
 msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
 msgstr ""
-"Oherwydd newidiadau mewn onglau, pellter, a ffactorau eraill nid yw cy"
-"dweddiad wyneb byth yn union yr un fath â'r model wyneb sydd wedi'i st"
-"orio. Ar y dudalen hon gallwch chi osod pa mor llym y dylai Ubuntu Hel"
-"lo fod."
+"Oherwydd newidiadau mewn onglau, pellter, a ffactorau eraill nid yw "
+"cydweddiad wyneb byth yn union yr un fath â'r model wyneb sydd wedi'i "
+"storio. Ar y dudalen hon gallwch chi osod pa mor llym y dylai Ubuntu Hello "
+"fod."
 
-#: src/onboarding.glade:274
+#: src/onboarding.ui:149
 msgid "Fast"
 msgstr "Cyflym"
 
-#: src/onboarding.glade:290
+#: src/onboarding.ui:158
 msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
+"Allows more fuzzy matches, \n"
+"but speeds up the scanning process greatly."
 msgstr ""
-"Yn caniatáu mwy o gemau niwlog, \nond yn cyflymu'r broses sganio yn fa"
-"wr."
+"Yn caniatáu mwy o gemau niwlog, \n"
+"ond yn cyflymu'r broses sganio yn fawr."
 
-#: src/onboarding.glade:329
+#: src/onboarding.ui:181
 msgid "Balanced"
 msgstr "Cytbwys"
 
-#: src/onboarding.glade:345
+#: src/onboarding.ui:190
 msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
+"Still relatively quick detection, \n"
+"but might not log you in when further away."
 msgstr ""
-"Dal i ganfod yn gymharol gyflym, \nond efallai na fydd yn eich mewngof"
-"nodi pan fyddwch ymhellach i ffwrdd."
+"Dal i ganfod yn gymharol gyflym, \n"
+"ond efallai na fydd yn eich mewngofnodi pan fyddwch ymhellach i ffwrdd."
 
-#: src/onboarding.glade:384
+#: src/onboarding.ui:212
 msgid "Secure"
 msgstr "Diogel"
 
-#: src/onboarding.glade:400
+#: src/onboarding.ui:222
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"The slightly safer option, \n"
+"but will take much longer to authenticate you"
 msgstr ""
-"Yr opsiwn ychydig yn fwy diogel, \nond bydd yn cymryd llawer mwy o ams"
-"er i'ch dilysu"
+"Yr opsiwn ychydig yn fwy diogel, \n"
+"ond bydd yn cymryd llawer mwy o amser i'ch dilysu"
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Ychwanegu model wyneb"
+#: src/onboarding.ui:332
+msgid "Skip for now"
+msgstr "Hepgor am y tro"
 
-#: src/onboarding.glade:462
+#: src/onboarding.ui:337
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
 msgstr ""
-"Er mwyn eich dilysu mae angen i Ubuntu Hello gadw model o'ch wyneb i'c"
-"h adnabod. Pwyswch y botwm Scan isod i gychwyn y sgan wyneb."
+"Gallwch ychwanegu rhagor o fodelau wyneb yn nes ymlaen o'r Gosodiadau neu "
+"gyda: sudo ubuntu-hello add"
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/onboarding.ui:355 src/onboarding.ui:482
 msgid "Configuring webcam"
 msgstr "Ffurfweddu gwe-gamera"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:387
 msgid "Is the infrared emitter flashing ?"
 msgstr "A yw'r allyrrydd isgoch yn fflachio?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "oes"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "nac oes"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:399
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Bydd Ubuntu Hello yn chwilio'ch system yn awtomatig am unrhyw gamerâu "
-"sydd ar gael, felly gwnewch yn siŵr bod eich gwe-gamera wedi'i gysyllt"
-"u. Ar ôl canfod, dangosir rhestr o we-gamerâu defnyddiadwy. Dewiswch y"
-"r un rydych chi am ei ddefnyddio a chliciwch ar Next."
+"Edrychwch ar y camera a ddewisoch: mae camera isgoch yn dangos golau bach "
+"sy'n blincio tra bod Ubuntu Hello yn ei brofi. Mae hyn yn dweud wrthym a all "
+"weld eich wyneb yn y tywyllwch."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:433
+msgid "Yes, it flashes"
+msgstr "Ydy, mae'n fflachio"
+
+#: src/onboarding.ui:459
+msgid "No, nothing flashes"
+msgstr "Na, dim byd yn fflachio"
+
+#: src/onboarding.ui:498
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Bydd Ubuntu Hello yn chwilio'ch system yn awtomatig am unrhyw gamerâu sydd "
+"ar gael, felly gwnewch yn siŵr bod eich gwe-gamera wedi'i gysylltu. Ar ôl "
+"canfod, dangosir rhestr o we-gamerâu defnyddiadwy. Dewiswch yr un rydych chi "
+"am ei ddefnyddio a chliciwch ar Next."
+
+#: src/onboarding.ui:517
 msgid "Testing your webcams, please wait..."
 msgstr "Wrth brofi eich gwe-gamerâu, arhoswch..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:563
 msgid "Downloading data files"
 msgstr "Lawrlwytho ffeiliau data"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:579
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Mae angen tair set ddata adnabod wynebau wedi'u hyfforddi ymlaen llaw "
-"ar Ubuntu Hello i'ch adnabod, a fydd yn cael eu llwytho i lawr nawr. G"
-"allwch weld y cynnydd lawrlwytho isod."
+"Mae angen tair set ddata adnabod wynebau wedi'u hyfforddi ymlaen llaw ar "
+"Ubuntu Hello i'ch adnabod, a fydd yn cael eu llwytho i lawr nawr. Gallwch "
+"weld y cynnydd lawrlwytho isod."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:603
 msgid "Starting download..."
 msgstr "Yn dechrau llwytho i lawr..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:646
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Croeso i Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:658
 msgid "Version"
 msgstr "Fersiwn"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:672
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Bydd y dewin hwn yn eich arwain trwy'r broses sefydlu ac yn ffurfweddu"
-" Ubuntu Hello yn awtomatig i chi. Pwyswch nesaf i barhau."
+"Bydd y dewin hwn yn eich arwain trwy'r broses sefydlu ac yn ffurfweddu "
+"Ubuntu Hello yn awtomatig i chi. Pwyswch nesaf i barhau."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Canslo"
+#: src/onboarding.ui:723
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Gall Ubuntu Hello ddatgloi eich cylch allweddi mewngofnodi yn awtomatig neu "
+"KWallet ddefnyddio dilysu wynebau, atal awgrymiadau cyfrinair ar ôl "
+"mewngofnodi."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Nesaf"
+#: src/onboarding.ui:735
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Galluogi cylch allweddi awtomatig / datgloi KWallet"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:763
+msgid "Confirm password"
+msgstr "Cadarnhau cyfrinair"
+
+#: src/onboarding.ui:820
+msgid "Back"
+msgstr "Yn ol"
+
+#: src/onboarding.ui:855
 msgid "Finish setup"
 msgstr "Gorffen gosod"
+
+#: src/onboarding.ui:882
+msgid "Next"
+msgstr "Nesaf"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"
