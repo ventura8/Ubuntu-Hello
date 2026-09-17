@@ -211,6 +211,22 @@ def detect_wayland_display(runtime_dir: str) -> Optional[str]:
     return None
 
 
+def detect_x_display() -> Optional[str]:
+    """The X display to use, or None when there is no evidence of one.
+
+    The installer's own DISPLAY (sudo from a desktop terminal) wins; otherwise
+    :0 only if its socket exists. Assuming :0 unconditionally made a headless
+    install -- a server, or apt over SSH -- start GTK with no display at all,
+    which crashed and left an apport report for the user's next login.
+    """
+    env_display = os.environ.get("DISPLAY")
+    if env_display:
+        return env_display
+    if os.path.exists("/tmp/.X11-unix/X0"):
+        return ":0"
+    return None
+
+
 def detect_xauthority(user: str, home: str, runtime_dir: str) -> Optional[str]:
     """Locate an Xauthority file usable for X11 / XWayland clients."""
     env_path = os.environ.get("XAUTHORITY")
@@ -267,12 +283,13 @@ def build_user_gui_env(user: str) -> dict[str, str]:
             env["DBUS_SESSION_BUS_ADDRESS"] = f"unix:path={bus}"
 
     wayland = detect_wayland_display(runtime_dir) if os.path.isdir(runtime_dir) else None
+    x_display = detect_x_display()
     if wayland:
         env["WAYLAND_DISPLAY"] = wayland
         # Many sessions still expose an XWayland DISPLAY even on Wayland.
-        env.setdefault("DISPLAY", os.environ.get("DISPLAY", ":0"))
-    else:
-        env["DISPLAY"] = os.environ.get("DISPLAY", ":0")
+        env["DISPLAY"] = x_display or ":0"
+    elif x_display:
+        env["DISPLAY"] = x_display
 
     xauth = detect_xauthority(user, home, runtime_dir)
     if xauth:
@@ -365,8 +382,9 @@ def main() -> int:
         _log(f"post-install: {exc}")
         return 0
 
-    if "XDG_RUNTIME_DIR" not in env and "DISPLAY" not in env:
-        _log(f"post-install: no display session for {user}; skip setup wizard launch")
+    if "WAYLAND_DISPLAY" not in env and "DISPLAY" not in env:
+        _log(f"post-install: no display session for {user}; skip setup wizard launch "
+             "(run: ubuntu-hello-gtk --force-onboarding)")
         return 0
 
     try:

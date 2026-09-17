@@ -20,6 +20,9 @@ os.environ["BYPASS_ELEVATE"] = "1"
 # Real-GTK Settings E2E (compat / xvfb) must not use the global gi mock.
 # Invoked as: UH_REAL_GTK=1 xvfb-run -a pytest tests/e2e/
 UH_REAL_GTK = os.environ.get("UH_REAL_GTK") == "1"
+# Invoked as: UH_REAL_DLIB=1 pytest tests/footage/ -- the recorded-footage tier runs
+# the real recognition pipeline (dlib + OpenCV) on clips from the actual camera.
+UH_REAL_DLIB = os.environ.get("UH_REAL_DLIB") == "1"
 
 # Create mock for paths module (point at source tree for E2E Glade assets).
 mock_paths = MagicMock()
@@ -62,7 +65,7 @@ sys.modules["pyv4l2.frame"] = MagicMock()
 # Create mock for ffmpeg
 sys.modules["ffmpeg"] = MagicMock()
 
-if not UH_REAL_GTK:
+if not (UH_REAL_GTK or UH_REAL_DLIB):
 	# Create mock for cv2
 	mock_cv2 = MagicMock()
 	mock_cv2.CAP_PROP_FRAME_WIDTH = 3
@@ -150,5 +153,7 @@ if not UH_REAL_GTK:
 	# mock back so tests keep asserting remove_all/append_text/set_active on it.
 	_gtk4compat.dropdown = lambda widget, on_changed=None, min_width=0: widget
 
-# Create mock for dlib
-sys.modules["dlib"] = MagicMock()
+# Create mock for dlib. The footage tier is the one place the real library runs:
+# every other test shape either does not touch recognition or scripts its result.
+if not UH_REAL_DLIB:
+	sys.modules["dlib"] = MagicMock()

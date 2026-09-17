@@ -408,3 +408,16 @@ def test_target_user_language_preference_applied_after_validation(compare_mod):
     pref = src.index('os.environ["UH_TARGET_USER"] = user')
     assert validate < pref < src.index("notifier = AuthNotifier(")
     assert "i18n.reload_from_preferences()" in src
+
+
+def test_auth_overlay_is_skipped_without_a_display(compare_mod, monkeypatch):
+	"""Under PAM the module gives compare.py no display; spawning the GTK overlay
+	there crashed it and left an apport report on every headless / SSH sudo."""
+	monkeypatch.delenv("DISPLAY", raising=False)
+	monkeypatch.delenv("WAYLAND_DISPLAY", raising=False)
+	assert compare_mod._display_available() is False
+	monkeypatch.setenv("DISPLAY", ":0")
+	assert compare_mod._display_available() is True
+	monkeypatch.delenv("DISPLAY", raising=False)
+	monkeypatch.setenv("WAYLAND_DISPLAY", "wayland-0")
+	assert compare_mod._display_available() is True

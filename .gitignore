@@ -137,6 +137,7 @@ debian/files
 debian/debhelper-build-stamp
 debian/*.substvars
 debian/*.debhelper.log
+debian/*.debhelper
 debian/ubuntu-hello/
 debian/ubuntu-hello-gtk/
 
@@ -156,3 +157,7 @@ debian/ubuntu-hello-gtk/
 
 # Meson
 subprojects/
+
+# Recorded camera clips and the signals extracted from them: a real face and its
+# biometric template. The tests skip without them; the synthetic set is committed.
+tests/fixtures/footage/

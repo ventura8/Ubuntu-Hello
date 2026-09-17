@@ -13,6 +13,9 @@ depends=(
 	'python-opencv'
 	'python-cryptography'
 	'python-pip'
+	'python-pillow'
+	'gcc'
+	'make'
 	'cmake'
 	'opencv'
 	'curl'
@@ -22,6 +25,8 @@ depends=(
 	'glib2'
 	'pam'
 	'polkit'
+	'libinih'
+	'libevdev'
 )
 makedepends=(
 	'meson'

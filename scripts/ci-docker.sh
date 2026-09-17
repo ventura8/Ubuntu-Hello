@@ -280,6 +280,10 @@ run_pytest_coverage() {
   # real by the E2E, which is where its behaviour is actually verified.
   pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello tests/ --ignore=tests/e2e
   UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello --cov-append tests/e2e/
+  # Recorded-footage tier: compare.py's real scan loop and the real nod stamp on
+  # per-frame signals. CI has no camera and no real face, so this runs on the
+  # committed synthetic set; the same tests run on real recordings on a laptop.
+  UH_REAL_DLIB=1 pytest --cov=ubuntu-hello --cov-append tests/footage/
   # The floor is enforced once on the combined data (pytest-cov rounds its printed %).
   python3 -m coverage report --data-file="${COVERAGE_FILE}" --precision=2 --fail-under=90
   echo "==> pytest keyring feature coverage == 100%"
@@ -300,6 +304,8 @@ run_pytest_compat() {
   # Fail-fast: every UH_CI_DE cell must pass Settings E2E (not mocks-only).
   # GSK_RENDERER=cairo: headless Xvfb has no GL; keep GTK 4 rendering deterministic.
   UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest tests/e2e/ -v --tb=short
+  echo "==> Recorded-footage tier (synthetic signals) [stage=compat de=${UH_CI_DE}]"
+  UH_REAL_DLIB=1 pytest tests/footage/ -v --tb=short
 }
 
 run_meson_tests() {

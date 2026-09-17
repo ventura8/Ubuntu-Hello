@@ -367,3 +367,121 @@ def test_no_english_fallback_sentences_in_machine_translated_packs():
                 if len(english.split()) >= 4 and value.strip() == english.strip():
                     offenders.append(f"{domain}/{lang}: {english[:60]!r}")
     assert offenders == [], "English fallbacks in MT packs:\n" + "\n".join(offenders[:40]) + (f"\n… {len(offenders)} total" if len(offenders) > 40 else "")
+
+
+HEADER_WITH_PLURALS = (
+    'msgid ""\nmsgstr ""\n"Content-Type: text/plain; charset=UTF-8\\n"\n'
+    '"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\\n"\n\n'
+)
+PLURAL_ENTRY = 'msgid "{n} sample"\nmsgid_plural "{n} samples"\n'
+
+
+def _no_msgfmt(monkeypatch):
+    monkeypatch.setattr(
+        i18n_lint.subprocess, "run",
+        lambda *a, **k: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})(),
+    )
+
+
+def test_plural_entries_are_linted(tmp_path, monkeypatch):
+    """An ngettext() entry used to be invisible to the lint: the singular pattern
+    never matched it, so "{n} sample" shipped empty in 98 catalogues with the lint
+    green. Every form must be filled, the count must match Plural-Forms, and no
+    form may invent a placeholder."""
+    _no_msgfmt(monkeypatch)
+
+    empty = tmp_path / "empty.po"
+    empty.write_text(HEADER_WITH_PLURALS + PLURAL_ENTRY + 'msgstr[0] ""\nmsgstr[1] ""\nmsgstr[2] ""\n', encoding="utf-8")
+    errors = i18n_lint.lint_po_file(empty, "/usr/bin/msgfmt")
+    assert any("empty msgstr[0, 1, 2]" in e for e in errors), errors
+
+    short = tmp_path / "short.po"
+    short.write_text(HEADER_WITH_PLURALS + PLURAL_ENTRY + 'msgstr[0] "{n} mostră"\nmsgstr[1] "{n} mostre"\n', encoding="utf-8")
+    errors = i18n_lint.lint_po_file(short, "/usr/bin/msgfmt")
+    assert any("2 plural form(s)" in e and "declares 3" in e for e in errors), errors
+
+    no_header = tmp_path / "no_header.po"
+    no_header.write_text(
+        'msgid ""\nmsgstr ""\n"Content-Type: text/plain; charset=UTF-8\\n"\n\n'
+        + PLURAL_ENTRY + 'msgstr[0] "{n} mostră"\nmsgstr[1] "{n} mostre"\n',
+        encoding="utf-8",
+    )
+    assert any("no Plural-Forms header" in e for e in i18n_lint.lint_po_file(no_header, "/usr/bin/msgfmt"))
+
+    invented = tmp_path / "invented.po"
+    invented.write_text(
+        HEADER_WITH_PLURALS + PLURAL_ENTRY
+        + 'msgstr[0] "{count} mostră"\nmsgstr[1] "{n} mostre"\nmsgstr[2] "{n} de mostre"\n',
+        encoding="utf-8",
+    )
+    assert any("placeholder(s) ['count']" in e for e in i18n_lint.lint_po_file(invented, "/usr/bin/msgfmt"))
+
+    dropped = tmp_path / "dropped.po"
+    dropped.write_text(
+        HEADER_WITH_PLURALS + PLURAL_ENTRY
+        + 'msgstr[0] "o mostră"\nmsgstr[1] "{n} mostre"\nmsgstr[2] "multe mostre"\n',
+        encoding="utf-8",
+    )
+    assert any("general plural form" in e and "drops a placeholder" in e for e in i18n_lint.lint_po_file(dropped, "/usr/bin/msgfmt"))
+
+    good = tmp_path / "good.po"
+    good.write_text(
+        HEADER_WITH_PLURALS + PLURAL_ENTRY
+        + 'msgstr[0] "{n} mostră"\nmsgstr[1] "{n} mostre"\nmsgstr[2] "{n} de mostre"\n',
+        encoding="utf-8",
+    )
+    assert i18n_lint.lint_po_file(good, "/usr/bin/msgfmt") == []
+
+
+def test_fill_packs_must_carry_every_plural_form(tmp_path):
+    """The keyed JSON resolves a plural msgid to a list of exactly nplurals forms."""
+    (tmp_path / "po").mkdir()
+    (tmp_path / "po" / "whisper-languages.txt").write_text("ro\n", encoding="utf-8")
+    pot = 'msgid ""\nmsgstr ""\n\n' + PLURAL_ENTRY + 'msgstr[0] ""\nmsgstr[1] ""\n'
+    for domain in ("ubuntu-hello", "ubuntu-hello-gtk"):
+        podir = tmp_path / domain / "po"
+        podir.mkdir(parents=True)
+        (podir / "LINGUAS").write_text("ro\n", encoding="utf-8")
+        (podir / f"{domain}.pot").write_text(pot, encoding="utf-8")
+        (podir / "ro.po").write_text(HEADER_WITH_PLURALS, encoding="utf-8")
+        pack_dir = tmp_path / "scripts" / "i18n_fill_data" / domain
+        pack_dir.mkdir(parents=True)
+        (pack_dir / "_keys.json").write_text('["{n} sample"]\n', encoding="utf-8")
+        (pack_dir / "ro.json").write_text('{"{n} sample": ["{n} mostră", "{n} mostre"]}\n', encoding="utf-8")
+
+    errors = i18n_lint.lint_fill_packs_complete(tmp_path)
+    assert any("untranslated" in e and "{n} sample" in e for e in errors), errors
+
+    for domain in ("ubuntu-hello", "ubuntu-hello-gtk"):
+        (tmp_path / "scripts" / "i18n_fill_data" / domain / "ro.json").write_text(
+            '{"{n} sample": ["{n} mostră", "{n} mostre", "{n} de mostre"]}\n', encoding="utf-8"
+        )
+    assert i18n_lint.lint_fill_packs_complete(tmp_path) == []
+
+
+def test_fill_tool_writes_plural_entries_and_the_plural_forms_header(tmp_path):
+    fill = i18n_lint._load_fill_module()
+    pot = tmp_path / "t.pot"
+    pot.write_text(
+        'msgid ""\nmsgstr ""\n\n#: src/notify.py:618\n#, python-brace-format\n'
+        + PLURAL_ENTRY + 'msgstr[0] ""\nmsgstr[1] ""\n\nmsgid "Hello"\nmsgstr ""\n',
+        encoding="utf-8",
+    )
+    entries = fill.parse_pot(pot)
+    assert [(e["msgid"], e["msgid_plural"]) for e in entries] == [("{n} sample", "{n} samples"), ("Hello", None)]
+    out = tmp_path / "ro.po"
+    missing = fill.write_po(out, "ro", "ubuntu-hello", entries, {
+        "{n} sample": ["{n} mostră", "{n} mostre", "{n} de mostre"], "Hello": "Salut",
+    })
+    text = out.read_text(encoding="utf-8")
+    assert missing == 0
+    assert '"Plural-Forms: nplurals=3; plural=(n==1 ? 0 :' in text
+    assert 'msgid_plural "{n} samples"\nmsgstr[0] "{n} mostră"\nmsgstr[1] "{n} mostre"\nmsgstr[2] "{n} de mostre"\n' in text
+    # Two forms for a three-form language is a missing translation, written empty.
+    missing = fill.write_po(out, "ro", "ubuntu-hello", entries, {"{n} sample": ["a", "b"], "Hello": "Salut"})
+    assert missing == 1
+    assert 'msgstr[0] ""\nmsgstr[1] ""\nmsgstr[2] ""\n' in out.read_text(encoding="utf-8")
+    # Every Whisper language has a rule, and the rule's count is what the data supplies.
+    for lang in (ROOT / "ubuntu-hello" / "po" / "LINGUAS").read_text().split():
+        assert lang in fill.PLURAL_FORMS, lang
+        assert fill.nplurals(lang) >= 1

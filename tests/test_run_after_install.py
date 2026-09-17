@@ -312,6 +312,50 @@ def test_main_skips_when_no_user(monkeypatch, rai):
     assert rai.main() == 0
 
 
+def test_main_skips_when_the_user_has_no_display(monkeypatch, rai):
+    """A headless install (server, apt over SSH) must not start GTK: it crashed
+    with no display and left an apport report for the user's next login."""
+    monkeypatch.delenv("DESTDIR", raising=False)
+    monkeypatch.delenv("UH_SKIP_POSTINSTALL_GUI", raising=False)
+    monkeypatch.setattr(rai, "models_enrolled", lambda: False)
+    monkeypatch.setattr(rai, "_acquire_single_flight_lock", lambda: 3)
+    monkeypatch.setattr(rai, "resolve_install_user", lambda: "alice")
+    monkeypatch.setattr(rai, "build_user_gui_env", lambda _u: {"HOME": "/home/alice", "XDG_RUNTIME_DIR": "/run/user/1000"})
+    launched = []
+    monkeypatch.setattr(rai, "launch_setup_wizard", lambda *a, **k: launched.append(a))
+    assert rai.main() == 0
+    assert launched == []
+
+
+def test_build_user_gui_env_has_no_display_without_evidence_of_one(tmp_path, monkeypatch, rai):
+    """No Wayland socket, no DISPLAY from the installer, no X socket: no DISPLAY at all,
+    rather than an assumed :0 that only exists on a desktop."""
+
+    class FakePw:
+        pw_dir = str(tmp_path)
+        pw_uid = 99
+        pw_shell = "/bin/bash"
+
+    monkeypatch.setattr(rai.pwd, "getpwnam", lambda _u: FakePw())
+    monkeypatch.setattr(rai.os.path, "isdir", lambda _p: False)
+    monkeypatch.setattr(rai.os.path, "exists", lambda _p: False)
+    monkeypatch.setattr(rai, "detect_xauthority", lambda *a, **k: None)
+    monkeypatch.delenv("DISPLAY", raising=False)
+    monkeypatch.delenv("WAYLAND_DISPLAY", raising=False)
+    env = rai.build_user_gui_env("bob")
+    assert "DISPLAY" not in env and "WAYLAND_DISPLAY" not in env
+
+
+def test_detect_x_display_uses_the_socket_when_the_installer_has_no_display(monkeypatch, rai):
+    monkeypatch.delenv("DISPLAY", raising=False)
+    monkeypatch.setattr(rai.os.path, "exists", lambda p: p == "/tmp/.X11-unix/X0")
+    assert rai.detect_x_display() == ":0"
+    monkeypatch.setattr(rai.os.path, "exists", lambda p: False)
+    assert rai.detect_x_display() is None
+    monkeypatch.setenv("DISPLAY", ":7")
+    assert rai.detect_x_display() == ":7"
+
+
 def test_main_skips_on_value_error(monkeypatch, rai):
     monkeypatch.delenv("DESTDIR", raising=False)
     monkeypatch.delenv("UH_SKIP_POSTINSTALL_GUI", raising=False)

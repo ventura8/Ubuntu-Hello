@@ -486,10 +486,24 @@ auto dismiss_authtok_prompt(
  * @param  ask_auth_tok True if we should ask for a password too
  * @return          Returns a PAM return code
  */
+// openlog() sets the syslog identity of the whole process, and a PAM module
+// runs inside sudo, su, gdm or the polkit helper. Left open, every line the host
+// logs afterwards ("pam_unix(sudo:session): session opened ...") is tagged
+// pam_ubuntu_hello instead of sudo, which is what audit rules and log-based
+// intrusion detection key on; a booted-OS test found sudo's own lines carrying
+// this module's name. closelog() resets the identity (glibc falls back to the
+// program name), so the tag lives exactly as long as this scope.
+struct SyslogIdentityScope {
+  SyslogIdentityScope() { openlog("pam_ubuntu_hello", 0, LOG_AUTHPRIV); }
+  ~SyslogIdentityScope() { closelog(); }
+  SyslogIdentityScope(const SyslogIdentityScope &) = delete;
+  auto operator=(const SyslogIdentityScope &) -> SyslogIdentityScope & = delete;
+};
+
 auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
               bool ask_auth_tok) -> int {
   INIReader config(CONFIG_FILE_PATH);
-  openlog("pam_ubuntu_hello", 0, LOG_AUTHPRIV);
+  SyslogIdentityScope syslog_identity;
 
   // Error out if we could not read the config file
   if (config.ParseError() != 0) {

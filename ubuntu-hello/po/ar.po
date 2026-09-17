@@ -14,6 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -404,8 +406,12 @@ msgstr "تم حفظ نموذج الوجه"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "لا عينات"
+msgstr[1] "عينة واحدة"
+msgstr[2] "عينتان"
+msgstr[3] "{n} عينات"
+msgstr[4] "{n} عينة"
+msgstr[5] "{n} عينة"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

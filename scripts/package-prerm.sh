@@ -63,6 +63,22 @@ uh_package_prerm() {
 			rm -f "${marker}"
 		fi
 	fi
+	# The marker's directory is ours too; it stays only while a marker does.
+	rmdir "$(uh_pkg_path /var/lib/ubuntu-hello)" 2>/dev/null || true
+
+	# Python writes __pycache__/*.pyc next to our modules at import time. Those
+	# are not tracked by any package manager, so a plain remove leaves them
+	# behind and the (now would-be-empty) lib dir with them -- seen as a
+	# leftover after `dnf remove` on Fedora, whose lib dir is /usr/lib64. Sweep
+	# every lib dir we might have installed into, on every format.
+	local libdir
+	for libdir in /usr/lib/*/ubuntu-hello /usr/lib/*/ubuntu-hello-gtk 	              /usr/lib64/ubuntu-hello /usr/lib64/ubuntu-hello-gtk 	              /usr/lib/ubuntu-hello /usr/lib/ubuntu-hello-gtk; do
+		libdir="$(uh_pkg_path "$libdir")"
+		[ -d "$libdir" ] || continue
+		find "$libdir" -name '__pycache__' -type d -prune -exec rm -rf {} + 2>/dev/null || true
+		find "$libdir" -name '*.pyc' -type f -delete 2>/dev/null || true
+		find "$libdir" -depth -type d -empty -delete 2>/dev/null || true
+	done
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
