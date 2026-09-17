@@ -1,9 +1,5 @@
 /* Style sheet for modernizing Ubuntu Hello GTK application to Ubuntu 26.04 (Yaru) aesthetics */
 
-* {
-    font-family: "Ubuntu", "Ubuntu Sans", "Liberation Sans", sans-serif;
-}
-
 /* Primary suggested actions (e.g. Next, Finish, Scan, Add buttons) */
 .suggested-action,
 button.suggested-action {
@@ -128,9 +124,7 @@ notebook > header.left > tabs > tab:active {
 }
 
 .terminal-label {
-    font-family: "Ubuntu Mono", "Courier New", monospace;
-    color: @theme_text_color;
-    font-size: 13px;
+    font-family: monospace;
     padding: 14px;
 }
 
@@ -160,4 +154,36 @@ treeview header button {
 
 treeview {
     border-radius: 6px;
+}
+
+/* Wizard / Settings page idiom: glyph, large title, dim hint, card groups */
+.uh-page-icon {
+    margin-top: 6px;
+}
+
+.uh-page-title {
+    letter-spacing: 0.2px;
+}
+
+.uh-page-hint {
+    opacity: 0.8;
+}
+
+.uh-card {
+    background-color: alpha(@theme_fg_color, 0.05);
+    border: 1px solid alpha(@borders, 0.6);
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.uh-card checkbutton {
+    padding: 6px 0;
+}
+
+/* Inline reminder banner (replaces the deprecated GtkInfoBar) */
+.uh-banner {
+    border-radius: 10px;
+    padding: 10px 14px;
+    background-color: alpha(@warning_color, 0.15);
+    border: 1px solid alpha(@warning_color, 0.5);
 }

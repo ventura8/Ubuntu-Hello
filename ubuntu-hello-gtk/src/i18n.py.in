@@ -3,6 +3,7 @@
 import gettext
 import locale
 import os
+import subprocess
 
 DOMAIN = "@gettext_package@"
 LOCALEDIR = "@localedir@"
@@ -20,9 +21,45 @@ _KNOWN_LANGS = frozenset({
 	"uk", "ur", "uz", "vi", "yi", "yo", "zh",
 })
 
-# Preserve process locale env so Automatic can restore after an explicit override.
-_ORIG_LANG = os.environ.get("LANG")
-_ORIG_LANGUAGE = os.environ.get("LANGUAGE")
+# Preserve the process locale env so Automatic can restore it after an
+# explicit override. Captured once, before any override is applied, and
+# forwarded as-is by window.elevate(): the unelevated launcher imports this
+# module too, and with a saved language its LANG/LANGUAGE are already
+# rewritten by the time pkexec runs — forwarding those made "Automatic" in
+# the elevated app restore the *saved* language instead of the desktop's.
+_LOCALE_VARS = ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG")
+_ORIG_ENV = {var: os.environ.get(var) for var in _LOCALE_VARS}
+_ORIG_LANG = _ORIG_ENV["LANG"]
+_ORIG_LANGUAGE = _ORIG_ENV["LANGUAGE"]
+
+
+def original_locale_env():
+	"""The desktop's locale variables as they were before any language override."""
+	return {var: val for var, val in _ORIG_ENV.items() if val}
+
+
+def effective_language():
+	"""Language code the UI is actually showing ("en" when no catalog is loaded).
+
+	Used for the text direction: an "auto" preference on an Arabic desktop
+	must mirror the UI, and an explicit override on an Arabic desktop that
+	returns to Automatic must not keep the previous direction.
+	"""
+	info = {}
+	try:
+		info = translation.info() or {}
+	except Exception:
+		info = {}
+	code = (info.get("language") or "").strip()
+	if not code:
+		for var in _LOCALE_VARS:
+			val = os.environ.get(var)
+			if val and val not in ("C", "POSIX"):
+				code = val.split(":")[0]
+				break
+	code = code.split(".")[0].split("@")[0].replace("-", "_")
+	base = code.split("_")[0].lower()
+	return base if base and base in _KNOWN_LANGS else "en"
 
 
 def _preferences_path():
@@ -65,24 +102,68 @@ def _read_language_preference():
 	return value
 
 
+def _generated_locales():
+	"""Locale names this system can actually enter (``locale -a``)."""
+	try:
+		result = subprocess.run(
+			["locale", "-a"], capture_output=True, text=True, timeout=5, check=False
+		)
+	except (OSError, subprocess.SubprocessError):
+		return []
+	return result.stdout.split()
+
+
+def _is_utf8(name):
+	lowered = name.lower()
+	return "utf-8" in lowered or "utf8" in lowered
+
+
+def _message_locale(code):
+	"""Return a LANG value the C library accepts, or None to keep the current one.
+
+	GtkBuilder translates every ``.ui`` string through the C library, and glibc
+	ignores LANGUAGE whenever LC_MESSAGES is the "C", "POSIX" or "C.UTF-8" locale.
+	Setting LANG to "<code>.UTF-8" for a locale the system never generated (most of
+	them: a desktop typically has a handful) therefore left the C library in "C",
+	which rendered the whole Settings window's .ui text in English while Python-side
+	strings were correctly translated -- the split seen on the Security and About
+	pages. Prefer a generated locale for this language; otherwise keep a working one,
+	because LANGUAGE alone already selects the catalog.
+	"""
+	installed = _generated_locales()
+	prefix = code.lower()
+	for name in installed:
+		if name.lower().startswith(prefix + "_") and _is_utf8(name):
+			return name
+	for name in installed:
+		if name.lower().startswith(prefix) and _is_utf8(name):
+			return name
+	current = os.environ.get("LANG", "")
+	if current and current.lower() not in ("c", "posix", "c.utf-8", "c.utf8"):
+		return None
+	for name in installed:
+		if _is_utf8(name) and not name.lower().startswith(("c.", "posix")):
+			return name
+	return None
+
+
 def _apply_locale_env(code=None):
 	"""Set LANG/LANGUAGE for Automatic or an explicit Whisper code."""
 	if code is None:
 		code = _read_language_preference()
 	if code == "auto":
-		if _ORIG_LANGUAGE is None:
-			os.environ.pop("LANGUAGE", None)
-		else:
-			os.environ["LANGUAGE"] = _ORIG_LANGUAGE
-		if _ORIG_LANG is None:
-			os.environ.pop("LANG", None)
-		else:
-			os.environ["LANG"] = _ORIG_LANG
+		for var in _LOCALE_VARS:
+			if _ORIG_ENV[var] is None:
+				os.environ.pop(var, None)
+			else:
+				os.environ[var] = _ORIG_ENV[var]
 	else:
 		os.environ["LANGUAGE"] = code
 		lang = os.environ.get("LANG", "")
 		if not lang.lower().startswith(code.lower()):
-			os.environ["LANG"] = f"{code}.UTF-8"
+			carrier = _message_locale(code)
+			if carrier:
+				os.environ["LANG"] = carrier
 	try:
 		locale.setlocale(locale.LC_ALL, "")
 	except locale.Error:
@@ -91,7 +172,7 @@ def _apply_locale_env(code=None):
 
 
 def _install_translation():
-	global translation, _, ngettext
+	global translation
 	gettext.bindtextdomain(DOMAIN, LOCALEDIR)
 	try:
 		gettext.bind_textdomain_codeset(DOMAIN, "UTF-8")
@@ -99,9 +180,23 @@ def _install_translation():
 		pass
 	translation = gettext.translation(DOMAIN, localedir=LOCALEDIR, fallback=True)
 	translation.install()
-	_ = translation.gettext
-	ngettext = translation.ngettext
 	return translation
+
+
+# Modules do ``from i18n import _`` once at import time, so `_`/`ngettext`
+# must be stable wrappers that always consult the *current* translation —
+# otherwise the Settings language switch leaves those modules in the old
+# language (e.g. "Unknown" on the Video tab).
+def _(message):
+	return translation.gettext(message)
+
+
+def ngettext(singular, plural, n):
+	return translation.ngettext(singular, plural, n)
+
+
+def pgettext(context, message):
+	return translation.pgettext(context, message)
 
 
 def reload_from_preferences():

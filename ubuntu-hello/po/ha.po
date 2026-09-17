@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,35 +15,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "gazawa, an kai lokacin ƙarewa"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "Hoton gano fuska yayi duhu sosai"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "Kuskuren da ba a sani ba:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "Fuskar da aka gano a matsayin %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Rashin isassun izini don aika Shigar latsa, jiran mai amfani ya danna "
-"shi maimakon"
+"Rashin isassun izini don aika Shigar latsa, jiran mai amfani ya danna shi "
+"maimakon"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "An kasa aika Shigar latsa, jiran mai amfani ya danna shi maimakon"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "Ƙoƙarin tantance fuska"
 
@@ -65,23 +66,24 @@ msgstr "jayayya"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Don tallafi don Allah ziyarci\n⟦U0000"
+"Don tallafi, don Allah ka ziyarci\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"Zaɓin umarni don aiwatarwa, na iya zama ɗaya daga cikin masu zuwa: ƙar"
-"a, sharewa, daidaitawa, kashewa, maɓalli, jeri, cirewa, ɗaukar hoto, s"
-"aita, gwaji ko sigar."
+"Zaɓin umarnin da za a aiwatar na iya zama ɗaya daga cikin waɗannan: add, "
+"clear, config, disable, keyring, list, remove, snapshot, set, test ko "
+"version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr "Hujjoji na zaɓi don ƙara, musaki, cirewa da saita umarni."
+msgstr "Ƙarin zaɓuɓɓuka na umarnin add, disable, remove da set."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -97,7 +99,9 @@ msgstr "Buga fitarwa mai dacewa da na'ura."
 
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
-msgstr "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"Da keyring restore: maido da kalmomin sirri na shiga da aka rufe na dukkan "
+"masu amfani."
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
@@ -112,138 +116,304 @@ msgid "Invalid username format"
 msgstr "Tsarin sunan mai amfani mara inganci"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Da fatan za a gudanar da wannan umarni azaman tushen:\n"
+msgid "Please run this command as root:\n"
+msgstr "Da fatan za a gudanar da wannan umarni a matsayin root:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"Ba za a iya gudanar da umarnin ubuntu-hello azaman tushen ba, da fatan"
-" za a gudanar da wannan umarni tare da tutar --user"
+"Ba za a iya gudanar da umarnin ubuntu-hello a matsayin root ba; da fatan za "
+"a gudanar da wannan umarni da tutar --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:272 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
-"Ba a sauke fayilolin bayanai ba, da fatan za a gudanar da umarni masu "
-"zuwa:"
+"Ba a sauke fayilolin bayanai ba, da fatan za a gudanar da umarni masu zuwa:"
 
-#: src/compare.py:154
+#: src/compare.py:302
 msgid " LOGIN"
 msgstr "SHIGA"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:303 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Kwanan wata:"
 
-#: src/compare.py:156
+#: src/compare.py:304
 msgid "Scan time: "
 msgstr "Lokacin dubawa:"
 
-#: src/compare.py:157
+#: src/compare.py:305
 msgid "Frames: "
 msgstr "Frames:"
 
-#: src/compare.py:158
+#: src/compare.py:306
 msgid "Hostname: "
 msgstr "Sunan mai watsa shiri:"
 
-#: src/compare.py:159
+#: src/compare.py:307
 msgid "Best certainty value: "
 msgstr "Mafi kyawun ƙimar tabbas:"
 
-#: src/compare.py:266
+#: src/compare.py:463
 msgid "Starting up..."
 msgstr "Ana farawa..."
 
-#: src/compare.py:319
+#: src/compare.py:495
+msgid "Face recognition could not start: {}"
+msgstr "An kasa fara gane fuska: {}"
+
+#: src/compare.py:531
 msgid "Identifying you..."
 msgstr "Ana gano ku..."
 
-#: src/compare.py:351
+#: src/compare.py:563
 msgid "FAILED"
 msgstr "YA KASA"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:566 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Duk firam ɗin sun yi duhu sosai, da fatan za a duba dark_threshold a c"
-"ikin saitin"
+"Duk firam ɗin sun yi duhu sosai, da fatan za a duba dark_threshold a cikin "
+"saitin"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:567 src/cli/add.py:231
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Matsakaicin duhu: {avg}, Kofa: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:690
 msgid "Time spent"
 msgstr "Lokacin ciyarwa"
 
-#: src/compare.py:457
+#: src/compare.py:691
 msgid "Starting up"
 msgstr "Farawa"
 
-#: src/compare.py:458
+#: src/compare.py:692
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Buɗe cam + lodi libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:693
 msgid "  Opening the camera"
 msgstr "Bude kamara"
 
-#: src/compare.py:460
+#: src/compare.py:694
 msgid "  Importing recognition libs"
 msgstr "Ana shigo da labulen tantancewa"
 
-#: src/compare.py:461
+#: src/compare.py:695
 msgid "Searching for known face"
 msgstr "Neman sanannen fuska"
 
-#: src/compare.py:462
+#: src/compare.py:696
 msgid "Total time"
 msgstr "Jimlar lokaci"
 
-#: src/compare.py:464
+#: src/compare.py:698
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nƘaddamarwa"
+"\n"
+"Ƙaddamarwa"
 
-#: src/compare.py:466
+#: src/compare.py:700
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "Ƙasa: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:703
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "Amfani: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:706
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nAn bincika Frames: %d (%.2f fps)"
+"\n"
+"An bincika Frames: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:707
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "Ba a kula da firam ɗin baƙar fata: %d"
 
-#: src/compare.py:474
+#: src/compare.py:708
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "An yi watsi da firam ɗin duhu: %d"
 
-#: src/compare.py:475
+#: src/compare.py:709
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Tabbataccen tsarin cin nasara: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:711
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Samfurin nasara: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:726
 msgid "SUCCESSFUL"
 msgstr "NASARA"
+
+#: src/enroll_capture.py:22
+msgid "Look straight at the camera"
+msgstr "Ka kalli kyamara kai tsaye"
+
+#: src/enroll_capture.py:23
+msgid "Turn your head slightly to the left"
+msgstr "Ka juya kanka kaɗan zuwa hagu"
+
+#: src/enroll_capture.py:24
+msgid "Turn your head slightly to the right"
+msgstr "Ka juya kanka kaɗan zuwa dama"
+
+#: src/enroll_capture.py:25
+msgid "Tilt your chin up a little"
+msgstr "Ka ɗaga haɓarka kaɗan sama"
+
+#: src/enroll_capture.py:26
+msgid "Tilt your chin down a little"
+msgstr "Ka sauke haɓarka kaɗan ƙasa"
+
+#: src/enroll_capture.py:27
+msgid "Look straight at the camera again"
+msgstr "Ka sake kallon kyamara kai tsaye"
+
+#: src/notify.py:375
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:377
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:379
+msgid "authorization"
+msgstr "izini"
+
+#: src/notify.py:381
+msgid "screen unlock"
+msgstr "allon budewa"
+
+#: src/notify.py:418
+msgid "timeout"
+msgstr "ƙarewar lokaci"
+
+#: src/notify.py:420
+msgid "load"
+msgstr "kaya"
+
+#: src/notify.py:440
+#, python-format
+msgid "%s frames"
+msgstr "%s Frames"
+
+#: src/notify.py:442
+#, python-format
+msgid "%s dark"
+msgstr "%s duhu"
+
+#: src/notify.py:460
+msgid "Looking for your face…"
+msgstr "Neman fuskar ku…"
+
+#: src/notify.py:470 src/notify.py:499
+msgid "Face authentication"
+msgstr "Tabbatar da fuska"
+
+#: src/notify.py:514
+msgid "Face recognized"
+msgstr "An gane fuska"
+
+#: src/notify.py:525
+msgid "add a model in this light"
+msgstr "ƙara samfurin a cikin wannan haske"
+
+#: src/notify.py:527
+msgid "check the camera"
+msgstr "duba kyamara"
+
+#: src/notify.py:532
+#, python-format
+msgid "No match in %s"
+msgstr "Babu wasa a cikin %s"
+
+#: src/notify.py:534 src/notify.py:568
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "rajista: sudo ubuntu-hello add"
+
+#: src/notify.py:535
+msgid "closest"
+msgstr "mafi kusa"
+
+#: src/notify.py:540 src/notify.py:553 src/notify.py:561
+msgid "Face not recognized"
+msgstr "Ba a gane fuska ba"
+
+#: src/notify.py:546
+msgid "Too dark"
+msgstr "Yayi duhu sosai"
+
+#: src/notify.py:547
+msgid "turn on a light"
+msgstr "kunna wuta"
+
+#: src/notify.py:548
+msgid "darkness"
+msgstr "duhu"
+
+#: src/notify.py:559
+msgid "Liveness check failed"
+msgstr "Binciken rayuwa ya kasa"
+
+#: src/notify.py:567
+#, python-format
+msgid "No face model for %s"
+msgstr "Babu samfurin fuska don %s"
+
+#: src/notify.py:572
+msgid "Face authentication unavailable"
+msgstr "Babu tabbacin fuskar fuska"
+
+#: src/notify.py:577
+msgid "Cancelled"
+msgstr "An soke"
+
+#: src/notify.py:579
+msgid "Face authentication cancelled"
+msgstr "An soke tantancewar fuska"
+
+#: src/notify.py:609
+#, python-brace-format
+msgid "{count} of {total}"
+msgstr "{count} daga {total}"
+
+#: src/notify.py:611 src/notify.py:620 src/notify.py:625
+msgid "Face enrollment"
+msgstr "Rajistar fuska"
+
+#: src/notify.py:616
+msgid "Face model saved"
+msgstr "An adana samfurin fuska"
+
+#: src/notify.py:618
+#, python-brace-format
+msgid "{n} sample"
+msgid_plural "{n} samples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/notify.py:624
+msgid "Could not record a face model"
+msgstr "Ba a iya ɗaukar samfurin fuska ba"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -255,7 +425,7 @@ msgstr "GNOME Keyring"
 
 #: src/wallet_backend.py:65
 msgid "None"
-msgstr "None"
+msgstr "Babu"
 
 #: src/wallet_backend.py:74
 msgid "login keyring"
@@ -265,71 +435,81 @@ msgstr "login keying"
 msgid "login keyring or KWallet"
 msgstr "login keying ko KWallet"
 
-#: src/cli/add.py:23
+#: src/cli/add.py:25
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nBa za a iya shigo da tsarin dlib ba, duba abin da aka fitar"
+"\n"
+"Ba za a iya shigo da tsarin dlib ba, duba abin da aka fitar"
 
-#: src/cli/add.py:58
+#: src/cli/add.py:60
 msgid "No face model folder found, creating one"
 msgstr "Ba a sami babban fayil samfurin fuska ba, ƙirƙirar ɗaya"
 
-#: src/cli/add.py:69
+#: src/cli/add.py:71
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "SANARWA: Kowane ƙarin ƙirar yana rage jinkirin injin gano fuska kaɗan"
 
-#: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Latsa Ctrl+C don sokewa\n"
+#: src/cli/add.py:72
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Latsa Ctrl+C don sokewa\n"
 
-#: src/cli/add.py:74
+#: src/cli/add.py:76
 msgid "Adding face model for the user "
 msgstr "Ƙara samfurin fuska don mai amfani"
 
-#: src/cli/add.py:88
+#: src/cli/add.py:90
 msgid "Model #"
-msgstr "Model #"
+msgstr "Samfuri #"
 
-#: src/cli/add.py:93
+#: src/cli/add.py:95
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "Amfani da tsohuwar lakabin \"%s\" saboda -y flag"
 
-#: src/cli/add.py:97
+#: src/cli/add.py:99
 msgid "Enter a label for this new model [{}]: "
 msgstr "Shigar da lakabin wannan sabon samfurin [{}]:"
 
-#: src/cli/add.py:107
+#: src/cli/add.py:109
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "SANARWA: Cire haramun \",\" daga sunan samfurin"
 
-#: src/cli/add.py:121
+#: src/cli/add.py:157
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nDa fatan za a duba kai tsaye cikin kyamarar"
+"\n"
+"Da fatan za a duba kai tsaye cikin kyamarar"
 
-#: src/cli/add.py:186
+#: src/cli/add.py:228
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "Kamara ta ga firam ɗin baƙar fata kawai - IR emitter yana aiki?"
 
-#: src/cli/add.py:191
+#: src/cli/add.py:233
 msgid "No face detected, aborting"
 msgstr "Babu fuska da aka gano, zubar da ciki"
 
-#: src/cli/add.py:196
+#: src/cli/add.py:241 src/cli/add.py:242
 msgid "Multiple faces detected, aborting"
 msgstr "An gano fuskoki da yawa, suna zubar da ciki"
 
-#: src/cli/add.py:218
+#: src/cli/add.py:263
+msgid "Captured {} face samples"
+msgstr "An ɗauki samfuran fuska {}"
+
+#: src/cli/add.py:275
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nCikakken dubawa\nAn ƙara sabon samfuri zuwa"
+"\n"
+"Cikakken dubawa\n"
+"An ƙara sabon samfuri zuwa"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -349,21 +529,27 @@ msgstr "Kuna son ci gaba [y/N]:"
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nFassara a matsayin \"NO\", zubar da ciki"
+"\n"
+"Fassara a matsayin \"NO\", zubar da ciki"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nAn share samfuran"
+"\n"
+"An share samfuran"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "Bude config.ini a cikin {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "An kasa buɗe edita: {error}"
 
@@ -373,15 +559,16 @@ msgstr "Kuskure: An kasa nemo madaidaicin editan rubutu."
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr "Da fatan za a shigar da 'nano' ko 'vi', ko saita canjin yanayin EDITOR."
+msgstr ""
+"Da fatan za a shigar da 'nano' ko 'vi', ko saita canjin yanayin EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Idan kuna gudanar da wannan umarni tare da sudo, gwada 'sudo -E ubuntu"
-"-hello config' don adana canjin EDITOR ɗin ku."
+"Idan kuna gudanar da wannan umarni tare da sudo, gwada 'sudo -E ubuntu-hello "
+"config' don adana canjin EDITOR ɗin ku."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -403,105 +590,105 @@ msgstr "An kashe Ubuntu Hello"
 msgid "Ubuntu Hello has been enabled"
 msgstr "An kunna Ubuntu Hello"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:148
-msgid "Usage: keyring [enable|disable|restore [--all]]"
-msgstr "Amfani: maɓalli [kunna | kashe | maido] [--all]"
+#: src/cli/keyring.py:36 src/cli/keyring.py:156
+msgid "Usage:"
+msgstr "Amfani:"
 
-#: src/cli/keyring.py:49
+#: src/cli/keyring.py:53
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "Shigar da kalmar sirri don mai amfani {} don buɗewa {} ({}):"
 
-#: src/cli/keyring.py:51
+#: src/cli/keyring.py:55
 msgid "Password cannot be empty"
 msgstr "Kalmar wucewa ba za ta iya zama fanko ba"
 
-#: src/cli/keyring.py:54
+#: src/cli/keyring.py:58
 msgid "Confirm password: "
 msgstr "Tabbata kalmar shiga:"
 
-#: src/cli/keyring.py:56
+#: src/cli/keyring.py:60
 msgid "Passwords do not match"
 msgstr "Kalmomin sirri ba su dace ba"
 
-#: src/cli/keyring.py:65
+#: src/cli/keyring.py:69
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "An gano kayan aikin TPM. Ana shigar da atomatik tpm2-tools..."
 
-#: src/cli/keyring.py:74
+#: src/cli/keyring.py:78
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM hardware yana aiki. Rufe kalmar sirri a cikin TPM..."
 
-#: src/cli/keyring.py:100
+#: src/cli/keyring.py:104
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"Maɓalli/KWallet buɗe buɗewa cikin nasara ga mai amfani {} ta amfani da"
-" TPM (walat: {})."
+"Maɓalli/KWallet buɗe buɗewa cikin nasara ga mai amfani {} ta amfani da TPM "
+"(walat: {})."
 
-#: src/cli/keyring.py:102
+#: src/cli/keyring.py:106
 msgid "Failed to seal password to TPM: {}"
 msgstr "An kasa rufe kalmar sirri zuwa TPM: {}"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:110
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Babu TPM mai aiki. Amfani da caching na tushen software..."
 
-#: src/cli/keyring.py:122
+#: src/cli/keyring.py:126
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"An kunna buɗe maɓalli/KWallet cikin nasara ga mai amfani {} (Caching S"
-"oftware, Wallet: {})."
+"An kunna buɗe maɓalli/KWallet cikin nasara ga mai amfani {} (Caching "
+"Software, Wallet: {})."
 
-#: src/cli/keyring.py:124
+#: src/cli/keyring.py:128
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "An kasa kunna buɗe maɓalli: {}"
 
-#: src/cli/keyring.py:135
+#: src/cli/keyring.py:139
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "An kasa kashe buɗe buɗe maɓalli: {}"
 
-#: src/cli/keyring.py:138
+#: src/cli/keyring.py:142
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Maɓalli/KWallet naƙasasshen buɗewa don mai amfani {}."
 
-#: src/cli/keyring.py:140
+#: src/cli/keyring.py:144
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Maɓalli/KWallet buɗewa ba a kunna don mai amfani {}."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:161
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Ba a sami kalmomin shiga da aka rufe ba; babu abin da za a maido."
 
-#: src/cli/keyring.py:155
+#: src/cli/keyring.py:163
 msgid "Restored login wallet password for {} user(s)."
 msgstr "An maido kalmar sirri ta wallet ɗin shiga don masu amfani {}."
 
-#: src/cli/keyring.py:157
+#: src/cli/keyring.py:165
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "An kasa maido da kalmar sirri ta wallet ɗin shiga don masu amfani {}."
 
-#: src/cli/keyring.py:158
+#: src/cli/keyring.py:166
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Idan tambayoyi sun ci gaba, saita kalmar sirri ta maɓallin shiga ko KW"
-"allet a Seahorse / Saitunan tsarin."
+"Idan tambayoyi sun ci gaba, saita kalmar sirri ta maɓallin shiga ko KWallet "
+"a Seahorse / Saitunan tsarin."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:169
 msgid "Restored login wallet password for user {}."
 msgstr "An maido kalmar sirri ta wallet ɗin shiga don mai amfani {}."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:171
 msgid "Could not restore login wallet password for user {}."
 msgstr "An kasa maido da kalmar sirri ta wallet ɗin shiga don mai amfani {}."
 
-#: src/cli/keyring.py:167
-msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "Aiki marar inganci. Yi amfani da 'kunna', 'kashe', ko 'maido'."
+#: src/cli/keyring.py:177
+msgid "Invalid action. Use one of:"
+msgstr "Aiki maras inganci. Yi amfani da ɗaya daga cikin waɗannan:"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -509,7 +696,8 @@ msgstr "Ba a fara fara samfurin fuska ba tukuna, da fatan za a gudanar:"
 
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
-msgstr "Babu samfurin fuska da aka sani ga mai amfani {}, da fatan za a gudanar:"
+msgstr ""
+"Babu samfurin fuska da aka sani ga mai amfani {}, da fatan za a gudanar:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
@@ -532,10 +720,12 @@ msgid "You can find the IDs by running:"
 msgstr "Kuna iya samun ID ta hanyar gudu:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "Wannan zai cire samfurin da ake kira \"{label}\" don {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "Babu samfurin da ke da ID {id} don {user}"
 
@@ -548,8 +738,10 @@ msgid "Removed model {}"
 msgstr "Samfurin da aka Cire {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
-msgstr "Da fatan za a ƙara saitin da kuke son canzawa da ƙimar da za a saita shi"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
+msgstr ""
+"Da fatan za a ƙara saitin da kuke son canzawa da ƙimar da za a saita shi"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
@@ -575,35 +767,45 @@ msgstr "Tabbataccen tsari:"
 msgid "Generated snapshot saved as"
 msgstr "Hoton da aka ƙirƙira ya ajiye azaman"
 
-#: src/cli/test.py:23
+#: src/cli/test.py:25
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"An saita Ubuntu Hello don amfani da na'urar rikodi wanda baya goyan ba"
-"yan umarnin gwajin har yanzu, zubar da ciki."
+"An saita Ubuntu Hello don amfani da na'urar rikodi wadda ba ta goyi bayan "
+"umarnin test ba tukuna, ana dakatarwa"
 
-#: src/cli/test.py:34
+#: src/cli/test.py:36
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nBude taga tare da abincin gwaji\n\nLatsa ctrl+C a cikin wannan tasha"
-" don barin\nDanna kan hoton don kunna ko kashe yanayin jinkirin\n"
+"\n"
+"Bude taga tare da abincin gwaji\n"
+"\n"
+"Latsa ctrl+C a cikin wannan tasha don barin\n"
+"Danna kan hoton don kunna ko kashe yanayin jinkirin\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "HUKUNCI: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
-msgstr "FPS: ⟦P0 %d"
+msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
-msgstr "FRAMES: %d"
+msgstr "FIRAMOMI: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "GANE: %dms"
 
@@ -617,31 +819,37 @@ msgstr "DUHU FRAME"
 
 #: src/cli/test.py:163
 msgid "SCAN FRAME"
-msgstr "SCAN FRAME"
+msgstr "FIRAMIN DUBAWA"
+
+#: src/cli/test.py:212
+msgid "no match"
+msgstr "babu daidaituwa"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nRufe taga"
+"\n"
+"Rufe taga"
 
-#: src/rubberstamps/__init__.py:80
+#: src/rubberstamps/__init__.py:109
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Kuskuren tantance dokar rubberstamp: {}"
 
-#: src/rubberstamps/__init__.py:87
+#: src/rubberstamps/__init__.py:119
 msgid "Stamp not installed: {}"
 msgstr "Ba a shigar da tambari ba: {}"
 
-#: src/rubberstamps/__init__.py:97
+#: src/rubberstamps/__init__.py:129
 msgid "Stamp error: Class {} not found"
 msgstr "Kuskuren tambari: Class {} ba a samo shi ba"
 
-#: src/rubberstamps/__init__.py:123
+#: src/rubberstamps/__init__.py:156
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Kuskure na ciki a cikin sanarwar daidaitawar rubberstamp:"
 
-#: src/rubberstamps/__init__.py:162
+#: src/rubberstamps/__init__.py:195
 msgid "Internal error in rubberstamp:"
 msgstr "Kuskuren ciki a cikin rubberstamp:"
 
@@ -654,6 +862,7 @@ msgid "Authorising in {}"
 msgstr "Yin izini a cikin {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "Danna {abort_key} don zubar da ciki, {confirm_key} don ba da izini"
 
@@ -661,19 +870,19 @@ msgstr "Danna {abort_key} don zubar da ciki, {confirm_key} don ba da izini"
 msgid "Authentication aborted"
 msgstr "An soke tantancewa"
 
-#: src/rubberstamps/nod.py:17
+#: src/rubberstamps/nod.py:30
 msgid "Nod to confirm"
 msgstr "Nd don tabbatarwa"
 
-#: src/rubberstamps/nod.py:18
+#: src/rubberstamps/nod.py:31
 msgid "Shake your head to abort"
 msgstr "Girgiza kai don zubar da ciki"
 
-#: src/rubberstamps/nod.py:81
+#: src/rubberstamps/nod.py:97
 msgid "Confirmed authentication"
 msgstr "An tabbatar da inganci"
 
-#: src/rubberstamps/nod.py:84
+#: src/rubberstamps/nod.py:100
 msgid "Aborted authentication"
 msgstr "An soke tantancewa"
 
@@ -687,24 +896,23 @@ msgstr "Babu tsarin pyv4l2, da fatan za a gudanar:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello ya kasa samun na'urar kyamara a hanyar da aka ƙayyade a c"
-"ikin fayil ɗin daidaitawa."
+"Ubuntu Hello ya kasa samun na'urar kyamara a hanyar da aka ƙayyade a cikin "
+"fayil ɗin daidaitawa."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"Da alama ba a daidaita hanyar daidai ba, da fatan za a gyara ƙimar dai"
-"daitawar 'na'ura_path' ta hanyar gudu:"
+"Da alama ba a daidaita hanyar daidai ba, da fatan za a gyara ƙimar saitin "
+"'device_path' ta hanyar aiwatar da:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"An kasa karanta ƙayyadaddun kamara a cikin zaɓin saitin 'na'ura_path',"
-" zubarwa"
+"An kasa karanta kyamarar da aka ƙayyade a cikin zaɓin saitin 'device_path', "
+"ana dakatarwa"

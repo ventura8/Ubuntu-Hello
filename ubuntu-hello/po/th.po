@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,33 +15,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
 msgstr "ล้มเหลว หมดเวลาแล้ว"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
 msgstr "ภาพการตรวจจับใบหน้ามืดเกินไป"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
 msgstr "ข้อผิดพลาดที่ไม่รู้จัก:"
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
 msgstr "ระบุใบหน้าเป็น %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr "สิทธิ์ไม่เพียงพอที่จะส่งกด Enter รอให้ผู้ใช้กดแทน"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "ไม่สามารถส่งการกด Enter ได้ กำลังรอให้ผู้ใช้กดแทน"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
 msgstr "กำลังพยายามตรวจสอบใบหน้า"
 
@@ -63,24 +64,23 @@ msgstr "ข้อโต้แย้ง"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"สำหรับการสนับสนุนกรุณาเยี่ยมชม\nhttps://github.com/ventura8/ubuntu-hel"
-"lo"
+"สำหรับการสนับสนุนกรุณาเยี่ยมชม\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"ตัวเลือกคำสั่งในการดำเนินการสามารถเป็นหนึ่งในตัวเลือกต่อไปนี้: เพิ่ม ล"
-"้าง กำหนดค่า ปิดใช้งาน พวงกุญแจ แสดงรายการ ลบ สแน็ปช็อต ตั้งค่า ทดสอบ "
-"หรือเวอร์ชัน"
+"ตัวเลือกคำสั่งในการดำเนินการสามารถเป็นหนึ่งในตัวเลือกต่อไปนี้: add, clear, config, "
+"disable, keyring, list, remove, snapshot, set, test หรือ version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr "อาร์กิวเมนต์ทางเลือกสำหรับคำสั่งเพิ่ม ปิดการใช้งาน ลบ และตั้งค่า"
+msgstr "อาร์กิวเมนต์ทางเลือกสำหรับคำสั่ง add, disable, remove และ set"
 
 #: src/cli.py:55
 msgid "Set the user account to use."
@@ -96,9 +96,7 @@ msgstr "เอาต์พุตที่เหมาะกับเครื่
 
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
-msgstr ""
-"ใช้กับ keyring restore: กู้คืนรหัสผ่านเข้าสู่ระบบที่ปิดผนึกสำหรับผู้ใช"
-"้ทั้งหมด"
+msgstr "ใช้กับ keyring restore: กู้คืนรหัสผ่านเข้าสู่ระบบที่ปิดผนึกสำหรับผู้ใช้ทั้งหมด"
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
@@ -113,134 +111,299 @@ msgid "Invalid username format"
 msgstr "รูปแบบชื่อผู้ใช้ไม่ถูกต้อง"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"กรุณารันคำสั่งนี้ในฐานะรูท:\n"
+msgid "Please run this command as root:\n"
+msgstr "กรุณารันคำสั่งนี้ในฐานะ root:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
-msgstr ""
-"ไม่สามารถรันคำสั่ง ubuntu-hello ในฐานะ root ได้ โปรดรันคำสั่งนี้โดยใช้"
-"แฟล็ก --user"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
+msgstr "ไม่สามารถรันคำสั่ง ubuntu-hello ในฐานะ root ได้ โปรดรันคำสั่งนี้โดยใช้แฟล็ก --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:272 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "ยังไม่ได้ดาวน์โหลดไฟล์ข้อมูล โปรดรันคำสั่งต่อไปนี้:"
 
-#: src/compare.py:154
+#: src/compare.py:302
 msgid " LOGIN"
 msgstr "เข้าสู่ระบบ"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:303 src/cli/snap.py:44
 msgid "Date: "
 msgstr "วันที่:"
 
-#: src/compare.py:156
+#: src/compare.py:304
 msgid "Scan time: "
 msgstr "เวลาในการสแกน:"
 
-#: src/compare.py:157
+#: src/compare.py:305
 msgid "Frames: "
 msgstr "เฟรม:"
 
-#: src/compare.py:158
+#: src/compare.py:306
 msgid "Hostname: "
 msgstr "ชื่อโฮสต์:"
 
-#: src/compare.py:159
+#: src/compare.py:307
 msgid "Best certainty value: "
 msgstr "ค่าความเชื่อมั่นที่ดีที่สุด:"
 
-#: src/compare.py:266
+#: src/compare.py:463
 msgid "Starting up..."
 msgstr "กำลังเริ่มต้น..."
 
-#: src/compare.py:319
+#: src/compare.py:495
+msgid "Face recognition could not start: {}"
+msgstr "ไม่สามารถเริ่มการจดจำใบหน้าได้: {}"
+
+#: src/compare.py:531
 msgid "Identifying you..."
 msgstr "กำลังระบุตัวคุณ..."
 
-#: src/compare.py:351
+#: src/compare.py:563
 msgid "FAILED"
 msgstr "ล้มเหลว"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:566 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "เฟรมทั้งหมดมืดเกินไป โปรดตรวจสอบ dark_threshold ในการกำหนดค่า"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:567 src/cli/add.py:231
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ความมืดโดยเฉลี่ย: {avg}, เกณฑ์: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:690
 msgid "Time spent"
 msgstr "เวลาที่ใช้ไป"
 
-#: src/compare.py:457
+#: src/compare.py:691
 msgid "Starting up"
 msgstr "เริ่มต้นขึ้น"
 
-#: src/compare.py:458
+#: src/compare.py:692
+#, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "เปิดกล้อง + โหลด libs: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:693
 msgid "  Opening the camera"
 msgstr "การเปิดกล้อง"
 
-#: src/compare.py:460
+#: src/compare.py:694
 msgid "  Importing recognition libs"
 msgstr "กำลังนำเข้า libs การจดจำ"
 
-#: src/compare.py:461
+#: src/compare.py:695
 msgid "Searching for known face"
 msgstr "กำลังค้นหาใบหน้าที่รู้จัก"
 
-#: src/compare.py:462
+#: src/compare.py:696
 msgid "Total time"
 msgstr "เวลาทั้งหมด"
 
-#: src/compare.py:464
+#: src/compare.py:698
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nปณิธาน"
+"\n"
+"ปณิธาน"
 
-#: src/compare.py:466
+#: src/compare.py:700
+#, python-format
 msgid "  Native: %dx%d"
 msgstr "เนทิฟ: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:703
+#, python-format
 msgid "  Used: %dx%d"
 msgstr "ใช้แล้ว: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:706
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nเฟรมที่ค้นหา: %d (%.2f fps)"
+"\n"
+"เฟรมที่ค้นหา: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:707
+#, python-format
 msgid "Black frames ignored: %d "
 msgstr "กรอบสีดำถูกละเว้น: %d"
 
-#: src/compare.py:474
+#: src/compare.py:708
+#, python-format
 msgid "Dark frames ignored: %d "
 msgstr "เฟรมสีเข้มถูกละเว้น: %d"
 
-#: src/compare.py:475
+#: src/compare.py:709
+#, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "ความแน่นอนของเฟรมที่ชนะ: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:711
+#, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "รุ่นที่ชนะ: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:726
 msgid "SUCCESSFUL"
 msgstr "ประสบความสำเร็จ"
+
+#: src/enroll_capture.py:22
+msgid "Look straight at the camera"
+msgstr "มองตรงไปที่กล้อง"
+
+#: src/enroll_capture.py:23
+msgid "Turn your head slightly to the left"
+msgstr "หันศีรษะไปทางซ้ายเล็กน้อย"
+
+#: src/enroll_capture.py:24
+msgid "Turn your head slightly to the right"
+msgstr "หันศีรษะไปทางขวาเล็กน้อย"
+
+#: src/enroll_capture.py:25
+msgid "Tilt your chin up a little"
+msgstr "เงยคางขึ้นเล็กน้อย"
+
+#: src/enroll_capture.py:26
+msgid "Tilt your chin down a little"
+msgstr "ก้มคางลงเล็กน้อย"
+
+#: src/enroll_capture.py:27
+msgid "Look straight at the camera again"
+msgstr "มองตรงไปที่กล้องอีกครั้ง"
+
+#: src/notify.py:375
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:377
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:379
+msgid "authorization"
+msgstr "การอนุญาต"
+
+#: src/notify.py:381
+msgid "screen unlock"
+msgstr "ปลดล็อคหน้าจอ"
+
+#: src/notify.py:418
+msgid "timeout"
+msgstr "หมดเวลา"
+
+#: src/notify.py:420
+msgid "load"
+msgstr "โหลด"
+
+#: src/notify.py:440
+#, python-format
+msgid "%s frames"
+msgstr "%s เฟรม"
+
+#: src/notify.py:442
+#, python-format
+msgid "%s dark"
+msgstr "%s มืด"
+
+#: src/notify.py:460
+msgid "Looking for your face…"
+msgstr "กำลังมองหาใบหน้าของคุณ..."
+
+#: src/notify.py:470 src/notify.py:499
+msgid "Face authentication"
+msgstr "การพิสูจน์ตัวตนด้วยใบหน้า"
+
+#: src/notify.py:514
+msgid "Face recognized"
+msgstr "จดจำใบหน้าแล้ว"
+
+#: src/notify.py:525
+msgid "add a model in this light"
+msgstr "เพิ่มโมเดลในแสงนี้"
+
+#: src/notify.py:527
+msgid "check the camera"
+msgstr "ตรวจสอบกล้อง"
+
+#: src/notify.py:532
+#, python-format
+msgid "No match in %s"
+msgstr "ไม่มีการแข่งขันใน %s"
+
+#: src/notify.py:534 src/notify.py:568
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "ลงทะเบียน: sudo ubuntu-hello add"
+
+#: src/notify.py:535
+msgid "closest"
+msgstr "ใกล้ที่สุด"
+
+#: src/notify.py:540 src/notify.py:553 src/notify.py:561
+msgid "Face not recognized"
+msgstr "ไม่รู้จักใบหน้า"
+
+#: src/notify.py:546
+msgid "Too dark"
+msgstr "มืดเกินไป"
+
+#: src/notify.py:547
+msgid "turn on a light"
+msgstr "เปิดไฟ"
+
+#: src/notify.py:548
+msgid "darkness"
+msgstr "ความมืด"
+
+#: src/notify.py:559
+msgid "Liveness check failed"
+msgstr "การตรวจสอบความสดล้มเหลว"
+
+#: src/notify.py:567
+#, python-format
+msgid "No face model for %s"
+msgstr "ไม่มีโมเดลใบหน้าสำหรับ %s"
+
+#: src/notify.py:572
+msgid "Face authentication unavailable"
+msgstr "การตรวจสอบสิทธิ์ด้วยใบหน้าไม่พร้อมใช้งาน"
+
+#: src/notify.py:577
+msgid "Cancelled"
+msgstr "ยกเลิก"
+
+#: src/notify.py:579
+msgid "Face authentication cancelled"
+msgstr "การตรวจสอบสิทธิ์ด้วยใบหน้าถูกยกเลิก"
+
+#: src/notify.py:609
+#, python-brace-format
+msgid "{count} of {total}"
+msgstr "{count} จาก {total}"
+
+#: src/notify.py:611 src/notify.py:620 src/notify.py:625
+msgid "Face enrollment"
+msgstr "การลงทะเบียนใบหน้า"
+
+#: src/notify.py:616
+msgid "Face model saved"
+msgstr "บันทึกโมเดลใบหน้าแล้ว"
+
+#: src/notify.py:618
+#, python-brace-format
+msgid "{n} sample"
+msgid_plural "{n} samples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/notify.py:624
+msgid "Could not record a face model"
+msgstr "ไม่สามารถบันทึกโมเดลใบหน้าได้"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -252,7 +415,7 @@ msgstr "GNOME Keyring"
 
 #: src/wallet_backend.py:65
 msgid "None"
-msgstr "None"
+msgstr "ไม่มี"
 
 #: src/wallet_backend.py:74
 msgid "login keyring"
@@ -262,71 +425,81 @@ msgstr "พวงกุญแจเข้าสู่ระบบ"
 msgid "login keyring or KWallet"
 msgstr "พวงกุญแจเข้าสู่ระบบหรือ KWallet"
 
-#: src/cli/add.py:23
+#: src/cli/add.py:25
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nไม่สามารถนำเข้าโมดูล dlib ได้ โปรดตรวจสอบผลลัพธ์ของ"
+"\n"
+"ไม่สามารถนำเข้าโมดูล dlib ได้ โปรดตรวจสอบผลลัพธ์ของ"
 
-#: src/cli/add.py:58
+#: src/cli/add.py:60
 msgid "No face model folder found, creating one"
 msgstr "ไม่พบโฟลเดอร์รูปแบบใบหน้า กำลังสร้างโฟลเดอร์ใหม่"
 
-#: src/cli/add.py:69
+#: src/cli/add.py:71
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr "ข้อสังเกต: แต่ละรุ่นเพิ่มเติมจะทำให้ระบบจดจำใบหน้าช้าลงเล็กน้อย"
 
-#: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"กด Ctrl+C เพื่อยกเลิก\n"
+#: src/cli/add.py:72
+msgid "Press Ctrl+C to cancel\n"
+msgstr "กด Ctrl+C เพื่อยกเลิก\n"
 
-#: src/cli/add.py:74
+#: src/cli/add.py:76
 msgid "Adding face model for the user "
 msgstr "การเพิ่มโมเดลใบหน้าให้กับผู้ใช้"
 
-#: src/cli/add.py:88
+#: src/cli/add.py:90
 msgid "Model #"
 msgstr "แบบอย่าง #"
 
-#: src/cli/add.py:93
+#: src/cli/add.py:95
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
 msgstr "การใช้ป้ายกำกับเริ่มต้น \"%s\" เนื่องจากแฟล็ก -y"
 
-#: src/cli/add.py:97
+#: src/cli/add.py:99
 msgid "Enter a label for this new model [{}]: "
 msgstr "ป้อนป้ายกำกับสำหรับโมเดลใหม่นี้ [{}]:"
 
-#: src/cli/add.py:107
+#: src/cli/add.py:109
 msgid "NOTICE: Removing illegal character \",\" from model name"
 msgstr "ข้อสังเกต: การลบอักขระที่ไม่ถูกต้อง \",\" ออกจากชื่อรุ่น"
 
-#: src/cli/add.py:121
+#: src/cli/add.py:157
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nกรุณามองตรงเข้าไปในกล้อง"
+"\n"
+"กรุณามองตรงเข้าไปในกล้อง"
 
-#: src/cli/add.py:186
+#: src/cli/add.py:228
 msgid "Camera saw only black frames - is IR emitter working?"
 msgstr "กล้องเห็นเฉพาะกรอบสีดำ - ตัวส่งสัญญาณ IR ทำงานหรือไม่"
 
-#: src/cli/add.py:191
+#: src/cli/add.py:233
 msgid "No face detected, aborting"
 msgstr "ตรวจไม่พบใบหน้า กำลังยกเลิก"
 
-#: src/cli/add.py:196
+#: src/cli/add.py:241 src/cli/add.py:242
 msgid "Multiple faces detected, aborting"
 msgstr "ตรวจพบใบหน้าหลายใบ กำลังยกเลิก"
 
-#: src/cli/add.py:218
+#: src/cli/add.py:263
+msgid "Captured {} face samples"
+msgstr "เก็บตัวอย่างใบหน้าได้ {} ตัวอย่าง"
+
+#: src/cli/add.py:275
 msgid ""
-"\nScan complete\nAdded a new model to "
+"\n"
+"Scan complete\n"
+"Added a new model to "
 msgstr ""
-"\nการสแกนเสร็จสมบูรณ์\nเพิ่มรูปแบบใหม่ให้กับ"
+"\n"
+"การสแกนเสร็จสมบูรณ์\n"
+"เพิ่มรูปแบบใหม่ให้กับ"
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
@@ -346,21 +519,27 @@ msgstr "คุณต้องการดำเนินการต่อ [y/N]
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nแปลความหมายว่า \"ไม่\" ยกเลิก"
+"\n"
+"แปลความหมายว่า \"ไม่\" ยกเลิก"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nล้างโมเดลแล้ว"
+"\n"
+"ล้างโมเดลแล้ว"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
 msgstr "กำลังเปิด config.ini ใน {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
 msgstr "ไม่สามารถเปิดตัวแก้ไข: {error}"
 
@@ -374,11 +553,11 @@ msgstr "โปรดติดตั้ง 'nano' หรือ 'vi' หรือ�
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"หากคุณเรียกใช้คำสั่งนี้ด้วย sudo ให้ลองใช้ 'sudo -E ubuntu-hello confi"
-"g' เพื่อรักษาตัวแปร EDITOR ของคุณ"
+"หากคุณเรียกใช้คำสั่งนี้ด้วย sudo ให้ลองใช้ 'sudo -E ubuntu-hello config' เพื่อรักษาตัวแปร "
+"EDITOR ของคุณ"
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
@@ -400,105 +579,105 @@ msgstr "Ubuntu Hello ถูกปิดการใช้งาน"
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello เปิดใช้งานแล้ว"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:148
-msgid "Usage: keyring [enable|disable|restore [--all]]"
-msgstr "การใช้งาน: พวงกุญแจ [เปิดใช้งาน|ปิดการใช้งาน|กู้คืน] [--all]"
+#: src/cli/keyring.py:36 src/cli/keyring.py:156
+msgid "Usage:"
+msgstr "วิธีใช้:"
 
-#: src/cli/keyring.py:49
+#: src/cli/keyring.py:53
 msgid "Enter password for user {} to unlock {} ({}): "
 msgstr "ป้อนรหัสผ่านสำหรับผู้ใช้ {} เพื่อปลดล็อค {} ({}):"
 
-#: src/cli/keyring.py:51
+#: src/cli/keyring.py:55
 msgid "Password cannot be empty"
 msgstr "รหัสผ่านต้องไม่เว้นว่าง"
 
-#: src/cli/keyring.py:54
+#: src/cli/keyring.py:58
 msgid "Confirm password: "
 msgstr "ยืนยันรหัสผ่าน:"
 
-#: src/cli/keyring.py:56
+#: src/cli/keyring.py:60
 msgid "Passwords do not match"
 msgstr "รหัสผ่านไม่ตรงกัน"
 
-#: src/cli/keyring.py:65
+#: src/cli/keyring.py:69
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "ตรวจพบฮาร์ดแวร์ TPM กำลังติดตั้งอัตโนมัติ tpm2-tools..."
 
-#: src/cli/keyring.py:74
+#: src/cli/keyring.py:78
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "ฮาร์ดแวร์ TPM ทำงานอยู่ กำลังปิดผนึกรหัสผ่านใน TPM..."
 
-#: src/cli/keyring.py:100
+#: src/cli/keyring.py:104
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"เปิดใช้งานการปลดล็อคพวงกุญแจ/KWalletเรียบร้อยแล้วสำหรับผู้ใช้ {} โดยใช"
-"้ TPM (กระเป๋าเงิน: {})"
+"เปิดใช้งานการปลดล็อคพวงกุญแจ/KWalletเรียบร้อยแล้วสำหรับผู้ใช้ {} โดยใช้ TPM (กระเป๋าเงิน: "
+"{})"
 
-#: src/cli/keyring.py:102
+#: src/cli/keyring.py:106
 msgid "Failed to seal password to TPM: {}"
 msgstr "ไม่สามารถปิดผนึกรหัสผ่านเป็น TPM: {}"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:110
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "ไม่มีการใช้งาน TPM การใช้แคชข้อมูลรับรองที่ใช้ซอฟต์แวร์..."
 
-#: src/cli/keyring.py:122
+#: src/cli/keyring.py:126
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"เปิดใช้งานการปลดล็อคพวงกุญแจ/KWalletเรียบร้อยแล้วสำหรับผู้ใช้ {} (ซอฟต"
-"์แวร์แคช กระเป๋าเงิน: {})"
+"เปิดใช้งานการปลดล็อคพวงกุญแจ/KWalletเรียบร้อยแล้วสำหรับผู้ใช้ {} (ซอฟต์แวร์แคช กระเป๋าเงิน: "
+"{})"
 
-#: src/cli/keyring.py:124
+#: src/cli/keyring.py:128
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "ไม่สามารถเปิดใช้งานการปลดล็อคพวงกุญแจ: {}"
 
-#: src/cli/keyring.py:135
+#: src/cli/keyring.py:139
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "ไม่สามารถปิดการใช้งานการปลดล็อคพวงกุญแจ: {}"
 
-#: src/cli/keyring.py:138
+#: src/cli/keyring.py:142
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "ปิดใช้งานการปลดล็อกพวงกุญแจ/KWallet สำหรับผู้ใช้ {}"
 
-#: src/cli/keyring.py:140
+#: src/cli/keyring.py:144
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ไม่ได้เปิดใช้งานการปลดล็อคพวงกุญแจ/KWalletสำหรับผู้ใช้ {}"
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:161
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "ไม่พบรหัสผ่านเข้าสู่ระบบที่ปิดผนึก ไม่มีอะไรต้องกู้คืน"
 
-#: src/cli/keyring.py:155
+#: src/cli/keyring.py:163
 msgid "Restored login wallet password for {} user(s)."
 msgstr "กู้คืนรหัสผ่านกระเป๋าเข้าสู่ระบบสำหรับ {} ผู้ใช้แล้ว"
 
-#: src/cli/keyring.py:157
+#: src/cli/keyring.py:165
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "ไม่สามารถกู้คืนรหัสผ่านกระเป๋าเข้าสู่ระบบสำหรับ {} ผู้ใช้ได้"
 
-#: src/cli/keyring.py:158
+#: src/cli/keyring.py:166
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"หากยังมีข้อความแจ้ง ให้ตั้งรหัสผ่านพวงกุญแจเข้าสู่ระบบหรือ KWallet ใน "
-"Seahorse / การตั้งค่าระบบ"
+"หากยังมีข้อความแจ้ง ให้ตั้งรหัสผ่านพวงกุญแจเข้าสู่ระบบหรือ KWallet ใน Seahorse / "
+"การตั้งค่าระบบ"
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:169
 msgid "Restored login wallet password for user {}."
 msgstr "กู้คืนรหัสผ่านกระเป๋าเข้าสู่ระบบสำหรับผู้ใช้ {} แล้ว"
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:171
 msgid "Could not restore login wallet password for user {}."
 msgstr "ไม่สามารถกู้คืนรหัสผ่านกระเป๋าเข้าสู่ระบบสำหรับผู้ใช้ {} ได้"
 
-#: src/cli/keyring.py:167
-msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "การดำเนินการไม่ถูกต้อง ใช้ 'เปิดใช้งาน', 'ปิดการใช้งาน' หรือ 'กู้คืน'"
+#: src/cli/keyring.py:177
+msgid "Invalid action. Use one of:"
+msgstr "การดำเนินการไม่ถูกต้อง ใช้อย่างใดอย่างหนึ่งต่อไปนี้:"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
@@ -529,10 +708,12 @@ msgid "You can find the IDs by running:"
 msgstr "คุณสามารถค้นหา ID ได้โดยการเรียกใช้:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
 msgstr "การดำเนินการนี้จะลบโมเดลชื่อ \"{label}\" สำหรับ {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
 msgstr "ไม่มีรุ่นที่มี ID {id} สำหรับ {user}"
 
@@ -545,7 +726,8 @@ msgid "Removed model {}"
 msgstr "ลบโมเดล {}"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr "โปรดเพิ่มการตั้งค่าที่คุณต้องการเปลี่ยนแปลงและค่าที่ต้องการตั้งค่า"
 
 #: src/cli/set.py:37
@@ -572,35 +754,44 @@ msgstr "การกำหนดค่าที่แน่นอน:"
 msgid "Generated snapshot saved as"
 msgstr "สแนปชอตที่สร้างขึ้นบันทึกเป็น"
 
-#: src/cli/test.py:23
+#: src/cli/test.py:25
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello ได้รับการกำหนดค่าให้ใช้เครื่องบันทึกซึ่งยังไม่รองรับคำสั่"
-"ง test และจะยกเลิก"
+"Ubuntu Hello ได้รับการกำหนดค่าให้ใช้เครื่องบันทึกซึ่งยังไม่รองรับคำสั่ง test และจะยกเลิก"
 
-#: src/cli/test.py:34
+#: src/cli/test.py:36
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nการเปิดหน้าต่างด้วยฟีดทดสอบ\n\nกด ctrl+C ในเทอร์มินัลนี้เพื่อออก\nคล"
-"ิกที่ภาพเพื่อเปิดหรือปิดโหมดช้า\n"
+"\n"
+"การเปิดหน้าต่างด้วยฟีดทดสอบ\n"
+"\n"
+"กด ctrl+C ในเทอร์มินัลนี้เพื่อออก\n"
+"คลิกที่ภาพเพื่อเปิดหรือปิดโหมดช้า\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
 msgstr "ความละเอียด: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "เฟรมต่อวินาที: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
 msgstr "เฟรม: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
 msgstr "การรับรู้: %dms"
 
@@ -616,29 +807,35 @@ msgstr "กรอบสีเข้ม"
 msgid "SCAN FRAME"
 msgstr "สแกนเฟรม"
 
+#: src/cli/test.py:212
+msgid "no match"
+msgstr "ไม่ตรงกัน"
+
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nกำลังปิดหน้าต่าง"
+"\n"
+"กำลังปิดหน้าต่าง"
 
-#: src/rubberstamps/__init__.py:80
+#: src/rubberstamps/__init__.py:109
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "เกิดข้อผิดพลาดในการแยกวิเคราะห์กฎตรายาง: {}"
 
-#: src/rubberstamps/__init__.py:87
+#: src/rubberstamps/__init__.py:119
 msgid "Stamp not installed: {}"
 msgstr "ไม่ได้ติดตั้งตราประทับ: {}"
 
-#: src/rubberstamps/__init__.py:97
+#: src/rubberstamps/__init__.py:129
 msgid "Stamp error: Class {} not found"
 msgstr "ข้อผิดพลาดในการประทับตรา: ไม่พบคลาส {}"
 
-#: src/rubberstamps/__init__.py:123
+#: src/rubberstamps/__init__.py:156
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "ข้อผิดพลาดภายในในการประกาศการกำหนดค่าตรายาง:"
 
-#: src/rubberstamps/__init__.py:162
+#: src/rubberstamps/__init__.py:195
 msgid "Internal error in rubberstamp:"
 msgstr "ข้อผิดพลาดภายในในตรายาง:"
 
@@ -651,6 +848,7 @@ msgid "Authorising in {}"
 msgstr "กำลังอนุญาตใน {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
 msgstr "กด {abort_key} เพื่อยกเลิก {confirm_key} เพื่ออนุญาต"
 
@@ -658,19 +856,19 @@ msgstr "กด {abort_key} เพื่อยกเลิก {confirm_key} เ�
 msgid "Authentication aborted"
 msgstr "การตรวจสอบสิทธิ์ถูกยกเลิก"
 
-#: src/rubberstamps/nod.py:17
+#: src/rubberstamps/nod.py:30
 msgid "Nod to confirm"
 msgstr "พยักหน้าเพื่อยืนยัน"
 
-#: src/rubberstamps/nod.py:18
+#: src/rubberstamps/nod.py:31
 msgid "Shake your head to abort"
 msgstr "ส่ายหัวเพื่อยกเลิก"
 
-#: src/rubberstamps/nod.py:81
+#: src/rubberstamps/nod.py:97
 msgid "Confirmed authentication"
 msgstr "ยืนยันตัวตนแล้ว"
 
-#: src/rubberstamps/nod.py:84
+#: src/rubberstamps/nod.py:100
 msgid "Aborted authentication"
 msgstr "การรับรองความถูกต้องถูกยกเลิก"
 
@@ -684,20 +882,19 @@ msgstr "โมดูล pyv4l2 หายไป โปรดเรียกใช
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr "Ubuntu Hello ไม่พบอุปกรณ์กล้องตามเส้นทางที่ระบุในไฟล์กำหนดค่า"
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"มีโอกาสมากที่เส้นทางไม่ได้รับการกำหนดค่าอย่างถูกต้อง โปรดแก้ไขค่าการกำ"
-"หนดค่า 'device_path' โดยเรียกใช้:"
+"มีโอกาสมากที่เส้นทางไม่ได้รับการกำหนดค่าอย่างถูกต้อง โปรดแก้ไขค่าการกำหนดค่า 'device_path' "
+"โดยเรียกใช้:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr "ไม่สามารถอ่านกล้องที่ระบุในตัวเลือกการกำหนดค่า 'device_path' กำลังยกเลิก"

@@ -4,6 +4,7 @@
 import gettext
 import locale
 import os
+import subprocess
 
 DOMAIN = "@gettext_package@"
 LOCALEDIR = "@localedir@"
@@ -31,7 +32,9 @@ def _preferences_path():
 	home = None
 	try:
 		import pwd
-		user = os.environ.get("SUDO_USER")
+		# UH_TARGET_USER: set by compare.py (PAM) for the user being
+		# authenticated, whose Settings language preference should apply.
+		user = os.environ.get("UH_TARGET_USER") or os.environ.get("SUDO_USER")
 		if user and user != "root":
 			home = pwd.getpwnam(user).pw_dir
 		elif os.environ.get("PKEXEC_UID"):
@@ -64,6 +67,51 @@ def _read_language_preference():
 	return value
 
 
+def _generated_locales():
+	"""Locale names this system can actually enter (``locale -a``)."""
+	try:
+		result = subprocess.run(
+			["locale", "-a"], capture_output=True, text=True, timeout=5, check=False
+		)
+	except (OSError, subprocess.SubprocessError):
+		return []
+	return result.stdout.split()
+
+
+def _is_utf8(name):
+	lowered = name.lower()
+	return "utf-8" in lowered or "utf8" in lowered
+
+
+def _message_locale(code):
+	"""Return a LANG value the C library accepts, or None to keep the current one.
+
+	GtkBuilder translates every ``.ui`` string through the C library, and glibc
+	ignores LANGUAGE whenever LC_MESSAGES is the "C", "POSIX" or "C.UTF-8" locale.
+	Setting LANG to "<code>.UTF-8" for a locale the system never generated (most of
+	them: a desktop typically has a handful) therefore left the C library in "C",
+	which rendered the whole Settings window's .ui text in English while Python-side
+	strings were correctly translated -- the split seen on the Security and About
+	pages. Prefer a generated locale for this language; otherwise keep a working one,
+	because LANGUAGE alone already selects the catalog.
+	"""
+	installed = _generated_locales()
+	prefix = code.lower()
+	for name in installed:
+		if name.lower().startswith(prefix + "_") and _is_utf8(name):
+			return name
+	for name in installed:
+		if name.lower().startswith(prefix) and _is_utf8(name):
+			return name
+	current = os.environ.get("LANG", "")
+	if current and current.lower() not in ("c", "posix", "c.utf-8", "c.utf8"):
+		return None
+	for name in installed:
+		if _is_utf8(name) and not name.lower().startswith(("c.", "posix")):
+			return name
+	return None
+
+
 def _apply_locale_env(code=None):
 	if code is None:
 		code = _read_language_preference()
@@ -80,7 +128,9 @@ def _apply_locale_env(code=None):
 		os.environ["LANGUAGE"] = code
 		lang = os.environ.get("LANG", "")
 		if not lang.lower().startswith(code.lower()):
-			os.environ["LANG"] = f"{code}.UTF-8"
+			carrier = _message_locale(code)
+			if carrier:
+				os.environ["LANG"] = carrier
 	try:
 		locale.setlocale(locale.LC_ALL, "")
 	except locale.Error:
@@ -89,7 +139,7 @@ def _apply_locale_env(code=None):
 
 
 def _install_translation():
-	global translation, _, ngettext
+	global translation
 	gettext.bindtextdomain(DOMAIN, LOCALEDIR)
 	try:
 		gettext.bind_textdomain_codeset(DOMAIN, "UTF-8")
@@ -97,9 +147,17 @@ def _install_translation():
 		pass
 	translation = gettext.translation(DOMAIN, localedir=LOCALEDIR, fallback=True)
 	translation.install()
-	_ = translation.gettext
-	ngettext = translation.ngettext
 	return translation
+
+
+def _(message):
+	"""gettext through the *current* catalog, so a module that did
+	`from i18n import _` before reload_from_preferences() still follows it."""
+	return translation.gettext(message)
+
+
+def ngettext(singular, plural, n):
+	return translation.ngettext(singular, plural, n)
 
 
 def reload_from_preferences():

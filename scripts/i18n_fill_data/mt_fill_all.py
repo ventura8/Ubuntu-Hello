@@ -2,6 +2,7 @@
 """Parallel MT fill for Whisper packs (both domains)."""
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import sys
@@ -12,6 +13,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
 LINGUAS = (REPO / "po" / "whisper-languages.txt").read_text().split()
+
+
+def load_lint():
+	"""scripts/i18n-lint.py: the one list of what a translation must keep verbatim."""
+	spec = importlib.util.spec_from_file_location("i18n_lint", REPO / "scripts" / "i18n-lint.py")
+	assert spec is not None and spec.loader is not None
+	mod = importlib.util.module_from_spec(spec)
+	spec.loader.exec_module(mod)
+	return mod
+
+
+LINT = load_lint()
 
 GOOGLE = {
 	"af": "af", "am": "am", "ar": "ar", "as": "as", "az": "az", "ba": None,
@@ -44,6 +57,15 @@ def bodies(keys):
 
 
 def protect(s: str):
+	"""Hide from the translator everything that must come back verbatim.
+
+	URLs, printf / brace placeholders, and every token scripts/i18n-lint.py's
+	``_literal_tokens`` requires (flags, ``sudo ...`` lines, config keys, the
+	CLI's subcommand names when enumerated, product and module names ...). The
+	lint is the single list, so a string the filler protects is exactly a string
+	the lint will accept. Longest token first, so ``sudo ubuntu-hello add`` is one
+	marker rather than a marker inside a marker.
+	"""
 	urls = {}
 	ph = []
 
@@ -63,20 +85,12 @@ def protect(s: str):
 		ph_sub,
 		out,
 	)
-	for a, b in (
-		("Ubuntu Hello", "⟦UH⟧"),
-		("Windows Hello", "⟦WH⟧"),
-		("OpenCV2", "⟦OCV2⟧"),
-		("KWallet", "⟦KW⟧"),
-		("GNOME Keyring", "⟦GK⟧"),
-		("PAM_AUTHTOK", "⟦PAM⟧"),
-		("pam_gnome_keyring", "⟦PGK⟧"),
-		("pam_kwallet5", "⟦PKW⟧"),
-		("tpm2-tools", "⟦TPM2⟧"),
-		("AES-256-GCM", "⟦AES⟧"),
-	):
-		out = out.replace(a, b)
-	out = re.sub(r"\bcv2\b", "⟦cv2⟧", out)
+	for token in sorted(LINT._literal_tokens(s), key=len, reverse=True):
+		pattern = r"(?<!\w)" + re.escape(token) + r"(?!\w)"
+		if not re.search(pattern, out):
+			continue  # already inside a longer marker, or part of a hidden URL
+		ph.append(token)
+		out = re.sub(pattern, f"⟦P{len(ph)-1}⟧", out)
 	return out, ph, urls
 
 
@@ -86,20 +100,6 @@ def unprotect(s, ph, urls):
 		out = out.replace(k, u)
 	for i, p in enumerate(ph):
 		out = out.replace(f"⟦P{i}⟧", p)
-	for a, b in (
-		("⟦UH⟧", "Ubuntu Hello"),
-		("⟦WH⟧", "Windows Hello"),
-		("⟦OCV2⟧", "OpenCV2"),
-		("⟦cv2⟧", "cv2"),
-		("⟦KW⟧", "KWallet"),
-		("⟦GK⟧", "GNOME Keyring"),
-		("⟦PAM⟧", "PAM_AUTHTOK"),
-		("⟦PGK⟧", "pam_gnome_keyring"),
-		("⟦PKW⟧", "pam_kwallet5"),
-		("⟦TPM2⟧", "tpm2-tools"),
-		("⟦AES⟧", "AES-256-GCM"),
-	):
-		out = out.replace(a, b)
 	return out
 
 

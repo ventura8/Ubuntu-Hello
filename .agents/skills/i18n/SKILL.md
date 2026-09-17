@@ -83,6 +83,56 @@ When you add, change, or remove a msgid (Python `_()`, PAM `S()`, Glade, desktop
 3. Before finishing: assert **no** empty `msgstr` and **no** leftover `fuzzy` entries in `ubuntu-hello/po/*.po` and `ubuntu-hello-gtk/po/*.po` (except intentional English source). Also keep `scripts/i18n_fill_data/<domain>/_keys.json` and every Whisper language JSON in sync with the domain `.pot` (msgctxt keys use `msgctxt\x04msgid`).
 4. Keep this in the **same change set** as the string edit — do not defer “translations later”.
 
+### What `scripts/i18n-lint.py` rejects, and why each rule exists
+
+Every rule below was added after a real defect shipped, so do not relax one to make a
+build pass:
+
+- **English left in as a "translation"** (`msgstr` == `msgid`). An empty-`msgstr` check
+  alone passes a catalog filled with the English source, which then ships an
+  English-only UI. Covers every language and single words too; words a language
+  genuinely borrows are vetted once in `po/english-is-correct.json`.
+- **Machine-translation sentinel brackets** (`⟦` / `⟧`). `mt_fill_all.py` wraps
+  placeholders and product names before translating and unwraps afterwards; a
+  translator that transliterates the marker defeats the unwrap and the bracket text
+  ships as visible garbage.
+- **Literal text the user must type, or a machine reads** — `--flags` and `-y`, paths,
+  file names, quoted literals such as `'nano'` or `'device_path'`, `sudo …` command
+  lines, `Ctrl+C`, `[y/N]`, `<code>` content, `snake_case` config keys, `EDITOR`-style
+  environment variables, the CLI's subcommand names where a string enumerates them
+  or names "the `test` command" / `keyring restore`, and the product and module
+  names in `VERBATIM_NAMES` (`Ubuntu Hello`, `KWallet`, `dlib`, `ubuntu-hello`,
+  `root`, …). A localised command is an instruction nobody can follow — the Spanish
+  catalog shipped `sudo ubuntu-hola agregar`, the Turkish `sudo ubuntu-merhaba ekle`,
+  86 catalogs enumerated translated subcommand names — and a rewritten Pango
+  attribute (`<span алгы план = 'яшел'>`) does not parse at all. Display names a
+  language legitimately transliterates (`Linux`, `TPM`) are deliberately not
+  literals. `_literal_tokens()` is the single list: `mt_fill_all.py` protects exactly
+  those tokens with sentinels, so a string the filler protects is a string the lint
+  accepts.
+- **Stale pack keys and pack drift.** A language JSON must not carry a key the `.pot`
+  dropped (six retired keys were where the br/fo/oc/ba wrong-language text hid,
+  unread by anyone), and the ordered `packs/<domain>/<lang>.json` must equal the keyed
+  JSON position for position: `generate_all_catalogs.py` reads the pack first, so a fix
+  made only in the keyed file is silently undone by the next regeneration.
+  `mt_fill_all.py` writes both; a hand edit must too.
+- Placeholders, `msgfmt --check`, no fuzzy entries, LINGUAS ↔ whisper list.
+
+`join_quoted` must not use the `unicode_escape` codec: it is latin-1 based, so every
+non-ASCII translation comes back as mojibake and any check that looks at the
+characters of a translation silently sees nothing.
+
+Machine translation is the default for new msgids, but **verify the result**:
+`deep_translator` returns the English source on failure, so a rate-limited run reports
+success while filling catalogs with English. Google's free endpoint answers 429 after a
+burst of a few hundred requests and stays closed for a while; `translate_batch` is a
+per-item loop, not one request. Google has no model at all for `ba`, `bo`, `br`, `fo`,
+`oc`; those are hand-written. When the lint reports a literal "translated away",
+restore it by hand inside the existing translation (keep the prose, put the token
+back where the translated word was) rather than re-running machine translation on
+the string — the 2026-09-16 repair of 660 such entries across all 98 catalogs was
+done that way.
+
 Audit helper (CI lint + pytest `test_all_translations_filled`):
 
 ```bash
@@ -102,7 +152,8 @@ done
 ```bash
 ./scripts/i18n-update.sh              # assert LINGUAS, refresh pots, msgmerge (keeps msgstr)
 ./scripts/i18n-update.sh --sync-linguas  # copy whisper-languages.txt → both LINGUAS
-# After editing scripts/i18n_fill_data/<domain>/<lang>.json:
+# After editing scripts/i18n_fill_data/<domain>/<lang>.json (mirror the value into
+# packs/<domain>/<lang>.json too, or the lint's pack-drift check fails):
 python3 scripts/i18n-fill-translations.py
 # Or generate packs then apply:
 python3 scripts/i18n_fill_data/generate_all_catalogs.py

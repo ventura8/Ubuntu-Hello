@@ -2,6 +2,7 @@
 
 # Import modules
 import cv2
+import frame_text
 import os
 from datetime import timezone, datetime
 import numpy as np
@@ -44,7 +45,7 @@ def generate(frames, text_lines):
 		# Calculate how far the line should be from the top
 		padding_top = frame_height + 30 + (line_number * 20)
 		# Print the line onto the image
-		cv2.putText(snap, line, (30, padding_top), cv2.FONT_HERSHEY_SIMPLEX, .4, text_color, 0, cv2.LINE_AA)
+		frame_text.draw_text(snap, line, (30, padding_top), .4, text_color)
 
 		line_number += 1
 

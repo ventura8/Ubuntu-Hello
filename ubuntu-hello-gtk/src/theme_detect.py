@@ -6,9 +6,12 @@ or schemas fall back to light.
 """
 from __future__ import annotations
 
+import atexit
 import os
 import re
 import subprocess
+import sys
+import threading
 from typing import Optional
 
 
@@ -178,6 +181,104 @@ def _lxqt_theme(user: Optional[str]) -> Optional[str]:
 	return None
 
 
+def _gtk_settings_ini_theme(user: Optional[str]) -> str:
+	"""``~/.config/gtk-4.0/settings.ini`` (KDE's kde-gtk-config, LXQt, manual setups)."""
+	home = _user_home(user) if user else os.path.expanduser("~")
+	for version in ("gtk-4.0", "gtk-3.0"):
+		content = _read_file_text(os.path.join(home, ".config", version, "settings.ini"), user=user)
+		for line in content.splitlines():
+			key, _, value = line.partition("=")
+			if key.strip().lower() == "gtk-theme-name" and value.strip():
+				return value.strip().strip("'\"")
+	return ""
+
+
+def _gsettings_gtk_theme(user: Optional[str], schema: str) -> str:
+	for getter in (
+		["dconf", "read", f"/{schema.replace('.', '/')}/gtk-theme"],
+		["gsettings", "get", schema, "gtk-theme"],
+	):
+		val = _run_cmd(getter, user=user)
+		if val:
+			return val
+	return ""
+
+
+def get_gtk_theme_name(user: Optional[str] = None, environ: Optional[dict] = None) -> str:
+	"""The desktop's GTK theme name (e.g. ``Yaru-red-dark``) for *user*, or ''.
+
+	Per DE, same sources as the dark/light probes: gsettings/dconf on GNOME,
+	Budgie, Cinnamon and MATE; xfconf on XFCE; ``gtk-4.0/settings.ini`` on
+	KDE/Plasma and LXQt (both write the GTK theme there), which is also the
+	generic fallback for every desktop.
+	"""
+	desktop = detect_desktop(environ)
+	name = ""
+	if desktop in ("gnome", "budgie", "unknown"):
+		name = _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+	elif desktop == "cinnamon":
+		name = _gsettings_gtk_theme(user, "org.cinnamon.desktop.interface") or _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+	elif desktop == "mate":
+		name = _gsettings_gtk_theme(user, "org.mate.interface")
+	elif desktop == "xfce":
+		name = _run_cmd(["xfconf-query", "-c", "xsettings", "-p", "/Net/ThemeName"], user=user)
+	elif desktop in ("kde", "lxqt"):
+		name = _gtk_settings_ini_theme(user)
+	if not name:
+		name = _gtk_settings_ini_theme(user)
+	if not name and desktop not in ("gnome", "budgie", "unknown"):
+		name = _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+	return name
+
+
+def get_icon_theme_name(user: Optional[str] = None, environ: Optional[dict] = None, icons_dir: str = "/usr/share/icons") -> str:
+	"""The desktop's icon theme (e.g. ``Yaru``) for *user* if installed system-wide, else ''."""
+	desktop = detect_desktop(environ)
+	schema = {"cinnamon": "org.cinnamon.desktop.interface", "mate": "org.mate.interface"}.get(desktop, "org.gnome.desktop.interface")
+	name = ""
+	if desktop == "xfce":
+		name = _run_cmd(["xfconf-query", "-c", "xsettings", "-p", "/Net/IconThemeName"], user=user)
+	else:
+		for getter in (
+			["dconf", "read", f"/{schema.replace('.', '/')}/icon-theme"],
+			["gsettings", "get", schema, "icon-theme"],
+		):
+			name = _run_cmd(getter, user=user)
+			if name:
+				break
+	if not name:
+		home = _user_home(user) if user else os.path.expanduser("~")
+		for version in ("gtk-4.0", "gtk-3.0"):
+			for line in _read_file_text(os.path.join(home, ".config", version, "settings.ini"), user=user).splitlines():
+				key, _, value = line.partition("=")
+				if key.strip().lower() == "gtk-icon-theme-name" and value.strip():
+					name = value.strip().strip("'\"")
+					break
+			if name:
+				break
+	if name and os.path.isfile(os.path.join(icons_dir, name, "index.theme")):
+		return name
+	return ""
+
+
+def resolve_gtk4_theme(name: str, prefer_dark: bool, themes_dir: str = "/usr/share/themes") -> Optional[str]:
+	"""Pick the installed GTK 4 variant of *name* matching *prefer_dark*.
+
+	GTK 4 running as root (pkexec) never sees the user's theme, so the app sets
+	``gtk-theme-name`` itself. Yaru ships accent variants (``Yaru-red``,
+	``Yaru-red-dark``); keep the accent and swap the ``-dark`` suffix to match
+	the light/dark preference. Returns None when no GTK 4 theme dir exists.
+	"""
+	if not name:
+		return None
+	base = name[:-5] if name.endswith("-dark") else name
+	candidates = [f"{base}-dark", base] if prefer_dark else [base, f"{base}-dark"]
+	for candidate in candidates:
+		if os.path.isdir(os.path.join(themes_dir, candidate, "gtk-4.0")):
+			return candidate
+	return None
+
+
 def get_theme_preference(
 	user: Optional[str] = None,
 	default: str = "light",
@@ -212,3 +313,165 @@ def get_theme_preference(
 	if result in ("dark", "light"):
 		return result
 	return default
+
+
+# -- live theme following ---------------------------------------------------
+#
+# Elevated (pkexec) the app cannot subscribe to the user's dconf / xfconf: it
+# runs as root with no access to the user's session bus, so Gio.Settings
+# only ever sees root's (empty) settings. The desktop's own change feed is
+# read instead, as the user, through a long-lived monitor process, and every
+# line it prints is a "something changed" event for the caller.
+
+def theme_monitor_command(user: Optional[str], environ: Optional[dict] = None) -> Optional[list]:
+	"""argv of a process that prints one line per theme setting change, or None.
+
+	GNOME / Budgie / unknown: ``gsettings monitor org.gnome.desktop.interface``
+	Cinnamon: ``org.cinnamon.desktop.interface``; MATE: ``org.mate.interface``;
+	XFCE: ``xfconf-query -m -c xsettings``. KDE / LXQt write the GTK theme to
+	``~/.config/gtk-4.0/settings.ini`` (see :func:`theme_files_to_watch`).
+	"""
+	desktop = detect_desktop(environ)
+	if desktop in ("gnome", "budgie", "unknown"):
+		args = ["gsettings", "monitor", "org.gnome.desktop.interface"]
+	elif desktop == "cinnamon":
+		args = ["gsettings", "monitor", "org.cinnamon.desktop.interface"]
+	elif desktop == "mate":
+		args = ["gsettings", "monitor", "org.mate.interface"]
+	elif desktop == "xfce":
+		args = ["xfconf-query", "-m", "-c", "xsettings"]
+	else:
+		return None
+	if user and os.geteuid() == 0 and user not in ("", "root"):
+		# dconf delivers change notifications over the user's session bus:
+		# without DBUS_SESSION_BUS_ADDRESS `gsettings monitor` prints nothing.
+		return ["sudo", "-u", user, "-H", "env", f"HOME={_user_home(user)}", *_user_bus_env(user), *args]
+	return list(args)
+
+
+def _user_bus_env(user: str) -> list:
+	"""``XDG_RUNTIME_DIR=…`` / ``DBUS_SESSION_BUS_ADDRESS=…`` for *user*'s session bus (if it exists)."""
+	try:
+		import pwd
+		uid = pwd.getpwnam(user).pw_uid
+	except Exception:
+		return []
+	runtime_dir = f"/run/user/{uid}"
+	if not os.path.exists(os.path.join(runtime_dir, "bus")):
+		return []
+	return [f"XDG_RUNTIME_DIR={runtime_dir}", f"DBUS_SESSION_BUS_ADDRESS=unix:path={runtime_dir}/bus"]
+
+
+def theme_files_to_watch(user: Optional[str]) -> list:
+	"""Config files whose change means the GTK theme / colour scheme changed (KDE, LXQt, manual)."""
+	home = _user_home(user) if user else os.path.expanduser("~")
+	return [
+		os.path.join(home, ".config", "gtk-4.0", "settings.ini"),
+		os.path.join(home, ".config", "gtk-3.0", "settings.ini"),
+		os.path.join(home, ".config", "kdeglobals"),
+		os.path.join(home, ".config", "lxqt", "lxqt.conf"),
+		os.path.join(home, ".config", "lxqt", "session.conf"),
+	]
+
+
+class ThemeWatcher:
+	"""Call *on_change()* (on the GLib main loop, debounced) whenever the user's theme changes.
+
+	Runs the DE's monitor command as the user on a daemon thread; the process
+	is terminated with :meth:`stop` (also registered with ``atexit`` so no
+	``gsettings monitor`` outlives the app). Missing tools / no monitor for the
+	desktop simply mean no live updates (startup detection still applies).
+	"""
+
+	DEBOUNCE_MS = 250
+
+	def __init__(self, user, on_change, environ=None, popen=None, idle_add=None, timeout_add=None, file_monitor=True):
+		self.user = user
+		self.on_change = on_change
+		self.environ = environ
+		self._popen = popen or subprocess.Popen
+		self._idle_add = idle_add
+		self._timeout_add = timeout_add
+		self._file_monitor = file_monitor
+		self.process = None
+		self.thread = None
+		self.monitors = []
+		self._pending = False
+		self.events = 0
+
+	# -- glue -------------------------------------------------------------
+	def _glib(self):
+		if self._idle_add is None or self._timeout_add is None:
+			from gi.repository import GLib
+			self._idle_add = self._idle_add or GLib.idle_add
+			self._timeout_add = self._timeout_add or GLib.timeout_add
+		return self._idle_add, self._timeout_add
+
+	def _schedule(self, *_args):
+		"""Coalesce bursts (a theme switch writes several keys) into one on_change()."""
+		self.events += 1
+		idle_add, timeout_add = self._glib()
+		if self._pending:
+			return
+		self._pending = True
+
+		def fire():
+			self._pending = False
+			try:
+				self.on_change()
+			except Exception as exc:
+				print(f"theme watcher: {exc}", file=sys.stderr)
+			return False
+
+		timeout_add(self.DEBOUNCE_MS, fire)
+
+	def _read_loop(self, proc):
+		try:
+			for _line in proc.stdout:
+				self._schedule()
+		except Exception:
+			pass
+
+	# -- lifecycle --------------------------------------------------------
+	def start(self):
+		cmd = theme_monitor_command(self.user, self.environ)
+		if cmd:
+			try:
+				self.process = self._popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+				                           stdin=subprocess.DEVNULL, text=True, bufsize=1)
+			except OSError:
+				self.process = None
+			if self.process is not None:
+				self.thread = threading.Thread(target=self._read_loop, args=(self.process,), daemon=True)
+				self.thread.start()
+		if self._file_monitor:
+			self._watch_files()
+		atexit.register(self.stop)
+		return self
+
+	def _watch_files(self):
+		try:
+			from gi.repository import Gio
+		except Exception:
+			return
+		for path in theme_files_to_watch(self.user):
+			try:
+				monitor = Gio.File.new_for_path(path).monitor_file(Gio.FileMonitorFlags.NONE, None)
+				monitor.connect("changed", self._schedule)
+				self.monitors.append(monitor)
+			except Exception:
+				continue
+
+	def stop(self):
+		proc, self.process = self.process, None
+		if proc is not None:
+			try:
+				proc.terminate()
+			except Exception:
+				pass
+		for monitor in self.monitors:
+			try:
+				monitor.cancel()
+			except Exception:
+				pass
+		self.monitors = []

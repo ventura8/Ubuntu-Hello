@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,669 +15,901 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Létrehozva"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Címke"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Automatikus"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Kulcstartó/KWallet feloldás engedélyezése"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Arcmodellek hozzáadása"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Adja meg a(z) <b>{}</b> felhasználó jelszavát a {} ({}) feloldásához:"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Jelszó"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Az adatfájlok már le lettek töltve!\nA folytatáshoz kattintson a Továb"
-"b gombra"
+"Az Ubuntu Hello körülbelül egy perc alatt több szögből rögzíti az arcát: "
+"tartsa az arcát az előnézetben, és kövesse az utasításokat (nézzen előre, "
+"forduljon kissé balra és jobbra, áll fel és le). Ezután egy második, "
+"választható beolvasás — szemüvegben, más arcszőrzettel vagy más fényben — a "
+"nap bármely szakában még megbízhatóbbá teszi a felismerést."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Hiba az adatfájlok letöltése közben"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Kész!\nA folytatáshoz kattintson a Tovább gombra"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Hiba az OpenCV2 importálása közben"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Próbáld meg újratelepíteni a cv2-t"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Nem található webkamera a rendszerben"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Kérjük, konfigurálja saját maga a kamerát, ha biztos benne, hogy kompa"
-"tibilis kamera van csatlakoztatva"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Nem, a kamerát nem lehet kinyitni"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Nem, nem infrakamera"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Igen, kompatibilis infrakamera"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Kameraazonosító vagy elérési út"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Ajánlott"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Hiba történt a kamera kiválasztásakor"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "A kiválasztott kamera nem nyitható meg"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Próbáljon másikat választani"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Kérjük látogassa meg\n<a href=\"https://github.com/EmixamPP/linux-enab"
-"le-ir-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a"
-">\nhogy engedélyezze az ir-kibocsátóját"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Kérjük, nézzen közvetlenül a kamerába"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Indítsa el az arcvizsgálatot"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Az adatfájlok már le lettek töltve!\n"
+"A folytatáshoz kattintson a Tovább gombra"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Hiba az adatfájlok letöltése közben"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Kész!\n"
+"A folytatáshoz kattintson a Tovább gombra"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Hiba az OpenCV2 importálása közben"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Próbáld meg újratelepíteni a cv2-t"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "Nem található webkamera a rendszerben"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Kérjük, konfigurálja saját maga a kamerát, ha biztos benne, hogy "
+"kompatibilis kamera van csatlakoztatva"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Nem, a kamerát nem lehet kinyitni"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Nem, nem infrakamera"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Igen, kompatibilis infrakamera"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Kameraazonosító vagy elérési út"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "Ajánlott"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Hiba történt a kamera kiválasztásakor"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "A kiválasztott kamera nem nyitható meg"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Próbáljon másikat választani"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Kérjük látogassa meg\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"hogy engedélyezze az ir-kibocsátóját"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Beállítás megvilágítás 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Beállítás megvilágítás 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Nem sikerült menteni az arcmodellt"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Második modell beolvasása"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Nem sikerült rögzíteni a második modellt"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú a"
-"zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapota:</b> TPM hard"
-"ver és eszközök ellenőrzése..."
+"Az első modelled mentésre került, így az arcalapú bejelentkezés már működik. "
+"A helyiségnek továbbra is elég világosnak kell lennie ahhoz, hogy lássa az "
+"arcát – a világítás lekapcsolása helyett változtasson –, majd próbálkozzon "
+"újra, vagy hagyja ki, és adjon hozzá modellt később a Beállításokban."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "Második beolvasás: szemüveg, arcszőrzet vagy más fény"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú a"
-"zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> TPM hardv"
-"er észlelve. A <i>tpm2-tools</i> automatikus telepítése..."
+"Az első modell mentve: az arccal való bejelentkezés már működik. A második "
+"modell megbízhatóbbá teszi a felismerést, ha valami változik: vegye fel a "
+"néha hordott szemüvegét (vagy vegye le), rögzítse más arcszőrzettel, és "
+"változtassa meg a fényt — kapcsoljon fel vagy le egy lámpát, lépjen el az "
+"ablaktól. Tartsa az arcát jól láthatóan, és nyomja meg újra a Beolvasás "
+"gombot; ugyanaz a rövid, irányított rögzítés következik."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú a"
-"zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> A hardver"
-"es TPM 2.0 aktív. Jelszava biztonságosan lezárva lesz a TPM-ben."
+"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú "
+"azonosítással (észlelt pénztárca: {}).\n"
+"\n"
+"<b>TPM állapota:</b> TPM hardver és eszközök ellenőrzése..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú a"
-"zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> TPM-hardv"
-"er észlelve, de a <i>tpm2-tools</i> automatikus telepítése meghiúsult."
-" Futtassa a <code>sudo apt install tpm2-tools</code> parancsot. Vissza"
-"térve a szoftver alapú hitelesítő adatok gyorsítótárazásához."
+"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú "
+"azonosítással (észlelt pénztárca: {}).\n"
+"\n"
+"<b>TPM állapot:</b> TPM hardver észlelve. A <i>tpm2-tools</i> automatikus "
+"telepítése..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú a"
-"zonosítással (észlelt pénztárca: {}).\n\n<b>TPM állapot:</b> Nem észle"
-"lhető TPM-hardver. Szoftver alapú hitelesítő adatok gyorsítótárazás (A"
-"ES-256-GCM) használata."
+"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú "
+"azonosítással (észlelt pénztárca: {}).\n"
+"\n"
+"<b>TPM állapot:</b> A hardveres TPM 2.0 aktív. Jelszava biztonságosan "
+"lezárva lesz a TPM-ben."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Nem sikerült azonosítani a nem gyökérrendszer-felhasználót a kulcstart"
-"ó feloldásához"
+"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú "
+"azonosítással (észlelt pénztárca: {}).\n"
+"\n"
+"<b>TPM állapot:</b> TPM-hardver észlelve, de a <i>tpm2-tools</i> automatikus "
+"telepítése meghiúsult. Futtassa a <code>sudo apt install tpm2-tools</code> "
+"parancsot. Visszatérve a szoftver alapú hitelesítő adatok "
+"gyorsítótárazásához."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "A jelszó nem lehet üres"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Az Ubuntu Hello automatikusan feloldhatja a {} zárolását az arcalapú "
+"azonosítással (észlelt pénztárca: {}).\n"
+"\n"
+"<b>TPM állapot:</b> Nem észlelhető TPM-hardver. Szoftver alapú hitelesítő "
+"adatok gyorsítótárazás (AES-256-GCM) használata."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Helytelen jelszó a {} felhasználóhoz"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "ismeretlen hiba"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Nem sikerült engedélyezni a kulcstartó feloldását: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Nem sikerült letiltani a kulcstartó feloldását: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Nem sikerült azonosítani a nem root rendszerfelhasználót a kulcstartó "
+"feloldásához"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "A jelszó nem lehet üres"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Helytelen jelszó a {} felhasználóhoz"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "ismeretlen hiba"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Nem sikerült engedélyezni a kulcstartó feloldását: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Nem sikerült engedélyezni a kulcstartó feloldását: az ubuntu-hello "
+"végrehajtható fájl nem található"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Nem sikerült engedélyezni a kulcstartó feloldását: időtúllépés az "
+"engedélyezésre várva (keyring enable)"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Kulcstartó feloldási hiba"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Hiba a rádiógombok olvasásakor"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Beállítási figyelmeztetés"
-
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
-"Nem sikerült menteni a bizonyossági beállításokat, de a beállítás egyé"
-"bként befejeződött."
+"A biztonsági beállítások mentése nem sikerült, de a beállítás egyébként "
+"befejeződött."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Hiba"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Terhelés..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Hitelesítés"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Felhasználó létrehozásának megerősítése"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Kérjük, adja meg annak a felhasználónak a felhasználónevét, akit hozzá"
-" szeretne adni az Ubuntu Hello-hez"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Felhasználónév:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Erősítse meg a modell létrehozását"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Mégse"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Kérjük, adjon meg egy nevet az új modellnek, maximum 24 karakter"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Modell neve:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Modell létrehozása"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Hiba a modell hozzáadása során, hibakód {}:\n\n"
+"Tartsa az arcát a kamera látóterében, és kövesse az utasításokat; ez "
+"körülbelül egy percig tart."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Erősítse meg a modell törlését"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Nézzen egyenesen a kamerába"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Hiba a modell hozzáadása során, hibakód {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Biztosan törli a {id} ({name}) modellt?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Hiba a modell törlése közben, hibakód {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Töröl"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Hiba a modell törlése közben, hibakód {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Fordítsa a fejét kissé balra"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Fordítsa a fejét kissé jobbra"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Emelje meg kissé az állát"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Engedje le kissé az állát"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "Rögzítés… {count} / {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "A kamerát nem lehet kinyitni"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Az OpenCV2 nem importálható"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Kulcstartó/KWallet feloldás engedélyezése"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "Rendben"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Adja meg a(z) <b>{}</b> felhasználó jelszavát a {} ({}) feloldásához:"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Jelszó"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Nincs kiválasztott felhasználó</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Engedélyezve (TPM-hardver)</b></span> – {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Engedélyezve (szoftver gyorsítótár)</b></s"
-"pan> – {}"
+"<span foreground='green'><b>Engedélyezve (szoftver gyorsítótár)</b></span> – "
+"{}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Engedélyezve (Jelszóbevitel függőben)</b>"
-"</span> – {}"
+"<span foreground='orange'><b>Engedélyezve (Jelszóbevitel függőben)</b></"
+"span> – {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Letiltva</b></span> – {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Hiba"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Siker"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
-"Kulcstartó/KWallet feloldás sikeresen engedélyezve a {} felhasználó sz"
-"ámára."
+"Kulcstartó/KWallet feloldás sikeresen engedélyezve a {} felhasználó számára."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Kulcstartó/KWallet feloldás letiltása"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Biztosan letiltja a kulcstartó/KWallet feloldását a {} felhasználó szá"
-"mára?"
+"Biztosan letiltja a kulcstartó/KWallet feloldását a {} felhasználó számára?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Az automatikus feloldás letiltása"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Kulcstartó/KWallet feloldás letiltva a {} felhasználónál."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Nem sikerült menteni az értesítési beállítást"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Nem sikerült menteni a biztonsági beállítást"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Konfiguráció"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Konfiguráció"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Keresési beállítások"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Konfiguráció"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Arcmodellek"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Pillanatképek az arcáról, amelyekhez az Ubuntu Hello hasonlít. Tartson "
+"legalább kettőt, különböző megvilágítás mellett rögzítve."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Mentett modellek megjelenítése a következőhöz:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Új felhasználó hozzáadása"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Csak egy arcmodell van regisztrálva. A szemüveg, az arcszőrzet változása "
+"vagy a más fény megváltoztatja, hogyan látja a kamera az arcát, így egyetlen "
+"modell kudarcot vallhat (például este, lámpafénynél). Adjon hozzá egy "
+"második modellt szemüveggel vagy anélkül, a másik megjelenésével vagy más "
+"fényben, hogy a feloldás megbízható maradjon."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Hozzáadás"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Adjon hozzá egy második modellt"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Töröl"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Modellek"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr "Az Ubuntu Hello kamera az Ön arcát keresi élő előnézettel."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "Kamera azonosító:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Valódi felbontás:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Használt felbontás:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Felvevő:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
 msgstr "Videó"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Kulcstartó / KWallet Automatikus feloldás"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Értesítések"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Engedélyezze az arcalapú hitelesítést a bejelentkezési kulcstartó vagy"
-" a KWallet zárolásának automatikus feloldásához bejelentkezéskor. Ez b"
-"iztonságosan tárolja a jelszavát a TPM-ben lezárva, ha rendelkezésre á"
-"ll, vagy AES-256-GCM-vel titkosítva, csak root kulcs használatával. Az"
-" arcalapú hitelesítés beállítja a PAM_AUTHTOK értéket a pam_gnome_keyr"
-"ing vagy a pam_kwallet5 számára az asztaltól függően."
+"Egy asztali értesítés jelenik meg, miközben az Ubuntu Hello az Ön arcát "
+"keresi, majd jelenti az eredményt. A sikertelen próbálkozások az értesítési "
+"listán maradnak."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Jelenlegi állapot:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Értesítések megjelenítése"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Ellenőrzés..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Automatikus feloldás engedélyezése"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Az automatikus feloldás letiltása"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Kulcstartó"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Megjelenítési nyelv"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Nyelv"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr ""
-"Az Automatikus a rendszer nyelvét követi. A változtatások azonnal érvé"
-"nyesülnek."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Arcalapú hitelesítés Linuxhoz"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "A verzió ismeretlen"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
-msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Nyissa meg a GitH"
-"ub-linket</a>"
+"One card per face-authentication attempt, updated in place with the result."
+msgstr "Arc-hitelesítési kísérletenként egy kártya, frissítve az eredménnyel."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "Körülbelül"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Értesítési hangok"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Üdvözöljük az Ubuntu Hello"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "A rendszerhang lejátszása felismert vagy sikertelen kísérlet esetén."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "A beállítás kész!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Tartalmazza a diagnosztikát"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"végeztünk! Az Ubuntu Hello aktív ezen a számítógépen. Próbáljon meg bá"
-"rmit megtenni, amihez általában be kell írnia a jelszavát a hitelesíté"
-"shez, például futtasson egy parancsot a sudo segítségével. Ha engedély"
-"ezte a kulcstartó automatikus feloldását, a bejelentkezési kulcstartó "
-"vagy a KWallet is automatikusan feloldódik bejelentkezéskor.\n\nKésőbb"
-" megnyithatja az Ubuntu Hello Konfigurátort a speciális beállítások mó"
-"dosításához vagy további modellek hozzáadásához. Az ablak bezárásához "
-"és az Ubuntu Hello Configurator megnyitásához nyomja meg az alábbi Bef"
-"ejezés gombot."
+"Adja hozzá a modellt, a bizonyosságot és a küszöböt, a kereteket, a kamerát "
+"és az időzítést minden kártyához. Hasznos probléma bejelentésekor."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Biztonság"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Az Ubuntu Hello automatikusan feloldhatja a bejelentkezési kulcstartót"
-" vagy a KWallet zárolását arcalapú azonosítással, megakadályozva a bej"
-"elentkezés utáni jelszókérést."
+"Mennyire kell pontosan egyeznie az arcának, és hogy az Ubuntu Hello kérje-e "
+"a megerősítést arról, hogy valóban jelen van."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Az automatikus kulcstartó/KWallet feloldás engedélyezése"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Arcegyezés szigorúsága"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Erősítse meg a jelszót"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "Biztonsági politika beállítása"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"A szögek, távolságok és egyéb tényezők változásai miatt az arcegyeztet"
-"és soha nem egyezik meg pontosan a tárolt arcmodellel. Ezen az oldalon"
-" beállíthatja, hogy az Ubuntu Hello milyen szigorú legyen."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "Gyors"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Több homályos egyezést tesz lehetővé, \nde nagyban felgyorsítja a szke"
-"nnelési folyamatot."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Kiegyensúlyozott"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"Még mindig viszonylag gyors észlelés, \nde előfordulhat, hogy nem jele"
-"ntkezik be, ha távolabb van."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Biztonságos"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Bólintás kérése megerősítéshez"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"A kicsit biztonságosabb lehetőség, \nde sokkal tovább tart a hitelesít"
-"és"
+"Az arc felismerése után egy értesítés bólintásra kéri. A kamera elé tartott "
+"fénykép nem tud bólintani."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Arcmodell hozzáadása"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Kulcstartó / KWallet Automatikus feloldás"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Az Ön hitelesítéséhez az Ubuntu Hello-nek el kell mentenie az Ön arcán"
-"ak modelljét, hogy felismerje Önt. Az arcszkennelés elindításához nyom"
-"ja meg az alábbi Szkennelés gombot."
+"Engedélyezze az arcalapú hitelesítést a bejelentkezési kulcstartó vagy a "
+"KWallet zárolásának automatikus feloldásához bejelentkezéskor. Ez "
+"biztonságosan tárolja a jelszavát a TPM-ben lezárva, ha rendelkezésre áll, "
+"vagy AES-256-GCM-vel titkosítva, csak root kulcs használatával. Az arcalapú "
+"hitelesítés beállítja a PAM_AUTHTOK értéket a pam_gnome_keyring vagy a "
+"pam_kwallet5 számára az asztaltól függően."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Jelenlegi állapot:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Ellenőrzés..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Automatikus feloldás engedélyezése"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Kulcstartó"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Megjelenítési nyelv"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr ""
+"Az Automatikus a rendszer nyelvét követi. A változtatások azonnal "
+"érvényesülnek."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Nyelv"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Arcalapú hitelesítés Linuxhoz"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "A verzió ismeretlen"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Nyissa meg a GitHub-"
+"linket</a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Hibabejelentés "
+"vagy szolgáltatás javaslata</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "Körülbelül"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Üdvözöljük az Ubuntu Hello"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "A beállítás kész!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"végeztünk! Az Ubuntu Hello aktív ezen a számítógépen. Próbáljon meg bármit "
+"megtenni, amihez általában be kell írnia a jelszavát a hitelesítéshez, "
+"például futtasson egy parancsot a sudo segítségével. Ha engedélyezte a "
+"kulcstartó automatikus feloldását, a bejelentkezési kulcstartó vagy a "
+"KWallet is automatikusan feloldódik bejelentkezéskor.\n"
+"\n"
+"Később megnyithatja az Ubuntu Hello Konfigurátort a speciális beállítások "
+"módosításához vagy további modellek hozzáadásához. Az ablak bezárásához és "
+"az Ubuntu Hello Configurator megnyitásához nyomja meg az alábbi Befejezés "
+"gombot."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "Biztonsági politika beállítása"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"A szögek, távolságok és egyéb tényezők változásai miatt az arcegyeztetés "
+"soha nem egyezik meg pontosan a tárolt arcmodellel. Ezen az oldalon "
+"beállíthatja, hogy az Ubuntu Hello milyen szigorú legyen."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"A legmegengedőbb egyezés, ez engedi be a leggyorsabban. Válassza ezt, ha a "
+"kényelem fontosabb a szigorúságnál."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"Szigorú egyezés, amely továbbra is gyors bejelentkezést tesz lehetővé. "
+"Előfordulhat, hogy éles szögből vagy nagyobb távolságból nem ismeri fel."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"A legszigorúbb egyezés, bejelentkezéskor további lépés nélkül. Ajánlott."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Kihagyás egyelőre"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"További arcmodelleket később a Beállításokban vagy a következő paranccsal "
+"adhat hozzá: sudo ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Webkamera konfigurálása"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "Az infravörös jeladó villog?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "igen"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "nem"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Az Ubuntu Hello automatikusan megkeresi a rendszerben az összes elérhe"
-"tő kamerát, ezért győződjön meg arról, hogy a webkamera csatlakoztatva"
-" van. Az észlelés után megjelenik a használható webkamerák listája. Vá"
-"lassza ki a használni kívántat, majd kattintson a Tovább gombra."
+"Nézze meg a kiválasztott kamerát: az infravörös kamera kis fényt mutat, "
+"amely villog, miközben az Ubuntu Hello teszteli. Ez megmondja, hogy látja-e "
+"az arcát a sötétben."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Igen, villog"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Nem, semmi sem villog"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Az Ubuntu Hello automatikusan megkeresi a rendszerben az összes elérhető "
+"kamerát, ezért győződjön meg arról, hogy a webkamera csatlakoztatva van. Az "
+"észlelés után megjelenik a használható webkamerák listája. Válassza ki a "
+"használni kívántat, majd kattintson a Tovább gombra."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Webkamerái tesztelése, kérjük, várjon..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Adatfájlok letöltése"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Az Ubuntu Hello-nek három előre betanított arcfelismerő adatkészletre "
-"van szüksége ahhoz, hogy felismerje Önt, amelyek most letöltésre kerül"
-"nek. A letöltés folyamatát alább láthatja."
+"Az Ubuntu Hello-nek három előre betanított arcfelismerő adatkészletre van "
+"szüksége ahhoz, hogy felismerje Önt, amelyek most letöltésre kerülnek. A "
+"letöltés folyamatát alább láthatja."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Letöltés indítása..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Üdvözöljük az Ubuntu Hello oldalon!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Változat"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Ez a varázsló végigvezeti a telepítési folyamaton, és automatikusan be"
-"állítja az Ubuntu Hello-t az Ön számára. A folytatáshoz nyomja meg a T"
-"ovább gombot."
+"Ez a varázsló végigvezeti a telepítési folyamaton, és automatikusan "
+"beállítja az Ubuntu Hello-t az Ön számára. A folytatáshoz nyomja meg a "
+"Tovább gombot."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Mégse"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Az Ubuntu Hello automatikusan feloldhatja a bejelentkezési kulcstartót vagy "
+"a KWallet zárolását arcalapú azonosítással, megakadályozva a bejelentkezés "
+"utáni jelszókérést."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Következő"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Az automatikus kulcstartó/KWallet feloldás engedélyezése"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "Erősítse meg a jelszót"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Vissza"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Fejezze be a beállítást"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Következő"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,649 +15,879 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Ti ṣẹda"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Aami"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Laifọwọyi"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Jeki Keyring/KWallet Ṣii silẹ"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Fifi awọn awoṣe oju rẹ kun"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Tẹ ọrọ igbaniwọle sii fun olumulo <b>{}</b> lati ṣii {} ({}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Ọrọigbaniwọle"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Awọn faili data ti gba lati ayelujara tẹlẹ!\nTẹ Itele lati tẹsiwaju"
+"Ubuntu Hello ń gba ojú rẹ sílẹ̀ láti ìgun díẹ̀ ní bí ìṣẹ́jú kan: pa ojú rẹ mọ́ "
+"nínú àwòrán àkọ́kọ́ kí o sì tẹ̀lé àwọn ìtọ́ni (wo tààrà, yí díẹ̀ sí òsì àti ọ̀tún, "
+"àgbọ̀n sókè àti sílẹ̀). Lẹ́yìn náà, àyẹ̀wò kejì tí kò pọn dandan — pẹ̀lú gíláàsì, "
+"irun ojú tó yàtọ̀ tàbí ìmọ́lẹ̀ mìíràn — máa ń mú kí ìdámọ̀ túbọ̀ ní ìgbẹ́kẹ̀lé ní "
+"àkókò èyíkéyìí ọjọ́."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Aṣiṣe nigba gbigba awọn faili data silẹ"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Ti ṣe!\nTẹ Itele lati tẹsiwaju"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Aṣiṣe nigba gbigbe wọle OpenCV2"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Gbiyanju lati tun fi sori ẹrọ cv2"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Ko si awọn kamera wẹẹbu ti a rii lori eto"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Jọwọ tunto kamẹra rẹ funrararẹ ti o ba ni idaniloju pe kamẹra ibaramu "
-"kan ti sopọ"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Rara, kamẹra ko le ṣii"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Rara, kii ṣe kamẹra infurarẹẹdi kan"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Bẹẹni, kamẹra infurarẹẹdi ibaramu"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Idanimọ kamẹra tabi ọna"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Ti ṣe iṣeduro"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Aṣiṣe yiyan kamẹra"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Kamẹra ti o yan ko le ṣii"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Gbiyanju lati yan miiran"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Jọwọ ṣabẹwo\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emi"
-"tter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nlati j"
-"eki ir emitter rẹ"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Jọwọ wo taara sinu kamẹra"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Bẹrẹ ọlọjẹ oju"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Awọn faili data ti gba lati ayelujara tẹlẹ!\n"
+"Tẹ Itele lati tẹsiwaju"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Aṣiṣe nigba gbigba awọn faili data silẹ"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Ti ṣe!\n"
+"Tẹ Itele lati tẹsiwaju"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Aṣiṣe nigba gbigbe wọle OpenCV2"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Gbiyanju lati tun fi sori ẹrọ cv2"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "Ko si awọn kamera wẹẹbu ti a rii lori eto"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Jọwọ tunto kamẹra rẹ funrararẹ ti o ba ni idaniloju pe kamẹra ibaramu kan ti "
+"sopọ"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Rara, kamẹra ko le ṣii"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Rara, kii ṣe kamẹra infurarẹẹdi kan"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Bẹẹni, kamẹra infurarẹẹdi ibaramu"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Idanimọ kamẹra tabi ọna"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "Ti ṣe iṣeduro"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Aṣiṣe yiyan kamẹra"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "Kamẹra ti o yan ko le ṣii"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Gbiyanju lati yan miiran"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Jọwọ ṣabẹwo\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"lati jeki ir emitter rẹ"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Ṣeto itanna 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Ṣeto itanna 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Ko le fipamọ awoṣe oju"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Ṣayẹwo awoṣe keji"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Ko le ṣe igbasilẹ awoṣe keji"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti "
-"a rii: {}).\n\n<b>Ipo TPM:</b> Ṣiṣayẹwo ohun elo TPM ati awọn irinṣẹ.."
-"."
+"Awoṣe akọkọ rẹ ti wa ni fipamọ, nitorina iwọle oju ti ṣiṣẹ tẹlẹ. Yara naa "
+"gbọdọ tun ni imọlẹ to lati rii oju rẹ - yi ina pada dipo ki o pa a - lẹhinna "
+"gbiyanju lẹẹkansi, tabi fo ki o ṣafikun awoṣe nigbamii lati Eto."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "Àyẹ̀wò kejì: gíláàsì, irun ojú tàbí ìmọ́lẹ̀ tó yàtọ̀"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti "
-"a rii: {}).\n\n<b>Ipo TPM:</b> Awari ohun elo TPM. Fifi <i>tpm2-tools<"
-"/i> sori ẹrọ laifọwọyi..."
+"A ti fi àwòṣe àkọ́kọ́ pamọ́: ìwọlé pẹ̀lú ojú ti ń ṣiṣẹ́. Àwòṣe kejì máa ń mú kí "
+"ìdámọ̀ ní ìgbẹ́kẹ̀lé sí i nígbà tí nǹkan bá yí padà: wọ gíláàsì tí o máa ń wọ "
+"nígbà mìíràn (tàbí bọ́ ọ), gbà á sílẹ̀ pẹ̀lú irun ojú tó yàtọ̀, kí o sì yí ìmọ́lẹ̀ "
+"padà — tan tàbí pa àtùpà, kúrò ní ẹ̀bá fèrèsé. Jẹ́ kí ojú rẹ hàn kedere kí o "
+"sì tún tẹ Ṣàyẹ̀wò; ìgbàsílẹ̀ kúkúrú tí a tọ́ka kan náà yóò tẹ̀lé e."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti "
-"a rii: {}).\n\n<b>Ipo TPM:</b> Hardware TPM 2.0 nṣiṣẹ. Ọrọigbaniwọle r"
-"ẹ yoo wa ni ifipamo ni aabo inu TPM."
+"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti a rii: "
+"{}).\n"
+"\n"
+"<b>Ipo TPM:</b> Ṣiṣayẹwo ohun elo TPM ati awọn irinṣẹ..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti "
-"a rii: {}).\n\n<b>Ipo TPM:</b> Ti ṣe awari ohun elo TPM, ṣugbọn fifi s"
-"ori aladaaṣe ti <i>tpm2-tools</i> kuna. Ṣiṣe <code>sudo apt fi sori ẹr"
-"ọ tpm2-tools</code>. Ja bo pada si sọfitiwia orisun caching."
+"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti a rii: "
+"{}).\n"
+"\n"
+"<b>Ipo TPM:</b> Awari ohun elo TPM. Fifi <i>tpm2-tools</i> sori ẹrọ "
+"laifọwọyi..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti "
-"a rii: {}).\n\n<b>Ipo TPM:</b> Ko si ohun elo TPM ti a rii. Lilo cachi"
-"ng ijẹrisi orisun software (AES-256-GCM)."
+"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti a rii: "
+"{}).\n"
+"\n"
+"<b>Ipo TPM:</b> Hardware TPM 2.0 nṣiṣẹ. Ọrọigbaniwọle rẹ yoo wa ni ifipamo "
+"ni aabo inu TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "Ko le ṣe idanimọ olumulo eto ti kii ṣe gbongbo fun ṣiṣi bọtini ṣiṣi"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello lè ṣí {} rẹ láìfọwọ́yí nípa lílo ìjẹ́rìísí ojú (àpamọ́wọ́ tí a rí: "
+"{}).\n"
+"\n"
+"<b>Ipò TPM:</b> A rí ohun èlò TPM, ṣùgbọ́n fífi <i>tpm2-tools</i> sórí ẹ̀rọ "
+"láìfọwọ́yí kùnà. Ṣiṣẹ́ <code>sudo apt install tpm2-tools</code>. A padà sí "
+"ìpamọ́ ìwé-ẹ̀rí orí sọ́fítíwéà."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Ọrọigbaniwọle ko le jẹ ofo"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello le ṣii laifọwọyi {} rẹ nipa lilo ijẹrisi oju (apamọwọ ti a rii: "
+"{}).\n"
+"\n"
+"<b>Ipo TPM:</b> Ko si ohun elo TPM ti a rii. Lilo caching ijẹrisi orisun "
+"software (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Ọrọigbaniwọle ti ko tọ fun olumulo {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "aṣiṣe aimọ"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Ti kuna lati mu šiši bọtini ṣiṣẹ: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Kuna lati mu ṣiṣi silẹ bọtini pa: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "A kò lè dá olùlò ètò tí kì í ṣe root mọ̀ fún ṣíṣí keyring"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Ọrọigbaniwọle ko le jẹ ofo"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Ọrọigbaniwọle ti ko tọ fun olumulo {}"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "aṣiṣe aimọ"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Ti kuna lati mu šiši bọtini ṣiṣẹ: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr "Kuna lati mu šiši bọtini ṣiṣẹ: ubuntu-hello executable ko ri"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr "Kò lè mú ṣíṣí keyring ṣiṣẹ́: àkókò ìdúró fún keyring enable ti kọjá"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Aṣiṣe Ṣiṣii bọtini bọtini"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Aṣiṣe kika awọn bọtini redio"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Ìkìlọ Ìgbékalẹ̀"
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
+msgstr "Kò lè fi àwọn ètò ààbò pamọ́, ṣùgbọ́n ìṣètò tókù ti parí."
 
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
-msgstr "Ko le ṣafipamọ ààyò idaniloju, ṣugbọn iṣeto bibẹẹkọ ti pari."
-
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Aṣiṣe"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Nkojọpọ..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Ijeri"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Jẹrisi Ṣiṣẹda olumulo"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr "Jọwọ tẹ orukọ olumulo ti olumulo ti o fẹ ṣafikun si Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Orukọ olumulo:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Jẹrisi Ṣiṣẹda Awoṣe"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Fagilee"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Fi kun"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Jọwọ tẹ orukọ sii fun awoṣe titun, awọn ohun kikọ 24 ti o pọju"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Orukọ awoṣe:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Ṣiṣẹda Awoṣe"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Aṣiṣe lakoko fifi awoṣe kun, koodu aṣiṣe {}:\n\n"
+"Pa ojú rẹ mọ́ nínú ojú kámẹ́rà kí o sì tẹ̀lé àwọn ìtọ́ni; ó máa gba bí ìṣẹ́jú kan."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Jẹrisi piparẹ Awoṣe"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Wo kámẹ́rà tààrà"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Aṣiṣe lakoko fifi awoṣe kun, koodu aṣiṣe {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Ṣe o da ọ loju pe o fẹ paarẹ awoṣe {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Aṣiṣe lakoko piparẹ awoṣe, koodu aṣiṣe {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Paarẹ"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Aṣiṣe lakoko piparẹ awoṣe, koodu aṣiṣe {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Yí orí rẹ díẹ̀ sí apá òsì"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Yí orí rẹ díẹ̀ sí apá ọ̀tún"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Gbé àgbọ̀n rẹ sókè díẹ̀"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Rẹ àgbọ̀n rẹ sílẹ̀ díẹ̀"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "Ń gbà sílẹ̀… {count} nínú {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "Ko le ṣi kamẹra"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Ko le gbe wọle OpenCV2"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Aimọ"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Jeki Keyring/KWallet Ṣii silẹ"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "O dara"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Tẹ ọrọ igbaniwọle sii fun olumulo <b>{}</b> lati ṣii {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Ọrọigbaniwọle"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Ko si olumulo ti a yan</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
-msgstr "<span foreground='alawọ ewe'><b>Ti ṣiṣẹ (TPM Hardware) </b></span> — {}"
+msgstr "<span foreground='green'><b>Ti ṣiṣẹ (TPM Hardware)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
-msgstr ""
-"<span foreground='alawọ ewe'><b>Ti ṣiṣẹ (Ṣiṣeto sọfitiwia)</b></span> "
-"— {}"
+msgstr "<span foreground='green'><b>Ti ṣiṣẹ (Ṣiṣeto sọfitiwia)</b></span> — {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Ti ṣiṣẹ (Titẹsi Ọrọigbaniwọle ni isunmọto"
-"si) </b></span> — {}"
+"<span foreground='orange'><b>Ti ṣiṣẹ (Titẹsi Ọrọigbaniwọle ni isunmọtosi) </"
+"b></span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Alaabo</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Asise"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Aseyori"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "Ṣii silẹ / KWallet ṣiṣi silẹ ni aṣeyọri fun olumulo {}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Pa Keyring/KWallet Ṣii silẹ"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Ṣe o da ọ loju pe o fẹ mu piparẹ bọtini bọtini / KWallet ṣiṣi silẹ fun"
-" olumulo {}?"
+"Ṣe o da ọ loju pe o fẹ mu piparẹ bọtini bọtini / KWallet ṣiṣi silẹ fun "
+"olumulo {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Muu Ṣii silẹ laifọwọyi"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Keyring/KWallet ṣiṣi silẹ alaabo fun olumulo {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Ko le fi eto iwifunni pamọ"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Kò lè fi ètò ààbò pamọ́"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Iṣeto ni"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Iṣeto ni"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Awọn eto wiwa"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Iṣeto ni"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Awọn awoṣe oju"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Awọn aworan oju rẹ ti Ubuntu Hello ṣe afiwe si. Jeki o kere ju meji, gbasilẹ "
+"ni oriṣiriṣi ina."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Nfihan awọn awoṣe ti o fipamọ fun:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Fi olumulo titun kun"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Àwòṣe ojú kan ṣoṣo ni a ti forúkọ sílẹ̀. Gíláàsì, ìyípadà irun ojú tàbí ìmọ́lẹ̀ "
+"tó yàtọ̀ máa ń yí bí kámẹ́rà ṣe rí ojú rẹ padà, nítorí náà àwòṣe kan ṣoṣo lè "
+"kùnà (fún àpẹẹrẹ ní ìrọ̀lẹ́ lábẹ́ àtùpà). Fi àwòṣe kejì kún un pẹ̀lú gíláàsì "
+"tàbí láìsí i, ìrísí rẹ mìíràn, tàbí ní ìmọ́lẹ̀ tó yàtọ̀ kí ṣíṣí sílẹ̀ lè máa ní "
+"ìgbẹ́kẹ̀lé."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Fi kun"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Fi awoṣe keji kun"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Paarẹ"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Awọn awoṣe"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Kamẹra"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr "Kamẹra Ubuntu Hello nlo lati wa oju rẹ, pẹlu awotẹlẹ laaye."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "ID kamẹra:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Ipinnu gidi:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Ipinnu ti a lo:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Agbohunsile:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
 msgstr "Fidio"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Keyring / KWallet Ṣii silẹ laifọwọyi"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Awọn iwifunni"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Mu ijẹrisi oju ṣiṣẹ lati ṣii bọtini iwọle rẹ laifọwọyi tabi KWallet ni"
-" wiwole. Eyi tọju ọrọ igbaniwọle rẹ ni aabo ni aabo ni TPM nigba ti o "
-"wa, tabi ti paroko pẹlu AES-256-GCM nipa lilo bọtini titunto-root nika"
-"n. Awọn iṣeto auth oju PAM_AUTHTOK fun pam_gnome_keyring tabi pam_kwal"
-"let5 da lori tabili tabili rẹ."
+"Iwifunni tabili kan fihan lakoko ti Ubuntu Hello n wa oju rẹ, lẹhinna ṣe "
+"ijabọ abajade. Awọn igbiyanju ti o kuna duro ninu atokọ iwifunni."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Ipo lọwọlọwọ:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Ṣe afihan awọn iwifunni"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Ṣiṣayẹwo..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Mu Ṣii silẹ Aifọwọyi ṣiṣẹ"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Muu Ṣii silẹ laifọwọyi"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Oruka mimu Kọkọrọ dani"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Èdè ìfihàn"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Ede"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Aìfọwọ́yí tẹ̀lé èdè ètò ẹ̀rọ. Àwọn àyípadà máa ń ṣiṣẹ́ lẹ́sẹ̀kẹsẹ̀."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Ijeri oju fun Linux"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "Ẹya aimọ"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"One card per face-authentication attempt, updated in place with the result."
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Ṣi ọna asopọ GitH"
-"ub</a>"
+"Kaadi kan fun igbiyanju idaniloju-oju, imudojuiwọn ni aye pẹlu abajade."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "Nipa"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Awọn ohun iwifunni"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Kaabo si Ubuntu Hello"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "Mu awọn eto ohun fun a mọ tabi kuna igbiyanju."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "Iṣeto ti ṣe!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Fi awọn iwadii aisan sii"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"A ti pari! Ubuntu Hello ti n ṣiṣẹ lọwọlọwọ lori kọnputa yii. Gbiyanju "
-"lati ṣe ohunkohun ti o yoo ni deede lati tẹ ọrọ igbaniwọle rẹ fun lati"
-" jẹri, bii ṣiṣe aṣẹ pẹlu sudo. Ti o ba mu ṣiṣi silẹ aifọwọyi ṣiṣẹ, bọt"
-"ini iwọle tabi KWallet yoo tun ṣii laifọwọyi ni wiwole.\n\nO le ṣii Ub"
-"untu Hello Oluṣeto nigbamii lati yi awọn eto ilọsiwaju diẹ sii tabi ṣa"
-"fikun awọn awoṣe afikun. Tẹ Pari ni isalẹ lati tii ferese yii ki o ṣii"
-" Ubuntu Hello Configurator."
+"Ṣafikun awoṣe, idaniloju la ẹnu-ọna, awọn fireemu, kamẹra ati aago si kaadi "
+"kọọkan. Wulo nigba ijabọ iṣoro kan."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Ààbò"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ubuntu Hello le ṣii laifọwọyi bọtini iwọle rẹ tabi KWallet ni lilo ìfà"
-"ṣẹsí oju, idilọwọ awọn ọrọ igbaniwọle leyin ti o wọle."
+"Bí ojú rẹ ṣe gbọ́dọ̀ bá a mu tó, àti bóyá Ubuntu Hello yóò ní kí o jẹ́rìí pé o "
+"wà níbẹ̀ ní tòótọ́."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Mu bọtini bọtini ṣiṣẹ laifọwọyi/Ṣiṣii KWallet"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Bí ìbáradọ́gba ojú ṣe le tó"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "So ni pato orukoabawole re"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "Ṣiṣeto eto imulo idaniloju"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"Nitori awọn iyipada ninu awọn igun, ijinna, ati awọn ifosiwewe miiran "
-"ibaamu oju kii ṣe deede kanna bii awoṣe oju ti o fipamọ. Lori oju-iwe "
-"yii o le ṣeto bi o ṣe yẹ Ubuntu Hello to muna."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "Yara"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Gba awọn ere-kere diẹ sii laaye, \nṣugbọn awọn iyara soke awọn Antivir"
-"us ilana gidigidi."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Iwontunwonsi"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"Ṣiṣawari iyara diẹ sii, \nṣugbọn o le ma wọle si ọ nigbati o ba lọ siw"
-"aju."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Ni aabo"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Béèrè pé kí n mi orí láti jẹ́rìí sí i"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"Aṣayan ailewu diẹ, \nṣugbọn yoo gba to gun pupọ lati jẹri rẹ"
+"Lẹ́yìn tí ojú rẹ bá bá a mu, ìwífúnni kan yóò ní kí o mi orí rẹ. Fọ́tò tí a "
+"gbé sí iwájú kámẹ́rà kò lè mi orí."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Fifi awoṣe oju kan kun"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Keyring / KWallet Ṣii silẹ laifọwọyi"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Lati jẹri rẹ Ubuntu Hello nilo lati ṣafipamọ awoṣe ti oju rẹ lati da ọ"
-" mọ. Tẹ bọtini ọlọjẹ ni isalẹ lati bẹrẹ ọlọjẹ oju."
+"Mu ijẹrisi oju ṣiṣẹ lati ṣii bọtini iwọle rẹ laifọwọyi tabi KWallet ni "
+"wiwole. Eyi tọju ọrọ igbaniwọle rẹ ni aabo ni aabo ni TPM nigba ti o wa, "
+"tabi ti paroko pẹlu AES-256-GCM nipa lilo bọtini titunto-root nikan. Awọn "
+"iṣeto auth oju PAM_AUTHTOK fun pam_gnome_keyring tabi pam_kwallet5 da lori "
+"tabili tabili rẹ."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Ipo lọwọlọwọ:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Ṣiṣayẹwo..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Mu Ṣii silẹ Aifọwọyi ṣiṣẹ"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Oruka mimu Kọkọrọ dani"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Èdè ìfihàn"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Aìfọwọ́yí tẹ̀lé èdè ètò ẹ̀rọ. Àwọn àyípadà máa ń ṣiṣẹ́ lẹ́sẹ̀kẹsẹ̀."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Ede"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Ijeri oju fun Linux"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "Ẹya aimọ"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Ṣi ọna asopọ GitHub</a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">jabọ iṣoro kan "
+"tabi daba ẹya kan</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "Nipa"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Kaabo si Ubuntu Hello"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "Iṣeto ti ṣe!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"A ti pari! Ubuntu Hello ti n ṣiṣẹ lọwọlọwọ lori kọnputa yii. Gbiyanju lati "
+"ṣe ohunkohun ti o yoo ni deede lati tẹ ọrọ igbaniwọle rẹ fun lati jẹri, bii "
+"ṣiṣe aṣẹ pẹlu sudo. Ti o ba mu ṣiṣi silẹ aifọwọyi ṣiṣẹ, bọtini iwọle tabi "
+"KWallet yoo tun ṣii laifọwọyi ni wiwole.\n"
+"\n"
+"O le ṣii Ubuntu Hello Oluṣeto nigbamii lati yi awọn eto ilọsiwaju diẹ sii "
+"tabi ṣafikun awọn awoṣe afikun. Tẹ Pari ni isalẹ lati tii ferese yii ki o "
+"ṣii Ubuntu Hello Configurator."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "Ṣiṣeto eto imulo idaniloju"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Nitori awọn iyipada ninu awọn igun, ijinna, ati awọn ifosiwewe miiran ibaamu "
+"oju kii ṣe deede kanna bii awoṣe oju ti o fipamọ. Lori oju-iwe yii o le ṣeto "
+"bi o ṣe yẹ Ubuntu Hello to muna."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"Ìbáradọ́gba tí ó rọ̀ jù lọ tí ó sì yára jù lọ láti jẹ́ kí o wọlé. Yan èyí bí "
+"ìrọ̀rùn bá ṣe pàtàkì ju líle lọ."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"Ìbáradọ́gba tí ó le, ṣùgbọ́n tí ó ṣì ń jẹ́ kí o wọlé kíákíá. Ó lè má mọ̀ ọ́ nígbà "
+"tí o bá wà ní igun gbọ̀n-ọ́n tàbí ní ọ̀nà jíjìn."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"Ìbáradọ́gba tí ó le jù lọ, láìsí ìgbésẹ̀ àfikún nígbà tí o bá wọlé. A gbà á "
+"nímọ̀ràn."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Rekọja fun bayi"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"O le ṣafikun awọn awoṣe oju diẹ sii nigbamii lati Eto tabi pẹlu: sudo ubuntu-"
+"hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Ṣiṣeto kamera wẹẹbu"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "Njẹ emitter infurarẹẹdi ti nmọlẹ bi?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "beeni"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "rara"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
+msgstr ""
+"Wo kamẹra ti o yan: Kamẹra infurarẹẹdi kan fihan ina kekere kan ti o ṣaju "
+"lakoko ti Ubuntu Hello n ṣe idanwo rẹ. Eyi sọ fun wa boya o le rii oju rẹ "
+"ninu okunkun."
+
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Bẹẹni, o tan imọlẹ"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Rara, ko si ohun ti o tan imọlẹ"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
 msgstr ""
 "Ubuntu Hello yoo wa ẹrọ rẹ laifọwọyi fun eyikeyi awọn kamẹra ti o wa, "
-"nitorinaa rii daju pe kamera wẹẹbu rẹ ti sopọ. Lẹhin wiwa atokọ ti awọ"
-"n kamera wẹẹbu nkan elo yoo han. Yan eyi ti o fẹ lati lo ki o tẹ Itele"
-"."
+"nitorinaa rii daju pe kamera wẹẹbu rẹ ti sopọ. Lẹhin wiwa atokọ ti awọn "
+"kamera wẹẹbu nkan elo yoo han. Yan eyi ti o fẹ lati lo ki o tẹ Itele."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Ṣe idanwo awọn kamera wẹẹbu rẹ, jọwọ duro..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Gbigba awọn faili data"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Ubuntu Hello nilo awọn ipilẹ data idanimọ oju ti ikẹkọ mẹta ṣaaju lati"
-" ni anfani lati da ọ mọ, eyiti yoo ṣe igbasilẹ ni bayi. O le wo ilọsiw"
-"aju igbasilẹ ni isalẹ."
+"Ubuntu Hello nilo awọn ipilẹ data idanimọ oju ti ikẹkọ mẹta ṣaaju lati ni "
+"anfani lati da ọ mọ, eyiti yoo ṣe igbasilẹ ni bayi. O le wo ilọsiwaju "
+"igbasilẹ ni isalẹ."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Bibẹrẹ igbasilẹ..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Kaabo si Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Ẹya"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Oluṣeto yii yoo rin ọ nipasẹ ilana iṣeto ati tunto Ubuntu Hello laifọw"
-"ọyi fun ọ. Tẹ atẹle lati tẹsiwaju."
+"Oluṣeto yii yoo rin ọ nipasẹ ilana iṣeto ati tunto Ubuntu Hello laifọwọyi "
+"fun ọ. Tẹ atẹle lati tẹsiwaju."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Fagilee"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello le ṣii laifọwọyi bọtini iwọle rẹ tabi KWallet ni lilo ìfàṣẹsí "
+"oju, idilọwọ awọn ọrọ igbaniwọle leyin ti o wọle."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Itele"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Mu bọtini bọtini ṣiṣẹ laifọwọyi/Ṣiṣii KWallet"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "So ni pato orukoabawole re"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Pada"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Pari iṣeto"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Itele"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

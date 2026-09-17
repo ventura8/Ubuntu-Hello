@@ -46,6 +46,9 @@ _i18n.DOMAIN = "ubuntu-hello-gtk" if UH_REAL_GTK else "ubuntu-hello"
 _i18n.LOCALEDIR = "/usr/share/locale"
 _i18n._ = lambda s: s
 _i18n.ngettext = lambda singular, plural, n: singular if n == 1 else plural
+_i18n.reload_from_preferences = lambda: None   # real i18n.py rebinds gettext; identity here
+_i18n.effective_language = lambda: "en"
+_i18n.original_locale_env = lambda: {}
 sys.modules["i18n"] = _i18n
 
 # Create mock for keyboard module
@@ -101,6 +104,10 @@ if not UH_REAL_GTK:
 
 	mock_gtk.Window = MockGtkWidget
 	mock_gtk.Dialog = MockGtkWidget
+	# Real (mock) classes so isinstance() checks in the app work under the mock.
+	for _cls in ("Popover", "Native", "Revealer", "Label", "Button", "Entry", "DropDown", "Box",
+	             "SearchEntry", "Picture", "Image", "Notebook", "ScrolledWindow", "CheckButton", "Switch"):
+		setattr(mock_gtk, _cls, type(_cls, (MockGtkWidget,), {}))
 
 	mock_gdk = MagicMock()
 	mock_gobject = MagicMock()
@@ -128,6 +135,20 @@ if not UH_REAL_GTK:
 	mock_pixbuf = MagicMock()
 	sys.modules["gi.repository.GdkPixbuf"] = mock_pixbuf
 	mock_repository.GdkPixbuf = mock_pixbuf
+
+	# GTK 4 has no Gtk.Dialog.run(); the app blocks via gtk4compat.run_dialog().
+	# Under the gi mock, route that back to dialog.run() so unit tests keep
+	# scripting answers with `dialog.run.return_value = ResponseType.X`.
+	sys.path.insert(0, UBUNTU_HELLO_GTK_SRC)
+	import gtk4compat as _gtk4compat
+	_gtk4compat._real_run_dialog = _gtk4compat.run_dialog
+	_gtk4compat._real_quit_main = _gtk4compat.quit_main
+	_gtk4compat._real_dropdown = _gtk4compat.dropdown
+	_gtk4compat.run_dialog = lambda dialog: dialog.run()
+	_gtk4compat.quit_main = mock_gtk.main_quit
+	# Combo adapters wrap a real Gtk.DropDown; under the mock, hand the widget
+	# mock back so tests keep asserting remove_all/append_text/set_active on it.
+	_gtk4compat.dropdown = lambda widget, on_changed=None, min_width=0: widget
 
 # Create mock for dlib
 sys.modules["dlib"] = MagicMock()

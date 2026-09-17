@@ -22,23 +22,13 @@ def test_on_camera_selection_changed():
         mock_builder_cls.return_value.get_object.side_effect = fake_get_object
         ob = onboarding.OnboardingWindow()
 
-        # mock the selection
-        mock_selection = MagicMock()
-        mock_listmodel = MagicMock()
-        mock_iter = MagicMock()
-
-        # get_selected_rows and get_selected
-        mock_selection.get_selected.return_value = (mock_listmodel, mock_iter)
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
-        mock_listmodel.get_iter.return_value = mock_iter
-        mock_listmodel.get_value.side_effect = lambda it, col: {
-            0: "Camera Name",
-            2: "/dev/video0",
-            3: True
-        }[col]
+        # The camera list is a gtk4compat.ColumnList; the handler reads the
+        # selected row through selected_camera() (GTK 4: no TreeSelection).
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = ["Camera Name", "Yes", "/dev/video0", True]
 
         with patch("threading.Thread") as mock_thread:
-            ob.on_camera_selection_changed(mock_selection)
+            ob.on_camera_selection_changed(ob.cameras)
             assert ob.current_preview_path == "/dev/video0"
             mock_thread.assert_called_once()
             # Must be slide 2's own preview widget, not slide4's or a
@@ -74,9 +64,11 @@ def test_update_preview_image_widget():
         ob.current_preview_path = "/dev/video0"
         
         mock_pix = MagicMock()
-        res = ob.update_preview_image_widget("/dev/video0", mock_pix)
+        with patch("onboarding.gtk4compat.pixbuf_to_texture", return_value="texture") as to_texture:
+            res = ob.update_preview_image_widget("/dev/video0", mock_pix)
         assert res is False
-        ob.preview_image.set_from_pixbuf.assert_called_once_with(mock_pix)
+        to_texture.assert_called_once_with(mock_pix)
+        ob.preview_image.set_paintable.assert_called_once_with("texture")
 
 def test_stop_preview():
     with patch("onboarding.gtk.Builder"), \
@@ -213,19 +205,10 @@ def test_execute_slide4():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
         ob = onboarding.OnboardingWindow()
-        
-        # Mock treeview selection
-        mock_selection = MagicMock()
-        mock_listmodel = MagicMock()
-        mock_iter = MagicMock()
-        mock_selection.get_selected.return_value = (mock_listmodel, mock_iter)
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
-        ob.treeview = MagicMock()
-        ob.treeview.get_selection.return_value = mock_selection
-        mock_listmodel.get_value.side_effect = lambda it, col: "/dev/video0" if col == 2 else None
-        
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = ["Cam", "yes", "/dev/video0", True]
         ob.slide4_preview_image = MagicMock()
-        
+
         with patch("subprocess.Popen") as mock_popen, \
              patch("threading.Thread") as mock_thread, \
              patch.object(ob, "stop_preview") as mock_stop_preview:
@@ -235,6 +218,7 @@ def test_execute_slide4():
             mock_thread.assert_called_once()
             assert ob.preview_image == ob.slide4_preview_image
             assert ob.current_preview_path == "/dev/video0"
+
 
 def test_on_scanbutton_click():
     with patch("onboarding.gtk.Builder"), \
@@ -256,6 +240,7 @@ def test_scan_cameras_thread():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch("os.listdir", return_value=["device1", "device2"]), \
+         patch("glob.glob", return_value=[]), \
          patch("subprocess.check_output", return_value=b"product_name=\"My IR Camera\""), \
          patch("cv2.VideoCapture") as mock_vc, \
          patch("gi.repository.GLib.idle_add") as mock_idle_add:
@@ -283,8 +268,8 @@ def test_update_camera_list_gui():
         device_rows = [["My IR Camera", "/dev/video0", 5, "Yes"]]
         ob.update_camera_list_gui(device_rows)
         
-        ob.loadinglabel.hide.assert_called_once()
-        ob.devicelistbox.add.assert_called_once()
+        ob.loadinglabel.set_visible.assert_called_once_with(False)
+        ob.devicelistbox.append.assert_called_once()
         assert ob.current_preview_path == "/dev/video0"
         mock_thread.assert_called_once()
 
@@ -320,22 +305,13 @@ def test_execute_slide3_not_gray():
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
         ob = onboarding.OnboardingWindow()
         ob.window = MagicMock()
-        
-        mock_selection = MagicMock()
-        mock_listmodel = MagicMock()
-        mock_iter = MagicMock()
-        mock_selection.get_selected.return_value = (mock_listmodel, mock_iter)
-        mock_listmodel.get_value.side_effect = lambda it, col: {
-            2: "/dev/video0",
-            3: False
-        }[col]
-        
-        ob.treeview = MagicMock()
-        ob.treeview.get_selection.return_value = mock_selection
-        
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = ["Cam", "no", "/dev/video0", False]
+
         with patch.object(ob, "go_next_slide") as mock_go_next:
             ob.execute_slide3()
             mock_go_next.assert_called_once()
+
 
 def test_slide3_buttons():
     with patch("onboarding.gtk.Builder"), \
@@ -362,8 +338,8 @@ def test_slide3_buttons():
         ob.slide3_button_no(None)
         ob.capture.release.assert_called_once()
         mock_status.set_markup.assert_called_once()
-        mock_yes.hide.assert_called_once()
-        mock_no.hide.assert_called_once()
+        mock_yes.set_visible.assert_called_once_with(False)
+        mock_no.set_visible.assert_called_once_with(False)
 
 def test_execute_slide5():
     with patch("onboarding.gtk.Builder"), \
@@ -452,17 +428,19 @@ def test_validate_and_save_keyring_active_success_software():
             assert ob.validate_and_save_keyring() is True
             assert mock_run.call_args[0][0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
 
-def test_execute_slide7():
+def test_execute_slide7(tmp_path):
+    config = tmp_path / "config.ini"
+    config.write_text("[video]\ncertainty = 4.2\n", encoding="utf-8")
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("subprocess.Popen") as mock_popen, \
-         patch("onboarding.gtk.MessageDialog") as mock_dialog:
+         patch("onboarding.paths_factory.config_file_path", return_value=str(config)), \
+         patch("onboarding.gtk.MessageDialog"):
         ob = onboarding.OnboardingWindow()
-        
+
         mock_radio = MagicMock()
         mock_radio.get_active.return_value = True
         mock_radio.get_group.return_value = [mock_radio]
-        
+
         with patch("onboarding.gtk.Buildable.get_name", return_value="radiobalanced"):
             ob.builder.get_object.side_effect = lambda name: {
                 "radiobalanced": mock_radio,
@@ -470,19 +448,25 @@ def test_execute_slide7():
                 "finishbutton": MagicMock(),
                 "navigationbar": MagicMock()
             }.get(name, MagicMock())
-            
-            mock_proc = MagicMock()
-            mock_proc.wait.return_value = 0
-            mock_popen.return_value = mock_proc
-            
+
             ob.execute_slide7()
-            mock_popen.assert_called_once()
-            assert ob.nextbutton.hide.called
+            ob.nextbutton.set_visible.assert_any_call(False)
+            # Entering the page writes nothing: a choice made on it afterwards
+            # used to be lost because the level was saved on arrival.
+            assert "certainty = 4.2" in config.read_text(encoding="utf-8")
+
+            ob.window = MagicMock()
+            ob.on_finishbutton_click(None)
+            # Two settings make up a strictness level: the threshold and how many
+            # separate frames have to agree before a match is trusted.
+            written = config.read_text(encoding="utf-8")
+            assert "certainty = " in written and "confirmations = " in written
+            assert "certainty = 4.2" not in written
 
 def test_on_finishbutton_click():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.main_quit") as mock_quit:
+         patch("onboarding.gtk4compat.quit_main") as mock_quit:
         ob = onboarding.OnboardingWindow()
         ob.window = MagicMock()
         
@@ -494,7 +478,7 @@ def test_on_finishbutton_click():
 def test_exit():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.main_quit") as mock_quit:
+         patch("onboarding.gtk4compat.quit_main") as mock_quit:
         ob = onboarding.OnboardingWindow()
         ob.completed = True
         
@@ -602,24 +586,17 @@ def test_validate_and_save_keyring_errors():
             mock_err.assert_called_once()
 
 def test_keyring_password_dialog():
-    with patch("onboarding.gtk.Dialog.get_content_area", create=True) as mock_get_content, \
-         patch("onboarding.gtk.Label") as mock_label, \
-         patch("onboarding.gtk.Entry") as mock_entry, \
-         patch("onboarding.gtk.Dialog.show_all", create=True):
-         
-        mock_box = MagicMock()
-        mock_get_content.return_value = mock_box
-        
+    with patch("onboarding.gtk.Label"), patch("onboarding.gtk.Entry") as mock_entry:
         dialog = onboarding.KeyringPasswordDialog(None, "testuser")
-        
-        # Test activate connector
+
+        # Enter in the password entry answers OK, like the OK button
         mock_entry_instance = mock_entry.return_value
         assert mock_entry_instance.connect.called
-        # Call the lambda passed to connect
         activate_handler = mock_entry_instance.connect.call_args[0][1]
-        with patch.object(dialog, "response") as mock_response:
+        with patch.object(dialog, "respond") as mock_respond:
             activate_handler(mock_entry_instance)
-            mock_response.assert_called_once_with(onboarding.gtk.ResponseType.OK)
+            mock_respond.assert_called_once_with(onboarding.gtk.ResponseType.OK)
+
 
 def test_go_next_slide_slide6_validation_failure():
     with patch("onboarding.gtk.Builder"), \
@@ -718,6 +695,7 @@ def test_scan_cameras_thread_udevadm_and_incompatible():
         
         # We simulate devices in listdir
         with patch("os.listdir", return_value=["device1"]), \
+             patch("glob.glob", return_value=[]), \
              patch("time.sleep"), \
              patch("subprocess.check_output") as mock_check_output, \
              patch("os.path.realpath") as mock_real_path, \
@@ -760,6 +738,7 @@ def test_scan_cameras_thread_udevadm_exception():
         ob = onboarding.OnboardingWindow()
         
         with patch("os.listdir", return_value=["device1"]), \
+             patch("glob.glob", return_value=[]), \
              patch("time.sleep"), \
              patch("subprocess.check_output", side_effect=Exception("udevadm error")), \
              patch("os.path.realpath") as mock_real_path, \
@@ -878,30 +857,20 @@ def test_execute_slide3_errors():
         
         # 1. import cv2 fails
         with patch.dict("sys.modules", {"cv2": None}):
-            ob.treeview = MagicMock()
-            ob.treeview.get_selection.return_value.get_selected.return_value = (None, None)
-            ob.treeview.get_selection.return_value.get_selected_rows.return_value = (None, [])
+            ob.cameras = None
             ob.execute_slide3()
             mock_show_error.assert_called()
 
-        # 2. treeiter is None and get_iter throws exception
+        # 2. no camera row selected
         mock_show_error.reset_mock()
-        ob.treeview = MagicMock()
-        mock_selection = ob.treeview.get_selection.return_value
-        mock_selection.get_selected.return_value = (None, None)
-        mock_model = MagicMock()
-        mock_selection.get_selected_rows.return_value = (mock_model, ["row1"])
-        mock_model.get_iter.side_effect = Exception("get_iter fail")
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = None
         ob.execute_slide3()
         mock_show_error.assert_called_once_with("Error selecting camera")
         
         # 3. capture cannot be opened
         mock_show_error.reset_mock()
-        ob.treeview = MagicMock()
-        mock_model = MagicMock()
-        mock_iter = MagicMock()
-        ob.treeview.get_selection.return_value.get_selected.return_value = (mock_model, mock_iter)
-        mock_model.get_value.side_effect = lambda it, col: "/dev/video0" if col == 2 else True
+        ob.cameras.selected_row.return_value = ["Cam", "yes", "/dev/video0", True]
         
         mock_cap = MagicMock()
         mock_cap.isOpened.return_value = False
@@ -929,27 +898,40 @@ def test_execute_slide4_iter_none():
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_error") as mock_show_error:
         ob = onboarding.OnboardingWindow()
-        ob.treeview = MagicMock()
-        ob.treeview.get_selection.return_value.get_selected.return_value = (None, None)
-        ob.treeview.get_selection.return_value.get_selected_rows.return_value = (None, [])
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = None
         
         ob.execute_slide4()
         mock_show_error.assert_called_once_with("Error selecting camera")
 
+
 def test_execute_slide4_iter_exception():
+    """No camera list at all (Next pressed mid-rescan) must be reported, not crash."""
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_error") as mock_show_error:
         ob = onboarding.OnboardingWindow()
-        ob.treeview = MagicMock()
-        mock_selection = ob.treeview.get_selection.return_value
-        mock_selection.get_selected.return_value = (None, None)
-        mock_model = MagicMock()
-        mock_selection.get_selected_rows.return_value = (mock_model, ["row1"])
-        mock_model.get_iter.side_effect = Exception("iter fail")
+        ob.cameras = None
         
         ob.execute_slide4()
         mock_show_error.assert_called_once_with("Error selecting camera")
+
+
+
+def _fake_enroll(status=0, output="", guides=("center", "left"), progress=((1, 13), (2, 13))):
+    """Stand-in for enroll.run_add: replays guidance synchronously, records the command."""
+    calls = []
+
+    def run_add(cmd, on_guide, on_progress, on_done, **kw):
+        calls.append(cmd)
+        for g in guides:
+            on_guide(g)
+        for c, t in progress:
+            on_progress(c, t)
+        on_done(status, output)
+    run_add.calls = calls
+    return run_add
+
 
 def test_run_add_failure():
     with patch("onboarding.gtk.Builder"), \
@@ -959,11 +941,7 @@ def test_run_add_failure():
         ob.dialog = MagicMock()
         ob.go_next_slide = MagicMock()
         
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stdout = ""
-        mock_result.stderr = "failed to save model"
-        with patch("subprocess.run", return_value=mock_result):
+        with patch("onboarding.enroll.run_add", _fake_enroll(1, "failed to save model")):
             ob.run_add()
             mock_show_error.assert_called_once_with("Can't save face model", "failed to save model")
 
@@ -1146,106 +1124,230 @@ def test_execute_slide7_errors():
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
          patch.object(onboarding.OnboardingWindow, "show_error") as mock_show_error, \
          patch("onboarding.gtk.MessageDialog"), \
-         patch("onboarding.subprocess.Popen"):
+         patch("onboarding.gtk4compat.alert") as mock_alert, \
+         patch("onboarding.config_edit.set_option") as set_option:
         ob = onboarding.OnboardingWindow()
-        
-        # 1. radio_selected is False
-        ob.builder.get_object.return_value.get_group.return_value = []
+
+        # 1. radio_selected is False (no grouped check button is active)
+        ob.builder.get_object.return_value.get_active.return_value = False
         ob.execute_slide7()
         mock_show_error.assert_called_once_with("Error reading radio buttons")
-        
-        # 2. proc.wait raises exception
-        mock_show_error.reset_mock()
-        mock_radio = MagicMock()
-        mock_radio.get_active.return_value = True
-        onboarding.gtk.Buildable.get_name = MagicMock(return_value="radiofast")
-        ob.builder.get_object.return_value.get_group.return_value = [mock_radio]
-        
-        ob.proc = MagicMock()
-        ob.proc.wait.side_effect = Exception("Wait error")
-        ob.execute_slide7()
 
-def test_execute_slide7_balanced_and_secure():
+        # 2. the config cannot be written: warn on Finish, but never abandon a
+        #    finished setup
+        mock_show_error.reset_mock()
+        ob.builder.get_object.return_value.get_active.return_value = True
+        set_option.side_effect = OSError("read-only file system")
+        ob.window = MagicMock()
+        ob.on_finishbutton_click(None)
+        mock_show_error.assert_not_called()
+        assert mock_alert.called
+        assert ob.completed is True
+
+def test_execute_slide7_balanced_and_secure(tmp_path):
+    config = tmp_path / "config.ini"
+    config.write_text("[video]\ncertainty = 4.2\n\n[rubberstamps]\nenabled = true\n", encoding="utf-8")
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.MessageDialog"), \
-         patch("onboarding.subprocess.Popen"):
+         patch("onboarding.paths_factory.config_file_path", return_value=str(config)), \
+         patch("onboarding.gtk.MessageDialog"):
         ob = onboarding.OnboardingWindow()
-        
-        # Test radiobalanced
-        mock_radio = MagicMock()
-        mock_radio.get_active.return_value = True
-        onboarding.gtk.Buildable.get_name = MagicMock(return_value="radiobalanced")
-        ob.builder.get_object.return_value.get_group.return_value = [mock_radio]
-        ob.proc = MagicMock()
+        widgets = {}
+
+        def get_object(name):
+            return widgets.setdefault(name, MagicMock())
+
+        ob.builder.get_object.side_effect = get_object
+
+        # Lower certainty = stricter, and each level up demands that one more frame
+        # agrees. The wizard writes those two keys only: the nod liveness check adds
+        # a step to every login, so it ships off and is opted into from Settings, and
+        # re-running the wizard must not turn it back off.
+        for active, certainty, confirmations in (("radiofast", "3.5", "2"),
+                                                 ("radiobalanced", "3.0", "3"),
+                                                 ("radiosecure", "2.6", "4")):
+            for name in ("radiofast", "radiobalanced", "radiosecure"):
+                get_object(name).get_active.return_value = name == active
+            get_object("liveness_switch").get_active.return_value = True
+            ob.execute_slide7()
+            ob.window = MagicMock()
+            ob.on_finishbutton_click(None)
+            written = config.read_text(encoding="utf-8")
+            assert "certainty = %s" % certainty in written
+            assert "confirmations = %s" % confirmations in written
+            assert "enabled = true" in written
+
+
+def test_wizard_shows_the_current_nod_setting_and_keeps_it(tmp_path):
+    """A re-run must not silently turn off a nod the user enabled in Settings.
+
+    The switch is loaded from the config when the page appears, so Finish
+    writes back what the user already had unless they flip it.
+    """
+    config = tmp_path / "config.ini"
+    config.write_text("[rubberstamps]\nenabled = true\n\n[video]\ncertainty = 2.2\n", encoding="utf-8")
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
+         patch("onboarding.paths_factory.config_file_path", return_value=str(config)):
+        ob = onboarding.OnboardingWindow()
+        widgets = {}
+        ob.builder.get_object.side_effect = lambda n: widgets.setdefault(n, MagicMock())
+        for name in onboarding.SECURITY_PRESETS:
+            widgets.setdefault(name, MagicMock()).get_active.return_value = name == "radiosecure"
+        switch = widgets.setdefault("liveness_switch", MagicMock())
         ob.execute_slide7()
-        
-        # Test radiosecure
-        onboarding.gtk.Buildable.get_name = MagicMock(return_value="radiosecure")
+        switch.set_active.assert_called_with(True)          # preloaded from the config
+        switch.get_active.return_value = True                # the user left it on
+        ob.window = MagicMock()
+        ob.on_finishbutton_click(None)
+    assert "enabled = true" in config.read_text(encoding="utf-8")
+
+
+def test_wizard_nod_switch_writes_a_fail_closed_rule(tmp_path):
+    """Turning the nod on in the wizard must write the same rule the Settings tab does.
+
+    The shipped default rule is fail-open on timeout: in Howdy's vocabulary
+    `faildeadly` authenticates a user who never nods, which manual testing found.
+    """
+    config = tmp_path / "config.ini"
+    config.write_text("[video]\ncertainty = 4.2\n\n[rubberstamps]\nenabled = false\n"
+                      "stamp_rules = nod\t5s\tfaildeadly\tmin_distance=12\n", encoding="utf-8")
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
+         patch("onboarding.paths_factory.config_file_path", return_value=str(config)):
+        ob = onboarding.OnboardingWindow()
+        widgets = {}
+        ob.builder.get_object.side_effect = lambda n: widgets.setdefault(n, MagicMock())
+        for name in onboarding.SECURITY_PRESETS:
+            widgets.setdefault(name, MagicMock()).get_active.return_value = name == "radiosecure"
         ob.execute_slide7()
+        widgets["liveness_switch"].get_active.return_value = True     # the user turns it on
+        ob.window = MagicMock()
+        ob.on_finishbutton_click(None)
+    written = config.read_text(encoding="utf-8")
+    assert "enabled = true" in written
+    assert "failsafe" in written and "faildeadly" not in written
+    assert written.count("nod") == 1
+
+
+def test_a_level_chosen_after_the_page_appears_is_the_one_saved(tmp_path):
+    """Regression: the level used to be written on arrival, so this choice was lost."""
+    config = tmp_path / "config.ini"
+    config.write_text("[video]\ncertainty = 4.2\n", encoding="utf-8")
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
+         patch("onboarding.paths_factory.config_file_path", return_value=str(config)):
+        ob = onboarding.OnboardingWindow()
+        widgets = {}
+        ob.builder.get_object.side_effect = lambda n: widgets.setdefault(n, MagicMock())
+        for name in onboarding.SECURITY_PRESETS:
+            widgets.setdefault(name, MagicMock()).get_active.return_value = name == "radiosecure"
+        widgets.setdefault("liveness_switch", MagicMock()).get_active.return_value = False
+        ob.execute_slide7()                                   # arrives with Secure selected
+        for name in onboarding.SECURITY_PRESETS:
+            widgets[name].get_active.return_value = name == "radiofast"   # then picks Fast
+        ob.window = MagicMock()
+        ob.on_finishbutton_click(None)
+    written = config.read_text(encoding="utf-8")
+    assert "certainty = %s" % onboarding.SECURITY_PRESETS["radiofast"] in written
+    assert "confirmations = %d" % onboarding.SECURITY_CONFIRMATIONS["radiofast"] in written
+
+
+def test_secure_is_the_default_preset():
+    assert onboarding.DEFAULT_PRESET == "radiosecure"
+    assert onboarding.SECURITY_PRESETS["radiosecure"] < onboarding.SECURITY_PRESETS["radiobalanced"]
+    assert onboarding.SECURITY_PRESETS["radiobalanced"] < onboarding.SECURITY_PRESETS["radiofast"]
+
+
+def test_no_level_is_tight_enough_to_reject_its_own_user():
+    """Guard on the bug manual testing found: Secure at 1.8 matched no frame at all.
+
+    With one enrolled model the distance to the same face drifts by about 0.4
+    between lighting conditions on real IR hardware, and measured logins only
+    became reliable from about 2.4 upwards. Strictness belongs in the number of
+    agreeing frames; a threshold this low just stops recognising the user.
+    """
+    assert min(onboarding.SECURITY_PRESETS.values()) >= 2.4
+
+
+def test_every_level_asks_several_frames_to_agree_and_stricter_levels_ask_more():
+    """Levels are tightened by demanding agreement, not by a lower threshold.
+
+    A scan takes dozens of independent looks, so accepting on the first frame
+    under the bar decides on the minimum of many draws. Every level therefore
+    asks for more than one, and each stricter level asks for one more.
+    """
+    counts = onboarding.SECURITY_CONFIRMATIONS
+    assert set(counts) == set(onboarding.SECURITY_PRESETS)
+    assert min(counts.values()) > 1
+    assert counts["radiofast"] < counts["radiobalanced"] < counts["radiosecure"]
+    # A looser threshold must never also be the one that trusts the fewest frames
+    # relative to its level: the order of the two ladders has to stay opposed.
+    by_threshold = sorted(onboarding.SECURITY_PRESETS, key=onboarding.SECURITY_PRESETS.get)
+    by_frames = sorted(counts, key=counts.get, reverse=True)
+    assert by_threshold == by_frames
+
 
 def test_show_keyring_error():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.MessageDialog") as mock_dialog:
+         patch("onboarding.gtk4compat.alert") as alert:
         ob = onboarding.OnboardingWindow()
         ob.show_keyring_error("testmsg")
-        mock_dialog.assert_called_once()
+        alert.assert_called_once_with(ob.window, "Keyring Unlocking Error", "testmsg")
+
 
 def test_show_error():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"), \
-         patch("onboarding.gtk.MessageDialog") as mock_dialog:
+         patch("onboarding.gtk4compat.alert") as alert:
         ob = onboarding.OnboardingWindow()
         with patch.object(ob, "exit") as mock_exit:
             ob.show_error("err", "sec")
-            mock_dialog.assert_called_once()
+            alert.assert_called_once_with(ob.window, "err", "sec")
             mock_exit.assert_called_once()
+
 
 def test_on_camera_selection_changed_more():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
         ob = onboarding.OnboardingWindow()
         
-        # 1. model.get_value throws exception
-        mock_selection = MagicMock()
-        mock_listmodel = MagicMock()
-        mock_iter = MagicMock()
-        mock_selection.get_selected.return_value = (mock_listmodel, mock_iter)
-        mock_listmodel.get_value.side_effect = Exception("Get value error")
+        # 1. no row selected (or no list yet): preview stops, image kept
+        ob.cameras = None
         with patch.object(ob, "stop_preview") as mock_stop:
-            ob.on_camera_selection_changed(mock_selection)
-            mock_stop.assert_called_once()
-            
-        # 2. current_preview_path == device_path
-        mock_listmodel.get_value.side_effect = None
-        mock_listmodel.get_value.return_value = "/dev/video0"
+            ob.on_camera_selection_changed(None)
+            mock_stop.assert_called_once_with(clear_image=False)
+
+        # 2. current_preview_path == device_path: nothing to do
+        ob.cameras = MagicMock()
+        ob.cameras.selected_row.return_value = ["Cam", "Yes", "/dev/video0", True]
         ob.current_preview_path = "/dev/video0"
         with patch.object(ob, "stop_preview") as mock_stop:
-            ob.on_camera_selection_changed(mock_selection)
+            ob.on_camera_selection_changed(ob.cameras)
             mock_stop.assert_not_called()
-            
-        # 3. treeiter is None but rowlist length is 1
-        mock_selection.get_selected.return_value = (mock_listmodel, None)
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row0"])
-        mock_listmodel.get_iter.return_value = mock_iter
+
+        # 3. another camera selected: preview restarts on the new device
         ob.current_preview_path = "/dev/video1"
         with patch("threading.Thread") as mock_thread:
-            ob.on_camera_selection_changed(mock_selection)
+            ob.on_camera_selection_changed(ob.cameras)
             mock_thread.assert_called_once()
+            assert ob.current_preview_path == "/dev/video0"
 
 def test_open_camera_for_preview_errors():
     with patch("onboarding.gtk.Builder"), \
          patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
         ob = onboarding.OnboardingWindow()
         
-        # 1. cap.isOpened is False
+        # 1. cap.isOpened is False: retried briefly (camera settling after
+        #    `ubuntu-hello add`), each failed handle released, then gives up
         ob.current_preview_path = "/dev/video0"
         mock_cap = MagicMock()
         mock_cap.isOpened.return_value = False
-        with patch("cv2.VideoCapture", return_value=mock_cap):
+        with patch("cv2.VideoCapture", return_value=mock_cap) as vc, patch("time.sleep"):
             ob.open_camera_for_preview("/dev/video0")
-            mock_cap.release.assert_called_once()
+            assert vc.call_count == 6
+            assert mock_cap.release.call_count == 6
             
         # 2. current_preview_path != device_path immediately
         ob.current_preview_path = "/dev/video1"
@@ -1322,3 +1424,384 @@ def test_exit_func():
         ob.completed = False
         with pytest.raises(SystemExit):
             ob.exit()
+
+
+# ── Second-model enrollment (slide 4, two passes) ────────────────────
+
+def _wizard_with_widgets():
+    with patch("onboarding.gtk.Builder"), \
+         patch("onboarding.paths_factory.onboarding_wireframe_path", return_value="mock.glade"):
+        ob = onboarding.OnboardingWindow()
+    widgets = {name: MagicMock() for name in (
+        "label4", "label5", "slide4_instruction_label", "scanbutton", "skipsecondbutton")}
+    ob.builder.get_object.side_effect = lambda name: widgets.get(name, MagicMock())
+    ob.window = MagicMock()
+    ob.slide4_preview_image = MagicMock()
+    ob.slide4_device_path = "/dev/video0"
+    return ob, widgets
+
+
+def test_first_scan_success_switches_to_second_pass_instead_of_advancing():
+    ob, w = _wizard_with_widgets()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+    fake = _fake_enroll(0, "")
+    with patch("onboarding.enroll.run_add", fake), \
+         patch("threading.Thread") as thread, \
+         patch.object(ob, "go_next_slide") as go_next:
+        assert ob.run_add() is False
+    assert fake.calls == [["ubuntu-hello", "-y", "add", "Setup lighting 1"]]
+    # live guidance reached the page while the scan ran, then was hidden again
+    texts = [c.args[0] for c in w["slide4_instruction_label"].set_text.call_args_list]
+    assert "Look straight at the camera" in texts and "Turn your head slightly to the left" in texts
+    assert "Recording… 2 of 13" in [c.args[0] for c in w["scanbutton"].set_label.call_args_list]
+    assert w["slide4_instruction_label"].set_visible.call_args_list[-1].args[0] is False
+    go_next.assert_not_called()
+    assert ob.scan_pass == 2 and ob.models_enrolled == 1
+    # Second pass: short copy (the why/how was on the slide up front), scan re-enabled, Skip now offered
+    assert "Second scan" in w["label4"].set_text.call_args.args[0]
+    assert "change the light" in w["label5"].set_text.call_args.args[0]
+    assert "face login already works" in w["label5"].set_text.call_args.args[0]
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].set_visible.assert_called_with(True)
+    thread.assert_called_once()
+
+
+def test_second_scan_success_advances_with_distinct_label():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    fake = _fake_enroll(0, "")
+    with patch("onboarding.enroll.run_add", fake), \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.run_add()
+    assert fake.calls == [["ubuntu-hello", "-y", "add", "Setup lighting 2"]]
+    assert ob.models_enrolled == 2
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_second_scan_failure_is_non_fatal_and_allows_retry():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch("onboarding.enroll.run_add", _fake_enroll(1, "No face")), \
+         patch("threading.Thread"), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "show_warning") as show_warning, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_not_called()      # show_error exits the wizard; first model is already saved
+    show_warning.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.models_enrolled == 1
+    w["scanbutton"].set_label.assert_called_with("Scan second model")
+    w["scanbutton"].set_sensitive.assert_called_with(True)
+    w["skipsecondbutton"].set_sensitive.assert_called_with(True)
+
+
+def test_first_scan_failure_still_fatal():
+    ob, w = _wizard_with_widgets()
+    with patch("onboarding.enroll.run_add", _fake_enroll(1, "No face")), \
+         patch.object(ob, "show_error") as show_error, \
+         patch.object(ob, "go_next_slide") as go_next:
+        ob.run_add()
+    show_error.assert_called_once()
+    go_next.assert_not_called()
+    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+
+
+def test_skip_is_a_no_op_before_first_model():
+    """Only the second scan can be skipped: a click with no model enrolled does nothing."""
+    ob, w = _wizard_with_widgets()
+    with patch("gi.repository.GObject.timeout_add") as timeout_add, \
+         patch.object(ob, "stop_preview") as stop, \
+         patch.object(ob, "prepare_second_scan") as prep:
+        ob.on_skipsecondbutton_click(None)
+    timeout_add.assert_not_called()
+    stop.assert_not_called()
+    prep.assert_not_called()
+    assert ob.scan_pass == 1
+
+
+def test_skip_second_model_advances_when_first_enrolled():
+    ob, w = _wizard_with_widgets()
+    ob.scan_pass, ob.models_enrolled = 2, 1
+    with patch.object(ob, "stop_preview") as stop, \
+         patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.on_skipsecondbutton_click(None)
+    stop.assert_called_once()
+    assert timeout_add.call_args.args[1] == ob.go_next_slide
+
+
+def test_execute_slide4_hides_skip_on_first_pass():
+    ob, w = _wizard_with_widgets()
+    ob.cameras = MagicMock(); ob.cameras.selected_row.return_value = ["Cam", "yes", "/dev/video0", True]
+    with patch("subprocess.Popen"), patch("threading.Thread"), patch.object(ob, "stop_preview"):
+        ob.execute_slide4()
+    assert ob.slide4_device_path == "/dev/video0"
+    w["skipsecondbutton"].set_visible.assert_any_call(False)
+    assert all(c.args == (False,) for c in w["skipsecondbutton"].set_visible.call_args_list)
+    assert ob.scan_pass == 1
+
+
+def test_go_next_slide_stops_preview_when_leaving_slide4():
+    ob, w = _wizard_with_widgets()
+    ob.window.current_slide = 4
+    ob.slides = [MagicMock() for _ in range(8)]
+    ob.nextbutton = MagicMock()
+    ob.slidecontainer = MagicMock()
+    with patch.object(ob, "stop_preview") as stop, \
+         patch.object(ob, "execute_slide5"):
+        ob.go_next_slide()
+    stop.assert_called_once()
+
+
+# ── Back / Cancel-only-on-first-page ────────────────────────────────
+
+def _wizard_with_nav():
+    ob, w = _wizard_with_widgets()
+    w.update({name: MagicMock() for name in ("cancelbutton", "backbutton", "finishbutton")})
+    ob.builder.get_object.side_effect = lambda name: w.get(name, MagicMock())
+    ob.slides = [MagicMock() for _ in range(8)]
+    ob.nextbutton = MagicMock()
+    ob.slidecontainer = MagicMock()
+    return ob, w
+
+
+def test_cancel_only_on_first_page_and_back_afterwards():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    ob.update_navigation_buttons()
+    w["cancelbutton"].set_visible.assert_called_with(True)
+    w["backbutton"].set_visible.assert_called_with(False)
+    ob.window.current_slide = 3
+    ob.update_navigation_buttons()
+    w["cancelbutton"].set_visible.assert_called_with(False)
+    w["backbutton"].set_visible.assert_called_with(True)
+
+
+def test_go_next_slide_updates_navigation_buttons():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    with patch.object(ob, "execute_slide1"), patch.object(ob, "update_navigation_buttons") as nav:
+        ob.go_next_slide()
+    nav.assert_called_once()
+    assert ob.window.current_slide == 1
+
+
+def test_back_from_first_page_is_a_no_op():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 0
+    ob.go_prev_slide()
+    assert ob.window.current_slide == 0
+    ob.slides[0].set_visible.assert_not_called()
+
+
+def test_back_from_scan_page_stops_preview_and_skips_auto_advanced_ir_page():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 4
+    ob.slide3_shown = False   # non-IR camera: page 3 auto-advanced, never shown
+    with patch.object(ob, "stop_preview") as stop, patch("gi.repository.GObject.timeout_add") as timeout_add:
+        ob.go_prev_slide()
+    stop.assert_called_once_with(clear_image=True)
+    ob.slides[4].set_visible.assert_called_once_with(False)
+    ob.slides[2].set_visible.assert_called_once_with(True)
+    assert ob.window.current_slide == 2
+    assert timeout_add.call_args.args[1] == ob.execute_slide2
+    ob.nextbutton.set_sensitive.assert_called_with(True)
+    w["cancelbutton"].set_visible.assert_called_with(False)
+    w["backbutton"].set_visible.assert_called_with(True)
+
+
+def test_back_from_scan_page_returns_to_ir_page_when_it_was_shown():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 4
+    ob.slide3_shown = True
+    with patch.object(ob, "stop_preview"):
+        ob.go_prev_slide()
+    assert ob.window.current_slide == 3
+
+
+def test_back_from_ir_page_releases_capture():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 3
+    ob.capture = MagicMock()
+    cap = ob.capture
+    with patch("gi.repository.GObject.timeout_add"):
+        ob.go_prev_slide()
+    cap.release.assert_called_once()
+    assert ob.capture is None and ob.window.current_slide == 2
+
+
+def test_back_from_finish_page_restores_next_button():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 7
+    with patch.object(ob, "execute_slide6"):
+        ob.go_prev_slide()
+    w["finishbutton"].set_visible.assert_called_once_with(False)
+    ob.nextbutton.set_visible.assert_called_once_with(True)
+    assert ob.window.current_slide == 6
+
+
+def test_reentering_scan_page_resumes_at_second_scan_when_a_model_exists():
+    ob, w = _wizard_with_widgets()
+    ob.cameras = MagicMock(); ob.cameras.selected_row.return_value = ["Cam", "yes", "/dev/video0", True]
+    ob.models_enrolled = 1
+    with patch("subprocess.Popen"), patch("threading.Thread"), patch.object(ob, "stop_preview"), \
+         patch.object(ob, "prepare_second_scan") as prep:
+        ob.execute_slide4()
+    prep.assert_called_once()
+    assert ob.scan_pass == 2
+
+
+def test_execute_slide2_removes_previous_device_list_on_reentry():
+    ob, w = _wizard_with_nav()
+    devicelistbox = MagicMock(); loadinglabel = MagicMock()
+    w["devicelistbox"] = devicelistbox; w["loadinglabel"] = loadinglabel
+    old_list = MagicMock()
+    ob.scrolled_window = old_list
+    with patch("threading.Thread") as thread:
+        ob.execute_slide2()
+    devicelistbox.remove.assert_called_once_with(old_list)
+    assert ob.scrolled_window is None
+    loadinglabel.set_visible.assert_called_once_with(True)
+    thread.assert_called_once()
+
+
+def test_leaving_camera_page_cancels_scan_and_stale_results_are_dropped():
+    ob, w = _wizard_with_nav()
+    devicelistbox = MagicMock(); loadinglabel = MagicMock()
+    w["devicelistbox"] = devicelistbox; w["loadinglabel"] = loadinglabel
+    ob.window.current_slide = 2
+    with patch("threading.Thread") as thread:
+        ob.execute_slide2()
+    gen = thread.call_args.kwargs["args"][0]
+    assert gen == ob.scan_generation == 1
+
+    # Back (or Next) while the scan runs -> generation bumps, thread stops at its next device
+    with patch.object(ob, "stop_preview"), patch.object(ob, "execute_slide1"):
+        ob.go_prev_slide()
+    assert ob.scan_generation == 2
+    with patch("os.listdir", return_value=["cam0", "cam1"]), patch("time.sleep"), \
+         patch("onboarding.GLib.idle_add") as idle:
+        ob.scan_cameras_thread(gen)          # the old thread body
+    idle.assert_not_called()                 # nothing posted for a stale generation
+
+    # A stale result arriving on the main loop is ignored; a current one replaces the list
+    ob.scrolled_window = None
+    assert ob.update_camera_list_gui([], gen) is False
+    devicelistbox.append.assert_not_called()
+
+
+def test_next_from_camera_page_cancels_scan():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 2
+    ob.scan_generation = 5
+    with patch.object(ob, "stop_preview"), patch.object(ob, "execute_slide3"):
+        ob.go_next_slide()
+    assert ob.scan_generation == 6
+
+
+def test_camera_list_preselects_remembered_device():
+    """Going Back to the camera page keeps the chosen camera selected (config untouched)."""
+    ob, w = _wizard_with_nav()
+    ob.devicelistbox = MagicMock(); ob.loadinglabel = MagicMock()
+    ob.slide4_device_path = "/dev/v4l/by-path/cam-B"
+    rows = [["A", "/dev/v4l/by-path/cam-A", 5, "yes"], ["B", "/dev/v4l/by-path/cam-B", 5, "yes"]]
+    with patch("onboarding.gtk4compat.ColumnList") as column_list, patch("onboarding.gtk.ScrolledWindow"), \
+         patch("threading.Thread"):
+        ob.update_camera_list_gui(rows)
+    cameras = column_list.return_value
+    assert cameras.append.call_args_list[1].args[0] == ["B", "yes", "/dev/v4l/by-path/cam-B", True]
+    cameras.select.assert_called_once_with(1)
+    cameras.connect_selection_changed.assert_called_once_with(ob.on_camera_selection_changed)
+
+
+def test_remembered_device_falls_back_to_config():
+    ob, w = _wizard_with_nav()
+    ob.slide4_device_path = None
+    with patch("onboarding.paths_factory.config_file_path", return_value="/nonexistent.ini"):
+        assert ob.remembered_device_path() == ""
+    import configparser, tempfile, os
+    fd, path = tempfile.mkstemp(suffix=".ini"); os.close(fd)
+    open(path, "w").write("[video]\ndevice_path = /dev/v4l/by-path/cam-Z\n")
+    with patch("onboarding.paths_factory.config_file_path", return_value=path):
+        assert ob.remembered_device_path() == "/dev/v4l/by-path/cam-Z"
+
+
+def test_next_disabled_on_camera_page_until_scan_posts_and_slides_guard_missing_list():
+    ob, w = _wizard_with_nav()
+    ob.devicelistbox = MagicMock(); ob.loadinglabel = MagicMock()
+    ob.cameras = MagicMock()
+    with patch("threading.Thread"):
+        ob.execute_slide2()
+    ob.nextbutton.set_sensitive.assert_called_with(False)
+    assert ob.cameras is None                  # old list dropped with the widget
+    assert ob.selected_camera() is None
+    # Slides 3/4 must not crash when the list is gone (Next pressed mid-rescan)
+    with patch.object(ob, "show_error") as err:
+        ob.execute_slide4()
+        ob.execute_slide3()
+    assert err.call_count == 2
+
+
+def test_scan_button_tolerates_missing_set_device_proc():
+    ob, w = _wizard_with_nav()
+    if hasattr(ob, "proc"):
+        del ob.proc
+    with patch.object(ob, "stop_preview"), patch("gi.repository.GObject.timeout_add") as t:
+        ob.on_scanbutton_click(None)
+    t.assert_called_once()
+
+
+def test_back_to_download_page_reattaches_running_download():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 2
+    ob.proc = MagicMock(); ob.proc.poll.return_value = None      # still downloading
+    ob.download_queue = MagicMock()
+    with patch("os.path.exists", return_value=False), \
+         patch("gi.repository.GObject.timeout_add") as timeout_add, \
+         patch("subprocess.Popen") as popen, patch.object(ob, "stop_preview"):
+        ob.go_prev_slide()
+    popen.assert_not_called()                                    # no second install.sh
+    assert timeout_add.call_args.args[1] == ob.update_download_gui
+    ob.nextbutton.set_sensitive.assert_called_with(False)
+
+
+def test_back_from_ir_page_swallows_release_errors():
+    ob, w = _wizard_with_nav()
+    ob.window.current_slide = 3
+    ob.capture = MagicMock(); ob.capture.release.side_effect = RuntimeError("busy")
+    with patch("gi.repository.GObject.timeout_add"):
+        ob.go_prev_slide()
+    assert ob.capture is None and ob.window.current_slide == 2
+
+
+def test_remembered_device_ignores_unreadable_config():
+    ob, w = _wizard_with_nav()
+    ob.slide4_device_path = None
+    with patch("onboarding.paths_factory.config_file_path", side_effect=RuntimeError("boom")):
+        assert ob.remembered_device_path() == ""
+
+
+def test_scan_button_swallows_set_device_wait_errors():
+    ob, w = _wizard_with_nav()
+    ob.proc = MagicMock(); ob.proc.wait.side_effect = RuntimeError("timeout")
+    with patch.object(ob, "stop_preview"), patch("gi.repository.GObject.timeout_add") as t:
+        ob.on_scanbutton_click(None)
+    t.assert_called_once()
+
+
+def test_camera_list_scrolls_selected_row_into_view():
+    """The preselected camera row is scrolled into view once the list is laid out."""
+    ob, w = _wizard_with_nav()
+    ob.devicelistbox = MagicMock(); ob.loadinglabel = MagicMock()
+    rows = [["A", "/dev/v4l/by-path/cam-A", 5, "yes"]]
+    with patch("onboarding.gtk4compat.ColumnList") as column_list, patch("onboarding.gtk.ScrolledWindow"), \
+         patch("threading.Thread"), patch("onboarding.GLib.idle_add") as idle_add:
+        ob.update_camera_list_gui(rows)
+    idle_add.assert_called_once_with(ob.scroll_camera_row_into_view, 0)
+    assert ob.scroll_camera_row_into_view(0) is False
+    column_list.return_value.scroll_to.assert_called_once_with(0)
+    ob.cameras = None
+    assert ob.scroll_camera_row_into_view(0) is False
+
+

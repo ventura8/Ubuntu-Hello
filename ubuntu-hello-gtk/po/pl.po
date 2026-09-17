@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,666 +15,902 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Stworzony"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Etykieta"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Automatyczny"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Włącz odblokowanie Keyring/KWallet"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Dodawanie modeli twarzy"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "Wprowadź hasło dla użytkownika <b>{}</b>, aby odblokować {} ({}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Hasło"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Pliki danych zostały już pobrane!\nKliknij Dalej, aby kontynuować"
+"Ubuntu Hello nagrywa twoją twarz z kilku kątów w około minutę: trzymaj twarz "
+"w obszarze podglądu i wykonuj polecenia (patrz prosto, obróć lekko w lewo i "
+"w prawo, broda w górę i w dół). Późniejsze drugie, opcjonalne skanowanie — w "
+"okularach, z innym zarostem lub w innym oświetleniu — czyni rozpoznawanie "
+"jeszcze bardziej niezawodnym o każdej porze dnia."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Błąd podczas pobierania plików danych"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Zrobione!\nKliknij Dalej, aby kontynuować"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Błąd podczas importowania OpenCV2"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Spróbuj ponownie zainstalować cv2"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "W systemie nie znaleziono kamer internetowych"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Jeśli masz pewność, że podłączona jest kompatybilna kamera, skonfiguru"
-"j swoją kamerę samodzielnie"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Nie, aparatu nie można otworzyć"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Nie, nie kamera na podczerwień"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Tak, kompatybilna kamera na podczerwień"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Identyfikator lub ścieżka kamery"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "Zalecony"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Błąd podczas wybierania aparatu"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Nie można otworzyć wybranej kamery"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Spróbuj wybrać inny"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Proszę odwiedzić\n<a href=\"https://github.com/EmixamPP/linux-enable-i"
-"r-emitter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\na"
-"by włączyć emiter podczerwieni"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Proszę spojrzeć bezpośrednio w kamerę"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Rozpocznij skanowanie twarzy"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Pliki danych zostały już pobrane!\n"
+"Kliknij Dalej, aby kontynuować"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Błąd podczas pobierania plików danych"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Zrobione!\n"
+"Kliknij Dalej, aby kontynuować"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Błąd podczas importowania OpenCV2"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Spróbuj ponownie zainstalować cv2"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "W systemie nie znaleziono kamer internetowych"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Jeśli masz pewność, że podłączona jest kompatybilna kamera, skonfiguruj "
+"swoją kamerę samodzielnie"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Nie, aparatu nie można otworzyć"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Nie, nie kamera na podczerwień"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Tak, kompatybilna kamera na podczerwień"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Identyfikator lub ścieżka kamery"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "Zalecony"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Błąd podczas wybierania aparatu"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "Nie można otworzyć wybranej kamery"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Spróbuj wybrać inny"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Proszę odwiedzić\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"aby włączyć emiter podczerwieni"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Konfiguracja oświetlenie 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Konfiguracja oświetlenie 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Nie można zapisać modelu twarzy"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Zeskanuj drugi model"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Nie udało się zarejestrować drugiego modelu"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą uwierzyt"
-"elniania twarzą (wykryty portfel: {}).\n\n<b>Stan modułu TPM:</b> Spra"
-"wdzam sprzęt i narzędzia modułu TPM..."
+"Twój pierwszy model został zapisany, więc logowanie za pomocą twarzy już "
+"działa. Pomieszczenie musi być nadal wystarczająco jasne, aby można było "
+"zobaczyć Twoją twarz — zmień światło, zamiast je wyłączać — a następnie "
+"spróbuj ponownie lub pomiń i dodaj model później w Ustawieniach."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "Drugie skanowanie: okulary, zarost lub inne oświetlenie"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą uwierzyt"
-"elniania twarzą (wykryty portfel: {}).\n\n<b>Stan TPM:</b> wykryto spr"
-"zęt TPM. Automatyczna instalacja <i>tpm2-tools</i>..."
+"Pierwszy model zapisany: logowanie twarzą już działa. Drugi model zwiększa "
+"niezawodność rozpoznawania, gdy coś się zmienia: załóż okulary, które czasem "
+"nosisz (lub je zdejmij), nagraj go z innym zarostem i zmień światło — włącz "
+"lub wyłącz lampę, odsuń się od okna. Trzymaj twarz dobrze widoczną i "
+"ponownie naciśnij Skanuj; nastąpi to samo krótkie nagranie z instrukcjami."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą uwierzyt"
-"elniania twarzą (wykryty portfel: {}).\n\n<b>Stan modułu TPM:</b> Akty"
-"wny sprzętowy moduł TPM 2.0. Twoje hasło zostanie bezpiecznie zapieczę"
-"towane w module TPM."
+"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą "
+"uwierzytelniania twarzą (wykryty portfel: {}).\n"
+"\n"
+"<b>Stan modułu TPM:</b> Sprawdzam sprzęt i narzędzia modułu TPM..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą uwierzyt"
-"elniania twarzą (wykryty portfel: {}).\n\n<b>Stan modułu TPM:</b> wykr"
-"yto sprzęt TPM, ale automatyczna instalacja <i>tpm2-tools</i> nie powi"
-"odła się. Uruchom <code>sudo apt install tpm2-tools</code>. Powrót do "
-"buforowania danych uwierzytelniających w oparciu o oprogramowanie."
+"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą "
+"uwierzytelniania twarzą (wykryty portfel: {}).\n"
+"\n"
+"<b>Stan TPM:</b> wykryto sprzęt TPM. Automatyczna instalacja <i>tpm2-tools</"
+"i>..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą uwierzyt"
-"elniania twarzą (wykryty portfel: {}).\n\n<b>Stan modułu TPM:</b> nie "
-"wykryto sprzętu modułu TPM. Korzystanie z programowego buforowania dan"
-"ych uwierzytelniających (AES-256-GCM)."
+"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą "
+"uwierzytelniania twarzą (wykryty portfel: {}).\n"
+"\n"
+"<b>Stan modułu TPM:</b> Aktywny sprzętowy moduł TPM 2.0. Twoje hasło "
+"zostanie bezpiecznie zapieczętowane w module TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Nie można zidentyfikować użytkownika systemu innego niż root w celu od"
-"blokowania pęku kluczy"
+"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą "
+"uwierzytelniania twarzą (wykryty portfel: {}).\n"
+"\n"
+"<b>Stan modułu TPM:</b> wykryto sprzęt TPM, ale automatyczna instalacja "
+"<i>tpm2-tools</i> nie powiodła się. Uruchom <code>sudo apt install tpm2-"
+"tools</code>. Powrót do buforowania danych uwierzytelniających w oparciu o "
+"oprogramowanie."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Hasło nie może być puste"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello może automatycznie odblokować Twoje {} za pomocą "
+"uwierzytelniania twarzą (wykryty portfel: {}).\n"
+"\n"
+"<b>Stan modułu TPM:</b> nie wykryto sprzętu modułu TPM. Korzystanie z "
+"programowego buforowania danych uwierzytelniających (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Nieprawidłowe hasło dla użytkownika {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "nieznany błąd"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Nie udało się włączyć odblokowania pęku kluczy: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Nie udało się wyłączyć odblokowania pęku kluczy: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Nie można zidentyfikować użytkownika systemu innego niż root w celu "
+"odblokowania pęku kluczy"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Hasło nie może być puste"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Nieprawidłowe hasło dla użytkownika {}"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "nieznany błąd"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Nie udało się włączyć odblokowania pęku kluczy: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"Nie udało się włączyć odblokowywania bazy kluczy: nie znaleziono pliku "
+"wykonywalnego ubuntu-hello"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"Nie udało się włączyć odblokowywania bazy kluczy: przekroczono limit czasu "
+"oczekiwania na włączenie (keyring enable)"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Błąd odblokowania pęku kluczy"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Błąd podczas odczytywania przycisków opcji"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Ostrzeżenie dotyczące konfiguracji"
-
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
-"Nie można zapisać preferencji pewności, ale konfiguracja została ukońc"
-"zona."
+"Nie można zapisać ustawień zabezpieczeń, ale poza tym konfiguracja została "
+"zakończona."
 
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Błąd"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Załadunek..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Uwierzytelnianie"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Potwierdź utworzenie użytkownika"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr "Wprowadź nazwę użytkownika, którego chcesz dodać do Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Nazwa użytkownika:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Potwierdź utworzenie modelu"
 
-#: src/tab_models.py:55
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Anulować"
+
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Dodać"
+
+#: src/tab_models.py:25
 msgid "Please enter a name for the new model, 24 characters max"
 msgstr "Proszę podać nazwę nowego modelu, maksymalnie 24 znaki"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Nazwa modelu:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Tworzenie modelu"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Błąd podczas dodawania modelu, kod błędu {}:\n\n"
+"Trzymaj twarz w polu widzenia kamery i wykonuj polecenia; zajmie to około "
+"minuty."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Potwierdź usunięcie modelu"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Spójrz prosto w kamerę"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Błąd podczas dodawania modelu, kod błędu {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Czy na pewno chcesz usunąć model {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Błąd podczas usuwania modelu, kod błędu {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Usuwać"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Błąd podczas usuwania modelu, kod błędu {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Obróć lekko głowę w lewo"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Obróć lekko głowę w prawo"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Unieś nieco brodę"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Opuść nieco brodę"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "Nagrywanie… {count} z {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "Nie można otworzyć aparatu"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Nie można zaimportować OpenCV2"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Włącz odblokowanie Keyring/KWallet"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "Potwierdź"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "Wprowadź hasło dla użytkownika <b>{}</b>, aby odblokować {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Hasło"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Nie wybrano żadnego użytkownika</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Włączone (sprzęt TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Włączone (buforowanie oprogramowania)</b><"
-"/span> — {}"
+"<span foreground='green'><b>Włączone (buforowanie oprogramowania)</b></span> "
+"— {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Włączone (oczekujące na wprowadzenie hasł"
-"a)</b></span> — {}"
+"<span foreground='orange'><b>Włączone (oczekujące na wprowadzenie hasła)</"
+"b></span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Wyłączone</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Błąd"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Sukces"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
-"Odblokowanie pęku kluczy/KWallet zostało pomyślnie włączone dla użytko"
-"wnika {}."
+"Odblokowanie pęku kluczy/KWallet zostało pomyślnie włączone dla użytkownika "
+"{}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Wyłącz odblokowanie Keyring/KWallet"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Czy na pewno chcesz wyłączyć odblokowanie pęku kluczy/KWallet dla użyt"
-"kownika {}?"
+"Czy na pewno chcesz wyłączyć odblokowanie pęku kluczy/KWallet dla "
+"użytkownika {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Wyłącz automatyczne odblokowywanie"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Odblokowanie breloka/KWallet wyłączone dla użytkownika {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Nie można zapisać ustawienia powiadomień"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Nie można zapisać ustawienia zabezpieczeń"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Konfiguracja Ubuntu Hello"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Konfiguracja Ubuntu Hello"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Ustawienia wyszukiwania"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Konfiguracja Ubuntu Hello"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Modele twarzy"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Migawki Twojej twarzy, z którymi Ubuntu Hello porównuje. Zachowaj co "
+"najmniej dwa, nagrane przy różnym oświetleniu."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Wyświetlanie zapisanych modeli dla:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Dodaj nowego użytkownika"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Zarejestrowany jest tylko jeden model twarzy. Okulary, zmiana zarostu lub "
+"inne oświetlenie zmieniają to, jak kamera widzi twoją twarz, więc pojedynczy "
+"model może zawieść (na przykład wieczorem przy lampach). Dodaj drugi model w "
+"okularach lub bez, z innym wyglądem albo w innym świetle, aby odblokowywanie "
+"pozostało niezawodne."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Dodać"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Dodaj drugi model"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Usuwać"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Modele"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"Kamera Ubuntu Hello wykorzystuje Twoją twarz i umożliwia podgląd na żywo."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "Identyfikator kamery:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Prawdziwa rozdzielczość:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Używana rozdzielczość:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Rejestrator:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
 msgstr "Wideo"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Brelok do kluczy / KWallet Automatyczne odblokowanie"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Powiadomienia"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Włącz uwierzytelnianie twarzą, aby automatycznie odblokować brelok do "
-"logowania lub KWallet podczas logowania. Dzięki temu Twoje hasło jest "
-"bezpiecznie przechowywane w module TPM, jeśli jest dostępne, lub zaszy"
-"frowane za pomocą AES-256-GCM przy użyciu klucza głównego tylko dla ro"
-"ota. Autoryzacja twarzą ustawia PAM_AUTHTOK dla pam_gnome_keyring lub "
-"pam_kwallet5 w zależności od komputera."
+"Gdy Ubuntu Hello szuka Twojej twarzy, pojawia się powiadomienie na pulpicie, "
+"a następnie zgłasza wynik. Nieudane próby pozostają na liście powiadomień."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Aktualny stan:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Pokaż powiadomienia"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Kontrola..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Włącz automatyczne odblokowywanie"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Wyłącz automatyczne odblokowywanie"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Brelok"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Język wyświetlania"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Język"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Automatyczny używa języka systemu. Zmiany są stosowane od razu."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Uwierzytelnianie twarzy dla systemu Linux"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "Wersja nieznana"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"One card per face-authentication attempt, updated in place with the result."
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Otwórz link do Gi"
-"tHuba</a>"
+"Jedna karta na próbę uwierzytelnienia twarzą, aktualizowana na miejscu wraz "
+"z wynikiem."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "O"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Dźwięki powiadomień"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Witamy w Ubuntu Hello"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr ""
+"Odtwórz dźwięk systemowy informujący o rozpoznanej lub nieudanej próbie."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "Konfiguracja została zakończona!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Uwzględnij diagnostykę"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"Skończyliśmy! Ubuntu Hello jest teraz aktywny na tym komputerze. Sprób"
-"uj zrobić wszystko, do czego normalnie musiałbyś wpisać hasło w celu u"
-"wierzytelnienia, na przykład uruchomienie polecenia w sudo. Jeśli włąc"
-"zyłeś automatyczne odblokowywanie pęku kluczy, Twój brelok do logowani"
-"a lub KWallet również zostaną odblokowane automatycznie podczas logowa"
-"nia.\n\nMożesz później otworzyć konfigurator Ubuntu Hello, aby zmienić"
-" bardziej zaawansowane ustawienia lub dodać dodatkowe modele. Naciśnij"
-" przycisk Zakończ poniżej, aby zamknąć to okno i otworzyć konfigurator"
-" Ubuntu Hello."
+"Dodaj model, pewność a próg, klatki, kamerę i czas do każdej karty. "
+"Przydatne przy zgłaszaniu problemu."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Zabezpieczenia"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ubuntu Hello może automatycznie odblokować Twój brelok do logowania lu"
-"b KWallet przy użyciu uwierzytelniania twarzą, zapobiegając monitowani"
-"u o hasło po zalogowaniu."
+"Jak dokładnie musi zgadzać się Twoja twarz i czy Ubuntu Hello ma prosić o "
+"potwierdzenie, że naprawdę jesteś przed komputerem."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Włącz automatyczne odblokowywanie pęku kluczy/KWallet"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Dokładność dopasowania twarzy"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Potwierdź hasło"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "Ustalenie polityki pewności"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"Ze względu na zmiany kątów, odległości i innych czynników dopasowanie "
-"twarzy nigdy nie jest dokładnie takie samo, jak zapisany model twarzy."
-" Na tej stronie możesz ustawić, jak rygorystyczne powinno być Ubuntu H"
-"ello."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "Szybko"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Pozwala na więcej rozmytych dopasowań, \nale znacznie przyspiesza proc"
-"es skanowania."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Zrównoważony"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"Wciąż stosunkowo szybkie wykrywanie, \nale może Cię nie zalogować, gdy"
-" jesteś dalej."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Bezpieczny"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Proś o potwierdzenie skinieniem głowy"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"Nieco bezpieczniejsza opcja, \nale uwierzytelnienie Cię zajmie znaczni"
-"e więcej czasu"
+"Po rozpoznaniu twarzy powiadomienie poprosi Cię o skinienie głową. Zdjęcie "
+"pokazane kamerze nie skinie głową."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Dodanie modelu twarzy"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Brelok do kluczy / KWallet Automatyczne odblokowanie"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Aby Cię uwierzytelnić, Ubuntu Hello musi zapisać model Twojej twarzy, "
-"aby Cię rozpoznać. Naciśnij przycisk Skanuj poniżej, aby rozpocząć ska"
-"nowanie twarzy."
+"Włącz uwierzytelnianie twarzą, aby automatycznie odblokować brelok do "
+"logowania lub KWallet podczas logowania. Dzięki temu Twoje hasło jest "
+"bezpiecznie przechowywane w module TPM, jeśli jest dostępne, lub "
+"zaszyfrowane za pomocą AES-256-GCM przy użyciu klucza głównego tylko dla "
+"roota. Autoryzacja twarzą ustawia PAM_AUTHTOK dla pam_gnome_keyring lub "
+"pam_kwallet5 w zależności od komputera."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Aktualny stan:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Kontrola..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Włącz automatyczne odblokowywanie"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Brelok"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Język wyświetlania"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Automatyczny używa języka systemu. Zmiany są stosowane od razu."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Język"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Uwierzytelnianie twarzy dla systemu Linux"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "Wersja nieznana"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Otwórz link do GitHuba</"
+"a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Zgłoś problem "
+"lub zaproponuj funkcję</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "O"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Witamy w Ubuntu Hello"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "Konfiguracja została zakończona!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Skończyliśmy! Ubuntu Hello jest teraz aktywny na tym komputerze. Spróbuj "
+"zrobić wszystko, do czego normalnie musiałbyś wpisać hasło w celu "
+"uwierzytelnienia, na przykład uruchomienie polecenia w sudo. Jeśli włączyłeś "
+"automatyczne odblokowywanie pęku kluczy, Twój brelok do logowania lub "
+"KWallet również zostaną odblokowane automatycznie podczas logowania.\n"
+"\n"
+"Możesz później otworzyć konfigurator Ubuntu Hello, aby zmienić bardziej "
+"zaawansowane ustawienia lub dodać dodatkowe modele. Naciśnij przycisk "
+"Zakończ poniżej, aby zamknąć to okno i otworzyć konfigurator Ubuntu Hello."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "Ustalenie polityki pewności"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Ze względu na zmiany kątów, odległości i innych czynników dopasowanie twarzy "
+"nigdy nie jest dokładnie takie samo, jak zapisany model twarzy. Na tej "
+"stronie możesz ustawić, jak rygorystyczne powinno być Ubuntu Hello."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"Najłagodniejsze dopasowanie i najszybsze logowanie. Wybierz je, jeśli wygoda "
+"jest dla Ciebie ważniejsza od rygoru."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"Ścisłe dopasowanie, które nadal loguje Cię szybko. Może nie rozpoznać Cię "
+"pod dużym kątem lub z większej odległości."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"Najbardziej rygorystyczne dopasowanie, bez dodatkowego kroku przy logowaniu. "
+"Zalecane."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Pomiń na razie"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"Więcej modeli twarzy możesz dodać później w Ustawieniach lub poleceniem: "
+"sudo ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Konfiguracja kamery internetowej"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "Czy emiter podczerwieni miga?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "Tak"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "NIE"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Ubuntu Hello automatycznie przeszuka Twój system w poszukiwaniu dostęp"
-"nych kamer, więc upewnij się, że Twoja kamera internetowa jest podłącz"
-"ona. Po wykryciu zostanie wyświetlona lista możliwych do wykorzystania"
-" kamer internetowych. Wybierz ten, którego chcesz użyć i kliknij Dalej"
-"."
+"Spójrz na wybraną kamerę: kamera na podczerwień pokazuje małe światło, które "
+"miga, podczas gdy Ubuntu Hello ją testuje. Dzięki temu wiemy, czy widzi "
+"Twoją twarz w ciemności."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Tak, miga"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Nie, nic nie miga"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello automatycznie przeszuka Twój system w poszukiwaniu dostępnych "
+"kamer, więc upewnij się, że Twoja kamera internetowa jest podłączona. Po "
+"wykryciu zostanie wyświetlona lista możliwych do wykorzystania kamer "
+"internetowych. Wybierz ten, którego chcesz użyć i kliknij Dalej."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Testuję kamery internetowe. Proszę czekać..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Pobieranie plików danych"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Ubuntu Hello potrzebuje trzech wstępnie przeszkolonych zestawów danych"
-" do rozpoznawania twarzy, aby móc Cię rozpoznać. Zostaną one teraz pob"
-"rane. Poniżej możesz zobaczyć postęp pobierania."
+"Ubuntu Hello potrzebuje trzech wstępnie przeszkolonych zestawów danych do "
+"rozpoznawania twarzy, aby móc Cię rozpoznać. Zostaną one teraz pobrane. "
+"Poniżej możesz zobaczyć postęp pobierania."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Rozpoczynam pobieranie..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Witamy w Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Wersja"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Ten kreator przeprowadzi Cię przez proces instalacji i automatycznie s"
-"konfiguruje Ubuntu Hello. Naciśnij przycisk Dalej, aby kontynuować."
+"Ten kreator przeprowadzi Cię przez proces instalacji i automatycznie "
+"skonfiguruje Ubuntu Hello. Naciśnij przycisk Dalej, aby kontynuować."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Anulować"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello może automatycznie odblokować Twój brelok do logowania lub "
+"KWallet przy użyciu uwierzytelniania twarzą, zapobiegając monitowaniu o "
+"hasło po zalogowaniu."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Następny"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Włącz automatyczne odblokowywanie pęku kluczy/KWallet"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "Potwierdź hasło"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Z powrotem"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Zakończ konfigurację"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Następny"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

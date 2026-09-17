@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,663 +15,904 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "Hangaia"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "Tapanga"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "Aunoa"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "Whakahohehia te Wae Waahi/KWallet Wewete"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "Te taapiri i o tauira kanohi"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr ""
-"Whakauruhia he kupuhipa mo te kaiwhakamahi <b>{}</b> ki te iriti {} ({"
-"}):"
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "Kupuhipa"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"Kua tikiakehia nga konae raraunga!\nPāwhiritia te Panuku ki te haere t"
-"onu"
+"Ka hopu a Ubuntu Hello i tō kanohi mai i ētahi koki i roto i te kotahi "
+"meneti pea: puritia tō kanohi ki roto i te arokite, ā, whāia ngā tohutohu "
+"(titiro tika, huri paku ki te mauī me te matau, kauae ki runga, ki raro). "
+"Muri iho, mā tētahi matawai tuarua, kōwhiringa noa — me ngā mōhiti, he "
+"huruhuru kanohi rerekē, he māramatanga kē rānei — ka pono ake te tautohu i "
+"ngā wā katoa o te rā."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "Hapa i te wa e tango ana i nga konae raraunga"
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"Kua oti!\nPāwhiritia te Panuku ki te haere tonu"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "Hapa i te wa e kawemai ana OpenCV2"
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "Whakamātauria te tāuta anō cv2"
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "Karekau he webcam i kitea i runga i te punaha"
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr ""
-"Tena koa whirihorahia to kamera mena ka tino mohio koe kei te hono tet"
-"ahi kamera hototahi"
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "Kao, kaore e taea te whakatuwhera te kamera"
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "Kao, ehara i te kamera infrared"
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "Ae, hototahi te kamera infrared"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "Kaitohu kamera, ara ranei"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "E taunaki ana"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "Hapa te kowhiri i te kamera"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "Kāore e taea te tūwhera te kāmera i tīpakohia"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "Ngana ki te whiriwhiri i tetahi atu"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"Tena tirohia\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nkia t"
-"aea ai to ir emitter"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Tena tirohia te kamera"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Tīmatahia te matawai kanohi"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"Kua tikiakehia nga konae raraunga!\n"
+"Pāwhiritia te Panuku ki te haere tonu"
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "Hapa i te wa e tango ana i nga konae raraunga"
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"Kua oti!\n"
+"Pāwhiritia te Panuku ki te haere tonu"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "Hapa i te wa e kawemai ana OpenCV2"
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "Whakamātauria te tāuta anō cv2"
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "Karekau he webcam i kitea i runga i te punaha"
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"Tena koa whirihorahia to kamera mena ka tino mohio koe kei te hono tetahi "
+"kamera hototahi"
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "Kao, kaore e taea te whakatuwhera te kamera"
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "Kao, ehara i te kamera infrared"
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "Ae, hototahi te kamera infrared"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "Kaitohu kamera, ara ranei"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "E taunaki ana"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "Hapa te kowhiri i te kamera"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "Kāore e taea te tūwhera te kāmera i tīpakohia"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "Ngana ki te whiriwhiri i tetahi atu"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"Tena tirohia\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"kia taea ai to ir emitter"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "Tatūnga rama 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "Tatūnga rama 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "Kāore e taea te tiaki tauira kanohi"
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "Matawai tauira tuarua"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "Kāore i taea te tuhi i te tauira tuarua"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te mot"
-"uhēhēnga kanohi (putea kua kitea: {}).\n\n<b>Tūnga TPM:</b> Taki ana i"
-" nga taputapu me nga taputapu TPM..."
+"Kua tiakina to tauira tuatahi, no reira kua mahi te takiuru kanohi. Me "
+"kanapa tonu te rūma ki te kite i to kanohi — hurihia te rama kia kaua e "
+"whakaweto — katahi ka ngana ano, pekehia ranei ka taapirihia he tauira a "
+"muri ake mai i nga Tautuhinga."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "Matawai tuarua: mōhiti, huruhuru kanohi, māramatanga rerekē rānei"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te mot"
-"uhēhēnga kanohi (putea kua kitea: {}).\n\n<b>Tūnga TPM:</b> I kitea ng"
-"a taputapu TPM. Kei te tāuta aunoatia <i>tpm2-tools</i>..."
+"Kua tiakina te tauira tuatahi: kua mahi kē te takiuru ā-kanohi. Mā te tauira "
+"tuarua ka pono ake te tautohu ina rerekē tētahi mea: kuhuna ngā mōhiti e mau "
+"ai koe i ētahi wā (tangohia rānei), hopukina me te huruhuru kanohi rerekē, "
+"ā, hurihia te māramatanga — whakakāngia, whakawetoa rānei tētahi rama, neke "
+"atu i te matapihi. Kia mārama te kitea o tō kanohi, ā, pēhia anō a Matawai; "
+"ka whai mai taua hopu poto ārahi anō."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te mot"
-"uhēhēnga kanohi (putea kua kitea: {}).\n\n<b>Tūnga TPM:</b> Pūmārō TPM"
-" 2.0 hohe. Ka hiritia to kupuhipa ki roto i te TPM."
+"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te "
+"motuhēhēnga kanohi (putea kua kitea: {}).\n"
+"\n"
+"<b>Tūnga TPM:</b> Taki ana i nga taputapu me nga taputapu TPM..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te mot"
-"uhēhēnga kanohi (putea kua kitea: {}).\n\n<b>Tūnga TPM:</b> I kitea ng"
-"a taputapu TPM, engari i rahua te whakaurunga aunoa o <i>tpm2-tools</i"
-">. Whakahaerehia <code>sudo apt install tpm2-tools</code>. Ka hoki ki "
-"muri ki te keteroki tohu-rorohiko."
+"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te "
+"motuhēhēnga kanohi (putea kua kitea: {}).\n"
+"\n"
+"<b>Tūnga TPM:</b> I kitea nga taputapu TPM. Kei te tāuta aunoatia <i>tpm2-"
+"tools</i>..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te mot"
-"uhēhēnga kanohi (putea kua kitea: {}).\n\n<b>Tunga TPM:</b> Karekau he"
-" taputapu TPM i kitea. Te whakamahi i te keteroki whaimana-rorohiko (A"
-"ES-256-GCM)."
+"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te "
+"motuhēhēnga kanohi (putea kua kitea: {}).\n"
+"\n"
+"<b>Tūnga TPM:</b> Pūmārō TPM 2.0 hohe. Ka hiritia to kupuhipa ki roto i te "
+"TPM."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
 msgstr ""
-"Kaore i taea te tautuhi i te kaiwhakamahi punaha pakiaka-kore mo te we"
-"tewete i te mowhiti"
+"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te "
+"motuhēhēnga kanohi (putea kua kitea: {}).\n"
+"\n"
+"<b>Tūnga TPM:</b> I kitea nga taputapu TPM, engari i rahua te whakaurunga "
+"aunoa o <i>tpm2-tools</i>. Whakahaerehia <code>sudo apt install tpm2-tools</"
+"code>. Ka hoki ki muri ki te keteroki tohu-rorohiko."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "Kaore e taea te putua te kupuhipa"
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ka taea e Ubuntu Hello te iriti aunoa i to {} ma te whakamahi i te "
+"motuhēhēnga kanohi (putea kua kitea: {}).\n"
+"\n"
+"<b>Tunga TPM:</b> Karekau he taputapu TPM i kitea. Te whakamahi i te "
+"keteroki whaimana-rorohiko (AES-256-GCM)."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "Kupuhipa hē mo te kaiwhakamahi {}"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "hapa kore mohiotia"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "I rahua te whakaahei i te wetewete mowhiti: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "I rahua te whakakore i te wetewete mowhiti: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Kāore i kitea tētahi kaiwhakamahi pūnaha ehara i te root mō te wetewete i te "
+"keyring"
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "Kaore e taea te putua te kupuhipa"
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "Kupuhipa hē mo te kaiwhakamahi {}"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "hapa kore mohiotia"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "I rahua te whakaahei i te wetewete mowhiti: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"I rahua te whakaahei i te wetewete mowhiti: ubuntu-hello executable not found"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"I rahua te whakahohe i te wetewete keyring: kua pau te wā e tatari ana ki a "
+"keyring enable"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "Hapa Wewete Waahi Patuhi"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "Hapa te panui i nga paatene reo irirangi"
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello Whakatupato Tatūnga"
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
+msgstr ""
+"Kāore i taea te tiaki i ngā tautuhinga haumarutanga, engari kua oti te "
+"toenga o te whakaritenga."
 
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
-msgstr "Kaore i taea te tiaki i te tino manakohanga, engari kua oti te tatūnga."
-
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "Ubuntu Hello Hapa"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "Uta ana..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Motuhēhēnga"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "Whakapumautia te Waihanga Kaiwhakamahi"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr ""
-"Whakauruhia koa te ingoa kaiwhakamahi o te kaiwhakamahi e hiahia ana k"
-"oe ki te taapiri ki Ubuntu Hello"
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "Ingoa Kaiwhakamahi:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "Whakapumautia te Waihanga Tauira"
 
-#: src/tab_models.py:55
-msgid "Please enter a name for the new model, 24 characters max"
-msgstr "Tena koa whakauruhia he ingoa mo te tauira hou, 24 te teitei o nga tohu"
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
+msgid "Cancel"
+msgstr "Whakakore"
 
-#: src/tab_models.py:62
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "Tāpiri"
+
+#: src/tab_models.py:25
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr ""
+"Tena koa whakauruhia he ingoa mo te tauira hou, 24 te teitei o nga tohu"
+
+#: src/tab_models.py:29
 msgid "Model name:"
 msgstr "Ingoa tauira:"
 
-#: src/tab_models.py:77
+#: src/tab_models.py:39
 msgid "Creating Model"
 msgstr "Waihanga Tauira"
 
-#: src/tab_models.py:99
+#: src/tab_models.py:40
 msgid ""
-"Error while adding model, error code {}: \n\n"
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
 msgstr ""
-"Hapa i te taapiri tauira, waehere hapa {}:\n\n"
+"Puritia tō kanohi ki roto i te tirohanga kāmera, ā, whāia ngā tohutohu; "
+"kotahi meneti pea te roa."
 
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "Whakapumautia te Muku Tauira"
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "Titiro tika ki te kāmera"
 
-#: src/tab_models.py:116
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"Hapa i te taapiri tauira, waehere hapa {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
 msgid "Are you sure you want to delete model {id} ({name})?"
 msgstr "Me muku te tauira {id} ({name})?"
 
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"Hapa i te wa e muku ana i te tauira, waehere hapa {}:\n\n"
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "Mukua"
 
-#: src/tab_video.py:55
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"Hapa i te wa e muku ana i te tauira, waehere hapa {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "Huri paku tō māhunga ki te taha mauī"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "Huri paku tō māhunga ki te taha matau"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "Hīkina paku tō kauae"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "Tukua paku tō kauae ki raro"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "E hopu ana… {count} o {total}"
+
+#: src/tab_video.py:66
 msgid "Can't open camera"
 msgstr "Kaore e taea te whakatuwhera i te kamera"
 
-#: src/tab_video.py:74
+#: src/tab_video.py:85
 msgid "Can't import OpenCV2"
 msgstr "Kāore e taea te kawemai OpenCV2"
 
-#: src/tab_video.py:147
+#: src/tab_video.py:160
 msgid "Unknown"
 msgstr "Kaore i te mohiotia"
 
-#: src/tab_keyring.py:44
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "Whakahohehia te Wae Waahi/KWallet Wewete"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "pai"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr ""
+"Whakauruhia he kupuhipa mo te kaiwhakamahi <b>{}</b> ki te iriti {} ({}):"
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "Kupuhipa"
+
+#: src/tab_keyring.py:37
 msgid "<i>No user selected</i>"
 msgstr "<i>Kaore he kaiwhakamahi i tohua</i>"
 
-#: src/tab_keyring.py:59
+#: src/tab_keyring.py:52
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Whakahohea (TPM Hardware)</b></span> — {}"
 
-#: src/tab_keyring.py:63
+#: src/tab_keyring.py:56
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
-"<span foreground='green'><b>Whakahohe (Keteroki Pūmanawa)</b></span> —"
-" {}"
+"<span foreground='green'><b>Whakahohe (Keteroki Pūmanawa)</b></span> — {}"
 
-#: src/tab_keyring.py:67
+#: src/tab_keyring.py:60
 msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
-"<span foreground='orange'><b>Kua Whakahohe (Tarewa Kupuhipa Whakauru)<"
-"/b></span> — {}"
+"<span foreground='orange'><b>Kua Whakahohe (Tarewa Kupuhipa Whakauru)</b></"
+"span> — {}"
 
-#: src/tab_keyring.py:71
+#: src/tab_keyring.py:64
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Kua Mono</b></span> — {}"
 
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "Hapa"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "Angitu"
-
-#: src/tab_keyring.py:118
+#: src/tab_keyring.py:101
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
-msgstr "I pai te whakaahei i te whakawetotanga mo te kaiwhakamahi {}."
+msgstr "Kua whakahohea te wetewete Keyring/KWallet mō te kaiwhakamahi {}."
 
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "Monokia te Whakatangitangi/KWallet Wewete"
-
-#: src/tab_keyring.py:136
+#: src/tab_keyring.py:113
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
-"Kei te tino hiahia koe ki te whakakore i te tangi matua/KWallet te wet"
-"ewete mo te kaiwhakamahi {}?"
+"Kei te tino hiahia koe ki te whakakore i te tangi matua/KWallet te wetewete "
+"mo te kaiwhakamahi {}?"
 
-#: src/tab_keyring.py:160
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "Monokia Wewete-Aunoa"
+
+#: src/tab_keyring.py:132
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Kua monokia te whakaweto o te whakakai/KWallet mo te kaiwhakamahi {}."
 
-#: src/main.glade:26
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "Kāore i taea te tiaki te tautuhinga whakamōhiotanga"
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "Kāore i taea te tiaki i te tautuhinga haumarutanga"
+
+#: src/main.ui:6
 msgctxt "Window title"
 msgid "Ubuntu Hello Configuration"
 msgstr "Ubuntu Hello Whirihoranga"
 
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "Ubuntu Hello Whirihoranga"
-
-#: src/main.glade:41
+#: src/main.ui:13
 msgid "Search settings"
 msgstr "Tautuhinga rapu"
 
-#: src/main.glade:77
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello Whirihoranga"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "Tauira kanohi"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Ko nga whakaahua o to kanohi ka whakatauritea e Ubuntu Hello. Kia mau ki te "
+"rua, ka tuhia ki nga rama rereke."
+
+#: src/main.ui:97
 msgid "Showing saved models for:"
 msgstr "Whakaatu ana i nga tauira kua tiakina mo:"
 
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "Tāpirihia he kaiwhakamahi hou"
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"Kotahi noa te tauira kanohi kua rēhitatia. Mā ngā mōhiti, te rerekētanga o "
+"te huruhuru kanohi, te māramatanga rerekē rānei ka rerekē te āhua o tō "
+"kanohi ki te kāmera, nō reira ka rahua pea te tauira kotahi (hei tauira i te "
+"ahiahi i raro i ngā rama). Tāpirihia tētahi tauira tuarua me ngā mōhiti, "
+"kāore rānei, tō āhua kē, i te māramatanga rerekē rānei kia pono tonu te "
+"wewete."
 
-#: src/main.glade:162
-msgid "Add"
-msgstr "Tāpiri"
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "Tāpirihia he tauira tuarua"
 
-#: src/main.glade:183
-msgid "Delete"
-msgstr "Mukua"
-
-#: src/main.glade:218
+#: src/main.ui:227
 msgid "Models"
 msgstr "Tauira"
 
-#: src/main.glade:244
+#: src/main.ui:261
+msgid "Camera"
+msgstr "Kāmera"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"Ka whakamahia e te kamera Ubuntu Hello ki te rapu i to kanohi, me te arokite "
+"ora."
+
+#: src/main.ui:300
 msgid "Camera ID:"
 msgstr "ID kāmera:"
 
-#: src/main.glade:273
+#: src/main.ui:315
 msgid "Real resolution:"
 msgstr "Taumira tuturu:"
 
-#: src/main.glade:303
+#: src/main.ui:331
 msgid "Used resolution:"
 msgstr "Taumira whakamahia:"
 
-#: src/main.glade:333
+#: src/main.ui:347
 msgid "Recorder:"
 msgstr "Kaituhi:"
 
-#: src/main.glade:401
+#: src/main.ui:393
 msgid "Video"
 msgstr "Ataata"
 
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "Whakatangitangi / KWallet Wewete-Aunoa"
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "Whakamōhiotanga"
 
-#: src/main.glade:440
+#: src/main.ui:445
 msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
 msgstr ""
-"Whakahohehia te motuhēhēnga kanohi ki te wetewete aunoa i to hiri taki"
-"uru, KWallet ranei i te takiuru. Ma tenei ka pupuri i to kupu huna kua"
-" hiri ki te TPM ina watea, ka whakamunatia ranei ki te AES-256-GCM ma "
-"te whakamahi i te matua matua-anake. Ko nga huinga whakamotuhēhē kanoh"
-"i PAM_AUTHTOK mo pam_gnome_keyring pam_kwallet5 ranei kei runga i to p"
-"apamahi."
+"Ka whakaatuhia he panui papamahi i a Ubuntu Hello e rapu ana i to kanohi, "
+"katahi ka whakaatu i te hua. Ko nga nganatanga i rahua ka noho ki te rarangi "
+"whakamohiotanga."
 
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "Tūnga o nāianei:"
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "Whakaatu whakamohiotanga"
 
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "Takitaki ana..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "Whakahohe Wewete-Aunoa"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "Monokia Wewete-Aunoa"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "Whakatangitangi"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "Reo whakaatu"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "Reo"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "Ka whai aute i te reo pūnaha. Ka whakamahia wawe ngā panoni."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Motuhēhēnga kanohi mō Linux"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "Putanga unknown"
-
-#: src/main.glade:746
+#: src/main.ui:482
 msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
+"One card per face-authentication attempt, updated in place with the result."
 msgstr ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Tuwhera hono GitH"
-"ub</a>"
+"Kotahi te kaari mo ia nganatanga whakamotuhēhē kanohi, kua whakahoutia me te "
+"hua."
 
-#: src/main.glade:778
-msgid "About"
-msgstr "Mō"
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "Ka tangi whakamohiotanga"
 
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Nau mai ki Ubuntu Hello"
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr ""
+"Whakatangihia te oro o te punaha mo te nganatanga kua mohiohia, i rahua "
+"ranei."
 
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "Kua oti te tatūnga!"
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "Whakauruhia nga tātaritanga"
 
-#: src/onboarding.glade:82
+#: src/main.ui:556
 msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
 msgstr ""
-"Kua oti tatou! Kei te hohe a Ubuntu Hello i runga i tenei rorohiko. Ng"
-"ana ki te mahi i nga mea katoa me pato koe i to kupuhipa hei whakamotu"
-"hēhē, penei i te whakahaere whakahau me te sudo. Mēnā i whakahohea e k"
-"oe te wewete-aunoa, ka wetekina aunoatia to hiri takiuru, KWallet rane"
-"i ina takiuru.\n\nKa taea e koe te whakatuwhera i te Ubuntu Hello Conf"
-"igurator a muri ake nei ki te huri i nga tautuhinga matatau ake, ki te"
-" taapiri tauira taapiri ranei. Pēhia te Mutu ki raro hei kati i tēnei "
-"matapihi ka whakatuwhera i te Ubuntu Hello Configurator."
+"Tāpirihia te tauira, te papu me te paepae, nga papa, te kamera me te wa ki "
+"ia kaari. Ka whai hua i te wa e ripoata ana i tetahi raru."
 
-#: src/onboarding.glade:130
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "Haumarutanga"
+
+#: src/main.ui:633
 msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
 msgstr ""
-"Ka taea e Ubuntu Hello te iriti aunoa i to taapene takiuru, i te KWall"
-"et ranei ma te motuhēhēnga kanohi, hei aukati i nga kupu huna i muri i"
-" te takiurunga."
+"Me pēhea te tino ōrite o tō kanohi, me te pātai rānei a Ubuntu Hello kia "
+"whakaū koe kei konei tonu koe."
 
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "Whakahohehia te whakatangi matua aunoa/KWallet te wetewete"
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "Te māro o te ōritetanga kanohi"
 
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "Whakaū kupuhipa"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "Te whakatakoto kaupapa here pono"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"Na te rereke o nga koki, te tawhiti, me era atu mea ka kore te rite o "
-"te ahua kanohi ki te tauira kanohi kua rongoatia. I runga i tenei whar"
-"angi ka taea e koe te whakarite kia pehea te kaha o te Ubuntu Hello."
-
-#: src/onboarding.glade:274
+#: src/main.ui:665 src/onboarding.ui:151
 msgid "Fast"
 msgstr "Tere"
 
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"Whakaaetia etahi atu whakataetae puhoi, \nengari ka tere ake te mahi m"
-"atawai."
-
-#: src/onboarding.glade:329
+#: src/main.ui:672 src/onboarding.ui:182
 msgid "Balanced"
 msgstr "Taurite"
 
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"He tere tonu te kitenga, \nengari karekau pea koe e takiuru ina tawhit"
-"i atu koe."
-
-#: src/onboarding.glade:384
+#: src/main.ui:680 src/onboarding.ui:213
 msgid "Secure"
 msgstr "Haumaru"
 
-#: src/onboarding.glade:400
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "Me tono kia tungou ahau hei whakaū"
+
+#: src/main.ui:708 src/onboarding.ui:259
 msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
 msgstr ""
-"Ko te kōwhiringa paku haumaru, \nengari ka roa ake te whakamotuhēhē i "
-"a koe"
+"Ka ōrite ana tō kanohi, ka tono mai tētahi pānui kia tungou koe. Kāore e "
+"taea e tētahi whakaahua ka whakaarahia ki mua i te kāmera te tungou."
 
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "Te taapiri tauira kanohi"
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "Whakatangitangi / KWallet Wewete-Aunoa"
 
-#: src/onboarding.glade:462
+#: src/main.ui:786
 msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
 msgstr ""
-"Hei whakamotuhēhē i a koe Ubuntu Hello me tiaki he tauira o to kanohi "
-"kia mohio ai koe. Pēhia te pātene Matawai i raro hei tīmata i te mataw"
-"ai kanohi."
+"Whakahohea te motuhēhēnga kanohi kia wetewetehia aunoatia tō keyring "
+"takiuru, tō KWallet rānei, i te takiuru. Ka penapena haumaru tēnei i tō "
+"kupuhipa — kua hiritia ki roto i te TPM ina wātea, kua whakamunatia rānei ki "
+"te AES-256-GCM mā te kī matua mā te root anake. Ka whakaritea e te "
+"motuhēhēnga kanohi a PAM_AUTHTOK mō pam_gnome_keyring, mō pam_kwallet5 "
+"rānei, i runga anō i tō papamahi."
 
-#: src/onboarding.glade:564 src/onboarding.glade:655
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "Tūnga o nāianei:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "Takitaki ana..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "Whakahohe Wewete-Aunoa"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "Whakatangitangi"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "Reo whakaatu"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "Ka whai aute i te reo pūnaha. Ka whakamahia wawe ngā panoni."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "Reo"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Motuhēhēnga kanohi mō Linux"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "Putanga unknown"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Tuwhera hono GitHub</a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Pūrongo raru, "
+"whakaaroa rānei he āhuatanga</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "Mō"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Nau mai ki Ubuntu Hello"
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "Kua oti te tatūnga!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"Kua oti tatou! Kei te hohe a Ubuntu Hello i runga i tenei rorohiko. Ngana ki "
+"te mahi i nga mea katoa me pato koe i to kupuhipa hei whakamotuhēhē, penei i "
+"te whakahaere whakahau me te sudo. Mēnā i whakahohea e koe te wewete-aunoa, "
+"ka wetekina aunoatia to hiri takiuru, KWallet ranei ina takiuru.\n"
+"\n"
+"Ka taea e koe te whakatuwhera i te Ubuntu Hello Configurator a muri ake nei "
+"ki te huri i nga tautuhinga matatau ake, ki te taapiri tauira taapiri ranei. "
+"Pēhia te Mutu ki raro hei kati i tēnei matapihi ka whakatuwhera i te Ubuntu "
+"Hello Configurator."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "Te whakatakoto kaupapa here pono"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"Na te rereke o nga koki, te tawhiti, me era atu mea ka kore te rite o te "
+"ahua kanohi ki te tauira kanohi kua rongoatia. I runga i tenei wharangi ka "
+"taea e koe te whakarite kia pehea te kaha o te Ubuntu Hello."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"Koinei te ōritetanga ngāwari rawa, ā, ko te tere rawa hoki ki te whakauru i "
+"a koe. Kōwhirihia tēnei mēnā he nui ake te painga o te māmā i te māro."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"He ōritetanga māro, engari ka tere tonu tō takiuru. Tērā pea kāore koe e "
+"mōhiotia mēnā kei te koki rawa tō kanohi, mēnā rānei kei tawhiti atu koe."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr ""
+"Ko te ōritetanga tino māro, kāore he mahi tāpiri ina takiuru koe. E "
+"tūtohungia ana."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "Hūpeke mō tēnei wā"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"Ka taea e koe te taapiri i etahi atu tauira kanohi i muri mai mai i nga "
+"Tautuhinga me te: sudo ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
 msgid "Configuring webcam"
 msgstr "Te whirihora webcam"
 
-#: src/onboarding.glade:581
+#: src/onboarding.ui:435
 msgid "Is the infrared emitter flashing ?"
 msgstr "Kei te rarapa te whakaemi infrared?"
 
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "āe"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "kahore"
-
-#: src/onboarding.glade:674
+#: src/onboarding.ui:447
 msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
 msgstr ""
-"Ubuntu Hello ka rapu aunoa i to punaha mo nga kaamera e waatea ana, na"
-" kia mohio kei te hono to kamera. I muri i te kitenga ka whakaatuhia h"
-"e rarangi o nga kamera tukutuku ka taea. Tīpakohia te mea e hiahia ana"
-" koe ki te whakamahi ka paato Panuku."
+"Titiro ki te kaamera i tohua e koe: ka whakaatu te kaamera infrared i te "
+"rama iti e kimo ana i a Ubuntu Hello e whakamatautau ana. Ma tenei e "
+"whakaatu mai mena ka kitea to kanohi i te pouri."
 
-#: src/onboarding.glade:697
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "Ae, ka whiti"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "Kao, karekau he rarapa"
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello ka rapu aunoa i to punaha mo nga kaamera e waatea ana, na kia "
+"mohio kei te hono to kamera. I muri i te kitenga ka whakaatuhia he rarangi o "
+"nga kamera tukutuku ka taea. Tīpakohia te mea e hiahia ana koe ki te "
+"whakamahi ka paato Panuku."
+
+#: src/onboarding.ui:566
 msgid "Testing your webcams, please wait..."
 msgstr "Te whakamatautau i o kamera tukutuku, tatari koa..."
 
-#: src/onboarding.glade:749
+#: src/onboarding.ui:613
 msgid "Downloading data files"
 msgstr "Tikiake ana i nga konae raraunga"
 
-#: src/onboarding.glade:768
+#: src/onboarding.ui:629
 msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
 msgstr ""
-"Ubuntu Hello Me toru nga huinga raraunga tohu kanohi kua oti te whakan"
-"gungu kia mohio koe ki a koe, ka tangohia inaianei. Ka taea e koe te k"
-"ite i te ahunga whakamua i raro nei."
+"Ubuntu Hello Me toru nga huinga raraunga tohu kanohi kua oti te whakangungu "
+"kia mohio koe ki a koe, ka tangohia inaianei. Ka taea e koe te kite i te "
+"ahunga whakamua i raro nei."
 
-#: src/onboarding.glade:789
+#: src/onboarding.ui:653
 msgid "Starting download..."
 msgstr "Ka timata te tikiake..."
 
-#: src/onboarding.glade:838
+#: src/onboarding.ui:697
 msgid "Welcome to Ubuntu Hello!"
 msgstr "Nau mai ki Ubuntu Hello!"
 
-#: src/onboarding.glade:854
+#: src/onboarding.ui:709
 msgid "Version"
 msgstr "Putanga"
 
-#: src/onboarding.glade:875
+#: src/onboarding.ui:723
 msgid ""
 "This wizard will walk you through the setup process and automatically "
 "configure Ubuntu Hello for you. Press next to continue."
 msgstr ""
-"Ma tenei ruānuku koe e arahi i roto i te tukanga tatūnga me te whiriho"
-"ra aunoa i te Ubuntu Hello mo koe. Patohia te taha ki te haere tonu."
+"Ma tenei ruānuku koe e arahi i roto i te tukanga tatūnga me te whirihora "
+"aunoa i te Ubuntu Hello mo koe. Patohia te taha ki te haere tonu."
 
-#: src/onboarding.glade:899
-msgid "Cancel"
-msgstr "Whakakore"
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ka taea e Ubuntu Hello te iriti aunoa i to taapene takiuru, i te KWallet "
+"ranei ma te motuhēhēnga kanohi, hei aukati i nga kupu huna i muri i te "
+"takiurunga."
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "Panuku"
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "Whakahohehia te whakatangi matua aunoa/KWallet te wetewete"
 
-#: src/onboarding.glade:944
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "Whakaū kupuhipa"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "Whakamuri"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "Whakaoti tatūnga"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "Panuku"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

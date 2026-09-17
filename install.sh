@@ -353,14 +353,33 @@ step "Configuring Polkit"
 
 OVERRIDE_DIR="/etc/systemd/system/polkit-agent-helper@.service.d"
 mkdir -p "$OVERRIDE_DIR"
+# polkit >= 126 runs polkit-agent-helper-1 as a hardened transient unit
+# (DevicePolicy=strict, ProtectSystem=strict, ...). Re-allow what face auth
+# needs: the camera, the Enter-key uinput device, and -- for TPM-sealed
+# keyring unlock -- the TPM character devices plus write access to the
+# tpm-keys dir where tpm2_createprimary/tpm2_load save transient .ctx files.
+# ProtectHome=yes would also hide /run/user, i.e. the user's session bus, so
+# the desktop notification could never be delivered from a polkit prompt.
+# tmpfs keeps /home and /root empty inside the unit; only /run/user is bound
+# back in (the notifier drops to the user's uid before connecting).
+# /run/ubuntu-hello holds the notification-id state (root-only), read-only
+# under ProtectSystem=strict.
 cat > "$OVERRIDE_DIR/override.conf" <<EOF
 [Service]
 PrivateDevices=no
 DeviceAllow=char-video4linux rw
 DeviceAllow=/dev/uinput rw
+DeviceAllow=char-tpm rw
+DeviceAllow=/dev/tpm0 rw
+ReadWritePaths=/etc/ubuntu-hello/tpm-keys
+ProtectHome=tmpfs
+BindReadOnlyPaths=-/run/user
+ReadWritePaths=-/run/ubuntu-hello
 EOF
 chmod 644 "$OVERRIDE_DIR/override.conf"
 systemctl daemon-reload 2>/dev/null || true
+# /run/ubuntu-hello now; tmpfiles.d (installed by meson) handles later boots.
+systemd-tmpfiles --create /usr/lib/tmpfiles.d/ubuntu-hello.conf 2>/dev/null || true
 
 success "Polkit configured for face authentication"
 

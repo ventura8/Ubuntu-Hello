@@ -23,12 +23,16 @@ import cv2
 from datetime import timezone, datetime
 import atexit
 import subprocess
+import traceback
 import snapshot
 import numpy as np
 import _thread as thread
 import paths_factory
+import enroll_capture
 from recorders.video_capture import VideoCapture
+import i18n
 from i18n import _
+from notify import AuthNotifier
 
 # Tracked so cleanup can release the camera even on signal abort
 video_capture = None
@@ -68,6 +72,21 @@ def _recognition_timeout_kind(now, loop_start, scan_start, timeout, acquisition_
     if now - scan_start >= timeout:
         return "recognition"
     return None
+
+
+# Desktop notification for this attempt (best-effort, see notify.py); None
+# until the config has been read.
+notifier = None
+
+
+def _notify(event, *args, **kwargs):
+	"""Call notifier.<event>(...) if notifications are active; never raise."""
+	if notifier is None:
+		return
+	try:
+		getattr(notifier, event)(*args, **kwargs)
+	except Exception as err:
+		print("Notification failed:", err)
 
 
 def cleanup():
@@ -127,14 +146,16 @@ def _signal_exit(signum, frame):
 	"""
 	if _cleaned_up:
 		return
+	_notify("cancelled")
 	cleanup()
 	os._exit(12)
 
 
-# Absolute path: this module runs as root during PAM authentication (see the
-# file header note above about PATH), so the session-idle probe below must
-# not resolve "busctl" via an inherited PATH.
+# Absolute paths: this module runs as root during PAM authentication (see the
+# file header note above about PATH), so neither the session-idle probe nor
+# the auth overlay may resolve their binaries via an inherited PATH.
 BUSCTL_PATH = "/usr/bin/busctl"
+GTK_BIN_PATH = "/usr/bin/ubuntu-hello-gtk"
 
 
 def _session_idle_hint():
@@ -232,30 +253,45 @@ def _watch_session_idle(poll_interval=0.5):
 
 
 def init_detector(lock):
-	"""Start face detector, encoder and predictor in a new thread"""
-	global face_detector, pose_predictor, face_encoder
+	"""Start face detector, encoder and predictor in a new thread.
 
-	# Test if at lest 1 of the data files is there and abort if it's not
-	if not os.path.isfile(paths_factory.shape_predictor_5_face_landmarks_path()):
-		print(_("Data files have not been downloaded, please run the following commands:"))
-		print("\n\tcd " + paths_factory.dlib_data_dir_path())
-		print("\tsudo ./install.sh\n")
+	The caller signals on *lock*, so the release has to happen on every path. It
+	used to happen only on success and on the missing-data-file branch: if any of
+	the dlib constructors raised -- a truncated model file, out of memory -- the
+	thread died with the lock still held and the main thread blocked on it forever,
+	having already opened the camera. The PAM caller then waited indefinitely for a
+	login that could never finish. `exit()` cannot be used from here either: raising
+	SystemExit on a helper thread only ends that thread, so the failure is recorded
+	and the main thread decides.
+	"""
+	global face_detector, pose_predictor, face_encoder, detector_error
+
+	try:
+		# Test if at lest 1 of the data files is there and abort if it's not
+		if not os.path.isfile(paths_factory.shape_predictor_5_face_landmarks_path()):
+			print(_("Data files have not been downloaded, please run the following commands:"))
+			print("\n\tcd " + str(paths_factory.dlib_data_dir_path()))
+			print("\tsudo ./install.sh\n")
+			detector_error = "data files missing"
+			return
+
+		# Use the CNN detector if enabled
+		if use_cnn:
+			face_detector = dlib.cnn_face_detection_model_v1(paths_factory.mmod_human_face_detector_path())
+		else:
+			face_detector = dlib.get_frontal_face_detector()
+
+		# Start the others regardless
+		pose_predictor = dlib.shape_predictor(paths_factory.shape_predictor_5_face_landmarks_path())
+		face_encoder = dlib.face_recognition_model_v1(paths_factory.dlib_face_recognition_resnet_model_v1_path())
+
+		# Note the time it took to initialize detectors
+		timings["ll"] = time.time() - timings["ll"]
+	except Exception as err:
+		traceback.print_exc()
+		detector_error = str(err) or err.__class__.__name__
+	finally:
 		lock.release()
-		exit(1)
-
-	# Use the CNN detector if enabled
-	if use_cnn:
-		face_detector = dlib.cnn_face_detection_model_v1(paths_factory.mmod_human_face_detector_path())
-	else:
-		face_detector = dlib.get_frontal_face_detector()
-
-	# Start the others regardless
-	pose_predictor = dlib.shape_predictor(paths_factory.shape_predictor_5_face_landmarks_path())
-	face_encoder = dlib.face_recognition_model_v1(paths_factory.dlib_face_recognition_resnet_model_v1_path())
-
-	# Note the time it took to initialize detectors
-	timings["ll"] = time.time() - timings["ll"]
-	lock.release()
 
 
 def make_snapshot(type):
@@ -300,12 +336,25 @@ if __name__ == "__main__":
 
 	# The username of the user being authenticated
 	user = sys.argv[1]
+	# Optional: the PAM service that asked (sudo, polkit-1, gdm-password, ...),
+	# forwarded by the PAM module so the notification can say what is being
+	# authenticated. Dry runs (`compare.py <user>`) leave it empty.
+	pam_service = sys.argv[2] if len(sys.argv) > 2 else ""
 
 	# Validate username format to prevent path traversal or malicious inputs
 	import re
 	if not re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
 		print("Invalid username format")
 		exit(12)
+
+	# Speak the target user's language: PAM forwards the session locale in the
+	# environment, and the user's Settings preference (preferences.ini) wins
+	# over it, exactly as for the CLI / GTK.
+	os.environ["UH_TARGET_USER"] = user
+	try:
+		i18n.reload_from_preferences()
+	except Exception:
+		pass
 	# The model file contents
 	models = []
 	# Encoded face models
@@ -320,24 +369,21 @@ if __name__ == "__main__":
 	snapframes = []
 	# Tracks the lowest certainty value in the loop
 	lowest_certainty = 10
+	# Frames whose best match already fell inside the threshold. One frame under
+	# the bar is a weak signal: a scan produces dozens of independent looks, so
+	# the frame that decides authentication is the *minimum* of many draws, and a
+	# single blurred or oddly lit outlier can carry a stranger through. Demanding
+	# several agreeing frames removes that outlier without moving the threshold.
+	confirmations_seen = 0
 	# Face recognition/detection instances
 	face_detector = None
 	pose_predictor = None
 	face_encoder = None
+	# Set by init_detector when it cannot load the models; see the check after the lock.
+	detector_error = None
 
-	# Try to load the face model from the models folder
-	try:
-		models = json.load(open(paths_factory.user_model_path(user)))
-
-		for model in models:
-			encodings += model["data"]
-	except FileNotFoundError:
-		exit(10)
-
-	# Check if the file contains a model
-	if len(models) < 1:
-		exit(10)
-
+	# Read config from disk first so the notifier exists for every exit path,
+	# including "no face model" below.
 	# Read config from disk (restore the packaged default if apt reinstall
 	# left /etc/ubuntu-hello/config.ini missing).
 	from config_ensure import ensure_system_config
@@ -354,18 +400,49 @@ if __name__ == "__main__":
 	timeout = config.getint("video", "timeout", fallback=8)
 	dark_threshold = config.getfloat("video", "dark_threshold", fallback=50.0)
 	video_certainty = config.getfloat("video", "certainty", fallback=3.5) / 10
+	# Separate frames that must agree before a match is trusted. 1 is the
+	# historical single-frame behaviour and stays the fallback for configs
+	# written before this key existed; the Secure level ships 3.
+	video_confirmations = max(1, config.getint("video", "confirmations", fallback=1))
 	end_report = config.getboolean("debug", "end_report", fallback=False)
 	save_failed = config.getboolean("snapshots", "save_failed", fallback=False)
 	save_successful = config.getboolean("snapshots", "save_successful", fallback=False)
 	gtk_stdout = config.getboolean("debug", "gtk_stdout", fallback=False)
 	rotate = config.getint("video", "rotate", fallback=0)
 
+	# Desktop notification card for this attempt: created now (in progress),
+	# then updated in place with the result and the numbers behind it.
+	notifier = AuthNotifier(
+		user,
+		service=pam_service,
+		enabled=config.getboolean("notifications", "enabled", fallback=True),
+		details=config.getboolean("notifications", "details", fallback=False),
+		sound=config.getboolean("notifications", "sound", fallback=True),
+		success_linger=config.getfloat("notifications", "success_linger", fallback=3.0),
+	)
+	if notifier.disabled_reason and end_report:
+		print("Notifications off:", notifier.disabled_reason)
+
+	# Try to load the face model from the models folder
+	try:
+		models = json.load(open(paths_factory.user_model_path(user)))
+		encodings, model_owner = enroll_capture.flatten_models(models)
+	except FileNotFoundError:
+		_notify("no_model")
+		exit(10)
+
+	# Check if the file contains a model
+	if len(models) < 1:
+		_notify("no_model")
+		exit(10)
+
+
 	# Send the gtk output to the terminal if enabled in the config
 	gtk_pipe = sys.stdout if gtk_stdout else subprocess.DEVNULL
 
 	# Start the auth ui, register it to be always be closed on exit
 	try:
-		gtk_proc = subprocess.Popen(["ubuntu-hello-gtk", "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
+		gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
 		atexit.register(exit)
 	except FileNotFoundError:
 		pass
@@ -412,6 +489,12 @@ if __name__ == "__main__":
 	lock.release()
 	del lock
 
+	# The detector thread cannot exit the process, so its failure is handled here.
+	# Carrying on would call None(frame) on the first frame with the camera held.
+	if detector_error is not None or face_detector is None or pose_predictor is None or face_encoder is None:
+		print(_("Face recognition could not start: {}").format(detector_error or "detector unavailable"))
+		exit(1)
+
 	# Fetch the max frame height
 	max_height = config.getfloat("video", "max_height", fallback=320.0)
 
@@ -434,6 +517,15 @@ if __name__ == "__main__":
 
 	# Initiate histogram equalization
 	clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+
+	_notify(
+		"start",
+		device=config.get("video", "device_path", fallback=None),
+		resolution="%dx%d" % (round(video_capture.internal.get(cv2.CAP_PROP_FRAME_WIDTH) or 0), round(height)),
+		threshold="%.2f" % (video_certainty * 10),
+		timeout="%ds" % timeout,
+		max_seconds=float(timeout) + float(acquisition_timeout),
+	)
 
 	# Let the ui know that we're ready
 	send_to_ui("M", _("Identifying you..."))
@@ -473,8 +565,23 @@ if __name__ == "__main__":
 			if timeout_kind == "acquisition" or dark_tries == valid_frames:
 				print(_("All frames were too dark, please check dark_threshold in config"))
 				print(_("Average darkness: {avg}, Threshold: {threshold}").format(avg=str(dark_running_total / max(1, valid_frames)), threshold=str(dark_threshold)))
+				_notify("too_dark", dark_running_total / max(1, valid_frames), dark_threshold, valid_frames)
 				exit(13)
 			else:
+				if end_report and video_confirmations > 1:
+					# Without this the report reads as a contradiction: a best
+					# certainty below the threshold, yet no authentication.
+					print("Frames agreeing with the model: %d (this level needs %d)"
+					      % (confirmations_seen, video_confirmations))
+				_notify(
+					"timeout",
+					lowest_certainty * 10 if lowest_certainty < 10 else None,
+					video_certainty * 10,
+					frames,
+					time.time() - (timings["fr"] or timings["loop"]),
+					timeout,
+					dark_frames=dark_tries,
+				)
 				exit(11)
 
 		# Grab a single frame of video
@@ -563,6 +670,13 @@ if __name__ == "__main__":
 
 			# Check if a match that's confident enough
 			if 0 < match < video_certainty:
+				confirmations_seen += 1
+				if confirmations_seen < video_confirmations:
+					# Keep scanning until enough separate frames agree. The break
+					# leaves the per-face loop so one frame can only ever count
+					# once, however many faces it happens to contain.
+					break
+
 				timings["tt"] = time.time() - timings["st"]
 				timings["fl"] = time.time() - (timings["fr"] or timings["loop"])
 
@@ -594,7 +708,18 @@ if __name__ == "__main__":
 					print(_("Dark frames ignored: %d ") % (dark_tries, ))
 					print(_("Certainty of winning frame: %.3f") % (match * 10, ))
 
-					print(_("Winning model: %d (\"%s\")") % (match_index, models[match_index]["label"]))
+					print(_("Winning model: %d (\"%s\")") % (model_owner[match_index], models[model_owner[match_index]]["label"]))
+
+				def notify_success():
+					_notify(
+						"success",
+						match * 10,
+						video_certainty * 10,
+						models[model_owner[match_index]]["label"],
+						frames,
+						timings["fl"],
+						dark_frames=dark_tries,
+					)
 
 				# Make snapshot if enabled
 				if save_successful:
@@ -609,14 +734,29 @@ if __name__ == "__main__":
 					if "gtk_proc" not in vars():
 						gtk_proc = None
 
-					rubberstamps.execute(config, gtk_proc, {
-						"video_capture": video_capture,
-						"face_detector": face_detector,
-						"pose_predictor": pose_predictor,
-						"clahe": clahe
-					})
+					# execute() ends the process itself: sys.exit(0) when every
+					# stamp passed, sys.exit(15) when one rejected. The card
+					# must reflect the *final* PAM outcome, so it is sent only
+					# once liveness has decided.
+					try:
+						rubberstamps.execute(config, gtk_proc, {
+							"video_capture": video_capture,
+							"face_detector": face_detector,
+							"pose_predictor": pose_predictor,
+							"clahe": clahe
+						}, notifier=notifier)
+					except SystemExit as stamp_exit:
+						if stamp_exit.code in (0, None):
+							notify_success()
+						else:
+							_notify("rejected")
+						raise
+					# Defensive: execute() should never return.
+					notify_success()
+					exit(0)
 
 				# End peacefully
+				notify_success()
 				exit(0)
 
 		if exposure != -1:

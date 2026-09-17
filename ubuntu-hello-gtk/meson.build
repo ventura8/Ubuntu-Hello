@@ -30,15 +30,20 @@ py_i18n = configure_file(
 
 sources = files(
     'src/auth_helper.py',
+    'src/camera_names.py',
+    'src/enroll.py',
     'src/authsticky.py',
     'src/init.py',
     'src/languages.py',
+    'src/gtk4compat.py',
     'src/onboarding.py',
     'src/paths_factory.py',
     'src/preferences.py',
     'src/search_fuzzy.py',
     'src/tab_keyring.py',
     'src/tab_models.py',
+    'src/tab_notifications.py',
+    'src/tab_security.py',
     'src/tab_video.py',
     'src/theme_detect.py',
     'src/version_display.py',
@@ -89,6 +94,19 @@ install_data(
     install_tag: 'meta'
 )
 
+# Vector app icon (Yaru Settings idiom) + symbolic variant for the shell;
+# src/logo*.png are rasterised from icons/ubuntu-hello-gtk.svg.
+install_data(
+    'icons/ubuntu-hello-gtk.svg',
+    install_dir: get_option('prefix') / get_option('datadir') / 'icons' / 'hicolor' / 'scalable' / 'apps',
+    install_tag: 'meta'
+)
+install_data(
+    'icons/ubuntu-hello-gtk-symbolic.svg',
+    install_dir: get_option('prefix') / get_option('datadir') / 'icons' / 'hicolor' / 'symbolic' / 'apps',
+    install_tag: 'meta'
+)
+
 i18n = import('i18n')
 i18n.merge_file(
     input: 'ubuntu-hello-gtk.desktop.in',
@@ -101,8 +119,8 @@ i18n.merge_file(
 )
 
 interface_files = files(
-    'src/main.glade',
-    'src/onboarding.glade',
+    'src/main.ui',
+    'src/onboarding.ui',
     'src/style.css',
 )
 install_data(interface_files, install_dir: datadir)

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.1.3\n"
+"Project-Id-Version: ubuntu-hello 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,235 +15,409 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pam/main.cc:107
+#: src/pam/main.cc:109
 msgid "Failure, timeout reached"
-msgstr "Error, s'ha arribat al temps d'espera"
+msgstr "Fracàs, relambi depassat"
 
-#: src/pam/main.cc:114
+#: src/pam/main.cc:116
 msgid "Face detection image too dark"
-msgstr "La imatge de detecció facial és massa fosca"
+msgstr "Imatge de deteccion faciala tròp escur"
 
-#: src/pam/main.cc:123
+#: src/pam/main.cc:125
 msgid "Unknown error: "
-msgstr "Error desconegut:"
+msgstr "Error desconeguda: "
 
-#: src/pam/main.cc:159
+#: src/pam/main.cc:161
+#, c-format
 msgid "Identified face as %s"
-msgstr "Cara identificada com a %s"
+msgstr "Cara identificada coma %s"
 
-#: src/pam/main.cc:398
+#: src/pam/main.cc:446
 msgid ""
-"Insufficient permissions to send Enter press, waiting for user to pres"
-"s it instead"
+"Insufficient permissions to send Enter press, waiting for user to press it "
+"instead"
 msgstr ""
-"Permisos insuficients per enviar Enter premeu, esperant que l'usuari l"
-"a premeu"
+"Permissions insufisentas per mandar la quichada sus Entrada, esperam puslèu "
+"que l'utilizaire la quiche"
 
-#: src/pam/main.cc:417 src/pam/main.cc:422
+#: src/pam/main.cc:465 src/pam/main.cc:470
 msgid "Failed to send Enter press, waiting for user to press it instead"
-msgstr "No s'ha pogut enviar la tecla Intro, esperant que l'usuari la premeu"
+msgstr ""
+"Fracàs del mandadís de la quichada sus Entrada, esperam puslèu que "
+"l'utilizaire la quiche"
 
-#: src/pam/main.cc:534
+#: src/pam/main.cc:582
 msgid "Attempting facial authentication"
-msgstr "Intent d'autenticació facial"
+msgstr "Temptativa d'autentificacion faciala"
 
 #: src/cli.py:26
 msgid "Could not determine user, please use the --user flag"
-msgstr "No s'ha pogut determinar l'usuari, utilitzeu el senyalador --user"
+msgstr ""
+"Impossible de determinar l'utilizaire, mercés d'utilizar l'opcion --user"
 
 #: src/cli.py:31
 msgid "Command line interface for Ubuntu Hello face authentication."
-msgstr "Interfície de línia d'ordres per a l'autenticació facial Ubuntu Hello."
+msgstr ""
+"Interfàcia en linha de comanda per l'autentificacion faciala Ubuntu Hello."
 
 #: src/cli.py:35
 msgid "command"
-msgstr "comandament"
+msgstr "comanda"
 
 #: src/cli.py:35
 msgid "arguments"
-msgstr "arguments"
+msgstr "paramètres"
 
 #: src/cli.py:36
 msgid ""
-"For support please visit\nhttps://github.com/ventura8/ubuntu-hello"
+"For support please visit\n"
+"https://github.com/ventura8/ubuntu-hello"
 msgstr ""
-"Per obtenir suport, visiteu\nhttps://github.com/ventura8/ubuntu-hello"
+"Per l'assisténcia, visitatz\n"
+"https://github.com/ventura8/ubuntu-hello"
 
 #: src/cli.py:41
 msgid ""
-"The command option to execute, can be one of the following: add, clear"
-", config, disable, keyring, list, remove, snapshot, set, test or versi"
-"on."
+"The command option to execute, can be one of the following: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test or version."
 msgstr ""
-"L'opció d'execució de l'ordre pot ser una de les següents: afegir, esb"
-"orrar, configurar, desactivar, anell de claus, llistar, eliminar, capt"
-"urar una instantània, establir, provar o versió."
+"L'opcion de comanda d'executar, pòt èsser una d'aquestas: add, clear, "
+"config, disable, keyring, list, remove, snapshot, set, test o version."
 
 #: src/cli.py:48
 msgid "Optional arguments for the add, disable, remove and set commands."
-msgstr ""
-"Arguments opcionals per a les ordres afegir, desactivar, eliminar i es"
-"tablir."
+msgstr "Arguments opcionals per las comandas add, disable, remove e set."
 
 #: src/cli.py:55
 msgid "Set the user account to use."
-msgstr "Configureu el compte d'usuari que voleu utilitzar."
+msgstr "Definir lo compte d'utilizaire de far servir."
 
 #: src/cli.py:60
 msgid "Skip all questions."
-msgstr "Omet totes les preguntes."
+msgstr "Ignorar totas las questions."
 
 #: src/cli.py:66
 msgid "Print machine-friendly output."
-msgstr "Imprimeix sortida apta per a màquines."
+msgstr "Afichar una sortida adaptada a las maquinas."
 
 #: src/cli.py:72
 msgid "With keyring restore: restore sealed login passwords for all users."
-msgstr "With keyring restore: restore sealed login passwords for all users."
+msgstr ""
+"Amb keyring restore: restablir los senhals de connexion segelats per totes "
+"los utilizaires."
 
 #: src/cli.py:80
 msgid "Show this help message and exit."
-msgstr "Mostra aquest missatge d'ajuda i surt."
+msgstr "Mostrar aqueste messatge d'ajuda e sortir."
 
 #: src/cli.py:84
 msgid "current active user: "
-msgstr "usuari actiu actual:"
+msgstr "utilizaire actiu actual: "
 
 #: src/cli.py:94
 msgid "Invalid username format"
-msgstr "Format de nom d'usuari no vàlid"
+msgstr "Format de nom d'utilizaire invalid"
 
 #: src/cli.py:104
-msgid ""
-"Please run this command as root:\n"
-msgstr ""
-"Si us plau, executeu aquesta comanda com a root:\n"
+msgid "Please run this command as root:\n"
+msgstr "Mercés d'executar aquesta comanda coma root:\n"
 
 #: src/cli.py:110
 msgid ""
-"Can't run ubuntu-hello commands as root, please run this command with "
-"the --user flag"
+"Can't run ubuntu-hello commands as root, please run this command with the --"
+"user flag"
 msgstr ""
-"No es poden executar les ordres ubuntu-hello com a root, si us plau, e"
-"xecuteu aquesta ordre amb el senyalador --user"
+"Impossible d'executar las comandas ubuntu-hello coma root, mercés d'executar "
+"aquesta comanda amb l'opcion --user"
 
-#: src/compare.py:128 src/cli/add.py:32
+#: src/compare.py:272 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
-msgstr "Els fitxers de dades no s'han baixat, executeu les ordres següents:"
+msgstr ""
+"Los fichièrs de donadas son pas estats telecargats, mercés d'executar las "
+"comandas seguentas:"
 
-#: src/compare.py:154
+#: src/compare.py:302
 msgid " LOGIN"
-msgstr "INICIAR SESIÓ"
+msgstr " CONNEXION"
 
-#: src/compare.py:155 src/cli/snap.py:44
+#: src/compare.py:303 src/cli/snap.py:44
 msgid "Date: "
-msgstr "Data:"
+msgstr "Data: "
 
-#: src/compare.py:156
+#: src/compare.py:304
 msgid "Scan time: "
-msgstr "Temps d'escaneig:"
+msgstr "Temps de captura: "
 
-#: src/compare.py:157
+#: src/compare.py:305
 msgid "Frames: "
-msgstr "Marcs:"
+msgstr "Fotogramas: "
 
-#: src/compare.py:158
+#: src/compare.py:306
 msgid "Hostname: "
-msgstr "Nom d'amfitrió:"
+msgstr "Nom d'òste: "
 
-#: src/compare.py:159
+#: src/compare.py:307
 msgid "Best certainty value: "
-msgstr "Millor valor de certesa:"
+msgstr "Melhora valor de certitud: "
 
-#: src/compare.py:266
+#: src/compare.py:463
 msgid "Starting up..."
-msgstr "S'està posant en marxa..."
+msgstr "Aviada en cors..."
 
-#: src/compare.py:319
+#: src/compare.py:495
+msgid "Face recognition could not start: {}"
+msgstr "Impossible d'aviar la reconeissença faciala: {}"
+
+#: src/compare.py:531
 msgid "Identifying you..."
-msgstr "T'identifiquem..."
+msgstr "Vos identificam..."
 
-#: src/compare.py:351
+#: src/compare.py:563
 msgid "FAILED"
-msgstr "FALLAT"
+msgstr "FRACASSAT"
 
-#: src/compare.py:354 src/cli/add.py:188
+#: src/compare.py:566 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
-"Tots els fotogrames eren massa foscos, si us plau, comproveu dark_thre"
-"shold a la configuració"
+"Totes los fotogramas èran tròp escurs, mercés de verificar dark_threshold "
+"dins la configuracion"
 
-#: src/compare.py:355 src/cli/add.py:189
+#: src/compare.py:567 src/cli/add.py:231
+#, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
-msgstr "Foscor mitjana: {avg}, Llindar: {threshold}"
+msgstr "Escurina mejana: {avg}, Sulhet: {threshold}"
 
-#: src/compare.py:456
+#: src/compare.py:690
 msgid "Time spent"
-msgstr "Temps dedicat"
+msgstr "Temps passat"
 
-#: src/compare.py:457
+#: src/compare.py:691
 msgid "Starting up"
-msgstr "Posada en marxa"
+msgstr "Aviada"
 
-#: src/compare.py:458
+#: src/compare.py:692
+#, python-format
 msgid "  Open cam + load libs: %dms"
-msgstr "Obre la càmera + carrega llibres: %dms"
+msgstr "  Dobrir la camèra + cargar las librariás: %dms"
 
-#: src/compare.py:459
+#: src/compare.py:693
 msgid "  Opening the camera"
-msgstr "Obrint la càmera"
+msgstr "  Dobertura de la camèra"
 
-#: src/compare.py:460
+#: src/compare.py:694
 msgid "  Importing recognition libs"
-msgstr "Importació de llibres de reconeixement"
+msgstr "  Importacion de las librariás de reconeissença"
 
-#: src/compare.py:461
+#: src/compare.py:695
 msgid "Searching for known face"
-msgstr "Buscant una cara coneguda"
+msgstr "Recèrca d'una cara coneguda"
 
-#: src/compare.py:462
+#: src/compare.py:696
 msgid "Total time"
 msgstr "Temps total"
 
-#: src/compare.py:464
+#: src/compare.py:698
 msgid ""
-"\nResolution"
+"\n"
+"Resolution"
 msgstr ""
-"\nResolució"
+"\n"
+"Resolucion"
 
-#: src/compare.py:466
+#: src/compare.py:700
+#, python-format
 msgid "  Native: %dx%d"
-msgstr "Natiu: %dx%d"
+msgstr "  Natiu: %dx%d"
 
-#: src/compare.py:469
+#: src/compare.py:703
+#, python-format
 msgid "  Used: %dx%d"
-msgstr "Usat: %dx%d"
+msgstr "  Utilizat: %dx%d"
 
-#: src/compare.py:472
+#: src/compare.py:706
+#, python-format
 msgid ""
-"\nFrames searched: %d (%.2f fps)"
+"\n"
+"Frames searched: %d (%.2f fps)"
 msgstr ""
-"\nFotogrames cercats: %d (%.2f fps)"
+"\n"
+"Fotogramas cercats: %d (%.2f fps)"
 
-#: src/compare.py:473
+#: src/compare.py:707
+#, python-format
 msgid "Black frames ignored: %d "
-msgstr "Marcs negres ignorats: %d"
+msgstr "Fotogramas negres ignorats: %d "
 
-#: src/compare.py:474
+#: src/compare.py:708
+#, python-format
 msgid "Dark frames ignored: %d "
-msgstr "Els marcs foscos ignorats: %d"
+msgstr "Fotogramas escurs ignorats: %d "
 
-#: src/compare.py:475
+#: src/compare.py:709
+#, python-format
 msgid "Certainty of winning frame: %.3f"
-msgstr "Certesa del marc guanyador: %.3f"
+msgstr "Certitud del fotograma ganhaire: %.3f"
 
-#: src/compare.py:477
+#: src/compare.py:711
+#, python-format
 msgid "Winning model: %d (\"%s\")"
-msgstr "Model guanyador: %d (\"%s\")"
+msgstr "Modèl ganhaire: %d (\"%s\")"
 
-#: src/compare.py:481
+#: src/compare.py:726
 msgid "SUCCESSFUL"
-msgstr "ÈXIT"
+msgstr "CAPITAT"
+
+#: src/enroll_capture.py:22
+msgid "Look straight at the camera"
+msgstr "Agachatz drech la camèra"
+
+#: src/enroll_capture.py:23
+msgid "Turn your head slightly to the left"
+msgstr "Viratz un pauc lo cap a esquèrra"
+
+#: src/enroll_capture.py:24
+msgid "Turn your head slightly to the right"
+msgstr "Viratz un pauc lo cap a drecha"
+
+#: src/enroll_capture.py:25
+msgid "Tilt your chin up a little"
+msgstr "Levatz un pauc lo menton"
+
+#: src/enroll_capture.py:26
+msgid "Tilt your chin down a little"
+msgstr "Baissatz un pauc lo menton"
+
+#: src/enroll_capture.py:27
+msgid "Look straight at the camera again"
+msgstr "Agachatz tornarmai drech la camèra"
+
+#: src/notify.py:375
+msgid "sudo"
+msgstr "sudo"
+
+#: src/notify.py:377
+msgid "su"
+msgstr "su"
+
+#: src/notify.py:379
+msgid "authorization"
+msgstr "autorizacion"
+
+#: src/notify.py:381
+msgid "screen unlock"
+msgstr "desblocatge de l'ecran"
+
+#: src/notify.py:418
+msgid "timeout"
+msgstr "relambi"
+
+#: src/notify.py:420
+msgid "load"
+msgstr "carga"
+
+#: src/notify.py:440
+#, python-format
+msgid "%s frames"
+msgstr "%s fotogramas"
+
+#: src/notify.py:442
+#, python-format
+msgid "%s dark"
+msgstr "%s escurs"
+
+#: src/notify.py:460
+msgid "Looking for your face…"
+msgstr "Recèrca de vòstra cara…"
+
+#: src/notify.py:470 src/notify.py:499
+msgid "Face authentication"
+msgstr "Autentificacion faciala"
+
+#: src/notify.py:514
+msgid "Face recognized"
+msgstr "Cara reconeguda"
+
+#: src/notify.py:525
+msgid "add a model in this light"
+msgstr "apondètz un modèl amb aquesta lutz"
+
+#: src/notify.py:527
+msgid "check the camera"
+msgstr "verificatz la camèra"
+
+#: src/notify.py:532
+#, python-format
+msgid "No match in %s"
+msgstr "Cap de correspondéncia en %s"
+
+#: src/notify.py:534 src/notify.py:568
+msgid "enroll: sudo ubuntu-hello add"
+msgstr "enregistrament: sudo ubuntu-hello add"
+
+#: src/notify.py:535
+msgid "closest"
+msgstr "lo mai pròche"
+
+#: src/notify.py:540 src/notify.py:553 src/notify.py:561
+msgid "Face not recognized"
+msgstr "Cara pas reconeguda"
+
+#: src/notify.py:546
+msgid "Too dark"
+msgstr "Tròp escur"
+
+#: src/notify.py:547
+msgid "turn on a light"
+msgstr "alucatz un lum"
+
+#: src/notify.py:548
+msgid "darkness"
+msgstr "escurina"
+
+#: src/notify.py:559
+msgid "Liveness check failed"
+msgstr "Verificacion de vivacitat fracassada"
+
+#: src/notify.py:567
+#, python-format
+msgid "No face model for %s"
+msgstr "Cap de modèl facial per %s"
+
+#: src/notify.py:572
+msgid "Face authentication unavailable"
+msgstr "Autentificacion faciala pas disponibla"
+
+#: src/notify.py:577
+msgid "Cancelled"
+msgstr "Anullat"
+
+#: src/notify.py:579
+msgid "Face authentication cancelled"
+msgstr "Autentificacion faciala anullada"
+
+#: src/notify.py:609
+#, python-brace-format
+msgid "{count} of {total}"
+msgstr "{count} sus {total}"
+
+#: src/notify.py:611 src/notify.py:620 src/notify.py:625
+msgid "Face enrollment"
+msgstr "Enregistrament facial"
+
+#: src/notify.py:616
+msgid "Face model saved"
+msgstr "Modèl facial enregistrat"
+
+#: src/notify.py:618
+#, python-brace-format
+msgid "{n} sample"
+msgid_plural "{n} samples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/notify.py:624
+msgid "Could not record a face model"
+msgstr "Impossible d'enregistrar un modèl facial"
 
 #: src/wallet_backend.py:62 src/wallet_backend.py:72
 msgid "KWallet"
@@ -255,285 +429,300 @@ msgstr "GNOME Keyring"
 
 #: src/wallet_backend.py:65
 msgid "None"
-msgstr "None"
+msgstr "Cap"
 
 #: src/wallet_backend.py:74
 msgid "login keyring"
-msgstr "clauer d'inici de sessió"
+msgstr "clavèr de connexion"
 
 #: src/wallet_backend.py:75
 msgid "login keyring or KWallet"
-msgstr "clau d'inici de sessió o KWallet"
+msgstr "clavèr de connexion o KWallet"
 
-#: src/cli/add.py:23
+#: src/cli/add.py:25
 msgid ""
-"\nCan't import the dlib module, check the output of"
+"\n"
+"Can't import the dlib module, check the output of"
 msgstr ""
-"\nNo es pot importar el mòdul dlib, comproveu la sortida de"
+"\n"
+"Impossible d'importar lo modul dlib, verificatz la sortida de"
 
-#: src/cli/add.py:58
+#: src/cli/add.py:60
 msgid "No face model folder found, creating one"
-msgstr "No s'ha trobat cap carpeta de models de cara, s'està creant una"
+msgstr "Cap de dossièr de modèls facials trobat, creacion en cors"
 
-#: src/cli/add.py:69
+#: src/cli/add.py:71
 msgid ""
-"NOTICE: Each additional model slows down the face recognition engine s"
-"lightly"
+"NOTICE: Each additional model slows down the face recognition engine slightly"
 msgstr ""
-"AVÍS: Cada model addicional alenteix lleugerament el motor de reconeix"
-"ement facial"
+"AVERTIMENT: cada modèl suplementari alentís un pauc lo motor de "
+"reconeissença faciala"
 
-#: src/cli/add.py:70
-msgid ""
-"Press Ctrl+C to cancel\n"
-msgstr ""
-"Premeu Ctrl+C per cancel·lar\n"
+#: src/cli/add.py:72
+msgid "Press Ctrl+C to cancel\n"
+msgstr "Quichatz Ctrl+C per anullar\n"
 
-#: src/cli/add.py:74
+#: src/cli/add.py:76
 msgid "Adding face model for the user "
-msgstr "Afegir un model de cara per a l'usuari"
+msgstr "Apondon d'un modèl facial per l'utilizaire "
 
-#: src/cli/add.py:88
+#: src/cli/add.py:90
 msgid "Model #"
-msgstr "Model #"
+msgstr "Modèl n°"
 
-#: src/cli/add.py:93
+#: src/cli/add.py:95
+#, python-format
 msgid "Using default label \"%s\" because of -y flag"
-msgstr "S'utilitza l'etiqueta predeterminada \"%s\" a causa de la bandera -y"
+msgstr "Utilizacion de l'etiqueta per defaut \"%s\" a causa de l'opcion -y"
 
-#: src/cli/add.py:97
+#: src/cli/add.py:99
 msgid "Enter a label for this new model [{}]: "
-msgstr "Introduïu una etiqueta per a aquest nou model [{}]:"
+msgstr "Picatz una etiqueta per aqueste modèl novèl [{}]: "
 
-#: src/cli/add.py:107
+#: src/cli/add.py:109
 msgid "NOTICE: Removing illegal character \",\" from model name"
-msgstr "AVÍS: eliminació del caràcter il·legal \",\" del nom del model"
+msgstr "AVERTIMENT: supression del caractèr illegal \",\" del nom del modèl"
 
-#: src/cli/add.py:121
+#: src/cli/add.py:157
 msgid ""
-"\nPlease look straight into the camera"
+"\n"
+"Please look straight into the camera"
 msgstr ""
-"\nSi us plau, mireu directament a la càmera"
+"\n"
+"Mercés d'agachar drech la camèra"
 
-#: src/cli/add.py:186
+#: src/cli/add.py:228
 msgid "Camera saw only black frames - is IR emitter working?"
-msgstr "La càmera només va veure marcs negres: funciona l'emissor IR?"
-
-#: src/cli/add.py:191
-msgid "No face detected, aborting"
-msgstr "No s'ha detectat cap cara, s'està avortant"
-
-#: src/cli/add.py:196
-msgid "Multiple faces detected, aborting"
-msgstr "S'han detectat diverses cares, s'estan avortant"
-
-#: src/cli/add.py:218
-msgid ""
-"\nScan complete\nAdded a new model to "
 msgstr ""
-"\nEscaneig completat\nS'ha afegit un nou model a"
+"La camèra a pas vist que de fotogramas negres - l'emeteire IR fonciona ben?"
+
+#: src/cli/add.py:233
+msgid "No face detected, aborting"
+msgstr "Cap de cara detectada, abandon"
+
+#: src/cli/add.py:241 src/cli/add.py:242
+msgid "Multiple faces detected, aborting"
+msgstr "Mai d'una cara detectada, abandon"
+
+#: src/cli/add.py:263
+msgid "Captured {} face samples"
+msgstr "{} escandalhs de cara capturats"
+
+#: src/cli/add.py:275
+msgid ""
+"\n"
+"Scan complete\n"
+"Added a new model to "
+msgstr ""
+"\n"
+"Captura acabada\n"
+"Modèl novèl apondut a "
 
 #: src/cli/clear.py:16
 msgid "No models created yet, can't clear them if they don't exist"
-msgstr "Encara no s'han creat models, no es poden esborrar si no existeixen"
+msgstr "Cap de modèl creat pel moment, se pòdon pas escafar s'existisson pas"
 
 #: src/cli/clear.py:21
 msgid "{} has no models or they have been cleared already"
-msgstr "{} no té models o ja s'han esborrat"
+msgstr "{} a pas cap de modèl o son ja estats escafats"
 
 #: src/cli/clear.py:27
 msgid "This will clear all models for "
-msgstr "Això esborrarà tots els models"
+msgstr "Aquò escafarà totes los modèls de "
 
 #: src/cli/clear.py:28 src/cli/remove.py:53
 msgid "Do you want to continue [y/N]: "
-msgstr "Vols continuar [y/N]:"
+msgstr "Volètz contunhar [y/N]: "
 
 #: src/cli/clear.py:32 src/cli/remove.py:57
 msgid ""
-"\nInterpreting as a \"NO\", aborting"
+"\n"
+"Interpreting as a \"NO\", aborting"
 msgstr ""
-"\nInterpretar com un \"NO\", avortar"
+"\n"
+"Interpretat coma un \"NO\", abandon"
 
 #: src/cli/clear.py:37
 msgid ""
-"\nModels cleared"
+"\n"
+"Models cleared"
 msgstr ""
-"\nModels esborrats"
+"\n"
+"Modèls escafats"
 
 #: src/cli/config.py:32
+#, python-brace-format
 msgid "Opening config.ini in {editor}"
-msgstr "Obrint config.ini a {editor}"
+msgstr "Dobertura de config.ini dins {editor}"
 
 #: src/cli/config.py:38
+#, python-brace-format
 msgid "Failed to open editor: {error}"
-msgstr "No s'ha pogut obrir l'editor: {error}"
+msgstr "Impossible de dobrir l'editor: {error}"
 
 #: src/cli/config.py:40
 msgid "Error: Could not find a suitable text editor."
-msgstr "Error: no s'ha pogut trobar un editor de text adequat."
+msgstr "Error: impossible de trobar un editor de tèxte adaptat."
 
 #: src/cli/config.py:41
 msgid "Please install 'nano' or 'vi', or set the EDITOR environment variable."
-msgstr "Instal·leu 'nano' o 'vi', o configureu la variable d'entorn EDITOR."
+msgstr ""
+"Installatz 'nano' o 'vi', o definissètz la variabla d'environament EDITOR."
 
 #: src/cli/config.py:42
 msgid ""
-"If you are running this command with sudo, try 'sudo -E ubuntu-hello c"
-"onfig' to preserve your EDITOR variable."
+"If you are running this command with sudo, try 'sudo -E ubuntu-hello config' "
+"to preserve your EDITOR variable."
 msgstr ""
-"Si esteu executant aquesta ordre amb sudo, proveu 'sudo -E ubuntu-hell"
-"o config' per conservar la vostra variable EDITOR."
+"S'executatz aquesta comanda amb sudo, ensajatz 'sudo -E ubuntu-hello config' "
+"per gardar vòstra variabla EDITOR."
 
 #: src/cli/disable.py:22
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
-msgstr "Si us plau, afegiu un 0 (activa) o un 1 (desactiva) com a argument"
+msgstr "Mercés d'apondre un 0 (activar) o un 1 (desactivar) coma argument"
 
 #: src/cli/disable.py:35
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
-msgstr "Si us plau, utilitzeu només 0 (activa) o 1 (desactiva) com a argument"
+msgstr "Mercés d'utilizar pas que 0 (activar) o 1 (desactivar) coma argument"
 
 #: src/cli/disable.py:40
 msgid "The disable option has already been set to "
-msgstr "L'opció de desactivació ja s'ha establert a"
+msgstr "L'opcion de desactivacion es ja definida a "
 
 #: src/cli/disable.py:49
 msgid "Ubuntu Hello has been disabled"
-msgstr "Ubuntu Hello s'ha desactivat"
+msgstr "Ubuntu Hello es estat desactivat"
 
 #: src/cli/disable.py:51
 msgid "Ubuntu Hello has been enabled"
-msgstr "Ubuntu Hello s'ha habilitat"
+msgstr "Ubuntu Hello es estat activat"
 
-#: src/cli/keyring.py:32 src/cli/keyring.py:148
-msgid "Usage: keyring [enable|disable|restore [--all]]"
-msgstr "Usatge : clavèr [activar|desactivar|restaurar] [--all]"
+#: src/cli/keyring.py:36 src/cli/keyring.py:156
+msgid "Usage:"
+msgstr "Usatge :"
 
-#: src/cli/keyring.py:49
+#: src/cli/keyring.py:53
 msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Introduïu la contrasenya per a l'usuari {} per desbloquejar {} ({}):"
+msgstr "Picatz lo senhal de l'utilizaire {} per desblocar {} ({}): "
 
-#: src/cli/keyring.py:51
+#: src/cli/keyring.py:55
 msgid "Password cannot be empty"
-msgstr "La contrasenya no pot estar buida"
+msgstr "Lo senhal pòt pas èsser void"
 
-#: src/cli/keyring.py:54
+#: src/cli/keyring.py:58
 msgid "Confirm password: "
-msgstr "Confirmeu la contrasenya:"
+msgstr "Confirmatz lo senhal: "
 
-#: src/cli/keyring.py:56
+#: src/cli/keyring.py:60
 msgid "Passwords do not match"
-msgstr "Les contrasenyes no coincideixen"
+msgstr "Los senhals correspondon pas"
 
-#: src/cli/keyring.py:65
+#: src/cli/keyring.py:69
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
-msgstr ""
-"S'ha detectat el maquinari TPM. S'està instal·lant automàticament tpm2"
-"-tools..."
+msgstr "Material TPM detectat. Installacion automatica de tpm2-tools..."
 
-#: src/cli/keyring.py:74
+#: src/cli/keyring.py:78
 msgid "TPM hardware active. Sealing password in TPM..."
-msgstr "Maquinari TPM actiu. Segellant la contrasenya a TPM..."
+msgstr "Material TPM actiu. Sagelatge del senhal dins lo TPM..."
 
-#: src/cli/keyring.py:100
+#: src/cli/keyring.py:104
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} using TPM ("
-"wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} using TPM "
+"(wallet: {})."
 msgstr ""
-"El desbloqueig de l'anell de claus/KWallet s'ha habilitat correctament"
-" per a l'usuari {} mitjançant TPM (cartera: {})."
-
-#: src/cli/keyring.py:102
-msgid "Failed to seal password to TPM: {}"
-msgstr "No s'ha pogut segellar la contrasenya del TPM: {}"
+"Desblocatge del clavèr/KWallet activat corrèctament per l'utilizaire {} en "
+"utilizant lo TPM (pòrtafuelh: {})."
 
 #: src/cli/keyring.py:106
+msgid "Failed to seal password to TPM: {}"
+msgstr "Impossible de sagelar lo senhal dins lo TPM: {}"
+
+#: src/cli/keyring.py:110
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
-"No hi ha TPM actiu. S'està utilitzant la memòria cau de credencials ba"
-"sada en programari..."
+"Cap de TPM actiu. Utilizacion de la mesa en cache logiciala dels "
+"identificants..."
 
-#: src/cli/keyring.py:122
+#: src/cli/keyring.py:126
 msgid ""
-"Keyring/KWallet unlocking enabled successfully for user {} (Software C"
-"aching, wallet: {})."
+"Keyring/KWallet unlocking enabled successfully for user {} (Software "
+"Caching, wallet: {})."
 msgstr ""
-"El desbloqueig de l'anell de claus/KWallet s'ha activat correctament p"
-"er a l'usuari {} (caching del programari, cartera: {})."
+"Desblocatge del clavèr/KWallet activat corrèctament per l'utilizaire {} "
+"(mesa en cache logiciala, pòrtafuelh: {})."
 
-#: src/cli/keyring.py:124
+#: src/cli/keyring.py:128
 msgid "Failed to enable keyring unlocking: {}"
-msgstr "No s'ha pogut activar el desbloqueig de l'anell de claus: {}"
+msgstr "Impossible d'activar lo desblocatge del clavèr: {}"
 
-#: src/cli/keyring.py:135
+#: src/cli/keyring.py:139
 msgid "Failed to disable keyring unlocking: {}"
-msgstr "No s'ha pogut desactivar el desbloqueig de l'anell de claus: {}"
+msgstr "Impossible de desactivar lo desblocatge del clavèr: {}"
 
-#: src/cli/keyring.py:138
+#: src/cli/keyring.py:142
 msgid "Keyring/KWallet unlocking disabled for user {}."
-msgstr "Anell de claus/KWallet desbloqueig desactivat per a l'usuari {}."
+msgstr "Desblocatge del clavèr/KWallet desactivat per l'utilizaire {}."
 
-#: src/cli/keyring.py:140
+#: src/cli/keyring.py:144
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
-msgstr ""
-"El desbloqueig de l'anell de claus/KWallet no s'ha habilitat per a l'u"
-"suari {}."
+msgstr "Lo desblocatge del clavèr/KWallet èra pas activat per l'utilizaire {}."
 
-#: src/cli/keyring.py:153
+#: src/cli/keyring.py:161
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Cap de senhal de connexion sagelat pas trobat ; res a restaurar."
 
-#: src/cli/keyring.py:155
+#: src/cli/keyring.py:163
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Senhal del pòrtafuelh de connexion restaurat per {} utilizaire(s)."
 
-#: src/cli/keyring.py:157
+#: src/cli/keyring.py:165
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
-"Impossible de restaurar lo senhal del pòrtafuelh de connexion per {} u"
-"tilizaire(s)."
+"Impossible de restaurar lo senhal del pòrtafuelh de connexion per {} "
+"utilizaire(s)."
 
-#: src/cli/keyring.py:158
+#: src/cli/keyring.py:166
 msgid ""
-"If prompts persist, set the login keyring or KWallet password in Seaho"
-"rse / System Settings."
+"If prompts persist, set the login keyring or KWallet password in Seahorse / "
+"System Settings."
 msgstr ""
-"Se las demandas contunhan, definissètz lo senhal del clavèr de connexi"
-"on o de KWallet dins Seahorse / Paramètres del sistèma."
+"Se las demandas contunhan, definissètz lo senhal del clavèr de connexion o "
+"de KWallet dins Seahorse / Paramètres del sistèma."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:169
 msgid "Restored login wallet password for user {}."
 msgstr "Senhal del pòrtafuelh de connexion restaurat per l’utilizaire {}."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:171
 msgid "Could not restore login wallet password for user {}."
 msgstr ""
-"Impossible de restaurar lo senhal del pòrtafuelh de connexion per l’ut"
-"ilizaire {}."
+"Impossible de restaurar lo senhal del pòrtafuelh de connexion per "
+"l’utilizaire {}."
 
-#: src/cli/keyring.py:167
-msgid "Invalid action. Use 'enable', 'disable', or 'restore'."
-msgstr "Accion invalida. Utilizatz «activar», «desactivar» o «restaurar»."
+#: src/cli/keyring.py:177
+msgid "Invalid action. Use one of:"
+msgstr "Accion invalida. Utilizatz una d'aquestas :"
 
 #: src/cli/list.py:17 src/cli/remove.py:25
 msgid "Face models have not been initialized yet, please run:"
-msgstr "Els models de cares encara no s'han inicialitzat, executeu:"
+msgstr ""
+"Los modèls facials son pas encara estats inicializats, mercés d'executar:"
 
 #: src/cli/list.py:29 src/cli/remove.py:36
 msgid "No face model known for the user {}, please run:"
-msgstr "No es coneix cap model de cara per a l'usuari {}, executeu:"
+msgstr "Cap de modèl facial conegut per l'utilizaire {}, mercés d'executar:"
 
 #: src/cli/list.py:35
 msgid "Known face models for {}:"
-msgstr "Models de cares coneguts per a {}:"
+msgstr "Modèls facials coneguts per {}:"
 
 #: src/cli/list.py:36
 msgid "ID  Date                 Label[0m"
-msgstr "Etiqueta de data d'identificació [0m"
+msgstr "ID  Data                 Etiqueta[0m"
 
 #: src/cli/remove.py:16
 msgid "Please add the ID of the model you want to remove as an argument"
-msgstr "Afegiu l'identificador del model que voleu eliminar com a argument"
+msgstr "Mercés d'apondre l'ID del modèl que volètz suprimir coma argument"
 
 #: src/cli/remove.py:17 src/cli/set.py:18
 msgid "For example:"
@@ -541,185 +730,202 @@ msgstr "Per exemple:"
 
 #: src/cli/remove.py:19
 msgid "You can find the IDs by running:"
-msgstr "Podeu trobar els identificadors executant:"
+msgstr "Podètz trobar los ID en executant:"
 
 #: src/cli/remove.py:52
+#, python-brace-format
 msgid "This will remove the model called \"{label}\" for {user}"
-msgstr "Això eliminarà el model anomenat \"{label}\" per a {user}"
+msgstr "Aquò suprimirà lo modèl apelat \"{label}\" per {user}"
 
 #: src/cli/remove.py:69
+#, python-brace-format
 msgid "No model with ID {id} exists for {user}"
-msgstr "No existeix cap model amb ID {id} per a {user}"
+msgstr "Existís pas cap de modèl amb l'ID {id} per {user}"
 
 #: src/cli/remove.py:75
 msgid "Removed last model, ubuntu-hello disabled for user"
-msgstr "S'ha eliminat l'últim model, ubuntu-hello està desactivat per a l'usuari"
+msgstr "Darrièr modèl suprimit, ubuntu-hello desactivat per l'utilizaire"
 
 #: src/cli/remove.py:89
 msgid "Removed model {}"
-msgstr "S'ha eliminat el model {}"
+msgstr "Modèl {} suprimit"
 
 #: src/cli/set.py:17
-msgid "Please add a setting you would like to change and the value to set it to"
+msgid ""
+"Please add a setting you would like to change and the value to set it to"
 msgstr ""
-"Si us plau, afegiu una opció de configuració que vulgueu canviar i el "
-"valor amb què establir-la"
+"Mercés d'apondre lo paramètre que volètz cambiar e la valor de li donar"
 
 #: src/cli/set.py:37
 msgid "Could not find a \"{}\" config option to set"
-msgstr "No s'ha pogut trobar una opció de configuració \"{}\" per establir"
+msgstr "Impossible de trobar una opcion de configuracion \"{}\" de definir"
 
 #: src/cli/set.py:44
 msgid "Config option updated"
-msgstr "Opció de configuració actualitzada"
+msgstr "Opcion de configuracion actualizada"
 
 #: src/cli/snap.py:43
 msgid "GENERATED SNAPSHOT"
-msgstr "INSTANTÀNIA GENERADA"
+msgstr "INSTANTANÈU GENERAT"
 
 #: src/cli/snap.py:45
 msgid "Dark threshold config: "
-msgstr "Configuració del llindar fosc:"
+msgstr "Configuracion del sulhet d'escurina: "
 
 #: src/cli/snap.py:46
 msgid "Certainty config: "
-msgstr "Configuració de certesa:"
+msgstr "Configuracion de la certitud: "
 
 #: src/cli/snap.py:50
 msgid "Generated snapshot saved as"
-msgstr "S'ha desat la instantània generada com a"
+msgstr "Instantanèu generat enregistrat jos lo nom"
 
-#: src/cli/test.py:23
+#: src/cli/test.py:25
 msgid ""
-"Ubuntu Hello has been configured to use a recorder which doesn't suppo"
-"rt the test command yet, aborting"
+"Ubuntu Hello has been configured to use a recorder which doesn't support the "
+"test command yet, aborting"
 msgstr ""
-"Ubuntu Hello s'ha configurat per utilitzar una gravadora que encara no"
-" admet l'ordre de prova, avortant"
+"Ubuntu Hello es estat configurat per utilizar un enregistrador que supòrta "
+"pas encara la comanda test, abandon"
 
-#: src/cli/test.py:34
+#: src/cli/test.py:36
 msgid ""
-"\nOpening a window with a test feed\n\nPress ctrl+C in this terminal t"
-"o quit\nClick on the image to enable or disable slow mode\n"
+"\n"
+"Opening a window with a test feed\n"
+"\n"
+"Press ctrl+C in this terminal to quit\n"
+"Click on the image to enable or disable slow mode\n"
 msgstr ""
-"\nObrint una finestra amb un feed de prova\n\nPremeu Ctrl+C en aquest "
-"terminal per sortir\nFeu clic a la imatge per activar o desactivar el "
-"mode lent\n"
+"\n"
+"Dobertura d'una fenèstra amb un flux de tèst\n"
+"\n"
+"Quichatz ctrl+C dins aqueste terminal per quitar\n"
+"Clicatz sus l'imatge per activar o desactivar lo mòde lent\n"
 
 #: src/cli/test.py:148
+#, python-format
 msgid "RESOLUTION: %dx%d"
-msgstr "RESOLUCIÓ: %dx%d"
+msgstr "RESOLUCION: %dx%d"
 
 #: src/cli/test.py:149
+#, python-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
 #: src/cli/test.py:150
+#, python-format
 msgid "FRAMES: %d"
-msgstr "MARCOS: %d"
+msgstr "FOTOGRAMAS: %d"
 
 #: src/cli/test.py:151
+#, python-format
 msgid "RECOGNITION: %dms"
-msgstr "RECONEIXEMENT: %dms"
+msgstr "RECONEISSENÇA: %dms"
 
 #: src/cli/test.py:155
 msgid "SLOW MODE"
-msgstr "MODE LENT"
+msgstr "MÒDE LENT"
 
 #: src/cli/test.py:160
 msgid "DARK FRAME"
-msgstr "MARC FOSC"
+msgstr "FOTOGRAMA ESCUR"
 
 #: src/cli/test.py:163
 msgid "SCAN FRAME"
-msgstr "ESCANEAR MARC"
+msgstr "FOTOGRAMA DE CAPTURA"
+
+#: src/cli/test.py:212
+msgid "no match"
+msgstr "cap de correspondéncia"
 
 #: src/cli/test.py:247
 msgid ""
-"\nClosing window"
+"\n"
+"Closing window"
 msgstr ""
-"\nFinestra de tancament"
+"\n"
+"Tampadura de la fenèstra"
 
-#: src/rubberstamps/__init__.py:80
+#: src/rubberstamps/__init__.py:109
 msgid "Error parsing rubberstamp rule: {}"
-msgstr "Error en analitzar la regla del segell de goma: {}"
+msgstr "Error d'analisi de la règla rubberstamp: {}"
 
-#: src/rubberstamps/__init__.py:87
+#: src/rubberstamps/__init__.py:119
 msgid "Stamp not installed: {}"
-msgstr "Segell no instal·lat: {}"
+msgstr "Estampilha pas installada: {}"
 
-#: src/rubberstamps/__init__.py:97
+#: src/rubberstamps/__init__.py:129
 msgid "Stamp error: Class {} not found"
-msgstr "Error de segell: no s'ha trobat la classe {}"
+msgstr "Error d'estampilha: classa {} pas trobada"
 
-#: src/rubberstamps/__init__.py:123
+#: src/rubberstamps/__init__.py:156
 msgid "Internal error in rubberstamp configuration declaration:"
-msgstr "Error intern a la declaració de configuració del segell de goma:"
+msgstr "Error intèrna dins la declaracion de configuracion rubberstamp:"
 
-#: src/rubberstamps/__init__.py:162
+#: src/rubberstamps/__init__.py:195
 msgid "Internal error in rubberstamp:"
-msgstr "Error intern al segell de goma:"
+msgstr "Error intèrna dins lo rubberstamp:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
-msgstr "S'està anul·lant l'autorització a {}"
+msgstr "Abandon de l'autorizacion dins {}"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Authorising in {}"
-msgstr "S'està autoritzant a {}"
+msgstr "Autorizacion dins {}"
 
 #: src/rubberstamps/hotkey.py:25
+#, python-brace-format
 msgid "Press {abort_key} to abort, {confirm_key} to authorise"
-msgstr "Premeu {abort_key} per avortar, {confirm_key} per autoritzar"
+msgstr "Quichatz {abort_key} per abandonar, {confirm_key} per autorizar"
 
 #: src/rubberstamps/hotkey.py:50
 msgid "Authentication aborted"
-msgstr "S'ha avortat l'autenticació"
+msgstr "Autentificacion abandonada"
 
-#: src/rubberstamps/nod.py:17
+#: src/rubberstamps/nod.py:30
 msgid "Nod to confirm"
-msgstr "Assenteix per confirmar"
+msgstr "Sinhatz del cap per confirmar"
 
-#: src/rubberstamps/nod.py:18
+#: src/rubberstamps/nod.py:31
 msgid "Shake your head to abort"
-msgstr "Sacseja el cap per avortar"
+msgstr "Brandatz lo cap per abandonar"
 
-#: src/rubberstamps/nod.py:81
+#: src/rubberstamps/nod.py:97
 msgid "Confirmed authentication"
-msgstr "Autenticació confirmada"
+msgstr "Autentificacion confirmada"
 
-#: src/rubberstamps/nod.py:84
+#: src/rubberstamps/nod.py:100
 msgid "Aborted authentication"
-msgstr "Autenticació avortada"
+msgstr "Autentificacion abandonada"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
-msgstr "Falta el mòdul ffmpeg, executeu:"
+msgstr "Modul ffmpeg mancant, mercés d'executar:"
 
 #: src/recorders/pyv4l2_reader.py:15
 msgid "Missing pyv4l2 module, please run:"
-msgstr "Falta el mòdul pyv4l2, executeu:"
+msgstr "Modul pyv4l2 mancant, mercés d'executar:"
 
 #: src/recorders/video_capture.py:57
 msgid ""
-"Ubuntu Hello could not find a camera device at the path specified in t"
-"he config file."
+"Ubuntu Hello could not find a camera device at the path specified in the "
+"config file."
 msgstr ""
-"Ubuntu Hello no ha pogut trobar un dispositiu de càmera al camí especi"
-"ficat al fitxer de configuració."
+"Ubuntu Hello a pas pogut trobar cap de periferic de camèra al camin "
+"especificat dins lo fichièr de configuracion."
 
 #: src/recorders/video_capture.py:58
 msgid ""
-"It is very likely that the path is not configured correctly, please ed"
-"it the 'device_path' config value by running:"
+"It is very likely that the path is not configured correctly, please edit the "
+"'device_path' config value by running:"
 msgstr ""
-"És molt probable que el camí no estigui configurat correctament, edite"
-"u el valor de configuració \"device_path\" executant:"
+"Es fòrça probable que lo camin siá pas configurat corrèctament, mercés de "
+"modificar la valor de configuracion 'device_path' en executant:"
 
 #: src/recorders/video_capture.py:118
 msgid ""
-"Failed to read camera specified in the 'device_path' config option, ab"
-"orting"
+"Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""
-"No s'ha pogut llegir la càmera especificada a l'opció de configuració "
-"'device_path', s'està avortant"
+"Impossible de legir la camèra especificada dins l'opcion de configuracion "
+"'device_path', abandon"

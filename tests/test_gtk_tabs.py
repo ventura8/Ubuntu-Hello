@@ -156,41 +156,59 @@ class TestTabModels:
         mock.load_model_list.assert_called_once()
         mock.update_keyring_status.assert_called_once()
 
+    @staticmethod
+    def _fake_enroll(status, output):
+        calls = []
+
+        def run_add(cmd, on_guide, on_progress, on_done, **kw):
+            calls.append(cmd)
+            on_guide("left")
+            on_progress(2, 13)
+            on_done(status, output)
+        run_add.calls = calls
+        return run_add
+
     def test_execute_add_success(self):
         box = MagicMock()
         box.active_user = "testuser"
         dialog = MagicMock()
+        guide, progress = MagicMock(), MagicMock()
 
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = "ok"
-        mock_result.stderr = ""
-
-        with patch("subprocess.run", return_value=mock_result) as mock_run:
-            tab_models.execute_add(box, dialog, "model1")
+        fake = self._fake_enroll(0, "ok")
+        with patch("tab_models.enroll.run_add", fake):
+            tab_models.execute_add(box, dialog, "model1", guide, progress)
             dialog.destroy.assert_called_once()
             box.load_model_list.assert_called_once()
-            mock_run.assert_called_once_with(
-                ["ubuntu-hello", "-y", "-U", "testuser", "add", "model1"],
-                capture_output=True,
-                text=True,
-            )
+            assert fake.calls == [["ubuntu-hello", "-y", "-U", "testuser", "add", "model1"]]
+            guide.set_text.assert_called_with("Turn your head slightly to the left")
+            progress.set_text.assert_called_with("Recording… 2 of 13")
+
+    def test_execute_add_does_not_block_the_main_loop(self):
+        """`add` takes ~10 s now (guided capture): it must run on a worker thread."""
+        box = MagicMock()
+        box.active_user = "u"
+        started = []
+        with patch("tab_models.enroll.run_add", side_effect=lambda *a, **k: started.append(a)) as run_add, \
+             patch("subprocess.run") as run:
+            assert tab_models.execute_add(box, MagicMock(), "m") is False
+        run.assert_not_called()
+        run_add.assert_called_once()
+        assert started[0][0] == ["ubuntu-hello", "-y", "-U", "u", "add", "m"]
 
     def test_execute_add_failure(self):
         box = MagicMock()
         box.active_user = "testuser"
         dialog = MagicMock()
 
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stdout = ""
-        mock_result.stderr = "error"
-
-        with patch("subprocess.run", return_value=mock_result), \
-             patch("tab_models.gtk.MessageDialog") as mock_err:
-            err_dialog = mock_err.return_value
+        with patch("tab_models.enroll.run_add", self._fake_enroll(1, "error")), \
+             patch("tab_models.gtk4compat.alert") as alert:
             tab_models.execute_add(box, dialog, "model1")
-            err_dialog.run.assert_called_once()
+            alert.assert_called_once()
+            assert alert.call_args.args[0] is box.window
+            assert "error code 1" in alert.call_args.args[1]
+            assert alert.call_args.args[2] == "error"
+            dialog.destroy.assert_called_once()
+            box.load_model_list.assert_called_once()
 
 
 # ── tab_video functions ─────────────────────────────────────────────
@@ -206,17 +224,20 @@ class SyncThread:
 
 class TestTabVideo:
     def test_get_camera_devices_no_dir(self):
-        with patch("os.path.exists", return_value=False), \
+        with patch("os.listdir", side_effect=FileNotFoundError("no by-path")), \
              patch("glob.glob", return_value=[]):
-            result = tab_video.get_camera_devices()
-            assert result == []
+            assert tab_video.get_camera_devices() == []
 
     def test_get_camera_devices_exception(self):
-        with patch("os.path.exists", return_value=True), \
-             patch("os.listdir", side_effect=Exception("mock error")), \
-             patch("glob.glob", return_value=["/dev/video1"]):
-            result = tab_video.get_camera_devices()
-            assert result == ["/dev/video1"]
+        with patch("os.listdir", side_effect=Exception("mock error")), \
+             patch("glob.glob", return_value=["/dev/video1"]), \
+             patch("tab_video.camera_names._udev_props_for", return_value={}):
+            assert tab_video.get_camera_devices() == ["/dev/video1"]
+            assert tab_video.get_camera_entries() == [("/dev/video1", "video1")]
+
+    def test_get_camera_entries_swallow_listing_errors(self):
+        with patch("tab_video.camera_names.list_capture_devices", side_effect=RuntimeError("boom")):
+            assert tab_video.get_camera_entries() == []
 
     def test_capture_frame_none(self):
         mock = MagicMock()
@@ -229,6 +250,7 @@ class TestTabVideo:
         mock.capture = MagicMock()
         mock_combo = MagicMock()
         mock_combo.get_active_text.return_value = "/dev/video0"
+        mock_combo.get_active_id.return_value = "/dev/video0"
         
         mock.cv2 = MagicMock()
         mock.cv2.VideoCapture.side_effect = Exception("mock error")
@@ -264,6 +286,7 @@ class TestTabVideo:
         mock.populating_cameras = False
         combo = MagicMock()
         combo.get_active_text.return_value = None
+        combo.get_active_id.return_value = None
         tab_video.on_camera_change(mock, combo)
 
     def test_on_page_switch_not_1(self):
@@ -305,14 +328,14 @@ class TestTabVideo:
 
         with patch("tab_video.configparser.ConfigParser", return_value=mock_config), \
              patch("tab_video.paths_factory.config_file_path", return_value="/mock/config.ini"), \
-             patch("tab_video.get_camera_devices", return_value=["/dev/video0", "/dev/video1"]), \
+             patch("tab_video.get_camera_entries", return_value=[("/dev/video0", "Cam 0"), ("/dev/video1", "Cam 1")]), \
              patch("tab_video.gobject.timeout_add") as mock_timeout, \
              patch("threading.Thread", SyncThread), \
              patch("gi.repository.GLib.idle_add", side_effect=lambda func, *args, **kwargs: func(*args, **kwargs)):
             
             tab_video.on_page_switch(mock, MagicMock(), MagicMock(), 1)
             mock_widgets["cameraselect"].remove_all.assert_called_once()
-            mock_widgets["cameraselect"].append_text.assert_any_call("/dev/video0")
+            assert mock_widgets["cameraselect"].append.call_args_list[0].args[0] == "/dev/video0"   # id = path, text = brand/model
             mock_widgets["cameraselect"].set_active.assert_called_with(0)
             assert mock.scaling_factor == 300 / 640.0
             mock_widgets["videores"].set_text.assert_called_with("640x480")
@@ -357,6 +380,7 @@ class TestTabVideo:
         
         mock_combo = MagicMock()
         mock_combo.get_active_text.return_value = "/dev/video1"
+        mock_combo.get_active_id.return_value = "/dev/video1"
 
         mock_capture = MagicMock()
         mock_capture.get.side_effect = lambda prop: 480 if prop == 4 else 640
@@ -398,6 +422,7 @@ class TestTabVideo:
 
         mock_combo = MagicMock()
         mock_combo.get_active_text.return_value = "/dev/video1"
+        mock_combo.get_active_id.return_value = "/dev/video1"
 
         mock_capture = MagicMock()
         mock_capture.get.side_effect = lambda prop: 480 if prop == 4 else 640
@@ -451,6 +476,7 @@ class TestTabVideo:
         mock_loader.get_pixbuf.return_value = mock_pixbuf_obj
         
         with patch("tab_video.pixbuf.PixbufLoader", return_value=mock_loader), \
+             patch("tab_video.gtk4compat.pixbuf_to_texture", return_value="texture") as to_texture, \
              patch("tab_video.gobject.timeout_add") as mock_timeout:
             
             tab_video.capture_frame(mock)
@@ -458,7 +484,8 @@ class TestTabVideo:
             mock.cv2.imencode.assert_called_with(".png", mock_resized)
             mock_loader.write.assert_called_with(b"png_data")
             mock_loader.close.assert_called_once()
-            mock.opencvimage.set_from_pixbuf.assert_called_with(mock_pixbuf_obj)
+            to_texture.assert_called_with(mock_pixbuf_obj)
+            mock.opencvimage.set_paintable.assert_called_with("texture")
             mock_timeout.assert_called_once_with(20, mock.capture_frame)
 
     def test_capture_frame_read_fail(self):
@@ -479,316 +506,183 @@ class TestKeyringDetails:
         dialog = tab_keyring.KeyringPasswordDialog(parent, "testuser")
         assert dialog is not None
 
-    def test_on_keyring_enable_empty_password(self):
+    def _enable(self, password, verify=True, run=None):
         mock = MagicMock()
         mock.active_user = "testuser"
         mock.window = MagicMock()
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            dialog = mock_dialog_cls.return_value
+        patches = [
+            patch("tab_keyring.KeyringPasswordDialog"),
+            patch("tab_keyring.auth_helper.verify_user_password", return_value=verify),
+            patch("tab_keyring.gtk4compat.alert"),
+        ]
+        if run is not None:
+            patches.append(patch("tab_keyring.subprocess.run", **run))
+        with patches[0] as dialog_cls, patches[1], patches[2] as alert, \
+             (patches[3] if len(patches) > 3 else patch("tab_keyring.subprocess.run")) as mock_run:
+            dialog = dialog_cls.return_value
             dialog.run.return_value = 1  # ResponseType.OK
-            dialog.entry1.get_text.return_value = ""  # empty
-            
+            dialog.entry1.get_text.return_value = password
             tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_msg_dialog_cls.assert_called_once()
-            err_dialog = mock_msg_dialog_cls.return_value
-            err_dialog.run.assert_called_once()
+            return mock, alert, mock_run
+
+    def test_on_keyring_enable_empty_password(self):
+        mock, alert, mock_run = self._enable("")
+        alert.assert_called_once_with(mock.window, "Password cannot be empty")
+        mock_run.assert_not_called()
 
     def test_on_keyring_enable_incorrect_password(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=False), \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1  # ResponseType.OK
-            dialog.entry1.get_text.return_value = "wrongpass"
-            
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_msg_dialog_cls.assert_called_once()
-            err_dialog = mock_msg_dialog_cls.return_value
-            err_dialog.run.assert_called_once()
+        mock, alert, mock_run = self._enable("wrongpass", verify=False)
+        alert.assert_called_once_with(mock.window, "Incorrect password for user testuser")
+        mock_run.assert_not_called()
 
     def test_on_keyring_enable_cli_success(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        mock_res = MagicMock()
-        mock_res.returncode = 0
-        mock_res.stdout = "ok"
-        mock_res.stderr = ""
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("tab_keyring.subprocess.run", return_value=mock_res) as mock_run, \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
-
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_run.assert_called_once()
-            args, kwargs = mock_run.call_args
-            assert args[0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
-            assert kwargs["input"] == "correctpass\n"
-            mock_msg_dialog_cls.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
+        res = MagicMock(returncode=0, stdout="ok", stderr="")
+        mock, alert, mock_run = self._enable("correctpass", run={"return_value": res})
+        mock_run.assert_called_once()
+        args, kwargs = mock_run.call_args
+        assert args[0] == ["ubuntu-hello", "keyring", "enable", "-U", "testuser"]
+        assert kwargs["input"] == "correctpass\n"
+        alert.assert_called_once()
+        assert "enabled successfully" in alert.call_args.args[1]
+        mock.update_keyring_status.assert_called_once()
 
     def test_on_keyring_enable_cli_failure(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        mock_res = MagicMock()
-        mock_res.returncode = 1
-        mock_res.stdout = ""
-        mock_res.stderr = "seal failed"
-
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("tab_keyring.subprocess.run", return_value=mock_res), \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
-
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_msg_dialog_cls.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
+        res = MagicMock(returncode=1, stdout="", stderr="seal failed")
+        mock, alert, _ = self._enable("correctpass", run={"return_value": res})
+        alert.assert_called_once()
+        assert "seal failed" in alert.call_args.args[1]
+        mock.update_keyring_status.assert_called_once()
 
     def test_on_keyring_enable_cli_exception(self):
+        mock, alert, _ = self._enable("correctpass", run={"side_effect": FileNotFoundError("ubuntu-hello")})
+        alert.assert_called_once()
+        assert "Failed to enable keyring unlocking" in alert.call_args.args[1]
+
+    def _disable(self, exists, unlink, confirm=1):
         mock = MagicMock()
         mock.active_user = "testuser"
         mock.window = MagicMock()
+        with patch("tab_keyring.gtk4compat.alert", side_effect=[confirm, 0]) as alert, \
+             patch("os.path.exists", **exists), \
+             patch("os.unlink", **unlink) as mock_unlink:
+            tab_keyring.on_keyring_disable(mock, MagicMock())
+            return mock, alert, mock_unlink
 
-        with patch("tab_keyring.KeyringPasswordDialog") as mock_dialog_cls, \
-             patch("tab_keyring.auth_helper.verify_user_password", return_value=True), \
-             patch("tab_keyring.subprocess.run", side_effect=FileNotFoundError("ubuntu-hello")), \
-             patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls:
-
-            dialog = mock_dialog_cls.return_value
-            dialog.run.return_value = 1
-            dialog.entry1.get_text.return_value = "correctpass"
-
-            tab_keyring.on_keyring_enable(mock, MagicMock())
-            mock_msg_dialog_cls.assert_called_once()
+    def test_on_keyring_disable_cancelled(self):
+        mock, alert, mock_unlink = self._disable({"return_value": True}, {}, confirm=0)
+        alert.assert_called_once()
+        assert alert.call_args.kwargs["buttons"][1] == "Disable Auto-Unlock"
+        mock_unlink.assert_not_called()
+        mock.update_keyring_status.assert_not_called()
 
     def test_on_keyring_disable_success(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        with patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls, \
-             patch("os.path.exists", return_value=True), \
-             patch("os.unlink") as mock_unlink:
-            
-            mock_confirm = MagicMock()
-            mock_confirm.run.return_value = 3  # ResponseType.YES
-            mock_success = MagicMock()
-            mock_msg_dialog_cls.side_effect = [mock_confirm, mock_success]
-
-            tab_keyring.on_keyring_disable(mock, MagicMock())
-
-            assert mock_unlink.call_count == 4
-            mock_success.run.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
+        mock, alert, mock_unlink = self._disable({"return_value": True}, {})
+        assert mock_unlink.call_count == 4
+        assert alert.call_count == 2
+        assert "disabled for user testuser" in alert.call_args_list[1].args[1]
+        mock.update_keyring_status.assert_called_once()
 
     def test_on_keyring_disable_partial_files(self):
         """Some keyring paths missing — cover exists False branch in disable loop."""
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
         calls = {"n": 0}
 
         def exists(_path):
             calls["n"] += 1
             return calls["n"] % 2 == 1
 
-        with patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls, \
-             patch("os.path.exists", side_effect=exists), \
-             patch("os.unlink") as mock_unlink:
-            mock_confirm = MagicMock()
-            mock_confirm.run.return_value = 3
-            mock_success = MagicMock()
-            mock_msg_dialog_cls.side_effect = [mock_confirm, mock_success]
-            tab_keyring.on_keyring_disable(mock, MagicMock())
-            assert mock_unlink.call_count == 2
+        _, _, mock_unlink = self._disable({"side_effect": exists}, {})
+        assert mock_unlink.call_count == 2
 
     def test_on_keyring_disable_failure(self):
-        mock = MagicMock()
-        mock.active_user = "testuser"
-        mock.window = MagicMock()
-
-        with patch("tab_keyring.gtk.MessageDialog") as mock_msg_dialog_cls, \
-             patch("os.path.exists", return_value=True), \
-             patch("os.unlink", side_effect=PermissionError("no permission")):
-            
-            mock_confirm = MagicMock()
-            mock_confirm.run.return_value = 3  # ResponseType.YES
-            mock_error = MagicMock()
-            mock_msg_dialog_cls.side_effect = [mock_confirm, mock_error]
-
-            tab_keyring.on_keyring_disable(mock, MagicMock())
-
-            mock_error.run.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
+        mock, alert, _ = self._disable({"return_value": True}, {"side_effect": PermissionError("no permission")})
+        assert "Failed to disable keyring unlocking" in alert.call_args_list[1].args[1]
+        mock.update_keyring_status.assert_called_once()
 
 
 # ── Additional tab_models tests ──────────────────────────────────────
 
 class TestTabModelsDetails:
-    def test_on_user_add_ok(self):
-        mock = MagicMock()
-        mock.userlist = MagicMock()
-        mock.userlist.items = 5
-        
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 1  # ResponseType.OK
-        
-        mock_entry = MagicMock()
-        mock_entry.get_text.return_value = "newuser"
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("tab_models.gtk.Entry", return_value=mock_entry):
-            
-            tab_models.on_user_add(mock, MagicMock())
-            mock.userlist.append_text.assert_called_with("newuser")
-            mock.userlist.set_active.assert_called_with(5)
-            assert mock.userlist.items == 6
-            assert mock.active_user == "newuser"
-            mock.load_model_list.assert_called_once()
-            mock.update_keyring_status.assert_called_once()
-
-    def test_on_user_add_cancel(self):
-        mock = MagicMock()
-        mock.userlist = MagicMock()
-        mock.userlist.items = 5
-
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 2  # ResponseType.CANCEL
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("tab_models.gtk.Entry"):
-            
-            tab_models.on_user_add(mock, MagicMock())
-            mock.userlist.append_text.assert_not_called()
-
     def test_on_model_add_no_user(self):
         mock = MagicMock()
         mock.userlist.items = 0
-        tab_models.on_model_add(mock, MagicMock())
+        with patch("tab_models.gtk4compat.PromptWindow") as prompt:
+            tab_models.on_model_add(mock, MagicMock())
+            prompt.assert_not_called()
 
     def test_on_model_add_cancel(self):
         mock = MagicMock()
         mock.userlist.items = 1
-        
         mock_dialog = MagicMock()
         mock_dialog.run.return_value = 2  # ResponseType.CANCEL
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
-             patch("tab_models.gtk.Entry"):
-            
+        with patch("tab_models.gtk4compat.PromptWindow", return_value=mock_dialog) as prompt, \
+             patch("tab_models.gtk.Entry"), \
+             patch("tab_models.gobject.timeout_add") as mock_timeout:
             tab_models.on_model_add(mock, MagicMock())
+            prompt.assert_called_once()
+            mock_dialog.destroy.assert_called_once()
+            mock_timeout.assert_not_called()
 
     def test_on_model_add_ok(self):
         mock = MagicMock()
         mock.userlist.items = 1
-        
         mock_confirm_dialog = MagicMock()
         mock_confirm_dialog.run.return_value = 1  # ResponseType.OK
-        
         mock_creating_dialog = MagicMock()
-        
         mock_entry = MagicMock()
         mock_entry.get_text.return_value = "newmodel"
 
-        with patch("tab_models.gtk.MessageDialog", side_effect=[mock_confirm_dialog, mock_creating_dialog]), \
+        with patch("tab_models.gtk4compat.PromptWindow", side_effect=[mock_confirm_dialog, mock_creating_dialog]), \
              patch("tab_models.gtk.Entry", return_value=mock_entry), \
              patch("tab_models.gobject.timeout_add") as mock_timeout:
-            
             tab_models.on_model_add(mock, MagicMock())
+            mock_entry.set_max_length.assert_called_once_with(24)
+            mock_creating_dialog.present.assert_called_once()
             mock_timeout.assert_called_once()
-            args = mock_timeout.call_args[0]
-            callback = args[1]
-            
+            callback = mock_timeout.call_args[0][1]
             with patch("tab_models.execute_add") as mock_execute_add:
                 callback()
-                mock_execute_add.assert_called_once_with(mock, mock_creating_dialog, "newmodel")
+                args = mock_execute_add.call_args.args
+                assert args[:3] == (mock, mock_creating_dialog, "newmodel")
+                assert len(args) == 5  # guide + progress labels for the live prompts
 
     def test_on_model_delete_empty(self):
         mock = MagicMock()
-        mock_selection = mock.treeview.get_selection.return_value
-        mock_selection.get_selected_rows.return_value = (MagicMock(), [])
-
-        tab_models.on_model_delete(mock, MagicMock())
+        mock.models.selected_row.return_value = None
+        with patch("tab_models.gtk4compat.alert") as alert:
+            tab_models.on_model_delete(mock, MagicMock())
+            alert.assert_not_called()
 
     def test_on_model_delete_cancel(self):
         mock = MagicMock()
-        mock_selection = mock.treeview.get_selection.return_value
-        
-        mock_listmodel = MagicMock()
-        mock_listmodel.get_value.side_effect = lambda iter, idx: "1" if idx == 0 else "model1"
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
-
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 2  # ResponseType.CANCEL
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog):
+        mock.models.selected_row.return_value = ["1", "2026-01-01", "model1"]
+        with patch("tab_models.gtk4compat.alert", return_value=0) as alert, \
+             patch("subprocess.run") as mock_run:
             tab_models.on_model_delete(mock, MagicMock())
+            assert "model 1 (model1)" in alert.call_args.args[1]
+            mock_run.assert_not_called()
 
     def test_on_model_delete_success(self):
         mock = MagicMock()
         mock.active_user = "testuser"
-        mock_selection = mock.treeview.get_selection.return_value
-        
-        mock_listmodel = MagicMock()
-        mock_listmodel.get_value.side_effect = lambda iter, idx: "123" if idx == 0 else "model1"
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
-
-        mock_dialog = MagicMock()
-        mock_dialog.run.return_value = 1  # ResponseType.OK
-
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = "success"
-        mock_result.stderr = ""
-
-        with patch("tab_models.gtk.MessageDialog", return_value=mock_dialog), \
+        mock.models.selected_row.return_value = ["123", "2026-01-01", "model1"]
+        mock_result = MagicMock(returncode=0, stdout="success", stderr="")
+        with patch("tab_models.gtk4compat.alert", return_value=1) as alert, \
              patch("subprocess.run", return_value=mock_result) as mock_run:
-            
             tab_models.on_model_delete(mock, MagicMock())
             mock_run.assert_called_once_with(["ubuntu-hello", "remove", "123", "-y", "-U", "testuser"], capture_output=True, text=True)
+            alert.assert_called_once()
             mock.load_model_list.assert_called_once()
 
     def test_on_model_delete_failure(self):
         mock = MagicMock()
         mock.active_user = "testuser"
-        mock_selection = mock.treeview.get_selection.return_value
-        
-        mock_listmodel = MagicMock()
-        mock_listmodel.get_value.side_effect = lambda iter, idx: "123" if idx == 0 else "model1"
-        mock_selection.get_selected_rows.return_value = (mock_listmodel, ["row1"])
-
-        mock_confirm = MagicMock()
-        mock_confirm.run.return_value = 1
-        mock_error = MagicMock()
-
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stdout = ""
-        mock_result.stderr = "some error"
-        
-        with patch("tab_models.gtk.MessageDialog", side_effect=[mock_confirm, mock_error]), \
+        mock.models.selected_row.return_value = ["123", "2026-01-01", "model1"]
+        mock_result = MagicMock(returncode=1, stdout="", stderr="some error")
+        with patch("tab_models.gtk4compat.alert", side_effect=[1, 0]) as alert, \
              patch("subprocess.run", return_value=mock_result):
-            
             tab_models.on_model_delete(mock, MagicMock())
-            mock_error.run.assert_called_once()
+            assert alert.call_count == 2
+            assert alert.call_args_list[1].args[2] == "some error"
             mock.load_model_list.assert_called_once()
 
 

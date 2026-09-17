@@ -4,6 +4,9 @@
 	<a href="https://github.com/ventura8/ubuntu-hello/releases">
 		<img src="https://img.shields.io/github/release/ventura8/ubuntu-hello.svg?colorB=4c1">
 	</a>
+	<a href="https://github.com/ventura8/ubuntu-hello/releases">
+		<img src="https://img.shields.io/github/downloads/ventura8/ubuntu-hello/total.svg?colorB=4c1&label=downloads" alt="Release downloads">
+	</a>
 	<a href="https://github.com/ventura8/ubuntu-hello/graphs/contributors">
 		<img src="https://img.shields.io/github/contributors/ventura8/ubuntu-hello.svg?style=flat">
 	</a>
@@ -97,7 +100,7 @@ Install dependencies on Ubuntu/Debian:
 sudo apt-get update && sudo apt-get install -y \
   python3 python3-pip python3-dev python3-setuptools python3-wheel \
   python3-numpy python3-opencv python3-gi python3-gi-cairo \
-  gir1.2-gtk-3.0 \
+  python3-babel gir1.2-gtk-4.0 \
   cmake make build-essential g++ \
   libpam0g-dev libinih-dev libevdev-dev libopencv-dev \
   libboost-all-dev pkg-config \

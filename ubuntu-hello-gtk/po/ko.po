@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.1.3\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-08-12 03:05+0300\n"
+"POT-Creation-Date: 2026-09-17 09:47+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -15,621 +15,874 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Created"
 msgstr "생성됨"
 
-#: src/window.py:91
+#: src/window.py:122
 msgid "Label"
 msgstr "상표"
 
-#: src/window.py:189
+#: src/window.py:228
 msgid "Automatic"
 msgstr "오토매틱"
 
-#: src/onboarding.py:29 src/tab_keyring.py:15
-msgid "Enable Keyring/KWallet Unlocking"
-msgstr "키링 활성화/KWallet 잠금 해제"
+#: src/onboarding.py:206 src/onboarding.ui:293
+msgid "Adding your face models"
+msgstr "얼굴 모델 추가하기"
 
-#: src/onboarding.py:42 src/tab_keyring.py:28
-msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
-msgstr "{}({})를 잠금 해제하려면 <b>{}</b> 사용자의 비밀번호를 입력하세요."
-
-#: src/onboarding.py:49 src/tab_keyring.py:35 src/onboarding.glade:171
-msgid "Password"
-msgstr "비밀번호"
-
-#: src/onboarding.py:170
+#: src/onboarding.py:209 src/onboarding.ui:309
 msgid ""
-"Datafiles have already been downloaded!\nClick Next to continue"
+"Ubuntu Hello records your face from a few angles in about a minute: keep "
+"your face inside the preview and follow the prompts (look straight, turn "
+"slightly left and right, chin up and down). Afterwards a second, optional "
+"scan — with glasses, different facial hair or other lighting — makes "
+"recognition even more reliable at any time of day."
 msgstr ""
-"데이터파일이 이미 다운로드되었습니다!\n계속하려면 다음을 클릭하세요."
+"Ubuntu Hello는 약 1분 동안 여러 각도에서 얼굴을 기록합니다. 얼굴을 미리보기 "
+"안에 두고 안내를 따르세요(정면 보기, 살짝 좌우로 돌리기, 턱 올리고 내리기). "
+"그 후 선택 사항인 두 번째 스캔(안경 착용, 다른 수염, 다른 조명)을 하면 하루 "
+"중 언제든 인식이 더욱 안정적입니다."
 
-#: src/onboarding.py:200
-msgid "Error while downloading datafiles"
-msgstr "데이터 파일을 다운로드하는 중 오류가 발생했습니다."
-
-#: src/onboarding.py:203
-msgid ""
-"Done!\nClick Next to continue"
-msgstr ""
-"완료!\n계속하려면 다음을 클릭하세요."
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Error while importing OpenCV2"
-msgstr "OpenCV2를 가져오는 중 오류가 발생했습니다."
-
-#: src/onboarding.py:230 src/onboarding.py:336
-msgid "Try reinstalling cv2"
-msgstr "cv2를 다시 설치해 보세요."
-
-#: src/onboarding.py:237
-msgid "No webcams found on system"
-msgstr "시스템에서 웹캠을 찾을 수 없습니다."
-
-#: src/onboarding.py:237
-msgid ""
-"Please configure your camera yourself if you are sure a compatible cam"
-"era is connected"
-msgstr "호환되는 카메라가 연결되어 있다고 확신하는 경우 카메라를 직접 구성하세요."
-
-#: src/onboarding.py:265
-msgid "No, camera can't be opened"
-msgstr "아니요, 카메라를 열 수 없습니다."
-
-#: src/onboarding.py:274
-msgid "No, not an infrared camera"
-msgstr "아니요, 적외선 카메라가 아닙니다."
-
-#: src/onboarding.py:278
-msgid "Yes, compatible infrared camera"
-msgstr "예, 호환되는 적외선 카메라"
-
-#: src/onboarding.py:290
-msgid "Camera identifier or path"
-msgstr "카메라 식별자 또는 경로"
-
-#: src/onboarding.py:290
-msgid "Recommended"
-msgstr "추천"
-
-#: src/onboarding.py:349 src/onboarding.py:390
-msgid "Error selecting camera"
-msgstr "카메라 선택 오류"
-
-#: src/onboarding.py:362
-msgid "The selected camera cannot be opened"
-msgstr "선택한 카메라를 열 수 없습니다"
-
-#: src/onboarding.py:362
-msgid "Try to select another one"
-msgstr "다른 것을 선택해 보세요"
-
-#: src/onboarding.py:374
-msgid ""
-"Please visit\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-em"
-"itter\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nto en"
-"able your ir emitter"
-msgstr ""
-"방문해주세요\n<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter"
-"\">https://github.com/EmixamPP/linux-enable-ir-emitter</a>\nIR 이미 터를 활"
-"성화하려면"
-
-#: src/onboarding.py:415 src/tab_models.py:78 src/onboarding.glade:492
+#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "카메라를 똑바로 바라보세요"
 
-#: src/onboarding.py:432 src/onboarding.glade:514
+#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "얼굴 스캔 시작"
 
-#: src/onboarding.py:434
+#: src/onboarding.py:279
+msgid ""
+"Datafiles have already been downloaded!\n"
+"Click Next to continue"
+msgstr ""
+"데이터파일이 이미 다운로드되었습니다!\n"
+"계속하려면 다음을 클릭하세요."
+
+#: src/onboarding.py:316
+msgid "Error while downloading datafiles"
+msgstr "데이터 파일을 다운로드하는 중 오류가 발생했습니다."
+
+#: src/onboarding.py:319
+msgid ""
+"Done!\n"
+"Click Next to continue"
+msgstr ""
+"완료!\n"
+"계속하려면 다음을 클릭하세요."
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Error while importing OpenCV2"
+msgstr "OpenCV2를 가져오는 중 오류가 발생했습니다."
+
+#: src/onboarding.py:371 src/onboarding.py:564
+msgid "Try reinstalling cv2"
+msgstr "cv2를 다시 설치해 보세요."
+
+#: src/onboarding.py:382
+msgid "No webcams found on system"
+msgstr "시스템에서 웹캠을 찾을 수 없습니다."
+
+#: src/onboarding.py:382
+msgid ""
+"Please configure your camera yourself if you are sure a compatible camera is "
+"connected"
+msgstr ""
+"호환되는 카메라가 연결되어 있다고 확신하는 경우 카메라를 직접 구성하세요."
+
+#: src/onboarding.py:455
+msgid "No, camera can't be opened"
+msgstr "아니요, 카메라를 열 수 없습니다."
+
+#: src/onboarding.py:467
+msgid "No, not an infrared camera"
+msgstr "아니요, 적외선 카메라가 아닙니다."
+
+#: src/onboarding.py:471
+msgid "Yes, compatible infrared camera"
+msgstr "예, 호환되는 적외선 카메라"
+
+#: src/onboarding.py:488
+msgid "Camera identifier or path"
+msgstr "카메라 식별자 또는 경로"
+
+#: src/onboarding.py:488
+msgid "Recommended"
+msgstr "추천"
+
+#: src/onboarding.py:568 src/onboarding.py:607
+msgid "Error selecting camera"
+msgstr "카메라 선택 오류"
+
+#: src/onboarding.py:582
+msgid "The selected camera cannot be opened"
+msgstr "선택한 카메라를 열 수 없습니다"
+
+#: src/onboarding.py:582
+msgid "Try to select another one"
+msgstr "다른 것을 선택해 보세요"
+
+#: src/onboarding.py:597
+msgid ""
+"Please visit\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"to enable your ir emitter"
+msgstr ""
+"방문해주세요\n"
+"<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
+"github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
+"IR 이미 터를 활성화하려면"
+
+#: src/onboarding.py:665
+msgid "Setup lighting 1"
+msgstr "설정 조명 1"
+
+#: src/onboarding.py:666
+msgid "Setup lighting 2"
+msgstr "설정 조명 2"
+
+#: src/onboarding.py:707
 msgid "Can't save face model"
 msgstr "얼굴 모델을 저장할 수 없습니다."
 
-#: src/onboarding.py:446
+#: src/onboarding.py:712 src/onboarding.py:759
+msgid "Scan second model"
+msgstr "두 번째 모델 스캔"
+
+#: src/onboarding.py:718
+msgid "Couldn't record the second model"
+msgstr "두 번째 모델을 기록하지 못했습니다"
+
+#: src/onboarding.py:719
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Checking TPM hardware a"
-"nd tools..."
+"Your first model is saved, so face login already works. The room must still "
+"be bright enough to see your face — change the light rather than turning it "
+"off — then try again, or skip and add a model later from Settings."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
-"M 상태:</b> TPM 하드웨어 및 도구를 확인하는 중..."
+"첫 번째 모델이 저장되었으므로 얼굴 로그인이 이미 작동하고 있습니다. 방은 여전"
+"히 ​​얼굴을 볼 수 있을 만큼 밝아야 합니다. 조명을 끄지 말고 조명을 변경한 다음 "
+"다시 시도하거나 건너뛰고 나중에 설정에서 모델을 추가하세요."
 
-#: src/onboarding.py:466
+#: src/onboarding.py:753
+msgid "Second scan: glasses, facial hair or different lighting"
+msgstr "두 번째 스캔: 안경, 수염 또는 다른 조명"
+
+#: src/onboarding.py:755
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected. "
-"Installing <i>tpm2-tools</i> automatically..."
+"First model saved: face login already works. A second model makes "
+"recognition more reliable when something changes: put on the glasses you "
+"sometimes wear (or take them off), or record it with different facial hair, "
+"and change the light — turn a lamp on or off, move away from the window. "
+"Keep your face clearly visible and press Scan again; the same short guided "
+"capture follows."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
-"M 상태:</b> TPM 하드웨어가 감지되었습니다. <i>tpm2-tools</i> 자동 설치 중..."
+"첫 번째 모델을 저장했습니다. 얼굴 로그인은 이미 작동합니다. 두 번째 모델은 무"
+"언가 달라졌을 때 인식을 더 안정적으로 만듭니다. 가끔 쓰는 안경을 착용하거나"
+"(또는 벗거나), 다른 수염 상태로 기록하고, 조명을 바꾸세요(램프를 켜거나 끄"
+"기, 창가에서 떨어지기). 얼굴이 잘 보이도록 한 뒤 스캔을 다시 누르면 같은 짧"
+"은 안내 촬영이 이어집니다."
 
-#: src/onboarding.py:478
+#: src/onboarding.py:797
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> Hardware TPM 2.0 active"
-". Your password will be securely sealed inside the TPM."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Checking TPM hardware and tools..."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
-"M 상태:</b> 하드웨어 TPM 2.0이 활성화되었습니다. 귀하의 비밀번호는 TPM 내부에 안전하게 봉인됩니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
+"지된 지갑: {}).\n"
+"\n"
+"<b>TPM 상태:</b> TPM 하드웨어 및 도구를 확인하는 중..."
 
-#: src/onboarding.py:480
+#: src/onboarding.py:817
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> TPM hardware detected, "
-"but automatic installation of <i>tpm2-tools</i> failed. Run <code>sudo"
-" apt install tpm2-tools</code>. Falling back to software-based credent"
-"ial caching."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected. Installing <i>tpm2-tools</i> "
+"automatically..."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
-"M 상태:</b> TPM 하드웨어가 감지되었지만 <i>tpm2-tools</i> 자동 설치에 실패했습니다. <code>sudo"
-" apt install tpm2-tools</code>를 실행하세요. 소프트웨어 기반 자격 증명 캐싱으로 대체됩니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
+"지된 지갑: {}).\n"
+"\n"
+"<b>TPM 상태:</b> TPM 하드웨어가 감지되었습니다. <i>tpm2-tools</i> 자동 설치 "
+"중..."
 
-#: src/onboarding.py:482
+#: src/onboarding.py:829
 msgid ""
-"Ubuntu Hello can automatically unlock your {} using face authenticatio"
-"n (detected wallet: {}).\n\n<b>TPM Status:</b> No TPM hardware detecte"
-"d. Using software-based credential caching (AES-256-GCM)."
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> Hardware TPM 2.0 active. Your password will be securely "
+"sealed inside the TPM."
 msgstr ""
-"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감지된 지갑: {}).\n\n<b>TP"
-"M 상태:</b> TPM 하드웨어가 감지되지 않았습니다. 소프트웨어 기반 자격 증명 캐싱(AES-256-GCM)을 사용합니다."
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
+"지된 지갑: {}).\n"
+"\n"
+"<b>TPM 상태:</b> 하드웨어 TPM 2.0이 활성화되었습니다. 귀하의 비밀번호는 TPM "
+"내부에 안전하게 봉인됩니다."
 
-#: src/onboarding.py:526
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "키링 잠금 해제를 위해 루트가 아닌 시스템 사용자를 식별할 수 없습니다."
+#: src/onboarding.py:831
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> TPM hardware detected, but automatic installation of "
+"<i>tpm2-tools</i> failed. Run <code>sudo apt install tpm2-tools</code>. "
+"Falling back to software-based credential caching."
+msgstr ""
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
+"지된 지갑: {}).\n"
+"\n"
+"<b>TPM 상태:</b> TPM 하드웨어가 감지되었지만 <i>tpm2-tools</i> 자동 설치에 실"
+"패했습니다. <code>sudo apt install tpm2-tools</code>를 실행하세요. 소프트웨"
+"어 기반 자격 증명 캐싱으로 대체됩니다."
 
-#: src/onboarding.py:549 src/tab_keyring.py:91
-msgid "Password cannot be empty"
-msgstr "비밀번호는 비워둘 수 없습니다."
+#: src/onboarding.py:833
+msgid ""
+"Ubuntu Hello can automatically unlock your {} using face authentication "
+"(detected wallet: {}).\n"
+"\n"
+"<b>TPM Status:</b> No TPM hardware detected. Using software-based credential "
+"caching (AES-256-GCM)."
+msgstr ""
+"Ubuntu Hello는 얼굴 인증을 사용하여 {}를 자동으로 잠금 해제할 수 있습니다(감"
+"지된 지갑: {}).\n"
+"\n"
+"<b>TPM 상태:</b> TPM 하드웨어가 감지되지 않았습니다. 소프트웨어 기반 자격 증"
+"명 캐싱(AES-256-GCM)을 사용합니다."
 
-#: src/onboarding.py:553 src/tab_keyring.py:99
-msgid "Incorrect password for user {}"
-msgstr "사용자 {}의 잘못된 비밀번호"
-
-#: src/onboarding.py:565 src/tab_keyring.py:113
-msgid "unknown error"
-msgstr "알 수 없는 오류"
-
-#: src/onboarding.py:568 src/tab_keyring.py:124
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "키링 잠금 해제를 활성화하지 못했습니다: {}"
-
-#: src/onboarding.py:577 src/tab_keyring.py:166
+#: src/onboarding.py:895 src/tab_keyring.py:134
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "키링 잠금 해제를 비활성화하지 못했습니다: {}"
 
-#: src/onboarding.py:584
+#: src/onboarding.py:901
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "키링 잠금 해제를 위해 root가 아닌 시스템 사용자를 식별할 수 없습니다."
+
+#: src/onboarding.py:914 src/tab_keyring.py:82
+msgid "Password cannot be empty"
+msgstr "비밀번호는 비워둘 수 없습니다."
+
+#: src/onboarding.py:918 src/tab_keyring.py:86
+msgid "Incorrect password for user {}"
+msgstr "사용자 {}의 잘못된 비밀번호"
+
+#: src/onboarding.py:930 src/tab_keyring.py:98
+msgid "unknown error"
+msgstr "알 수 없는 오류"
+
+#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "키링 잠금 해제를 활성화하지 못했습니다: {}"
+
+#: src/onboarding.py:934
+msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
+msgstr ""
+"키링 잠금 해제를 활성화하지 못했습니다: ubuntu-hello 실행 파일을 찾을 수 없습"
+"니다"
+
+#: src/onboarding.py:937
+msgid ""
+"Failed to enable keyring unlocking: timed out waiting for keyring enable"
+msgstr ""
+"키링 잠금 해제를 활성화하지 못했습니다: 활성화 대기 시간이 초과되었습니다 "
+"(keyring enable)"
+
+#: src/onboarding.py:946
 msgid "Keyring Unlocking Error"
 msgstr "키링 잠금 해제 오류"
 
-#: src/onboarding.py:599
+#: src/onboarding.py:957
 msgid "Error reading radio buttons"
 msgstr "라디오 버튼을 읽는 중 오류가 발생했습니다."
 
-#: src/onboarding.py:626
-msgid "Ubuntu Hello Setup Warning"
-msgstr "Ubuntu Hello 설정 경고"
+#: src/onboarding.py:1021
+msgid "Could not save the security settings, but setup is otherwise complete."
+msgstr "보안 설정을 저장하지 못했지만 나머지 설정은 모두 완료되었습니다."
 
-#: src/onboarding.py:627
-msgid "Could not save certainty preference, but setup is otherwise complete."
-msgstr "확실성 기본 설정을 저장할 수 없지만 설정이 완료되었습니다."
-
-#: src/onboarding.py:642 src/tab_models.py:98 src/tab_models.py:126
-msgid "Ubuntu Hello Error"
-msgstr "⟦어⟧ 오류"
-
-#: src/authsticky.py:107
+#: src/authsticky.py:110
 msgid "Loading...  "
 msgstr "로드 중..."
 
-#: src/authsticky.py:123
+#: src/authsticky.py:128
 msgid "Ubuntu Hello Authentication"
-msgstr "⟦어⟧ 인증"
+msgstr "Ubuntu Hello 인증"
 
-#: src/tab_models.py:18
-msgid "Confirm User Creation"
-msgstr "사용자 생성 확인"
-
-#: src/tab_models.py:19
-msgid "Please enter the username of the user you want to add to Ubuntu Hello"
-msgstr "Ubuntu Hello에 추가하려는 사용자의 사용자 이름을 입력하세요."
-
-#: src/tab_models.py:26
-msgid "Username:"
-msgstr "사용자 이름:"
-
-#: src/tab_models.py:54
+#: src/tab_models.py:22
 msgid "Confirm Model Creation"
 msgstr "모델 생성 확인"
 
-#: src/tab_models.py:55
-msgid "Please enter a name for the new model, 24 characters max"
-msgstr "새 모델의 이름을 최대 24자까지 입력하세요."
-
-#: src/tab_models.py:62
-msgid "Model name:"
-msgstr "모델명:"
-
-#: src/tab_models.py:77
-msgid "Creating Model"
-msgstr "모델 생성"
-
-#: src/tab_models.py:99
-msgid ""
-"Error while adding model, error code {}: \n\n"
-msgstr ""
-"모델을 추가하는 중 오류가 발생했습니다. 오류 코드 {}:\n\n"
-
-#: src/tab_models.py:115
-msgid "Confirm Model Deletion"
-msgstr "모델 삭제 확인"
-
-#: src/tab_models.py:116
-msgid "Are you sure you want to delete model {id} ({name})?"
-msgstr "모델 {id}({name})을 삭제하시겠습니까?"
-
-#: src/tab_models.py:127
-msgid ""
-"Error while deleting model, error code {}: \n\n"
-msgstr ""
-"모델 삭제 중 오류가 발생했습니다. 오류 코드 {}:\n\n"
-
-#: src/tab_video.py:55
-msgid "Can't open camera"
-msgstr "카메라를 열 수 없습니다"
-
-#: src/tab_video.py:74
-msgid "Can't import OpenCV2"
-msgstr "OpenCV2를 가져올 수 없습니다."
-
-#: src/tab_video.py:147
-msgid "Unknown"
-msgstr "알려지지 않은"
-
-#: src/tab_keyring.py:44
-msgid "<i>No user selected</i>"
-msgstr "<i>선택된 사용자 없음</i>"
-
-#: src/tab_keyring.py:59
-msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
-msgstr "<span foreground='green'><b>활성화됨(TPM 하드웨어)</b></span> — {}"
-
-#: src/tab_keyring.py:63
-msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
-msgstr "<span foreground='green'><b>활성화됨(소프트웨어 캐싱)</b></span> — {}"
-
-#: src/tab_keyring.py:67
-msgid ""
-"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></spa"
-"n> — {}"
-msgstr "<span foreground='orange'><b>활성화됨(비밀번호 입력 보류 중)</b></span> — {}"
-
-#: src/tab_keyring.py:71
-msgid "<span foreground='red'><b>Disabled</b></span> — {}"
-msgstr "<span foreground='red'><b>사용 안 함</b></span> — {}"
-
-#: src/tab_keyring.py:90 src/tab_keyring.py:98 src/tab_keyring.py:123
-#: src/tab_keyring.py:165
-msgid "Error"
-msgstr "오류"
-
-#: src/tab_keyring.py:117 src/tab_keyring.py:159
-msgid "Success"
-msgstr "성공"
-
-#: src/tab_keyring.py:118
-msgid "Keyring/KWallet unlocking enabled successfully for user {}."
-msgstr "사용자 {}에 대해 키링/KWallet 잠금 해제가 활성화되었습니다."
-
-#: src/tab_keyring.py:135
-msgid "Disable Keyring/KWallet Unlocking"
-msgstr "키링 비활성화/KWallet 잠금 해제"
-
-#: src/tab_keyring.py:136
-msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
-msgstr "사용자 {}에 대한 키링/KWallet 잠금 해제를 비활성화하시겠습니까?"
-
-#: src/tab_keyring.py:160
-msgid "Keyring/KWallet unlocking disabled for user {}."
-msgstr "사용자 {}에 대한 키링/KWallet 잠금 해제가 비활성화되었습니다."
-
-#: src/main.glade:26
-msgctxt "Window title"
-msgid "Ubuntu Hello Configuration"
-msgstr "⟦어⟧ 구성"
-
-#: src/main.glade:33
-msgid "Ubuntu Hello Configuration"
-msgstr "⟦어⟧ 구성"
-
-#: src/main.glade:41
-msgid "Search settings"
-msgstr "검색 설정"
-
-#: src/main.glade:77
-msgid "Showing saved models for:"
-msgstr "저장된 모델 표시:"
-
-#: src/main.glade:99
-msgid "Add new user"
-msgstr "새 사용자 추가"
-
-#: src/main.glade:162
-msgid "Add"
-msgstr "추가하다"
-
-#: src/main.glade:183
-msgid "Delete"
-msgstr "삭제"
-
-#: src/main.glade:218
-msgid "Models"
-msgstr "모델"
-
-#: src/main.glade:244
-msgid "Camera ID:"
-msgstr "카메라 ID:"
-
-#: src/main.glade:273
-msgid "Real resolution:"
-msgstr "실제 해상도:"
-
-#: src/main.glade:303
-msgid "Used resolution:"
-msgstr "사용된 해상도:"
-
-#: src/main.glade:333
-msgid "Recorder:"
-msgstr "기록계:"
-
-#: src/main.glade:401
-msgid "Video"
-msgstr "동영상"
-
-#: src/main.glade:423 src/onboarding.glade:111
-msgid "Keyring / KWallet Auto-Unlock"
-msgstr "열쇠고리 / KWallet 자동 잠금 해제"
-
-#: src/main.glade:440
-msgid ""
-"Enable face authentication to automatically unlock your login keyring "
-"or KWallet on login. This securely stores your password sealed in the "
-"TPM when available, or encrypted with AES-256-GCM using a root-only ma"
-"ster key. Face auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwal"
-"let5 depending on your desktop."
-msgstr ""
-"로그인 키링을 자동으로 잠금 해제하거나 로그인 시 KWallet를 입력하려면 얼굴 인증을 활성화하세요. 이는 사용 가능한 경우"
-" TPM에 봉인된 비밀번호를 안전하게 저장하거나 루트 전용 마스터 키를 사용하여 AES-256-GCM로 암호화됩니다. 얼굴 인"
-"증은 데스크톱에 따라 pam_gnome_keyring 또는 pam_kwallet5에 대해 PAM_AUTHTOK을 설정합니다."
-
-#: src/main.glade:471
-msgid "Current Status:"
-msgstr "현재 상태:"
-
-#: src/main.glade:486
-msgid "Checking..."
-msgstr "확인 중..."
-
-#: src/main.glade:509
-msgid "Enable Auto-Unlock"
-msgstr "자동 잠금 해제 활성화"
-
-#: src/main.glade:526
-msgid "Disable Auto-Unlock"
-msgstr "자동 잠금 해제 비활성화"
-
-#: src/main.glade:559
-msgid "Keyring"
-msgstr "열쇠고리"
-
-#: src/main.glade:581
-msgid "Display language"
-msgstr "표시 언어"
-
-#: src/main.glade:603 src/main.glade:662
-msgid "Language"
-msgstr "언어"
-
-#: src/main.glade:637
-msgid "Automatic follows the system language. Changes apply immediately."
-msgstr "자동은 시스템 언어를 따릅니다. 변경 사항은 즉시 적용됩니다."
-
-#: src/main.glade:694
-msgid "Ubuntu Hello"
-msgstr "Ubuntu Hello"
-
-#: src/main.glade:710
-msgid "Facial authentication for Linux"
-msgstr "Linux용 얼굴 인증"
-
-#: src/main.glade:723
-msgid "Version unknown"
-msgstr "버전을 알 수 없음"
-
-#: src/main.glade:746
-msgid ""
-"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link<"
-"/a> "
-msgstr "<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub 링크 열기</a>"
-
-#: src/main.glade:778
-msgid "About"
-msgstr "에 대한"
-
-#: src/onboarding.glade:35 src/onboarding.glade:43
-msgid "Welcome to Ubuntu Hello"
-msgstr "Ubuntu Hello에 오신 것을 환영합니다."
-
-#: src/onboarding.glade:63
-msgid "Setup is done!"
-msgstr "설정이 완료되었습니다!"
-
-#: src/onboarding.glade:82
-msgid ""
-"We're done! Ubuntu Hello is now active on this computer. Try doing any"
-"thing you would normally have to type your password for to authenticat"
-"e, like running a command with sudo. If you enabled keyring auto-unloc"
-"k, your login keyring or KWallet will also be unlocked automatically o"
-"n login.\n\nYou can open the Ubuntu Hello Configurator later on to cha"
-"nge more advanced settings or add additional models. Press Finish belo"
-"w to close this window and open the Ubuntu Hello Configurator. "
-msgstr ""
-"이제 끝났습니다! Ubuntu Hello가 이제 이 컴퓨터에서 활성화되었습니다. sudo로 명령을 실행하는 등 일반적으로 인증"
-"을 위해 비밀번호를 입력해야 하는 작업을 수행해 보세요. 키링 자동 잠금 해제를 활성화한 경우 로그인 키링 또는 KWallet"
-"도 로그인 시 자동으로 잠금 해제됩니다.\n\n나중에 Ubuntu Hello 구성 도구를 열어 고급 설정을 변경하거나 추가 모"
-"델을 추가할 수 있습니다. 아래의 마침을 눌러 이 창을 닫고 Ubuntu Hello 구성 도구를 엽니다."
-
-#: src/onboarding.glade:130
-msgid ""
-"Ubuntu Hello can automatically unlock your login keyring or KWallet us"
-"ing face authentication, preventing password prompts after logging in."
-msgstr ""
-"Ubuntu Hello는 로그인 키링을 자동으로 잠금 해제하거나 KWallet 얼굴 인증을 사용하여 로그인 후 비밀번호 프롬프"
-"트를 방지할 수 있습니다."
-
-#: src/onboarding.glade:142
-msgid "Enable automatic keyring/KWallet unlocking"
-msgstr "자동 키링/KWallet 잠금 해제 활성화"
-
-#: src/onboarding.glade:184
-msgid "Confirm password"
-msgstr "비밀번호 확인"
-
-#: src/onboarding.glade:216
-msgid "Setting a certainty policy"
-msgstr "확실성 정책 설정"
-
-#: src/onboarding.glade:235
-msgid ""
-"Because of changes in angles, distance, and other factors a face match"
-" is never exactly the same as the stored face model. On this page you "
-"can set how strict Ubuntu Hello should be."
-msgstr ""
-"각도, 거리 및 기타 요인의 변화로 인해 얼굴 일치는 저장된 얼굴 모델과 정확히 동일하지 않습니다. 이 페이지에서는 Ubunt"
-"u Hello의 엄격함 정도를 설정할 수 있습니다."
-
-#: src/onboarding.glade:274
-msgid "Fast"
-msgstr "빠른"
-
-#: src/onboarding.glade:290
-msgid ""
-"Allows more fuzzy matches, \nbut speeds up the scanning process greatl"
-"y."
-msgstr ""
-"더 많은 퍼지 일치를 허용합니다. \n그러나 스캔 프로세스 속도가 크게 향상됩니다."
-
-#: src/onboarding.glade:329
-msgid "Balanced"
-msgstr "균형 잡힌"
-
-#: src/onboarding.glade:345
-msgid ""
-"Still relatively quick detection, \nbut might not log you in when furt"
-"her away."
-msgstr ""
-"여전히 상대적으로 빠른 감지, \n하지만 멀리 떨어져 있으면 로그인하지 못할 수도 있습니다."
-
-#: src/onboarding.glade:384
-msgid "Secure"
-msgstr "안전한"
-
-#: src/onboarding.glade:400
-msgid ""
-"The slightly safer option, \nbut will take much longer to authenticate"
-" you"
-msgstr ""
-"조금 더 안전한 옵션은, \n하지만 인증하는 데 시간이 더 오래 걸립니다."
-
-#: src/onboarding.glade:443
-msgid "Adding a face model"
-msgstr "얼굴 모델 추가"
-
-#: src/onboarding.glade:462
-msgid ""
-"To authenticate you Ubuntu Hello needs to save a model of your face to"
-" recognise you. Press the Scan button below to start the facial scan."
-msgstr ""
-"귀하를 인증하려면 Ubuntu Hello가 귀하를 인식할 얼굴 모델을 저장해야 합니다. 아래의 스캔 버튼을 눌러 얼굴 스캔을 "
-"시작하세요."
-
-#: src/onboarding.glade:564 src/onboarding.glade:655
-msgid "Configuring webcam"
-msgstr "웹캠 구성"
-
-#: src/onboarding.glade:581
-msgid "Is the infrared emitter flashing ?"
-msgstr "적외선 방출기가 깜박입니까?"
-
-#: src/onboarding.glade:599
-msgid "yes"
-msgstr "예"
-
-#: src/onboarding.glade:616
-msgid "no"
-msgstr "아니요"
-
-#: src/onboarding.glade:674
-msgid ""
-"Ubuntu Hello will search your system automatically for any available c"
-"ameras, so make sure your webcam is connected. After detection a list "
-"of usable webcams will be shown. Pick the one you want to use and clic"
-"k Next."
-msgstr ""
-"Ubuntu Hello는 자동으로 시스템에서 사용 가능한 카메라를 검색하므로 웹캠이 연결되어 있는지 확인하세요. 감지 후 사용"
-" 가능한 웹캠 목록이 표시됩니다. 사용하려는 것을 선택하고 다음을 클릭하십시오."
-
-#: src/onboarding.glade:697
-msgid "Testing your webcams, please wait..."
-msgstr "웹캠을 테스트 중입니다. 잠시 기다려 주십시오..."
-
-#: src/onboarding.glade:749
-msgid "Downloading data files"
-msgstr "데이터 파일 다운로드"
-
-#: src/onboarding.glade:768
-msgid ""
-"Ubuntu Hello needs three pre trained facial recognition datasets to be"
-" able to recognise you, which will be downloaded now. You can see the "
-"download progress below."
-msgstr ""
-"Ubuntu Hello 당신을 인식하려면 세 가지 사전 훈련된 얼굴 인식 데이터세트가 필요하며, 지금 다운로드할 수 있습니다."
-" 아래에서 다운로드 진행 상황을 볼 수 있습니다."
-
-#: src/onboarding.glade:789
-msgid "Starting download..."
-msgstr "다운로드 시작 중..."
-
-#: src/onboarding.glade:838
-msgid "Welcome to Ubuntu Hello!"
-msgstr "Ubuntu Hello에 오신 것을 환영합니다!"
-
-#: src/onboarding.glade:854
-msgid "Version"
-msgstr "버전"
-
-#: src/onboarding.glade:875
-msgid ""
-"This wizard will walk you through the setup process and automatically "
-"configure Ubuntu Hello for you. Press next to continue."
-msgstr "이 마법사는 설정 과정을 안내하고 Ubuntu Hello를 자동으로 구성합니다. 계속하려면 다음을 누르세요."
-
-#: src/onboarding.glade:899
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
+#: src/tab_keyring.py:114 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "취소"
 
-#: src/onboarding.glade:919
-msgid "Next"
-msgstr "다음"
+#: src/tab_models.py:24 src/main.ui:186
+msgid "Add"
+msgstr "추가하다"
 
-#: src/onboarding.glade:944
+#: src/tab_models.py:25
+msgid "Please enter a name for the new model, 24 characters max"
+msgstr "새 모델의 이름을 최대 24자까지 입력하세요."
+
+#: src/tab_models.py:29
+msgid "Model name:"
+msgstr "모델명:"
+
+#: src/tab_models.py:39
+msgid "Creating Model"
+msgstr "모델 생성"
+
+#: src/tab_models.py:40
+msgid ""
+"Keep your face inside the camera view and follow the prompts; this takes "
+"about a minute."
+msgstr "얼굴을 카메라 화면 안에 두고 안내를 따르세요. 약 1분 정도 걸립니다."
+
+#: src/tab_models.py:41 src/enroll.py:24
+msgid "Look straight at the camera"
+msgstr "카메라를 정면으로 바라보세요"
+
+#: src/tab_models.py:70
+msgid ""
+"Error while adding model, error code {}: \n"
+"\n"
+msgstr ""
+"모델을 추가하는 중 오류가 발생했습니다. 오류 코드 {}:\n"
+"\n"
+
+#: src/tab_models.py:88
+#, python-brace-format
+msgid "Are you sure you want to delete model {id} ({name})?"
+msgstr "모델 {id}({name})을 삭제하시겠습니까?"
+
+#: src/tab_models.py:89 src/main.ui:212
+msgid "Delete"
+msgstr "삭제"
+
+#: src/tab_models.py:97
+msgid ""
+"Error while deleting model, error code {}: \n"
+"\n"
+msgstr ""
+"모델 삭제 중 오류가 발생했습니다. 오류 코드 {}:\n"
+"\n"
+
+#: src/enroll.py:25
+msgid "Turn your head slightly to the left"
+msgstr "고개를 왼쪽으로 살짝 돌리세요"
+
+#: src/enroll.py:26
+msgid "Turn your head slightly to the right"
+msgstr "고개를 오른쪽으로 살짝 돌리세요"
+
+#: src/enroll.py:27
+msgid "Tilt your chin up a little"
+msgstr "턱을 조금 들어 올리세요"
+
+#: src/enroll.py:28
+msgid "Tilt your chin down a little"
+msgstr "턱을 조금 내리세요"
+
+#: src/enroll.py:39
+#, python-brace-format
+msgid "Recording… {count} of {total}"
+msgstr "기록 중… {total}개 중 {count}개"
+
+#: src/tab_video.py:66
+msgid "Can't open camera"
+msgstr "카메라를 열 수 없습니다"
+
+#: src/tab_video.py:85
+msgid "Can't import OpenCV2"
+msgstr "OpenCV2를 가져올 수 없습니다."
+
+#: src/tab_video.py:160
+msgid "Unknown"
+msgstr "알려지지 않은"
+
+#: src/tab_keyring.py:16
+msgid "Enable Keyring/KWallet Unlocking"
+msgstr "키링 활성화/KWallet 잠금 해제"
+
+#: src/tab_keyring.py:18
+msgid "OK"
+msgstr "좋아요"
+
+#: src/tab_keyring.py:23
+msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
+msgstr "{}({})를 잠금 해제하려면 <b>{}</b> 사용자의 비밀번호를 입력하세요."
+
+#: src/tab_keyring.py:30 src/onboarding.ui:808
+msgid "Password"
+msgstr "비밀번호"
+
+#: src/tab_keyring.py:37
+msgid "<i>No user selected</i>"
+msgstr "<i>선택된 사용자 없음</i>"
+
+#: src/tab_keyring.py:52
+msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
+msgstr "<span foreground='green'><b>활성화됨(TPM 하드웨어)</b></span> — {}"
+
+#: src/tab_keyring.py:56
+msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
+msgstr "<span foreground='green'><b>활성화됨(소프트웨어 캐싱)</b></span> — {}"
+
+#: src/tab_keyring.py:60
+msgid ""
+"<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
+msgstr ""
+"<span foreground='orange'><b>활성화됨(비밀번호 입력 보류 중)</b></span> — {}"
+
+#: src/tab_keyring.py:64
+msgid "<span foreground='red'><b>Disabled</b></span> — {}"
+msgstr "<span foreground='red'><b>사용 안 함</b></span> — {}"
+
+#: src/tab_keyring.py:101
+msgid "Keyring/KWallet unlocking enabled successfully for user {}."
+msgstr "사용자 {}에 대해 키링/KWallet 잠금 해제가 활성화되었습니다."
+
+#: src/tab_keyring.py:113
+msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
+msgstr "사용자 {}에 대한 키링/KWallet 잠금 해제를 비활성화하시겠습니까?"
+
+#: src/tab_keyring.py:114 src/main.ui:844
+msgid "Disable Auto-Unlock"
+msgstr "자동 잠금 해제 비활성화"
+
+#: src/tab_keyring.py:132
+msgid "Keyring/KWallet unlocking disabled for user {}."
+msgstr "사용자 {}에 대한 키링/KWallet 잠금 해제가 비활성화되었습니다."
+
+#: src/tab_notifications.py:60
+msgid "Could not save the notification setting"
+msgstr "알림 설정을 저장할 수 없습니다."
+
+#: src/tab_security.py:100
+msgid "Could not save the security setting"
+msgstr "보안 설정을 저장하지 못했습니다"
+
+#: src/main.ui:6
+msgctxt "Window title"
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello 구성"
+
+#: src/main.ui:13
+msgid "Search settings"
+msgstr "검색 설정"
+
+#: src/main.ui:20
+msgid "Ubuntu Hello Configuration"
+msgstr "Ubuntu Hello 구성"
+
+#: src/main.ui:60
+msgid "Face models"
+msgstr "얼굴 모델"
+
+#: src/main.ui:75
+msgid ""
+"Snapshots of your face that Ubuntu Hello compares against. Keep at least "
+"two, recorded in different lighting."
+msgstr ""
+"Ubuntu Hello와 비교되는 얼굴 스냅샷. 서로 다른 조명에서 녹화된 최소 2개를 보"
+"관하세요."
+
+#: src/main.ui:97
+msgid "Showing saved models for:"
+msgstr "저장된 모델 표시:"
+
+#: src/main.ui:137
+msgid ""
+"Only one face model is enrolled. Glasses, a change of facial hair or "
+"different lighting change how your face looks to the camera, so a single "
+"model can fail (for example in the evening under lamps). Add a second model "
+"with glasses on or off, your other look, or in different light to keep "
+"unlocking reliable."
+msgstr ""
+"얼굴 모델이 하나만 등록되어 있습니다. 안경, 수염 변화, 다른 조명은 카메라에 "
+"보이는 얼굴을 바꾸므로 모델이 하나뿐이면 실패할 수 있습니다(예: 저녁 램프 아"
+"래). 안경을 쓰거나 벗은 모습, 다른 모습, 또는 다른 조명에서 두 번째 모델을 추"
+"가하여 잠금 해제를 안정적으로 유지하세요."
+
+#: src/main.ui:146
+msgid "Add a second model"
+msgstr "두 번째 모델 추가"
+
+#: src/main.ui:227
+msgid "Models"
+msgstr "모델"
+
+#: src/main.ui:261
+msgid "Camera"
+msgstr "카메라"
+
+#: src/main.ui:276
+msgid ""
+"The camera Ubuntu Hello uses to look for your face, with a live preview."
+msgstr ""
+"카메라 Ubuntu Hello는 실시간 미리보기를 통해 얼굴을 찾는 데 사용됩니다."
+
+#: src/main.ui:300
+msgid "Camera ID:"
+msgstr "카메라 ID:"
+
+#: src/main.ui:315
+msgid "Real resolution:"
+msgstr "실제 해상도:"
+
+#: src/main.ui:331
+msgid "Used resolution:"
+msgstr "사용된 해상도:"
+
+#: src/main.ui:347
+msgid "Recorder:"
+msgstr "기록계:"
+
+#: src/main.ui:393
+msgid "Video"
+msgstr "동영상"
+
+#: src/main.ui:430 src/main.ui:583
+msgid "Notifications"
+msgstr "알림"
+
+#: src/main.ui:445
+msgid ""
+"A desktop notification shows while Ubuntu Hello looks for your face, then "
+"reports the result. Failed attempts stay in the notification list."
+msgstr ""
+"Ubuntu Hello가 사용자의 얼굴을 찾는 동안 바탕화면 알림이 표시된 다음 결과를 "
+"보고합니다. 실패한 시도는 알림 목록에 유지됩니다."
+
+#: src/main.ui:476
+msgid "Show notifications"
+msgstr "알림 표시"
+
+#: src/main.ui:482
+msgid ""
+"One card per face-authentication attempt, updated in place with the result."
+msgstr "얼굴 인증 시도당 하나의 카드가 결과로 업데이트됩니다."
+
+#: src/main.ui:513
+msgid "Notification sounds"
+msgstr "알림음"
+
+#: src/main.ui:519
+msgid "Play the system sound for a recognized or failed attempt."
+msgstr "인식되거나 실패한 시도에 대해 시스템 사운드를 재생합니다."
+
+#: src/main.ui:550
+msgid "Include diagnostics"
+msgstr "진단 포함"
+
+#: src/main.ui:556
+msgid ""
+"Add the model, certainty vs. threshold, frames, camera and timing to each "
+"card. Useful when reporting a problem."
+msgstr ""
+"각 카드에 모델, 확실성 대 임계값, 프레임, 카메라 및 타이밍을 추가합니다. 문제"
+"를 보고할 때 유용합니다."
+
+#: src/main.ui:618 src/main.ui:734
+msgid "Security"
+msgstr "보안"
+
+#: src/main.ui:633
+msgid ""
+"How closely your face has to match, and whether Ubuntu Hello asks you to "
+"confirm that you are really there."
+msgstr ""
+"얼굴이 얼마나 정확히 일치해야 하는지, 그리고 Ubuntu Hello가 실제로 본인이 있"
+"는지 확인을 요청할지 설정합니다."
+
+#: src/main.ui:657
+msgid "Face match strictness"
+msgstr "얼굴 인식 엄격도"
+
+#: src/main.ui:665 src/onboarding.ui:151
+msgid "Fast"
+msgstr "빠른"
+
+#: src/main.ui:672 src/onboarding.ui:182
+msgid "Balanced"
+msgstr "균형 잡힌"
+
+#: src/main.ui:680 src/onboarding.ui:213
+msgid "Secure"
+msgstr "안전한"
+
+#: src/main.ui:702 src/onboarding.ui:250
+msgid "Ask me to nod to confirm"
+msgstr "고개를 끄덕여 확인 요청"
+
+#: src/main.ui:708 src/onboarding.ui:259
+msgid ""
+"After your face matches, a notification asks you to nod. A photo held up to "
+"the camera cannot nod."
+msgstr ""
+"얼굴이 일치하면 알림이 고개를 끄덕이라고 요청합니다. 카메라 앞에 든 사진은 고"
+"개를 끄덕일 수 없습니다."
+
+#: src/main.ui:771 src/onboarding.ui:759
+msgid "Keyring / KWallet Auto-Unlock"
+msgstr "열쇠고리 / KWallet 자동 잠금 해제"
+
+#: src/main.ui:786
+msgid ""
+"Enable face authentication to automatically unlock your login keyring or "
+"KWallet on login. This securely stores your password sealed in the TPM when "
+"available, or encrypted with AES-256-GCM using a root-only master key. Face "
+"auth sets PAM_AUTHTOK for pam_gnome_keyring or pam_kwallet5 depending on "
+"your desktop."
+msgstr ""
+"로그인 키링을 자동으로 잠금 해제하거나 로그인 시 KWallet를 입력하려면 얼굴 인"
+"증을 활성화하세요. 이는 사용 가능한 경우 TPM에 봉인된 비밀번호를 안전하게 저"
+"장하거나 root 전용 마스터 키를 사용하여 AES-256-GCM로 암호화됩니다. 얼굴 인증"
+"은 데스크톱에 따라 pam_gnome_keyring 또는 pam_kwallet5에 대해 PAM_AUTHTOK을 "
+"설정합니다."
+
+#: src/main.ui:814
+msgid "Current Status:"
+msgstr "현재 상태:"
+
+#: src/main.ui:823
+msgid "Checking..."
+msgstr "확인 중..."
+
+#: src/main.ui:834
+msgid "Enable Auto-Unlock"
+msgstr "자동 잠금 해제 활성화"
+
+#: src/main.ui:862
+msgid "Keyring"
+msgstr "열쇠고리"
+
+#: src/main.ui:898
+msgid "Display language"
+msgstr "표시 언어"
+
+#: src/main.ui:913
+msgid "Automatic follows the system language. Changes apply immediately."
+msgstr "자동은 시스템 언어를 따릅니다. 변경 사항은 즉시 적용됩니다."
+
+#: src/main.ui:936 src/main.ui:956
+msgid "Language"
+msgstr "언어"
+
+#: src/main.ui:977
+msgid "Ubuntu Hello"
+msgstr "Ubuntu Hello"
+
+#: src/main.ui:990
+msgid "Facial authentication for Linux"
+msgstr "Linux용 얼굴 인증"
+
+#: src/main.ui:999
+msgid "Version unknown"
+msgstr "버전을 알 수 없음"
+
+#: src/main.ui:1013
+msgid ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
+msgstr ""
+"<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub 링크 열기</a>"
+
+#: src/main.ui:1020
+msgid ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
+"or suggest a feature</a>"
+msgstr ""
+"<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">문제 신고 또는 기"
+"능 제안</a>"
+
+#: src/main.ui:1032
+msgid "About"
+msgstr "에 대한"
+
+#: src/onboarding.ui:9 src/onboarding.ui:14
+msgid "Welcome to Ubuntu Hello"
+msgstr "Ubuntu Hello에 오신 것을 환영합니다."
+
+#: src/onboarding.ui:52
+msgid "Setup is done!"
+msgstr "설정이 완료되었습니다!"
+
+#: src/onboarding.ui:68
+msgid ""
+"We're done! Ubuntu Hello is now active on this computer. Try doing anything "
+"you would normally have to type your password for to authenticate, like "
+"running a command with sudo. If you enabled keyring auto-unlock, your login "
+"keyring or KWallet will also be unlocked automatically on login.\n"
+"\n"
+"You can open the Ubuntu Hello Configurator later on to change more advanced "
+"settings or add additional models. Press Finish below to close this window "
+"and open the Ubuntu Hello Configurator. "
+msgstr ""
+"이제 끝났습니다! Ubuntu Hello가 이제 이 컴퓨터에서 활성화되었습니다. sudo로 "
+"명령을 실행하는 등 일반적으로 인증을 위해 비밀번호를 입력해야 하는 작업을 수"
+"행해 보세요. 키링 자동 잠금 해제를 활성화한 경우 로그인 키링 또는 KWallet도 "
+"로그인 시 자동으로 잠금 해제됩니다.\n"
+"\n"
+"나중에 Ubuntu Hello 구성 도구를 열어 고급 설정을 변경하거나 추가 모델을 추가"
+"할 수 있습니다. 아래의 마침을 눌러 이 창을 닫고 Ubuntu Hello 구성 도구를 엽니"
+"다."
+
+#: src/onboarding.ui:105
+msgid "Setting a certainty policy"
+msgstr "확실성 정책 설정"
+
+#: src/onboarding.ui:121
+msgid ""
+"Because of changes in angles, distance, and other factors a face match is "
+"never exactly the same as the stored face model. On this page you can set "
+"how strict Ubuntu Hello should be."
+msgstr ""
+"각도, 거리 및 기타 요인의 변화로 인해 얼굴 일치는 저장된 얼굴 모델과 정확히 "
+"동일하지 않습니다. 이 페이지에서는 Ubuntu Hello의 엄격함 정도를 설정할 수 있"
+"습니다."
+
+#: src/onboarding.ui:160
+msgid ""
+"The most forgiving match and the quickest to let you in. Choose this if "
+"convenience matters more than strictness."
+msgstr ""
+"가장 너그럽게 인식하며 가장 빠르게 로그인됩니다. 엄격함보다 편리함이 중요하다"
+"면 선택하세요."
+
+#: src/onboarding.ui:191
+msgid ""
+"A strict match that still logs you in quickly. It may not recognise you at a "
+"sharp angle or from further away."
+msgstr ""
+"엄격하게 인식하면서도 빠르게 로그인됩니다. 얼굴이 많이 기울어져 있거나 멀리 "
+"떨어져 있으면 인식하지 못할 수 있습니다."
+
+#: src/onboarding.ui:223
+msgid "The strictest match, with no extra step when you log in. Recommended."
+msgstr "가장 엄격하게 인식하며 로그인할 때 추가 단계가 없습니다. 권장합니다."
+
+#: src/onboarding.ui:379
+msgid "Skip for now"
+msgstr "지금은 건너뛰기"
+
+#: src/onboarding.ui:384
+msgid ""
+"You can add more face models later from Settings or with: sudo ubuntu-hello "
+"add"
+msgstr ""
+"나중에 설정에서 또는 다음 명령으로 얼굴 모델을 더 추가할 수 있습니다: sudo "
+"ubuntu-hello add"
+
+#: src/onboarding.ui:403 src/onboarding.ui:531
+msgid "Configuring webcam"
+msgstr "웹캠 구성"
+
+#: src/onboarding.ui:435
+msgid "Is the infrared emitter flashing ?"
+msgstr "적외선 방출기가 깜박입니까?"
+
+#: src/onboarding.ui:447
+msgid ""
+"Look at the camera you selected: an infrared camera shows a small light that "
+"blinks while Ubuntu Hello tests it. This tells us whether it can see your "
+"face in the dark."
+msgstr ""
+"선택한 카메라를 보세요. 적외선 카메라는 Ubuntu Hello 테스트하는 동안 깜박이"
+"는 작은 빛을 보여줍니다. 이는 어둠 속에서도 당신의 얼굴을 볼 수 있는지 여부"
+"를 알려줍니다."
+
+#: src/onboarding.ui:481
+msgid "Yes, it flashes"
+msgstr "응, 깜박인다"
+
+#: src/onboarding.ui:507
+msgid "No, nothing flashes"
+msgstr "아니요, 아무것도 깜박이지 않습니다."
+
+#: src/onboarding.ui:547
+msgid ""
+"Ubuntu Hello will search your system automatically for any available "
+"cameras, so make sure your webcam is connected. After detection a list of "
+"usable webcams will be shown. Pick the one you want to use and click Next."
+msgstr ""
+"Ubuntu Hello는 자동으로 시스템에서 사용 가능한 카메라를 검색하므로 웹캠이 연"
+"결되어 있는지 확인하세요. 감지 후 사용 가능한 웹캠 목록이 표시됩니다. 사용하"
+"려는 것을 선택하고 다음을 클릭하십시오."
+
+#: src/onboarding.ui:566
+msgid "Testing your webcams, please wait..."
+msgstr "웹캠을 테스트 중입니다. 잠시 기다려 주십시오..."
+
+#: src/onboarding.ui:613
+msgid "Downloading data files"
+msgstr "데이터 파일 다운로드"
+
+#: src/onboarding.ui:629
+msgid ""
+"Ubuntu Hello needs three pre trained facial recognition datasets to be able "
+"to recognise you, which will be downloaded now. You can see the download "
+"progress below."
+msgstr ""
+"Ubuntu Hello 당신을 인식하려면 세 가지 사전 훈련된 얼굴 인식 데이터세트가 필"
+"요하며, 지금 다운로드할 수 있습니다. 아래에서 다운로드 진행 상황을 볼 수 있습"
+"니다."
+
+#: src/onboarding.ui:653
+msgid "Starting download..."
+msgstr "다운로드 시작 중..."
+
+#: src/onboarding.ui:697
+msgid "Welcome to Ubuntu Hello!"
+msgstr "Ubuntu Hello에 오신 것을 환영합니다!"
+
+#: src/onboarding.ui:709
+msgid "Version"
+msgstr "버전"
+
+#: src/onboarding.ui:723
+msgid ""
+"This wizard will walk you through the setup process and automatically "
+"configure Ubuntu Hello for you. Press next to continue."
+msgstr ""
+"이 마법사는 설정 과정을 안내하고 Ubuntu Hello를 자동으로 구성합니다. 계속하려"
+"면 다음을 누르세요."
+
+#: src/onboarding.ui:775
+msgid ""
+"Ubuntu Hello can automatically unlock your login keyring or KWallet using "
+"face authentication, preventing password prompts after logging in."
+msgstr ""
+"Ubuntu Hello는 로그인 키링을 자동으로 잠금 해제하거나 KWallet 얼굴 인증을 사"
+"용하여 로그인 후 비밀번호 프롬프트를 방지할 수 있습니다."
+
+#: src/onboarding.ui:787
+msgid "Enable automatic keyring/KWallet unlocking"
+msgstr "자동 키링/KWallet 잠금 해제 활성화"
+
+#: src/onboarding.ui:815
+msgid "Confirm password"
+msgstr "비밀번호 확인"
+
+#: src/onboarding.ui:872
+msgid "Back"
+msgstr "뒤쪽에"
+
+#: src/onboarding.ui:907
 msgid "Finish setup"
 msgstr "설정 완료"
+
+#: src/onboarding.ui:934
+msgid "Next"
+msgstr "다음"
 
 #: ubuntu-hello-gtk.desktop.in
 msgid "Windows Hello style facial authentication"

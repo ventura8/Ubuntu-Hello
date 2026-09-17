@@ -50,6 +50,7 @@ Agent rules: [AGENTS.md](../../AGENTS.md). Contributor setup: [INSTRUCTIONS.md](
 │       ├── config_ensure.py       # restore /etc config.ini when the conffile is missing
 │       ├── keyring_crypto.py
 │       ├── keyring_restore.py
+│       ├── notify.py              # desktop notification per attempt (org.freedesktop.Notifications)
 │       └── wallet_backend.py
 └── ubuntu-hello-gtk/
     ├── bin/run_after_install.py # postinst wizard; lock/log under /run/ubuntu-hello
@@ -155,18 +156,22 @@ The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/s
      - Evaluates facial features using a 5-point landmark shape predictor and a ResNet face recognition model.
      - Computes the Euclidean distance (L2 norm) between current face descriptors and saved models:
        $$\text{distance} = \|\mathbf{v}_{\text{known}} - \mathbf{v}_{\text{current}}\|_{2}$$
-     - If the lowest distance is below `certainty / 10`, matches are accepted.
+     - A frame whose lowest distance is below `certainty / 10` counts as agreeing with the model.
+     - Authentication follows once `confirmations` separate frames have agreed (2 at Fast/3.5, 3 at
+       Balanced/3.0, 4 at Secure/2.6). A scan takes dozens of independent looks, so the frame that
+       would otherwise decide is the *minimum* of many draws; requiring agreement removes a lone
+       outlier without lowering the threshold, which on IR hardware starts rejecting the real user.
   5. Executes post-auth checks (Rubberstamps) if enabled.
   6. Exits with corresponding status codes (`0` on success, or error status codes); cleanup always releases the camera before exit.
 
 ### 2.3 GTK Graphical Interface (`ubuntu-hello-gtk/src/`)
 
-* **Role**: Displays status notifications and onboarding/administration windows.
+* **Role**: Displays status notifications and onboarding/administration windows. **GTK 4** (PyGObject, `gi.require_version("Gtk", "4.0")`); layouts are GtkBuilder `.ui` files (`main.ui`, `onboarding.ui`) validated with `gtk4-builder-tool`. `gtk4compat.py` holds the few shims for APIs GTK 4 removed (`run_main`/`quit_main` instead of `Gtk.main`, `run_dialog` instead of `Dialog.run`, `iter_children`, `builder(scope, …)` instead of `connect_signals`, `pixbuf_to_texture` for `Gtk.Picture`).
 * **Key Sub-modules**:
-  - `authsticky.py` (`StickyWindow`): A frameless, semi-transparent top-aligned overlay mimicking Windows Hello. Communicates with the matching engine by parsing `sys.stdin` commands line-by-line.
+  - `authsticky.py` (`StickyWindow`): A frameless, semi-transparent overlay mimicking Windows Hello (`Gtk.DrawingArea` draw func + `GestureClick`). Communicates with the matching engine by parsing `sys.stdin` commands line-by-line via a `GLib.io_add_watch`.
   - `theme_detect.py`: Shared dark/light detection across GNOME, KDE/Plasma, XFCE, Cinnamon, MATE, Budgie, and LXQt (used by `window.py` and `authsticky.py`).
   - `window.py` / `tab_models.py` / `tab_video.py` / `tab_keyring.py`: The administrative UI for managing users, adding/removing face profiles, tweaking camera parameters, and enabling keyring/KWallet auto-unlock.
-  - `onboarding.py`: Wizard helping first-time users identify their camera and construct their first facial profile.
+  - `onboarding.py`: Wizard helping first-time users identify their camera and enrol their first two facial profiles (second one skippable), with Back navigation between pages.
 * **Post-install launcher** (`bin/run_after_install.py`): `install.sh` / dpkg postinst spawn this as root when no face models are enrolled. Single-flight lock and log live under `/run/ubuntu-hello/` (`0700`, `O_NOFOLLOW`), not world-writable `/tmp`.
 
 ### 2.4 Administration CLI (`ubuntu-hello/src/cli.py` & `cli/`)
@@ -202,13 +207,16 @@ The live file is `/etc/ubuntu-hello/config.ini`. The packaged default is `/usr/s
 
 ### 3.1 C++ to Python Subprocess Launch
 
-The PAM module starts Python as a subprocess in its own process group:
+The PAM module starts Python as a subprocess in its own process group, with an explicit minimal environment (only a fixed system `PATH`; the calling user's `PATH`, `PYTHONPATH`, `LD_PRELOAD`, … are never inherited) and interpreter flags `-E -s`:
 
 ```cpp
 posix_spawnattr_setflags(&spawn_attr, POSIX_SPAWN_SETPGROUP);
 posix_spawnattr_setpgroup(&spawn_attr, 0);
-posix_spawnp(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, &spawn_attr, args, nullptr);
+// args = {python, "-E", "-s", compare.py, username, pam_service}; envp = {"PATH=/usr/sbin:/usr/bin:/sbin:/bin", validated LANG/LANGUAGE/LC_*}
+posix_spawn(&child_pid, PYTHON_EXECUTABLE_PATH, &actions, &spawn_attr, args, envp);
 ```
+
+`compare.py` in turn spawns its own helpers by absolute path (`BUSCTL_PATH`, `GTK_BIN_PATH`), never by bare name.
 
 C++ evaluates the return code using standard wait macros:
 
@@ -224,7 +232,7 @@ On lock/screensaver services, a non-zero compare exit sets `/run/ubuntu-hello/fa
 `compare.py` starts `ubuntu-hello-gtk` and keeps a handle to standard input:
 
 ```python
-gtk_proc = subprocess.Popen(["ubuntu-hello-gtk", "--start-auth-ui"], stdin=subprocess.PIPE)
+gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE)  # GTK_BIN_PATH = "/usr/bin/ubuntu-hello-gtk"
 ```
 
 Status updates are written as short formatted line structures:
@@ -262,7 +270,7 @@ Face models are saved in `/etc/ubuntu-hello/models/<username>.dat` as standard J
 * `id`: Incremental integer identifying the scan.
 * `label`: String to identify the scan condition (e.g. "Glasses", "Morning").
 * `time`: Unix timestamp.
-* `data`: Array containing a 128-dimensional floating point vector generated by dlib's ResNet face recognition model.
+* `data`: Array of 128-dimensional floating point vectors generated by dlib's ResNet face recognition model — one per captured sample. Since v1.2.0 `ubuntu-hello add` records up to 13 samples per model (guided poses, see `enroll_capture.py`); matching takes the nearest vector over all models and maps it back to its model with `enroll_capture.flatten_models()`.
 
 ---
 
@@ -284,8 +292,8 @@ gettext catalogs with **Automatic** system locale by default and an optional Set
 
 * Domains `ubuntu-hello` / `ubuntu-hello-gtk` under `$prefix/share/locale/.../LC_MESSAGES/`.
 * PAM: `setlocale` + `bindtextdomain` + UTF-8 codeset only (no user preference file).
-* Python: configured `i18n.py` reads `~/.config/ubuntu-hello/preferences.ini` (`[ui] language=auto|<code>`) before loading catalogs; GTK Builder: `set_translation_domain` before Glade load.
-* Settings: **Language** tab (Automatic + English + locales; Babel/CLDR combo labels via `python3-babel`, UI name + native name in parentheses; **instant** in-session apply) + header-bar **fuzzy** search (`search_fuzzy.py`); native GTK3 on all supported DEs via stock widgets + `theme_detect`. Manual multi-DE UX checklist: [docs/INSTRUCTIONS.md §2.3](../INSTRUCTIONS.md).
+* Python: configured `i18n.py` reads `~/.config/ubuntu-hello/preferences.ini` (`[ui] language=auto|<code>`) before loading catalogs; GTK Builder: `set_translation_domain` before the `.ui` load.
+* Settings: **Language** tab (Automatic + English + locales; Babel/CLDR combo labels via `python3-babel`, UI name + native name in parentheses; **instant** in-session apply) + header-bar **fuzzy** search (`search_fuzzy.py`); native GTK 4 on all supported DEs via stock widgets + `theme_detect`. Manual multi-DE UX checklist: [docs/INSTRUCTIONS.md §2.3](../INSTRUCTIONS.md).
 * Whisper language parity list: `po/whisper-languages.txt` → `LINGUAS`. Filled `msgstr` for all Whisper languages.
 * Polkit policy XML localization is deferred.
 
