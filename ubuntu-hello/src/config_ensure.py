@@ -128,3 +128,60 @@ def ensure_system_config(
         )
     _install_template(template, dest)
     return dest
+
+
+# --- upgrade migration: `[video] confirmations` -------------------------------
+
+# Agreeing frames to require for a config that predates the key, chosen from the
+# threshold the user already has. Mirrors the levels in
+# ubuntu-hello-gtk/src/tab_security.py, which this module cannot import (it pulls
+# in GTK); tests/test_install_config.py asserts the two agree.
+CONFIRMATION_LADDER = ((2.6, 4), (3.0, 3), (3.5, 2))
+
+
+def confirmations_for(certainty: float) -> int:
+    """Frames to demand at *certainty*: stricter thresholds ask for more.
+
+    Below the strictest shipped level the answer is 1, not 4. A threshold that low
+    is one someone set by hand, and it already lets very few frames through; adding
+    a demand for several agreeing ones on top would turn a login that mostly worked
+    into one that never completes. Those users opt in from Settings instead.
+    """
+    if certainty < CONFIRMATION_LADDER[0][0]:
+        return 1
+    for threshold, frames in CONFIRMATION_LADDER:
+        if certainty <= threshold:
+            return frames
+    return CONFIRMATION_LADDER[-1][1]
+
+
+def add_missing_confirmations(path: str) -> int | None:
+    """Give an upgraded config the `[video] confirmations` key it never had.
+
+    Accepting on the first frame under the threshold decides on the best of the
+    dozens of looks a scan takes, so one outlier frame is enough to authenticate.
+    Existing installs keep their own threshold -- only the missing key is added,
+    at the count matching the strictness they already chose. Returns the value
+    written, or None when nothing was needed or the file could not be read.
+
+    Shared by every install path: install_config.py (meson / install.sh) and
+    package-configure.sh (deb, rpm, arch). A booted-OS test found the packages
+    had never run it, so upgraded package installs kept authenticating on a
+    single frame.
+    """
+    try:
+        import config_edit
+
+        parser = configparser.ConfigParser()
+        parser.read(path)
+        if parser.has_option("video", "confirmations"):
+            return None
+        certainty = parser.getfloat("video", "certainty", fallback=3.5)
+        frames = confirmations_for(certainty)
+        config_edit.set_option(path, "video", "confirmations", frames)
+        print(f"Migrated existing config: added confirmations = {frames} for certainty = {certainty}")
+        return frames
+    except Exception as err:
+        print(f"Warning: Failed to add confirmations to existing config: {err}")
+        return None
+

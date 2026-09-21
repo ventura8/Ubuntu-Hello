@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -42,7 +43,7 @@ msgstr "Enter နှိပ် ပေးပို့ရန် ခွင့်ပ�
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "အသုံးပြုသူမှ ၎င်းအစား နှိပ်ရန် စောင့်ဆိုင်းနေစဉ် Enter နှိပ်၍ ပေးပို့ရန် မအောင်မြင်ပါ။"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "မျက်နှာကို စစ်မှန်ကြောင်း သက်သေပြရန် ကြိုးစားနေပါသည်။"
 
@@ -123,89 +124,89 @@ msgstr ""
 "ubuntu-hello ညွှန်ကြားချက်များကို root အဖြစ် မလုပ်ဆောင်နိုင်ပါ၊ ကျေးဇူးပြု၍ ဤအမိန့်ကို --user "
 "အလံဖြင့် လုပ်ဆောင်ပါ။"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "ဒေတာဖိုင်များကို ဒေါင်းလုဒ်မလုပ်ရသေးပါ၊ ကျေးဇူးပြု၍ အောက်ပါ command များကို လုပ်ဆောင်ပါ။"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "လော့ဂ်အင်"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ရက်စွဲ-"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "စကင်န်ဖတ်ချိန်-"
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "ဘောင်များ-"
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "လက်ခံသူအမည်-"
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "အကောင်းဆုံးသေချာမှုတန်ဖိုး-"
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "စတင်နေသည်..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "မျက်နှာ အသိအမှတ်ပြုမှု မစတင်နိုင်ပါ: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "သင့်ကို ခွဲခြားသိမြင်ခြင်း..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "မအောင်မြင်ပါ။"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "ဖရိမ်များအားလုံး မှောင်လွန်းသည်၊ ကျေးဇူးပြု၍ config တွင် dark_threshold ကိုစစ်ဆေးပါ။"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ပျမ်းမျှအမှောင်- {avg}၊ အဆင့်သတ်မှတ်ချက်- {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "အချိန်ကုန်တယ်။"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "စတင်ခြင်း။"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "cam ကိုဖွင့် + load libs- %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "ကင်မရာဖွင့်ခြင်း။"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "အသိအမှတ်ပြု libs တင်သွင်းခြင်း။"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "လူသိများသောမျက်နှာကိုရှာဖွေခြင်း။"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "စုစုပေါင်းအချိန်"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -213,17 +214,17 @@ msgstr ""
 "\n"
 "ဆုံးဖြတ်ချက်"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "မူရင်း- %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "အသုံးပြုထားသည်- %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -232,27 +233,27 @@ msgstr ""
 "\n"
 "ရှာဖွေထားသောဘောင်များ- %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "အနက်ရောင်ဘောင်များကို လျစ်လျူရှုထားသည်- %d"
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "အမှောင်ဘောင်များကို လျစ်လျူရှုထားသည်- %d"
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "အနိုင်ရဘောင်သေချာမှု- %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "အနိုင်ရမော်ဒယ်- %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "အောင်မြင်ပါစေ။"
 
@@ -401,8 +402,7 @@ msgstr "မျက်နှာမော်ဒယ်ကို သိမ်းဆ�
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "နမူနာ {n} ခု"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

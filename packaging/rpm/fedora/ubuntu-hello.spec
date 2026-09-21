@@ -30,7 +30,10 @@ Requires:       python3-numpy
 Requires:       python3-opencv
 Requires:       python3-cryptography
 Requires:       python3-pip
+Requires:       python3-devel
+Requires:       gcc-c++
 Requires:       cmake
+Requires:       python3-pillow
 Requires:       curl
 Requires:       bzip2
 Requires:       v4l-utils

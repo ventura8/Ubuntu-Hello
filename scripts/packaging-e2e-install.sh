@@ -69,6 +69,16 @@ uh_e2e_assert_installed() {
 	local pam_so
 	pam_so="$(uh_e2e_find_pam_so)" || uh_e2e_fail "pam_ubuntu_hello.so not found under /usr/lib*/security"
 	uh_e2e_assert_file "$pam_so"
+	# The module must actually load: every shared library it links has to be
+	# present, or PAM logs "unable to dlopen(...): <lib>: cannot open shared
+	# object file" and silently disables face auth. This caught the Arch package
+	# shipping libinih/libevdev as build-only deps. ldd is available on all the
+	# packaging images; if it somehow is not, skip rather than fail.
+	if command -v ldd >/dev/null 2>&1; then
+		local missing
+		missing="$(ldd "$pam_so" 2>/dev/null | grep 'not found' || true)"
+		[[ -z "$missing" ]] || uh_e2e_fail "pam_ubuntu_hello.so has unresolved libraries after ${FORMAT} install:\n${missing}"
+	fi
 	uh_e2e_assert_file /etc/ubuntu-hello/config.ini
 	uh_e2e_assert_file /usr/share/ubuntu-hello/config.ini
 	# Face matching requires dlib on the host Python used by compare.py.

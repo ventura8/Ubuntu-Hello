@@ -31,7 +31,10 @@ Requires:       python313-numpy
 Requires:       python313-opencv
 Requires:       python313-cryptography
 Requires:       python313-pip
+Requires:       python313-devel
+Requires:       gcc-c++
 Requires:       cmake
+Requires:       python313-Pillow
 Requires:       curl
 Requires:       bzip2
 Requires:       v4l-utils

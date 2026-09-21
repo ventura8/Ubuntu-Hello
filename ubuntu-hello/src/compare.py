@@ -158,6 +158,17 @@ BUSCTL_PATH = "/usr/bin/busctl"
 GTK_BIN_PATH = "/usr/bin/ubuntu-hello-gtk"
 
 
+def _display_available():
+	"""True when the auth overlay could actually open a window.
+
+	Under PAM the module hands compare.py a minimal environment with no display,
+	so the GTK overlay would crash on open (and, with apport, leave a crash
+	report on every headless / SSH sudo). The notification card is the UI in
+	that case; the overlay is only worth spawning when a display is reachable.
+	"""
+	return bool(os.environ.get("WAYLAND_DISPLAY") or os.environ.get("DISPLAY"))
+
+
 def _session_idle_hint():
 	"""Return True/False for the current login1 session's IdleHint, or None
 	if it can't be determined (busctl missing, no session, DBus error, ...).
@@ -440,12 +451,20 @@ if __name__ == "__main__":
 	# Send the gtk output to the terminal if enabled in the config
 	gtk_pipe = sys.stdout if gtk_stdout else subprocess.DEVNULL
 
-	# Start the auth ui, register it to be always be closed on exit
-	try:
-		gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
-		atexit.register(exit)
-	except FileNotFoundError:
-		pass
+	# Start the auth ui, register it to be always be closed on exit. Only when a
+	# display is actually reachable: under PAM the module hands us a minimal
+	# environment with no DISPLAY/WAYLAND_DISPLAY (the notification card is the
+	# UI there), and spawning the GTK overlay anyway made it crash with no
+	# display -- on a headless server or an SSH sudo that left an apport crash
+	# report behind on every attempt. Left undefined otherwise, exactly like the
+	# missing-binary case; the `"gtk_proc" in globals()` guards handle its
+	# absence and the challenge prompt still reaches the notification card.
+	if _display_available():
+		try:
+			gtk_proc = subprocess.Popen([GTK_BIN_PATH, "--start-auth-ui"], stdin=subprocess.PIPE, stdout=gtk_pipe, stderr=gtk_pipe)
+			atexit.register(exit)
+		except FileNotFoundError:
+			pass
 
 	# Ensure SIGTERM/SIGINT release the camera and tear down GTK (atexit does not run on SIGTERM)
 	signal.signal(signal.SIGTERM, _signal_exit)

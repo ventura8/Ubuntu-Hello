@@ -16,6 +16,34 @@ import paths_factory
 import preferences
 from search_fuzzy import fuzzy_match, fuzzy_score
 
+# Display + locale variables elevate() forwards across pkexec so Automatic
+# language and theme keep working as root on all supported DEs. This is the
+# ONLY set the elevated process will accept back from argv: polkit pins just
+# python + the script path, so any extra `--env-*` argument is caller-controlled
+# and must never be able to set PATH / LD_* / PYTHON* in a root process.
+SESSION_ENV_ALLOWLIST = (
+	"DISPLAY",
+	"WAYLAND_DISPLAY",
+	"XDG_RUNTIME_DIR",
+	"XAUTHORITY",
+	"DBUS_SESSION_BUS_ADDRESS",
+	"XDG_CURRENT_DESKTOP",
+	"DESKTOP_SESSION",
+	"XDG_CONFIG_HOME",
+	"XDG_DATA_HOME",
+	"XDG_DATA_DIRS",   # snap/flatpak .desktop dirs: without it xdg-open picks the wrong browser
+	"LANG",
+	"LANGUAGE",
+	"LC_ALL",
+	"LC_MESSAGES",
+	"LC_CTYPE",
+)
+
+# Fixed search path for the root process: every helper we spawn by bare name
+# (ubuntu-hello, sudo, gsettings, loginctl, …) resolves from here, never from
+# anything inherited or injected.
+ROOT_SAFE_PATH = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 # Restore GUI environment variables passed from the parent process
 env_prefix = "--env-"
 for arg in list(sys.argv):
@@ -23,8 +51,13 @@ for arg in list(sys.argv):
 		parts = arg[len(env_prefix):].split("=", 1)
 		if len(parts) == 2:
 			key, val = parts
-			os.environ[key] = val
+			if key in SESSION_ENV_ALLOWLIST:
+				os.environ[key] = val
+			else:
+				print(f"ubuntu-hello-gtk: ignoring non-allowlisted --env-{key}", file=sys.stderr)
 		sys.argv.remove(arg)
+if os.geteuid() == 0:
+	os.environ["PATH"] = ROOT_SAFE_PATH
 
 # Make sure we have the libs we need
 gi.require_version("Gtk", "4.0")
@@ -652,23 +685,8 @@ def elevate():
 			original_locale = {}
 		# Forward display + locale so Automatic language and theme keep working
 		# after polkit elevation on all supported DEs (GNOME/KDE/XFCE/…).
-		for var in [
-			"DISPLAY",
-			"WAYLAND_DISPLAY",
-			"XDG_RUNTIME_DIR",
-			"XAUTHORITY",
-			"DBUS_SESSION_BUS_ADDRESS",
-			"XDG_CURRENT_DESKTOP",
-			"DESKTOP_SESSION",
-			"XDG_CONFIG_HOME",
-			"XDG_DATA_HOME",
-			"XDG_DATA_DIRS",   # snap/flatpak .desktop dirs: without it xdg-open picks the wrong browser
-			"LANG",
-			"LANGUAGE",
-			"LC_ALL",
-			"LC_MESSAGES",
-			"LC_CTYPE",
-		]:
+		# Must stay the same set the module-level restore accepts.
+		for var in SESSION_ENV_ALLOWLIST:
 			val = os.environ.get(var)
 			if var in ("LANG", "LANGUAGE", "LC_ALL", "LC_MESSAGES"):
 				# The desktop's locale, not this process's (a saved language

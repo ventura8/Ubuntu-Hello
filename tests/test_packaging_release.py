@@ -328,6 +328,35 @@ def test_flatpak_finish_args_are_minimal() -> None:
     assert "PolicyKit1" in manifest
 
 
+def test_dlib_build_failure_does_not_skip_pam_or_polkit_setup() -> None:
+    """A dlib build failure (e.g. a missing toolchain, as on Arch without make)
+    must not abort the post-install before the login stack and the polkit
+    hardening drop-in are configured. So dlib is wired last and is non-fatal."""
+    text = _read_repo("scripts/package-configure.sh")
+    order = text.index("uh_configure_pam\n\tuh_configure_polkit_override")
+    dlib_last = text.index("uh_ensure_dlib ||", order)
+    assert dlib_last > order, "uh_ensure_dlib must run after PAM/polkit config"
+    assert "uh_ensure_dlib ||" in text, "a dlib failure must be non-fatal"
+
+
+def test_arch_pkgbuild_declares_the_pam_module_shared_libraries_at_runtime() -> None:
+    """The PAM module links libINIReader (libinih) and libevdev; if they are only
+    makedepends, pacman never installs them on the user's box and the module fails
+    to dlopen -- face auth is completely broken on Arch. They must be in depends."""
+    pkgbuild = _read_repo("packaging/arch/ubuntu-hello/PKGBUILD")
+    depends = pkgbuild[pkgbuild.index("depends=("):pkgbuild.index(")", pkgbuild.index("depends=("))]
+    assert "'libinih'" in depends, "libinih (libINIReader.so) must be a runtime dependency"
+    assert "'libevdev'" in depends, "libevdev must be a runtime dependency"
+
+
+def test_arch_pkgbuild_carries_the_dlib_build_toolchain() -> None:
+    """Arch has no python-dlib, so the pip build needs gcc, make and cmake; make
+    was missing and cmake could not find a build program (Unix Makefiles)."""
+    pkgbuild = _read_repo("packaging/arch/ubuntu-hello/PKGBUILD")
+    for tool in ("'gcc'", "'make'", "'cmake'", "'python-pip'"):
+        assert tool in pkgbuild, f"Arch depends missing {tool}"
+
+
 def test_package_configure_ensures_dlib_via_pip() -> None:
     """When dlib is missing on the live host, configure installs a pinned pip build."""
     text = _read_repo("scripts/package-configure.sh")
@@ -338,6 +367,16 @@ def test_package_configure_ensures_dlib_via_pip() -> None:
     assert "UH_DLIB_PIP_MARKER" in text or ".dlib-pip-installed" in text
     assert "pip_cmd" in text or 'pip3' in text
     assert "import dlib" in text
+
+
+def test_packaging_e2e_checks_the_pam_module_libraries_resolve() -> None:
+    """The module file existing is not enough: if a linked shared library is
+    missing (as libinih was on Arch) PAM cannot dlopen it and face auth is dead.
+    The E2E install must ldd the module and fail on any unresolved library."""
+    text = _read_repo("scripts/packaging-e2e-install.sh")
+    assert "ldd" in text
+    assert "not found" in text
+    assert "unresolved libraries" in text
 
 
 def test_packaging_e2e_requires_dlib() -> None:
@@ -471,13 +510,35 @@ def test_check_yml_runs_all_jobs_in_parallel() -> None:
     check_yml = _read_repo(".github/workflows/check.yml")
     assert "needs:" not in check_yml
     assert check_yml.count("max-parallel: 20") >= 2
-    # 4 job definitions (lint, coverage, compat, packaging); matrices expand to
-    # 1 + 1 + 8 DE + 7 packaging = 17 concurrent runners.
+    # 5 job definitions (lint, coverage, compat, packaging, vm); matrices expand to
+    # 1 + 1 + 8 DE + 7 packaging = 17 concurrent runners on every push, plus the
+    # booted-OS tier's 3 distros on release branches (gated by `if:`, not `needs:`).
     job_defs = check_yml.count("runs-on: ubuntu-26.04")
-    assert job_defs == 4
+    assert job_defs == 5
     assert check_yml.count("de: [baseline") == 1
     assert "  packaging:" in check_yml
-    assert job_defs - 2 + 8 + 7 == 17
+    assert "  vm:" in check_yml
+    assert check_yml.count("distro: ") == 3
+    assert job_defs - 3 + 8 + 7 == 17
+
+
+def test_authselect_pam_line_uses_a_real_action_token_not_the_debian_macro() -> None:
+    """`success=end` is a pam-auth-update macro (expanded to a jump number on Debian),
+    not valid raw PAM syntax. authselect writes UH_AUTHSELECT_PAM_LINE into system-auth
+    verbatim, and Linux-PAM treats the unknown token `end` as a failure to ignore -- so
+    the module's skip return surfaced and broke password auth on Fedora. It must be
+    `done`. The Debian pam-config keeps the macro; only the raw insertions change."""
+    configure = _read_repo("scripts/package-configure.sh")
+    assert "success=done default=ignore" in configure
+    assert "success=end" not in configure
+
+
+def test_the_prerm_sweeps_pycache_from_every_lib_dir() -> None:
+    """Python writes untracked __pycache__ next to our modules; on Fedora (/usr/lib64)
+    dnf left the lib dir behind. The shared prerm must sweep lib and lib64."""
+    prerm = _read_repo("scripts/package-prerm.sh")
+    assert "/usr/lib64/ubuntu-hello" in prerm
+    assert "__pycache__" in prerm
 
 
 def test_arch_pkgbuild_skips_inih_subproject_option() -> None:

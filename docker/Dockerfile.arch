@@ -5,7 +5,7 @@ FROM archlinux:base-devel-20260906.0.587075
 RUN pacman -Syu --noconfirm \
     && pacman -S --noconfirm \
     meson ninja cmake boost openssl pam libinih libevdev \
-    gettext python python-pip python-numpy python-opencv python-cryptography \
+    gettext python python-pip python-numpy python-opencv python-cryptography python-pillow \
     curl bzip2 v4l-utils tpm2-tools polkit pkgconf git \
     && pacman -Scc --noconfirm
 

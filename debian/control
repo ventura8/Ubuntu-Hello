@@ -39,14 +39,15 @@ Depends:
  tpm2-tools,
  libglib2.0-bin,
  libpam-gnome-keyring,
- libpam-kwallet5
+ libpam-kwallet5,
+ python3-dlib | python3-dev,
+ python3-dlib | python3-pip,
+ python3-dlib | cmake,
+ python3-dlib | g++
 Recommends:
   ubuntu-hello-gtk,
   python3-dlib,
   libopenblas-dev | liblapack-dev,
-  python3-pip,
-  cmake,
-  g++,
   libboost-all-dev
 Suggests:
  nvidia-cuda-dev (>= 7.5)
@@ -58,8 +59,11 @@ Description: Windows Hello style facial authentication for Linux
  Using the central authentication system (PAM), this works everywhere you
  would otherwise need your password: login, lock screen, sudo, su, etc.
  .
- python3-dlib is not available on every Ubuntu release; where the Recommends
- cannot be satisfied, install it manually: pip3 install dlib
+ python3-dlib is not available on every Ubuntu release. Where the archive has
+ no dlib, the package builds it at install time, so the toolchain it needs
+ (python3-dev, cmake, g++, pip) is a hard dependency there: apt does not
+ upgrade installed packages to satisfy a Recommends, and on an image whose
+ python3 lags the archive that left the headers out and the build failing.
 
 Package: ubuntu-hello-gtk
 Architecture: any

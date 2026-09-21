@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -43,7 +44,7 @@ msgstr ""
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Enter མནོན་པའི་བརྡ་བསྐུར་མ་ཐུབ། དེའི་ཚབ་ཏུ་སྤྱོད་མཁན་གྱིས་མནོན་པར་སྒུག་བཞིན་པ།"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "གདོང་པའི་ར་སྤྲོད་ཚོད་ལྟ་བྱེད་བཞིན་པ།"
 
@@ -124,89 +125,89 @@ msgstr ""
 "ubuntu-hello གྱི་བརྡ་སྦྱོར་རྣམས་ root ཚུལ་དུ་སྤྱོད་མི་ཐུབ། བརྡ་སྦྱོར་འདི་ --user མཚོན་རྟགས་དང་མཉམ་"
 "དུ་སྤྱོད་རོགས།"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "གཞི་གྲངས་ཡིག་ཆ་རྣམས་ཕབ་ལེན་མ་བྱས། གཤམ་གྱི་བརྡ་སྦྱོར་རྣམས་སྤྱོད་རོགས།"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr " ནང་འཇུག"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "ཚེས་གྲངས། "
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "ཞིབ་བཤེར་དུས་ཚོད། "
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "པར་ངོས། "
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "འཕྲུལ་ཆས་ཀྱི་མིང་། "
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "ངེས་ཚད་ཀྱི་ཐོབ་གྲངས་མཆོག་ཤོས། "
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "འགོ་འཛུགས་བཞིན་པ..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "གདོང་ངོས་ངོས་འཛིན་འགོ་འཛུགས་མ་ཐུབ། {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "ཁྱེད་ངོས་འཛིན་བྱེད་བཞིན་པ..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "ཕམ་ཉེས།"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "པར་ངོས་ཚང་མ་མུན་ནག་དྲགས་པས། སྒྲིག་འགོད་ནང་གི་ dark_threshold ལ་ཞིབ་བཤེར་བྱེད་རོགས།"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ཆ་སྙོམས་མུན་ཚད། {avg}། ཚད་མཚམས། {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "སོང་བའི་དུས་ཚོད།"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "འགོ་འཛུགས་བཞིན་པ།"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "  པར་ཆས་འབྱེད་པ + དཔེ་མཛོད་འཇུག་པ། %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "  པར་ཆས་འབྱེད་བཞིན་པ།"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "  ངོས་འཛིན་དཔེ་མཛོད་ནང་འདྲེན་བཞིན་པ།"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "ཤེས་ཟིན་པའི་གདོང་པ་འཚོལ་བཞིན་པ།"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "དུས་ཚོད་བསྡོམས།"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -214,17 +215,17 @@ msgstr ""
 "\n"
 "གསལ་ཚད།"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "  རང་ལྡན། %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "  བེད་སྤྱོད་བྱས་པ། %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -233,27 +234,27 @@ msgstr ""
 "\n"
 "བཤེར་བའི་པར་ངོས། %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "སྣང་མེད་དུ་བཞག་པའི་པར་ངོས་ནག་པོ། %d "
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "སྣང་མེད་དུ་བཞག་པའི་པར་ངོས་མུན་ནག %d "
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "རྒྱལ་བའི་པར་ངོས་ཀྱི་ངེས་ཚད། %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "རྒྱལ་བའི་དཔེ་དབྱིབས། %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "ལེགས་གྲུབ་བྱུང་།"
 
@@ -402,8 +403,7 @@ msgstr "གདོང་པའི་དཔེ་དབྱིབས་གསོག
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "དཔེ་མཚོན་ {n}"
 
 #: src/notify.py:624
 msgid "Could not record a face model"
