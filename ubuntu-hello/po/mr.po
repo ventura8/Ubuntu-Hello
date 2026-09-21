@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -43,7 +44,7 @@ msgstr ""
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "एंटर दाबा पाठवण्यात अयशस्वी, त्याऐवजी वापरकर्त्याने ते दाबण्याची प्रतीक्षा करत आहे"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "चेहर्याचे प्रमाणीकरण करण्याचा प्रयत्न करत आहे"
 
@@ -122,89 +123,89 @@ msgid ""
 msgstr ""
 "ubuntu-hello कमांड root म्हणून चालवू शकत नाही, कृपया ही कमांड --user फ्लॅगसह चालवा"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "डेटा फाइल डाउनलोड केल्या गेल्या नाहीत, कृपया खालील आदेश चालवा:"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "लॉगिन करा"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "तारीख:"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "स्कॅन वेळ:"
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "फ्रेम्स:"
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "होस्टनाव:"
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "सर्वोत्तम निश्चितता मूल्य:"
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "सुरू करत आहे..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "चेहरा ओळख सुरू होऊ शकली नाही: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "तुमची ओळख..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "अयशस्वी"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "सर्व फ्रेम खूप गडद होत्या, कृपया कॉन्फिगमध्ये dark_threshold तपासा"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "सरासरी अंधार: {avg}, थ्रेशोल्ड: {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "वेळ घालवला"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "सुरू होत आहे"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "उघडा कॅम + लोड libs: %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "कॅमेरा उघडत आहे"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "ओळख libs आयात करत आहे"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "ओळखीचा चेहरा शोधत आहे"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "एकूण वेळ"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -212,17 +213,17 @@ msgstr ""
 "\n"
 "ठराव"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "मूळ: %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "वापरलेले: %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -231,27 +232,27 @@ msgstr ""
 "\n"
 "फ्रेम शोधल्या: %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "काळ्या फ्रेम्सकडे दुर्लक्ष केले: %d"
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "गडद फ्रेम दुर्लक्षित: %d"
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "फ्रेम जिंकण्याची निश्चितता: %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "विजेते मॉडेल: %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "यशस्वी"
 
@@ -400,8 +401,8 @@ msgstr "चेहऱ्याचे मॉडेल जतन केले"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} नमुना"
+msgstr[1] "{n} नमुने"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

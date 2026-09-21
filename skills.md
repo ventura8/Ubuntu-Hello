@@ -15,7 +15,7 @@ Canonical agent rules: [AGENTS.md](AGENTS.md). Setup guide: [docs/INSTRUCTIONS.m
 | [rubberstamp](.agents/skills/rubberstamp/SKILL.md) | Liveness plugins |
 | [coverage-badges](.agents/skills/coverage-badges/SKILL.md) | Badge generator |
 | [ci-docker-matrix](.agents/skills/ci-docker-matrix/SKILL.md) | Lint / coverage / per-DE compat Docker CI (`docker/` Dockerfiles) |
-| [test-runner](.agents/skills/test-runner/SKILL.md) | pytest + PAM C++ tests |
+| [test-runner](.agents/skills/test-runner/SKILL.md) | pytest + PAM C++ tests, real-GTK E2E, recorded-footage tier, booted-OS (VM) tier |
 | [pipeline-runner](.agents/skills/pipeline-runner/SKILL.md) | Full gate: lint → coverage → compat matrix; fix until green |
 | [release](.agents/skills/release/SKILL.md) | Release notes from **all** branch changes; amend commit title/body — see `docs/releases/` for the latest |
 | [release-packaging](.agents/skills/release-packaging/SKILL.md) | Local multi-format release builds (deb/RPM/Arch/Snap/AppImage/Flatpak) |

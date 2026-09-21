@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -45,7 +46,7 @@ msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "I rahua te tuku i te perehi Enter, e tatari ana kia pehia e te kaiwhakamahi"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "E ngana ana ki te motuhēhēnga kanohi"
 
@@ -129,91 +130,91 @@ msgstr ""
 "Kāore e taea te whakahaere i ngā whakahau ubuntu-hello hei root; "
 "whakahaeretia tēnei whakahau me te haki --user"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr ""
 "Ko nga konae raraunga kaore ano kia tikiakehia, mahia nga whakahau e whai "
 "ake nei:"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "TOHUTOHU"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "Rā:"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "Wā matawai:"
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "Tāpare:"
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "Ingoa Kaihautū:"
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "Uara tino pai:"
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "Ka timata..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "Kāore i taea te whakatīmata i te tautuhi kanohi: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "Te tautuhi i a koe..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "I rahua"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "He pouri rawa nga papa katoa, tirohia te dark_threshold i te whirihora"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Te pouri toharite: {avg}, Paepae: {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "Te wa i pau"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "Ka timata"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Whakatuwherahia te kamera + utaina nga pukapuka: %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "Te whakatuwhera i te kamera"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "Te kawemai i nga pukapuka tohu"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "Kei te rapu kanohi mohio"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "Te wa katoa"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -221,17 +222,17 @@ msgstr ""
 "\n"
 "Whakatau"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "Maori: %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "Kua whakamahia: %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -240,27 +241,27 @@ msgstr ""
 "\n"
 "I rapua nga papa: %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "Ka warewarehia nga papa pango: %d"
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Ko nga papa pouri kua warewarehia: %d"
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Tino o te anga toa: %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Tauira toa: %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "ANGitu"
 
@@ -409,8 +410,8 @@ msgstr "Kua tiakina te tauira kanohi"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} tauira"
+msgstr[1] "{n} tauira"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==2 ? 1 : 2);\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -43,7 +44,7 @@ msgstr ""
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Enter press प्रेषयितुं असफलः, तस्य स्थाने उपयोक्तुः तस्य नुदनस्य प्रतीक्षां कुर्वन्"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "मुखप्रमाणीकरणस्य प्रयासः"
 
@@ -123,90 +124,90 @@ msgid ""
 msgstr ""
 "ubuntu-hello आदेशान् root रूपेण चालयितुं न शक्यते, कृपया --user ध्वजेन सह एतत् आदेशं चालयन्तु"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "दत्तांशसञ्चिकाः अवतरणं न कृतवन्तः, कृपया निम्नलिखित आदेशान् चालयन्तु ।"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "LOGIN इति"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "दिनाङ्कः:"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "स्कैन् समयः : १."
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "फ्रेम्स : १."
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "होस्टनाम : १."
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "उत्तमं निश्चयमूल्यम् : १."
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "आरम्भं कुर्वन्..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "मुखपरिचयः आरब्धुं न शक्यते: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "भवतः परिचयं कृत्वा..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "असफल"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr ""
 "सर्वे फ्रेम्स अतीव अन्धकारमयाः आसन्, कृपया config मध्ये dark_threshold इति परीक्ष्यताम्"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "औसत अन्धकारः {avg}, दहलीजः {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "व्यतीतः समयः"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "आरम्भः"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "ओपन कैम + लोड लिब्स: %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "कॅमेरा उद्घाटयन्"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "मान्यता libs आयात करना"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "ज्ञातं मुखं अन्वेष्य"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "कुल समय"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -214,17 +215,17 @@ msgstr ""
 "\n"
 "प्रस्ताव"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "मूलनिवासी: %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "प्रयुक्तः %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -233,27 +234,27 @@ msgstr ""
 "\n"
 "अन्वेषणं कृतं फ्रेम्स: %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "कृष्णचतुष्कोणाः उपेक्षिताः : %d ."
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "अन्धकारमयचतुष्कोणाः उपेक्षिताः : %d ."
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "विजयी फ्रेमस्य निश्चयः : %.3f ."
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "विजेता मॉडलः %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "सफल"
 
@@ -402,8 +403,9 @@ msgstr "मुखप्रतिरूपं रक्षितम्"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} नमूना"
+msgstr[1] "{n} नमूनौ"
+msgstr[2] "{n} नमूनाः"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

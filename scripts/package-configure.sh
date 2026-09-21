@@ -89,6 +89,9 @@ uh_set_permissions() {
 	log_dir="$(uh_pkg_path "/var/log/ubuntu-hello")"
 	chmod 755 "$etc_hello" 2>/dev/null || true
 	chmod 755 "$(uh_pkg_path "/etc/ubuntu-hello/dlib-data")" 2>/dev/null || true
+	# dpkg unpacks the conffile with whatever mode the build gave it; a config
+	# file is data, not a program (a clean-install check found it at 755).
+	chmod 644 "$(uh_pkg_path "/etc/ubuntu-hello/config.ini")" 2>/dev/null || true
 	mkdir -p "$models_dir"
 	chmod 700 "$models_dir"
 	mkdir -p "$tpm_keys"
@@ -116,8 +119,32 @@ uh_restore_config_ini() {
 	fi
 }
 
+uh_migrate_config_ini() {
+	# An existing config keeps every value the user has; only keys added since
+	# it was written are filled in (currently `[video] confirmations`). The code
+	# is the installed config_ensure.py, shared with the source installer.
+	local config_ini libdir
+	config_ini="$(uh_pkg_path "/etc/ubuntu-hello/config.ini")"
+	[ -f "$config_ini" ] || return 0
+	for libdir in /usr/lib/x86_64-linux-gnu/ubuntu-hello /usr/lib/aarch64-linux-gnu/ubuntu-hello \
+	              /usr/lib64/ubuntu-hello /usr/lib/ubuntu-hello /usr/local/lib/ubuntu-hello; do
+		libdir="$(uh_pkg_path "$libdir")"
+		if [ -f "$libdir/config_ensure.py" ]; then
+			python3 -c "import sys; sys.path.insert(0, '$libdir'); import config_ensure; config_ensure.add_missing_confirmations('$config_ini')" || \
+				echo "WARNING: config migration failed (see above); the file is unchanged"
+			return 0
+		fi
+	done
+	echo "WARNING: config_ensure.py not found; config migration skipped"
+}
+
 UH_AUTHSELECT_PROFILE='ubuntu-hello'
-UH_AUTHSELECT_PAM_LINE='auth        [success=end default=ignore]        pam_ubuntu_hello.so'
+# 'done', not the pam-auth-update-only macro 'end': authselect writes this line
+# verbatim into system-auth, and Linux-PAM treats the unknown token 'end' as a
+# failure to ignore -- so the module's skip return (PAM_AUTHINFO_UNAVAIL for SSH,
+# no camera, disabled) surfaced and broke password auth on Fedora. 'done' stops
+# the stack on a face match and ignores every other return, as intended.
+UH_AUTHSELECT_PAM_LINE='auth        [success=done default=ignore]        pam_ubuntu_hello.so'
 
 uh_configure_pam_authselect() {
 	# Fedora (and other authselect-managed distros) have no pam-auth-update /
@@ -276,9 +303,15 @@ uh_package_configure() {
 	uh_download_models
 	uh_set_permissions
 	uh_restore_config_ini
-	uh_ensure_dlib
+	uh_migrate_config_ini
+	# PAM and the polkit hardening drop-in are wired before dlib and never
+	# blocked by it: a dlib build failure (e.g. a missing toolchain) must not
+	# leave the login stack half-configured or the polkit sandbox unpatched.
+	# dlib is non-fatal here -- the user can install it later and face auth then
+	# works -- so the install still completes with the security config in place.
 	uh_configure_pam
 	uh_configure_polkit_override
+	uh_ensure_dlib || echo ">>> WARNING: dlib is not available yet; face authentication will not work until it is installed (see messages above)."
 	echo ">>> Ubuntu Hello installation complete!"
 }
 

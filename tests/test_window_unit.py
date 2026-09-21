@@ -270,6 +270,57 @@ class TestElevationAndUser:
 		assert os.environ.get("DISPLAY") == ":9"
 		assert sys.argv == ["x", "--force-onboarding"]   # every --env-* arg is consumed, even malformed ones
 
+	def _run_module_prelude(self, monkeypatch, argv, euid):
+		monkeypatch.setattr(sys, "argv", list(argv))
+		monkeypatch.setattr(os, "geteuid", lambda: euid)
+		src = open(window.__file__, encoding="utf-8").read().split("\nclass MainWindow")[0]
+		ns = {"__name__": "window_env_probe", "__file__": window.__file__}
+		exec(compile(src, window.__file__, "exec"), ns)
+
+	def test_env_args_outside_allowlist_are_dropped(self, monkeypatch, capsys):
+		"""polkit pins only python + script: extra `--env-*` argv is attacker-controlled.
+		PATH / LD_PRELOAD / PYTHONPATH must never reach the root process's environ."""
+		for var in ("PATH", "LD_PRELOAD", "LD_LIBRARY_PATH", "PYTHONPATH", "HOME", "DISPLAY"):
+			monkeypatch.delenv(var, raising=False)
+		self._run_module_prelude(monkeypatch, [
+			"x", "--env-PATH=/tmp/evil:/usr/bin", "--env-LD_PRELOAD=/tmp/evil.so",
+			"--env-LD_LIBRARY_PATH=/tmp/evil", "--env-PYTHONPATH=/tmp/evil", "--env-HOME=/tmp/evil",
+			"--env-DISPLAY=:9", "--force-onboarding"], euid=1000)
+		assert os.environ.get("DISPLAY") == ":9"
+		for var in ("LD_PRELOAD", "LD_LIBRARY_PATH", "PYTHONPATH", "HOME"):
+			assert var not in os.environ, var
+		assert os.environ.get("PATH") != "/tmp/evil:/usr/bin"
+		assert sys.argv == ["x", "--force-onboarding"]   # rejected args are still consumed
+		err = capsys.readouterr().err
+		assert "ignoring non-allowlisted --env-PATH" in err and "--env-LD_PRELOAD" in err
+
+	def test_root_process_pins_path(self, monkeypatch):
+		"""As root every helper is spawned by bare name, so PATH is reset to a fixed value."""
+		monkeypatch.setenv("PATH", "/tmp/evil:/usr/bin")
+		self._run_module_prelude(monkeypatch, ["x"], euid=0)
+		assert os.environ["PATH"] == window.ROOT_SAFE_PATH
+		assert "/tmp/evil" not in os.environ["PATH"]
+
+	def test_unprivileged_process_keeps_path(self, monkeypatch):
+		monkeypatch.setenv("PATH", "/opt/dev/bin:/usr/bin")
+		self._run_module_prelude(monkeypatch, ["x"], euid=1000)
+		assert os.environ["PATH"] == "/opt/dev/bin:/usr/bin"
+
+	def test_elevate_forwards_exactly_the_restore_allowlist(self, monkeypatch):
+		"""Sender and receiver share one allowlist: nothing forwarded is ever dropped on arrival."""
+		monkeypatch.delenv("BYPASS_ELEVATE", raising=False)
+		monkeypatch.setattr(window.os, "geteuid", lambda: 1000)
+		monkeypatch.setattr(window.i18n, "original_locale_env", lambda: {})
+		for var in window.SESSION_ENV_ALLOWLIST:
+			monkeypatch.setenv(var, "v")
+		monkeypatch.setenv("LD_PRELOAD", "/tmp/evil.so"); monkeypatch.setenv("PYTHONPATH", "/tmp/evil")
+		with patch("window.os.execvp") as execvp:
+			window.elevate()
+		args = execvp.call_args.args[1]
+		forwarded = {a[len("--env-"):].split("=", 1)[0] for a in args if a.startswith("--env-")}
+		assert forwarded <= set(window.SESSION_ENV_ALLOWLIST)
+		assert not forwarded & {"LD_PRELOAD", "PYTHONPATH", "PATH"}
+
 	def test_get_real_user_prefers_pkexec_uid(self, monkeypatch):
 		monkeypatch.setenv("SUDO_USER", "root"); monkeypatch.setenv("PKEXEC_UID", "1000")
 		import pwd

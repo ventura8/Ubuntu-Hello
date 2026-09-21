@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -46,7 +47,7 @@ msgstr ""
 "Enter 키를 보내지 못했습니다. 대신 사용자가 Enter 키를 누를 때까지 기다리고 "
 "있습니다."
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "얼굴 인증 시도 중"
 
@@ -126,89 +127,89 @@ msgstr ""
 "ubuntu-hello 명령을 root로 실행할 수 없습니다. --user 플래그와 함께 이 명령"
 "을 실행하십시오."
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "데이터 파일이 다운로드되지 않았습니다. 다음 명령을 실행하십시오:"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "로그인"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "날짜:"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "스캔 시간:"
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "프레임:"
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "호스트 이름:"
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "최고의 확실성 값:"
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "시작하는 중..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "얼굴 인식을 시작할 수 없습니다: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "당신을 식별하는 중..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "실패한"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "모든 프레임이 너무 어두웠습니다. 구성에서 dark_threshold를 확인하세요."
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "평균 어두움: {avg}, 임계값: {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "소요 시간"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "시작 중"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "캠 열기 + 라이브러리 로드: %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "카메라 열기"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "인식 라이브러리 가져오기"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "알려진 얼굴 검색 중"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "총 시간"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -216,17 +217,17 @@ msgstr ""
 "\n"
 "해결"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "기본: %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "사용됨: %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -235,27 +236,27 @@ msgstr ""
 "\n"
 "검색된 프레임: %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "검은색 프레임은 무시됨: %d"
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "다크 프레임 무시됨: %d"
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "승리 프레임의 확실성: %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "우승 모델: %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "성공적인"
 
@@ -404,8 +405,7 @@ msgstr "얼굴 모델을 저장했습니다"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "샘플 {n}개"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

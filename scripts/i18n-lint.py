@@ -170,6 +170,19 @@ PO_ENTRY_RE = re.compile(
     re.M,
 )
 QUOTED_RE = re.compile(r"\"((?:[^\"\\]|\\.)*)\"")
+# An ngettext() entry: msgid, msgid_plural, then msgstr[0..n]. PO_ENTRY_RE above
+# cannot match it (a bare `msgstr` never follows a msgid_plural line), which is how
+# an untranslated plural shipped in every catalogue with the lint green.
+PO_PLURAL_ENTRY_RE = re.compile(
+    r"(?P<flags>^#,[^\n]*\n)?"
+    r"(?:^msgctxt\s+(?P<ctxt>(?:\"(?:[^\"\\]|\\.)*\"\s*)+)\s*)?"
+    r"^msgid\s+(?P<id>(?:\"(?:[^\"\\]|\\.)*\"\s*)+)\s*"
+    r"^msgid_plural\s+(?P<plural>(?:\"(?:[^\"\\]|\\.)*\"\s*)+)\s*"
+    r"(?P<forms>(?:^msgstr\[\d+\]\s+(?:\"(?:[^\"\\]|\\.)*\"\s*)+)+)",
+    re.MULTILINE,
+)
+PO_PLURAL_FORM_RE = re.compile(r"^msgstr\[(\d+)\]\s+((?:\"(?:[^\"\\]|\\.)*\"\s*)+)", re.MULTILINE)
+PLURAL_FORMS_HEADER_RE = re.compile(r"Plural-Forms:\s*nplurals\s*=\s*(\d+)\s*;")
 
 
 def skip_dir_name(name: str) -> bool:
@@ -362,6 +375,8 @@ def lint_po_file(path: Path, msgfmt: str | None, cognates: set[str] = frozenset(
         msgstr = join_quoted(match.group("str"))
         entries.append((flags, msgid, msgstr))
 
+    errors.extend(_lint_plural_entries(path, text))
+
     non_latin_script = _is_non_latin_script([(msgid, msgstr) for _, msgid, msgstr in entries])
     for flags, msgid, msgstr in entries:
         if "fuzzy" in flags:
@@ -395,6 +410,54 @@ def lint_po_file(path: Path, msgfmt: str | None, cognates: set[str] = frozenset(
         if placeholder_signature(msgid) != placeholder_signature(msgstr):
             errors.append(
                 f"{path}: placeholder mismatch for msgid {msgid[:60]!r}"
+            )
+    return errors
+
+
+def _lint_plural_entries(path: Path, text: str) -> list[str]:
+    """Every msgstr[i] of a plural entry is filled, there are exactly as many as the
+    header's Plural-Forms declares, and no form invents a placeholder the source
+    lacks; the last form (the general plural) carries them all."""
+    errors: list[str] = []
+    matches = list(PO_PLURAL_ENTRY_RE.finditer(text))
+    if not matches:
+        return errors
+    header = PLURAL_FORMS_HEADER_RE.search(text)
+    if header is None:
+        errors.append(f"{path}: plural entries but no Plural-Forms header")
+    declared = int(header.group(1)) if header else None
+    for match in matches:
+        flags = match.group("flags") or ""
+        msgid = join_quoted(match.group("id"))
+        msgid_plural = join_quoted(match.group("plural"))
+        forms = [join_quoted(blob) for _index, blob in PO_PLURAL_FORM_RE.findall(match.group("forms"))]
+        if "fuzzy" in flags:
+            errors.append(f"{path}: fuzzy plural entry for msgid {msgid[:60]!r}")
+        empty = [index for index, form in enumerate(forms) if form == ""]
+        if empty:
+            errors.append(
+                f"{path}: empty msgstr{empty} for plural msgid {msgid[:60]!r}"
+            )
+        if declared is not None and len(forms) != declared:
+            errors.append(
+                f"{path}: {len(forms)} plural form(s) for msgid {msgid[:60]!r}, "
+                f"Plural-Forms declares {declared}"
+            )
+        source_named = set(NAMED_BRACE_RE.findall(msgid)) | set(NAMED_BRACE_RE.findall(msgid_plural))
+        for index, form in enumerate(forms):
+            if not form:
+                continue
+            invented = set(NAMED_BRACE_RE.findall(form)) - source_named
+            if invented:
+                errors.append(
+                    f"{path}: msgstr[{index}] of {msgid[:50]!r} uses placeholder(s) "
+                    f"{sorted(invented)} the source lacks"
+                )
+        if forms and forms[-1] and set(NAMED_BRACE_RE.findall(msgid_plural)) - set(
+            NAMED_BRACE_RE.findall(forms[-1])
+        ):
+            errors.append(
+                f"{path}: the general plural form of {msgid[:50]!r} drops a placeholder"
             )
     return errors
 
@@ -512,12 +575,15 @@ def lint_fill_packs_complete(root: Path) -> list[str]:
             if not isinstance(trans, dict):
                 errors.append(f"{jpath}: fill pack must be a JSON object")
                 continue
+            if lang not in fill.PLURAL_FORMS:
+                errors.append(f"{jpath}: no Plural-Forms rule for {lang!r} in i18n-fill-translations.py")
+                continue
             unresolved = 0
             first_miss: str | None = None
             for entry in entries:
                 key = fill.key_for(entry["msgctxt"], entry["msgid"])
-                value = trans.get(key, trans.get(entry["msgid"], ""))
-                if not isinstance(value, str) or not value:
+                # A plural entry resolves to a list of exactly nplurals(lang) forms.
+                if fill.translation_missing(entry, trans, lang):
                     unresolved += 1
                     if first_miss is None:
                         first_miss = key

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.0\n"
+"Project-Id-Version: ubuntu-hello 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-17 09:47+0300\n"
+"POT-Creation-Date: 2026-09-21 15:03+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pam/main.cc:109
 msgid "Failure, timeout reached"
@@ -42,7 +43,7 @@ msgstr "สิทธิ์ไม่เพียงพอที่จะส่ง
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "ไม่สามารถส่งการกด Enter ได้ กำลังรอให้ผู้ใช้กดแทน"
 
-#: src/pam/main.cc:582
+#: src/pam/main.cc:596
 msgid "Attempting facial authentication"
 msgstr "กำลังพยายามตรวจสอบใบหน้า"
 
@@ -120,89 +121,89 @@ msgid ""
 "user flag"
 msgstr "ไม่สามารถรันคำสั่ง ubuntu-hello ในฐานะ root ได้ โปรดรันคำสั่งนี้โดยใช้แฟล็ก --user"
 
-#: src/compare.py:272 src/cli/add.py:34
+#: src/compare.py:283 src/cli/add.py:34
 msgid "Data files have not been downloaded, please run the following commands:"
 msgstr "ยังไม่ได้ดาวน์โหลดไฟล์ข้อมูล โปรดรันคำสั่งต่อไปนี้:"
 
-#: src/compare.py:302
+#: src/compare.py:313
 msgid " LOGIN"
 msgstr "เข้าสู่ระบบ"
 
-#: src/compare.py:303 src/cli/snap.py:44
+#: src/compare.py:314 src/cli/snap.py:44
 msgid "Date: "
 msgstr "วันที่:"
 
-#: src/compare.py:304
+#: src/compare.py:315
 msgid "Scan time: "
 msgstr "เวลาในการสแกน:"
 
-#: src/compare.py:305
+#: src/compare.py:316
 msgid "Frames: "
 msgstr "เฟรม:"
 
-#: src/compare.py:306
+#: src/compare.py:317
 msgid "Hostname: "
 msgstr "ชื่อโฮสต์:"
 
-#: src/compare.py:307
+#: src/compare.py:318
 msgid "Best certainty value: "
 msgstr "ค่าความเชื่อมั่นที่ดีที่สุด:"
 
-#: src/compare.py:463
+#: src/compare.py:482
 msgid "Starting up..."
 msgstr "กำลังเริ่มต้น..."
 
-#: src/compare.py:495
+#: src/compare.py:514
 msgid "Face recognition could not start: {}"
 msgstr "ไม่สามารถเริ่มการจดจำใบหน้าได้: {}"
 
-#: src/compare.py:531
+#: src/compare.py:550
 msgid "Identifying you..."
 msgstr "กำลังระบุตัวคุณ..."
 
-#: src/compare.py:563
+#: src/compare.py:582
 msgid "FAILED"
 msgstr "ล้มเหลว"
 
-#: src/compare.py:566 src/cli/add.py:230
+#: src/compare.py:585 src/cli/add.py:230
 msgid "All frames were too dark, please check dark_threshold in config"
 msgstr "เฟรมทั้งหมดมืดเกินไป โปรดตรวจสอบ dark_threshold ในการกำหนดค่า"
 
-#: src/compare.py:567 src/cli/add.py:231
+#: src/compare.py:586 src/cli/add.py:231
 #, python-brace-format
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ความมืดโดยเฉลี่ย: {avg}, เกณฑ์: {threshold}"
 
-#: src/compare.py:690
+#: src/compare.py:709
 msgid "Time spent"
 msgstr "เวลาที่ใช้ไป"
 
-#: src/compare.py:691
+#: src/compare.py:710
 msgid "Starting up"
 msgstr "เริ่มต้นขึ้น"
 
-#: src/compare.py:692
+#: src/compare.py:711
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "เปิดกล้อง + โหลด libs: %dms"
 
-#: src/compare.py:693
+#: src/compare.py:712
 msgid "  Opening the camera"
 msgstr "การเปิดกล้อง"
 
-#: src/compare.py:694
+#: src/compare.py:713
 msgid "  Importing recognition libs"
 msgstr "กำลังนำเข้า libs การจดจำ"
 
-#: src/compare.py:695
+#: src/compare.py:714
 msgid "Searching for known face"
 msgstr "กำลังค้นหาใบหน้าที่รู้จัก"
 
-#: src/compare.py:696
+#: src/compare.py:715
 msgid "Total time"
 msgstr "เวลาทั้งหมด"
 
-#: src/compare.py:698
+#: src/compare.py:717
 msgid ""
 "\n"
 "Resolution"
@@ -210,17 +211,17 @@ msgstr ""
 "\n"
 "ปณิธาน"
 
-#: src/compare.py:700
+#: src/compare.py:719
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "เนทิฟ: %dx%d"
 
-#: src/compare.py:703
+#: src/compare.py:722
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "ใช้แล้ว: %dx%d"
 
-#: src/compare.py:706
+#: src/compare.py:725
 #, python-format
 msgid ""
 "\n"
@@ -229,27 +230,27 @@ msgstr ""
 "\n"
 "เฟรมที่ค้นหา: %d (%.2f fps)"
 
-#: src/compare.py:707
+#: src/compare.py:726
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "กรอบสีดำถูกละเว้น: %d"
 
-#: src/compare.py:708
+#: src/compare.py:727
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "เฟรมสีเข้มถูกละเว้น: %d"
 
-#: src/compare.py:709
+#: src/compare.py:728
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "ความแน่นอนของเฟรมที่ชนะ: %.3f"
 
-#: src/compare.py:711
+#: src/compare.py:730
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "รุ่นที่ชนะ: %d (\"%s\")"
 
-#: src/compare.py:726
+#: src/compare.py:745
 msgid "SUCCESSFUL"
 msgstr "ประสบความสำเร็จ"
 
@@ -398,8 +399,7 @@ msgstr "บันทึกโมเดลใบหน้าแล้ว"
 #, python-brace-format
 msgid "{n} sample"
 msgid_plural "{n} samples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} ตัวอย่าง"
 
 #: src/notify.py:624
 msgid "Could not record a face model"

@@ -1,3 +1,72 @@
+ubuntu-hello (1.2.1-1ppa1) resolute; urgency=high
+
+  * Fix: a fresh install on a clean Ubuntu 26.04 failed to configure. The
+    package builds dlib from source where the archive has no python3-dlib,
+    and the toolchain it needs (python3-dev, python3-pip, cmake, g++) was
+    only Recommended; apt does not upgrade an installed package to satisfy a
+    Recommends, so on an image whose python3 lagged the archive the headers
+    were skipped, the build died on a missing Python.h, dpkg was left
+    half-configured and every login fell through to the password. The
+    toolchain is now a hard dependency unless python3-dlib is installed
+    (python3-dlib | python3-dev, ...). RPM and Arch packages gain the same
+    build dependencies and Pillow.
+  * Security: the polkit-elevated Settings process (ubuntu-hello-gtk)
+    restored every --env-KEY=value argument into its environment; polkit
+    pins only the interpreter and script, so a local admin could inject
+    PATH or LD_PRELOAD and have root spawn ubuntu-hello, sudo or gsettings
+    from a planted path. Only the fixed display/locale allowlist is now
+    restored and root pins PATH before spawning any helper.
+  * Fix: the PAM module called openlog("pam_ubuntu_hello") and never
+    closelog(), so every later syslog line of the host process (sudo, the
+    login manager) was tagged pam_ubuntu_hello. The identity is now scoped
+    to the module's own call.
+  * Fix: the config migration that adds `confirmations` to an existing
+    config at the user's level ran only for source installs; packages never
+    ran it. It now lives in config_ensure.py and package configure runs it,
+    so upgrades from 1.1.6 / 1.2.0 get the key without tightening a
+    hand-tuned threshold.
+  * Fix: /etc/ubuntu-hello/config.ini was installed mode 0755; now 0644.
+    docs/SECURITY.md describes the real layout (0755 dir, secrets in 0700
+    subdirectories).
+  * Fix: on Fedora and Arch the module could break password authentication.
+    The PAM line authselect and the Arch docs insert used the Debian-only
+    pam-auth-update macro `success=end`, which Linux-PAM treats as a failure
+    to ignore, so the module's skip return (SSH, no camera, disabled) surfaced
+    and an SSH or camera-less login failed instead of falling through to the
+    password. The raw insertions now use the canonical `success=done`.
+  * Fix: face authentication spawned the GTK auth overlay unconditionally;
+    under PAM there is no display, so on a server or SSH sudo it crashed and
+    left an apport crash report on every attempt. It is now spawned only when
+    a display is reachable (the notification card is the UI otherwise).
+  * Fix: the post-install setup wizard crashed on a headless machine (it
+    assumed DISPLAY=:0); it now launches only when a real display exists.
+  * Fix: the Arch PAM module linked libINIReader (libinih) and libevdev but
+    listed them only as makedepends, so pacman never installed them and the
+    module failed to dlopen -- face auth was entirely broken on Arch. Both are
+    now runtime depends.
+  * Fix: the Arch package could not build dlib (deps had gcc and cmake but not
+    make, so cmake found no build program), and that failure aborted the
+    post-install before PAM and the polkit drop-in were configured. make is
+    now an Arch dependency and the dlib build runs last and non-fatally on
+    every format, so a missing toolchain never leaves the security config
+    unapplied.
+  * Fix: `dnf remove` left /usr/lib64/ubuntu-hello behind (untracked
+    __pycache__); the shared pre-remove sweeps every lib dir.
+  * Tests: booted-OS tier (scripts/vm, tests/vm) boots a clean Ubuntu,
+    Fedora or Arch cloud image under QEMU/KVM with an emulated TPM and runs
+    install, config migration, sudo through PAM, the greeter prompt rule,
+    the polkit helper sandbox with the TPM, a real reboot, purge and an
+    upgrade from the previous GitHub release. All four fixes above were
+    found by it. CI runs one matrix job per distro on release branches.
+  * Tests: recorded-footage tier (tests/footage) replays real-camera clips
+    through compare.py's actual scan loop, the real dlib pipeline and the
+    nod rubber stamp; only de-identified per-frame signals exist, never
+    face pixels, and CI uses a synthetic set.
+  * i18n: plural (ngettext) entries are now linted and every catalog header
+    carries the language's Plural-Forms rule; catalogs refreshed for 1.2.1.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Mon, 21 Sep 2026 16:00:00 +0300
+
 ubuntu-hello (1.2.0-1ppa1) resolute; urgency=high
 
   * Security hardening of the root PAM compare helper's process environment
