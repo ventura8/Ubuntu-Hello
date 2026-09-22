@@ -58,6 +58,29 @@ def is_protocol_line(line):
 	return line.lstrip().startswith("@")
 
 
+def _pump_output(proc, on_guide, on_progress, dispatch, lines):
+	"""Forward protocol lines to the callbacks, collecting everything else.
+
+	Returns the process exit status.
+	"""
+	try:
+		for line in proc.stdout:
+			parsed = parse_line(line)
+			if parsed is None:
+				if not is_protocol_line(line):
+					lines.append(line)
+				continue
+			kind, value = parsed
+			if kind == "guide":
+				dispatch(on_guide, value)
+			else:
+				dispatch(on_progress, value[0], value[1])
+		return proc.wait()
+	except Exception as exc:
+		lines.append(str(exc))
+		return getattr(proc, "returncode", None) or 1
+
+
 def run_add(cmd, on_guide, on_progress, on_done, popen=None, dispatch=None):
 	"""Start `cmd` on a worker thread; callbacks run on the GTK main loop.
 
@@ -69,28 +92,14 @@ def run_add(cmd, on_guide, on_progress, on_done, popen=None, dispatch=None):
 	dispatch = dispatch or GLib.idle_add
 
 	def worker():
-		lines = []
 		try:
 			proc = popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
 		except Exception as exc:  # FileNotFoundError, PermissionError…
 			dispatch(on_done, 127, str(exc))
 			return
-		try:
-			for line in proc.stdout:
-				parsed = parse_line(line)
-				if parsed is None:
-					if not is_protocol_line(line):
-						lines.append(line)
-					continue
-				kind, value = parsed
-				if kind == "guide":
-					dispatch(on_guide, value)
-				else:
-					dispatch(on_progress, value[0], value[1])
-			status = proc.wait()
-		except Exception as exc:
-			lines.append(str(exc))
-			status = getattr(proc, "returncode", None) or 1
+
+		lines = []
+		status = _pump_output(proc, on_guide, on_progress, dispatch, lines)
 		dispatch(on_done, status, "".join(lines))
 
 	thread = threading.Thread(target=worker, daemon=True)

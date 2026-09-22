@@ -46,16 +46,19 @@ ROOT_SAFE_PATH = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Restore GUI environment variables passed from the parent process
 env_prefix = "--env-"
-for arg in list(sys.argv):
-	if arg.startswith(env_prefix):
-		parts = arg[len(env_prefix):].split("=", 1)
-		if len(parts) == 2:
-			key, val = parts
-			if key in SESSION_ENV_ALLOWLIST:
-				os.environ[key] = val
-			else:
-				print(f"ubuntu-hello-gtk: ignoring non-allowlisted --env-{key}", file=sys.stderr)
-		sys.argv.remove(arg)
+_remaining_argv = []
+for arg in sys.argv:
+	if not arg.startswith(env_prefix):
+		_remaining_argv.append(arg)
+		continue
+	parts = arg[len(env_prefix):].split("=", 1)
+	if len(parts) == 2:
+		key, val = parts
+		if key in SESSION_ENV_ALLOWLIST:
+			os.environ[key] = val
+		else:
+			print(f"ubuntu-hello-gtk: ignoring non-allowlisted --env-{key}", file=sys.stderr)
+sys.argv[:] = _remaining_argv
 if os.geteuid() == 0:
 	os.environ["PATH"] = ROOT_SAFE_PATH
 
@@ -68,6 +71,114 @@ from gi.repository import Gtk as gtk
 from gi.repository import Gio
 from gi.repository import GLib
 import gtk4compat
+
+
+_SCHEMA_GNOME_IFACE = "org.gnome.desktop.interface"
+
+
+_NOLOGIN_SHELLS = ("/usr/sbin/nologin", "/bin/false", "/usr/bin/false", "/sbin/nologin")
+
+
+def _login_user_names():
+	"""Real login accounts: root plus regular UIDs that have a usable shell."""
+	import pwd
+	names = set()
+	for u in pwd.getpwall():
+		if u.pw_name == "nobody":
+			continue
+		if not (u.pw_uid == 0 or 1000 <= u.pw_uid < 60000):
+			continue
+		if u.pw_shell in _NOLOGIN_SHELLS:
+			continue
+		names.add(u.pw_name)
+	return names
+
+
+def _enrolled_user_names():
+	"""Users that have a face model on disk."""
+	try:
+		model_dir = paths_factory.user_models_dir_path()
+		if not os.path.exists(model_dir):
+			return []
+		return [f[:-4] for f in os.listdir(model_dir) if f.endswith(".dat")]
+	except Exception:
+		return []
+
+
+def _filterable_rows(page):
+	"""Rows of a notebook page, unwrapping a single vertical Box wrapper."""
+	candidates = list(gtk4compat.iter_children(page)) or [page]
+
+	expanded = []
+	for child in candidates:
+		if isinstance(child, gtk.Box) and child.get_orientation() == gtk.Orientation.VERTICAL:
+			expanded.extend(gtk4compat.iter_children(child))
+		else:
+			expanded.append(child)
+
+	return list(expanded) if expanded else list(candidates)
+
+
+def _node_own_texts(node):
+	"""Text a single node contributes, ignoring its children.
+
+	gtk.Entry holds user-typed text, which is never a translatable string, so
+	it contributes nothing.
+	"""
+	if isinstance(node, gtk.Label):
+		text = _label_display_text(node)
+		return [text] if text else []
+	if isinstance(node, gtk.DropDown):
+		return _dropdown_display_texts(node)
+	return []
+
+
+def _walk_children(node, visit):
+	"""Visit every child except popovers and separate toplevels."""
+	try:
+		for child in gtk4compat.iter_children(node):
+			if not isinstance(child, (gtk.Popover, gtk.Native)):
+				visit(child)
+	except Exception:
+		pass
+
+
+def _label_display_text(node):
+	"""Text a Label actually shows, resolving Pango markup when present."""
+	text = node.get_text() or ""
+	if text or not hasattr(node, "get_label"):
+		return text
+
+	raw = node.get_label() or ""
+	if "<" not in raw:
+		return raw
+	try:
+		from gi.repository import Pango
+		parsed = Pango.parse_markup(raw, -1, "\0")[1]
+		return parsed
+	except Exception:
+		return raw
+
+
+def _dropdown_display_texts(node):
+	"""Every entry of a DropDown, plus its selection.
+
+	All entries (Automatic + locales), not only the active one, so search still
+	finds Language after the selection changes.
+	"""
+	texts = []
+	model = node.get_model()
+	if model is not None:
+		for i in range(model.get_n_items()):
+			try:
+				texts.append(str(model.get_string(i)))
+			except Exception:
+				pass
+	selected = node.get_selected_item()
+	if selected is not None:
+		texts.append(selected.get_string())
+	return texts
+
 
 
 class MainWindow(gtk.Window):
@@ -91,6 +202,45 @@ class MainWindow(gtk.Window):
 		if run_main_loop:
 			gtk4compat.run_main()
 
+	def _adopt_toplevel(self, built_window, initial):
+		"""Take the freshly built toplevel, or transplant its content into ours.
+
+		Language rebuild: keep the ONE toplevel and move the new content into
+		it. Destroying and recreating the toplevel while popups/stacking state
+		still referenced it crashed mutter 50 (meta_window_set_stack_position
+		assertions, then SIGSEGV).
+		"""
+		if initial or getattr(self, "window", None) is None:
+			self.window = built_window
+			return
+
+		content = built_window.get_child()
+		header = built_window.get_titlebar()
+		built_window.set_child(None)
+		built_window.set_titlebar(None)
+		self.window.set_titlebar(header)
+		self.window.set_child(content)
+		self.window.set_title(built_window.get_title() or "")
+		built_window.destroy()   # never realized, never shown
+
+	def _restore_window_state(self, restore):
+		"""Put back the notebook page, search text and geometry after a rebuild."""
+		page = restore.get("page")
+		if page is not None and self.notebook is not None and 0 <= page < self.notebook.get_n_pages():
+			self.notebook.set_current_page(page)
+
+		if restore.get("search") and self.settings_search is not None:
+			self.settings_search.set_text(restore["search"])
+
+		if restore.get("width") and restore.get("height"):
+			try:
+				self.window.set_default_size(restore["width"], restore["height"])
+				return
+			except Exception:
+				pass
+		# GTK 4 windows grow to their content's natural size; pin a sane default.
+		self.window.set_default_size(900, 620)
+
 	def _build_ui(self, initial=True, restore=None):
 		"""Load Glade UI (also used for instant language rebuild)."""
 		restore = restore or {}
@@ -99,22 +249,7 @@ class MainWindow(gtk.Window):
 		rtl = gtk4compat.apply_text_direction(effective_ui_language())
 		self.builder = gtk4compat.builder(self, paths_factory.main_window_wireframe_path(), "ubuntu-hello-gtk")
 
-		built_window = self.builder.get_object("mainwindow")
-		if initial or getattr(self, "window", None) is None:
-			self.window = built_window
-		else:
-			# Language rebuild: keep the ONE toplevel and transplant the new
-			# content into it. Destroying and recreating the toplevel while
-			# popups/stacking state still referenced it crashed mutter 50
-			# (meta_window_set_stack_position assertions, then SIGSEGV).
-			content = built_window.get_child()
-			header = built_window.get_titlebar()
-			built_window.set_child(None)
-			built_window.set_titlebar(None)
-			self.window.set_titlebar(header)
-			self.window.set_child(content)
-			self.window.set_title(built_window.get_title() or "")
-			built_window.destroy()   # never realized, never shown
+		self._adopt_toplevel(self.builder.get_object("mainwindow"), initial)
 		self.userlist = gtk4compat.dropdown(self.builder.get_object("userlist"), self.on_user_change)
 		self.modellistbox = self.builder.get_object("modellistbox")
 		# Reminder shown while exactly one model is enrolled: a single model
@@ -173,46 +308,33 @@ class MainWindow(gtk.Window):
 		self.load_notification_settings()
 		self.load_security_settings()
 
-		# Restore notebook / search / geometry after rebuild
-		if restore.get("page") is not None and self.notebook is not None:
-			page = restore["page"]
-			if 0 <= page < self.notebook.get_n_pages():
-				self.notebook.set_current_page(page)
-		if restore.get("search") and self.settings_search is not None:
-			self.settings_search.set_text(restore["search"])
-		if restore.get("width") and restore.get("height"):
-			try:
-				self.window.set_default_size(restore["width"], restore["height"])
-			except Exception:
-				pass
-		else:
-			# GTK 4 windows grow to their content's natural size; pin a sane default.
-			self.window.set_default_size(900, 620)
+		self._restore_window_state(restore)
 
 		self.window.present()
 		# Re-apply fuzzy filter after show (haystacks use displayed labels)
 		if self.settings_search is not None and (self.settings_search.get_text() or "").strip():
 			self.on_settings_search_changed(self.settings_search)
 
+	def _default_user(self, preferred_user, sorted_users):
+		"""Preferred user if it exists, else the real user, else first enrolled."""
+		if preferred_user and preferred_user in sorted_users:
+			return preferred_user
+
+		real_user = get_real_user()
+		if real_user in sorted_users:
+			return real_user
+
+		with_models = [u for u in _enrolled_user_names() if u in sorted_users]
+		if with_models:
+			return min(with_models)
+		return sorted_users[0] if sorted_users else ""
+
 	def _populate_users(self, preferred_user=None):
 		"""Fill user combo; prefer preferred_user, else real user / first with models."""
-		import pwd
-		users = set()
-		for u in pwd.getpwall():
-			if (u.pw_uid == 0 or 1000 <= u.pw_uid < 60000) and u.pw_name != "nobody":
-				if u.pw_shell not in ("/usr/sbin/nologin", "/bin/false", "/usr/bin/false", "/sbin/nologin"):
-					users.add(u.pw_name)
+		users = _login_user_names()
+		users.update(_enrolled_user_names())
 
-		try:
-			model_dir = paths_factory.user_models_dir_path()
-			if os.path.exists(model_dir):
-				for file in os.listdir(model_dir):
-					if file.endswith(".dat"):
-						users.add(file[:-4])
-		except Exception:
-			pass
-
-		sorted_users = sorted(list(users))
+		sorted_users = sorted(users)
 		self._sorted_users = sorted_users
 		self.active_user = ""
 		self.userlist.items = 0
@@ -222,28 +344,7 @@ class MainWindow(gtk.Window):
 			self.userlist.append_text(user)
 			self.userlist.items += 1
 
-		default_user = ""
-		if preferred_user and preferred_user in sorted_users:
-			default_user = preferred_user
-		else:
-			real_user = get_real_user()
-			if real_user in sorted_users:
-				default_user = real_user
-			else:
-				users_with_models = []
-				try:
-					model_dir = paths_factory.user_models_dir_path()
-					if os.path.exists(model_dir):
-						for file in os.listdir(model_dir):
-							if file.endswith(".dat") and file[:-4] in sorted_users:
-								users_with_models.append(file[:-4])
-				except Exception:
-					pass
-				if users_with_models:
-					default_user = sorted(users_with_models)[0]
-				elif sorted_users:
-					default_user = sorted_users[0]
-
+		default_user = self._default_user(preferred_user, sorted_users)
 		if default_user:
 			self.active_user = default_user
 			self.userlist.set_active(sorted_users.index(default_user))
@@ -382,52 +483,32 @@ class MainWindow(gtk.Window):
 			if isinstance(node, gtk.Revealer) and not node.get_reveal_child():
 				return
 			try:
-				if isinstance(node, gtk.Label):
-					text = node.get_text() or ""
-					if not text and hasattr(node, "get_label"):
-						raw = node.get_label() or ""
-						if "<" in raw:
-							try:
-								from gi.repository import Pango
-								_, text, _ = Pango.parse_markup(raw, -1, "\0")
-							except Exception:
-								text = raw
-						else:
-							text = raw
-					if text:
-						parts.append(text)
-				elif isinstance(node, gtk.Button):
+				if isinstance(node, gtk.Button):
 					label = node.get_label()
 					if label:
 						parts.append(label)
 					walk(node.get_child())
 					return
-				elif isinstance(node, gtk.Entry):
-					pass
-				elif isinstance(node, gtk.DropDown):
-					# Include all entries (Automatic + locales), not only the active one,
-					# so search still finds Language after the selection changes.
-					model = node.get_model()
-					if model is not None:
-						for i in range(model.get_n_items()):
-							try:
-								parts.append(str(model.get_string(i)))
-							except Exception:
-								pass
-					selected = node.get_selected_item()
-					if selected is not None:
-						parts.append(selected.get_string())
+				parts.extend(_node_own_texts(node))
 			except Exception:
 				pass
-			try:
-				for child in gtk4compat.iter_children(node):
-					if not isinstance(child, (gtk.Popover, gtk.Native)):
-						walk(child)
-			except Exception:
-				pass
+			_walk_children(node, walk)
 
 		walk(widget)
 		return " ".join(parts)
+
+	def _atomic_pages(self):
+		"""Pages where a match reveals every child (About/Language/Video).
+
+		Video must be atomic -- the preview EventBox has no label text, so
+		row-level filtering would hide the camera UI while the device still opens.
+		"""
+		pages = set()
+		for obj_id in ("box5", "language_page", "box2"):
+			obj = self.builder.get_object(obj_id)
+			if obj is not None:
+				pages.add(obj)
+		return pages
 
 	def _collect_search_rows(self):
 		"""Remember filterable rows under each notebook tab (Models/Video/Keyring/Language/About)."""
@@ -435,38 +516,18 @@ class MainWindow(gtk.Window):
 		notebook = self.notebook
 		if notebook is None:
 			return
-		# Whole-page tabs: a match shows every child (About/Language/Video).
-		# Video must be atomic — the preview EventBox has no label text, so
-		# row-level filtering would hide the camera UI while the device still opens.
-		atomic_pages = set()
-		for obj_id in ("box5", "language_page", "box2"):
-			obj = self.builder.get_object(obj_id)
-			if obj is not None:
-				atomic_pages.add(obj)
 
-		n_pages = notebook.get_n_pages()
-		for page_index in range(n_pages):
+		atomic_pages = self._atomic_pages()
+		for page_index in range(notebook.get_n_pages()):
 			page = notebook.get_nth_page(page_index)
 			if page is None:
 				continue
-			candidates = list(gtk4compat.iter_children(page)) or [page]
 
-			expanded = []
-			for child in candidates:
-				if isinstance(child, gtk.Box) and child.get_orientation() == gtk.Orientation.VERTICAL:
-					expanded.extend(gtk4compat.iter_children(child))
-				else:
-					expanded.append(child)
-			if not expanded:
-				expanded = candidates
-
-			rows = list(expanded)
-			tab_label = notebook.get_tab_label(page)
 			self._search_row_baselines.append({
 				"page_index": page_index,
 				"page": page,
-				"tab_label": tab_label,
-				"rows": rows,
+				"tab_label": notebook.get_tab_label(page),
+				"rows": _filterable_rows(page),
 				"atomic": page in atomic_pages,
 			})
 
@@ -482,18 +543,46 @@ class MainWindow(gtk.Window):
 			self.settings_search.grab_focus()
 		return True
 
+	def _filter_page_atomic(self, query, rows, tab_text):
+		"""All-or-nothing page: any matching row reveals every row."""
+		page_match = fuzzy_match(query, tab_text)
+		page_best = fuzzy_score(query, tab_text)
+
+		for row in rows:
+			text = self._widget_display_text(row)
+			if fuzzy_match(query, text):
+				page_match = True
+				page_best = max(page_best, fuzzy_score(query, text))
+
+		for row in rows:
+			row.set_visible(page_match)
+		return page_match, page_best
+
+	def _filter_page_rows(self, query, rows, tab_text):
+		"""Per-row filtering: each row is shown only if it matches."""
+		page_match = fuzzy_match(query, tab_text)
+		page_best = fuzzy_score(query, tab_text)
+		any_row = False
+
+		for row in rows:
+			text = self._widget_display_text(row)
+			match = fuzzy_match(query, text) or fuzzy_match(query, tab_text)
+			row.set_visible(match)
+			if match:
+				any_row = True
+				page_best = max(page_best,
+								fuzzy_score(query, text), fuzzy_score(query, tab_text))
+
+		return any_row or page_match, page_best
+
 	def on_settings_search_changed(self, entry):
 		"""Fuzzy-filter Settings rows by currently displayed translated label text."""
 		query = (entry.get_text() or "").strip()
-		best_tab = None
-		best_score = -1.0
-		best_tab_label_match = False
+		matches = []
 
 		for page_info in self._search_row_baselines:
-			page_index = page_info["page_index"]
 			tab_text = self._widget_display_text(page_info["tab_label"])
 			rows = page_info["rows"]
-			atomic = page_info.get("atomic", False)
 
 			if not query:
 				for row in rows:
@@ -501,45 +590,26 @@ class MainWindow(gtk.Window):
 				page_info["page"].set_visible(True)
 				continue
 
-			page_best = fuzzy_score(query, tab_text)
-			page_match = fuzzy_match(query, tab_text)
-
-			if atomic:
-				for row in rows:
-					text = self._widget_display_text(row)
-					if fuzzy_match(query, text):
-						page_match = True
-						page_best = max(page_best, fuzzy_score(query, text))
-				for row in rows:
-					row.set_visible(page_match)
+			if page_info.get("atomic", False):
+				page_match, page_best = self._filter_page_atomic(query, rows, tab_text)
 			else:
-				any_row = False
-				for row in rows:
-					text = self._widget_display_text(row)
-					score = max(fuzzy_score(query, text), fuzzy_score(query, tab_text))
-					match = fuzzy_match(query, text) or fuzzy_match(query, tab_text)
-					row.set_visible(match)
-					if match:
-						any_row = True
-						page_best = max(page_best, score)
-				page_match = any_row or page_match
+				page_match, page_best = self._filter_page_rows(query, rows, tab_text)
 
 			page_info["page"].set_visible(True)
+			if page_match:
+				matches.append((page_best, fuzzy_match(query, tab_text), page_info["page_index"]))
 
-			# A hit on the tab label itself outranks an equal-score hit buried
-			# in a page's body text (subsequence matching is generous on long
-			# descriptions: "kyrng" also matches a paragraph on another page).
-			tab_label_match = fuzzy_match(query, tab_text)
-			better = page_best > best_score or (
-				page_best == best_score and tab_label_match and not best_tab_label_match)
-			if page_match and better:
-				best_score = page_best
-				best_tab = page_index
-				best_tab_label_match = tab_label_match
+		if not query or not matches or self.notebook is None:
+			return
 
-		if query and best_tab is not None and self.notebook is not None:
-			if self.notebook.get_current_page() != best_tab:
-				self.notebook.set_current_page(best_tab)
+		# A hit on the tab label itself outranks an equal-score hit buried in a
+		# page's body text (subsequence matching is generous on long
+		# descriptions: "kyrng" also matches a paragraph on another page). On a
+		# full tie max() keeps the earliest page, as the previous running-best
+		# comparison did.
+		best_tab = max(matches, key=lambda m: (m[0], m[1]))[2]
+		if self.notebook.get_current_page() != best_tab:
+			self.notebook.set_current_page(best_tab)
 
 	def reveal_search_page(self, page_index):
 		"""Force-show all widgets on a notebook page (undo stale search hides).
@@ -731,36 +801,63 @@ def open_uri_as_user(user, uri, session_env):
 		return None
 
 
+_USERNAME_RE = r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$"
+
+
+def _user_from_pkexec():
+	pkexec_uid = os.environ.get("PKEXEC_UID")
+	if not pkexec_uid:
+		return None
+	try:
+		import pwd
+		return pwd.getpwuid(int(pkexec_uid)).pw_name
+	except Exception:
+		return None
+
+
+def _user_from_login():
+	try:
+		return os.getlogin()
+	except Exception:
+		return None
+
+
+def _user_from_loginctl():
+	"""First non-root session owner reported by loginctl."""
+	try:
+		import subprocess
+		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
+	except Exception:
+		return None
+
+	for line in out.strip().split("\n"):
+		parts = line.split()
+		if len(parts) >= 3 and parts[2] != "root":
+			return parts[2]
+	return None
+
+
 def get_real_user():
+	"""The desktop user behind this root process, or "root" if none can be found."""
 	import re
-	user = os.environ.get("SUDO_USER")
-	if not user or user == "root":
-		pkexec_uid = os.environ.get("PKEXEC_UID")
-		if pkexec_uid:
-			try:
-				import pwd
-				user = pwd.getpwuid(int(pkexec_uid)).pw_name
-			except Exception:
-				pass
-	if not user or user == "root":
-		try:
-			user = os.getlogin()
-		except Exception:
-			pass
-	if not user or user == "root":
-		user = os.environ.get("USER")
-	if not user or user == "root":
-		try:
-			import subprocess
-			out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
-			for line in out.strip().split("\n"):
-				parts = line.split()
-				if len(parts) >= 3 and parts[2] != "root":
-					user = parts[2]
-					break
-		except Exception:
-			pass
-	if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+
+	# Each source is only consulted if the cheaper ones above it came up empty
+	# or returned root -- loginctl in particular spawns a subprocess.
+	for source in (
+		lambda: os.environ.get("SUDO_USER"),
+		_user_from_pkexec,
+		_user_from_login,
+		lambda: os.environ.get("USER"),
+		_user_from_loginctl,
+	):
+		candidate = source()
+		if candidate and candidate != "root":
+			user = candidate
+			break
+	else:
+		return "root"
+
+	if re.match(_USERNAME_RE, user):
 		return user
 	return "root"
 
@@ -784,7 +881,7 @@ def get_user_animations_preference(user=None):
 
 	import subprocess
 	try:
-		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", "org.gnome.desktop.interface", "enable-animations"]
+		cmd = ["sudo", "-u", user, "env", f"HOME=/home/{user}", "gsettings", "get", _SCHEMA_GNOME_IFACE, "enable-animations"]
 		val = subprocess.check_output(cmd, text=True, timeout=5).strip()
 		return val.lower() == "true"
 	except Exception:
@@ -908,69 +1005,75 @@ def _apply_theme_settings_if_current(generation, user, detected):
 		return _apply_theme_settings(user, detected)
 
 
-def setup_theme():
+def _gsetting_str(settings, key):
+	try:
+		return settings.get_string(key)
+	except Exception:
+		return ""
+
+
+def _gsetting_bool(settings, key, default=True):
+	try:
+		return settings.get_boolean(key)
+	except Exception:
+		return default
+
+
+def _apply_theme_from_settings(settings, key=None):
+	"""Push the desktop's current theme/animation preferences into GTK."""
+	try:
+		gtk_theme = _gsetting_str(settings, "gtk-theme")
+		prefer_dark = (_gsetting_str(settings, "color-scheme") == "prefer-dark"
+		               or bool(gtk_theme and "dark" in gtk_theme.lower()))
+		enable_animations = _gsetting_bool(settings, "enable-animations")
+
+		gtk_settings = gtk.Settings.get_default()
+		if gtk_settings:
+			gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
+			gtk_settings.set_property("gtk-enable-animations", enable_animations)
+		apply_gtk_theme_name(gtk_theme, prefer_dark)
+	except Exception as e:
+		print(f"Error updating theme: {e}", file=sys.stderr)
+
+
+def _setup_theme_as_root():
+	"""Apply the desktop user's theme and follow their change feed.
+
+	Root cannot subscribe to the user's dconf: follow the desktop's change feed
+	(gsettings monitor / xfconf-query -m as the user, plus the KDE/LXQt
+	settings.ini files) so a light/dark or accent switch is applied live
+	instead of needing a restart.
+	"""
 	global _theme_watcher
+	import theme_detect
+	user = get_real_user()
+	apply_user_theme(user)
+	if user and user != "root" and _theme_watcher is None:
+		_theme_watcher = theme_detect.ThemeWatcher(user, lambda: refresh_user_theme_async(user)).start()
+
+
+def _setup_theme_as_user():
+	"""Track the session's own GNOME interface settings."""
+	schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
+	all_schemas = schemas[0] + schemas[1]
+	if _SCHEMA_GNOME_IFACE not in all_schemas:
+		return
+
+	settings = Gio.Settings.new(_SCHEMA_GNOME_IFACE)
+	settings.connect("changed", _apply_theme_from_settings)
+	_apply_theme_from_settings(settings)
+
+
+def setup_theme():
 	try:
 		if os.geteuid() == 0:
-			import theme_detect
-			user = get_real_user()
-			apply_user_theme(user)
-			# Root cannot subscribe to the user's dconf: follow the desktop's
-			# change feed (gsettings monitor / xfconf-query -m as the user, plus
-			# the KDE/LXQt settings.ini files) so a light/dark or accent switch
-			# is applied live instead of needing a restart.
-			if user and user != "root" and _theme_watcher is None:
-				_theme_watcher = theme_detect.ThemeWatcher(user, lambda: refresh_user_theme_async(user)).start()
+			_setup_theme_as_root()
 		else:
-			# Check if the schema exists
-			schemas = Gio.SettingsSchemaSource.get_default().list_schemas(True)
-			all_schemas = schemas[0] + schemas[1]
-			if "org.gnome.desktop.interface" not in all_schemas:
-				return
-
-			settings = Gio.Settings.new("org.gnome.desktop.interface")
-
-			def update_theme(settings, key=None):
-				try:
-					color_scheme = ""
-					try:
-						color_scheme = settings.get_string("color-scheme")
-					except Exception:
-						pass
-
-					gtk_theme = ""
-					try:
-						gtk_theme = settings.get_string("gtk-theme")
-					except Exception:
-						pass
-
-					prefer_dark = False
-					if color_scheme == "prefer-dark":
-						prefer_dark = True
-					elif gtk_theme and "dark" in gtk_theme.lower():
-						prefer_dark = True
-
-					enable_animations = True
-					try:
-						enable_animations = settings.get_boolean("enable-animations")
-					except Exception:
-						pass
-
-					gtk_settings = gtk.Settings.get_default()
-					if gtk_settings:
-						gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark)
-						gtk_settings.set_property("gtk-enable-animations", enable_animations)
-					apply_gtk_theme_name(gtk_theme, prefer_dark)
-				except Exception as e:
-					print(f"Error updating theme: {e}", file=sys.stderr)
-
-			settings.connect("changed", update_theme)
-			update_theme(settings)
+			_setup_theme_as_user()
 	except Exception as e:
 		print(f"Error setting up theme tracking: {e}", file=sys.stderr)
 
 
-# Class is split so it isn't too long, import split functions
 import tab_models
 MainWindow.on_user_change = tab_models.on_user_change
 MainWindow.on_model_add = tab_models.on_model_add

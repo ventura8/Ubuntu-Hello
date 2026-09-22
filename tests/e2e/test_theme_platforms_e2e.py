@@ -106,7 +106,8 @@ class TestLiveThemeOnEveryDesktop:
 		window.setup_theme()          # the real entry point used by Settings and the wizard
 		try:
 			watcher = window._theme_watcher
-			assert watcher is not None and watcher.process is not None, "no feed started for " + desktop
+			assert watcher is not None, "no feed started for " + desktop
+			assert watcher.process is not None, "no feed started for " + desktop
 			assert settings.get_property("gtk-theme-name") == "Yaru"
 
 			# the desktop switches to dark: the feed (fake sudo) prints two change lines
@@ -119,7 +120,8 @@ class TestLiveThemeOnEveryDesktop:
 			assert argv[:4] == ["-u", "alice", "-H", "env"], argv
 			assert "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" in argv
 			assert "XDG_RUNTIME_DIR=/run/user/1000" in argv
-			assert tool in argv and schema in argv, argv
+			assert tool in argv, argv
+			assert schema in argv, argv
 		finally:
 			if window._theme_watcher is not None:
 				window._theme_watcher.stop()
@@ -161,7 +163,8 @@ class TestLiveThemeOnEveryDesktop:
 		monkeypatch.setattr(theme_detect, "_user_bus_env", lambda u: ["DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"])
 		for desktop, tool, schema in FEED_DESKTOPS:
 			argv = theme_detect.theme_monitor_command("alice", {"XDG_CURRENT_DESKTOP": desktop})
-			assert argv[0] == "sudo" and "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" in argv, desktop
+			assert argv[0] == "sudo", desktop
+			assert "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" in argv, desktop
 			assert argv.index("env") < argv.index(tool)
 		for desktop in FILE_DESKTOPS:
 			assert theme_detect.theme_monitor_command("alice", {"XDG_CURRENT_DESKTOP": desktop}) is None

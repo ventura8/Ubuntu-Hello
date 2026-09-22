@@ -50,8 +50,10 @@ class TestAboutLinks:
 			assert w.on_about_link(MagicMock(), self.URI) is True
 		args = run.call_args.args[0]
 		assert args[:4] == ["sudo", "-u", "alice", "-H"]
-		assert "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" in args and "XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args
-		assert "org.freedesktop.portal.OpenURI.OpenURI" in args and args[-2] == self.URI
+		assert "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" in args
+		assert "XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args
+		assert "org.freedesktop.portal.OpenURI.OpenURI" in args
+		assert args[-2] == self.URI
 		popen.assert_not_called()
 
 	def test_falls_back_to_xdg_open_with_session_env(self, monkeypatch):
@@ -64,7 +66,9 @@ class TestAboutLinks:
 			assert w.on_about_link(MagicMock(), self.URI) is True
 		args = popen.call_args.args[0]
 		assert args[:4] == ["sudo", "-u", "alice", "-H"]
-		assert "DISPLAY=:0" in args and "WAYLAND_DISPLAY=wayland-0" in args and "XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args
+		assert "DISPLAY=:0" in args
+		assert "WAYLAND_DISPLAY=wayland-0" in args
+		assert "XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args
 		assert args[-2:] == ["xdg-open", self.URI]
 		assert popen.call_args.kwargs["start_new_session"] is True   # never blocks the UI
 
@@ -146,7 +150,8 @@ class TestLanguageSwitch:
 		with patch("window.GLib.timeout_add") as timeout_add:
 			w.on_language_changed(w.language_combo)
 		timeout_add.assert_not_called()
-		assert written == ["de"] and w._rebuilding is False
+		assert written == ["de"]
+		assert w._rebuilding is False
 
 	def test_deferred_rebuild_never_leaves_window_stuck(self, capsys):
 		w = _win()
@@ -209,8 +214,11 @@ class TestElevationAndUser:
 		monkeypatch.setattr(window.os, "execvp", lambda prog, args: calls.append((prog, args)))
 		window.elevate()
 		prog, args = calls[0]
-		assert prog == "pkexec" and args[0] == "pkexec" and args[1] == window.sys.executable
-		assert "--env-XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args and "--env-WAYLAND_DISPLAY=wayland-0" in args
+		assert prog == "pkexec"
+		assert args[0] == "pkexec"
+		assert args[1] == window.sys.executable
+		assert "--env-XDG_DATA_DIRS=/usr/share:/var/lib/snapd/desktop" in args
+		assert "--env-WAYLAND_DISPLAY=wayland-0" in args
 		assert not any(a.startswith("--env-XAUTHORITY") for a in args)
 
 	def test_elevate_forwards_the_desktop_locale_not_the_overridden_one(self, monkeypatch):
@@ -227,7 +235,8 @@ class TestElevationAndUser:
 		window.elevate()
 		prog, args = calls[0]
 		assert prog == "pkexec"
-		assert "--env-LANG=en_US.UTF-8" in args and "--env-LANGUAGE=en" in args
+		assert "--env-LANG=en_US.UTF-8" in args
+		assert "--env-LANGUAGE=en" in args
 		assert not any(a.startswith("--env-LANG=ar") or a == "--env-LANGUAGE=ar" for a in args)
 		assert "--env-DISPLAY=:0" in args
 
@@ -292,7 +301,8 @@ class TestElevationAndUser:
 		assert os.environ.get("PATH") != "/tmp/evil:/usr/bin"
 		assert sys.argv == ["x", "--force-onboarding"]   # rejected args are still consumed
 		err = capsys.readouterr().err
-		assert "ignoring non-allowlisted --env-PATH" in err and "--env-LD_PRELOAD" in err
+		assert "ignoring non-allowlisted --env-PATH" in err
+		assert "--env-LD_PRELOAD" in err
 
 	def test_root_process_pins_path(self, monkeypatch):
 		"""As root every helper is spawned by bare name, so PATH is reset to a fixed value."""
@@ -432,7 +442,8 @@ class TestThemeSwitchAsRoot:
 		with patch("window.apply_gtk_theme_name") as apply:
 			window.setup_theme()
 		apply.assert_called_once_with("Yaru", False, "Yaru")
-		assert started["user"] == "alice" and started["started"]
+		assert started["user"] == "alice"
+		assert started["started"]
 		assert window._theme_watcher is not None
 
 		# the user switches to dark + another accent: the watcher's callback probes on a
@@ -470,7 +481,8 @@ class TestThemeSwitchAsRoot:
 		monkeypatch.setattr(window.GLib, "idle_add", lambda fn, *a: calls.append(("idle", fn.__name__)))
 		t = window.refresh_user_theme_async("alice")
 		t.join(5)
-		assert calls[0][0] == "detect" and calls[0][1] != threading.main_thread().name
+		assert calls[0][0] == "detect"
+		assert calls[0][1] != threading.main_thread().name
 		assert calls[1] == ("idle", "_apply_theme_settings_if_current")
 
 	def test_every_probe_resolves_the_same_account(self, monkeypatch):
@@ -519,9 +531,11 @@ class TestThemeSwitchAsRoot:
 		applied = []
 		monkeypatch.setattr(window, "_apply_theme_settings", lambda user, detected: applied.append(detected["theme_name"]) or False)
 		stale_fn, stale_args = queued[0]
-		assert stale_fn(*stale_args) is False and applied == []      # dropped: superseded
+		assert stale_fn(*stale_args) is False
+		assert applied == []
 		fresh_fn, fresh_args = queued[1]
-		assert fresh_fn(*fresh_args) is False and applied == ["T"]   # newest wins
+		assert fresh_fn(*fresh_args) is False
+		assert applied == ["T"]
 
 	def test_generation_check_and_apply_are_atomic(self, monkeypatch):
 		"""A refresh starting between the check and the apply must not be overwritten:
@@ -609,7 +623,10 @@ class TestLaunchAndExit:
 		w.window.get_width.return_value = 800; w.window.get_height.return_value = 600
 		w.language_combo.get_active_id.return_value = "de"
 		snap = w._session_snapshot()
-		assert snap["page"] == 3 and snap["search"] == "cam" and snap["width"] == 800 and snap["language"] == "de"
+		assert snap["page"] == 3
+		assert snap["search"] == "cam"
+		assert snap["width"] == 800
+		assert snap["language"] == "de"
 		# write failure: nothing torn down
 		monkeypatch.setattr(window.preferences, "write_language", lambda code: (_ for _ in ()).throw(OSError("ro")))
 		with patch.object(w, "_build_ui") as build:
@@ -622,7 +639,8 @@ class TestLaunchAndExit:
 			w._apply_language_rebuild("de")
 		w.capture is None or pytest.fail("camera must be released")
 		reload.assert_called_once(); old.destroy.assert_not_called()   # toplevel is kept (mutter crash)
-		assert build.call_args.kwargs["restore"]["language"] == "de" and w._rebuilding is False
+		assert build.call_args.kwargs["restore"]["language"] == "de"
+		assert w._rebuilding is False
 
 	def test_language_index_fallbacks(self, monkeypatch):
 		w = _win()
@@ -661,7 +679,8 @@ class TestLaunchAndExit:
 		monkeypatch.setattr(window, "get_real_user", lambda: "zed")   # not a listed user
 		w._populate_users()
 		appended = [c.args[0] for c in w.userlist.append_text.call_args_list]
-		assert appended == ["alice", "bob", "carol", "root"] and "svc" not in appended
+		assert appended == ["alice", "bob", "carol", "root"]
+		assert "svc" not in appended
 		w.userlist.set_active.assert_called_with(appended.index("carol"))   # only carol has a model
 		w.userlist.reset_mock()
 		w._populate_users(preferred_user="bob")

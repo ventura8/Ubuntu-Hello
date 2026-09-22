@@ -643,15 +643,16 @@ def test_split_install_fails_on_missing_literal(tmp_path: Path) -> None:
     pkgdir = tmp_path / "pkg"
     _mkdir_repo(fakeroot)
     env = {**os.environ, "UH_REPO_ROOT": str(REPO)}
+    cmd = [
+        "bash",
+        "scripts/test-split-install-adapter.sh",
+        str(fakeroot.resolve()),
+        str(pkgdir.resolve()),
+        "packaging/file-lists/ubuntu-hello.install",
+    ]
     with pytest.raises(subprocess.CalledProcessError):
         _run(
-            [
-                "bash",
-                "scripts/test-split-install-adapter.sh",
-                str(fakeroot.resolve()),
-                str(pkgdir.resolve()),
-                "packaging/file-lists/ubuntu-hello.install",
-            ],
+            cmd,
             cwd=REPO,
             env=env,
             check=True,
@@ -742,9 +743,13 @@ def test_polkit_dropin_never_exposes_home_trees() -> None:
     """ProtectHome=read-only exposed /home and /root to the root helper; only /run/user may be re-exposed."""
     for path in ("install.sh", "scripts/package-configure.sh", "ubuntu-hello/src/install_config.py"):
         text = _read_repo(path)
-        assert "ProtectHome=read-only" not in text and "ProtectHome=no" not in text, path
-        assert "ProtectHome=tmpfs" in text and "BindReadOnlyPaths=-/run/user" in text, path
-        assert "BindPaths=/home" not in text and "BindPaths=/root" not in text, path
+        assert "ProtectHome=read-only" not in text, path
+        assert "ProtectHome=no" not in text, path
+        assert "ProtectHome=tmpfs" in text, path
+        assert "BindReadOnlyPaths=-/run/user" in text, path
+        assert "BindPaths=/home" not in text, path
+        assert "BindPaths=/root" not in text, path
         # never a read-write bind: the root helper only *connects* to the user's session-bus
         # socket (works on a read-only bind); it must not be able to replace runtime files
-        assert "BindPaths=/run/user" not in text and "BindReadOnlyPaths=/run/user" not in text, path  # optional ("-") bind only
+        assert "BindPaths=/run/user" not in text, path
+        assert "BindReadOnlyPaths=/run/user" not in text, path

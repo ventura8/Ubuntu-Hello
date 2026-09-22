@@ -343,7 +343,8 @@ def test_build_user_gui_env_has_no_display_without_evidence_of_one(tmp_path, mon
     monkeypatch.delenv("DISPLAY", raising=False)
     monkeypatch.delenv("WAYLAND_DISPLAY", raising=False)
     env = rai.build_user_gui_env("bob")
-    assert "DISPLAY" not in env and "WAYLAND_DISPLAY" not in env
+    assert "DISPLAY" not in env
+    assert "WAYLAND_DISPLAY" not in env
 
 
 def test_detect_x_display_uses_the_socket_when_the_installer_has_no_display(monkeypatch, rai):

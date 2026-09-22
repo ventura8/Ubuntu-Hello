@@ -22,6 +22,11 @@ All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS
 | `coverage` | `docker/Dockerfile.ci.coverage` | `ubuntu-hello-ci-coverage:26.04` | pytest coverage floors + meson C++ tests |
 | `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` | DE compatibility build/test |
 
+SonarQube Cloud is a separate driver (not a `UH_CI_STAGE`): `./scripts/ci-sonar.sh`
+runs `sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0` against
+`sonar-project.properties`, reading `artifacts/coverage/coverage.xml` from the
+`coverage` stage. Needs `SONAR_TOKEN` (env, or gitignored `.sonar-token`).
+
 ```bash
 UH_CI_STAGE=lint ./scripts/ci-docker.sh
 UH_CI_STAGE=coverage ./scripts/ci-docker.sh
@@ -74,7 +79,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 ## Dependency pins
 
 * GHA runners: `runs-on: ubuntu-26.04`
-* GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.3.0`) — never commit SHAs, never a `latest` alias
+* GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.4.1`) — never commit SHAs, never a `latest` alias
 * Docker: `FROM ubuntu:26.04`; `# syntax=docker/dockerfile:1.27.0`
 * Pip in CI images: exact pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`)
 * Apt: distro-locked by `FROM ubuntu:26.04` (document; do not add unpinned URL installers)
@@ -84,7 +89,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * Dockerfiles: `# syntax=docker/dockerfile:1.27.0` + BuildKit apt/pip cache mounts
 * `scripts/ci-docker.sh`: `DOCKER_BUILDKIT=1`; `UH_CI_DOCKER_CACHE=local|gha|none` (default `local`)
 * Local: `.cache/docker-ci/<scope>` + skip rebuild when image label `ubuntu-hello.ci.dockerfile-digest` matches Dockerfile sha256 (`UH_CI_FORCE_BUILD=1` to rebuild). On local `buildx` failure, continue only if the loaded image’s digest label matches the current Dockerfile digest (never a stale pre-existing tag); otherwise retry without cache export.
-* GHA: `docker/setup-buildx-action@v4.3.0` + `crazy-max/ghaction-github-runtime@v4.0.0` (exposes `ACTIONS_RESULTS_URL`/`ACTIONS_RUNTIME_TOKEN`, which `setup-buildx-action` alone does not) + `UH_CI_DOCKER_CACHE=gha` (`cache-from/to: type=gha`, scope per stage/DE)
+* GHA: `docker/setup-buildx-action@v4.4.1` + `crazy-max/ghaction-github-runtime@v4.0.0` (exposes `ACTIONS_RESULTS_URL`/`ACTIONS_RUNTIME_TOKEN`, which `setup-buildx-action` alone does not) + `UH_CI_DOCKER_CACHE=gha` (`cache-from/to: type=gha`, scope per stage/DE)
 * Bind-mount `/src` runs are unchanged — cache is image-layer only
 
 ## What each stage runs
@@ -105,6 +110,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * **Never** turn DE compat into a sequential loop in one job
 * **Never** re-run full clang-tidy/coverage floors inside every DE cell
 * **Never** leave packaging smoke/E2E GHA-only — local gate must fail when packaging fails
+* **SonarQube Cloud** is a **step inside the `coverage` job**, never its own job — check.yml must keep every job ungated, and `artifacts/coverage/coverage.xml` already exists at that point. The coverage checkout uses `fetch-depth: 0`; the step uses `SonarSource/sonarqube-scan-action@v8.2.2` (PR decoration from the Actions context) and is skipped on fork PRs for lack of the `SONAR_TOKEN` secret
 `docker/Dockerfile.ppa` remains `ubuntu:26.04` only (no DE packaging matrix). When changing CI/Docker/DE support, update [AGENTS.md](../../../AGENTS.md) §4.7.1 / §4.8 and this skill in the same change.
 
 For the **full gate + fix-until-green** agent loop (no NOLINT / no `# shellcheck disable` / no `# noqa` / no `# type: ignore` / no weakened checks), use [pipeline-runner](../pipeline-runner/SKILL.md).

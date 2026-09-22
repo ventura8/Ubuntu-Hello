@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       # buildx's GHA cache backend (type=gha) needs ACTIONS_RESULTS_URL /
       # ACTIONS_RUNTIME_TOKEN exported explicitly -- setup-buildx-action does
@@ -49,9 +49,13 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v7.0.1
+        with:
+          # Full history: SonarQube Cloud (scanned below in this same job)
+          # attributes new code to commits and needs more than a shallow clone.
+          fetch-depth: 0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
@@ -63,6 +67,17 @@ jobs:
         run: |
           chmod +x scripts/ci-docker.sh
           UH_CI_STAGE=coverage ./scripts/ci-docker.sh
+
+      # SonarQube Cloud runs here rather than in its own job: the Cobertura XML
+      # the scan uploads is produced by the step above, and a separate job would
+      # need a job dependency gate, which check.yml does not allow. The action (not
+      # scripts/ci-sonar.sh) fills in PR-decoration parameters from the Actions
+      # context. Skipped on fork PRs, which cannot read the secret.
+      - name: SonarQube Cloud scan
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: SonarSource/sonarqube-scan-action@v8.2.2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   compat:
     runs-on: ubuntu-26.04
@@ -78,7 +93,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
@@ -142,7 +157,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
       - name: Build the ${{ matrix.distro }} packages from this commit

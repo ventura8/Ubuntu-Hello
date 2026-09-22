@@ -34,7 +34,8 @@ def test_set_option_replaces_in_the_right_section_only(cfg):
     text = open(cfg, encoding="utf-8").read()
     assert "[notifications]\n# card on/off\nenabled = false\n" in text
     assert "[rubberstamps]\nenabled = false\n" in text      # same key elsewhere untouched
-    assert "# top comment" in text and "# keep" in text     # comments survive
+    assert "# top comment" in text
+    assert "# keep" in text
 
 
 def test_set_option_appends_missing_key_to_section(cfg):
@@ -135,8 +136,10 @@ def test_set_option_replaces_a_multi_line_value_without_leaving_leftovers(tmp_pa
     )
     config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod\t5s\tfailsafe\tmin_distance=12")
     text = path.read_text(encoding="utf-8")
-    assert text.count("nod") == 1 and text.count("failsafe") == 1
-    assert "certainty = 4.2" in text and "enabled = false" in text   # rest of the file intact
+    assert text.count("nod") == 1
+    assert text.count("failsafe") == 1
+    assert "certainty = 4.2" in text
+    assert "enabled = false" in text
     import configparser
     parser = configparser.ConfigParser()
     parser.read(str(path))

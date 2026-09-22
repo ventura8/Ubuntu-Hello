@@ -81,16 +81,16 @@ def on_model_delete(self, button):
 	row = self.models.selected_row()
 	if row is None:
 		return
-	id, name = row[0], row[2]
+	model_id, name = row[0], row[2]
 
 	choice = gtk4compat.alert(
 		self.window,
-		_("Are you sure you want to delete model {id} ({name})?").format(id=id, name=name),
+		_("Are you sure you want to delete model {id} ({name})?").format(id=model_id, name=name),
 		buttons=(_("Cancel"), _("Delete")), default=1, cancel=0)
 	if choice != 1:
 		return
 
-	res = subprocess.run(["ubuntu-hello", "remove", str(id), "-y", "-U", self.active_user], capture_output=True, text=True)
+	res = subprocess.run(["ubuntu-hello", "remove", str(model_id), "-y", "-U", self.active_user], capture_output=True, text=True)
 	status, output = res.returncode, res.stdout + res.stderr
 
 	if status != 0:

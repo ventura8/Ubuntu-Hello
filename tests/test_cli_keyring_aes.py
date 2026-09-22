@@ -313,36 +313,35 @@ def test_enable_tpm_success_without_ctx_file(key_env):
         keyring_mod.run_keyring("alice", ["enable"])
 
 
-def test_module_entry_calls_run_keyring():
+def test_module_entry_calls_run_keyring(monkeypatch):
     """Cover ``_cli_autostart`` when command is keyring."""
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(command="keyring", arguments=["disable"])
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(command="keyring", arguments=["disable"]), raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_called_once_with()
 
 
-def test_module_entry_skips_when_command_not_keyring():
+def test_module_entry_skips_when_command_not_keyring(monkeypatch):
     """Leftover builtins from other CLI tests must not auto-run keyring."""
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(command="set", arguments=["certainty", "4.2"])
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(command="set", arguments=["certainty", "4.2"]), raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_not_called()
 
 
-def test_module_entry_skips_without_builtins():
+def test_module_entry_skips_without_builtins(monkeypatch):
     for attr in ("ubuntu_hello_user", "ubuntu_hello_args"):
-        if hasattr(builtins, attr):
-            delattr(builtins, attr)
+        monkeypatch.delattr(builtins, attr, raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_not_called()
 
 
-def test_run_keyring_uses_builtins():
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(arguments=[])
+def test_run_keyring_uses_builtins(monkeypatch):
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(arguments=[]), raising=False)
     with pytest.raises(SystemExit):
         keyring_mod.run_keyring()
 

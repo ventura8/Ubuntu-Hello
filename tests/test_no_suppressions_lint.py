@@ -8,7 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 _SPEC = importlib.util.spec_from_file_location(
     "no_suppressions_lint", ROOT / "scripts" / "no-suppressions-lint.py"
 )
-assert _SPEC is not None and _SPEC.loader is not None
+assert _SPEC is not None
+assert _SPEC.loader is not None
 nsl = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(nsl)
 

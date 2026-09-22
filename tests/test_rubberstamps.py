@@ -539,9 +539,10 @@ class TestLivenessFailsClosedOnCrash:
         module.hotkey = Stamp
         monkeypatch.setattr(rubberstamps, "SourceFileLoader",
                             lambda *a, **k: MagicMock(load_module=lambda: module))
+        opencv = {"video_capture": MagicMock(), "face_detector": MagicMock(),
+                  "pose_predictor": MagicMock(), "clahe": MagicMock()}
         with pytest.raises(SystemExit) as exit_info:
-            rubberstamps.execute(config, None, {"video_capture": MagicMock(), "face_detector": MagicMock(),
-                                                "pose_predictor": MagicMock(), "clahe": MagicMock()})
+            rubberstamps.execute(config, None, opencv)
         return exit_info.value.code
 
     def test_crashing_stamp_denies_when_failsafe(self, monkeypatch):
@@ -608,9 +609,10 @@ class TestChallengeReachesTheUser:
         monkeypatch.setattr(rubberstamps, "SourceFileLoader",
                             lambda *a, **k: MagicMock(load_module=lambda: module))
         notifier = MagicMock()
+        opencv = {"video_capture": MagicMock(), "face_detector": MagicMock(),
+                  "pose_predictor": MagicMock(), "clahe": MagicMock()}
         with pytest.raises(SystemExit):
-            rubberstamps.execute(config, None, {"video_capture": MagicMock(), "face_detector": MagicMock(),
-                                                "pose_predictor": MagicMock(), "clahe": MagicMock()}, notifier=notifier)
+            rubberstamps.execute(config, None, opencv, notifier=notifier)
         assert seen["notifier"] is notifier
 
 

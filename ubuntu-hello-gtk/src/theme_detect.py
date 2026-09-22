@@ -15,6 +15,18 @@ import threading
 from typing import Optional
 
 
+# Repeated schema ids, config paths and filenames, named once so a typo cannot
+# silently disable one DE's probe while the others keep working.
+_XDG_CONFIG_DIR = ".config"
+_SETTINGS_INI = "settings.ini"
+_GTK3_DIR = "gtk-3.0"
+_GTK4_DIR = "gtk-4.0"
+_SCHEMA_GNOME = "org.gnome.desktop.interface"
+_SCHEMA_CINNAMON = "org.cinnamon.desktop.interface"
+_SCHEMA_MATE = "org.mate.interface"
+
+
+
 def detect_desktop(environ: Optional[dict] = None) -> str:
 	"""Return a normalized DE id: gnome, kde, xfce, cinnamon, mate, budgie, lxqt, or unknown."""
 	env = environ if environ is not None else os.environ
@@ -107,8 +119,8 @@ def _gnome_family_theme(user: Optional[str], schema: str) -> Optional[str]:
 	return None
 
 
-def _kde_theme(user: Optional[str]) -> Optional[str]:
-	"""Plasma: kreadconfig6/5 ColorScheme / LookAndFeel, else kdeglobals."""
+def _kde_theme_from_tools(user: Optional[str]) -> Optional[str]:
+	"""Ask kreadconfig6/5 for the colour scheme / look-and-feel package."""
 	for key, group in (
 		("ColorScheme", "General"),
 		("LookAndFeelPackage", "KDE"),
@@ -123,16 +135,30 @@ def _kde_theme(user: Optional[str]) -> Optional[str]:
 			if val:
 				# Explicit light-ish schemes without "dark"
 				return "light"
+	return None
 
-	home = _user_home(user) if user else os.path.expanduser("~")
-	content = _read_file_text(os.path.join(home, ".config", "kdeglobals"), user=user)
+
+def _kdeglobals_names_dark(content: str) -> bool:
+	"""True if kdeglobals names a dark colour scheme or look-and-feel package."""
 	for line in content.splitlines():
 		if "=" not in line:
 			continue
-		key, _, value = line.partition("=")
-		key = key.strip().lower()
-		if key in ("colorscheme", "lookandfeelpackage") and _name_is_dark(value.strip()):
-			return "dark"
+		key, _sep, value = line.partition("=")
+		if key.strip().lower() in ("colorscheme", "lookandfeelpackage") and _name_is_dark(value.strip()):
+			return True
+	return False
+
+
+def _kde_theme(user: Optional[str]) -> Optional[str]:
+	"""Plasma: kreadconfig6/5 ColorScheme / LookAndFeel, else kdeglobals."""
+	from_tools = _kde_theme_from_tools(user)
+	if from_tools:
+		return from_tools
+
+	home = _user_home(user) if user else os.path.expanduser("~")
+	content = _read_file_text(os.path.join(home, _XDG_CONFIG_DIR, "kdeglobals"), user=user)
+	if _kdeglobals_names_dark(content):
+		return "dark"
 	if content:
 		return "light"
 	return None
@@ -152,7 +178,7 @@ def _xfce_theme(user: Optional[str]) -> Optional[str]:
 
 def _mate_theme(user: Optional[str]) -> Optional[str]:
 	val = _run_cmd(
-		["gsettings", "get", "org.mate.interface", "gtk-theme"],
+		["gsettings", "get", _SCHEMA_MATE, "gtk-theme"],
 		user=user,
 	)
 	if _name_is_dark(val):
@@ -162,30 +188,40 @@ def _mate_theme(user: Optional[str]) -> Optional[str]:
 	return None
 
 
+def _lxqt_theme_in(path: str, user: Optional[str]) -> Optional[str]:
+	"""Classify the "theme=" entry of one LXQt config file."""
+	content = _read_file_text(path, user=user)
+	for line in content.splitlines():
+		if "=" not in line:
+			continue
+		key, _sep, value = line.partition("=")
+		if key.strip().lower() != "theme":
+			continue
+		value = value.strip()
+		if _name_is_dark(value):
+			return "dark"
+		if value:
+			return "light"
+	return None
+
+
 def _lxqt_theme(user: Optional[str]) -> Optional[str]:
 	home = _user_home(user) if user else os.path.expanduser("~")
 	for rel in (
-		os.path.join(".config", "lxqt", "lxqt.conf"),
-		os.path.join(".config", "lxqt", "session.conf"),
+		os.path.join(_XDG_CONFIG_DIR, "lxqt", "lxqt.conf"),
+		os.path.join(_XDG_CONFIG_DIR, "lxqt", "session.conf"),
 	):
-		content = _read_file_text(os.path.join(home, rel), user=user)
-		for line in content.splitlines():
-			if "=" not in line:
-				continue
-			key, _, value = line.partition("=")
-			if key.strip().lower() == "theme":
-				if _name_is_dark(value.strip()):
-					return "dark"
-				if value.strip():
-					return "light"
+		theme = _lxqt_theme_in(os.path.join(home, rel), user)
+		if theme:
+			return theme
 	return None
 
 
 def _gtk_settings_ini_theme(user: Optional[str]) -> str:
 	"""``~/.config/gtk-4.0/settings.ini`` (KDE's kde-gtk-config, LXQt, manual setups)."""
 	home = _user_home(user) if user else os.path.expanduser("~")
-	for version in ("gtk-4.0", "gtk-3.0"):
-		content = _read_file_text(os.path.join(home, ".config", version, "settings.ini"), user=user)
+	for version in (_GTK4_DIR, _GTK3_DIR):
+		content = _read_file_text(os.path.join(home, _XDG_CONFIG_DIR, version, _SETTINGS_INI), user=user)
 		for line in content.splitlines():
 			key, _, value = line.partition("=")
 			if key.strip().lower() == "gtk-theme-name" and value.strip():
@@ -215,11 +251,11 @@ def get_gtk_theme_name(user: Optional[str] = None, environ: Optional[dict] = Non
 	desktop = detect_desktop(environ)
 	name = ""
 	if desktop in ("gnome", "budgie", "unknown"):
-		name = _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+		name = _gsettings_gtk_theme(user, _SCHEMA_GNOME)
 	elif desktop == "cinnamon":
-		name = _gsettings_gtk_theme(user, "org.cinnamon.desktop.interface") or _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+		name = _gsettings_gtk_theme(user, _SCHEMA_CINNAMON) or _gsettings_gtk_theme(user, _SCHEMA_GNOME)
 	elif desktop == "mate":
-		name = _gsettings_gtk_theme(user, "org.mate.interface")
+		name = _gsettings_gtk_theme(user, _SCHEMA_MATE)
 	elif desktop == "xfce":
 		name = _run_cmd(["xfconf-query", "-c", "xsettings", "-p", "/Net/ThemeName"], user=user)
 	elif desktop in ("kde", "lxqt"):
@@ -227,35 +263,44 @@ def get_gtk_theme_name(user: Optional[str] = None, environ: Optional[dict] = Non
 	if not name:
 		name = _gtk_settings_ini_theme(user)
 	if not name and desktop not in ("gnome", "budgie", "unknown"):
-		name = _gsettings_gtk_theme(user, "org.gnome.desktop.interface")
+		name = _gsettings_gtk_theme(user, _SCHEMA_GNOME)
 	return name
+
+
+def _icon_theme_from_settings(user: Optional[str], desktop: str, schema: str) -> str:
+	"""Icon theme as the DE's own settings store reports it."""
+	if desktop == "xfce":
+		return _run_cmd(["xfconf-query", "-c", "xsettings", "-p", "/Net/IconThemeName"], user=user)
+
+	for getter in (
+		["dconf", "read", f"/{schema.replace('.', '/')}/icon-theme"],
+		["gsettings", "get", schema, "icon-theme"],
+	):
+		name = _run_cmd(getter, user=user)
+		if name:
+			return name
+	return ""
+
+
+def _icon_theme_from_gtk_ini(user: Optional[str]) -> str:
+	"""Fall back to gtk-icon-theme-name in the user's GTK settings.ini."""
+	home = _user_home(user) if user else os.path.expanduser("~")
+	for version in (_GTK4_DIR, _GTK3_DIR):
+		path = os.path.join(home, _XDG_CONFIG_DIR, version, _SETTINGS_INI)
+		for line in _read_file_text(path, user=user).splitlines():
+			key, _sep, value = line.partition("=")
+			if key.strip().lower() == "gtk-icon-theme-name" and value.strip():
+				return value.strip().strip("'\"")
+	return ""
 
 
 def get_icon_theme_name(user: Optional[str] = None, environ: Optional[dict] = None, icons_dir: str = "/usr/share/icons") -> str:
 	"""The desktop's icon theme (e.g. ``Yaru``) for *user* if installed system-wide, else ''."""
 	desktop = detect_desktop(environ)
-	schema = {"cinnamon": "org.cinnamon.desktop.interface", "mate": "org.mate.interface"}.get(desktop, "org.gnome.desktop.interface")
-	name = ""
-	if desktop == "xfce":
-		name = _run_cmd(["xfconf-query", "-c", "xsettings", "-p", "/Net/IconThemeName"], user=user)
-	else:
-		for getter in (
-			["dconf", "read", f"/{schema.replace('.', '/')}/icon-theme"],
-			["gsettings", "get", schema, "icon-theme"],
-		):
-			name = _run_cmd(getter, user=user)
-			if name:
-				break
-	if not name:
-		home = _user_home(user) if user else os.path.expanduser("~")
-		for version in ("gtk-4.0", "gtk-3.0"):
-			for line in _read_file_text(os.path.join(home, ".config", version, "settings.ini"), user=user).splitlines():
-				key, _, value = line.partition("=")
-				if key.strip().lower() == "gtk-icon-theme-name" and value.strip():
-					name = value.strip().strip("'\"")
-					break
-			if name:
-				break
+	schema = {"cinnamon": _SCHEMA_CINNAMON, "mate": _SCHEMA_MATE}.get(desktop, _SCHEMA_GNOME)
+
+	name = _icon_theme_from_settings(user, desktop, schema) or _icon_theme_from_gtk_ini(user)
+
 	if name and os.path.isfile(os.path.join(icons_dir, name, "index.theme")):
 		return name
 	return ""
@@ -274,7 +319,7 @@ def resolve_gtk4_theme(name: str, prefer_dark: bool, themes_dir: str = "/usr/sha
 	base = name[:-5] if name.endswith("-dark") else name
 	candidates = [f"{base}-dark", base] if prefer_dark else [base, f"{base}-dark"]
 	for candidate in candidates:
-		if os.path.isdir(os.path.join(themes_dir, candidate, "gtk-4.0")):
+		if os.path.isdir(os.path.join(themes_dir, candidate, _GTK4_DIR)):
 			return candidate
 	return None
 
@@ -292,11 +337,11 @@ def get_theme_preference(
 
 	result: Optional[str] = None
 	if desktop in ("gnome", "budgie", "unknown"):
-		result = _gnome_family_theme(user, "org.gnome.desktop.interface")
+		result = _gnome_family_theme(user, _SCHEMA_GNOME)
 	elif desktop == "cinnamon":
-		result = _gnome_family_theme(user, "org.cinnamon.desktop.interface")
+		result = _gnome_family_theme(user, _SCHEMA_CINNAMON)
 		if result is None:
-			result = _gnome_family_theme(user, "org.gnome.desktop.interface")
+			result = _gnome_family_theme(user, _SCHEMA_GNOME)
 	elif desktop == "kde":
 		result = _kde_theme(user)
 	elif desktop == "xfce":
@@ -308,7 +353,7 @@ def get_theme_preference(
 
 	# Last-resort GNOME probe when DE unknown or probe failed
 	if result is None and desktop not in ("gnome", "budgie"):
-		result = _gnome_family_theme(user, "org.gnome.desktop.interface")
+		result = _gnome_family_theme(user, _SCHEMA_GNOME)
 
 	if result in ("dark", "light"):
 		return result
@@ -333,11 +378,11 @@ def theme_monitor_command(user: Optional[str], environ: Optional[dict] = None) -
 	"""
 	desktop = detect_desktop(environ)
 	if desktop in ("gnome", "budgie", "unknown"):
-		args = ["gsettings", "monitor", "org.gnome.desktop.interface"]
+		args = ["gsettings", "monitor", _SCHEMA_GNOME]
 	elif desktop == "cinnamon":
-		args = ["gsettings", "monitor", "org.cinnamon.desktop.interface"]
+		args = ["gsettings", "monitor", _SCHEMA_CINNAMON]
 	elif desktop == "mate":
-		args = ["gsettings", "monitor", "org.mate.interface"]
+		args = ["gsettings", "monitor", _SCHEMA_MATE]
 	elif desktop == "xfce":
 		args = ["xfconf-query", "-m", "-c", "xsettings"]
 	else:
@@ -366,11 +411,11 @@ def theme_files_to_watch(user: Optional[str]) -> list:
 	"""Config files whose change means the GTK theme / colour scheme changed (KDE, LXQt, manual)."""
 	home = _user_home(user) if user else os.path.expanduser("~")
 	return [
-		os.path.join(home, ".config", "gtk-4.0", "settings.ini"),
-		os.path.join(home, ".config", "gtk-3.0", "settings.ini"),
-		os.path.join(home, ".config", "kdeglobals"),
-		os.path.join(home, ".config", "lxqt", "lxqt.conf"),
-		os.path.join(home, ".config", "lxqt", "session.conf"),
+		os.path.join(home, _XDG_CONFIG_DIR, _GTK4_DIR, _SETTINGS_INI),
+		os.path.join(home, _XDG_CONFIG_DIR, _GTK3_DIR, _SETTINGS_INI),
+		os.path.join(home, _XDG_CONFIG_DIR, "kdeglobals"),
+		os.path.join(home, _XDG_CONFIG_DIR, "lxqt", "lxqt.conf"),
+		os.path.join(home, _XDG_CONFIG_DIR, "lxqt", "session.conf"),
 	]
 
 
@@ -410,7 +455,7 @@ class ThemeWatcher:
 	def _schedule(self, *_args):
 		"""Coalesce bursts (a theme switch writes several keys) into one on_change()."""
 		self.events += 1
-		idle_add, timeout_add = self._glib()
+		_idle_add, timeout_add = self._glib()
 		if self._pending:
 			return
 		self._pending = True

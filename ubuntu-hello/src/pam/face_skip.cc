@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include <string>
+#include <string_view>
 
 namespace {
 
@@ -25,14 +26,13 @@ auto is_safe_username(const std::string &user) -> bool {
   return true;
 }
 
-auto starts_with(const std::string &value, const char *prefix) -> bool {
+auto starts_with(std::string_view value, const char *prefix) -> bool {
   const size_t len = std::strlen(prefix);
   return value.size() >= len && value.compare(0, len, prefix) == 0;
 }
 
 auto ensure_dir(const std::string &path, mode_t mode) -> bool {
-  struct stat path_stat {};
-  if (stat(path.c_str(), &path_stat) == 0) {
+  if (struct stat path_stat{}; stat(path.c_str(), &path_stat) == 0) {
     return S_ISDIR(path_stat.st_mode);
   }
   if (mkdir(path.c_str(), mode) != 0 && errno != EEXIST) {
@@ -86,7 +86,7 @@ auto is_greeter_service(const std::string &service) -> bool {
   return false;
 }
 
-auto face_skip_applies(const std::string &service) -> bool {
+auto face_skip_applies(std::string_view service) -> bool {
   // Only explicit screensaver PAM services. Do not use gdm-password + session
   // detection: GNOME lock and login share gdm-password, and skip-after-failure
   // there prevents Esc→Enter face retries on the lock screen.

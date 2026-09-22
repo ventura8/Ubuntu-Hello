@@ -74,7 +74,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.3.0
+        uses: docker/setup-qemu-action@v4.4.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -128,7 +128,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.3.0
+        uses: docker/setup-qemu-action@v4.4.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -182,7 +182,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.3.0
+        uses: docker/setup-qemu-action@v4.4.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68
@@ -293,7 +293,7 @@ jobs:
 
       - name: Set up QEMU
         if: matrix.arch == 'arm64'
-        uses: docker/setup-qemu-action@v4.3.0
+        uses: docker/setup-qemu-action@v4.4.0
         with:
           platforms: arm64
           image: docker.io/tonistiigi/binfmt:qemu-v10.2.3-68

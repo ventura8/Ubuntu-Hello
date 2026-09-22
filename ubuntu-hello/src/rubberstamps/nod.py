@@ -17,6 +17,47 @@ class nod(RubberStamp):
 	# an old nose position says nothing about where the user is now.
 	FACE_GAP_RESET = 0.7
 
+	def _dominant_move(self, face_landmarks, anchor):
+		"""Displacement of the nose along whichever axis moved furthest.
+
+		Returns ``(axis, nosepoint, movement)``, movement expressed as a
+		percentage of eye distance. Nodding also moves the nose sideways a
+		little; only the dominant axis counts, otherwise a nod could be
+		recorded as a shake and abort.
+		"""
+		# Distance between the eyes, used to express movement as a fraction of
+		# face size so it does not depend on how close the user sits. abs():
+		# which eye comes first depends on how the camera mirrors the image, and
+		# a negative value here turned the threshold into pure noise.
+		eyedist = abs(face_landmarks.part(0).x - face_landmarks.part(2).x) or 1
+
+		moves = {}
+		for axis in ["x", "y"]:
+			nosepoint = getattr(face_landmarks.part(4), axis)
+			if anchor[axis] is None:
+				anchor[axis] = nosepoint
+			moves[axis] = (nosepoint, (nosepoint - anchor[axis]) * 100 / eyedist)
+
+		axis = max(moves, key=lambda a: abs(moves[a][1]))
+		nosepoint, movement = moves[axis]
+		return axis, nosepoint, movement
+
+	def _announce(self, nodded_yes):
+		"""Show the verdict and give the user a moment to read it."""
+		if nodded_yes:
+			self.set_ui_text(_("Confirmed authentication"), self.UI_TEXT)
+		else:
+			self.set_ui_text(_("Aborted authentication"), self.UI_TEXT)
+		self.set_ui_text("", self.UI_SUBTEXT)
+		time.sleep(0.8)
+
+	def _single_face_landmarks(self, frame):
+		"""Landmarks for the one visible face, or None."""
+		face_locations = self.face_detector(frame, 1)
+		if len(face_locations) != 1:
+			return None
+		return self.pose_predictor(frame, face_locations[0])
+
 	def run(self):
 		"""Track a users nose to see if they nod yes or shake no.
 
@@ -41,19 +82,12 @@ class nod(RubberStamp):
 
 		starttime = time.time()
 
-		# Keep running the loop while we have not hit timeout yet
 		while time.time() < starttime + self.options["timeout"]:
-			# Read a frame from the camera
-			ret, frame = self.video_capture.read_frame()
-
-			# Apply CLAHE to get a better picture
+			_ret, frame = self.video_capture.read_frame()
 			frame = self.clahe.apply(frame)
 
-			# Detect all faces in the frame
-			face_locations = self.face_detector(frame, 1)
-
-			# Only continue if exactly 1 face is visible in the frame
-			if len(face_locations) != 1:
+			face_landmarks = self._single_face_landmarks(frame)
+			if face_landmarks is None:
 				continue
 
 			now = time.time()
@@ -61,50 +95,22 @@ class nod(RubberStamp):
 				anchor = {"x": None, "y": None}
 			last_seen = now
 
-			# Get the position of the eyes and tip of the nose
-			face_landmarks = self.pose_predictor(frame, face_locations[0])
+			axis, nosepoint, movement = self._dominant_move(face_landmarks, anchor)
 
-			# Distance between the eyes, used to express movement as a fraction of
-			# face size so it does not depend on how close the user sits. abs():
-			# which eye comes first depends on how the camera mirrors the image, and
-			# a negative value here turned the threshold into pure noise.
-			eyedist = abs(face_landmarks.part(0).x - face_landmarks.part(2).x) or 1
+			if abs(movement) <= mindist:
+				continue
 
-			moves = {}
-			for axis in ["x", "y"]:
-				nosepoint = getattr(face_landmarks.part(4), axis)
-				if anchor[axis] is None:
-					anchor[axis] = nosepoint
-				moves[axis] = (nosepoint, (nosepoint - anchor[axis]) * 100 / eyedist)
+			direction = movement < 0
+			# Only record a change of direction: holding the head down is one leg
+			if not recorded_nods[axis] or recorded_nods[axis][-1] != direction:
+				recorded_nods[axis].append(direction)
+			anchor[axis] = nosepoint
 
-			# Nodding also moves the nose sideways a little; only the dominant axis
-			# counts, otherwise a nod could be recorded as a shake and abort.
-			axis = max(moves, key=lambda a: abs(moves[a][1]))
-			nosepoint, movement = moves[axis]
-
-			# If the movement is over the minimal distance threshold
-			if abs(movement) > mindist:
-				direction = movement < 0
-				# Only record a change of direction: holding the head down is one leg
-				if not recorded_nods[axis] or recorded_nods[axis][-1] != direction:
-					recorded_nods[axis].append(direction)
-				anchor[axis] = nosepoint
-
-				# Check if we have nodded enough on this axis
-				if len(recorded_nods[axis]) >= needed:
-					# If nodded yes, show confirmation in ui
-					if axis == "y":
-						self.set_ui_text(_("Confirmed authentication"), self.UI_TEXT)
-					# If shaken no, show abort message
-					else:
-						self.set_ui_text(_("Aborted authentication"), self.UI_TEXT)
-
-					# Remove subtext
-					self.set_ui_text("", self.UI_SUBTEXT)
-
-					# Return true for nodding yes and false for shaking no
-					time.sleep(0.8)
-					return axis == "y"
+			# Check if we have nodded enough on this axis
+			if len(recorded_nods[axis]) >= needed:
+				# "y" is a nod (yes); "x" is a shake (no).
+				self._announce(axis == "y")
+				return axis == "y"
 
 		# We've fallen out of the loop, so timeout has been hit
 		return not self.options["failsafe"]

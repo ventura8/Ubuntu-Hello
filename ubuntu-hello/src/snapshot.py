@@ -17,7 +17,7 @@ def generate(frames, text_lines):
 		return
 
 	# Get frame dimensions
-	frame_height, frame_width, cc = frames[0].shape
+	frame_height, frame_width, _channels = frames[0].shape
 	# Spread the given frames out horizontally
 	snap = np.concatenate(frames, axis=1)
 

@@ -89,14 +89,17 @@ def _make(fake_gtk, on_changed=None):
 
 def test_append_and_ids(fake_gtk):
 	widget, combo = _make(fake_gtk)
-	assert widget.search is True and widget.model is combo.store
+	assert widget.search is True
+	assert widget.model is combo.store
 	assert widget.match_mode == fake_gtk.StringFilterMatchMode.SUBSTRING   # search anywhere, not prefix-only
 	combo.append("auto", "Automatic")
 	combo.append("ro", "Romanian (Română)")
 	combo.append_text("/dev/video0")
 	assert combo.items == 3
 	assert combo.get_model().get_n_items() == 3
-	assert combo.get_active() == -1 and combo.get_active_id() is None and combo.get_active_text() is None
+	assert combo.get_active() == -1
+	assert combo.get_active_id() is None
+	assert combo.get_active_text() is None
 	assert combo.set_active_id("ro") is True
 	assert combo.get_active() == 1
 	assert combo.get_active_id() == "ro"
@@ -111,9 +114,12 @@ def test_set_active_negative_clears_and_remove_all(fake_gtk):
 	combo.set_active(0)
 	assert combo.get_active_text() == "a"
 	combo.set_active(-1)
-	assert widget.selected == INVALID and combo.get_active() == -1
+	assert widget.selected == INVALID
+	assert combo.get_active() == -1
 	combo.remove_all()
-	assert combo.items == 0 and combo.get_model().get_n_items() == 0 and combo.get_active_id() is None
+	assert combo.items == 0
+	assert combo.get_model().get_n_items() == 0
+	assert combo.get_active_id() is None
 
 
 def test_changed_callback_and_delegation(fake_gtk):
@@ -146,7 +152,8 @@ def test_dropdown_wraps_once_and_updates_callback(fake_gtk):
 	with pytest.raises(AttributeError):
 		rigid.anything = 1
 	adapter = real_dropdown(rigid)
-	assert isinstance(adapter, gtk4compat.IdDropDown) and not hasattr(rigid, "_uh_dropdown")
+	assert isinstance(adapter, gtk4compat.IdDropDown)
+	assert not hasattr(rigid, "_uh_dropdown")
 	assert real_dropdown(rigid) is not adapter   # nothing to cache on: a fresh adapter each time
 
 
@@ -183,10 +190,9 @@ def test_run_main_and_quit(monkeypatch):
 	assert gtk4compat._main_loop is None
 	quit_main = getattr(gtk4compat, "_real_quit_main", gtk4compat.quit_main)  # conftest shims quit_main()
 	quit_main()  # no loop: no-op
-	gtk4compat._main_loop = loop
+	monkeypatch.setattr(gtk4compat, "_main_loop", loop, raising=False)
 	quit_main()
 	loop.quit.assert_called_once()
-	gtk4compat._main_loop = None
 
 
 def test_close_popover_pops_down_visible_popovers(fake_gtk):
@@ -211,7 +217,8 @@ def test_close_popover_pops_down_visible_popovers(fake_gtk):
 	widget = MagicMock()
 	widget.get_first_child.return_value = hidden
 	assert gtk4compat.close_popover(widget) is True
-	assert shown.down and not hidden.down
+	assert shown.down
+	assert not hidden.down
 	widget.get_first_child.return_value = hidden
 	shown.visible = False
 	assert gtk4compat.close_popover(widget) is False
@@ -225,7 +232,8 @@ def test_translate_ui_xml_translates_only_translatable_text():
 	out = gtk4compat.translate_ui_xml(xml, lambda s: f"[{s}]", lambda c, s: f"[{c}|{s}]")
 	assert '>[Hello &amp; bye]<' in out          # entities decoded for gettext, re-escaped for XML
 	assert '>[Window title|Config]<' in out       # msgctxt via pgettext
-	assert '>Keep<' in out and '>   <' in out     # untouched
+	assert '>Keep<' in out
+	assert '>   <' in out
 	# no pgettext available: context strings fall back to plain gettext
 	assert '>[Config]<' in gtk4compat.translate_ui_xml(xml, lambda s: f"[{s}]")
 
@@ -255,7 +263,8 @@ def test_apply_text_direction(fake_gtk, monkeypatch):
 
 def test_search_haystack_folds_accents_and_case():
 	hay = gtk4compat.IdDropDown.search_haystack("Romanian (Română)")
-	assert "romanian (romana)" in hay and "română" in hay
+	assert "romanian (romana)" in hay
+	assert "română" in hay
 
 
 def test_search_expression_includes_id_and_folded_text(fake_gtk):
@@ -263,7 +272,8 @@ def test_search_expression_includes_id_and_folded_text(fake_gtk):
 	combo.append("ro", "Romanian (Română)")
 	item = MagicMock(); item.get_string.return_value = "Romanian (Română)"
 	hay = combo._search_haystack(item)
-	assert "romana" in hay and hay.endswith(" ro")
+	assert "romana" in hay
+	assert hay.endswith(" ro")
 	bad = MagicMock(); bad.get_string.side_effect = RuntimeError("gone")
 	assert combo._search_haystack(bad) == ""
 

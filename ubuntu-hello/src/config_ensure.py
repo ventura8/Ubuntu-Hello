@@ -12,6 +12,7 @@ import os
 import tempfile
 from pathlib import Path
 
+_CONFIG_NAME = "config.ini"
 _CONFIG_MODE = 0o644
 _DEFAULT_ETC = "/etc/ubuntu-hello/config.ini"
 _DEFAULT_SHARE = "/usr/share/ubuntu-hello/config.ini"
@@ -20,7 +21,7 @@ _DEFAULT_SHARE = "/usr/share/ubuntu-hello/config.ini"
 def _live_config_path() -> str:
     try:
         import paths
-        return str(Path(paths.config_dir) / "config.ini")
+        return str(Path(paths.config_dir) / _CONFIG_NAME)
     except (ImportError, AttributeError):
         return _DEFAULT_ETC
 
@@ -30,12 +31,12 @@ def packaged_template_path() -> str:
     candidates = []
     try:
         import paths
-        candidates.append(str(Path(paths.data_dir) / "config.ini"))
+        candidates.append(str(Path(paths.data_dir) / _CONFIG_NAME))
     except (ImportError, AttributeError):
         pass
     candidates.append(_DEFAULT_SHARE)
     here = os.path.dirname(os.path.abspath(__file__))
-    candidates.append(os.path.join(here, "config.ini"))
+    candidates.append(os.path.join(here, _CONFIG_NAME))
     for path in candidates:
         if os.path.isfile(path):
             return path

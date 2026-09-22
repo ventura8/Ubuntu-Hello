@@ -58,14 +58,14 @@ const auto MAX_RETRIES = 5;
  * @param  service       The current PAM service name
  * @return               True if the service is in the list
  */
-auto is_service_ignored(const std::string &service_list, const std::string &service) -> bool {
-  std::string list = service_list;
+auto is_service_ignored(std::string_view service_list, std::string_view service) -> bool {
+  std::string list{service_list};
   size_t pos = 0;
   while ((pos = list.find(',')) != std::string::npos) {
     std::string token = list.substr(0, pos);
     // Trim whitespace
-    size_t first = token.find_first_not_of(" \t\r\n");
-    if (first != std::string::npos) {
+    if (const size_t first = token.find_first_not_of(" \t\r\n");
+        first != std::string::npos) {
       size_t last = token.find_last_not_of(" \t\r\n");
       token = token.substr(first, (last - first + 1));
     } else {
@@ -77,8 +77,8 @@ auto is_service_ignored(const std::string &service_list, const std::string &serv
     list.erase(0, pos + 1);
   }
   // Trim remaining part
-  size_t first = list.find_first_not_of(" \t\r\n");
-  if (first != std::string::npos) {
+  if (const size_t first = list.find_first_not_of(" \t\r\n");
+      first != std::string::npos) {
     size_t last = list.find_last_not_of(" \t\r\n");
     list = list.substr(first, (last - first + 1));
   } else {
@@ -101,7 +101,7 @@ auto ubuntu_hello_error(int status,
     // Get the status code returned
     status = WEXITSTATUS(status);
 
-    switch (status) {
+    switch (static_cast<CompareError>(status)) {
     case CompareError::NO_FACE_MODEL:
       syslog(LOG_NOTICE, "Failure, no face model known");
       break;
@@ -193,17 +193,47 @@ auto popen_as_root(const std::string &cmd, const char *type) -> FILE * {
 
   FILE *file_pipe = popen(cmd.c_str(), type);
 
-  if (altered) {
-    if (setreuid(ruid, euid) != 0) {
-      syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
-      if (file_pipe != nullptr) {
-        pclose(file_pipe);
-      }
-      return nullptr;
+  if (altered && setreuid(ruid, euid) != 0) {
+    syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
+    if (file_pipe != nullptr) {
+      pclose(file_pipe);
     }
+    return nullptr;
   }
 
   return file_pipe;
+}
+
+// Read the first line from *file_pipe* (the unsealed password), without the
+// trailing newline. Prefer fread over fgets so clang-analyzer does not flag a
+// blocking fgets while identify()'s mutex is still (falsely) considered held.
+// True if any matched lid state file under /proc/acpi/button/lid reports
+// "closed".
+auto any_lid_closed(const glob_t &glob_result) -> bool {
+  for (size_t i = 0; i < glob_result.gl_pathc; i++) {
+    std::ifstream file(std::string(glob_result.gl_pathv[i]));
+    std::string lid_state;
+    std::getline(file, lid_state, static_cast<char>(file.eof()));
+    if (lid_state.find("closed") != std::string::npos) {
+      return true;
+    }
+  }
+  return false;
+}
+
+auto read_first_line(FILE *file_pipe) -> std::string {
+  std::array<char, 256> buf{};
+  const size_t got = fread(buf.data(), 1, buf.size() - 1, file_pipe);
+  if (got == 0) {
+    return "";
+  }
+  buf[got] = '\0';
+  std::string line = buf.data();
+  if (const size_t newline_at = line.find('\n');
+      newline_at != std::string::npos) {
+    line.erase(newline_at);
+  }
+  return line;
 }
 
 void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
@@ -227,18 +257,7 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
                       
     FILE *file_pipe = popen_as_root(cmd, "r");
     if (file_pipe != nullptr) {
-      std::array<char, 256> buf{};
-      // Prefer fread over fgets so clang-analyzer does not flag a blocking
-      // fgets while identify()'s mutex is still (falsely) considered held.
-      const size_t got = fread(buf.data(), 1, buf.size() - 1, file_pipe);
-      if (got > 0) {
-        buf[got] = '\0';
-        password = buf.data();
-        const size_t newline_at = password.find('\n');
-        if (newline_at != std::string::npos) {
-          password.erase(newline_at);
-        }
-      }
+      password = read_first_line(file_pipe);
       pclose(file_pipe);
     }
     
@@ -357,19 +376,11 @@ auto check_enabled(const INIReader &config, const char *username) -> int {
       if (errno != 0) {
         syslog(LOG_ERR, "Underlying error: %s (%d)", strerror(errno), errno);
       }
-    } else {
-      for (size_t i = 0; i < glob_result.gl_pathc; i++) {
-        std::ifstream file(std::string(glob_result.gl_pathv[i]));
-        std::string lid_state;
-        std::getline(file, lid_state, static_cast<char>(file.eof()));
+    } else if (any_lid_closed(glob_result)) {
+      globfree(&glob_result);
 
-        if (lid_state.find("closed") != std::string::npos) {
-          globfree(&glob_result);
-
-          syslog(LOG_INFO, "Skipped authentication, closed lid detected");
-          return PAM_AUTHINFO_UNAVAIL;
-        }
-      }
+      syslog(LOG_INFO, "Skipped authentication, closed lid detected");
+      return PAM_AUTHINFO_UNAVAIL;
     }
     globfree(&glob_result);
   }
@@ -465,7 +476,7 @@ auto dismiss_authtok_prompt(
         conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
                                        "for user to press it instead"));
       }
-    } catch (std::runtime_error &err) {
+    } catch (const EnterDeviceError &err) {
       syslog(LOG_WARNING, "Failed to send enter input: %s", err.what());
       conv_function(PAM_ERROR_MSG, S("Failed to send Enter press, waiting "
                                      "for user to press it instead"));
@@ -500,46 +511,35 @@ struct SyslogIdentityScope {
   auto operator=(const SyslogIdentityScope &) -> SyslogIdentityScope & = delete;
 };
 
-auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
-              bool ask_auth_tok) -> int {
-  INIReader config(CONFIG_FILE_PATH);
-  SyslogIdentityScope syslog_identity;
-
-  // Error out if we could not read the config file
-  if (config.ParseError() != 0) {
-    syslog(LOG_ERR, "Failed to parse the configuration file: %d",
-           config.ParseError());
-    return PAM_SYSTEM_ERR;
-  }
-
-  // Will contain the responses from PAM functions
-  int pam_res = PAM_IGNORE;
-
-  // Check if current service should be ignored
-  const char *service = nullptr;
-  if (pam_get_item(pamh, PAM_SERVICE, reinterpret_cast<const void **>(&service)) == PAM_SUCCESS && service != nullptr) {
-    std::string ignore_services = config.GetString("core", "ignore_services", "");
+// The cheap gates identify() runs before doing any work: an ignored PAM
+// service, the username and its format, whether face auth is enabled for that
+// user, and skip-after-failure. Returns PAM_SUCCESS to continue, otherwise the
+// status identify() must return as-is. *username_out* is only set on success.
+auto identify_preflight(pam_handle_t *pamh, INIReader &config,
+                        const char *service, char **username_out) -> int {
+  if (service != nullptr) {
+    const std::string ignore_services =
+        config.GetString("core", "ignore_services", "");
     if (is_service_ignored(ignore_services, service)) {
-      syslog(LOG_INFO, "Skipped authentication, PAM service '%s' is ignored", service);
+      syslog(LOG_INFO, "Skipped authentication, PAM service '%s' is ignored",
+             service);
       return PAM_AUTHINFO_UNAVAIL;
     }
   }
 
-  // Get the username from PAM, needed to match correct face model
+  // Needed to match the correct face model.
   char *username = nullptr;
-  pam_res = pam_get_user(pamh, const_cast<const char **>(&username), nullptr);
+  int pam_res = pam_get_user(pamh, const_cast<const char **>(&username), nullptr);
   if (pam_res != PAM_SUCCESS || username == nullptr) {
     syslog(LOG_ERR, "Failed to get username");
     return pam_res == PAM_SUCCESS ? PAM_USER_UNKNOWN : pam_res;
   }
 
-  // Validate username format
   if (!is_safe_username(username)) {
     syslog(LOG_ERR, "Invalid username format: %s", username);
     return PAM_AUTH_ERR;
   }
 
-  // Check if we should continue
   pam_res = check_enabled(config, username);
   if (pam_res != PAM_SUCCESS) {
     return pam_res;
@@ -560,13 +560,49 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
     return PAM_AUTHINFO_UNAVAIL;
   }
 
+  *username_out = username;
+  return PAM_SUCCESS;
+}
+
+auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
+              bool ask_auth_tok) -> int {
+  INIReader config(CONFIG_FILE_PATH);
+  SyslogIdentityScope syslog_identity;
+
+  // Error out if we could not read the config file
+  if (config.ParseError() != 0) {
+    syslog(LOG_ERR, "Failed to parse the configuration file: %d",
+           config.ParseError());
+    return PAM_SYSTEM_ERR;
+  }
+
+  // Will contain the responses from PAM functions
+  int pam_res = PAM_IGNORE;
+
+  const char *service = nullptr;
+  if (pam_get_item(pamh, PAM_SERVICE,
+                   reinterpret_cast<const void **>(&service)) != PAM_SUCCESS) {
+    service = nullptr;
+  }
+
+  char *username = nullptr;
+  pam_res = identify_preflight(pamh, config, service, &username);
+  if (pam_res != PAM_SUCCESS) {
+    return pam_res;
+  }
+
+  // Also consulted below, when recording/clearing the skip-after-failure mark.
+  const bool skip_face_after_failure =
+      config.GetBoolean("core", "skip_face_after_failure", true);
+  const bool face_skip_service =
+      service != nullptr && face_skip_applies(service);
+
   Workaround workaround =
       get_workaround(config.GetString("core", "workaround", "input"));
 
   // Will contain PAM conversation structure
   struct pam_conv *conv = nullptr;
-  const void **conv_ptr =
-      const_cast<const void **>(reinterpret_cast<void **>(&conv));
+  auto *conv_ptr = const_cast<const void **>(reinterpret_cast<void **>(&conv));
 
   // Retrieve the PAM conversation structure
   pam_res = pam_get_item(pamh, PAM_CONV, conv_ptr);
@@ -657,11 +693,12 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
 
   // This task wait for the status of the python subprocess (we don't want a
   // zombie process)
-  optional_task<int> child_task([&]() -> int {
+  optional_task<int> child_task([child_pid, &mutx, &confirmation_type,
+                                 &convar]() -> int {
     int status = 0;
     waitpid(child_pid, &status, 0);
     {
-      std::unique_lock<std::mutex> lock(mutx);
+      std::unique_lock lock(mutx);
       if (confirmation_type == ConfirmationType::Unset) {
         confirmation_type = ConfirmationType::Ubuntu_Hello;
       }
@@ -673,19 +710,21 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   child_task.activate();
 
   // This task waits for the password input (if the workaround wants it)
-  optional_task<std::tuple<int, char *>> pass_task([&]() -> std::tuple<int, char *> {
+  optional_task<std::tuple<int, char *>> pass_task([pamh, &mutx,
+                                                   &confirmation_type,
+                                                   &convar]() -> std::tuple<int, char *> {
     char *auth_tok_ptr = nullptr;
     int tok_res = pam_get_authtok(
         pamh, PAM_AUTHTOK, const_cast<const char **>(&auth_tok_ptr), nullptr);
     {
-      std::unique_lock<std::mutex> lock(mutx);
+      std::unique_lock lock(mutx);
       if (confirmation_type == ConfirmationType::Unset) {
         confirmation_type = ConfirmationType::Pam;
       }
     }
     convar.notify_one();
 
-    return {tok_res, auth_tok_ptr};
+    return std::tuple{tok_res, auth_tok_ptr};
   });
 
   // Concurrent password watch is workaround-gated ONLY.
@@ -699,8 +738,8 @@ auto identify(pam_handle_t *pamh, int flags, int argc, const char **argv,
   // Wait for the end either of the child or the password input.
   // Unlock explicitly so clang-analyzer does not treat later I/O (e.g. TPM
   // fgets in try_set_keyring_authtok) as BlockInCriticalSection.
-  std::unique_lock<std::mutex> lock(mutx);
-  convar.wait(lock, [&]() -> bool {
+  std::unique_lock lock(mutx);
+  convar.wait(lock, [&confirmation_type]() -> bool {
     return confirmation_type != ConfirmationType::Unset;
   });
   lock.unlock();

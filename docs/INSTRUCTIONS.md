@@ -342,6 +342,7 @@ CI is split into fail-fast stages on Ubuntu **26.04** (see [AGENTS.md](../AGENTS
 | `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1` |
 | `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), `meson test pam-aes-gcm-uh1` |
 | `packaging` | `ci-packaging-cell.sh` (same as GHA) | build + smoke-verify + live E2E install/upgrade/remove/reinstall |
+| `sonar` | `sonar-scanner-cli:12.2.0.4256_8.1.0` (local) / scan action (CI step in `coverage`) | SonarQube Cloud static analysis + Python coverage upload |
 
 Commands:
 
@@ -360,11 +361,56 @@ UH_CI_STAGE=compat UH_CI_DE=kde ./scripts/ci-docker.sh
 # Packaging-only parallel matrix (all formats; same cells as GHA)
 ./scripts/ci-packaging-matrix.sh
 ./scripts/ci-packaging-cell.sh deb
+
+# SonarQube Cloud (needs a token; see below)
+SONAR_TOKEN=... ./scripts/ci-sonar.sh
+UH_SONAR_COVERAGE=1 ./scripts/ci-sonar.sh   # refresh coverage.xml first
 ```
+
+### 5.1 SonarQube Cloud
+
+Analysis settings live in `sonar-project.properties` at the repo root (the scanner
+requires that location). The same file drives the local run and CI.
+
+**Locally** — `scripts/ci-sonar.sh` runs the pinned `sonarsource/sonar-scanner-cli`
+image, so nothing is installed on the host. It needs a token:
+
+1. Create one at <https://sonarcloud.io/account/security> (type: *User Token*).
+2. Either `export SONAR_TOKEN=...` or write it to `.sonar-token` at the repo root
+   — that path is gitignored. **Never commit a token.**
+3. Run `./scripts/ci-sonar.sh`. Coverage is read from
+   `artifacts/coverage/coverage.xml`, which `UH_CI_STAGE=coverage` writes; pass
+   `UH_SONAR_COVERAGE=1` to regenerate it as part of the same run.
+
+**In CI** — the scan is a step at the end of the **`coverage` job** in
+`.github/workflows/check.yml`, not a separate job: `check.yml` permits no job
+dependency gates (see AGENTS.md §4.8), and `coverage.xml` is already on disk there.
+It scans with `SonarSource/sonarqube-scan-action@v8.2.2` (the action, not
+`ci-sonar.sh`, because it derives pull-request decoration parameters from the
+Actions context). It needs a `SONAR_TOKEN` repository secret; fork PRs are skipped
+because they cannot read it.
+
+The C++ PAM sources are linted by clang-tidy in the `lint` stage and are not sent to
+Sonar. To add them, point `sonar.cfamily.compile-commands` at the
+`compile_commands.json` that meson writes into the build dir.
+
+`sonar.cfamily.reportingCppStandardOverride=c++17` matches `meson.build`; without
+it the C++ analyser suggests C++20/23 constructs (`std::format`, `using enum`,
+`std::string_view::contains`) that cannot compile here.
+
+Sonar findings are fixed in code — no `NOSONAR`, no `# noqa`, no "won't fix"
+resolutions to clear a gate (AGENTS.md §4.8; `scripts/no-suppressions-lint.py`
+rejects the in-code forms). Where a rule genuinely misreads a project idiom, it is
+scoped per rule *and* per path in `sonar.issue.ignore.multicriteria`, with the
+reason written next to it — never repo-wide, and never in the source. The current
+entries cover GTK CSS selectors, GTK callback signatures and return contracts,
+gettext `N_`/duplicate msgids, the kernel-mirroring `v4l2.py` names, kwallet-pam's
+fixed PBKDF2 parameters, the PAM module's mandatory C-ABI casts, and one
+clang-tidy conflict (`modernize-use-trailing-return-type` vs `cpp:S3574`).
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
-Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
+Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`, `docker/setup-buildx-action@v4.4.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
 
 Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 

@@ -44,7 +44,8 @@ def test_camera_previews_and_logos_are_pictures_not_icons():
 			assert obj.get("class") == "GtkPicture", f"{ui}:{obj_id} must be a GtkPicture"
 	for ui, obj_id in (("onboarding.ui", "preview_image"), ("onboarding.ui", "slide4_preview_image"), ("main.ui", "opencvimage")):
 		obj = _by_id(UI[ui], obj_id)
-		assert _prop(obj, "content-fit") == "contain" and _prop(obj, "can-shrink") == "1"
+		assert _prop(obj, "content-fit") == "contain"
+		assert _prop(obj, "can-shrink") == "1"
 
 
 def test_camera_page_preview_leaves_room_for_the_device_list():
@@ -54,8 +55,10 @@ def test_camera_page_preview_leaves_room_for_the_device_list():
 
 def test_download_output_is_centered():
 	label = _by_id(UI["onboarding.ui"], "downloadoutputlabel")
-	assert _prop(label, "hexpand") == "1" and _prop(label, "vexpand") == "1"
-	assert _prop(label, "halign") == "center" and _prop(label, "valign") == "center"
+	assert _prop(label, "hexpand") == "1"
+	assert _prop(label, "vexpand") == "1"
+	assert _prop(label, "halign") == "center"
+	assert _prop(label, "valign") == "center"
 
 
 def test_every_wrapping_label_caps_its_width():
@@ -64,7 +67,8 @@ def test_every_wrapping_label_caps_its_width():
 		for obj in _objects(root):
 			if obj.get("class") == "GtkLabel" and _prop(obj, "wrap") == "1":
 				cap = _prop(obj, "max-width-chars")
-				assert cap and int(cap) <= 80, f"{ui}:{obj.get('id')} wrapping label without max-width-chars"
+				assert cap, f"{ui}:{obj.get('id')} wrapping label without max-width-chars"
+				assert int(cap) <= 80, f"{ui}:{obj.get('id')} wrapping label without max-width-chars"
 
 
 def test_card_class_only_on_group_containers():
@@ -72,7 +76,8 @@ def test_card_class_only_on_group_containers():
 	for ui, root in UI.items():
 		for obj in _objects(root):
 			if "uh-card" in _classes(obj):
-				assert obj.get("class") == "GtkBox" and obj.get("id") in CARD_HOSTS, f"{ui}: uh-card on {obj.get('class')} {obj.get('id')}"
+				assert obj.get("class") == "GtkBox", f"{ui}: uh-card on {obj.get('class')} {obj.get('id')}"
+				assert obj.get("id") in CARD_HOSTS, f"{ui}: uh-card on {obj.get('class')} {obj.get('id')}"
 	assert {obj.get("id") for root in UI.values() for obj in _objects(root) if "uh-card" in _classes(obj)} == CARD_HOSTS
 
 

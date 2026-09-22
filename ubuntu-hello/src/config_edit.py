@@ -12,21 +12,31 @@ import tempfile
 _SECTION_RE = re.compile(r"^\s*\[([^\]]+)\]\s*$")
 
 
+_KEY_LINE = "%s = %s\n"
+
 def _key_re(key):
 	return re.compile(r"^\s*%s\s*=" % re.escape(key))
 
 
-def set_option(path, section, key, value):
-	"""Set ``[section] key = value`` in *path*, keeping comments and order.
+def _insert_before_trailing_blanks(out, new_line):
+	"""Insert *new_line* before the blank lines separating this section from the next."""
+	insert_at = len(out)
+	while insert_at > 0 and not out[insert_at - 1].strip():
+		insert_at -= 1
+	out.insert(insert_at, new_line)
 
-	The key is replaced in place when present in the section, appended to the
-	section otherwise, and the section itself is appended when missing.
-	Returns True when the file was written.
+
+def _is_continuation(line):
+	"""True for an indented continuation of the previous key's value."""
+	return bool(line.strip()) and line[:1] in (" ", "\t")
+
+
+def _replace_in_place(lines, section, key, value):
+	"""Replace ``key`` inside ``[section]``.
+
+	Returns ``(out, replaced, section_found)``. When the section ends before the
+	key is found, the key is appended to it and *replaced* is True.
 	"""
-	value = str(value)
-	with open(path, "r", encoding="utf-8") as fh:
-		lines = fh.read().splitlines(keepends=True)
-
 	out = []
 	in_section = False
 	section_found = False
@@ -36,48 +46,60 @@ def set_option(path, section, key, value):
 	# value to the new one (e.g. two stamp_rules).
 	skipping_continuation = False
 	key_re = _key_re(key)
-	def append_to_section():
-		# Insert before the blank lines that separate this section from the next.
-		insert_at = len(out)
-		while insert_at > 0 and not out[insert_at - 1].strip():
-			insert_at -= 1
-		out.insert(insert_at, "%s = %s\n" % (key, value))
 
-	for i, line in enumerate(lines):
+	for line in lines:
 		if skipping_continuation:
-			if line.strip() and line[:1] in (" ", "\t"):
+			if _is_continuation(line):
 				continue
 			skipping_continuation = False
+
 		match = _SECTION_RE.match(line)
 		if match:
+			# Leaving our section without having found the key: append it here.
 			if in_section and not replaced:
-				append_to_section()
+				_insert_before_trailing_blanks(out, _KEY_LINE % (key, value))
 				replaced = True
 			in_section = match.group(1).strip() == section
 			section_found = section_found or in_section
-			out.append(line)
-			continue
-		if in_section and not replaced and key_re.match(line):
-			out.append("%s = %s\n" % (key, value))
+		elif in_section and not replaced and key_re.match(line):
+			out.append(_KEY_LINE % (key, value))
 			replaced = True
 			skipping_continuation = True
 			continue
+
 		out.append(line)
 
-	if not replaced:
-		if not section_found:
-			if out and not out[-1].endswith("\n"):
-				out[-1] += "\n"
-			out.append("\n[%s]\n" % section)
-			out.append("%s = %s\n" % (key, value))
-		else:
-			append_to_section()
+	return out, replaced, section_found
 
+
+def _rewrite_lines(lines, section, key, value):
+	"""Return *lines* with ``[section] key`` set to *value*.
+
+	Replaced in place when the key is present in the section, appended to the
+	section otherwise, and the section itself appended when missing.
+	"""
+	out, replaced, section_found = _replace_in_place(lines, section, key, value)
+	if replaced:
+		return out
+
+	if section_found:
+		_insert_before_trailing_blanks(out, _KEY_LINE % (key, value))
+		return out
+
+	if out and not out[-1].endswith("\n"):
+		out[-1] += "\n"
+	out.append("\n[%s]\n" % section)
+	out.append(_KEY_LINE % (key, value))
+	return out
+
+
+def _write_atomically(path, lines):
+	"""Replace *path* with *lines*, preserving its mode. Never leaves a temp file."""
 	directory = os.path.dirname(path) or "."
 	fd, tmp = tempfile.mkstemp(prefix=".config.", dir=directory)
 	try:
 		with os.fdopen(fd, "w", encoding="utf-8") as fh:
-			fh.writelines(out)
+			fh.writelines(lines)
 		try:
 			os.chmod(tmp, os.stat(path).st_mode & 0o777)
 		except OSError:
@@ -89,6 +111,17 @@ def set_option(path, section, key, value):
 		except OSError:
 			pass
 		raise
+
+
+def set_option(path, section, key, value):
+	"""Set ``[section] key = value`` in *path*, keeping comments and order.
+
+	Returns True when the file was written.
+	"""
+	with open(path, "r", encoding="utf-8") as fh:
+		lines = fh.read().splitlines(keepends=True)
+
+	_write_atomically(path, _rewrite_lines(lines, section, key, str(value)))
 	return True
 
 

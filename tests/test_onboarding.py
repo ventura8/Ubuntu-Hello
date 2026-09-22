@@ -460,7 +460,8 @@ def test_execute_slide7(tmp_path):
             # Two settings make up a strictness level: the threshold and how many
             # separate frames have to agree before a match is trusted.
             written = config.read_text(encoding="utf-8")
-            assert "certainty = " in written and "confirmations = " in written
+            assert "certainty = " in written
+            assert "confirmations = " in written
             assert "certainty = 4.2" not in written
 
 def test_on_finishbutton_click():
@@ -1226,7 +1227,8 @@ def test_wizard_nod_switch_writes_a_fail_closed_rule(tmp_path):
         ob.on_finishbutton_click(None)
     written = config.read_text(encoding="utf-8")
     assert "enabled = true" in written
-    assert "failsafe" in written and "faildeadly" not in written
+    assert "failsafe" in written
+    assert "faildeadly" not in written
     assert written.count("nod") == 1
 
 
@@ -1443,7 +1445,8 @@ def _wizard_with_widgets():
 
 def test_first_scan_success_switches_to_second_pass_instead_of_advancing():
     ob, w = _wizard_with_widgets()
-    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+    assert ob.scan_pass == 1
+    assert ob.models_enrolled == 0
     fake = _fake_enroll(0, "")
     with patch("onboarding.enroll.run_add", fake), \
          patch("threading.Thread") as thread, \
@@ -1452,11 +1455,13 @@ def test_first_scan_success_switches_to_second_pass_instead_of_advancing():
     assert fake.calls == [["ubuntu-hello", "-y", "add", "Setup lighting 1"]]
     # live guidance reached the page while the scan ran, then was hidden again
     texts = [c.args[0] for c in w["slide4_instruction_label"].set_text.call_args_list]
-    assert "Look straight at the camera" in texts and "Turn your head slightly to the left" in texts
+    assert "Look straight at the camera" in texts
+    assert "Turn your head slightly to the left" in texts
     assert "Recording… 2 of 13" in [c.args[0] for c in w["scanbutton"].set_label.call_args_list]
     assert w["slide4_instruction_label"].set_visible.call_args_list[-1].args[0] is False
     go_next.assert_not_called()
-    assert ob.scan_pass == 2 and ob.models_enrolled == 1
+    assert ob.scan_pass == 2
+    assert ob.models_enrolled == 1
     # Second pass: short copy (the why/how was on the slide up front), scan re-enabled, Skip now offered
     assert "Second scan" in w["label4"].set_text.call_args.args[0]
     assert "change the light" in w["label5"].set_text.call_args.args[0]
@@ -1505,7 +1510,8 @@ def test_first_scan_failure_still_fatal():
         ob.run_add()
     show_error.assert_called_once()
     go_next.assert_not_called()
-    assert ob.scan_pass == 1 and ob.models_enrolled == 0
+    assert ob.scan_pass == 1
+    assert ob.models_enrolled == 0
 
 
 def test_skip_is_a_no_op_before_first_model():
@@ -1628,7 +1634,8 @@ def test_back_from_ir_page_releases_capture():
     with patch("gi.repository.GObject.timeout_add"):
         ob.go_prev_slide()
     cap.release.assert_called_once()
-    assert ob.capture is None and ob.window.current_slide == 2
+    assert ob.capture is None
+    assert ob.window.current_slide == 2
 
 
 def test_back_from_finish_page_restores_next_button():
@@ -1772,7 +1779,8 @@ def test_back_from_ir_page_swallows_release_errors():
     ob.capture = MagicMock(); ob.capture.release.side_effect = RuntimeError("busy")
     with patch("gi.repository.GObject.timeout_add"):
         ob.go_prev_slide()
-    assert ob.capture is None and ob.window.current_slide == 2
+    assert ob.capture is None
+    assert ob.window.current_slide == 2
 
 
 def test_remembered_device_ignores_unreadable_config():

@@ -96,7 +96,7 @@ def on_keyring_enable(self, button):
 		)
 		if res.returncode != 0:
 			detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
-			raise Exception(detail)
+			raise RuntimeError(detail)
 
 		gtk4compat.alert(self.window, _("Keyring/KWallet unlocking enabled successfully for user {}.").format(self.active_user))
 	except Exception as e:

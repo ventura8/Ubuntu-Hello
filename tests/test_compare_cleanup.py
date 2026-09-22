@@ -388,7 +388,8 @@ def test_success_card_is_sent_only_after_liveness_decides(compare_mod):
     assert '_notify("rejected")' in src[handler:handler + 400]
     # The only success notification before the rubberstamp block is the deferred definition
     before = src[:stamps]
-    assert before.count('_notify(\n\t\t\t\t\t\t"success"') == 1 and "def notify_success():" in before
+    assert before.count('_notify(\n\t\t\t\t\t\t"success"') == 1
+    assert "def notify_success():" in before
     assert "notify_success()" not in before.split("def notify_success():")[1].split("# Make snapshot")[0]
 
 

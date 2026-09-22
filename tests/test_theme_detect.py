@@ -405,11 +405,13 @@ def test_watcher_reapplies_theme_once_per_burst_of_changes(monkeypatch):
 	w.start()
 	w.thread.join(5)
 	assert spawned["cmd"][-3:] == ["gsettings", "monitor", "org.gnome.desktop.interface"]
-	assert spawned["kw"]["stdin"] is theme_detect.subprocess.DEVNULL and spawned["kw"]["bufsize"] == 1
+	assert spawned["kw"]["stdin"] is theme_detect.subprocess.DEVNULL
+	assert spawned["kw"]["bufsize"] == 1
 	assert w.events == 3
 	# debounced: the synchronous timeout fires immediately, so every line re-applies here;
 	# with a real timeout only the first line of a burst schedules and the rest are coalesced
-	assert applied and len(applied) <= 3
+	assert applied
+	assert len(applied) <= 3
 
 
 def test_watcher_coalesces_events_while_a_reapply_is_pending(monkeypatch):
@@ -420,7 +422,8 @@ def test_watcher_coalesces_events_while_a_reapply_is_pending(monkeypatch):
 	                              file_monitor=False)
 	w._schedule(); w._schedule(); w._schedule()
 	scheduled = [p for p in pending if callable(p)]
-	assert len(scheduled) == 1 and w.events == 3     # one timer for the burst
+	assert len(scheduled) == 1
+	assert w.events == 3
 	scheduled[0]()
 	assert pending.count("fire") == 1
 	w._schedule()                                    # next burst schedules again
@@ -439,7 +442,8 @@ def test_watcher_stop_terminates_monitor_and_is_registered_atexit(monkeypatch):
 	w.start()
 	assert registered == [w.stop]
 	w.stop()
-	assert proc.terminated and w.process is None
+	assert proc.terminated
+	assert w.process is None
 	w.stop()  # idempotent
 
 
@@ -453,7 +457,9 @@ def test_watcher_survives_missing_monitor_tool(monkeypatch):
 
 	w = theme_detect.ThemeWatcher("alice", lambda: None, environ={"XDG_CURRENT_DESKTOP": "GNOME"}, popen=popen,
 	                              idle_add=lambda fn, *a: 0, timeout_add=lambda ms, fn: 0, file_monitor=False)
-	assert w.start() is w and w.process is None and w.thread is None
+	assert w.start() is w
+	assert w.process is None
+	assert w.thread is None
 
 
 def test_watcher_callback_errors_are_reported_not_raised(monkeypatch, capsys):
@@ -464,4 +470,5 @@ def test_watcher_callback_errors_are_reported_not_raised(monkeypatch, capsys):
 
 	w = theme_detect.ThemeWatcher("alice", boom, idle_add=lambda fn, *a: fn(*a), timeout_add=_sync_timeout_add, file_monitor=False)
 	w._schedule()
-	assert "apply failed" in capsys.readouterr().err and w._pending is False
+	assert "apply failed" in capsys.readouterr().err
+	assert w._pending is False

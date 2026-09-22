@@ -19,36 +19,63 @@ from gi.repository import GLib
 from gi.repository import Gio
 
 
+_USERNAME_RE = r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$"
+
+
+def _user_from_pkexec():
+	pkexec_uid = os.environ.get("PKEXEC_UID")
+	if not pkexec_uid:
+		return None
+	try:
+		import pwd
+		return pwd.getpwuid(int(pkexec_uid)).pw_name
+	except Exception:
+		return None
+
+
+def _user_from_login():
+	try:
+		return os.getlogin()
+	except Exception:
+		return None
+
+
+def _user_from_loginctl():
+	"""First non-root session owner reported by loginctl."""
+	try:
+		import subprocess
+		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
+	except Exception:
+		return None
+
+	for line in out.strip().split("\n"):
+		parts = line.split()
+		if len(parts) >= 3 and parts[2] != "root":
+			return parts[2]
+	return None
+
+
 def get_real_user():
+	"""The desktop user behind a root process, or "root" if none can be found."""
 	import re
-	user = os.environ.get("SUDO_USER")
-	if not user or user == "root":
-		pkexec_uid = os.environ.get("PKEXEC_UID")
-		if pkexec_uid:
-			try:
-				import pwd
-				user = pwd.getpwuid(int(pkexec_uid)).pw_name
-			except Exception:
-				pass
-	if not user or user == "root":
-		try:
-			user = os.getlogin()
-		except Exception:
-			pass
-	if not user or user == "root":
-		user = os.environ.get("USER")
-	if not user or user == "root":
-		try:
-			import subprocess
-			out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
-			for line in out.strip().split("\n"):
-				parts = line.split()
-				if len(parts) >= 3 and parts[2] != "root":
-					user = parts[2]
-					break
-		except Exception:
-			pass
-	if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
+
+	# Each source is only consulted if the cheaper ones above it came up empty
+	# or returned root -- loginctl in particular spawns a subprocess.
+	for source in (
+		lambda: os.environ.get("SUDO_USER"),
+		_user_from_pkexec,
+		_user_from_login,
+		lambda: os.environ.get("USER"),
+		_user_from_loginctl,
+	):
+		candidate = source()
+		if candidate and candidate != "root":
+			user = candidate
+			break
+	else:
+		return "root"
+
+	if re.match(_USERNAME_RE, user):
 		return user
 	return "root"
 

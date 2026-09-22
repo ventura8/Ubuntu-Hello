@@ -49,7 +49,8 @@ class TestOnboardingLauncherE2E:
 
 		# First lock succeeds
 		fd1 = run_after_install._acquire_single_flight_lock()
-		assert fd1 is not None and fd1 >= 0
+		assert fd1 is not None
+		assert fd1 >= 0
 
 		# Second lock in same/another thread fails (non-blocking flock)
 		fd2 = run_after_install._acquire_single_flight_lock()
