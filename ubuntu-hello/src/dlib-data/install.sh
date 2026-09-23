@@ -35,12 +35,13 @@ if hash wget 2>/dev/null && wget --help | grep -q -- "--show-progress"; then
 	WGET_PROGRESS=(-q --show-progress)
 fi
 
-# fetch <url> <output>
 fetch() {
+	local url="$1"
+	local output="$2"
 	if hash wget 2>/dev/null; then
-		wget ${WGET_PROGRESS[@]+"${WGET_PROGRESS[@]}"} --max-redirect=0 --tries 5 -O "$2" "$1"
+		wget ${WGET_PROGRESS[@]+"${WGET_PROGRESS[@]}"} --max-redirect=0 --tries 5 -O "$output" "$url"
 	else
-		curl --proto "=https" --proto-redir "=https" --max-redirs 0 --fail --show-error --retry 5 -o "$2" "$1"
+		curl --proto "=https" --proto-redir "=https" --max-redirs 0 --fail --show-error --retry 5 -o "$output" "$url"
 	fi
 }
 
