@@ -74,6 +74,35 @@ def test_set_option_keeps_indented_comment_after_replaced_key(tmp_path):
 	assert "other = 1" in out
 
 
+def test_set_option_drops_continuations_that_follow_an_indented_comment(tmp_path):
+	"""Preserving the comment must not end the skip.
+
+	A comment inside the old value used to clear skipping_continuation, so the
+	rest of the old value survived under the new one -- for stamp_rules that
+	means the Security tab could leave a stale rule behind.
+	"""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\tnod 10s failsafe\n"
+		"\t# why the second rule exists\n"
+		"\tblink 3s faildeadly\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 4s failsafe")
+	out = path.read_text()
+
+	assert "stamp_rules = nod 4s failsafe" in out
+	assert "# why the second rule exists" in out
+	# Both halves of the old value must go, including the part after the comment.
+	assert "hotkey 5s failsafe" not in out
+	assert "nod 10s failsafe" not in out
+	assert "blink 3s faildeadly" not in out
+	assert "other = 1" in out
+
+
 def test_set_option_still_drops_real_value_continuations(tmp_path):
 	"""Indented non-comment lines are part of the value and must go."""
 	path = tmp_path / "config.ini"

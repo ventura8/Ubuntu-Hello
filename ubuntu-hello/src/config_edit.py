@@ -26,17 +26,22 @@ def _insert_before_trailing_blanks(out, new_line):
 	out.insert(insert_at, new_line)
 
 
+def _is_indented(line):
+	return bool(line.strip()) and line[:1] in (" ", "\t")
+
+
+def _is_indented_comment(line):
+	"""An indented "#"/";" line: a comment sitting inside a multi-line value."""
+	return _is_indented(line) and line.lstrip().startswith(("#", ";"))
+
+
 def _is_continuation(line):
 	"""True for an indented continuation of the previous key's value.
 
-	An indented "#"/";" line is a comment, not part of the value. Treating it as
-	one deleted it along with the replaced key -- and preserving comments is the
-	whole reason this editor exists instead of configparser.
+	A comment is not part of the value. Preserving comments is the whole reason
+	this editor exists instead of configparser.
 	"""
-	stripped = line.lstrip()
-	return (bool(stripped)
-			and not stripped.startswith(("#", ";"))
-			and line[:1] in (" ", "\t"))
+	return _is_indented(line) and not _is_indented_comment(line)
 
 
 def _replace_in_place(lines, section, key, value):
@@ -58,6 +63,12 @@ def _replace_in_place(lines, section, key, value):
 	for line in lines:
 		if skipping_continuation:
 			if _is_continuation(line):
+				continue
+			if _is_indented_comment(line):
+				# Keep the comment, but stay in skipping mode: the old value may
+				# continue past it, and letting those lines through would leave
+				# a stale rule sitting under the new one.
+				out.append(line)
 				continue
 			skipping_continuation = False
 
