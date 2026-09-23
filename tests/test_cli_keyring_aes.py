@@ -57,6 +57,34 @@ def test_software_enable_writes_uh1(key_env):
     assert keyring_crypto.decrypt_password(blob) == "mypassword"
 
 
+def test_piped_empty_password_is_rejected(key_env):
+    """An empty pipe must not seal "": unseal treats that as failure, so the
+    user would be left with a seal that never unlocks anything."""
+    stdin = io.StringIO("\n")
+    stdin.isatty = lambda: False
+    with patch("cli.keyring.shutil.which", return_value=None), \
+         patch("cli.keyring.sys.stdin", stdin), \
+         patch("cli.keyring.os.chmod"), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["enable"])
+
+    assert exc.value.code == 1
+    assert not (key_env["keys"] / "alice").exists()
+
+
+def test_piped_eof_is_rejected(key_env):
+    """EOF on stdin reads as "" and must be rejected the same way."""
+    stdin = io.StringIO("")
+    stdin.isatty = lambda: False
+    with patch("cli.keyring.shutil.which", return_value=None), \
+         patch("cli.keyring.sys.stdin", stdin), \
+         patch("cli.keyring.os.chmod"), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["enable"])
+
+    assert exc.value.code == 1
+
+
 def test_software_enable_migrates_legacy_xor(key_env):
     """Existing XOR hex blob must be overwritten with UH1 on enable."""
     key_file = key_env["keys"] / "alice"

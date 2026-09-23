@@ -347,3 +347,57 @@ class TestGuidedEnrollmentThroughRealSubprocess:
 			ob.stop_preview()
 			ob.window.destroy()
 			gtk_pump()
+
+
+class TestSettingsSearchMarkupLabels:
+	"""Pango.parse_markup returns (ok, AttrList, text, accel_char).
+
+	Taking index 1 handed the AttrList to " ".join() in _widget_display_text,
+	which raised TypeError out of on_settings_search_changed: the search filter
+	aborted partway through and later pages stayed unfiltered.
+
+	The branch only runs for a label whose get_text() is empty while its
+	get_label() still holds markup -- a real Gtk.Label with set_markup() already
+	returns plain text from get_text() and returns before reaching it, so these
+	use a stub to exercise the parsing itself against real Pango.
+	"""
+
+	class _MarkupOnlyLabel:
+		"""get_text() empty, get_label() markup -- the only shape that parses."""
+
+		def __init__(self, markup):
+			self._markup = markup
+
+		def get_text(self):
+			return ""
+
+		def get_label(self):
+			return self._markup
+
+	def test_markup_is_parsed_to_plain_text(self):
+		node = self._MarkupOnlyLabel('<b>Keyring</b> unlocking')
+
+		text = window._label_display_text(node)
+
+		assert isinstance(text, str), f"expected str, got {type(text).__name__}"
+		assert text == "Keyring unlocking"
+
+	def test_result_is_joinable(self):
+		"""The actual failure mode: a non-str reaching " ".join(parts)."""
+		node = self._MarkupOnlyLabel('<i>Second</i> model')
+
+		text = window._label_display_text(node)
+
+		assert " ".join(["Models", text]) == "Models Second model"
+
+	def test_label_without_markup_is_returned_as_is(self):
+		node = self._MarkupOnlyLabel("Plain label")
+
+		assert window._label_display_text(node) == "Plain label"
+
+	def test_real_label_with_markup_still_works(self):
+		"""The common path: get_text() already yields plain text."""
+		label = Gtk.Label()
+		label.set_markup('<b>Models</b>')
+
+		assert window._label_display_text(label) == "Models"

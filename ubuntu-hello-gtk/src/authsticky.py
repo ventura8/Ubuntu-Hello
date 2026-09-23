@@ -44,7 +44,7 @@ def _user_from_loginctl():
 	"""First non-root session owner reported by loginctl."""
 	try:
 		import subprocess
-		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
+		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
 	except Exception:
 		return None
 

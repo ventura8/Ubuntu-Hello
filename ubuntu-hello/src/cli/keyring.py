@@ -30,7 +30,14 @@ def _print_usage_and_exit():
 def _read_new_password(user, wallet, backend_label):
 	"""Read the password to seal, from a pipe or an interactive prompt."""
 	if not sys.stdin.isatty():
-		return sys.stdin.readline().strip('\n')
+		piped = sys.stdin.readline().strip('\n')
+		if not piped:
+			# EOF or a bare newline. Sealing "" looks like success here but
+			# unseal_password() treats an empty result as failure, so the user
+			# would end up with a seal that never unlocks anything.
+			print(_("Password cannot be empty"))
+			sys.exit(1)
+		return piped
 
 	passwd1 = getpass.getpass(_("Enter password for user {} to unlock {} ({}): ").format(user, wallet, backend_label))
 	if not passwd1:
@@ -53,8 +60,11 @@ def _tpm_usable():
 		return False
 
 	def tools_present():
-		return (shutil.which("tpm2_createprimary") is not None
-				and shutil.which("tpm2_unseal") is not None)
+		# _seal_with_tpm calls createprimary + create; keyring_restore's unseal
+		# path calls load + unseal. A partial install must fall back to software
+		# rather than failing halfway through sealing.
+		return all(shutil.which(cmd) is not None for cmd in (
+			"tpm2_createprimary", "tpm2_create", "tpm2_load", "tpm2_unseal"))
 
 	if tools_present():
 		return True
@@ -70,9 +80,6 @@ def _tpm_usable():
 def _seal_with_tpm(user, passwd, key_file, pub_file, priv_file, backend_label):
 	print(_("TPM hardware active. Sealing password in TPM..."))
 	try:
-		if os.path.exists(key_file):
-			os.unlink(key_file)
-
 		os.makedirs(TPM_KEYS_DIR, exist_ok=True)
 		os.chmod(TPM_KEYS_DIR, 0o700)
 
@@ -94,6 +101,12 @@ def _seal_with_tpm(user, passwd, key_file, pub_file, priv_file, backend_label):
 
 		os.chmod(pub_file, 0o600)
 		os.chmod(priv_file, 0o600)
+
+		# Only now that the TPM seal is on disk is it safe to drop the software
+		# key: a failure above must leave the previous credential usable.
+		if os.path.exists(key_file):
+			os.unlink(key_file)
+
 		print(_("Keyring/KWallet unlocking enabled successfully for user {} using TPM (wallet: {}).").format(user, backend_label))
 	except Exception as e:
 		print(_("Failed to seal password to TPM: {}").format(e))
@@ -104,10 +117,6 @@ def _seal_with_software(user, passwd, key_file, pub_file, priv_file, backend_lab
 	"""AES-256-GCM with a root-only master key. Always writes a fresh UH1 blob."""
 	print(_("No TPM active. Using software-based credential caching..."))
 	try:
-		for path in (pub_file, priv_file):
-			if os.path.exists(path):
-				os.unlink(path)
-
 		ciphertext = encrypt_password(passwd)
 
 		os.makedirs(KEYRING_KEYS_DIR, exist_ok=True)
@@ -118,6 +127,13 @@ def _seal_with_software(user, passwd, key_file, pub_file, priv_file, backend_lab
 			f.write(ciphertext + "\n")
 
 		os.chmod(key_file, 0o600)
+
+		# Only now that the software key is on disk is it safe to drop any TPM
+		# seal: a failure above must leave the previous credential usable.
+		for path in (pub_file, priv_file):
+			if os.path.exists(path):
+				os.unlink(path)
+
 		print(_("Keyring/KWallet unlocking enabled successfully for user {} (Software Caching, wallet: {}).").format(user, backend_label))
 	except Exception as e:
 		print(_("Failed to enable keyring unlocking: {}").format(e))

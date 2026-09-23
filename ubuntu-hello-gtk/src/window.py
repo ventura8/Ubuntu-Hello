@@ -154,8 +154,9 @@ def _label_display_text(node):
 		return raw
 	try:
 		from gi.repository import Pango
-		parsed = Pango.parse_markup(raw, -1, "\0")[1]
-		return parsed
+		# (ok, AttrList, text, accel_char) -- index 1 is the AttrList, and
+		# returning it lets a non-str reach " ".join() in _widget_display_text.
+		return Pango.parse_markup(raw, -1, "\0")[2] or ""
 	except Exception:
 		return raw
 
