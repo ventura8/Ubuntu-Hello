@@ -110,7 +110,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * **Never** turn DE compat into a sequential loop in one job
 * **Never** re-run full clang-tidy/coverage floors inside every DE cell
 * **Never** leave packaging smoke/E2E GHA-only — local gate must fail when packaging fails
-* **SonarQube Cloud** is a **step inside the `coverage` job**, never its own job — check.yml must keep every job ungated, and `artifacts/coverage/coverage.xml` already exists at that point. The coverage checkout uses `fetch-depth: 0`; the step uses `SonarSource/sonarqube-scan-action@v8.2.2` (PR decoration from the Actions context) and is skipped on fork PRs for lack of the `SONAR_TOKEN` secret
+* **SonarQube Cloud** is a **step inside the `coverage` job**, never its own job — check.yml must keep every job ungated, and `artifacts/coverage/coverage.xml` already exists at that point. The coverage checkout uses `fetch-depth: 0`, and a `sudo chown` step reclaims the workspace before the scan (the root-run Docker stage leaves root-owned `__pycache__/`/`build-ci-*/` the runner-user scanner cannot read); the step uses `SonarSource/sonarqube-scan-action@v8.2.2` (PR decoration from the Actions context) and is skipped on fork PRs for lack of the `SONAR_TOKEN` secret
 `docker/Dockerfile.ppa` remains `ubuntu:26.04` only (no DE packaging matrix). When changing CI/Docker/DE support, update [AGENTS.md](../../../AGENTS.md) §4.7.1 / §4.8 and this skill in the same change.
 
 For the **full gate + fix-until-green** agent loop (no NOLINT / no `# shellcheck disable` / no `# noqa` / no `# type: ignore` / no weakened checks), use [pipeline-runner](../pipeline-runner/SKILL.md).

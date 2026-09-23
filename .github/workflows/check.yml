@@ -68,6 +68,16 @@ jobs:
           chmod +x scripts/ci-docker.sh
           UH_CI_STAGE=coverage ./scripts/ci-docker.sh
 
+      # The Docker stage above runs as root against the bind-mounted checkout, so
+      # it leaves root-owned __pycache__/, build-ci-coverage/ (some dirs 0700) and
+      # artifacts/coverage/coverage.xml behind. The scan action runs as the runner
+      # user and walks the whole tree before sonar.exclusions apply, so without
+      # this it dies with AccessDeniedException. (scripts/ci-sonar.sh sidesteps
+      # the same problem locally by running its scanner container as root.)
+      - name: Reclaim workspace from the root-owned Docker stage
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        run: sudo chown -R "$(id -u):$(id -g)" "${GITHUB_WORKSPACE}"
+
       # SonarQube Cloud runs here rather than in its own job: the Cobertura XML
       # the scan uploads is produced by the step above, and a separate job would
       # need a job dependency gate, which check.yml does not allow. The action (not
