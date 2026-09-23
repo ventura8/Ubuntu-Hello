@@ -39,6 +39,7 @@ sources = files(
     'src/onboarding.py',
     'src/paths_factory.py',
     'src/preferences.py',
+    'src/real_user.py',
     'src/search_fuzzy.py',
     'src/tab_keyring.py',
     'src/tab_models.py',

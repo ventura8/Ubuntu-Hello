@@ -13,6 +13,7 @@ from i18n import _
 import i18n
 import languages
 import paths_factory
+import real_user
 import preferences
 from search_fuzzy import fuzzy_match, fuzzy_score
 
@@ -802,65 +803,15 @@ def open_uri_as_user(user, uri, session_env):
 		return None
 
 
-_USERNAME_RE = r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$"
-
-
-def _user_from_pkexec():
-	pkexec_uid = os.environ.get("PKEXEC_UID")
-	if not pkexec_uid:
-		return None
-	try:
-		import pwd
-		return pwd.getpwuid(int(pkexec_uid)).pw_name
-	except Exception:
-		return None
-
-
-def _user_from_login():
-	try:
-		return os.getlogin()
-	except Exception:
-		return None
-
-
-def _user_from_loginctl():
-	"""First non-root session owner reported by loginctl."""
-	try:
-		import subprocess
-		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
-	except Exception:
-		return None
-
-	for line in out.strip().split("\n"):
-		parts = line.split()
-		if len(parts) >= 3 and parts[2] != "root":
-			return parts[2]
-	return None
-
-
 def get_real_user():
 	"""The desktop user behind this root process, or "root" if none can be found."""
-	import re
-
-	# Each source is only consulted if the cheaper ones above it came up empty
-	# or returned root -- loginctl in particular spawns a subprocess.
-	for source in (
-		lambda: os.environ.get("SUDO_USER"),
-		_user_from_pkexec,
-		_user_from_login,
-		lambda: os.environ.get("USER"),
-		_user_from_loginctl,
-	):
-		candidate = source()
-		if candidate and candidate != "root":
-			user = candidate
-			break
-	else:
-		return "root"
-
-	if re.match(_USERNAME_RE, user):
-		return user
-	return "root"
+	return real_user.resolve((
+		real_user.from_sudo,
+		real_user.from_pkexec,
+		real_user.from_login,
+		real_user.from_user_env,
+		real_user.from_loginctl,
+	))
 
 
 def get_user_theme_preference(user=None):

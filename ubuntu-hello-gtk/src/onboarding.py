@@ -8,6 +8,7 @@ import time
 import subprocess
 import threading
 import paths_factory
+import real_user
 import auth_helper
 import config_edit
 
@@ -65,42 +66,6 @@ DEFAULT_PRESET = "radiosecure"
 
 from tab_keyring import KeyringPasswordDialog
 from tab_security import LIVENESS_RULE
-
-
-_USERNAME_RE = r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$"
-
-
-def _user_from_pkexec():
-	pkexec_uid = os.environ.get("PKEXEC_UID")
-	if not pkexec_uid:
-		return None
-	try:
-		import pwd
-		return pwd.getpwuid(int(pkexec_uid)).pw_name
-	except Exception:
-		return None
-
-
-def _user_from_login():
-	try:
-		return os.getlogin()
-	except Exception:
-		return None
-
-
-def _user_from_loginctl():
-	"""First non-root session owner reported by loginctl."""
-	try:
-		import subprocess
-		out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
-	except Exception:
-		return None
-
-	for line in out.strip().split("\n"):
-		parts = line.split()
-		if len(parts) >= 3 and parts[2] != "root":
-			return parts[2]
-	return None
 
 
 def _capture_device_entries():
@@ -904,29 +869,17 @@ class OnboardingWindow(gtk.Window):
 		pass
 
 	def get_real_user(self):
-		"""The desktop user behind this root process, or "root" if none found."""
-		import re
+		"""The desktop user behind this root process, or "root" if none found.
 
-		# Order matters and differs from window.py: loginctl is consulted before
-		# $USER here. Each source is only tried if the ones above came up empty
-		# or returned root -- loginctl spawns a subprocess.
-		for source in (
-			lambda: os.environ.get("SUDO_USER"),
-			_user_from_pkexec,
-			_user_from_login,
-			_user_from_loginctl,
-			lambda: os.environ.get("USER"),
-		):
-			candidate = source()
-			if candidate and candidate != "root":
-				user = candidate
-				break
-		else:
-			return "root"
-
-		if re.match(_USERNAME_RE, user):
-			return user
-		return "root"
+		Order differs from window.py on purpose: loginctl before $USER.
+		"""
+		return real_user.resolve((
+			real_user.from_sudo,
+			real_user.from_pkexec,
+			real_user.from_login,
+			real_user.from_loginctl,
+			real_user.from_user_env,
+		))
 
 	def _disable_keyring_for_user(self):
 		"""Skip/disable: drop the pending marker and any stored keys."""

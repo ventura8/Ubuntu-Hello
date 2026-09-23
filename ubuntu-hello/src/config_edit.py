@@ -44,6 +44,24 @@ def _is_continuation(line):
 	return _is_indented(line) and not _is_indented_comment(line)
 
 
+def _consume_old_value(lines, i):
+	"""Step past the replaced key's old value, starting at index *i*.
+
+	An INI value may span indented lines, and leaving them behind would append a
+	second value to the new one (e.g. two stamp_rules). Indented comments inside
+	the old value are kept -- but they do not end it, since the value may
+	continue past them.
+
+	Returns ``(kept_comments, next_index)``.
+	"""
+	kept = []
+	while i < len(lines) and (_is_continuation(lines[i]) or _is_indented_comment(lines[i])):
+		if _is_indented_comment(lines[i]):
+			kept.append(lines[i])
+		i += 1
+	return kept, i
+
+
 def _replace_in_place(lines, section, key, value):
 	"""Replace ``key`` inside ``[section]``.
 
@@ -54,24 +72,11 @@ def _replace_in_place(lines, section, key, value):
 	in_section = False
 	section_found = False
 	replaced = False
-	# True while dropping the indented continuation lines of the key we replaced:
-	# an INI value may span lines, and leaving them behind would append a second
-	# value to the new one (e.g. two stamp_rules).
-	skipping_continuation = False
 	key_re = _key_re(key)
 
-	for line in lines:
-		if skipping_continuation:
-			if _is_continuation(line):
-				continue
-			if _is_indented_comment(line):
-				# Keep the comment, but stay in skipping mode: the old value may
-				# continue past it, and letting those lines through would leave
-				# a stale rule sitting under the new one.
-				out.append(line)
-				continue
-			skipping_continuation = False
-
+	i = 0
+	while i < len(lines):
+		line = lines[i]
 		match = _SECTION_RE.match(line)
 		if match:
 			# Leaving our section without having found the key: append it here.
@@ -83,10 +88,12 @@ def _replace_in_place(lines, section, key, value):
 		elif in_section and not replaced and key_re.match(line):
 			out.append(_KEY_LINE % (key, value))
 			replaced = True
-			skipping_continuation = True
+			kept, i = _consume_old_value(lines, i + 1)
+			out.extend(kept)
 			continue
 
 		out.append(line)
+		i += 1
 
 	return out, replaced, section_found
 
