@@ -122,10 +122,12 @@ def _run_stamp(instance, stamp_type, rule_failsafe, verbose):
 			sys.exit(15)
 		return
 
-	if verbose: print("Stamp \"" + stamp_type + "\" returned: " + str(result))
+	if verbose:
+		print("Stamp \"" + stamp_type + "\" returned: " + str(result))
 
 	if result is False:
-		if verbose: print("Authentication aborted by rubber stamp")
+		if verbose:
+			print("Authentication aborted by rubber stamp")
 		sys.exit(15)
 
 
