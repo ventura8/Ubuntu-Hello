@@ -924,6 +924,7 @@ def effective_ui_language():
 
 # Live theme follower for the elevated app (see theme_detect.ThemeWatcher).
 _theme_watcher = None
+_gnome_interface_settings = None
 # Monotonic counter over theme refreshes. The watcher debounces a burst of keys
 # into one callback (250 ms), but each probe runs several `sudo -u …` helpers,
 # so two switches close together (light → dark → light) can finish out of order.
@@ -1060,9 +1061,13 @@ def _setup_theme_as_user():
 	if _SCHEMA_GNOME_IFACE not in all_schemas:
 		return
 
-	settings = Gio.Settings.new(_SCHEMA_GNOME_IFACE)
-	settings.connect("changed", _apply_theme_from_settings)
-	_apply_theme_from_settings(settings)
+	# Held module-level on purpose: connecting to "changed" does not keep the
+	# emitting GSettings alive, so a local would be collected once this returns
+	# and the app would stop following the desktop's theme.
+	global _gnome_interface_settings
+	_gnome_interface_settings = Gio.Settings.new(_SCHEMA_GNOME_IFACE)
+	_gnome_interface_settings.connect("changed", _apply_theme_from_settings)
+	_apply_theme_from_settings(_gnome_interface_settings)
 
 
 def setup_theme():

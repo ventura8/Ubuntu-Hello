@@ -50,6 +50,48 @@ def test_set_option_appends_missing_section(cfg):
     assert text.endswith("[rubberstamps]\nenabled = false\n\n[brand_new]\nkey = 1\n")
 
 
+def test_set_option_keeps_indented_comment_after_replaced_key(tmp_path):
+	"""An indented "#"/";" line is a comment, not a value continuation.
+
+	Treating it as one deleted it along with the replaced key, which defeats the
+	reason this editor exists instead of configparser.
+	"""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\t# indented note about the rule\n"
+		"\t; semicolon note too\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 10s failsafe")
+	out = path.read_text()
+
+	assert "stamp_rules = nod 10s failsafe" in out
+	assert "# indented note about the rule" in out
+	assert "; semicolon note too" in out
+	assert "other = 1" in out
+
+
+def test_set_option_still_drops_real_value_continuations(tmp_path):
+	"""Indented non-comment lines are part of the value and must go."""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\tnod 10s faildeadly\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 10s failsafe")
+	out = path.read_text()
+
+	assert "nod 10s faildeadly" not in out
+	assert "stamp_rules = nod 10s failsafe" in out
+	assert "other = 1" in out
+
+
 def test_set_option_preserves_mode(cfg):
     os.chmod(cfg, 0o640)
     config_edit.set_option(cfg, "core", "disabled", "true")

@@ -27,8 +27,16 @@ def _insert_before_trailing_blanks(out, new_line):
 
 
 def _is_continuation(line):
-	"""True for an indented continuation of the previous key's value."""
-	return bool(line.strip()) and line[:1] in (" ", "\t")
+	"""True for an indented continuation of the previous key's value.
+
+	An indented "#"/";" line is a comment, not part of the value. Treating it as
+	one deleted it along with the replaced key -- and preserving comments is the
+	whole reason this editor exists instead of configparser.
+	"""
+	stripped = line.lstrip()
+	return (bool(stripped)
+			and not stripped.startswith(("#", ";"))
+			and line[:1] in (" ", "\t"))
 
 
 def _replace_in_place(lines, section, key, value):
