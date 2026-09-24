@@ -135,10 +135,13 @@ def test_notify_hints_use_native_features(live_notifier):
     assert "desktop-entry" not in hints   # GNOME shows no banner when the card is filed under the app
     assert argv[12] == "Face recognized"
     body = argv[13]
-    assert body.startswith("✓ <b>alice</b> · <b>") and " s</b>" in body
+    assert body.startswith("✓ <b>alice</b> · <b>")
+    assert " s</b>" in body
     assert len(body) < 60, body   # must fit a single GNOME banner line
     # Release text is minimal: no model / score / frames unless details=true
-    assert "Setup lighting 2" not in body and "2.60" not in body and "frames" not in body
+    assert "Setup lighting 2" not in body
+    assert "2.60" not in body
+    assert "frames" not in body
     assert "\n" not in body   # GNOME collapses newlines: keep the body one line
     assert argv[-1] == str(notify.EXPIRE_SUCCESS)
     assert "transient" not in hints   # outcome must remain in the notification list
@@ -168,11 +171,14 @@ def test_identity_drop_uses_subprocess_user_group_only_when_root(live_notifier):
     n = live_notifier
     with patch("notify.os.geteuid", return_value=0):
         kw = n._spawn_kwargs()
-    assert kw["user"] == 1000 and kw["group"] == 1000 and kw["extra_groups"] == []
+    assert kw["user"] == 1000
+    assert kw["group"] == 1000
+    assert kw["extra_groups"] == []
     assert kw["env"]["DBUS_SESSION_BUS_ADDRESS"] == "unix:path=/run/user/1000/bus"
     with patch("notify.os.geteuid", return_value=1000):
         kw = n._spawn_kwargs()
-    assert "user" not in kw and "group" not in kw
+    assert "user" not in kw
+    assert "group" not in kw
 
 
 # ── content ──────────────────────────────────────────────────────────
@@ -186,7 +192,8 @@ def test_timeout_near_miss_gives_lighting_tip(live_notifier):
     body = argv[13]
     assert "No match in <b>8 s</b>" in body
     assert "add a model in this light" in body
-    assert "closest" not in body and "ubuntu-hello add" not in body   # only with details=true
+    assert "closest" not in body
+    assert "ubuntu-hello add" not in body
     assert len(body) < 60, body
     assert argv[11] == notify.APP_ICON
     assert argv[-1] == str(notify.EXPIRE_FAILURE)
@@ -197,7 +204,8 @@ def test_timeout_without_any_face_says_so(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.timeout(None, 3.5, 30, 8.0, 8)
     body = run.call_args.args[0][13]
-    assert body.startswith("✗ No match in <b>8 s</b>") and "💡" not in body
+    assert body.startswith("✗ No match in <b>8 s</b>")
+    assert "💡" not in body
     assert "closest" not in body
 
 
@@ -206,7 +214,8 @@ def test_too_dark_reports_darkness_vs_threshold(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.too_dark(71.2, 60, 15)
     body = run.call_args.args[0][13]
-    assert "Too dark" in body and "turn on a light" in body
+    assert "Too dark" in body
+    assert "turn on a light" in body
     assert "darkness" not in body            # numbers only with details=true
 
 
@@ -224,7 +233,8 @@ def test_start_is_asynchronous_critical_and_watchdogged(live_notifier):
     assert argv[13] == "👀 Looking for your face…"    # camera name only in details mode
     hints = argv[-2]
     # CRITICAL: GNOME keeps the banner up (no 4 s auto-hide) for the whole scan
-    assert '"urgency": <byte 2>' in hints and '"value": <int32 0>' in hints
+    assert '"urgency": <byte 2>' in hints
+    assert '"value": <int32 0>' in hints
     assert argv[-1] == str(notify.EXPIRE_PROGRESS)
     # Watchdog: close after max_seconds + 5 (killed again when a result arrives)
     script = popen.call_args.args[0][2]
@@ -272,10 +282,15 @@ def test_details_flag_appends_debug_line(live_notifier):
          patch("notify.os.getpid", return_value=4242), patch("notify.os.geteuid", return_value=0):
         n.success(2.5, 3.5, "M", 10, 1.0, device="/dev/video0", resolution="640x360")
     body = run.call_args.args[0][13]
-    assert "“M”" in body and "<b>2.50</b>/<b>3.50</b>" in body and "<b>10</b> frames" in body
-    assert "🔧 pid <b>4242</b>" in body and "uid <b>0</b>" in body
-    assert "video0" in body and "640×360" in body
-    assert "load <b>" in body and body.count("🔧") == 1
+    assert "“M”" in body
+    assert "<b>2.50</b>/<b>3.50</b>" in body
+    assert "<b>10</b> frames" in body
+    assert "🔧 pid <b>4242</b>" in body
+    assert "uid <b>0</b>" in body
+    assert "video0" in body
+    assert "640×360" in body
+    assert "load <b>" in body
+    assert body.count("🔧") == 1
     assert body.index("✓ <b>alice</b>") < body.index("🔧")   # diagnostics last: ellipsized first in the banner
 
 
@@ -285,7 +300,8 @@ def test_body_escapes_markup(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run, patch("notify.subprocess.Popen"):
         n.success(2.5, 3.5, "<b>evil</b> & co", 10, 1.0)
     body = run.call_args.args[0][13]
-    assert "<b>evil</b>" not in body and "&lt;b&gt;evil&lt;/b&gt; &amp; co" in body
+    assert "<b>evil</b>" not in body
+    assert "&lt;b&gt;evil&lt;/b&gt; &amp; co" in body
 
 
 def test_result_card_reuses_start_context_in_details(live_notifier):
@@ -295,7 +311,9 @@ def test_result_card_reuses_start_context_in_details(live_notifier):
         n.start(device="/dev/video0", resolution="640x360", timeout="8s")
         n.timeout(3.7, 3.5, 40, 8.0, 8)
     body = run.call_args.args[0][13]
-    assert "video0" in body and "640×360" in body and "timeout <b>8s</b>" in body
+    assert "video0" in body
+    assert "640×360" in body
+    assert "timeout <b>8s</b>" in body
 
 
 def test_display_name_prefers_gecos_full_name(live_notifier):
@@ -452,10 +470,12 @@ def test_details_mode_shows_numbers_on_failure_cards(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.timeout(3.7, 3.5, 40, 8.0, 8, dark_frames=2)
         body = run.call_args.args[0][13]
-        assert "closest <b>3.70</b>/<b>3.50</b>" in body and "<b>40</b> frames (<b>2</b> dark)" in body
+        assert "closest <b>3.70</b>/<b>3.50</b>" in body
+        assert "<b>40</b> frames (<b>2</b> dark)" in body
         n.too_dark(71, 60, 15)
         body = run.call_args.args[0][13]
-        assert "darkness <b>71</b>/<b>60</b>" in body and "<b>15</b> frames" in body
+        assert "darkness <b>71</b>/<b>60</b>" in body
+        assert "<b>15</b> frames" in body
 
 
 def test_default_success_linger_is_three_seconds(live_notifier):
@@ -517,7 +537,8 @@ def test_no_model_and_cancelled_cards(live_notifier):
         n.no_model()
         argv = run.call_args.args[0]
         assert argv[12] == "Face authentication unavailable · authorization"
-        assert "No face model for alice" in argv[13] and "sudo ubuntu-hello add" in argv[13]
+        assert "No face model for alice" in argv[13]
+        assert "sudo ubuntu-hello add" in argv[13]
         assert '"urgency": <byte 0>' in argv[-2]
         n.cancelled()
         assert run.call_args.args[0][12] == "Face authentication cancelled · authorization"
@@ -532,7 +553,8 @@ def test_sound_switch_controls_result_hints(live_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run, patch("notify.subprocess.Popen"):
         n.timeout(3.7, 3.5, 40, 8.0, 8)
     hints = run.call_args.args[0][-2]
-    assert '"suppress-sound": <true>' in hints and "sound-name" not in hints
+    assert '"suppress-sound": <true>' in hints
+    assert "sound-name" not in hints
 
 
 def test_watchdog_kill_errors_are_swallowed(live_notifier):
@@ -563,7 +585,8 @@ def test_debug_part_survives_missing_loadavg(live_notifier):
     n.details = True
     with patch("notify.os.getloadavg", side_effect=OSError("no proc")):
         part = n._debug_part({})
-    assert part.startswith("🔧 pid") and "load" not in part
+    assert part.startswith("🔧 pid")
+    assert "load" not in part
 
 
 # ── EnrollNotifier: guided-enrollment prompts mirrored under the camera ──
@@ -594,10 +617,13 @@ def test_enroll_guide_updates_one_critical_card_with_prompt_and_progress(enroll_
         assert n.guide("Tilt your chin up a little", 5, 13) is True
         second = _notify_args(run)
     assert first["summary"] == "Face enrollment"
-    assert "Turn your head slightly to the left" in first["body"] and "3 of 13" in first["body"]
-    assert "<byte 2>" in first["hints"] and '"value": <int32 23>' in first["hints"]
+    assert "Turn your head slightly to the left" in first["body"]
+    assert "3 of 13" in first["body"]
+    assert "<byte 2>" in first["hints"]
+    assert '"value": <int32 23>' in first["hints"]
     assert first["expire"] == "0"  # stays until replaced
-    assert "Tilt your chin up a little" in second["body"] and "5 of 13" in second["body"]
+    assert "Tilt your chin up a little" in second["body"]
+    assert "5 of 13" in second["body"]
     # second call reused the id from the first reply -> the card is updated in place
     argv = run.call_args.args[0]
     assert argv[argv.index("org.freedesktop.Notifications.Notify") + 2] == "42"
@@ -609,7 +635,8 @@ def test_enroll_guide_without_total_has_no_counter(enroll_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.guide("Look straight at the camera")
     body = _notify_args(run)["body"]
-    assert "Look straight at the camera" in body and " of " not in body
+    assert "Look straight at the camera" in body
+    assert " of " not in body
 
 
 def test_enroll_saved_is_final_and_closes_after_linger(enroll_notifier):
@@ -620,8 +647,11 @@ def test_enroll_saved_is_final_and_closes_after_linger(enroll_notifier):
         args = _notify_args(run)
         # a late guide() after the result must not overwrite it
         assert n.guide("Look straight at the camera", 1, 13) is False
-    assert "Face model saved" in args["body"] and "Setup lighting 1" in args["body"] and "13 samples" in args["body"]
-    assert "<byte 1>" in args["hints"] and '"value": <int32 100>' in args["hints"]
+    assert "Face model saved" in args["body"]
+    assert "Setup lighting 1" in args["body"]
+    assert "13 samples" in args["body"]
+    assert "<byte 1>" in args["hints"]
+    assert '"value": <int32 100>' in args["hints"]
     close_later.assert_called_once_with(4.0)
     assert run.call_count == 1
 
@@ -631,7 +661,8 @@ def test_enroll_failed_shows_reason(enroll_notifier):
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         n.failed("No face detected, aborting")
     args = _notify_args(run)
-    assert "No face detected, aborting" in args["body"] and args["expire"] == str(notify.EXPIRE_FAILURE)
+    assert "No face detected, aborting" in args["body"]
+    assert args["expire"] == str(notify.EXPIRE_FAILURE)
 
 
 def test_enroll_notifier_disabled_or_no_bus_is_silent():
@@ -642,7 +673,8 @@ def test_enroll_notifier_disabled_or_no_bus_is_silent():
         n.saved("l", 1)
         n.failed("r")
     run.assert_not_called()
-    assert n.sound is False and n.details is False
+    assert n.sound is False
+    assert n.details is False
 
 
 def test_liveness_challenge_updates_the_progress_card_without_finalising(enroll_notifier):
@@ -652,8 +684,10 @@ def test_liveness_challenge_updates_the_progress_card_without_finalising(enroll_
     with patch("notify.subprocess.run", return_value=_completed()) as run:
         assert n.liveness("Nod to confirm", "Shake your head to abort") is True
     args = _notify_args(run)
-    assert "Nod to confirm" in args["body"] and "Shake your head to abort" in args["body"]
-    assert "<byte 2>" in args["hints"] and args["expire"] == "0"   # stays up while we wait
+    assert "Nod to confirm" in args["body"]
+    assert "Shake your head to abort" in args["body"]
+    assert "<byte 2>" in args["hints"]
+    assert args["expire"] == "0"
     # a result card can still replace it
     with patch("notify.subprocess.run", return_value=_completed()):
         n.saved("l", 1)

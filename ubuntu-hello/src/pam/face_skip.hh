@@ -2,6 +2,7 @@
 #define FACE_SKIP_H_
 
 #include <string>
+#include <string_view>
 
 /** Default directory for per-user face-skip markers (file per username). */
 inline constexpr const char *FACE_SKIP_DEFAULT_BASE = "/run/ubuntu-hello/face-skip";
@@ -19,7 +20,7 @@ auto is_greeter_service(const std::string &service) -> bool;
  * login); applying skip there blocks Esc→Enter face retries, so it is
  * intentionally excluded — each unlock attempt may run face again.
  */
-auto face_skip_applies(const std::string &service) -> bool;
+auto face_skip_applies(std::string_view service) -> bool;
 
 /**
  * Create a skip marker for username under base.

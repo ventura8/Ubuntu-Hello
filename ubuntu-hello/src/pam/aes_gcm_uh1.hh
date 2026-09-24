@@ -2,6 +2,7 @@
 #define AES_GCM_UH1_H_
 
 #include <string>
+#include <string_view>
 #include <vector>
 
 /** Default path for the 32-byte AES-256-GCM master key. */
@@ -9,7 +10,7 @@ inline constexpr const char *UH1_DEFAULT_MASTER_KEY_PATH =
     "/etc/ubuntu-hello/keyring-master.key";
 
 /** Decode standard base64 (no newlines). Empty on failure. */
-auto uh1_base64_decode(const std::string &input) -> std::vector<unsigned char>;
+auto uh1_base64_decode(std::string_view input) -> std::vector<unsigned char>;
 
 /**
  * Decrypt a UH1 AES-256-GCM keyring blob.

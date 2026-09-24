@@ -8,6 +8,7 @@ import time
 import subprocess
 import threading
 import paths_factory
+import real_user
 import auth_helper
 import config_edit
 
@@ -65,6 +66,97 @@ DEFAULT_PRESET = "radiosecure"
 
 from tab_keyring import KeyringPasswordDialog
 from tab_security import LIVENESS_RULE
+
+
+def _capture_device_entries():
+	"""One entry per real capture node (aliases and metadata nodes collapsed)."""
+	try:
+		os.listdir("/dev/v4l/by-path")
+		return camera_names.list_capture_devices()
+	except Exception:
+		return []
+
+
+def _is_infrared(np, frame):
+	"""A grayscale / IR frame has identical R, G and B channels."""
+	try:
+		return bool(np.all(frame[:, :, 0] == frame[:, :, 1])
+					and np.all(frame[:, :, 1] == frame[:, :, 2]))
+	except (IndexError, ValueError):
+		# Not a three-channel frame, so it cannot be probed this way.
+		return False
+
+
+def _probe_camera(cv2, real_path):
+	"""Open *real_path* and grab one frame, giving up after CAMERA_PROBE_TIMEOUT.
+
+	Returns ``(capture, frame)``, or ``(None, None)`` when the device could not
+	be read in time. The caller owns the returned capture and must release it.
+
+	cv2.VideoCapture().read() has no timeout of its own and cannot be cancelled
+	once called; a misbehaving driver can block it forever, which would
+	otherwise freeze the whole scan on this one device. Run it on a watchdog
+	thread instead: if it doesn't finish in time, treat the device as unopenable
+	and move on.
+
+	`state`/`lock` are created fresh per call and passed in as default arguments
+	(not captured by reference) so a worker that is still running when the scan
+	moves on to the next device can never observe -- or write into -- a later
+	call's state; Python closures capture variables like `real_path` by
+	reference, so without this binding a late-finishing worker would see
+	whatever the *current* call happened to be.
+
+	`lock` makes the timeout/completion handoff atomic: whichever side reaches
+	`state["status"] == "pending"` first -- the worker finishing its read, or
+	the caller's post-join check -- is the one responsible for the capture
+	(consume it or release it); the other side is guaranteed to see it already
+	changed and do nothing, so a capture is claimed exactly once and never
+	silently discarded unreleased.
+	"""
+	state = {"status": "pending"}
+	lock = threading.Lock()
+
+	def _open_and_read(real_path=real_path, state=state, lock=lock):
+		cap = None
+		try:
+			cap = cv2.VideoCapture(real_path)
+			ok, img = cap.read()
+		except Exception:
+			ok, img = False, None
+		with lock:
+			if state["status"] != "pending":
+				# The caller already gave up on this device; nobody else will
+				# release this capture.
+				_release_quietly(cap)
+				return
+			state["status"] = "done"
+			if ok:
+				state["capture"] = cap
+				state["frame"] = img
+			else:
+				_release_quietly(cap)
+
+	opener = threading.Thread(target=_open_and_read, daemon=True)
+	opener.start()
+	opener.join(timeout=CAMERA_PROBE_TIMEOUT)
+
+	with lock:
+		if state["status"] == "pending":
+			state["status"] = "abandoned"
+			return None, None
+
+	if "capture" not in state:
+		return None, None
+	return state["capture"], state["frame"]
+
+
+def _release_quietly(cap):
+	if cap is None:
+		return
+	try:
+		cap.release()
+	except Exception:
+		pass
 
 
 class OnboardingWindow(gtk.Window):
@@ -153,10 +245,9 @@ class OnboardingWindow(gtk.Window):
 			gtk4compat.run_main()
 
 	def go_next_slide(self, button=None):
-		if self.window.current_slide == 6:
-			if not self.validate_and_save_keyring():
-				self.enable_next()
-				return
+		if self.window.current_slide == 6 and not self.validate_and_save_keyring():
+			self.enable_next()
+			return
 
 		self.nextbutton.set_sensitive(False)
 
@@ -218,18 +309,8 @@ class OnboardingWindow(gtk.Window):
 		if skipbutton:
 			skipbutton.set_visible(False)
 
-	def go_prev_slide(self, button=None):
-		"""Go back one page, undoing what the current page started.
-
-		Models already saved on the face-scan page stay saved: coming back to
-		that page resumes at the second scan instead of recording a third.
-		"""
-		current = self.window.current_slide
-		if current <= 0:
-			return
-		target = current - 1
-
-		# Leave the current page cleanly.
+	def _leave_slide(self, current):
+		"""Undo whatever the page being left had started."""
 		if current in (2, 4):
 			self.stop_preview(clear_image=True)
 		if current == 2:
@@ -246,6 +327,33 @@ class OnboardingWindow(gtk.Window):
 			if finish:
 				finish.set_visible(False)
 			self.nextbutton.set_visible(True)
+
+	def _reenter_slide(self, target):
+		"""Re-run the entry hook of the page being returned to."""
+		if target == 1:
+			self.execute_slide1()
+		elif target == 2:
+			gobject.timeout_add(10, self.execute_slide2)
+		elif target == 4:
+			self.execute_slide4()
+		elif target == 5:
+			self.execute_slide5()
+		elif target == 6:
+			self.execute_slide6()
+
+	def go_prev_slide(self, button=None):
+		"""Go back one page, undoing what the current page started.
+
+		Models already saved on the face-scan page stay saved: coming back to
+		that page resumes at the second scan instead of recording a third.
+		"""
+		current = self.window.current_slide
+		if current <= 0:
+			return
+
+		self._leave_slide(current)
+
+		target = current - 1
 		# The IR-emitter question is skipped automatically for non-IR cameras:
 		# never land the user on a page that would bounce them forward again.
 		if target == 3 and not getattr(self, "slide3_shown", False):
@@ -258,23 +366,13 @@ class OnboardingWindow(gtk.Window):
 		self.update_navigation_buttons()
 		self.enable_next()
 
-		# Re-enter the previous page.
-		if target == 1:
-			self.execute_slide1()
-		elif target == 2:
-			gobject.timeout_add(10, self.execute_slide2)
-		elif target == 4:
-			self.execute_slide4()
-		elif target == 5:
-			self.execute_slide5()
-		elif target == 6:
-			self.execute_slide6()
+		self._reenter_slide(target)
 
 	def execute_slide1(self):
 		self.downloadoutputlabel = self.builder.get_object("downloadoutputlabel")
-		eventbox = self.builder.get_object("downloadeventbox")
 
-		# TODO: Better way to do this?
+		# NOTE: presence of the landmark file is the cheapest signal that the
+		# download step already ran; there is no manifest to consult.
 		if os.path.exists(paths_factory.dlib_data_dir_path() / "shape_predictor_5_face_landmarks.dat"):
 			self.downloadoutputlabel.set_text(_("Datafiles have already been downloaded!\nClick Next to continue"))
 			self.enable_next()
@@ -371,104 +469,26 @@ class OnboardingWindow(gtk.Window):
 			GLib.idle_add(self.show_error, _("Error while importing OpenCV2"), _("Try reinstalling cv2"))
 			return
 
-		device_rows = []
-		try:
-			os.listdir("/dev/v4l/by-path")
-			# One row per real capture node (aliases and metadata nodes collapsed)
-			entries = camera_names.list_capture_devices()
-		except Exception:
-			entries = []
+		entries = _capture_device_entries()
 		if not entries:
 			GLib.idle_add(self.show_error, _("No webcams found on system"), _("Please configure your camera yourself if you are sure a compatible camera is connected"))
 			return
 
-		# Loop though all devices
+		device_rows = []
 		for device_path, device_name in entries:
 			if generation != self.scan_generation:
 				return  # the user left the page: stop probing, post nothing
 			time.sleep(.5)
 
-			real_path = os.path.realpath(device_path)
-			# cv2.VideoCapture().read() has no timeout of its own and cannot be
-			# cancelled once called; a misbehaving driver can block it forever,
-			# which would otherwise freeze the whole scan on this one device.
-			# Run it on a watchdog thread instead: if it doesn't finish in
-			# time, treat the device as unopenable and move on.
-			#
-			# `state`/`lock` are created fresh per iteration and passed in as
-			# default arguments (not captured by reference) so a worker that
-			# is still running when the scan moves on to the next device can
-			# never observe -- or write into -- a later iteration's state;
-			# Python closures capture loop variables like `real_path` by
-			# reference, so without this binding a late-finishing worker
-			# would see whatever the *current* iteration happened to be.
-			#
-			# `lock` makes the timeout/completion handoff atomic: whichever
-			# side reaches `state["status"] == "pending"` first -- the
-			# worker finishing its read, or the main thread's post-join
-			# check -- is the one responsible for the capture (consume it or
-			# release it); the other side is guaranteed to see it already
-			# changed and do nothing, so a capture is claimed exactly once
-			# and never silently discarded unreleased.
-			state = {"status": "pending"}
-			lock = threading.Lock()
-
-			def _open_and_read(real_path=real_path, state=state, lock=lock):
-				cap = None
-				try:
-					cap = cv2.VideoCapture(real_path)
-					ok, img = cap.read()
-				except Exception:
-					ok, img = False, None
-				with lock:
-					if state["status"] != "pending":
-						# The main thread already gave up on this device;
-						# nobody else will release this capture.
-						if cap is not None:
-							try:
-								cap.release()
-							except Exception:
-								pass
-						return
-					state["status"] = "done"
-					if ok:
-						state["capture"] = cap
-						state["frame"] = img
-					elif cap is not None:
-						try:
-							cap.release()
-						except Exception:
-							pass
-
-			opener = threading.Thread(target=_open_and_read, daemon=True)
-			opener.start()
-			opener.join(timeout=CAMERA_PROBE_TIMEOUT)
-
-			with lock:
-				if state["status"] == "pending":
-					state["status"] = "abandoned"
-					timed_out = True
-				else:
-					timed_out = False
-
-			if timed_out or "capture" not in state:
+			capture, frame = _probe_camera(cv2, os.path.realpath(device_path))
+			if capture is None:
 				device_rows.append([device_name, device_path, -9, _("No, camera can't be opened")])
 				continue
 
-			capture = state["capture"]
-			frame = state["frame"]
-
-			try:
-				# Use numpy to check if grayscale / infrared extremely quickly
-				is_gray = np.all(frame[:, :, 0] == frame[:, :, 1]) and np.all(frame[:, :, 1] == frame[:, :, 2])
-				if not is_gray:
-					raise Exception()
-			except Exception:
+			if _is_infrared(np, frame):
+				device_rows.append([device_name, device_path, 5, _("Yes, compatible infrared camera")])
+			else:
 				device_rows.append([device_name, device_path, -5, _("No, not an infrared camera")])
-				capture.release()
-				continue
-
-			device_rows.append([device_name, device_path, 5, _("Yes, compatible infrared camera")])
 			capture.release()
 
 		device_rows = sorted(device_rows, key=lambda k: -k[2])
@@ -688,38 +708,46 @@ class OnboardingWindow(gtk.Window):
 			scanbutton.set_label(enroll.progress_text(count, total))
 		return False
 
+	def _handle_first_scan_failure(self, scanbutton, output):
+		"""First (required) scan failed: restore the button; show_error exits."""
+		if scanbutton:
+			scanbutton.set_label(_("Start face scan"))
+			scanbutton.set_sensitive(True)
+		self.show_error(_("Can't save face model"), output)
+
+	def _handle_second_scan_failure(self, scanbutton, skipbutton, output):
+		"""The first model is already saved, so a failed second scan must not
+		kill the wizard. Explain, and let the user retry or skip.
+		"""
+		if scanbutton:
+			scanbutton.set_label(_("Scan second model"))
+			scanbutton.set_sensitive(True)
+		if skipbutton:
+			skipbutton.set_sensitive(True)
+
+		reason = output.strip().splitlines()[-1] if output.strip() else ""
+		self.show_warning(
+			_("Couldn't record the second model"),
+			_("Your first model is saved, so face login already works. The room must still be bright enough to see your face — change the light rather than turning it off — then try again, or skip and add a model later from Settings.")
+			+ ("\n\n" + reason if reason else ""),
+		)
+		self.restart_slide4_preview()
+
 	def on_add_finished(self, status, output):
 		print("ubuntu-hello add output:")
 		print(output)
 
 		scanbutton = self.builder.get_object("scanbutton")
-		skipbutton = self.builder.get_object("skipsecondbutton")
 		instruction = self.builder.get_object("slide4_instruction_label")
 		if instruction:
 			instruction.set_visible(False)
 
 		if status != 0:
 			if self.models_enrolled == 0:
-				# First (required) scan failed: restore the button; show_error exits.
-				if scanbutton:
-					scanbutton.set_label(_("Start face scan"))
-					scanbutton.set_sensitive(True)
-				self.show_error(_("Can't save face model"), output)
+				self._handle_first_scan_failure(scanbutton, output)
 			else:
-				# The first model is already saved: a failed second scan must not
-				# kill the wizard. Explain, and let the user retry or skip.
-				if scanbutton:
-					scanbutton.set_label(_("Scan second model"))
-					scanbutton.set_sensitive(True)
-				if skipbutton:
-					skipbutton.set_sensitive(True)
-				reason = output.strip().splitlines()[-1] if output.strip() else ""
-				self.show_warning(
-					_("Couldn't record the second model"),
-					_("Your first model is saved, so face login already works. The room must still be bright enough to see your face — change the light rather than turning it off — then try again, or skip and add a model later from Settings.")
-					+ ("\n\n" + reason if reason else ""),
-				)
-				self.restart_slide4_preview()
+				self._handle_second_scan_failure(
+					scanbutton, self.builder.get_object("skipsecondbutton"), output)
 			return False
 
 		self.models_enrolled += 1
@@ -835,112 +863,112 @@ class OnboardingWindow(gtk.Window):
 		GLib.idle_add(update_ui)
 
 	def on_keyring_checkbox_toggled(self, checkbutton):
+		# Wired from onboarding.ui so Builder can resolve the handler, but the
+		# checkbox is read on slide submit (validate_and_save_keyring), not on
+		# toggle — there is deliberately nothing to do here.
 		pass
 
 	def get_real_user(self):
-		import re
-		user = os.environ.get("SUDO_USER")
-		if not user or user == "root":
-			pkexec_uid = os.environ.get("PKEXEC_UID")
-			if pkexec_uid:
-				try:
-					import pwd
-					user = pwd.getpwuid(int(pkexec_uid)).pw_name
-				except Exception:
-					pass
-		if not user or user == "root":
-			try:
-				user = os.getlogin()
-			except Exception:
-				pass
-		if not user or user == "root":
-			try:
-				import subprocess
-				out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True, timeout=5)
-				for line in out.strip().split("\n"):
-					parts = line.split()
-					if len(parts) >= 3 and parts[2] != "root":
-						user = parts[2]
-						break
-			except Exception:
-				pass
-		if not user or user == "root":
-			user = os.environ.get("USER")
-		if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
-			return user
-		return "root"
+		"""The desktop user behind this root process, or "root" if none found.
 
-	def validate_and_save_keyring(self):
-		tpm_keys_dir = paths_factory.tpm_keys_dir_path()
-		keyring_keys_dir = paths_factory.keyring_keys_dir_path()
-		pending_dir = paths_factory.keyring_pending_dir_path()
+		Order differs from window.py on purpose: loginctl before $USER.
+		"""
+		return real_user.resolve((
+			real_user.from_sudo,
+			real_user.from_pkexec,
+			real_user.from_login,
+			real_user.from_loginctl,
+			real_user.from_user_env,
+		))
 
-		checkbox = self.builder.get_object("keyring_checkbox")
-		if not checkbox.get_active():
-			# Disable / skip: delete pending file and any saved keys for user if identified
-			user = self.get_real_user()
-			if user and user != "root":
-				key_file = os.path.join(keyring_keys_dir, user)
-				pub_file = os.path.join(tpm_keys_dir, f"{user}.pub")
-				priv_file = os.path.join(tpm_keys_dir, f"{user}.priv")
-				pending_file = os.path.join(pending_dir, user)
-				unlink_errors = []
-				for path in (pending_file, key_file, pub_file, priv_file):
-					if os.path.exists(path):
-						try:
-							os.unlink(path)
-						except Exception as e:
-							unlink_errors.append(f"{path}: {e}")
-				if unlink_errors:
-					self.show_keyring_error(_("Failed to disable keyring unlocking: {}").format("; ".join(unlink_errors)))
-					return False
-			return True
-
+	def _disable_keyring_for_user(self):
+		"""Skip/disable: drop the pending marker and any stored keys."""
 		user = self.get_real_user()
 		if not user or user == "root":
-			self.show_keyring_error(_("Could not identify non-root system user for keyring unlocking"))
-			return False
+			return True
 
-		# Ask user for password immediately using the secure GTK dialog popup!
+		paths = (
+			os.path.join(paths_factory.keyring_pending_dir_path(), user),
+			os.path.join(paths_factory.keyring_keys_dir_path(), user),
+			os.path.join(paths_factory.tpm_keys_dir_path(), f"{user}.pub"),
+			os.path.join(paths_factory.tpm_keys_dir_path(), f"{user}.priv"),
+		)
+
+		unlink_errors = []
+		for path in paths:
+			if not os.path.exists(path):
+				continue
+			try:
+				os.unlink(path)
+			except Exception as e:
+				unlink_errors.append(f"{path}: {e}")
+
+		if unlink_errors:
+			self.show_keyring_error(_("Failed to disable keyring unlocking: {}").format("; ".join(unlink_errors)))
+			return False
+		return True
+
+	def _ask_and_verify_password(self, user):
+		"""Prompt for the login password and check it. None means "give up"."""
 		dialog = KeyringPasswordDialog(self.window, user)
 		response = gtk4compat.run_dialog(dialog)
 		passwd1 = dialog.entry1.get_text()
 		dialog.destroy()
 
 		if response != gtk.ResponseType.OK:
-			return False
+			return None
 
 		if not passwd1:
 			self.show_keyring_error(_("Password cannot be empty"))
-			return False
+			return None
 
 		if not auth_helper.verify_user_password(user, passwd1):
 			self.show_keyring_error(_("Incorrect password for user {}").format(user))
-			return False
+			return None
 
+		return passwd1
+
+	def _enable_keyring_for_user(self, user, password):
+		"""Hand the password to `ubuntu-hello keyring enable` for sealing."""
 		try:
 			res = subprocess.run(
 				["ubuntu-hello", "keyring", "enable", "-U", user],
-				input=passwd1 + "\n",
+				input=password + "\n",
 				capture_output=True,
 				text=True,
 				timeout=120,
 			)
-			if res.returncode != 0:
-				detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
-				self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(detail))
-				return False
 		except FileNotFoundError:
 			self.show_keyring_error(_("Failed to enable keyring unlocking: ubuntu-hello executable not found"))
 			return False
 		except subprocess.TimeoutExpired:
 			self.show_keyring_error(_("Failed to enable keyring unlocking: timed out waiting for keyring enable"))
 			return False
-		except (OSError, Exception) as e:
+		except Exception as e:
 			self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(str(e)))
 			return False
 
+		if res.returncode != 0:
+			detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
+			self.show_keyring_error(_("Failed to enable keyring unlocking: {}").format(detail))
+			return False
 		return True
+
+	def validate_and_save_keyring(self):
+		checkbox = self.builder.get_object("keyring_checkbox")
+		if not checkbox.get_active():
+			return self._disable_keyring_for_user()
+
+		user = self.get_real_user()
+		if not user or user == "root":
+			self.show_keyring_error(_("Could not identify non-root system user for keyring unlocking"))
+			return False
+
+		password = self._ask_and_verify_password(user)
+		if password is None:
+			return False
+
+		return self._enable_keyring_for_user(user, password)
 
 	def show_keyring_error(self, message):
 		gtk4compat.alert(self.window, _("Keyring Unlocking Error"), message)
@@ -1058,88 +1086,85 @@ class OnboardingWindow(gtk.Window):
 		self.preview_thread = threading.Thread(target=self.open_camera_for_preview, args=(device_path,), daemon=True)
 		self.preview_thread.start()
 
+	def _open_preview_capture(self, cv2, time, device_path):
+		"""Open the preview camera, retrying briefly. None if it never opens.
+
+		device_path is a /dev/v4l/by-path/... symlink; resolve it to the real
+		/dev/videoN node like every other camera-opening call in this file
+		(scan_cameras_thread, execute_slide3). Opening the symlink directly was
+		a regression from a later preview-thread rewrite -- some
+		V4L2/GStreamer driver + kernel combinations bind the wrong underlying
+		node (or none at all) when handed a by-path symlink instead of the
+		canonical device, which can leave the caller spinning on failed reads
+		with no visible preview and no error ("stuck testing webcams").
+
+		The device also needs a moment to settle after `ubuntu-hello add`
+		released it, hence the retries.
+		"""
+		real_path = os.path.realpath(device_path)
+		for _attempt in range(6):
+			cap = cv2.VideoCapture(real_path)
+			if cap.isOpened():
+				return cap
+			_release_quietly(cap)
+			if self.current_preview_path != device_path:
+				return None
+			time.sleep(0.4)
+		return None
+
+	def _preview_scaling_factor(self, cv2, cap):
+		"""Scale that fits the frame into the slide's preview box."""
+		try:
+			width = float(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 640)
+		except Exception:
+			width = 640.0
+		try:
+			height = float(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 480)
+		except Exception:
+			height = 480.0
+
+		if self.preview_image == self.slide4_preview_image:
+			preview_max_height, preview_max_width = 350, 780
+		else:
+			preview_max_height, preview_max_width = 200, 780
+
+		scaling_factor = (preview_max_height / height) or 1
+		if width * scaling_factor > preview_max_width:
+			scaling_factor = (preview_max_width / width) or 1
+		return scaling_factor
+
+	def _post_preview_frame(self, cv2, frame, scaling_factor, device_path):
+		try:
+			frame = cv2.resize(frame, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_AREA)
+			retval, buffer = cv2.imencode(".png", frame)
+			if retval and buffer is not None:
+				raw_bytes = buffer.tobytes() if hasattr(buffer, "tobytes") else bytes(buffer)
+				GLib.idle_add(self.update_preview_image_widget, device_path, raw_bytes)
+		except Exception as e:
+			print("Error processing preview frame:", e)
+
 	def open_camera_for_preview(self, device_path):
 		cap = None
 		try:
 			import cv2
 			import time
 
-			# device_path is a /dev/v4l/by-path/... symlink; resolve it to the
-			# real /dev/videoN node like every other camera-opening call in
-			# this file (scan_cameras_thread, execute_slide3). Opening the
-			# symlink directly was a regression from a later preview-thread
-			# rewrite -- some V4L2/GStreamer driver + kernel combinations
-			# bind the wrong underlying node (or none at all) when handed a
-			# by-path symlink instead of the canonical device, which can
-			# leave this loop spinning on failed reads with no visible
-			# preview and no error ("stuck testing webcams").
-			real_path = os.path.realpath(device_path)
-			# The device needs a moment to settle after `ubuntu-hello add`
-			# released it; retry briefly instead of leaving a dead preview.
-			for attempt in range(6):
-				cap = cv2.VideoCapture(real_path)
-				if cap.isOpened():
-					break
-				try:
-					cap.release()
-				except Exception:
-					pass
-				cap = None
-				if self.current_preview_path != device_path:
-					return
-				time.sleep(0.4)
-			if cap is None:
-				return
-
-			if self.current_preview_path != device_path:
+			cap = self._open_preview_capture(cv2, time, device_path)
+			if cap is None or self.current_preview_path != device_path:
 				return
 
 			self.preview_capture = cap
-
-			try:
-				width = float(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 640)
-			except Exception:
-				width = 640.0
-			try:
-				height = float(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 480)
-			except Exception:
-				height = 480.0
-
-			if self.preview_image == self.slide4_preview_image:
-				preview_max_height = 350
-				preview_max_width = 780
-			else:
-				preview_max_height = 200
-				preview_max_width = 780
-
-			scaling_factor = (preview_max_height / height) or 1
-			if width * scaling_factor > preview_max_width:
-				scaling_factor = (preview_max_width / width) or 1
+			scaling_factor = self._preview_scaling_factor(cv2, cap)
 
 			while self.current_preview_path == device_path:
 				ret, frame = cap.read()
-				if not ret or frame is None:
-					time.sleep(0.03)
-					continue
-
-				try:
-					frame = cv2.resize(frame, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_AREA)
-					retval, buffer = cv2.imencode(".png", frame)
-					if retval and buffer is not None:
-						raw_bytes = buffer.tobytes() if hasattr(buffer, "tobytes") else bytes(buffer)
-						GLib.idle_add(self.update_preview_image_widget, device_path, raw_bytes)
-				except Exception as e:
-					print("Error processing preview frame:", e)
-
+				if ret and frame is not None:
+					self._post_preview_frame(cv2, frame, scaling_factor, device_path)
 				time.sleep(0.03)
 		except Exception as e:
 			print("Error in camera preview thread:", e)
 		finally:
-			if cap is not None:
-				try:
-					cap.release()
-				except Exception:
-					pass
+			_release_quietly(cap)
 
 	def update_preview_image_widget(self, device_path, data):
 		if self.current_preview_path == device_path and getattr(self, "preview_image", None) and data is not None:

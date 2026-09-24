@@ -17,53 +17,44 @@ from i18n import _
 
 
 class VideoCapture:
-    def __init__(self, config):
+    def _resolve_device_path(self):
+        """Configured camera path, or None when absent/unset/"none"/missing.
+
+        Missing [video] (empty/absent config.ini after apt reinstall) must not
+        raise NoSectionError. "none" is the packaged sentinel; do not treat it
+        as a relative path.
         """
-        Creates a new VideoCapture instance depending on the settings in the
-        provided config file.
+        if not self.config.has_section("video"):
+            return None
 
-        Config can either be a string to the path, or a pre-setup configparser.
+        raw = self.config.get("video", "device_path", fallback="").strip()
+        if not raw or raw.lower() == "none":
+            return None
+
+        try:
+            return raw if os.path.exists(raw) else None
+        except OSError:
+            return None
+
+    def _exit_no_device(self):
+        """Explain the missing camera (unless silenced) and exit 14."""
+        warn_no_device = True
+        if self.config.has_section("video"):
+            warn_no_device = self.config.getboolean(
+                "video", "warn_no_device", fallback=True
+            )
+        if warn_no_device:
+            print(_("Ubuntu Hello could not find a camera device at the path specified in the config file."))
+            print(_("It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:"))
+            print("\n\tsudo ubuntu-hello config\n")
+        sys.exit(14)
+
+    def _open_with_retries(self):
+        """Open the reader, retrying briefly.
+
+        Exclusive V4L opens often fail immediately after a previous
+        compare/GTK release (lock-screen Esc).
         """
-
-        # Parse config from string if needed
-        if isinstance(config, str):
-            self.config = configparser.ConfigParser()
-            self.config.read(config)
-        else:
-            self.config = config
-
-        # Check device path. Missing [video] (empty/absent config.ini after
-        # apt reinstall) must not raise NoSectionError — exit like a bad path.
-        # "none" is the packaged sentinel; do not treat it as a relative path.
-        has_video = self.config.has_section("video")
-        device_path = None
-        if has_video:
-            raw = self.config.get("video", "device_path", fallback="").strip()
-            if raw and raw.lower() != "none":
-                device_path = raw
-        missing = device_path is None
-        if not missing:
-            try:
-                missing = not os.path.exists(device_path)
-            except OSError:
-                missing = True
-        if missing:
-            warn_no_device = True
-            if has_video:
-                warn_no_device = self.config.getboolean(
-                    "video", "warn_no_device", fallback=True
-                )
-            if warn_no_device:
-                print(_("Ubuntu Hello could not find a camera device at the path specified in the config file."))
-                print(_("It is very likely that the path is not configured correctly, please edit the 'device_path' config value by running:"))
-                print("\n\tsudo ubuntu-hello config\n")
-            sys.exit(14)
-
-        # Create reader with short retries — exclusive V4L opens often fail
-        # immediately after a previous compare/GTK release (lock-screen Esc).
-        self.internal = None
-        self.fw = None
-        self.fh = None
         last_err = None
         for attempt in range(6):
             try:
@@ -76,9 +67,31 @@ class VideoCapture:
                 last_err = err
                 self.release()
             time.sleep(0.25 * (attempt + 1))
+
         if last_err is not None:
             raise last_err
         sys.exit(14)
+
+    def __init__(self, config):
+        """
+        Creates a new VideoCapture instance depending on the settings in the
+        provided config file.
+
+        Config can either be a string to the path, or a pre-setup configparser.
+        """
+        if isinstance(config, str):
+            self.config = configparser.ConfigParser()
+            self.config.read(config)
+        else:
+            self.config = config
+
+        if self._resolve_device_path() is None:
+            self._exit_no_device()
+
+        self.internal = None
+        self.fw = None
+        self.fh = None
+        self._open_with_retries()
 
     def __del__(self):
         """
@@ -87,7 +100,7 @@ class VideoCapture:
         if self is not None:
             try:
                 self.internal.release()
-            except AttributeError as err:
+            except AttributeError:
                 pass
 
     def release(self):

@@ -258,7 +258,9 @@ class TestSettingsWindowSmoke:
 		lang_page = b.get_object("language_page")
 		about = b.get_object("box5")
 		combo = b.get_object("language_combo")
-		assert lang_page is not None and about is not None and combo is not None
+		assert lang_page is not None
+		assert about is not None
+		assert combo is not None
 		parent = combo.get_parent()
 		while parent is not None and parent not in (lang_page, about):
 			parent = parent.get_parent()
@@ -288,7 +290,9 @@ class TestSettingsWindowSmoke:
 		video = b.get_object("box2")
 		opencv = b.get_object("opencvbox")
 		cam = b.get_object("cameraselect")
-		assert video is not None and opencv is not None and cam is not None
+		assert video is not None
+		assert opencv is not None
+		assert cam is not None
 
 		settings_ui["apply_search"]("facial")
 		# Simulate sidebar click onto Video after About-only search.

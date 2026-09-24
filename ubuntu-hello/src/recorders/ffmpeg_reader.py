@@ -52,14 +52,14 @@ class ffmpeg_reader:
 		# Returns an error code of 1 and this text:  "/dev/video2: Immediate exit requested"
 		args = ["ffmpeg", "-f", self.device_format, "-list_formats", "all", "-i", self.device_path]
 		process = Popen(args, stdout=PIPE, stderr=PIPE)
-		out, err = process.communicate()
+		_out, err = process.communicate()
 		return_code = process.poll()
 
 		# Worst case scenario, err will equal en empty byte string, b'', so probe will get set to [] here.
 		regex = re.compile(r"\s\d{3,4}x\d{3,4}")
 		probe = regex.findall(str(err.decode("utf-8")))
 
-		if not return_code == 1 or len(probe) < 1:
+		if return_code != 1 or len(probe) < 1:
 			# Could not determine the resolution from ffmpeg call. Reverting to ffmpeg.probe()
 			probe = ffmpeg.probe(self.device_path)
 			height = probe["streams"][0]["height"]
@@ -84,7 +84,7 @@ class ffmpeg_reader:
 		self.num_frames_read = 0
 
 		# Record a predetermined amount of frames from the camera
-		stream, ret = (
+		stream, _ret = (
 			ffmpeg
 			.input(self.device_path, format=self.device_format)
 			.output("pipe:", format="rawvideo", pix_fmt="rgb24", vframes=numframes)

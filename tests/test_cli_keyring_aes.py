@@ -57,6 +57,34 @@ def test_software_enable_writes_uh1(key_env):
     assert keyring_crypto.decrypt_password(blob) == "mypassword"
 
 
+def test_piped_empty_password_is_rejected(key_env):
+    """An empty pipe must not seal "": unseal treats that as failure, so the
+    user would be left with a seal that never unlocks anything."""
+    stdin = io.StringIO("\n")
+    stdin.isatty = lambda: False
+    with patch("cli.keyring.shutil.which", return_value=None), \
+         patch("cli.keyring.sys.stdin", stdin), \
+         patch("cli.keyring.os.chmod"), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["enable"])
+
+    assert exc.value.code == 1
+    assert not (key_env["keys"] / "alice").exists()
+
+
+def test_piped_eof_is_rejected(key_env):
+    """EOF on stdin reads as "" and must be rejected the same way."""
+    stdin = io.StringIO("")
+    stdin.isatty = lambda: False
+    with patch("cli.keyring.shutil.which", return_value=None), \
+         patch("cli.keyring.sys.stdin", stdin), \
+         patch("cli.keyring.os.chmod"), \
+         pytest.raises(SystemExit) as exc:
+        keyring_mod.run_keyring("alice", ["enable"])
+
+    assert exc.value.code == 1
+
+
 def test_software_enable_migrates_legacy_xor(key_env):
     """Existing XOR hex blob must be overwritten with UH1 on enable."""
     key_file = key_env["keys"] / "alice"
@@ -313,36 +341,35 @@ def test_enable_tpm_success_without_ctx_file(key_env):
         keyring_mod.run_keyring("alice", ["enable"])
 
 
-def test_module_entry_calls_run_keyring():
+def test_module_entry_calls_run_keyring(monkeypatch):
     """Cover ``_cli_autostart`` when command is keyring."""
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(command="keyring", arguments=["disable"])
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(command="keyring", arguments=["disable"]), raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_called_once_with()
 
 
-def test_module_entry_skips_when_command_not_keyring():
+def test_module_entry_skips_when_command_not_keyring(monkeypatch):
     """Leftover builtins from other CLI tests must not auto-run keyring."""
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(command="set", arguments=["certainty", "4.2"])
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(command="set", arguments=["certainty", "4.2"]), raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_not_called()
 
 
-def test_module_entry_skips_without_builtins():
+def test_module_entry_skips_without_builtins(monkeypatch):
     for attr in ("ubuntu_hello_user", "ubuntu_hello_args"):
-        if hasattr(builtins, attr):
-            delattr(builtins, attr)
+        monkeypatch.delattr(builtins, attr, raising=False)
     with patch.object(keyring_mod, "run_keyring") as mock_run:
         keyring_mod._cli_autostart()
         mock_run.assert_not_called()
 
 
-def test_run_keyring_uses_builtins():
-    builtins.ubuntu_hello_user = "bob"
-    builtins.ubuntu_hello_args = SimpleNamespace(arguments=[])
+def test_run_keyring_uses_builtins(monkeypatch):
+    monkeypatch.setattr(builtins, "ubuntu_hello_user", "bob", raising=False)
+    monkeypatch.setattr(builtins, "ubuntu_hello_args", SimpleNamespace(arguments=[]), raising=False)
     with pytest.raises(SystemExit):
         keyring_mod.run_keyring()
 

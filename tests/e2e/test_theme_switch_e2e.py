@@ -68,7 +68,8 @@ class TestLiveThemeSwitch:
 			feed.flush()
 
 		try:
-			assert w.process is not None and w.process.poll() is None
+			assert w.process is not None
+			assert w.process.poll() is None
 
 			# 1st burst: user switched to dark
 			desktop.update(theme="Yaru-dark", dark=True)

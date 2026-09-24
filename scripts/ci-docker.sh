@@ -258,6 +258,7 @@ run_shellcheck() {
     scripts/test-split-install-adapter.sh
     scripts/test-packaging-installers.sh
     scripts/ci-matrix.sh
+    scripts/ci-sonar.sh
     packaging/appimage/build-appimage.sh
     packaging/flatpak/install-host.sh
     packaging/snap/install-wrapper.sh
@@ -286,6 +287,12 @@ run_pytest_coverage() {
   UH_REAL_DLIB=1 pytest --cov=ubuntu-hello --cov-append tests/footage/
   # The floor is enforced once on the combined data (pytest-cov rounds its printed %).
   python3 -m coverage report --data-file="${COVERAGE_FILE}" --precision=2 --fail-under=90
+  # Cobertura XML for SonarQube Cloud (scripts/ci-sonar.sh reads this path).
+  # Written before the keyring 100% gate so a keyring regression still leaves a
+  # report behind for the Sonar job to upload.
+  mkdir -p artifacts/coverage
+  python3 -m coverage xml --data-file="${COVERAGE_FILE}" -o artifacts/coverage/coverage.xml
+  echo "==> wrote artifacts/coverage/coverage.xml (SonarQube Cloud)"
   echo "==> pytest keyring feature coverage == 100%"
   pytest tests/test_keyring_crypto.py tests/test_cli_keyring_aes.py tests/test_keyring_restore.py tests/test_gtk_tabs.py tests/test_onboarding.py \
     --cov=keyring_crypto \

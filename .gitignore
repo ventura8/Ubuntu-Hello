@@ -161,3 +161,7 @@ subprojects/
 # Recorded camera clips and the signals extracted from them: a real face and its
 # biometric template. The tests skip without them; the synthetic set is committed.
 tests/fixtures/footage/
+
+# SonarQube Cloud: local token + scanner work dir (never committed)
+.sonar-token
+.scannerwork/

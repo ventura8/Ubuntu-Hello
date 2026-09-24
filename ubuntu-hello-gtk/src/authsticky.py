@@ -4,6 +4,7 @@ import gi
 import signal
 import sys
 import paths_factory
+import real_user
 import os
 
 from i18n import _
@@ -20,37 +21,14 @@ from gi.repository import Gio
 
 
 def get_real_user():
-	import re
-	user = os.environ.get("SUDO_USER")
-	if not user or user == "root":
-		pkexec_uid = os.environ.get("PKEXEC_UID")
-		if pkexec_uid:
-			try:
-				import pwd
-				user = pwd.getpwuid(int(pkexec_uid)).pw_name
-			except Exception:
-				pass
-	if not user or user == "root":
-		try:
-			user = os.getlogin()
-		except Exception:
-			pass
-	if not user or user == "root":
-		user = os.environ.get("USER")
-	if not user or user == "root":
-		try:
-			import subprocess
-			out = subprocess.check_output(["loginctl", "list-sessions", "--no-legend"], text=True)
-			for line in out.strip().split("\n"):
-				parts = line.split()
-				if len(parts) >= 3 and parts[2] != "root":
-					user = parts[2]
-					break
-		except Exception:
-			pass
-	if user and re.match(r"^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*\$?$", user):
-		return user
-	return "root"
+	"""The desktop user behind a root process, or "root" if none can be found."""
+	return real_user.resolve((
+		real_user.from_sudo,
+		real_user.from_pkexec,
+		real_user.from_login,
+		real_user.from_user_env,
+		real_user.from_loginctl,
+	))
 
 
 def get_theme_preference():

@@ -355,11 +355,13 @@ class TestOnboardingSlide4And5FaceScan:
 			# A skip click before any model is enrolled does nothing
 			ob.on_skipsecondbutton_click(None)
 			gtk_pump(10)
-			assert ob.window.current_slide == 4 and ob.models_enrolled == 0
+			assert ob.window.current_slide == 4
+			assert ob.models_enrolled == 0
 
 			ob.on_add_finished(0, "Scan complete\n")  # pass 1 saved -> second-scan mode, Skip appears
 			gtk_pump(10)
-			assert ob.scan_pass == 2 and ob.models_enrolled == 1
+			assert ob.scan_pass == 2
+			assert ob.models_enrolled == 1
 			assert skip_btn.get_visible()
 
 			skip_btn.emit("clicked")
@@ -381,20 +383,24 @@ class TestOnboardingNavigation:
 		try:
 			cancel = ob.builder.get_object("cancelbutton")
 			back = ob.builder.get_object("backbutton")
-			assert cancel.get_visible() and not back.get_visible()
+			assert cancel.get_visible()
+			assert not back.get_visible()
 
 			# Slide 1 (datafiles already present -> no download)
 			monkeypatch.setattr(os.path, "exists", lambda p: True)
 			ob.go_next_slide()
 			gtk_pump()
 			assert ob.window.current_slide == 1
-			assert not cancel.get_visible() and back.get_visible()
+			assert not cancel.get_visible()
+			assert back.get_visible()
 
 			back.emit("clicked")
 			gtk_pump()
 			assert ob.window.current_slide == 0
-			assert ob.slides[0].get_visible() and not ob.slides[1].get_visible()
-			assert cancel.get_visible() and not back.get_visible()
+			assert ob.slides[0].get_visible()
+			assert not ob.slides[1].get_visible()
+			assert cancel.get_visible()
+			assert not back.get_visible()
 			assert ob.nextbutton.get_sensitive()
 		finally:
 			ob.stop_preview()
@@ -532,7 +538,8 @@ class TestOnboardingSlide7SensitivityFinish:
 			assert "certainty = %s" % onboarding.SECURITY_PRESETS["radiosecure"] in written
 			assert "confirmations = %d" % onboarding.SECURITY_CONFIRMATIONS["radiosecure"] in written
 			assert "enabled = true" in written
-			assert "failsafe" in written and "faildeadly" not in written
+			assert "failsafe" in written
+			assert "faildeadly" not in written
 		finally:
 			ob.stop_preview()
 			ob.window.destroy()

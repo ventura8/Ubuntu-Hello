@@ -78,14 +78,16 @@ def test_automatic_restores_desktop_locale_even_when_preference_was_set_at_impor
 	exec(compile(source, str(tmp_path / "i18n.py"), "exec"), mod.__dict__)
 	import os
 	# import applied the saved override …
-	assert mod._("Models") == "نماذج" and os.environ["LANGUAGE"] == "ar"
+	assert mod._("Models") == "نماذج"
+	assert os.environ["LANGUAGE"] == "ar"
 	assert mod.effective_language() == "ar"
 	# … but the originals are the desktop's, and that is what elevate() must forward
 	assert mod.original_locale_env() == {"LANGUAGE": "en", "LC_MESSAGES": "en_US.UTF-8", "LANG": "en_US.UTF-8"}
 	prefs.write_text("[ui]\nlanguage = auto\n", encoding="utf-8")
 	mod.reload_from_preferences()
 	assert mod._("Models") == "Models"
-	assert os.environ["LANGUAGE"] == "en" and os.environ["LANG"] == "en_US.UTF-8"
+	assert os.environ["LANGUAGE"] == "en"
+	assert os.environ["LANG"] == "en_US.UTF-8"
 	assert mod.effective_language() == "en"
 
 

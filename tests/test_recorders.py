@@ -367,7 +367,7 @@ def test_video_capture_read_frame_cvt_errors():
             assert gs == "fake_frame"
             
         # 2. cv2.error test
-        with patch("cv2.cvtColor", side_effect=cv2.error("opencv error")), \
-             pytest.raises(cv2.error):
+        with patch("cv2.cvtColor", side_effect=cv2.error("opencv error")):
             vc = VideoCapture(config)
-            vc.read_frame()
+            with pytest.raises(cv2.error):
+                vc.read_frame()

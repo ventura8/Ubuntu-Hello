@@ -18,7 +18,7 @@ EnterDevice::EnterDevice()
 
   err = libevdev_uinput_create_from_device(dev_ptr, LIBEVDEV_UINPUT_OPEN_MANAGED, &uinput_dev_ptr);
   if (err != 0) {
-    throw std::runtime_error(std::string("Failed to create device: ") + strerror(-err));
+    throw EnterDeviceError(std::string("Failed to create device: ") + strerror(-err));
   }
 
   raw_uinput_device.reset(uinput_dev_ptr);
@@ -30,16 +30,16 @@ void EnterDevice::send_enter_press() const {
   int err;
   err = libevdev_uinput_write_event(uinput_dev_ptr, EV_KEY, KEY_ENTER, 1);
   if (err != 0) {
-    throw std::runtime_error(std::string("Failed to write event: ") + strerror(-err));
+    throw EnterDeviceError(std::string("Failed to write event: ") + strerror(-err));
   }
 
   err = libevdev_uinput_write_event(uinput_dev_ptr, EV_KEY, KEY_ENTER, 0);
   if (err != 0) {
-    throw std::runtime_error(std::string("Failed to write event: ") + strerror(-err));
+    throw EnterDeviceError(std::string("Failed to write event: ") + strerror(-err));
   }
 
   err = libevdev_uinput_write_event(uinput_dev_ptr, EV_SYN, SYN_REPORT, 0);
   if (err != 0) {
-    throw std::runtime_error(std::string("Failed to write event: ") + strerror(-err));
+    throw EnterDeviceError(std::string("Failed to write event: ") + strerror(-err));
   }
 }

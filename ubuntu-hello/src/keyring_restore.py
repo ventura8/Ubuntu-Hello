@@ -90,7 +90,7 @@ def unseal_password(
     pub = os.path.join(tpm_dir, f"{user}.pub")
     priv = os.path.join(tpm_dir, f"{user}.priv")
     if os.path.isfile(pub) and os.path.isfile(priv):
-        password = _unseal_tpm(user, pub, priv, tpm_dir, runner)
+        password = _unseal_tpm(pub, priv, tpm_dir, runner)
         if password:
             return password
     key_file = os.path.join(keys_dir, user)
@@ -108,7 +108,6 @@ def unseal_password(
 
 
 def _unseal_tpm(
-    user: str,
     pub: str,
     priv: str,
     tpm_dir: str,

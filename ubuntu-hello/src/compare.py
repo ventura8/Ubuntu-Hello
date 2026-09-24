@@ -781,5 +781,5 @@ if __name__ == "__main__":
 		if exposure != -1:
 			# For a strange reason on some cameras (e.g. Lenoxo X1E) setting manual exposure works only after a couple frames
 			# are captured and even after a delay it does not always work. Setting exposure at every frame is reliable though.
-			video_capture.internal.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1.0)  # 1 = Manual
+			video_capture.internal.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1.0)  # 1.0 selects manual exposure
 			video_capture.internal.set(cv2.CAP_PROP_EXPOSURE, float(exposure))

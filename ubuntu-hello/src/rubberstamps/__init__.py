@@ -70,23 +70,71 @@ class RubberStamp:
 				self.gtk_proc = None
 
 
+def _installed_stamps(dir_path):
+	"""Stamp module names available in the rubberstamps folder."""
+	stamps = []
+	for filename in os.listdir(dir_path):
+		# Skip directories and meta files.
+		if not os.path.isfile(dir_path + "/" + filename):
+			continue
+		if filename in ["__init__.py", ".gitignore"]:
+			continue
+		stamps.append(filename.split(".")[0])
+	return stamps
+
+
+def _apply_rule_options(instance, raw_options, stamp_type):
+	"""Apply the rule's trailing ``key=value`` arguments to *instance*.
+
+	Only keys the stamp declared are accepted, and the declared value's type
+	decides how the string is converted.
+	"""
+	for option in raw_options.split():
+		key, value = option.split("=")
+
+		if key not in instance.options:
+			print("Unknown config option for rubberstamp " + stamp_type + ": " + key)
+			continue
+
+		if isinstance(instance.options[key], int):
+			value = int(value)
+		elif isinstance(instance.options[key], float):
+			value = float(value)
+
+		instance.options[key] = value
+
+
+def _run_stamp(instance, stamp_type, rule_failsafe, verbose):
+	"""Run one stamp and act on its verdict.
+
+	Exits 15 when the stamp denies. A stamp that *crashes* also denies when the
+	rule is failsafe: returning here would skip the result check below and fall
+	through to sys.exit(0), authenticating the user on a broken liveness check.
+	"""
+	try:
+		result = instance.run()
+	except Exception:
+		print(_("Internal error in rubberstamp:"))
+
+		import traceback
+		traceback.print_exc()
+		if rule_failsafe:
+			sys.exit(15)
+		return
+
+	if verbose:
+		print("Stamp \"" + stamp_type + "\" returned: " + str(result))
+
+	if result is False:
+		if verbose:
+			print("Authentication aborted by rubber stamp")
+		sys.exit(15)
+
+
 def execute(config, gtk_proc, opencv, notifier=None):
 	verbose = config.getboolean("debug", "verbose_stamps", fallback=False)
 	dir_path = os.path.dirname(os.path.realpath(__file__))
-	installed_stamps = []
-
-	# Go through each file in the rubberstamp folder
-	for filename in os.listdir(dir_path):
-		# Remove non-readable file or directories
-		if not os.path.isfile(dir_path + "/" + filename):
-			continue
-
-		# Remove meta files
-		if filename in ["__init__.py", ".gitignore"]:
-			continue
-
-		# Add the found file to the list of enabled rubberstamps
-		installed_stamps.append(filename.split(".")[0])
+	installed_stamps = _installed_stamps(dir_path)
 
 	if verbose: print("Installed rubberstamps: " + ", ".join(installed_stamps))
 
@@ -102,31 +150,31 @@ def execute(config, gtk_proc, opencv, notifier=None):
 			continue
 
 		# Parse the rule with regex
-		regex_result = re.search(r"^(\w+)\s+([\w\.]+)\s+([a-z]+)(.*)?$", rule, re.IGNORECASE)
+		regex_result = re.search(r"^(\w+)\s+([\w.]+)\s+([a-z]+)(?![a-z])(.*)$", rule, re.IGNORECASE)
 
 		# Error out if the regex did not match (invalid line)
 		if not regex_result:
 			print(_("Error parsing rubberstamp rule: {}").format(rule))
 			continue
 
-		type = regex_result.group(1)
+		stamp_type = regex_result.group(1)
 		# failsafe (the default) aborts when the check does not pass; faildeadly
 		# lets authentication through. Same vocabulary as the config file.
 		rule_failsafe = regex_result.group(3).lower() != "faildeadly"
 
 		# Error out if the stamp name in the rule is not a file
-		if type not in installed_stamps:
-			print(_("Stamp not installed: {}").format(type))
+		if stamp_type not in installed_stamps:
+			print(_("Stamp not installed: {}").format(stamp_type))
 			continue
 
 		# Load the module from file
-		module = SourceFileLoader(type, dir_path + "/" + type + ".py").load_module()
+		module = SourceFileLoader(stamp_type, dir_path + "/" + stamp_type + ".py").load_module()
 
 		# Try to get the class with the same name
 		try:
-			constructor = getattr(module, type)
+			constructor = getattr(module, stamp_type)
 		except AttributeError:
-			print(_("Stamp error: Class {} not found").format(type))
+			print(_("Stamp error: Class {} not found").format(stamp_type))
 			continue
 
 		# Init the class and set common values
@@ -159,55 +207,14 @@ def execute(config, gtk_proc, opencv, notifier=None):
 			traceback.print_exc()
 			continue
 
-		# Split the optional arguments at the end of the rule by spaces
-		raw_options = regex_result.group(4).split()
-
-		# For each of those aoptional arguments
-		for option in raw_options:
-			# Get the key to the left, and the value to the right of the equal sign
-			key, value = option.split("=")
-
-			# Error out if a key has been set that was not declared by the module before
-			if key not in instance.options:
-				print("Unknown config option for rubberstamp " + type + ": " + key)
-				continue
-
-			# Convert the argument string to an int or float if the declared option has that type
-			if isinstance(instance.options[key], int):
-				value = int(value)
-			elif isinstance(instance.options[key], float):
-				value = float(value)
-
-			instance.options[key] = value
+		_apply_rule_options(instance, regex_result.group(4), stamp_type)
 
 		if verbose:
-			print("Stamp \"" + type + "\" options parsed:")
+			print("Stamp \"" + stamp_type + "\" options parsed:")
 			print(instance.options)
 			print("Executing stamp")
 
-		# Make the stamp fail by default
-		result = False
-
-		# Run the stamp code
-		try:
-			result = instance.run()
-		except Exception:
-			print(_("Internal error in rubberstamp:"))
-
-			import traceback
-			traceback.print_exc()
-			# `continue` here skipped the result check below and fell through to
-			# sys.exit(0): a crashing liveness check authenticated the user.
-			if rule_failsafe:
-				sys.exit(15)
-			continue
-
-		if verbose: print("Stamp \"" + type + "\" returned: " + str(result))
-
-		# Abort authentication if the stamp returned false
-		if result is False:
-			if verbose: print("Authentication aborted by rubber stamp")
-			sys.exit(15)
+		_run_stamp(instance, stamp_type, rule_failsafe, verbose)
 
 	# This is outside the for loop, so we've run all the rules
 	if verbose: print("All rubberstamps processed, authentication successful")

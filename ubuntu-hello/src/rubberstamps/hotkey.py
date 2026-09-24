@@ -34,8 +34,8 @@ class hotkey(RubberStamp):
 			sys.exit(1)
 
 		# Register hotkeys with the kernel
-		keyboard.add_hotkey(self.options["abort_key"], self.on_key, args=["abort"])
-		keyboard.add_hotkey(self.options["confirm_key"], self.on_key, args=["confirm"])
+		keyboard.add_hotkey(self.options["abort_key"], self.on_key, args=("abort",))
+		keyboard.add_hotkey(self.options["confirm_key"], self.on_key, args=("confirm",))
 
 		# While we have not hit our timeout yet
 		while time_left > 0:

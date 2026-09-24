@@ -34,7 +34,8 @@ def test_set_option_replaces_in_the_right_section_only(cfg):
     text = open(cfg, encoding="utf-8").read()
     assert "[notifications]\n# card on/off\nenabled = false\n" in text
     assert "[rubberstamps]\nenabled = false\n" in text      # same key elsewhere untouched
-    assert "# top comment" in text and "# keep" in text     # comments survive
+    assert "# top comment" in text
+    assert "# keep" in text
 
 
 def test_set_option_appends_missing_key_to_section(cfg):
@@ -47,6 +48,77 @@ def test_set_option_appends_missing_section(cfg):
     config_edit.set_option(cfg, "brand_new", "key", "1")
     text = open(cfg, encoding="utf-8").read()
     assert text.endswith("[rubberstamps]\nenabled = false\n\n[brand_new]\nkey = 1\n")
+
+
+def test_set_option_keeps_indented_comment_after_replaced_key(tmp_path):
+	"""An indented "#"/";" line is a comment, not a value continuation.
+
+	Treating it as one deleted it along with the replaced key, which defeats the
+	reason this editor exists instead of configparser.
+	"""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\t# indented note about the rule\n"
+		"\t; semicolon note too\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 10s failsafe")
+	out = path.read_text()
+
+	assert "stamp_rules = nod 10s failsafe" in out
+	assert "# indented note about the rule" in out
+	assert "; semicolon note too" in out
+	assert "other = 1" in out
+
+
+def test_set_option_drops_continuations_that_follow_an_indented_comment(tmp_path):
+	"""Preserving the comment must not end the skip.
+
+	A comment inside the old value used to clear skipping_continuation, so the
+	rest of the old value survived under the new one -- for stamp_rules that
+	means the Security tab could leave a stale rule behind.
+	"""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\tnod 10s failsafe\n"
+		"\t# why the second rule exists\n"
+		"\tblink 3s faildeadly\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 4s failsafe")
+	out = path.read_text()
+
+	assert "stamp_rules = nod 4s failsafe" in out
+	assert "# why the second rule exists" in out
+	# Both halves of the old value must go, including the part after the comment.
+	assert "hotkey 5s failsafe" not in out
+	assert "nod 10s failsafe" not in out
+	assert "blink 3s faildeadly" not in out
+	assert "other = 1" in out
+
+
+def test_set_option_still_drops_real_value_continuations(tmp_path):
+	"""Indented non-comment lines are part of the value and must go."""
+	path = tmp_path / "config.ini"
+	path.write_text(
+		"[rubberstamps]\n"
+		"stamp_rules = hotkey 5s failsafe\n"
+		"\tnod 10s faildeadly\n"
+		"other = 1\n"
+	)
+
+	config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod 10s failsafe")
+	out = path.read_text()
+
+	assert "nod 10s faildeadly" not in out
+	assert "stamp_rules = nod 10s failsafe" in out
+	assert "other = 1" in out
 
 
 def test_set_option_preserves_mode(cfg):
@@ -135,8 +207,10 @@ def test_set_option_replaces_a_multi_line_value_without_leaving_leftovers(tmp_pa
     )
     config_edit.set_option(str(path), "rubberstamps", "stamp_rules", "nod\t5s\tfailsafe\tmin_distance=12")
     text = path.read_text(encoding="utf-8")
-    assert text.count("nod") == 1 and text.count("failsafe") == 1
-    assert "certainty = 4.2" in text and "enabled = false" in text   # rest of the file intact
+    assert text.count("nod") == 1
+    assert text.count("failsafe") == 1
+    assert "certainty = 4.2" in text
+    assert "enabled = false" in text
     import configparser
     parser = configparser.ConfigParser()
     parser.read(str(path))

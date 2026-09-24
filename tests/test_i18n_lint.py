@@ -6,7 +6,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 _SPEC = importlib.util.spec_from_file_location("i18n_lint", ROOT / "scripts" / "i18n-lint.py")
-assert _SPEC is not None and _SPEC.loader is not None
+assert _SPEC is not None
+assert _SPEC.loader is not None
 i18n_lint = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(i18n_lint)
 
@@ -31,7 +32,8 @@ def test_lint_json_ok_and_invalid(tmp_path):
     bad = tmp_path / "bad.json"
     bad.write_text("{not json", encoding="utf-8")
     errors = i18n_lint.lint_json_file(bad)
-    assert errors and "invalid JSON" in errors[0]
+    assert errors
+    assert "invalid JSON" in errors[0]
 
 
 def test_lint_json_rejects_empty_and_non_string(tmp_path):
@@ -171,7 +173,8 @@ def test_text_the_user_must_type_survives_translation(tmp_path):
 	bad.write_text('msgid ""\nmsgstr ""\n\nmsgid "Use the --user flag"\n'
 	               'msgstr "Utilisez l\'option --utilisateur"\n', encoding="utf-8")
 	errors = [e for e in i18n_lint.lint_po_file(bad, None) if "translated away" in e]
-	assert len(errors) == 1 and "--user" in errors[0], errors
+	assert len(errors) == 1, errors
+	assert "--user" in errors[0], errors
 
 	markup = tmp_path / "markup.po"
 	markup.write_text(

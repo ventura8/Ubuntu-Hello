@@ -65,6 +65,38 @@ def progress_line(count, total):
 	return "@progress %d/%d" % (count, total)
 
 
+def _settle(read_frame, clock, sleep, settle_seconds):
+	"""Let the user move into position, keeping the camera pipeline flowing."""
+	settle_until = clock() + settle_seconds
+	while clock() < settle_until:
+		read_frame()
+		if sleep is not None:
+			sleep(0.01)
+
+
+def _capture_step(read_frame, detect_faces, encode_face, samples, clock,
+				  wanted, deadline, max_samples, on_sample):
+	"""Append up to *wanted* new descriptors to *samples* before *deadline*.
+
+	Calls *on_sample* as each one lands so progress stays live during the step.
+	Duplicates and frames without exactly one face are skipped.
+	"""
+	got = 0
+	while got < wanted and len(samples) < max_samples and clock() < deadline:
+		frame, gsframe = read_frame()
+		if gsframe is None:
+			continue
+		faces = detect_faces(gsframe)
+		if len(faces) != 1:
+			continue
+		descriptor = list(encode_face(frame, faces[0]))
+		if is_duplicate(descriptor, samples, _np()):
+			continue
+		samples.append(descriptor)
+		got += 1
+		on_sample()
+
+
 def capture_guided_samples(read_frame, detect_faces, encode_face, emit, first_sample,
                            clock=time.monotonic, sleep=None, steps=GUIDE_STEPS,
                            settle_seconds=SETTLE_SECONDS, step_seconds=STEP_SECONDS,
@@ -91,28 +123,11 @@ def capture_guided_samples(read_frame, detect_faces, encode_face, emit, first_sa
 		emit(guide_line(key))
 		emit(prompt)
 
-		# Let the user move; keep the camera pipeline flowing meanwhile.
-		settle_until = clock() + settle_seconds
-		while clock() < settle_until:
-			read_frame()
-			if sleep is not None:
-				sleep(0.01)
+		_settle(read_frame, clock, sleep, settle_seconds)
 
-		got = 0
-		deadline = clock() + step_seconds
-		while got < samples_per_step and len(samples) < max_samples and clock() < deadline:
-			frame, gsframe = read_frame()
-			if gsframe is None:
-				continue
-			faces = detect_faces(gsframe)
-			if len(faces) != 1:
-				continue
-			descriptor = list(encode_face(frame, faces[0]))
-			if is_duplicate(descriptor, samples, _np()):
-				continue
-			samples.append(descriptor)
-			got += 1
-			emit(progress_line(len(samples), total))
+		_capture_step(read_frame, detect_faces, encode_face, samples, clock,
+					  samples_per_step, clock() + step_seconds, max_samples,
+					  lambda: emit(progress_line(len(samples), total)))
 
 	return samples
 

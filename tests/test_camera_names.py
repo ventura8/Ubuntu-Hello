@@ -11,7 +11,8 @@ E: ID_VENDOR_ID=13d3
 
 def test_parse_udev_properties_handles_prefix_bytes_and_quotes():
 	props = cn.parse_udev_properties(UDEV)
-	assert props["ID_VENDOR"] == "Azurewave" and props["ID_MODEL"] == "USB2.0_HD_UVC_WebCam"
+	assert props["ID_VENDOR"] == "Azurewave"
+	assert props["ID_MODEL"] == "USB2.0_HD_UVC_WebCam"
 	assert cn.parse_udev_properties('ID_MODEL="Quoted Cam"\njunk line\n')["ID_MODEL"] == "Quoted Cam"
 	assert cn.parse_udev_properties(None) == {}
 
@@ -72,5 +73,7 @@ def test_list_capture_devices_without_udev_keeps_everything_and_plain_labels(tmp
 
 def test_same_device_matches_aliases(tmp_path):
 	node = tmp_path / "video0"; node.write_text(""); link = tmp_path / "by-path-link"; link.symlink_to(node)
-	assert cn.same_device(str(link), str(node)) and cn.same_device(str(node), str(node))
-	assert not cn.same_device(str(node), str(tmp_path / "other")) and not cn.same_device("", str(node))
+	assert cn.same_device(str(link), str(node))
+	assert cn.same_device(str(node), str(node))
+	assert not cn.same_device(str(node), str(tmp_path / "other"))
+	assert not cn.same_device("", str(node))

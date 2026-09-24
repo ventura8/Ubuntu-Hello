@@ -27,7 +27,8 @@ def test_parse_line_protocol():
 	assert enroll.parse_line("@progress nope") is None
 	assert enroll.parse_line("@guide ") is None
 	assert enroll.parse_line("Please look straight into the camera") is None
-	assert enroll.is_protocol_line("  @guide x") and not enroll.is_protocol_line("hello")
+	assert enroll.is_protocol_line("  @guide x")
+	assert not enroll.is_protocol_line("hello")
 
 
 def test_guide_text_matches_every_cli_step_key():
@@ -63,14 +64,17 @@ def test_run_add_streams_guidance_and_reports_clean_output():
 	                   popen=popen, dispatch=_sync_dispatch)
 	t.join(5)
 	assert calls["cmd"] == ["ubuntu-hello", "-y", "add", "L"]
-	assert calls["kw"]["stdout"] is subprocess.PIPE and calls["kw"]["stderr"] is subprocess.STDOUT
-	assert calls["kw"]["text"] is True and calls["kw"]["bufsize"] == 1  # line-buffered: live updates
+	assert calls["kw"]["stdout"] is subprocess.PIPE
+	assert calls["kw"]["stderr"] is subprocess.STDOUT
+	assert calls["kw"]["text"] is True
+	assert calls["kw"]["bufsize"] == 1
 	assert seen["guide"] == ["center", "left"]
 	assert seen["progress"] == [(1, 13), (2, 13), (3, 13)]
 	status, output = seen["done"]
 	assert status == 0
 	assert "@" not in output  # protocol lines never reach the error dialog
-	assert "Please look straight into the camera" in output and "Scan complete" in output
+	assert "Please look straight into the camera" in output
+	assert "Scan complete" in output
 
 
 def test_run_add_failure_status_and_output():
@@ -89,7 +93,8 @@ def test_run_add_missing_binary_reports_127():
 
 	enroll.run_add(["ubuntu-hello"], lambda k: None, lambda c, t: None, lambda s, o: done.append((s, o)),
 	               popen=popen, dispatch=_sync_dispatch).join(5)
-	assert done[0][0] == 127 and "ubuntu-hello" in done[0][1]
+	assert done[0][0] == 127
+	assert "ubuntu-hello" in done[0][1]
 
 
 def test_run_add_runs_off_the_main_thread_and_uses_idle_add_by_default(monkeypatch):
@@ -112,4 +117,5 @@ def test_run_add_runs_off_the_main_thread_and_uses_idle_add_by_default(monkeypat
 @pytest.mark.parametrize("key", ["center", "left", "right", "up", "down"])
 def test_guide_texts_are_short_single_line_prompts(key):
 	text = enroll.guide_text(key)
-	assert "\n" not in text and len(text) < 60
+	assert "\n" not in text
+	assert len(text) < 60

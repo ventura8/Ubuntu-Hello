@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <string>
+#include <string_view>
 #include <unistd.h>
 #include <cstdint>
 
@@ -10,7 +11,7 @@ enum class ConfirmationType : std::uint8_t { Unset, Ubuntu_Hello, Pam };
 enum class Workaround : std::uint8_t { Off, Input, Native };
 
 // Exit status codes returned by the compare process
-enum CompareError : std::uint8_t {
+enum class CompareError : std::uint8_t {
   NO_FACE_MODEL = 10,
   TIMEOUT_REACHED = 11,
   ABORT = 12,
@@ -19,7 +20,7 @@ enum CompareError : std::uint8_t {
   RUBBERSTAMP = 15
 };
 
-inline auto get_workaround(const std::string &workaround) -> Workaround {
+inline auto get_workaround(std::string_view workaround) -> Workaround {
   if (workaround == "input") {
     return Workaround::Input;
   }

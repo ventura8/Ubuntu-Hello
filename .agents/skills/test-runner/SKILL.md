@@ -127,8 +127,8 @@ booting. The guest has two users: `tester` (key login, passwordless sudo, drives
 and `alice` (password `alice-pass`, sudo with password: the PAM scenarios log in as her).
 
 In CI a matrix job per distro builds the packages from the commit in the matching
-packaging cell first and the tier installs those. It is slow, so it runs on release branches and on demand
-(`workflow_dispatch`). No real face is involved anywhere: recognition itself is covered
+packaging cell first and the tier installs those. It is slow, so it runs on same-repo PRs from release
+branches (`feature/v*`) and on demand (`workflow_dispatch`). No real face is involved anywhere: recognition itself is covered
 by `tests/footage/`.
 
 ## PAM C++ tests (Meson)

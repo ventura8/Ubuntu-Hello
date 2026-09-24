@@ -1,7 +1,12 @@
 name: Build & Check
 
 on:
+  # push fires for master only. A same-repo PR branch is already covered by its
+  # pull_request run; firing both doubled every CI run, because push keys the
+  # concurrency group on github.ref and pull_request on the PR number, so
+  # neither cancelled the other. A branch with no PR yet: use workflow_dispatch.
   push:
+    branches: [master]
   pull_request:
   workflow_dispatch:
 
@@ -25,7 +30,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       # buildx's GHA cache backend (type=gha) needs ACTIONS_RESULTS_URL /
       # ACTIONS_RUNTIME_TOKEN exported explicitly -- setup-buildx-action does
@@ -49,9 +54,13 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v7.0.1
+        with:
+          # Full history: SonarQube Cloud (scanned below in this same job)
+          # attributes new code to commits and needs more than a shallow clone.
+          fetch-depth: 0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
@@ -63,6 +72,36 @@ jobs:
         run: |
           chmod +x scripts/ci-docker.sh
           UH_CI_STAGE=coverage ./scripts/ci-docker.sh
+
+      # The Docker stage above runs as root against the bind-mounted checkout, so
+      # it leaves root-owned __pycache__/, build-ci-coverage/ (some dirs 0700) and
+      # artifacts/coverage/coverage.xml behind. The scan action runs as the runner
+      # user and walks the whole tree before sonar.exclusions apply, so without
+      # this it dies with AccessDeniedException. (scripts/ci-sonar.sh sidesteps
+      # the same problem locally by running its scanner container as root.)
+      - name: Reclaim workspace from the root-owned Docker stage
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        run: sudo chown -R "$(id -u):$(id -g)" "${GITHUB_WORKSPACE}"
+
+      # Fail with a message that names the problem when the token has expired or
+      # been revoked; otherwise that surfaces inside the scanner as a generic
+      # failure that reads like a broken config.
+      - name: Check SonarQube Cloud token
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./scripts/ci-sonar.sh --check-token
+
+      # SonarQube Cloud runs here rather than in its own job: the Cobertura XML
+      # the scan uploads is produced by the step above, and a separate job would
+      # need a job dependency gate, which check.yml does not allow. The action (not
+      # scripts/ci-sonar.sh) fills in PR-decoration parameters from the Actions
+      # context. Skipped on fork PRs, which cannot read the secret.
+      - name: SonarQube Cloud scan
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: SonarSource/sonarqube-scan-action@v8.2.2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   compat:
     runs-on: ubuntu-26.04
@@ -78,7 +117,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
@@ -121,7 +160,15 @@ jobs:
   # so the tier checks the tree, not the PPA's last published build. It is slow
   # (~20 min), so it runs on release branches and on demand.
   vm:
-    if: startsWith(github.ref, 'refs/heads/feature/v') || github.event_name == 'workflow_dispatch'
+    # Release branches (feature/vX.Y.Z) reach this through their PR, now that
+    # push only fires for master. Same-repo PRs only: this tier boots VMs under
+    # KVM and runs privileged Docker builds, so a fork must never be able to
+    # trigger it just by naming its branch feature/v*.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       startsWith(github.head_ref, 'feature/v'))
     runs-on: ubuntu-26.04
     timeout-minutes: 75
     permissions:
@@ -142,7 +189,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.3.0
+        uses: docker/setup-buildx-action@v4.4.1
       - name: Expose GitHub Actions cache runtime vars
         uses: crazy-max/ghaction-github-runtime@v4.0.0
       - name: Build the ${{ matrix.distro }} packages from this commit

@@ -41,7 +41,8 @@ def _run(frames, clock, detect=None, encode=None, **kw):
 
 def test_guide_steps_cover_center_left_right_up_down_in_order():
 	keys = [k for k, _ in ec.GUIDE_STEPS]
-	assert keys[0] == "center" and keys[-1] == "center"
+	assert keys[0] == "center"
+	assert keys[-1] == "center"
 	assert keys[1:5] == ["left", "right", "up", "down"]
 	assert all(prompt for _, prompt in ec.GUIDE_STEPS)
 	assert ec.MAX_SAMPLES == 1 + len(ec.GUIDE_STEPS) * ec.SAMPLES_PER_STEP
@@ -102,7 +103,8 @@ def test_settle_phase_discards_frames_so_capture_never_sees_stale_ones():
 
 	_run(frames, clock, detect=detect, settle_seconds=0.5, step_seconds=0.3, steps=ec.GUIDE_STEPS[:1])
 	# 5 frames (0.5 s at 0.1 s each) were read during settle and never detected on
-	assert seen and seen[0] == "gs6"
+	assert seen
+	assert seen[0] == "gs6"
 
 
 def test_step_without_usable_frame_is_skipped_not_fatal():

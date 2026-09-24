@@ -44,23 +44,15 @@ def test_recognition_timeout_starts_after_scan_start():
 
 
 def test_cleanup_settles_after_camera_release(monkeypatch):
-    orig_cleaned = compare._cleaned_up
-    orig_capture = getattr(compare, "video_capture", None)
-    orig_gtk = getattr(compare, "gtk_proc", None) if "gtk_proc" in vars(compare) else None
+    # monkeypatch restores every attribute below (and re-creates gtk_proc if it
+    # was there), so the hand-rolled save/try/finally block is not needed.
     monkeypatch.setattr(compare.time, "sleep", lambda *_a, **_k: None)
-    try:
-        compare._cleaned_up = False
-        mock_cap = MagicMock()
-        compare.video_capture = mock_cap
-        if "gtk_proc" in vars(compare):
-            delattr(compare, "gtk_proc")
-        compare.cleanup()
-        mock_cap.release.assert_called_once()
-        assert compare.video_capture is None
-    finally:
-        compare._cleaned_up = orig_cleaned
-        compare.video_capture = orig_capture
-        if orig_gtk is not None:
-            compare.gtk_proc = orig_gtk
-        elif "gtk_proc" in vars(compare):
-            delattr(compare, "gtk_proc")
+    monkeypatch.setattr(compare, "_cleaned_up", False, raising=False)
+    mock_cap = MagicMock()
+    monkeypatch.setattr(compare, "video_capture", mock_cap, raising=False)
+    monkeypatch.delattr(compare, "gtk_proc", raising=False)
+
+    compare.cleanup()
+
+    mock_cap.release.assert_called_once()
+    assert compare.video_capture is None

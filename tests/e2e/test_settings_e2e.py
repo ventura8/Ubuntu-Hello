@@ -270,12 +270,16 @@ class TestNotificationsTab:
 		win = window.MainWindow(run_main_loop=False)
 		try:
 			tab = win.builder.get_object("notificationstab")
-			assert tab is not None and tab.get_text() == "Notifications"
+			assert tab is not None
+			assert tab.get_text() == "Notifications"
 			en = win.builder.get_object("notifications_enabled_switch")
 			snd = win.builder.get_object("notifications_sound_switch")
 			det = win.builder.get_object("notifications_details_switch")
-			assert en.get_active() and not snd.get_active() and not det.get_active()
-			assert snd.get_sensitive() and det.get_sensitive()
+			assert en.get_active()
+			assert not snd.get_active()
+			assert not det.get_active()
+			assert snd.get_sensitive()
+			assert det.get_sensitive()
 
 			# Toggle sound on -> written to [notifications] sound, comment preserved
 			snd.set_active(True)
@@ -292,7 +296,8 @@ class TestNotificationsTab:
 			# Disabling notifications greys out the dependent switches
 			en.set_active(False)
 			gtk_pump()
-			assert not snd.get_sensitive() and not det.get_sensitive()
+			assert not snd.get_sensitive()
+			assert not det.get_sensitive()
 			parser.read(cfg)
 			assert parser.getboolean("notifications", "enabled") is False
 		finally:
@@ -385,7 +390,8 @@ class TestLanguageDropdownRebuild:
 				time.sleep(0.02)
 			assert win._rebuilding is False
 			assert win.window is old_window                  # SAME toplevel: content rebuilt in place
-			assert win.window.get_visible() and win.window.get_child() is not old_child
+			assert win.window.get_visible()
+			assert win.window.get_child() is not old_child
 			assert open_popovers() == [], "no stale (grabbing) popover may survive the rebuild"
 			assert win.window.get_focus() is None
 			assert win.language_combo.get_active_id() == "de"
@@ -448,7 +454,8 @@ class TestDropdownSearch:
 
 			entry = find(popover, Gtk.SearchEntry) or find(popover, Gtk.Text)
 			listview = find(popover, Gtk.ListView)
-			assert entry is not None and listview is not None
+			assert entry is not None
+			assert listview is not None
 			# The list is wide enough for "Language (Native)" names, rows are single-line (no clipping)
 			assert dropdown.get_width() >= 320
 			assert popover.get_width() >= 300
@@ -461,7 +468,9 @@ class TestDropdownSearch:
 			widest = max(w.get_preferred_size()[1].width for w in row_widgets)
 			assert popover.get_width() >= widest, (popover.get_width(), widest)
 			for text in row_labels[:10]:
-				assert text == text.strip() and text.count("(") <= 1 and "  " not in text, text
+				assert text == text.strip(), text
+				assert text.count("(") <= 1, text
+				assert "  " not in text, text
 			# The button shows the selected row through the same factory (GTK keeps a hidden "(None)" placeholder)
 			button_labels = [w.get_text() for w in _walk_widgets(dropdown)
 			                 if isinstance(w, Gtk.Label) and w.get_ancestor(Gtk.Popover) is None and w.get_mapped()]
@@ -549,7 +558,8 @@ class TestSettingsSearchBestPractices:
 			assert win.focus_settings_search() is True
 			gtk_pump(20)
 			focus = win.window.get_focus()
-			assert focus is not None and (focus is search or focus.get_ancestor(Gtk.SearchEntry) is search)
+			assert focus is not None
+			assert focus is search or focus.get_ancestor(Gtk.SearchEntry) is search
 		finally:
 			win.window.destroy()
 			gtk_pump()
@@ -653,7 +663,8 @@ class TestSecurityTab:
 			gtk_pump(20)
 			text = path.read_text(encoding="utf-8")
 			assert "enabled = true" in text
-			assert "faildeadly" not in text and "failsafe" in text
+			assert "faildeadly" not in text
+			assert "failsafe" in text
 			assert text.count("nod") == 1
 			switch.set_active(False)
 			gtk_pump(20)

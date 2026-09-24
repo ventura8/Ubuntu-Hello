@@ -31,6 +31,83 @@ def get_camera_devices():
 	return [path for path, _label in get_camera_entries()]
 
 
+def _load_video_config(self, previous):
+	"""Re-read config.ini, falling back to whatever was already loaded."""
+	parser = configparser.ConfigParser()
+	try:
+		loaded = parser.read(paths_factory.config_file_path())
+	except Exception:
+		print(_("Can't open camera"))
+		return previous if previous is not None else parser
+
+	if loaded or parser.sections():
+		return parser
+	return previous if previous is not None else parser
+
+
+def _fill_camera_dropdown(self, path):
+	"""Populate the camera dropdown and select *path*. Returns the active path."""
+	self.populating_cameras = True
+	cameraselect = gtk4compat.dropdown(self.builder.get_object("cameraselect"))
+	cameraselect.remove_all()
+
+	entries = get_camera_entries()
+	devices = [dev for dev, _label in entries]
+	active_index = -1
+
+	for idx, (dev, label) in enumerate(entries):
+		cameraselect.append(dev, label)   # id = device path, text = brand/model
+		if camera_names.same_device(dev, path):
+			active_index = idx
+
+	if path != "none" and active_index == -1:
+		# configured path is not an alias of any listed node (unplugged?): keep it selectable
+		cameraselect.append(path, camera_names.describe_camera(path))
+		active_index = len(devices)
+
+	if active_index != -1:
+		cameraselect.set_active(active_index)
+	elif devices:
+		cameraselect.set_active(0)
+		path = devices[0]
+
+	self.populating_cameras = False
+	return path
+
+
+def _start_video_preview(self):
+	if getattr(self, "video_loop_active", False):
+		return
+	self.video_loop_active = True
+
+	self.config = _load_video_config(self, getattr(self, "config", None))
+	if self.config.has_section("video"):
+		path = self.config.get("video", "device_path", fallback="none")
+	else:
+		path = "none"
+
+	try:
+		import cv2
+		self.cv2 = cv2
+	except Exception:
+		print(_("Can't import OpenCV2"))
+
+	path = _fill_camera_dropdown(self, path)
+
+	import threading
+	threading.Thread(target=open_camera_background, args=(self, path), daemon=True).start()
+
+
+def _stop_video_preview(self):
+	self.video_loop_active = False
+	if self.capture is None:
+		return
+	cap = self.capture
+	self.capture = None
+	import threading
+	threading.Thread(target=cap.release, daemon=True).start()
+
+
 def on_page_switch(self, notebook, page, page_num):
 	# GtkNotebook moves keyboard focus into the new page; when the first
 	# focusable widget is a GtkDropDown that lands inside its popover and pops
@@ -46,7 +123,6 @@ def on_page_switch(self, notebook, page, page_num):
 		reveal(page_num)
 
 	# Prefer page identity over hard-coded index when possible.
-	video_page = None
 	try:
 		video_page = self.builder.get_object("box2")
 	except Exception:
@@ -54,73 +130,9 @@ def on_page_switch(self, notebook, page, page_num):
 	is_video = page is video_page if video_page is not None else page_num == 1
 
 	if is_video:
-		if getattr(self, "video_loop_active", False):
-			return
-		self.video_loop_active = True
-
-		previous = getattr(self, "config", None)
-		parser = configparser.ConfigParser()
-		try:
-			loaded = parser.read(paths_factory.config_file_path())
-		except Exception:
-			print(_("Can't open camera"))
-			self.config = previous if previous is not None else parser
-		else:
-			if loaded or parser.sections():
-				self.config = parser
-			elif previous is not None:
-				self.config = previous
-			else:
-				self.config = parser
-
-		if self.config.has_section("video"):
-			path = self.config.get("video", "device_path", fallback="none")
-		else:
-			path = "none"
-
-		try:
-			import cv2
-			self.cv2 = cv2
-		except Exception:
-			print(_("Can't import OpenCV2"))
-
-		# Populate the camera list
-		self.populating_cameras = True
-		cameraselect = gtk4compat.dropdown(self.builder.get_object("cameraselect"))
-		cameraselect.remove_all()
-
-		entries = get_camera_entries()
-		devices = [dev for dev, _label in entries]
-		active_index = -1
-
-		for idx, (dev, label) in enumerate(entries):
-			cameraselect.append(dev, label)   # id = device path, text = brand/model
-			if camera_names.same_device(dev, path):
-				active_index = idx
-
-		if path != "none" and active_index == -1:
-			# configured path is not an alias of any listed node (unplugged?): keep it selectable
-			cameraselect.append(path, camera_names.describe_camera(path))
-			active_index = len(devices)
-
-		if active_index != -1:
-			cameraselect.set_active(active_index)
-		elif devices:
-			cameraselect.set_active(0)
-			path = devices[0]
-
-		self.populating_cameras = False
-
-		import threading
-		threading.Thread(target=open_camera_background, args=(self, path), daemon=True).start()
-
+		_start_video_preview(self)
 	else:
-		self.video_loop_active = False
-		if self.capture is not None:
-			cap = self.capture
-			self.capture = None
-			import threading
-			threading.Thread(target=cap.release, daemon=True).start()
+		_stop_video_preview(self)
 
 
 def open_camera_background(self, path):

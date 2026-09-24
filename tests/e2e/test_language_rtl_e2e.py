@@ -96,7 +96,8 @@ def _switch(win, code, gtk_pump):
 	old = win.window
 	assert win.language_combo.set_active_id(code)
 	gtk_pump(80)
-	assert win.window is old and win.window.get_child() is not old_child, "content rebuilt in the same toplevel"
+	assert win.window is old, "content rebuilt in the same toplevel"
+	assert win.window.get_child() is not old_child, "content rebuilt in the same toplevel"
 	assert not win._rebuilding
 	assert preferences.read_language() == code
 	gtk_pump(20)
@@ -223,7 +224,8 @@ class TestArabicRightToLeft:
 			label = win.builder.get_object("single_model_label")
 			button = win.builder.get_object("single_model_button")
 			assert "Only one face model" not in label.get_text(), "Models banner must be translated"
-			assert label.get_text().strip() and label.get_direction() == Gtk.TextDirection.RTL
+			assert label.get_text().strip()
+			assert label.get_direction() == Gtk.TextDirection.RTL
 			lx, _, lw, _ = _bounds(label, win.window)
 			bx, _, bw, _ = _bounds(button, win.window)
 			assert bx + bw <= lx + 1, "banner action button must be on the left of its text in RTL"
@@ -257,7 +259,8 @@ class TestArabicRightToLeft:
 			cx, _, cw, _ = _bounds(cancel, ob.window)
 			nx, _, nw, _ = _bounds(nxt, ob.window)
 			assert cx > nx + nw, "start/end navigation buttons must swap sides in RTL"
-			assert cx + cw / 2 > W / 2 and nx + nw / 2 < W / 2
+			assert cx + cw / 2 > W / 2
+			assert nx + nw / 2 < W / 2
 			assert nxt.get_direction() == Gtk.TextDirection.RTL  # go-next-symbolic flips via the icon theme
 			# Every slide's visible text is Arabic where a translation exists
 			for i, slide in enumerate(ob.slides):
@@ -289,7 +292,8 @@ class TestAutomaticAfterSavedArabic:
 		module = types.ModuleType("i18n")
 		module.__file__ = str(tmp_path / "i18n.py")
 		exec(compile(source, module.__file__, "exec"), module.__dict__)   # applies "ar" at import, like the launcher
-		assert os.environ["LANGUAGE"] == "ar" and module.original_locale_env()["LANGUAGE"] == "en"
+		assert os.environ["LANGUAGE"] == "ar"
+		assert module.original_locale_env()["LANGUAGE"] == "en"
 		monkeypatch.setitem(sys.modules, "i18n", module)
 		monkeypatch.setattr(window, "i18n", module)
 		for name in ("window", "onboarding", "tab_video", "tab_keyring", "tab_models", "tab_notifications"):
@@ -302,7 +306,8 @@ class TestAutomaticAfterSavedArabic:
 		monkeypatch.delenv("BYPASS_ELEVATE", raising=False)
 		monkeypatch.setattr(window.os, "execvp", lambda prog, args: forwarded.setdefault("args", args))
 		window.elevate()
-		assert "--env-LANGUAGE=en" in forwarded["args"] and "--env-LANG=en_US.UTF-8" in forwarded["args"]
+		assert "--env-LANGUAGE=en" in forwarded["args"]
+		assert "--env-LANG=en_US.UTF-8" in forwarded["args"]
 		monkeypatch.setenv("BYPASS_ELEVATE", "1")
 		try:
 			win = window.MainWindow(run_main_loop=False)

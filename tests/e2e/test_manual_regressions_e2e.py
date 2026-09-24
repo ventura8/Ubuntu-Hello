@@ -57,7 +57,8 @@ class TestWizardLayoutRegressions:
 			assert isinstance(ob.preview_image, Gtk.Picture)
 			assert ob.preview_image.get_paintable() is not None
 			_, _, w, h = _bounds(ob.preview_image, ob.window)
-			assert w >= 380 and h >= 280, f"preview rendered {w}x{h}"
+			assert w >= 380, f"preview rendered {w}x{h}"
+			assert h >= 280, f"preview rendered {w}x{h}"
 			# Face-model page preview as well
 			for i, s in enumerate(ob.slides):
 				s.set_visible(i == 4)
@@ -65,7 +66,8 @@ class TestWizardLayoutRegressions:
 			ob.update_preview_image_widget("/dev/fake", _fake_frame())
 			gtk_pump(40)
 			_, _, w, h = _bounds(ob.slide4_preview_image, ob.window)
-			assert w >= 500 and h >= 300, f"slide-4 preview rendered {w}x{h}"
+			assert w >= 500, f"slide-4 preview rendered {w}x{h}"
+			assert h >= 300, f"slide-4 preview rendered {w}x{h}"
 		finally:
 			ob.window.destroy()
 			gtk_pump()
@@ -144,7 +146,9 @@ class TestWizardLayoutRegressions:
 				if alerts:
 					break
 				time.sleep(0.01)
-			assert alerts and alerts[0][0] == "Can't save face model" and "as root" in alerts[0][1]
+			assert alerts
+			assert alerts[0][0] == "Can't save face model"
+			assert "as root" in alerts[0][1]
 			assert ob.builder.get_object("scanbutton").get_sensitive()
 		finally:
 			ob.window.destroy()
@@ -155,7 +159,8 @@ class TestWizardLayoutRegressions:
 		try:
 			yes = ob.builder.get_object("leieyesbutton")
 			no = ob.builder.get_object("leienobutton")
-			assert "flashes" in _first_label_text(yes) and "flashes" in _first_label_text(no)
+			assert "flashes" in _first_label_text(yes)
+			assert "flashes" in _first_label_text(no)
 			assert ob.builder.get_object("leiehint") is not None
 			# .uh-card only on group containers, never nested on labels/check buttons
 			carded = [w for w in _walk(ob.window) if "uh-card" in w.get_css_classes()]
@@ -186,7 +191,8 @@ class TestSettingsRegressions:
 			gtk_pump(40)
 			_, _, w, h = _bounds(win.builder.get_object("opencvbox"), win.window)
 			# fixed frame (400x300 request; fonts/scale may pad a little) — never a full-height column
-			assert 380 <= w <= 480 and 280 <= h <= 360, f"video preview frame {w}x{h}"
+			assert 380 <= w <= 480, f"video preview frame {w}x{h}"
+			assert 280 <= h <= 360, f"video preview frame {w}x{h}"
 			assert h < win.window.get_height() * 0.7
 		finally:
 			win.window.destroy()
@@ -211,8 +217,10 @@ class TestSettingsRegressions:
 			     patch("window.subprocess.Popen") as popen:
 				assert link.emit("activate-link", "https://github.com/ventura8/Ubuntu-Hello/issues") is True
 			args = run.call_args.args[0]     # desktop portal on the user's session bus, as the user
-			assert args[:3] == ["sudo", "-u", "alice"] and "org.freedesktop.portal.OpenURI.OpenURI" in args
-			assert args[-2] == "https://github.com/ventura8/Ubuntu-Hello/issues" and "WAYLAND_DISPLAY=wayland-0" in args
+			assert args[:3] == ["sudo", "-u", "alice"]
+			assert "org.freedesktop.portal.OpenURI.OpenURI" in args
+			assert args[-2] == "https://github.com/ventura8/Ubuntu-Hello/issues"
+			assert "WAYLAND_DISPLAY=wayland-0" in args
 			popen.assert_not_called()
 		finally:
 			win.window.destroy()
@@ -262,7 +270,8 @@ class TestSettingsRegressions:
 				titles = [w for w in _walk(page) if "uh-page-title" in w.get_css_classes()]
 				assert titles, f"page {i} has no title"
 			carded = [w for w in _walk(win.window) if "uh-card" in w.get_css_classes()]
-			assert all(isinstance(w, Gtk.Box) for w in carded) and len(carded) == 4   # +Security
+			assert all(isinstance(w, Gtk.Box) for w in carded)
+			assert len(carded) == 4
 		finally:
 			win.window.destroy()
 			gtk_pump()
@@ -323,7 +332,8 @@ class TestGuidedEnrollmentThroughRealSubprocess:
 				if ob.scan_pass == 2:
 					break
 				time.sleep(0.01)
-			assert ob.scan_pass == 2 and ob.models_enrolled == 1
+			assert ob.scan_pass == 2
+			assert ob.models_enrolled == 1
 			# run_add() shows "Look straight" before the process echoes its own @guide center
 			deduped = [p for i, p in enumerate(prompts) if i == 0 or p != prompts[i - 1]]
 			assert deduped == ["Look straight at the camera", "Turn your head slightly to the left",
@@ -331,8 +341,63 @@ class TestGuidedEnrollmentThroughRealSubprocess:
 			                   "Tilt your chin down a little"]
 			assert "Recording… 9 of 13" in buttons
 			assert not instruction.get_visible()
-			assert scan_btn.get_sensitive() and scan_btn.get_label() == "Scan second model"
+			assert scan_btn.get_sensitive()
+			assert scan_btn.get_label() == "Scan second model"
 		finally:
 			ob.stop_preview()
 			ob.window.destroy()
 			gtk_pump()
+
+
+class TestSettingsSearchMarkupLabels:
+	"""Pango.parse_markup returns (ok, AttrList, text, accel_char).
+
+	Taking index 1 handed the AttrList to " ".join() in _widget_display_text,
+	which raised TypeError out of on_settings_search_changed: the search filter
+	aborted partway through and later pages stayed unfiltered.
+
+	The branch only runs for a label whose get_text() is empty while its
+	get_label() still holds markup -- a real Gtk.Label with set_markup() already
+	returns plain text from get_text() and returns before reaching it, so these
+	use a stub to exercise the parsing itself against real Pango.
+	"""
+
+	class _MarkupOnlyLabel:
+		"""get_text() empty, get_label() markup -- the only shape that parses."""
+
+		def __init__(self, markup):
+			self._markup = markup
+
+		def get_text(self):
+			return ""
+
+		def get_label(self):
+			return self._markup
+
+	def test_markup_is_parsed_to_plain_text(self):
+		node = self._MarkupOnlyLabel('<b>Keyring</b> unlocking')
+
+		text = window._label_display_text(node)
+
+		assert isinstance(text, str), f"expected str, got {type(text).__name__}"
+		assert text == "Keyring unlocking"
+
+	def test_result_is_joinable(self):
+		"""The actual failure mode: a non-str reaching " ".join(parts)."""
+		node = self._MarkupOnlyLabel('<i>Second</i> model')
+
+		text = window._label_display_text(node)
+
+		assert " ".join(["Models", text]) == "Models Second model"
+
+	def test_label_without_markup_is_returned_as_is(self):
+		node = self._MarkupOnlyLabel("Plain label")
+
+		assert window._label_display_text(node) == "Plain label"
+
+	def test_real_label_with_markup_still_works(self):
+		"""The common path: get_text() already yields plain text."""
+		label = Gtk.Label()
+		label.set_markup('<b>Models</b>')
+
+		assert window._label_display_text(label) == "Models"
