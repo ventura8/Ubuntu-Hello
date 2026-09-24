@@ -1,3 +1,36 @@
+ubuntu-hello (1.2.2-1ppa1) resolute; urgency=medium
+
+  * Security: the setup wizard fetches the dlib face-recognition models as
+    root through dlib-data/install.sh and unpacked them with no integrity
+    check. Each archive is now verified against the pinned SHA-256 that the
+    packaged install path already used before anything is unpacked, and
+    redirects are refused (canonical raw.githubusercontent.com URLs; wget
+    --max-redirect=0, curl --max-redirs 0 --proto-redir =https). A mismatch
+    aborts the download and the wizard reports it.
+  * Fix: switching keyring unlock between TPM and software sealing deleted
+    the previous credential before the new one was written, so a failure in
+    between left the user with no usable seal. The old credential is now
+    kept until its replacement is on disk.
+  * Fix: `keyring enable` chose TPM sealing when tpm2_createprimary and
+    tpm2_unseal were present, then failed mid-seal if tpm2_create or
+    tpm2_load was missing. All four are now required; otherwise it falls
+    back to software sealing.
+  * Fix: an empty password piped to `keyring enable` was sealed and
+    reported as success, though unsealing treats an empty result as
+    failure. It is now rejected, as the interactive prompt already did.
+  * Fix: replacing a setting from the Settings window deleted indented
+    comments that followed the key in config.ini.
+  * Fix: source (Meson) installs set config.ini to 0744; now 0644, matching
+    every package path and docs/SECURITY.md.
+  * Fix: the auth window's last-resort user lookup called loginctl with no
+    timeout, so a stalled logind could hang it; now bounded at 5 seconds.
+  * Build: SonarQube Cloud static analysis runs locally (scripts/ci-sonar.sh)
+    and in CI; the project went from 356 findings to none. CI now runs once
+    per pull request instead of twice, and the booted-OS tier runs on
+    same-repository release pull requests.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Thu, 24 Sep 2026 21:02:15 +0300
+
 ubuntu-hello (1.2.1-1ppa1) resolute; urgency=high
 
   * Fix: a fresh install on a clean Ubuntu 26.04 failed to configure. The
