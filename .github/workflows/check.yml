@@ -1,7 +1,12 @@
 name: Build & Check
 
 on:
+  # push fires for master only. A same-repo PR branch is already covered by its
+  # pull_request run; firing both doubled every CI run, because push keys the
+  # concurrency group on github.ref and pull_request on the PR number, so
+  # neither cancelled the other. A branch with no PR yet: use workflow_dispatch.
   push:
+    branches: [master]
   pull_request:
   workflow_dispatch:
 
@@ -78,6 +83,15 @@ jobs:
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         run: sudo chown -R "$(id -u):$(id -g)" "${GITHUB_WORKSPACE}"
 
+      # Fail with a message that names the problem when the token has expired or
+      # been revoked; otherwise that surfaces inside the scanner as a generic
+      # failure that reads like a broken config.
+      - name: Check SonarQube Cloud token
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./scripts/ci-sonar.sh --check-token
+
       # SonarQube Cloud runs here rather than in its own job: the Cobertura XML
       # the scan uploads is produced by the step above, and a separate job would
       # need a job dependency gate, which check.yml does not allow. The action (not
@@ -146,7 +160,15 @@ jobs:
   # so the tier checks the tree, not the PPA's last published build. It is slow
   # (~20 min), so it runs on release branches and on demand.
   vm:
-    if: startsWith(github.ref, 'refs/heads/feature/v') || github.event_name == 'workflow_dispatch'
+    # Release branches (feature/vX.Y.Z) reach this through their PR, now that
+    # push only fires for master. Same-repo PRs only: this tier boots VMs under
+    # KVM and runs privileged Docker builds, so a fork must never be able to
+    # trigger it just by naming its branch feature/v*.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       startsWith(github.head_ref, 'feature/v'))
     runs-on: ubuntu-26.04
     timeout-minutes: 75
     permissions:

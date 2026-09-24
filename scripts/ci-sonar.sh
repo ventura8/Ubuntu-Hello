@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 # Run SonarQube Cloud analysis for Ubuntu Hello.
 #
-# Same entrypoint locally and in CI (the `sonar` job in .github/workflows/check.yml),
-# mirroring how scripts/ci-docker.sh keeps the other stages identical on both.
+# The local entrypoint. CI scans with SonarSource/sonarqube-scan-action as a step
+# in the `coverage` job of .github/workflows/check.yml (the action derives the
+# pull-request parameters from the Actions context), but calls this script with
+# --check-token first so an expired token fails with a message that says so.
+#
+# Usage:
+#   ./scripts/ci-sonar.sh                # validate the token, then scan
+#   ./scripts/ci-sonar.sh --check-token  # only validate the token
 #
 # The scanner runs in Docker (sonarsource/sonar-scanner-cli, version-pinned —
 # never ":latest", AGENTS.md §4.8), so nothing has to be installed on the host.
@@ -22,6 +28,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCANNER_IMAGE="${UH_SONAR_IMAGE:-sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0}"
 COVERAGE_XML="${ROOT}/artifacts/coverage/coverage.xml"
+SONAR_HOST="https://sonarcloud.io"
 
 cd "${ROOT}"
 
@@ -37,6 +44,33 @@ load_token() {
     echo "       'export SONAR_TOKEN=...' or write it to ${ROOT}/.sonar-token" >&2
     exit 2
   fi
+}
+
+# An expired or revoked token otherwise surfaces deep inside the scanner as a
+# generic failure that reads like a broken config. Ask SonarQube Cloud directly.
+# /api/authentication/validate answers HTTP 200 either way; the body says
+# {"valid":true} or {"valid":false}. If the service cannot be reached at all,
+# warn and carry on -- the scan itself is then the authority.
+check_token() {
+  local answer message
+  # The token goes to curl on stdin (-K -), not argv, so it never shows up in ps.
+  if ! answer="$(printf 'header = "Authorization: Bearer %s"\n' "${SONAR_TOKEN}" |
+      curl --silent --show-error --fail --max-time 20 -K - "${SONAR_HOST}/api/authentication/validate" 2>&1)"; then
+    echo "warning: could not reach ${SONAR_HOST} to validate SONAR_TOKEN (${answer}); continuing." >&2
+    return 0
+  fi
+
+  if [[ "${answer}" == *'"valid":true'* ]]; then
+    echo "==> SONAR_TOKEN is valid"
+    return 0
+  fi
+
+  message="SONAR_TOKEN is invalid or expired. Create a new one at ${SONAR_HOST}/account/security, then update .sonar-token (local) and the SONAR_TOKEN repository secret (CI)."
+  if [[ -n "${GITHUB_ACTIONS:-}" ]]; then
+    echo "::error title=SonarQube Cloud token::${message}"
+  fi
+  echo "error: ${message}" >&2
+  exit 2
 }
 
 ensure_coverage() {
@@ -74,6 +108,10 @@ run_scanner() {
 }
 
 load_token
+check_token
+if [[ "${1:-}" == "--check-token" ]]; then
+  exit 0
+fi
 ensure_coverage
 run_scanner
 echo "==> analysis submitted; results: https://sonarcloud.io/project/overview?id=ventura8_Ubuntu-Hello"

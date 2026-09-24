@@ -103,6 +103,8 @@ Packaging-only parallel matrix (local; same cells as GHA):
 `.github/workflows/check.yml` (OSS **20-runner** concurrency):
 
 * **17 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 8× `compat` matrix (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
+* **Triggers** — `push` for `master` only, `pull_request` for every PR, and `workflow_dispatch`. Do **not** add `push` back for all branches: a same-repo PR would run twice, since `push` keys the concurrency group on `github.ref` and `pull_request` on the PR number. A branch with no PR yet: `gh workflow run check.yml --ref <branch>`
+* **`vm` job** — runs on `workflow_dispatch`, or on a **same-repo** `pull_request` whose head branch is `feature/v*`. Keep the `head.repo.full_name == github.repository` guard: the tier boots KVM guests and runs privileged Docker builds, and without it a fork could trigger it by naming its branch `feature/v*`
 * **`concurrency.cancel-in-progress: true`** — a new push to the same PR or branch cancels the previous workflow run
 * Each job uses its own runner; matrix jobs use `strategy.max-parallel: 20` to saturate OSS workers
 * Local `./scripts/ci-pipeline.sh` fail-fast **lint → coverage → compat → packaging** (same packaging cell script via `ci-packaging-matrix.sh`)
@@ -110,7 +112,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * **Never** turn DE compat into a sequential loop in one job
 * **Never** re-run full clang-tidy/coverage floors inside every DE cell
 * **Never** leave packaging smoke/E2E GHA-only — local gate must fail when packaging fails
-* **SonarQube Cloud** is a **step inside the `coverage` job**, never its own job — check.yml must keep every job ungated, and `artifacts/coverage/coverage.xml` already exists at that point. The coverage checkout uses `fetch-depth: 0`, and a `sudo chown` step reclaims the workspace before the scan (the root-run Docker stage leaves root-owned `__pycache__/`/`build-ci-*/` the runner-user scanner cannot read); the step uses `SonarSource/sonarqube-scan-action@v8.2.2` (PR decoration from the Actions context) and is skipped on fork PRs for lack of the `SONAR_TOKEN` secret
+* **SonarQube Cloud** is a **step inside the `coverage` job**, never its own job — check.yml must keep every job ungated, and `artifacts/coverage/coverage.xml` already exists at that point. The coverage checkout uses `fetch-depth: 0`, and a `sudo chown` step reclaims the workspace before the scan (the root-run Docker stage leaves root-owned `__pycache__/`/`build-ci-*/` the runner-user scanner cannot read); a `ci-sonar.sh --check-token` step fails fast with a clear message on an expired/revoked token; the scan step uses `SonarSource/sonarqube-scan-action@v8.2.2` (PR decoration from the Actions context) and is skipped on fork PRs for lack of the `SONAR_TOKEN` secret
 `docker/Dockerfile.ppa` remains `ubuntu:26.04` only (no DE packaging matrix). When changing CI/Docker/DE support, update [AGENTS.md](../../../AGENTS.md) §4.7.1 / §4.8 and this skill in the same change.
 
 For the **full gate + fix-until-green** agent loop (no NOLINT / no `# shellcheck disable` / no `# noqa` / no `# type: ignore` / no weakened checks), use [pipeline-runner](../pipeline-runner/SKILL.md).
