@@ -120,7 +120,7 @@ def test_init_falls_back_to_the_system_install_path(monkeypatch):
 	# A second start finds it already on the path and does not append it twice
 	# (_run_init hands each run a monkeypatched copy of the current sys.path).
 	_run_init(monkeypatch, ["ubuntu-hello-gtk"], imported="window", blocked="authsticky", isfile=has_core)
-	assert sys.path.count(target) == 1
+	assert [entry for entry in sys.path if entry == target] == [target]
 
 
 def test_init_leaves_sys_path_alone_without_any_core_install(monkeypatch):
