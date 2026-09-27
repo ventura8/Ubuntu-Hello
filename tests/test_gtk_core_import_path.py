@@ -112,13 +112,14 @@ def test_init_opens_the_auth_overlay_when_asked(monkeypatch):
 def test_init_falls_back_to_the_system_install_path(monkeypatch):
 	"""The packaged launcher finds wallet_backend under /usr/lib/ubuntu-hello."""
 	target = "/usr/lib/ubuntu-hello"
-	ns, _, _ = _run_init(monkeypatch, ["ubuntu-hello-gtk"], imported="window", blocked="authsticky",
-	                     isfile=lambda p: p == os.path.join(target, "wallet_backend.py"))
+	def has_core(p):
+		return p == os.path.join(target, "wallet_backend.py")
+
+	_run_init(monkeypatch, ["ubuntu-hello-gtk"], imported="window", blocked="authsticky", isfile=has_core)
 	assert sys.path[-1] == target
-	# A second call finds it already on the path and does not append it twice
-	# (on a monkeypatched copy of sys.path, like the first call).
-	monkeypatch.setattr(sys, "path", list(sys.path))
-	ns["_ensure_ubuntu_hello_on_path"]()
+	# A second start finds it already on the path and does not append it twice
+	# (_run_init hands each run a monkeypatched copy of the current sys.path).
+	_run_init(monkeypatch, ["ubuntu-hello-gtk"], imported="window", blocked="authsticky", isfile=has_core)
 	assert sys.path.count(target) == 1
 
 
