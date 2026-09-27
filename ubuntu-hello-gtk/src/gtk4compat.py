@@ -297,7 +297,9 @@ def builder(scope, path, domain):
 # GtkPicture:content-fit is GTK 4.8+. GTK 4.6 (Ubuntu 22.04) rejects the .ui
 # with "Invalid property"; its default keep-aspect-ratio already scales like
 # content-fit=contain, so the property is simply dropped there.
-_CONTENT_FIT = re.compile(r'\s*<property name="content-fit">[^<]*</property>')
+# No leading \s*: it made the search backtrack over every whitespace run
+# (super-linear); the leftover indentation is harmless in the .ui.
+_CONTENT_FIT = re.compile(r'<property name="content-fit">[^<]*</property>')
 
 
 def adapt_ui_xml(xml):

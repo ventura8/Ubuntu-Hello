@@ -764,6 +764,7 @@ def test_generated_python_modules_install_at_the_package_root() -> None:
     import re
     meson = _read_repo("ubuntu-hello/src/meson.build")
     sources = re.search(r"py_sources = \[(.*?)\]", meson, re.S).group(1)
-    assert "py_i18n" not in sources and "py_paths" not in sources
+    assert "py_i18n" not in sources
+    assert "py_paths" not in sources
     assert "py_install += [[py_i18n, '.'], [py_paths, '.']]" in meson
     assert "preserve_path: true" not in meson, "meson 0.64+; Ubuntu 22.04 ships 0.61"

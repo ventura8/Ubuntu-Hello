@@ -375,7 +375,8 @@ def test_snapshot_captures_four_frames_and_reports_file(cli_env, monkeypatch, ca
 	kept, lines = generate.call_args.args
 	assert kept == frames[1:5]
 	assert lines[0] == "GENERATED SNAPSHOT"
-	assert lines[1].startswith("Date: ") and lines[1].endswith(" UTC")
+	assert lines[1].startswith("Date: ")
+	assert lines[1].endswith(" UTC")
 	assert lines[2] == "Dark threshold config: 42.0"
 	assert lines[3] == "Certainty config: 2.5"
 	out = capsys.readouterr().out

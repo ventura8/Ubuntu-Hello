@@ -141,7 +141,8 @@ def test_kreadconfig_falls_back_to_kf5_on_ubuntu_22_04():
     """Jammy ships KF5 only: kreadconfig5 (theme_detect tries kreadconfig6, then 5)."""
     assert _resolve("libkf6config-bin", ("libkf5config-bin",)) == "libkf5config-bin"
     pkgs = _bash_eval(_fake_apt_cache(("libkf5config-bin",)) + "\nuh_apt_unique_packages").split()
-    assert "libkf5config-bin" in pkgs and "libkf6config-bin" not in pkgs
+    assert "libkf5config-bin" in pkgs
+    assert "libkf6config-bin" not in pkgs
 
 
 def test_kreadconfig_stays_kf6_when_available_or_lists_are_missing():

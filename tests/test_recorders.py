@@ -384,8 +384,9 @@ def test_video_capture_device_probe_error_counts_as_missing():
     """An OSError while probing the path means "no camera" (exit 14), not a crash."""
     with patch("os.path.exists", side_effect=OSError("EIO")), \
          patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
+        config = _video_config()
         with pytest.raises(SystemExit):
-            VideoCapture(_video_config())
+            VideoCapture(config)
         mock_exit.assert_called_once_with(14)
 
 
@@ -407,8 +408,9 @@ def test_video_capture_reraises_the_last_open_error_after_retries():
     with patch("os.path.exists", return_value=True), \
          patch("cv2.VideoCapture", side_effect=RuntimeError("device busy")) as mock_cv_capture, \
          patch("recorders.video_capture.time.sleep") as mock_sleep:
+        config = _video_config()
         with pytest.raises(RuntimeError, match="device busy"):
-            VideoCapture(_video_config())
+            VideoCapture(config)
         assert mock_cv_capture.call_count == 6
         assert mock_sleep.call_count == 6
 
@@ -419,8 +421,9 @@ def test_video_capture_exits_14_when_no_frame_can_ever_be_grabbed():
          patch("recorders.video_capture.time.sleep"), \
          patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
         mock_cv_capture.return_value.grab.return_value = False
+        config = _video_config()
         with pytest.raises(SystemExit):
-            VideoCapture(_video_config())
+            VideoCapture(config)
         mock_exit.assert_called_once_with(14)
         assert mock_cv_capture.call_count == 6
 

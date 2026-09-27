@@ -147,7 +147,8 @@ def test_keypress_closes_window(test_env, capsys):
 
 	texts = drawn(test_env)
 	assert "RESOLUTION: 160x120" in texts  # width x height
-	assert "FRAMES: 1" in texts and "FRAMES: 3" in texts
+	assert "FRAMES: 1" in texts
+	assert "FRAMES: 3" in texts
 	assert texts.count("SCAN FRAME") == 3
 	assert "SLOW MODE" not in texts
 	# Eight histogram bars per frame.
@@ -239,7 +240,8 @@ def test_matching_and_non_matching_faces(test_env):
 	assert len(matched) == 1
 	text, org, colour = matched[0]
 	assert text == "evening (certainty: %s)" % round(float(np.linalg.norm(NEAR_C - DESC_C)) * 10, 3)
-	assert org == (38, 16) and colour == (0, 255, 0)
+	assert org == (38, 16)
+	assert colour == (0, 255, 0)
 	assert ("no match", (128, 16), (0, 0, 255)) in test_env.texts
 	predictor = test_env.dlib.shape_predictor.return_value
 	assert predictor.call_args_list[0] == call("orig", test_env.detector.return_value[0])

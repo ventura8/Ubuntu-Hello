@@ -372,7 +372,8 @@ def test_alert_without_alertdialog_uses_prompt_window(fake_gtk, monkeypatch):
 	monkeypatch.setattr(gtk4compat, "run_dialog", lambda window: next(answers))
 	assert gtk4compat.alert("parent", "Sure?", "detail", buttons=("Cancel", "Delete"), default=1, cancel=0) == 1
 	win = windows[0]
-	assert win.parent == "parent" and win.destroyed
+	assert win.parent == "parent"
+	assert win.destroyed
 	assert win.actions == [("Cancel", 0, False), ("Delete", 1, True)]
 	assert win.content.append.call_count == 2  # heading + body
 	fake_gtk.Label.assert_any_call(label="Sure?", xalign=0.0, wrap=True)

@@ -115,7 +115,9 @@ def test_init_falls_back_to_the_system_install_path(monkeypatch):
 	ns, _, _ = _run_init(monkeypatch, ["ubuntu-hello-gtk"], imported="window", blocked="authsticky",
 	                     isfile=lambda p: p == os.path.join(target, "wallet_backend.py"))
 	assert sys.path[-1] == target
-	# A second call finds it already on the path and does not append it twice.
+	# A second call finds it already on the path and does not append it twice
+	# (on a monkeypatched copy of sys.path, like the first call).
+	monkeypatch.setattr(sys, "path", list(sys.path))
 	ns["_ensure_ubuntu_hello_on_path"]()
 	assert sys.path.count(target) == 1
 
