@@ -23,10 +23,12 @@ prev_rc=0
 pkg_install "${assets[@]/#/./}" || prev_rc=$?
 note prev_install_exit "$prev_rc"
 note prev_state "$(pkg_state ubuntu-hello)"
-# The previous release's packages were built for the newest series only; an
-# older series (Ubuntu 22.04) cannot resolve their dependencies, so there is no
-# earlier version to upgrade from there.
-if [ "$prev_rc" -ne 0 ] && [ -z "$(pkg_state ubuntu-hello)" ]; then
+# The previous release's packages were built for the newest series only, so
+# Ubuntu 22.04 cannot resolve their dependencies and has no earlier version to
+# upgrade from. Only that known case is exempt: any other install failure still
+# runs (and fails) the checks below.
+series="$(. /etc/os-release && echo "${VERSION_CODENAME:-}")"
+if [ "$PKG" = deb ] && [ "$series" = jammy ] && [ "$prev_rc" -ne 0 ] && [ -z "$(pkg_state ubuntu-hello)" ]; then
 	note previous_release not-installable
 	emit
 	exit 0

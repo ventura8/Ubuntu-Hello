@@ -8,7 +8,7 @@ description: >-
 
 # Docker CI (Ubuntu 26.04) — lint, coverage, compat matrix
 
-Target OS is fixed **Ubuntu 26.04 (resolute)**. Every CI Dockerfile uses `FROM ubuntu:26.04`. **Do not** use floating series tags or any `latest` alias.
+Target OS is fixed **Ubuntu 26.04 (resolute)**. Every CI Dockerfile uses `FROM ubuntu:26.04`, except the `jammy` compat cell (`FROM ubuntu:22.04`), which tests the oldest supported release. **Do not** use floating series tags or any `latest` alias.
 
 ## Root clean + Dockerfile location
 
@@ -20,7 +20,7 @@ All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS
 |---|---|---|---|
 | `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` + `scripts/i18n-lint.py` + `scripts/no-suppressions-lint.py` + `shellcheck` |
 | `coverage` | `docker/Dockerfile.ci.coverage` | `ubuntu-hello-ci-coverage:26.04` | pytest coverage floors + meson C++ tests |
-| `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` | DE compatibility build/test |
+| `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` (`jammy`: `ubuntu-hello-ci-jammy:22.04`) | DE compatibility build/test; `jammy` = Ubuntu 22.04 |
 
 SonarQube Cloud is a separate driver (not a `UH_CI_STAGE`): `./scripts/ci-sonar.sh`
 runs `sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0` against
@@ -49,6 +49,7 @@ Keep **one Dockerfile + one image per DE** (no ARG-collapsed single image).
 | `mate` | `docker/Dockerfile.ci.mate` | `ubuntu-hello-ci-mate:26.04` |
 | `budgie` | `docker/Dockerfile.ci.budgie` | `ubuntu-hello-ci-budgie:26.04` |
 | `lxqt` | `docker/Dockerfile.ci.lxqt` | `ubuntu-hello-ci-lxqt:26.04` |
+| `jammy` | `docker/Dockerfile.ci.jammy` (`FROM ubuntu:22.04`) | `ubuntu-hello-ci-jammy:22.04` |
 
 ## Full local gate
 
@@ -80,9 +81,9 @@ Packaging-only parallel matrix (local; same cells as GHA):
 
 * GHA runners: `runs-on: ubuntu-26.04`
 * GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.4.1`) — never commit SHAs, never a `latest` alias
-* Docker: `FROM ubuntu:26.04`; `# syntax=docker/dockerfile:1.27.0`
+* Docker: `FROM ubuntu:26.04` (`jammy` cell: `ubuntu:22.04`); `# syntax=docker/dockerfile:1.27.0`
 * Pip in CI images: exact pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`)
-* Apt: distro-locked by `FROM ubuntu:26.04` (document; do not add unpinned URL installers)
+* Apt: distro-locked by the base image (`FROM ubuntu:26.04`; `ubuntu:22.04` for `jammy`) (document; do not add unpinned URL installers)
 
 ## Caching
 

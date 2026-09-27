@@ -30,7 +30,6 @@ def test_runtime_deps_include_gtk_babel_and_de_tools():
         "dconf-cli",
         "libglib2.0-bin",
         "xfconf",
-        "libkf6config-bin",
         "libpam-gnome-keyring",
         "libpam-kwallet5",
         "pkexec",
@@ -41,6 +40,9 @@ def test_runtime_deps_include_gtk_babel_and_de_tools():
         "ninja-build",
     ):
         assert required in pkgs, f"missing {required}"
+    # KF6 where apt offers it, KF5 on Ubuntu 22.04 (uh_apt_resolve_package): exactly one.
+    kde_config = pkgs & {"libkf6config-bin", "libkf5config-bin"}
+    assert len(kde_config) == 1, kde_config
 
 
 def test_never_remove_includes_python3():

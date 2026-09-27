@@ -34,6 +34,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 │   ├── Dockerfile.ci.coverage
 │   ├── Dockerfile.ci          # Baseline compat (FROM ubuntu:26.04)
 │   ├── Dockerfile.ci.<de>     # Per-DE compat images
+│   ├── Dockerfile.ci.jammy    # Ubuntu 22.04 compat cell (oldest supported release)
 │   └── Dockerfile.ppa
 ├── logs/                      # Agent progress + CI stage/matrix logs
 ├── tests/                     # pytest + PAM C++ unit tests
@@ -93,6 +94,8 @@ sudo apt-get update && sudo apt-get install -y \
   libpam-gnome-keyring libpam-kwallet5 \
   pkexec polkitd
 ```
+
+On **22.04** replace `libkf6config-bin` with `libkf5config-bin` (22.04 has no KF6), or let `install.sh` pick it: `scripts/uh-apt-deps.sh` resolves it from apt's candidates.
 
 `install.sh` installs this full set via [`scripts/uh-apt-deps.sh`](../scripts/uh-apt-deps.sh) (build + runtime for every supported DE). Packages that were **not** already present are recorded under `/var/lib/ubuntu-hello/apt-packages-added.list` and removed again by `uninstall.sh` (base packages such as `python3` are never removed). Uninstall also allows apt to drop **auto-installed** transitive deps of those tracked packages (e.g. `libxfconf-0-3` with `xfconf`); it still refuses to remove untracked **manual** packages. The auto check uses `grep … < <(apt-mark showauto </dev/null)` so it stays correct under `set -o pipefail` and inside `while read` plan validation.
 dlib (often via pip):
@@ -417,7 +420,7 @@ clang-tidy conflict (`modernize-use-trailing-return-type` vs `cpp:S3574`).
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
-Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`, `docker/setup-buildx-action@v4.4.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
+Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`, `docker/setup-buildx-action@v4.4.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` (the `jammy` compat cell alone uses `ubuntu:22.04`) + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
 
 Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 

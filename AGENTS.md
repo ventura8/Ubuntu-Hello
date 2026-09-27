@@ -18,7 +18,7 @@ Thin tool adapters (do not duplicate this file): [CLAUDE.md](CLAUDE.md), [GEMINI
 * **What is Ubuntu Hello?**
   Ubuntu Hello is a Windows Hello™-style facial authentication system for Linux. It integrates with PAM (Pluggable Authentication Module) to authorize users for `sudo`, screen unlocks, login managers (e.g., GDM), `su`, and graphical authentication requests (via Polkit).
 * **Historical Context**: The project was rebranded from *Howdy*. Ensure all references, variables, packages, and system files use the prefix/name `ubuntu-hello` or `ubuntu_hello`. Do **not** use the old name.
-* **Target OS**: Fixed current version is **Ubuntu 26.04 (resolute)**. Compatible with other modern Debian-based and Arch-based Linux distributions, but agents must treat 26.04/resolute as the project baseline (do not mix older codenames such as Plucky into docs or CI).
+* **Target OS**: Fixed current version is **Ubuntu 26.04 (resolute)**. Compatible with other modern Debian-based and Arch-based Linux distributions, but agents must treat 26.04/resolute as the project baseline (do not mix older codenames such as Plucky into docs or CI). Ubuntu **22.04 (jammy)** is the oldest supported release: the PPA builds it and the `jammy` compat cell tests it (see §4.2).
 * **Supported desktops**: GNOME, KDE/Plasma, XFCE, Cinnamon, MATE, Budgie, LXQt. Face auth via `common-auth` is DE-agnostic; login wallet auto-unlock depends on PAM consumers of `PAM_AUTHTOK` (primarily `pam_gnome_keyring` and `pam_kwallet5`).
 * **Core Goal**: Secure, reliable, and smooth facial authentication.
 
@@ -292,7 +292,7 @@ Ensure files are modified or added in their appropriate structural directories:
 > [!IMPORTANT]
 > Fixed OS version, split stages (lint / coverage / compat), and parallel per-DE compat images are hard rules for agents touching Docker or CI.
 
-* **Base image always fixed**: every CI/PPA Dockerfile must use `FROM ubuntu:26.04`. **Forbidden:** floating series tags, unpinned “current Ubuntu” aliases, or any dependency pin that uses the word `latest`.
+* **Base image always fixed**: every CI/PPA Dockerfile must use `FROM ubuntu:26.04` — the one exception is the `jammy` compat cell (`docker/Dockerfile.ci.jammy`, `FROM ubuntu:22.04`), which exists to test the oldest supported release. **Forbidden:** floating series tags, unpinned “current Ubuntu” aliases, or any dependency pin that uses the word `latest`.
 * **Dockerfiles under `docker/`** (root stays clean): `docker/Dockerfile.ci.lint`, `docker/Dockerfile.ci.coverage`, `docker/Dockerfile.ci` (baseline compat), `docker/Dockerfile.ci.<de>`, `docker/Dockerfile.ppa`.
 * **Three stages** (`UH_CI_STAGE`):
   * `lint` — `docker/Dockerfile.ci.lint` / `ubuntu-hello-ci-lint:26.04` / `build-ci-lint` — meson/ninja + clang-tidy + `py_compile` + `scripts/i18n-lint.py` (JSON + gettext `.po`) + `scripts/no-suppressions-lint.py` + `shellcheck` (packaging scripts)
@@ -304,9 +304,9 @@ Ensure files are modified or added in their appropriate structural directories:
 * **Pinned CI deps** (explicit version tags/numbers only — never commit SHAs, never the `latest` alias):
   * GHA runners: `runs-on: ubuntu-26.04` (not a floating runner alias)
   * GHA actions: explicit tags (e.g. `actions/checkout@v7.0.1`, `docker/setup-buildx-action@v4.4.1`, `softprops/action-gh-release@v3.0.3`)
-  * Docker base: `FROM ubuntu:26.04`; BuildKit frontend `# syntax=docker/dockerfile:1.27.0`
+  * Docker base: `FROM ubuntu:26.04` (`jammy` cell: `ubuntu:22.04`); BuildKit frontend `# syntax=docker/dockerfile:1.27.0`
   * Pip in CI images: exact `==` pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`)
-  * Apt: distro-locked by `ubuntu:26.04` — no unpinned `curl|bash` installers
+  * Apt: distro-locked by the base image (`ubuntu:26.04`, `ubuntu:22.04` for `jammy`) — no unpinned `curl|bash` installers
 * **Image tags** use an explicit version suffix (`ubuntu-hello-ci-lint:26.04`, `ubuntu-hello-ci-<de>:26.04`, `ubuntu-hello-ppa:26.04`) — never rely on Docker’s implicit `:latest` tag.
 * **Caching** (speed only; never weakens gates): `DOCKER_BUILDKIT=1`; Dockerfiles use BuildKit apt/pip cache mounts; `scripts/ci-docker.sh` supports `UH_CI_DOCKER_CACHE=local|gha|none`, skips rebuild when the image label matches the Dockerfile digest (`UH_CI_FORCE_BUILD=1` to force). On local `buildx` failure, continue only if the loaded image’s digest label matches the current Dockerfile digest (cache-export flake after `--load`); otherwise retry without cache export — never continue on a stale pre-existing tag. GHA uses `docker/setup-buildx-action@v4.4.1` + `UH_CI_DOCKER_CACHE=gha` (`type=gha` scopes per stage/DE). Local cache dir: `.cache/docker-ci/` (gitignored via `.cache`).
 * **Lint / coverage images**:
@@ -328,6 +328,7 @@ Ensure files are modified or added in their appropriate structural directories:
 | `mate` | `docker/Dockerfile.ci.mate` | `ubuntu-hello-ci-mate:26.04` | `build-ci-mate` |
 | `budgie` | `docker/Dockerfile.ci.budgie` | `ubuntu-hello-ci-budgie:26.04` | `build-ci-budgie` |
 | `lxqt` | `docker/Dockerfile.ci.lxqt` | `ubuntu-hello-ci-lxqt:26.04` | `build-ci-lxqt` |
+| `jammy` | `docker/Dockerfile.ci.jammy` (`FROM ubuntu:22.04`) | `ubuntu-hello-ci-jammy:22.04` | `build-ci-jammy` |
 
 * **Scripts**: `UH_CI_STAGE=lint|coverage ./scripts/ci-docker.sh` for quality stages; `UH_CI_STAGE=compat UH_CI_DE=<de> ./scripts/ci-docker.sh` for one compat cell; `./scripts/ci-pipeline.sh` for the full fail-fast gate (lint → coverage → compat → packaging); `./scripts/ci-matrix.sh` for parallel compat only; `./scripts/ci-packaging-matrix.sh` for parallel packaging only; `./scripts/ci-packaging-cell.sh <format>` for one packaging format. `docker/Dockerfile.ppa` stays `ubuntu:26.04` only (no DE packaging matrix).
 * **Pipeline fix-until-green** (see `.agents/skills/pipeline-runner/SKILL.md`): when running the CI gate, **fix all failures and re-run until every stage and DE cell is green**. Do **not** ignore warnings, add NOLINT suppressions, add `# shellcheck disable=…` (or `shellcheck -e`), add `# noqa` / `# type: ignore` / similar Python suppressions, disable checks, raise clang-tidy thresholds, lower coverage floors, or skip steps to paper over red CI. Fix the code so linters pass cleanly. Each stage/cell must keep fail-fast quality steps (`set -e`, clang-tidy `WarningsAsErrors`).

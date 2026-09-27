@@ -142,6 +142,9 @@ uh_apt_install_all() {
 	local -a missing=()
 	local -a all=()
 	local p
+	export DEBIAN_FRONTEND=noninteractive
+	# Refresh first: uh_apt_resolve_package picks KF5 vs KF6 from apt's candidates.
+	apt-get update -qq
 	mapfile -t all < <(uh_apt_unique_packages)
 	for p in "${all[@]}"; do
 		if ! uh_apt_is_installed "$p"; then
@@ -149,8 +152,6 @@ uh_apt_install_all() {
 		fi
 	done
 
-	export DEBIAN_FRONTEND=noninteractive
-	apt-get update -qq
 	apt-get install -y -qq "${all[@]}" 2>&1 | tail -5
 
 	if [ "${#missing[@]}" -gt 0 ]; then

@@ -89,7 +89,7 @@ auto write_file(const std::string &path, const std::string &text) -> void {
 
 auto ini(const std::string &dir, const std::string &name,
          const std::string &text) -> std::string {
-  const std::string path = dir + "/" + name + ".ini";
+  std::string path = dir + "/" + name + ".ini";
   write_file(path, text);
   return path;
 }
@@ -155,7 +155,8 @@ void test_ubuntu_hello_error() {
 }
 
 void test_ubuntu_hello_status(const std::string &dir) {
-  char user[] = "alice";
+  std::array<char, 6> user_buf{"alice"};
+  char *user = user_buf.data();
   Messages quiet;
   const INIReader defaults(ini(dir, "defaults", "[core]\n"));
   check(ubuntu_hello_status(user, EXIT_SUCCESS, defaults, recorder(quiet)) == PAM_SUCCESS,
