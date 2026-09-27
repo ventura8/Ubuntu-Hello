@@ -2,20 +2,14 @@
 
 # Import required modules
 import sys
-import os
 import builtins
-import fileinput
-import configparser
+import config_edit
 import paths_factory
 
 from i18n import _
 
 # Get the absolute filepath
 config_path = paths_factory.config_file_path()
-
-# Read config from disk
-config = configparser.ConfigParser()
-config.read(config_path)
 
 # Check if enough arguments have been passed
 if not builtins.ubuntu_hello_args.arguments:
@@ -35,14 +29,18 @@ else:
 	print(_("Please only use 0 (enable) or 1 (disable) as an argument"))
 	sys.exit(1)
 
+# A missing key means enabled, as in the PAM module (core.disabled defaults to false)
+current_value = "true" if config_edit.get_bool(config_path, "core", "disabled", False) else "false"
+
 # Don't do anything when the state is already the requested one
-if out_value == config.get("core", "disabled", fallback=True):
+if out_value == current_value:
 	print(_("The disable option has already been set to ") + out_value)
 	sys.exit(1)
 
-# Loop though the config file and only replace the line containing the disable config
-for line in fileinput.input([config_path], inplace=1):
-	print(line.replace("disabled = " + config.get("core", "disabled", fallback=True), "disabled = " + out_value), end="")
+# Section-aware and atomic (temp file + rename): any spelling of the key is
+# updated, a missing key is added under [core], comments are kept, and a failed
+# write leaves the old config in place rather than an empty file.
+config_edit.set_option(config_path, "core", "disabled", out_value)
 
 # Print what we just did
 if out_value == "true":

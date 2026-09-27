@@ -85,13 +85,26 @@ class TestGreeterRule:
 		_all_true(results, "25-greeter-pam", "greeter_input_succeeds", "greeter_still_runs_after_failure")
 
 
+def _polkit_sandboxed(results):
+	"""False on polkit without the hardened helper unit (0.105 on Ubuntu 22.04):
+	its helper is setuid, so there is no sandbox and the drop-in is inert."""
+	_, info = checks(results, "30-polkit-sandbox")
+	return info.get("polkit_sandbox") != "not-applicable"
+
+
 class TestPolkitSandbox:
 	def test_the_tpm_is_blocked_without_the_dropin_and_reachable_with_it(self, results):
 		"""The defect a real polkit prompt found: unseal refused under the hardened unit."""
+		if not _polkit_sandboxed(results):
+			_all_true(results, "30-polkit-sandbox", "helper_is_setuid")
+			return
 		_all_true(results, "30-polkit-sandbox", "polkit_unit_is_hardened", "tpm_present", "tpm_tools",
 		          "tpm_blocked_without_dropin", "tpm_unseal_with_dropin")
 
 	def test_the_dropin_grants_exactly_what_the_notifier_and_camera_need(self, results):
+		if not _polkit_sandboxed(results):
+			_all_true(results, "30-polkit-sandbox", "helper_is_setuid")
+			return
 		_all_true(results, "30-polkit-sandbox", "runtime_dir_writable_with_dropin",
 		          "home_hidden_but_run_user_visible")
 
@@ -122,20 +135,38 @@ class TestRemove:
 		_all_true(results, "90-remove", "no_crash_reports")
 
 
+def _previous_release_installable(results):
+	"""False where the previous release's packages cannot install at all (built
+	for the newest series only; Ubuntu 22.04 cannot resolve their dependencies)."""
+	_, info = checks(results, "95-upgrade-from-previous")
+	if info.get("previous_release") != "not-installable":
+		return True
+	assert info.get("prev_install_exit") not in (None, "0"), info
+	return False
+
+
 class TestUpgradeFromPreviousRelease:
 	"""A real apt upgrade from the previous GitHub release over a hand-edited config."""
 
 	def test_the_upgrade_repairs_what_the_old_version_left_half_configured(self, results):
+		if not _previous_release_installable(results):
+			return
 		_all_true(results, "95-upgrade-from-previous", "prev_config_present", "upgrade_succeeded",
 		          "upgraded_package_configured", "upgraded_gtk_configured", "upgrade_repaired_dlib")
 
 	def test_the_users_config_and_models_are_kept(self, results):
+		if not _previous_release_installable(results):
+			return
 		_all_true(results, "95-upgrade-from-previous", "kept_hand_edits", "kept_threshold", "kept_user_comment",
 		          "kept_models")
 
 	def test_the_new_key_is_added_at_the_users_level(self, results):
+		if not _previous_release_installable(results):
+			return
 		_all_true(results, "95-upgrade-from-previous", "migration_added_key", "migration_used_fast_level")
 
 	def test_login_works_after_the_upgrade(self, results):
+		if not _previous_release_installable(results):
+			return
 		_all_true(results, "95-upgrade-from-previous", "pam_line_present", "runtime_dir_present",
 		          "password_login_works")

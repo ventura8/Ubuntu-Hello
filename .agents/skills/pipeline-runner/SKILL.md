@@ -77,8 +77,8 @@ UH_CI_STAGE=compat UH_CI_DE=baseline ./scripts/ci-docker.sh 2>&1 | tee logs/ci-b
 | Stage | Image / driver | Runs |
 |---|---|---|
 | `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile`, `scripts/i18n-lint.py`, `scripts/no-suppressions-lint.py`, `shellcheck` (packaging scripts) |
-| `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` |
-| `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip` |
+| `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` |
+| `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` |
 | `packaging` | format release images via `ci-packaging-cell.sh` | build artifact → `packaging-smoke-verify.sh` → live E2E install/upgrade/remove/reinstall (`packaging-e2e-install.sh`; Snap E2E inside `ci-snap-build.sh`) |
 
 Coverage DBs use `COVERAGE_FILE=${BUILD_DIR}/.coverage` (coverage stage only).

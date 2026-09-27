@@ -23,6 +23,14 @@ prev_rc=0
 pkg_install "${assets[@]/#/./}" || prev_rc=$?
 note prev_install_exit "$prev_rc"
 note prev_state "$(pkg_state ubuntu-hello)"
+# The previous release's packages were built for the newest series only; an
+# older series (Ubuntu 22.04) cannot resolve their dependencies, so there is no
+# earlier version to upgrade from there.
+if [ "$prev_rc" -ne 0 ] && [ -z "$(pkg_state ubuntu-hello)" ]; then
+	note previous_release not-installable
+	emit
+	exit 0
+fi
 check prev_config_present test -f "$CFG"
 
 # The user's edits, made on the old version.

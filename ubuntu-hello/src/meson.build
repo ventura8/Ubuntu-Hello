@@ -4,7 +4,7 @@ if meson.is_subproject()
     'cpp',
     license: 'MIT',
     version: run_command('python3', join_paths(meson.current_source_dir(), '..', '..', 'scripts', 'read-version.py'), check: true).stdout().strip(),
-    meson_version: '>= 0.64.0',
+    meson_version: '>= 0.61.0',
   )
 endif
 
@@ -46,7 +46,6 @@ py_sources = [
     'compare.py',
     'enroll_capture.py',
     'frame_text.py',
-    py_i18n,
     'config_edit.py',
     'config_ensure.py',
     'keyring_crypto.py',
@@ -63,7 +62,6 @@ py_sources = [
     'rubberstamps/hotkey.py',
     'rubberstamps/nod.py',
     'snapshot.py',
-    py_paths,
 ]
 
 # Include PAM module
@@ -100,22 +98,34 @@ if get_option('install_pam_config')
     )
 endif
 
-if get_option('install_in_site_packages')
-    py.install_sources(
-        py_sources,
-        subdir: 'ubuntu-hello',
-        preserve_path: true,
-        install_tag: 'py_sources',
-    )
-else
-    install_data(
-        py_sources,
-        preserve_path: true,
-        install_dir: pysourcesinstalldir,
-        install_mode: 'r--r--r--',
-        install_tag: 'py_sources',
-    )
-endif
+# One call per file keeps cli/, recorders/, rubberstamps/ subdirectories:
+# install_data(preserve_path:) needs meson 0.64, Ubuntu 22.04 ships 0.61.
+# fs.parent() only for the source paths: on a configure_file() output it names
+# the build directory (paths.py / i18n.py landed under ubuntu-hello/src/).
+fs = import('fs')
+py_install = []
+foreach py_source : py_sources
+    py_install += [[py_source, fs.parent(py_source)]]
+endforeach
+py_install += [[py_i18n, '.'], [py_paths, '.']]
+foreach py_entry : py_install
+    py_source = py_entry[0]
+    py_source_dir = py_entry[1]
+    if get_option('install_in_site_packages')
+        py.install_sources(
+            py_source,
+            subdir: py_source_dir == '.' ? 'ubuntu-hello' : 'ubuntu-hello' / py_source_dir,
+            install_tag: 'py_sources',
+        )
+    else
+        install_data(
+            py_source,
+            install_dir: py_source_dir == '.' ? pysourcesinstalldir : pysourcesinstalldir / py_source_dir,
+            install_mode: 'r--r--r--',
+            install_tag: 'py_sources',
+        )
+    endif
+endforeach
 
 install_data('logo.png', install_tag: 'meta')
 # /run/ubuntu-hello (face-skip markers, notification ids) exists from boot.

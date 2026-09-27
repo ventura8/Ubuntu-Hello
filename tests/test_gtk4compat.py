@@ -251,6 +251,46 @@ def test_builder_pretranslates_with_python_gettext(fake_gtk, tmp_path, monkeypat
 	b.add_from_file.assert_not_called()
 
 
+
+_PICTURE_UI = (
+	'<interface><object class="GtkPicture">'
+	'<property name="content-fit">contain</property>'
+	'<property name="can-shrink">1</property></object></interface>'
+)
+
+
+def test_builder_without_python_i18n_loads_file_with_c_gettext_domain(fake_gtk, tmp_path, monkeypatch):
+	monkeypatch.setitem(sys.modules, "i18n", types.ModuleType("i18n"))  # no `_`
+	ui = tmp_path / "x.ui"
+	ui.write_text(_PICTURE_UI, encoding="utf-8")
+	b = gtk4compat.builder("scope", str(ui), "dom")
+	b.set_translation_domain.assert_called_once_with("dom")
+	b.add_from_string.assert_called_once_with(_PICTURE_UI)
+	b.add_from_file.assert_not_called()
+
+
+def test_adapt_ui_xml_keeps_content_fit_on_gtk_4_8_and_newer(fake_gtk):
+	assert gtk4compat.adapt_ui_xml(_PICTURE_UI) == _PICTURE_UI
+
+
+def test_adapt_ui_xml_drops_content_fit_on_gtk_4_6(fake_gtk):
+	"""Ubuntu 22.04's GTK 4.6 rejects the whole .ui on an unknown property."""
+	del fake_gtk.ContentFit
+	out = gtk4compat.adapt_ui_xml(_PICTURE_UI)
+	assert "content-fit" not in out
+	assert '<property name="can-shrink">1</property>' in out
+
+
+def test_builder_adapts_ui_for_running_gtk(fake_gtk, tmp_path, monkeypatch):
+	del fake_gtk.ContentFit
+	fake_i18n = MagicMock()
+	fake_i18n._ = lambda s: s
+	monkeypatch.setitem(sys.modules, "i18n", fake_i18n)
+	ui = tmp_path / "x.ui"
+	ui.write_text(_PICTURE_UI, encoding="utf-8")
+	b = gtk4compat.builder("scope", str(ui), "dom")
+	assert "content-fit" not in b.add_from_string.call_args.args[0]
+
 def test_apply_text_direction(fake_gtk, monkeypatch):
 	fake_languages = MagicMock()
 	fake_languages.is_rtl = lambda code: code == "ar"
@@ -303,6 +343,62 @@ def test_run_dialog_blocks_until_response(fake_gtk, monkeypatch):
 	loop.run.side_effect = lambda: handlers["close-request"](dialog)
 	assert run_dialog(dialog) == -4
 
+
+class _FakePromptWindow:
+	def __init__(self, parent, title):
+		self.parent, self.title = parent, title
+		self.content = MagicMock()
+		self.actions = []
+		self.destroyed = False
+
+	def add_action(self, label, response, suggested=False):
+		self.actions.append((label, response, suggested))
+
+	def destroy(self):
+		self.destroyed = True
+
+
+def test_alert_without_alertdialog_uses_prompt_window(fake_gtk, monkeypatch):
+	"""GTK 4.6 (Ubuntu 22.04) has no Gtk.AlertDialog: same contract on a PromptWindow."""
+	del fake_gtk.AlertDialog
+	windows = []
+
+	def make(parent, title):
+		windows.append(_FakePromptWindow(parent, title))
+		return windows[-1]
+
+	monkeypatch.setattr(gtk4compat, "PromptWindow", make)
+	answers = iter([1, -4, 7])
+	monkeypatch.setattr(gtk4compat, "run_dialog", lambda window: next(answers))
+	assert gtk4compat.alert("parent", "Sure?", "detail", buttons=("Cancel", "Delete"), default=1, cancel=0) == 1
+	win = windows[0]
+	assert win.parent == "parent" and win.destroyed
+	assert win.actions == [("Cancel", 0, False), ("Delete", 1, True)]
+	assert win.content.append.call_count == 2  # heading + body
+	fake_gtk.Label.assert_any_call(label="Sure?", xalign=0.0, wrap=True)
+	fake_gtk.Label.assert_any_call(label="detail", xalign=0.0, wrap=True)
+	# Escape / close (DELETE_EVENT) -> cancel index; out-of-range answer too
+	assert gtk4compat.alert("parent", "Sure?", buttons=("Cancel", "Delete"), default=1, cancel=0) == 0
+	assert gtk4compat.alert("parent", "Info") == 0
+	assert windows[2].content.append.call_count == 1  # no body label
+
+
+def test_dropdown_without_expression_support_disables_search(fake_gtk):
+	"""PyGObject 3.42 (Ubuntu 22.04) rejects a Gtk.Expression: no type-ahead, still a dropdown."""
+	widget = FakeDropDown()
+	with patch.object(gtk4compat.gi, "version_info", (3, 42, 1)):
+		gtk4compat.IdDropDown(widget)
+	assert widget.search is False
+	assert not hasattr(widget, "expression")
+	fake_gtk.ClosureExpression.new.assert_not_called()
+	assert widget.factory is not None
+
+
+def test_gtk_expressions_supported_from_pygobject_3_44():
+	with patch.object(gtk4compat.gi, "version_info", (3, 44, 0)):
+		assert gtk4compat.gtk_expressions_supported() is True
+	with patch.object(gtk4compat.gi, "version_info", (3, 42, 1)):
+		assert gtk4compat.gtk_expressions_supported() is False
 
 def test_alert_returns_chosen_button(fake_gtk, monkeypatch):
 	loop = MagicMock(); loop.is_running.return_value = True

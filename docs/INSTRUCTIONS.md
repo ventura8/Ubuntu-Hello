@@ -77,7 +77,7 @@ Canonical agent rules: [AGENTS.md](../AGENTS.md). Architecture: [architecture/RE
 
 ### 2.1 Dependencies
 
-On Debian/Ubuntu (baseline **26.04 / resolute**):
+On Debian/Ubuntu (development baseline **26.04 / resolute**; oldest supported release **22.04 / jammy**, see *Oldest supported release* below):
 
 ```bash
 sudo apt-get update && sudo apt-get install -y \
@@ -149,6 +149,13 @@ sudo meson install -C build
 - Skill: [`.agents/skills/i18n/SKILL.md`](../.agents/skills/i18n/SKILL.md).
 
 #### Native Settings UX checklist (manual)
+
+**Oldest supported release — Ubuntu 22.04 (jammy):** meson 0.61, GTK 4.6, PyGObject 3.42, Python 3.10. The PPA builds jammy, and the `jammy` compat cell (`docker/Dockerfile.ci.jammy`) runs the build, unit tests and Settings E2E there. Keep new code within those versions or behind a `gtk4compat` fallback:
+
+* meson: no feature newer than 0.61 (`install_data(preserve_path:)` is 0.64 — `ubuntu-hello/src/meson.build` loops with `fs.parent()` instead). `meson_options.txt` stays a symlink to `meson.options`: 0.61 reads only the former.
+* `.ui` files: no property newer than GTK 4.6. `GtkPicture:content-fit` (4.8) is stripped at load time by `gtk4compat.adapt_ui_xml()` (every loader, tests included, goes through it); `GtkCenterBox` children use `<child type="start|center|end">`, not the 4.10 `*-widget` properties.
+* Python: `Gtk.AlertDialog` (4.10) → `gtk4compat.alert()` falls back to a `PromptWindow`; `Gtk.Expression` needs PyGObject ≥ 3.44 → `gtk4compat.gtk_expressions_supported()` gates the dropdown search; GTK 4.10+ accessors (`get_placeholder_text()`, …) → read the property (`props.placeholder_text`).
+* Tests: on Python 3.10, `patch("a.b.c")` resolves by attribute from `sys.modules["a"]`, and imports through `builtins.__import__` — keep mock trees linked (`tests/conftest.py`) and patch `sys.*` before patching `__import__`.
 
 Settings stays **native GTK 4 + GtkBuilder `.ui`** (stock `HeaderBar` / `Notebook` / `SearchEntry`, `Gtk.DropDown` via `gtk4compat.dropdown()`, `Gtk.AlertDialog` via `gtk4compat.alert()` and small modal `gtk4compat.PromptWindow`s — no GTK 4.10-deprecated widgets; `gtk4compat.py` wraps the removed GTK 3 calls). Do **not** introduce web/Electron/custom chrome. Automated smoke: Settings E2E under xvfb in every `UH_CI_DE` compat cell. On each supported DE (Ubuntu **26.04**), also verify subjectively:
 

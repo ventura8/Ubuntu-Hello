@@ -3,7 +3,7 @@ if meson.is_subproject()
     'ubuntu-hello-gtk',
     license: 'MIT',
     version: run_command('python3', join_paths(meson.current_source_dir(), '..', 'scripts', 'read-version.py'), check: true).stdout().strip(),
-    meson_version: '>= 0.64.0',
+    meson_version: '>= 0.61.0',
   )
 endif
 

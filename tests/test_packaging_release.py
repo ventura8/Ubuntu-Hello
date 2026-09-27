@@ -511,7 +511,8 @@ def test_check_yml_runs_all_jobs_in_parallel() -> None:
     assert "needs:" not in check_yml
     assert check_yml.count("max-parallel: 20") >= 2
     # 5 job definitions (lint, coverage, compat, packaging, vm); matrices expand to
-    # 1 + 1 + 8 DE + 7 packaging = 17 concurrent runners on every push, plus the
+    # 1 + 1 + 9 compat (8 DE + Ubuntu 22.04) + 7 packaging = 18 concurrent runners
+    # on every push, plus the
     # booted-OS tier's 3 distros on release branches (gated by `if:`, not `needs:`).
     job_defs = check_yml.count("runs-on: ubuntu-26.04")
     assert job_defs == 5
@@ -519,7 +520,8 @@ def test_check_yml_runs_all_jobs_in_parallel() -> None:
     assert "  packaging:" in check_yml
     assert "  vm:" in check_yml
     assert check_yml.count("distro: ") == 3
-    assert job_defs - 3 + 8 + 7 == 17
+    assert "lxqt, jammy]" in check_yml
+    assert job_defs - 3 + 9 + 7 == 18
 
 
 def test_authselect_pam_line_uses_a_real_action_token_not_the_debian_macro() -> None:
@@ -753,3 +755,15 @@ def test_polkit_dropin_never_exposes_home_trees() -> None:
         # socket (works on a read-only bind); it must not be able to replace runtime files
         assert "BindPaths=/run/user" not in text, path
         assert "BindReadOnlyPaths=/run/user" not in text, path
+
+
+def test_generated_python_modules_install_at_the_package_root() -> None:
+    """paths.py / i18n.py are configure_file() outputs: fs.parent() on them names the
+    build directory, which installed them under ubuntu-hello/src/ and broke every
+    import of `paths` and `i18n` (caught by the booted-OS tier on Ubuntu 22.04)."""
+    import re
+    meson = _read_repo("ubuntu-hello/src/meson.build")
+    sources = re.search(r"py_sources = \[(.*?)\]", meson, re.S).group(1)
+    assert "py_i18n" not in sources and "py_paths" not in sources
+    assert "py_install += [[py_i18n, '.'], [py_paths, '.']]" in meson
+    assert "preserve_path: true" not in meson, "meson 0.64+; Ubuntu 22.04 ships 0.61"

@@ -328,8 +328,10 @@ class TestHotkey:
                 raise ImportError("mock error")
             return MagicMock()
 
-        with patch("builtins.__import__", side_effect=mock_import), \
-             patch("sys.exit", side_effect=SystemExit) as mock_exit, \
+        # sys.exit first: Python 3.10's patch() imports its target through
+        # builtins.__import__, which the second patch replaces.
+        with patch("sys.exit", side_effect=SystemExit) as mock_exit, \
+             patch("builtins.__import__", side_effect=mock_import), \
              pytest.raises(SystemExit):
             h.run()
         mock_exit.assert_called_once_with(1)

@@ -82,6 +82,7 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 
 	# Create mock for gi and gi.repository
 	mock_gi = MagicMock()
+	mock_gi.version_info = (3, 50, 0)  # a PyGObject with Gtk.Expression support
 	sys.modules["gi"] = mock_gi
 
 	mock_gtk = MagicMock()
@@ -127,6 +128,9 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 	mock_repository.Gio = mock_gio
 
 	sys.modules["gi.repository"] = mock_repository
+	# Python 3.10's patch("gi.repository.X.y") walks attributes from sys.modules["gi"]
+	# (3.11+ reads sys.modules directly): both paths must reach the same mocks.
+	mock_gi.repository = mock_repository
 	sys.modules["gi.repository.Gtk"] = mock_gtk
 	sys.modules["gi.repository.Gdk"] = mock_gdk
 	sys.modules["gi.repository.GObject"] = mock_gobject

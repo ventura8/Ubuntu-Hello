@@ -95,14 +95,14 @@ Packaging-only parallel matrix (local; same cells as GHA):
 ## What each stage runs
 
 * **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`, `scripts/i18n-lint.py` (JSON + `.po`), `scripts/no-suppressions-lint.py`, `shellcheck` on packaging scripts
-* **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
-* **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip`
+* **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
+* **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main`
 
 ## GitHub Actions
 
 `.github/workflows/check.yml` (OSS **20-runner** concurrency):
 
-* **17 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 8× `compat` matrix (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
+* **18 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 9× `compat` matrix (8 DEs + `jammy`, the Ubuntu 22.04 cell: meson 0.61, GTK 4.6, PyGObject 3.42, Python 3.10) (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
 * **Triggers** — `push` for `master` only, `pull_request` for every PR, and `workflow_dispatch`. Do **not** add `push` back for all branches: a same-repo PR would run twice, since `push` keys the concurrency group on `github.ref` and `pull_request` on the PR number. A branch with no PR yet: `gh workflow run check.yml --ref <branch>`
 * **`vm` job** — runs on `workflow_dispatch`, or on a **same-repo** `pull_request` whose head branch is `feature/v*`. Keep the `head.repo.full_name == github.repository` guard: the tier boots KVM guests and runs privileged Docker builds, and without it a fork could trigger it by naming its branch `feature/v*`
 * **`concurrency.cancel-in-progress: true`** — a new push to the same PR or branch cancels the previous workflow run

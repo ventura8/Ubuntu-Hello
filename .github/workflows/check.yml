@@ -111,7 +111,7 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        de: [baseline, gnome, kde, xfce, cinnamon, mate, budgie, lxqt]
+        de: [baseline, gnome, kde, xfce, cinnamon, mate, budgie, lxqt, jammy]
     steps:
       - name: Checkout source
         uses: actions/checkout@v7.0.1
