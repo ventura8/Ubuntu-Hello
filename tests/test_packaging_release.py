@@ -753,3 +753,30 @@ def test_polkit_dropin_never_exposes_home_trees() -> None:
         # socket (works on a read-only bind); it must not be able to replace runtime files
         assert "BindPaths=/run/user" not in text, path
         assert "BindReadOnlyPaths=/run/user" not in text, path
+
+
+@pytest.mark.parametrize(
+    ("os_release", "too_old"),
+    [
+        ({"ID": "ubuntu", "VERSION_CODENAME": "jammy", "UBUNTU_CODENAME": "jammy"}, True),
+        ({"ID": "ubuntu", "VERSION_CODENAME": "focal"}, True),
+        ({"ID": "linuxmint", "VERSION_CODENAME": "virginia", "UBUNTU_CODENAME": "jammy"}, True),
+        ({"ID": "ubuntu", "VERSION_CODENAME": "noble", "UBUNTU_CODENAME": "noble"}, False),
+        ({"ID": "ubuntu", "VERSION_CODENAME": "resolute"}, False),
+        ({"ID": "linuxmint", "VERSION_CODENAME": "wilma", "UBUNTU_CODENAME": "noble"}, False),
+        ({"ID": "debian", "VERSION_CODENAME": "trixie"}, False),
+    ],
+)
+def test_install_sh_refuses_ubuntu_before_noble(os_release: dict[str, str], too_old: bool) -> None:
+    """The PPA has no jammy build and jammy's meson/GTK are too old (issue #17):
+    install.sh must stop on Ubuntu < 24.04 and derivatives, and only there."""
+    import re
+    text = _read_repo("install.sh")
+    func = re.search(r"^uh_ubuntu_base_too_old\(\) \{\n.*?^\}\n", text, re.S | re.M)
+    assert func, "uh_ubuntu_base_too_old() not found in install.sh"
+    env = {"PATH": os.environ["PATH"], **os_release}
+    result = subprocess.run(
+        ["bash", "-c", func.group(0) + "uh_ubuntu_base_too_old"],
+        env=env, check=False, timeout=10,
+    )
+    assert (result.returncode == 0) is too_old

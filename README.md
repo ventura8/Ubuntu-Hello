@@ -18,6 +18,10 @@ Ubuntu Hello provides Windows Hello™ style authentication for Linux. Use your 
 
 Using the central authentication system (PAM), this works everywhere you would otherwise need your password: Login, lock screen, sudo, su, etc.
 
+## Supported releases
+
+Ubuntu **24.04 LTS (noble)** and newer, and derivatives built on them (e.g. Linux Mint 22). Ubuntu 22.04 (jammy) and older are **not supported**: their meson, GTK 4 and polkit/KDE packages are too old to build or run Ubuntu Hello, and the installer stops with an error there.
+
 ## Supported desktops
 
 Face authentication via PAM (`common-auth`) is **desktop-agnostic** and works with GDM, SDDM, LightDM, and similar display managers.
@@ -75,6 +79,8 @@ sudo add-apt-repository ppa:ventura8/ubuntu-hello
 sudo apt update
 sudo apt install ubuntu-hello
 ```
+
+The PPA publishes builds for Ubuntu 24.04 (noble) and 26.04 (resolute) only. On 22.04 (jammy) `apt update` reports that the PPA "does not have a Release file" because no jammy build exists (see [Supported releases](#supported-releases)).
 
 ### Debian
 

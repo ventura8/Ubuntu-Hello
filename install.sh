@@ -126,10 +126,28 @@ if ! command -v apt-get &>/dev/null; then
     fail "This installer requires apt-get (Ubuntu/Debian). Your system is not supported."
 fi
 
+# Ubuntu releases before 24.04 (and derivatives on them, e.g. Mint 21, which
+# set UBUNTU_CODENAME) cannot build or run Ubuntu Hello: meson < 0.64,
+# GTK < 4.10 (no Gtk.AlertDialog), no KF6 or split pkexec/polkitd packages.
+# The PPA publishes noble and newer only (issue #17).
+uh_ubuntu_base_too_old() {
+    local codename="${UBUNTU_CODENAME:-}"
+    if [ -z "$codename" ] && [ "${ID:-}" = "ubuntu" ]; then
+        codename="${VERSION_CODENAME:-}"
+    fi
+    case "$codename" in
+        trusty|xenial|bionic|focal|jammy|kinetic|lunar|mantic) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
 # Detect distro
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     success "Detected: ${PRETTY_NAME:-$ID}"
+    if uh_ubuntu_base_too_old; then
+        fail "Ubuntu Hello requires Ubuntu 24.04 (noble) or newer; ${PRETTY_NAME:-this release} is not supported."
+    fi
 else
     warn "Could not detect distribution, proceeding anyway..."
 fi
