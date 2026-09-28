@@ -4,7 +4,7 @@ Priority: optional
 Standards-Version: 4.6.2
 Build-Depends:
  debhelper-compat (= 13),
- meson (>= 0.64),
+ meson (>= 0.61),
  ninja-build,
  gettext,
  python3,
@@ -80,7 +80,7 @@ Depends:
  dconf-cli,
  libglib2.0-bin,
  xfconf,
- libkf6config-bin,
+ libkf6config-bin | libkf5config-bin,
  pkexec,
  polkitd
 Description: GTK configuration GUI for Ubuntu Hello

@@ -121,8 +121,10 @@ auto ubuntu_hello_error(int status,
              "Failure, not possible to open camera at configured path");
       break;
     default:
+      // std::string first: S() is a char *, so "S(...) + status" would be
+      // pointer arithmetic (reading past the message), not concatenation.
       conv_function(PAM_ERROR_MSG,
-                    std::string(S("Unknown error: ") + status).c_str());
+                    (std::string(S("Unknown error: ")) + std::to_string(status)).c_str());
       syslog(LOG_ERR, "Failure, unknown error %d", status);
     }
   } else if (WIFSIGNALED(status)) {

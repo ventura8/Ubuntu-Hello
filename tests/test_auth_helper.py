@@ -1,9 +1,16 @@
 import ctypes
+import ctypes.util
 import os
 import sys
 from unittest.mock import patch, MagicMock, mock_open
 import pytest
 import auth_helper
+
+# libc malloc with its real signature: the default c_int restype truncates
+# 64-bit heap pointers (segfaulted on Ubuntu 22.04's heap layout).
+_REAL_MALLOC = ctypes.CDLL(ctypes.util.find_library("c")).malloc
+_REAL_MALLOC.argtypes = [ctypes.c_size_t]
+_REAL_MALLOC.restype = ctypes.c_void_p
 
 def test_verify_user_password_success():
     mock_libpam = MagicMock()
@@ -13,7 +20,7 @@ def test_verify_user_password_success():
     mock_libpam.pam_authenticate.return_value = 0
     mock_libpam.pam_end.return_value = 0
     
-    real_malloc = ctypes.CDLL(ctypes.util.find_library("c")).malloc
+    real_malloc = _REAL_MALLOC
     mock_libc.malloc.side_effect = lambda size: real_malloc(size)
     
     captured_conv = []
@@ -152,7 +159,7 @@ def test_verify_user_password_malloc_fails():
         cb_res = conv_func(1, msg_p1, resp_p1, None)
         assert cb_res == 1
         
-        real_malloc = ctypes.CDLL(ctypes.util.find_library("c")).malloc
+        real_malloc = _REAL_MALLOC
         malloc_calls = 0
         def malloc_side_effect(size):
             nonlocal malloc_calls

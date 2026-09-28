@@ -1,14 +1,13 @@
 # syntax=docker/dockerfile:1.27.0
-# CI image for Ubuntu Hello — Ubuntu 26.04 coverage stage
-# Image tag: ubuntu-hello-ci-coverage:26.04
-# Runs meson/ninja + pytest coverage floors + meson C++ tests (no clang-tidy).
-# Source is bind-mounted at /src by scripts/ci-docker.sh (no COPY).
-FROM ubuntu:26.04
+# CI image for Ubuntu Hello — Ubuntu 22.04 (jammy), the oldest release the PPA builds for:
+# meson 0.61, GTK 4.6, PyGObject 3.42, Python 3.10 (see gtk4compat.py for the
+# GTK < 4.10 fallbacks this cell keeps honest). GNOME theme probe tools.
+# Image tag: ubuntu-hello-ci-jammy:22.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-# Apt packages are distro-locked by ubuntu:26.04 (no floating apt versions).
 
-# Stable apt packages first; DE-specific tools stay in docker/Dockerfile.ci.<de>.
+# Apt packages are distro-locked by ubuntu:22.04 (no floating apt versions).
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     rm -f /etc/apt/apt.conf.d/docker-clean \
@@ -16,16 +15,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     ca-certificates \
     python3 python3-pip python3-dev python3-setuptools python3-wheel \
     python3-numpy python3-opencv python3-babel python3-gi python3-gi-cairo python3-cryptography \
-    gir1.2-gtk-4.0 xvfb \
+    gir1.2-gtk-4.0 libgtk-4-bin \
+    xvfb xauth \
     cmake make build-essential g++ \
-    libstdc++-15-dev \
     libpam0g-dev libinih-dev libevdev-dev libssl-dev libboost-all-dev \
     pkg-config libopencv-dev \
     meson ninja-build gettext \
-    gcovr
+    gsettings-desktop-schemas \
+    dconf-cli \
+    libglib2.0-bin
 
+# Python 3.10: pip has no externally-managed guard, so no --break-system-packages.
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip3 install --break-system-packages \
+    pip3 install \
     pytest==9.1.1 \
     pytest-cov==7.1.0 \
     coverage==7.16.1 \

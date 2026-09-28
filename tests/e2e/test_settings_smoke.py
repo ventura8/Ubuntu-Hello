@@ -65,7 +65,7 @@ def settings_ui(prefs_file):
 	assert GLADE.is_file(), f"missing Builder UI: {GLADE}"
 	builder = Gtk.Builder(_NullScope())
 	builder.set_translation_domain("ubuntu-hello-gtk")
-	builder.add_from_file(str(GLADE))
+	builder.add_from_string(gtk4compat.adapt_ui_xml(GLADE.read_text(encoding="utf-8")))
 
 	window = builder.get_object("mainwindow")
 	notebook = builder.get_object("notebook")
@@ -340,7 +340,7 @@ class TestSettingsWindowSmoke:
 		# Builder rebuild path: fresh Builder with domain (same as Settings instant apply).
 		builder = Gtk.Builder(_NullScope())
 		builder.set_translation_domain("ubuntu-hello-gtk")
-		builder.add_from_file(str(GLADE))
+		builder.add_from_string(gtk4compat.adapt_ui_xml(GLADE.read_text(encoding="utf-8")))
 		label = builder.get_object("languagetab")
 		assert label is not None
 		assert (label.get_text() or label.get_label() or "").strip()

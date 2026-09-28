@@ -3,7 +3,7 @@ project(
   'cpp',
   license: 'MIT',
   version: run_command('python3', 'scripts/read-version.py', check: true).stdout().strip(),
-  meson_version: '>= 0.64.0',
+  meson_version: '>= 0.61.0',
   default_options: ['cpp_std=c++17'],
 )
 

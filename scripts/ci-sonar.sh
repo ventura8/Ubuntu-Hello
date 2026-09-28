@@ -21,13 +21,14 @@
 #
 # Optional:
 #   UH_SONAR_COVERAGE=1  — run UH_CI_STAGE=coverage first so
-#                          artifacts/coverage/coverage.xml is fresh (slow).
+#                          artifacts/coverage/{coverage,cpp-coverage}.xml are fresh (slow).
 #   UH_SONAR_IMAGE       — override the pinned scanner image.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCANNER_IMAGE="${UH_SONAR_IMAGE:-sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0}"
 COVERAGE_XML="${ROOT}/artifacts/coverage/coverage.xml"
+CPP_COVERAGE_XML="${ROOT}/artifacts/coverage/cpp-coverage.xml"
 SONAR_HOST="https://sonarcloud.io"
 
 cd "${ROOT}"
@@ -78,10 +79,13 @@ ensure_coverage() {
     echo "==> refreshing coverage (UH_CI_STAGE=coverage ./scripts/ci-docker.sh)"
     UH_CI_STAGE=coverage "${ROOT}/scripts/ci-docker.sh"
   fi
-  if [[ ! -f "${COVERAGE_XML}" ]]; then
-    echo "==> note: ${COVERAGE_XML#"${ROOT}"/} is missing — analysing without coverage."
-    echo "    Run UH_SONAR_COVERAGE=1 $0, or UH_CI_STAGE=coverage ./scripts/ci-docker.sh first."
-  fi
+  local report
+  for report in "${COVERAGE_XML}" "${CPP_COVERAGE_XML}"; do
+    if [[ ! -f "${report}" ]]; then
+      echo "==> note: ${report#"${ROOT}"/} is missing — analysing without that coverage."
+      echo "    Run UH_SONAR_COVERAGE=1 $0, or UH_CI_STAGE=coverage ./scripts/ci-docker.sh first."
+    fi
+  done
 }
 
 run_scanner() {

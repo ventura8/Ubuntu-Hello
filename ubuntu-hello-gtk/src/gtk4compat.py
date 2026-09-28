@@ -64,6 +64,8 @@ def alert(parent, heading, body="", buttons=("Close",), default=0, cancel=None):
 	returned when the dialog is dismissed (Escape / close); defaults to *default*.
 	"""
 	result = {"index": default if cancel is None else cancel}
+	if not hasattr(gtk, "AlertDialog"):
+		return _alert_window(parent, heading, body, buttons, default, result["index"])
 	loop = GLib.MainLoop()
 	dialog = gtk.AlertDialog(message=heading, detail=body or "", modal=True)
 	dialog.set_buttons(list(buttons))
@@ -81,6 +83,22 @@ def alert(parent, heading, body="", buttons=("Close",), default=0, cancel=None):
 	dialog.choose(parent, None, done)
 	loop.run()
 	return result["index"]
+
+
+def _alert_window(parent, heading, body, buttons, default, cancel):
+	"""alert() on GTK < 4.10 (Ubuntu 22.04 has 4.6, no Gtk.AlertDialog)."""
+	window = PromptWindow(parent, "")
+	title = gtk.Label(label=heading, xalign=0.0, wrap=True)
+	title.add_css_class("title-4")
+	window.content.append(title)
+	if body:
+		window.content.append(gtk.Label(label=body, xalign=0.0, wrap=True))
+	for index, label in enumerate(buttons):
+		window.add_action(label, index, suggested=index == default)
+	response = run_dialog(window)
+	window.destroy()
+	# Escape / window close answer DELETE_EVENT (negative): the cancel button.
+	return response if 0 <= response < len(buttons) else cancel
 
 
 class PromptWindow(gtk.Window):
@@ -259,19 +277,36 @@ def builder(scope, path, domain):
 		pgettext_func = getattr(getattr(i18n, "translation", None), "pgettext", None)
 	except Exception:
 		gettext_func, pgettext_func = None, None
-	xml = None
-	if callable(gettext_func):
-		try:
-			with open(path, encoding="utf-8") as fh:
-				xml = fh.read()
-		except OSError:
-			xml = None
-	if xml is not None:
-		b.add_from_string(translate_ui_xml(xml, gettext_func, pgettext_func))
-	else:
+	try:
+		with open(path, encoding="utf-8") as fh:
+			xml = fh.read()
+	except OSError:
+		xml = None
+	if xml is None:
 		b.set_translation_domain(domain)
 		b.add_from_file(path)
+		return b
+	if callable(gettext_func):
+		xml = translate_ui_xml(xml, gettext_func, pgettext_func)
+	else:
+		b.set_translation_domain(domain)
+	b.add_from_string(adapt_ui_xml(xml))
 	return b
+
+
+# GtkPicture:content-fit is GTK 4.8+. GTK 4.6 (Ubuntu 22.04) rejects the .ui
+# with "Invalid property"; its default keep-aspect-ratio already scales like
+# content-fit=contain, so the property is simply dropped there.
+# No leading \s*: it made the search backtrack over every whitespace run
+# (super-linear); the leftover indentation is harmless in the .ui.
+_CONTENT_FIT = re.compile(r'<property name="content-fit">[^<]*</property>')
+
+
+def adapt_ui_xml(xml):
+	"""Drop .ui properties the running GTK does not know yet."""
+	if not hasattr(gtk, "ContentFit"):
+		xml = _CONTENT_FIT.sub("", xml)
+	return xml
 
 
 def apply_text_direction(language_code):
@@ -280,6 +315,16 @@ def apply_text_direction(language_code):
 	rtl = languages.is_rtl(language_code)
 	gtk.Widget.set_default_direction(gtk.TextDirection.RTL if rtl else gtk.TextDirection.LTR)
 	return rtl
+
+
+def gtk_expressions_supported():
+	"""Whether PyGObject can hand a Gtk.Expression (a GTK fundamental type) to GTK.
+
+	PyGObject 3.42 (Ubuntu 22.04) cannot: it mis-registers the wrapper
+	(CRITICAL pygobject_register_wrapper) and set_expression() raises
+	"expected GObject". 3.44+ handles fundamental types.
+	"""
+	return gi.version_info >= (3, 44)
 
 
 class IdDropDown:
@@ -306,7 +351,9 @@ class IdDropDown:
 		# The expression is only the search haystack; both the button and the
 		# popup list must render rows with our own factory (set after the
 		# expression, and explicitly for the list, or GTK shows the haystack).
-		widget.set_expression(gtk.ClosureExpression.new(str, self._search_haystack, None))
+		searchable = gtk_expressions_supported()
+		if searchable:
+			widget.set_expression(gtk.ClosureExpression.new(str, self._search_haystack, None))
 		self.factory = gtk.SignalListItemFactory()          # button: may ellipsize
 		self.factory.connect("setup", self._setup_row)
 		self.factory.connect("bind", self._bind_row)
@@ -315,7 +362,7 @@ class IdDropDown:
 		self.list_factory.connect("bind", self._bind_row)
 		widget.set_factory(self.factory)
 		widget.set_list_factory(self.list_factory)
-		widget.set_enable_search(True)
+		widget.set_enable_search(searchable)
 		if hasattr(widget, "set_search_match_mode"):
 			widget.set_search_match_mode(gtk.StringFilterMatchMode.SUBSTRING)
 		if min_width:

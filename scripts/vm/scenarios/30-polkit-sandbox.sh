@@ -11,6 +11,24 @@ KEYS=/etc/ubuntu-hello/tpm-keys
 # The hardening polkit applies, taken from its own unit on this system.
 unit=$(systemctl cat polkit-agent-helper@.service 2>/dev/null | grep -E '^(DevicePolicy|ProtectSystem|ProtectHome|PrivateDevices|NoNewPrivileges)=' | sed 's/^/--property=/' | tr '\n' ' ')
 note polkit_hardening "$unit"
+
+# Older polkit (0.105 on Ubuntu 22.04) has no polkit-agent-helper@.service: the
+# helper is a setuid binary, nothing sandboxes it and the drop-in is inert.
+# Prove that instead of simulating a sandbox this system never applies.
+if [ -z "$unit" ] && ! systemctl cat polkit-agent-helper@.service >/dev/null 2>&1; then
+	note polkit_sandbox not-applicable
+	helper_is_setuid() {
+		local helper
+		for helper in /usr/lib/polkit-1/polkit-agent-helper-1 /usr/lib/policykit-1/polkit-agent-helper-1; do
+			[ -u "$helper" ] && return 0
+		done
+		return 1
+	}
+	check helper_is_setuid helper_is_setuid
+	emit
+	exit 0
+fi
+note polkit_sandbox applies
 check polkit_unit_is_hardened test -n "$unit"
 
 # Properties from the drop-in, as the package installed it. Read into an array:

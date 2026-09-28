@@ -1,10 +1,13 @@
 """Tests for config_ensure.py and dpkg postinst config.ini restore."""
 import os
+import sys
+import types
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
 
+import config_ensure
 from config_ensure import config_needs_restore, ensure_system_config
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,7 +71,7 @@ def test_needs_restore_malformed_file(tmp_path):
     assert config_needs_restore(str(dest)) is False
 
 
-def test_ensure_does_not_overwrite_existing(tmp_path):
+def test_ensure_restores_missing_file(tmp_path):
     dest = tmp_path / "etc" / "config.ini"
     ensure_system_config(dest_path=str(dest), template_path=str(SRC_TEMPLATE))
     assert _is_file(dest)
@@ -151,3 +154,81 @@ def test_meson_installs_share_template():
     assert "'config.ini'" in text
     assert "install_dir: datadir" in text
     assert "'config_ensure.py'" in text
+
+
+def _fake_paths(monkeypatch, **attrs):
+    module = types.ModuleType("paths")
+    for name, value in attrs.items():
+        setattr(module, name, value)
+    monkeypatch.setitem(sys.modules, "paths", module)
+
+
+def test_live_config_path_follows_the_build_paths_module(tmp_path, monkeypatch):
+    _fake_paths(monkeypatch, config_dir=str(tmp_path / "etc"))
+    assert config_ensure._live_config_path() == str(tmp_path / "etc" / "config.ini")
+
+
+def test_live_config_path_defaults_to_etc_without_paths_module(monkeypatch):
+    monkeypatch.setitem(sys.modules, "paths", None)
+    assert config_ensure._live_config_path() == "/etc/ubuntu-hello/config.ini"
+
+
+def test_live_config_path_defaults_to_etc_when_paths_lacks_config_dir(monkeypatch):
+    _fake_paths(monkeypatch)
+    assert config_ensure._live_config_path() == "/etc/ubuntu-hello/config.ini"
+
+
+def test_packaged_template_prefers_the_build_data_dir(tmp_path, monkeypatch):
+    template = tmp_path / "config.ini"
+    _write(template, "[video]\n")
+    _fake_paths(monkeypatch, data_dir=str(tmp_path))
+    assert config_ensure.packaged_template_path() == str(template)
+
+
+def test_packaged_template_falls_back_to_share_when_nothing_exists(monkeypatch):
+    monkeypatch.setitem(sys.modules, "paths", None)
+    with patch("config_ensure.os.path.isfile", return_value=False) as isfile:
+        assert config_ensure.packaged_template_path() == "/usr/share/ubuntu-hello/config.ini"
+    checked = [c.args[0] for c in isfile.call_args_list]
+    assert checked[0] == "/usr/share/ubuntu-hello/config.ini"
+    assert checked[1] == str(SRC_TEMPLATE)
+
+
+def test_install_template_keeps_a_config_created_concurrently(tmp_path):
+    """Lost the O_EXCL race to another writer that produced a real config: keep it."""
+    dest = tmp_path / "config.ini"
+    existing = "[video]\ndevice_path = /dev/video2\n"
+    _write(dest, existing)
+    config_ensure._install_template(str(SRC_TEMPLATE), str(dest))
+    assert _read(dest) == existing
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["config.ini"]
+
+
+def test_install_template_cleans_up_when_the_replacement_write_fails(tmp_path):
+    dest = tmp_path / "config.ini"
+    _write(dest, "")
+    real_close = os.close
+    closed = []
+
+    def tracking_close(fd):
+        closed.append(fd)
+        real_close(fd)
+
+    with patch("config_ensure.os.write", side_effect=OSError("disk full")), \
+         patch("config_ensure.os.close", side_effect=tracking_close):
+        with pytest.raises(OSError, match="disk full") as err:
+            config_ensure._install_template(str(SRC_TEMPLATE), str(dest))
+    assert "failed to restore config from" in str(err.value)
+    assert len(closed) == 1                       # the temp file's fd is not leaked
+    assert _read(dest) == ""                      # the live file is untouched
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["config.ini"]
+
+
+def test_install_template_removes_the_temp_file_when_rename_fails(tmp_path):
+    dest = tmp_path / "config.ini"
+    _write(dest, "# comments only\n")
+    with patch("config_ensure.os.replace", side_effect=OSError("EXDEV")):
+        with pytest.raises(OSError, match="EXDEV"):
+            config_ensure._install_template(str(SRC_TEMPLATE), str(dest))
+    assert _read(dest) == "# comments only\n"
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["config.ini"]

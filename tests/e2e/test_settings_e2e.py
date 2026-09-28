@@ -421,11 +421,17 @@ def _walk_widgets(widget):
 
 class TestDropdownSearch:
 	def test_language_list_search_matches_substrings(self, isolated_fs, gtk_pump):
-		"""Typing part of a name (not only its first letters) narrows the list."""
+		"""Typing part of a name (not only its first letters) narrows the list.
+
+		On PyGObject 3.42 (Ubuntu 22.04) a Gtk.Expression cannot reach GTK, so the
+		dropdowns have no type-ahead there; the layout checks still apply."""
+		searchable = gtk4compat.gtk_expressions_supported()
 		win = window.MainWindow(run_main_loop=False)
 		try:
 			for combo in (win.userlist, win.cameraselect, win.language_combo):
-				assert combo.widget.get_search_match_mode() == Gtk.StringFilterMatchMode.SUBSTRING
+				assert combo.widget.get_enable_search() is searchable
+				if searchable:
+					assert combo.widget.get_search_match_mode() == Gtk.StringFilterMatchMode.SUBSTRING
 			win.notebook.set_current_page(_page_index(win, "languagetab"))
 			gtk_pump(40)
 			dropdown = win.language_combo.widget
@@ -454,7 +460,8 @@ class TestDropdownSearch:
 
 			entry = find(popover, Gtk.SearchEntry) or find(popover, Gtk.Text)
 			listview = find(popover, Gtk.ListView)
-			assert entry is not None
+			# Without search the popup still builds the entry; GTK hides its box.
+			assert (entry is not None and entry.is_visible()) is searchable
 			assert listview is not None
 			# The list is wide enough for "Language (Native)" names, rows are single-line (no clipping)
 			assert dropdown.get_width() >= 320
@@ -477,21 +484,22 @@ class TestDropdownSearch:
 			assert win.language_combo.get_active_text() in button_labels, button_labels
 			total = listview.get_model().get_n_items()
 			assert total > 50
-			entry.set_text("eutsch")          # middle of "German (Deutsch)"
-			gtk_pump(40)
-			shown = listview.get_model().get_n_items()
-			assert 0 < shown < total
-			labels = [listview.get_model().get_item(i).get_string() for i in range(shown)]
-			assert any("Deutsch" in text for text in labels), labels
-			# Diacritics-tolerant both ways: "romana" finds "Română", "Română" finds it too
-			for query in ("romana", "Română", "ROMÂNĂ"):
-				entry.set_text(query)
+			if searchable:
+				entry.set_text("eutsch")          # middle of "German (Deutsch)"
 				gtk_pump(40)
 				shown = listview.get_model().get_n_items()
+				assert 0 < shown < total
 				labels = [listview.get_model().get_item(i).get_string() for i in range(shown)]
-				assert any("Română" in text for text in labels), (query, labels)
-			entry.set_text("")
-			gtk_pump(20)
+				assert any("Deutsch" in text for text in labels), labels
+				# Diacritics-tolerant both ways: "romana" finds "Română", "Română" finds it too
+				for query in ("romana", "Română", "ROMÂNĂ"):
+					entry.set_text(query)
+					gtk_pump(40)
+					shown = listview.get_model().get_n_items()
+					labels = [listview.get_model().get_item(i).get_string() for i in range(shown)]
+					assert any("Română" in text for text in labels), (query, labels)
+				entry.set_text("")
+				gtk_pump(20)
 			assert listview.get_model().get_n_items() == total
 			popover.popdown()
 			gtk_pump(20)
@@ -510,7 +518,7 @@ class TestSettingsSearchBestPractices:
 		win = window.MainWindow(run_main_loop=False)
 		try:
 			search = win.settings_search
-			assert search.get_placeholder_text()
+			assert search.props.placeholder_text  # get_placeholder_text() is GTK 4.10+
 			# Live: no Enter needed; upper case; lands on the Notifications page
 			search.set_text("NOTIFIC")
 			gtk_pump(30)

@@ -145,7 +145,7 @@ try:
 			cv2.rectangle(overlay, p1, p2, (0, 200, 0), thickness=cv2.FILLED)
 
 		# Print the statis in the bottom left
-		print_text(0, _("RESOLUTION: %dx%d") % (height, width))
+		print_text(0, _("RESOLUTION: %dx%d") % (width, height))
 		print_text(1, _("FPS: %d") % (fps, ))
 		print_text(2, _("FRAMES: %d") % (total_frames, ))
 		print_text(3, _("RECOGNITION: %dms") % (round(rec_tm * 1000), ))
@@ -186,8 +186,9 @@ try:
 				# Add 20% padding
 				r = int(r + (r * 0.2))
 
-				# If we have models defined for the current user
-				if models:
+				# If the current user's models hold any descriptor (a model with an
+				# empty "data" list gives none, and the norm below needs at least one)
+				if encodings:
 					# Get the encoding of the face in the frame
 					face_landmark = pose_predictor(orig_frame, loc)
 					face_encoding = np.array(face_encoder.compute_face_descriptor(orig_frame, face_landmark, 1))

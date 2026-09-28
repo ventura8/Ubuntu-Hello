@@ -8,7 +8,7 @@ description: >-
 
 # Docker CI (Ubuntu 26.04) — lint, coverage, compat matrix
 
-Target OS is fixed **Ubuntu 26.04 (resolute)**. Every CI Dockerfile uses `FROM ubuntu:26.04`. **Do not** use floating series tags or any `latest` alias.
+Target OS is fixed **Ubuntu 26.04 (resolute)**. Every CI Dockerfile uses `FROM ubuntu:26.04`, except the `jammy` compat cell (`FROM ubuntu:22.04`), which tests the oldest supported release. **Do not** use floating series tags or any `latest` alias.
 
 ## Root clean + Dockerfile location
 
@@ -20,7 +20,7 @@ All CI/PPA Dockerfiles live under **`docker/`** (not the repo root). See [AGENTS
 |---|---|---|---|
 | `lint` | `docker/Dockerfile.ci.lint` | `ubuntu-hello-ci-lint:26.04` | clang-tidy + `py_compile` + `scripts/i18n-lint.py` + `scripts/no-suppressions-lint.py` + `shellcheck` |
 | `coverage` | `docker/Dockerfile.ci.coverage` | `ubuntu-hello-ci-coverage:26.04` | pytest coverage floors + meson C++ tests |
-| `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` | DE compatibility build/test |
+| `compat` | `docker/Dockerfile.ci` / `docker/Dockerfile.ci.<de>` | `ubuntu-hello-ci-<de>:26.04` (`jammy`: `ubuntu-hello-ci-jammy:22.04`) | DE compatibility build/test; `jammy` = Ubuntu 22.04 |
 
 SonarQube Cloud is a separate driver (not a `UH_CI_STAGE`): `./scripts/ci-sonar.sh`
 runs `sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0` against
@@ -49,6 +49,7 @@ Keep **one Dockerfile + one image per DE** (no ARG-collapsed single image).
 | `mate` | `docker/Dockerfile.ci.mate` | `ubuntu-hello-ci-mate:26.04` |
 | `budgie` | `docker/Dockerfile.ci.budgie` | `ubuntu-hello-ci-budgie:26.04` |
 | `lxqt` | `docker/Dockerfile.ci.lxqt` | `ubuntu-hello-ci-lxqt:26.04` |
+| `jammy` | `docker/Dockerfile.ci.jammy` (`FROM ubuntu:22.04`) | `ubuntu-hello-ci-jammy:22.04` |
 
 ## Full local gate
 
@@ -80,9 +81,9 @@ Packaging-only parallel matrix (local; same cells as GHA):
 
 * GHA runners: `runs-on: ubuntu-26.04`
 * GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.4.1`) — never commit SHAs, never a `latest` alias
-* Docker: `FROM ubuntu:26.04`; `# syntax=docker/dockerfile:1.27.0`
+* Docker: `FROM ubuntu:26.04` (`jammy` cell: `ubuntu:22.04`); `# syntax=docker/dockerfile:1.27.0`
 * Pip in CI images: exact pins (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`)
-* Apt: distro-locked by `FROM ubuntu:26.04` (document; do not add unpinned URL installers)
+* Apt: distro-locked by the base image (`FROM ubuntu:26.04`; `ubuntu:22.04` for `jammy`) (document; do not add unpinned URL installers)
 
 ## Caching
 
@@ -95,14 +96,14 @@ Packaging-only parallel matrix (local; same cells as GHA):
 ## What each stage runs
 
 * **lint**: meson/ninja (g++), clang-tidy on PAM `.cc` (+ UH1 test), `py_compile`, `scripts/i18n-lint.py` (JSON + `.po`), `scripts/no-suppressions-lint.py`, `shellcheck` on packaging scripts
-* **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
-* **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip`
+* **coverage**: meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` (`COVERAGE_FILE=${BUILD_DIR}/.coverage`)
+* **compat**: meson/ninja, `py_compile`, pytest **without** coverage floors, Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main`
 
 ## GitHub Actions
 
 `.github/workflows/check.yml` (OSS **20-runner** concurrency):
 
-* **17 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 8× `compat` matrix (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
+* **18 runners** start **immediately** in parallel — no `needs` gates: `lint`, `coverage`, 9× `compat` matrix (8 DEs + `jammy`, the Ubuntu 22.04 cell: meson 0.61, GTK 4.6, PyGObject 3.42, Python 3.10) (`max-parallel: 20`, `fail-fast: false`), and 7× `packaging` format matrix (`deb`, `rpm-fedora`, `rpm-opensuse`, `arch`, `snap`, `appimage`, `flatpak`; same concurrency knobs; skip fork PRs). Packaging cells call **`scripts/ci-packaging-cell.sh`** (build + smoke + live E2E; Snap E2E inside `ci-snap-build.sh`)
 * **Triggers** — `push` for `master` only, `pull_request` for every PR, and `workflow_dispatch`. Do **not** add `push` back for all branches: a same-repo PR would run twice, since `push` keys the concurrency group on `github.ref` and `pull_request` on the PR number. A branch with no PR yet: `gh workflow run check.yml --ref <branch>`
 * **`vm` job** — runs on `workflow_dispatch`, or on a **same-repo** `pull_request` whose head branch is `feature/v*`. Keep the `head.repo.full_name == github.repository` guard: the tier boots KVM guests and runs privileged Docker builds, and without it a fork could trigger it by naming its branch `feature/v*`
 * **`concurrency.cancel-in-progress: true`** — a new push to the same PR or branch cancels the previous workflow run

@@ -371,3 +371,70 @@ def test_video_capture_read_frame_cvt_errors():
             vc = VideoCapture(config)
             with pytest.raises(cv2.error):
                 vc.read_frame()
+
+
+def _video_config():
+    config = configparser.ConfigParser()
+    config.add_section("video")
+    config.set("video", "device_path", "/dev/video0")
+    return config
+
+
+def test_video_capture_device_probe_error_counts_as_missing():
+    """An OSError while probing the path means "no camera" (exit 14), not a crash."""
+    with patch("os.path.exists", side_effect=OSError("EIO")), \
+         patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
+        config = _video_config()
+        with pytest.raises(SystemExit):
+            VideoCapture(config)
+        mock_exit.assert_called_once_with(14)
+
+
+def test_video_capture_retries_a_camera_that_is_still_busy():
+    """The first opens right after a previous release often cannot grab a frame."""
+    with patch("os.path.exists", return_value=True), \
+         patch("cv2.VideoCapture") as mock_cv_capture, \
+         patch("recorders.video_capture.time.sleep") as mock_sleep:
+        mock_cap = mock_cv_capture.return_value
+        mock_cap.grab.side_effect = [False, False, True]
+        vc = VideoCapture(_video_config())
+        assert vc.internal is mock_cap
+        assert mock_cv_capture.call_count == 3
+        assert mock_cap.release.call_count == 2     # each failed open is released
+        assert [c.args[0] for c in mock_sleep.call_args_list] == [0.25, 0.5]
+
+
+def test_video_capture_reraises_the_last_open_error_after_retries():
+    with patch("os.path.exists", return_value=True), \
+         patch("cv2.VideoCapture", side_effect=RuntimeError("device busy")) as mock_cv_capture, \
+         patch("recorders.video_capture.time.sleep") as mock_sleep:
+        config = _video_config()
+        with pytest.raises(RuntimeError, match="device busy"):
+            VideoCapture(config)
+        assert mock_cv_capture.call_count == 6
+        assert mock_sleep.call_count == 6
+
+
+def test_video_capture_exits_14_when_no_frame_can_ever_be_grabbed():
+    with patch("os.path.exists", return_value=True), \
+         patch("cv2.VideoCapture") as mock_cv_capture, \
+         patch("recorders.video_capture.time.sleep"), \
+         patch("sys.exit", side_effect=SystemExit(14)) as mock_exit:
+        mock_cv_capture.return_value.grab.return_value = False
+        config = _video_config()
+        with pytest.raises(SystemExit):
+            VideoCapture(config)
+        mock_exit.assert_called_once_with(14)
+        assert mock_cv_capture.call_count == 6
+
+
+def test_video_capture_release_swallows_driver_errors():
+    with patch("os.path.exists", return_value=True), \
+         patch("cv2.VideoCapture") as mock_cv_capture:
+        mock_cap = mock_cv_capture.return_value
+        vc = VideoCapture(_video_config())
+        mock_cap.release.side_effect = OSError("device unplugged")
+        vc.release()
+        assert vc.internal is None
+        vc.release()                                 # second release is a no-op
+        mock_cap.release.assert_called_once()

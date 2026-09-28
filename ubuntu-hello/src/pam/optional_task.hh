@@ -57,7 +57,12 @@ template <typename T> auto optional_task<T>::get() -> T {
 // WARNING: This function should be used with extreme caution when `force` is
 // set to `true`.
 template <typename T> void optional_task<T>::stop(bool force) {
-  if (!(is_active && thread.joinable()) && spawned) {
+  // Never activated (e.g. the password task when identify() does not ask for
+  // one): there is no thread to cancel or join, and join() would throw.
+  if (!spawned) {
+    return;
+  }
+  if (!(is_active && thread.joinable())) {
     is_active = false;
     return;
   }

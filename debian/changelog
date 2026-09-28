@@ -1,3 +1,28 @@
+ubuntu-hello (1.2.3-1ppa1) resolute; urgency=medium
+
+  * New: Ubuntu 22.04 (jammy) support. The PPA publishes a jammy build
+    (#17). The build needs meson 0.61 (per-file Python install instead of
+    install_data preserve_path), Settings and the setup wizard load on
+    GTK 4.6 (content-fit dropped at load time, typed GtkCenterBox
+    children, an AlertDialog fallback window), and the KDE theme probe
+    falls back to kreadconfig5. On 22.04 the Settings dropdowns have no
+    type-ahead search (PyGObject 3.42 cannot pass the search expression).
+  * Fix: `ubuntu-hello disable` emptied config.ini when the disabled key
+    was missing, and reported success without a change for other
+    spellings. It now edits the file atomically, keeping comments.
+  * Fix: the PAM module's "Unknown error" message did pointer arithmetic
+    on the translated string and showed bytes past its end.
+  * Fix: stopping a PAM task that never started joined a thread that did
+    not exist (password watcher under pam_sm_open_session).
+  * Fix: `ubuntu-hello test` crashed on a model with no descriptors and
+    printed its resolution as height x width; compare.py divided by zero
+    on an empty frame.
+  * Build: new jammy CI cell; C++ PAM coverage uploaded to SonarQube
+    Cloud; the Python coverage gate now counts never-imported modules;
+    150+ new tests.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Mon, 28 Sep 2026 01:05:40 +0300
+
 ubuntu-hello (1.2.2-1ppa1) resolute; urgency=medium
 
   * Security: the setup wizard fetches the dlib face-recognition models as

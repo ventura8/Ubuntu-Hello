@@ -78,3 +78,30 @@ test(
 	pam_face_skip_test,
 	args: [meson.current_build_dir()],
 )
+
+# Unit test for main.cc's helpers and pam_sm_* entry points: main.cc is
+# included by the test itself, with libpam replaced by stubs (no PAM stack).
+pam_main_test = executable(
+	'pam_main_test',
+	meson.project_source_root() / 'tests' / 'pam_main_test.cc',
+	'enter_device.cc',
+	'aes_gcm_uh1.cc',
+	'face_skip.cc',
+	include_directories: include_directories('.'),
+	dependencies: [
+		inih_cpp,
+		threads,
+		libevdev,
+		libcrypto,
+	],
+	link_depends: [
+		paths_h,
+	],
+	install: false,
+)
+test(
+	'pam-main',
+	pam_main_test,
+	args: [meson.current_build_dir()],
+	timeout: 60,
+)

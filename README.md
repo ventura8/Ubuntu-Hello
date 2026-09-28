@@ -18,6 +18,10 @@ Ubuntu Hello provides Windows Hello™ style authentication for Linux. Use your 
 
 Using the central authentication system (PAM), this works everywhere you would otherwise need your password: Login, lock screen, sudo, su, etc.
 
+## Supported releases
+
+Ubuntu **22.04 LTS (jammy)**, **24.04 LTS (noble)** and **26.04 LTS (resolute)**, and derivatives built on them (e.g. Linux Mint 21 and 22). On 22.04 the dropdowns in Settings have no type-ahead search: its PyGObject (3.42) cannot pass GTK the search expression. Everything else works the same.
+
 ## Supported desktops
 
 Face authentication via PAM (`common-auth`) is **desktop-agnostic** and works with GDM, SDDM, LightDM, and similar display managers.
@@ -76,6 +80,8 @@ sudo apt update
 sudo apt install ubuntu-hello
 ```
 
+The PPA publishes builds for Ubuntu 22.04 (jammy), 24.04 (noble) and 26.04 (resolute).
+
 ### Debian
 
 Download the `.deb` file from the [Releases page](https://github.com/ventura8/ubuntu-hello/releases) and install with `gdebi`.
@@ -88,7 +94,7 @@ Download the `.deb` file from the [Releases page](https://github.com/ventura8/ub
 #### Dependencies
 
 - Python 3.6 or higher (with pip, setuptools, wheel)
-- meson ≥ 0.64
+- meson ≥ 0.61
 - ninja
 - dlib (compiled via pip)
 - INIReader (pulled from git automatically if not found)

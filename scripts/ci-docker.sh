@@ -41,6 +41,7 @@ resolve_dockerfile_and_image() {
       BUILD_DIR="${UBUNTU_HELLO_CI_BUILD_DIR:-build-ci-coverage}"
       ;;
     compat)
+      local default_image="ubuntu-hello-ci-${UH_CI_DE}:26.04"
       case "${UH_CI_DE}" in
         baseline)
           DOCKERFILE="docker/Dockerfile.ci"
@@ -48,12 +49,17 @@ resolve_dockerfile_and_image() {
         gnome|kde|xfce|cinnamon|mate|budgie|lxqt)
           DOCKERFILE="docker/Dockerfile.ci.${UH_CI_DE}"
           ;;
+        jammy)
+          # Not a desktop: the oldest supported Ubuntu (22.04) with GNOME probes.
+          DOCKERFILE="docker/Dockerfile.ci.jammy"
+          default_image="ubuntu-hello-ci-jammy:22.04"
+          ;;
         *)
-          echo "error: unknown UH_CI_DE='${UH_CI_DE}' (expected: baseline gnome kde xfce cinnamon mate budgie lxqt)" >&2
+          echo "error: unknown UH_CI_DE='${UH_CI_DE}' (expected: baseline gnome kde xfce cinnamon mate budgie lxqt jammy)" >&2
           exit 1
           ;;
       esac
-      IMAGE="${UBUNTU_HELLO_CI_IMAGE:-ubuntu-hello-ci-${UH_CI_DE}:26.04}"
+      IMAGE="${UBUNTU_HELLO_CI_IMAGE:-${default_image}}"
       BUILD_DIR="${UBUNTU_HELLO_CI_BUILD_DIR:-build-ci-${UH_CI_DE}}"
       ;;
     *)
@@ -184,7 +190,12 @@ build_ci_image() {
 meson_build() {
   echo "==> meson setup (${BUILD_DIR}) with g++ [stage=${UH_CI_STAGE} de=${UH_CI_DE}]"
   rm -rf "${BUILD_DIR}"
-  CC=gcc CXX=g++ meson setup "${BUILD_DIR}"
+  local -a setup_args=()
+  # gcov-instrument the PAM module so run_cpp_coverage can report it to Sonar.
+  if [[ "${UH_CI_STAGE}" == "coverage" ]]; then
+    setup_args+=(-Db_coverage=true)
+  fi
+  CC=gcc CXX=g++ meson setup "${BUILD_DIR}" "${setup_args[@]}"
   echo "==> ninja build"
   ninja -C "${BUILD_DIR}"
 }
@@ -279,12 +290,16 @@ run_pytest_coverage() {
   # Unit suite (gi mocked) + real-GTK E2E under xvfb, one combined coverage DB:
   # the GTK 4 Settings/wizard code (window.py, onboarding.py) is exercised for
   # real by the E2E, which is where its behaviour is actually verified.
-  pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello tests/ --ignore=tests/e2e
-  UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest --cov=ubuntu-hello-gtk --cov=ubuntu-hello --cov-append tests/e2e/
+  # --cov names the src dirs (= sonar.sources): coverage.py only reports a
+  # never-imported module when it sits in a package or a --cov root, and
+  # ubuntu-hello/ is not a package, so untested cli/*.py went uncounted here
+  # while SonarQube counted them at 0%.
+  pytest --cov=ubuntu-hello-gtk/src --cov=ubuntu-hello/src tests/ --ignore=tests/e2e
+  UH_REAL_GTK=1 GSK_RENDERER=cairo xvfb-run -a pytest --cov=ubuntu-hello-gtk/src --cov=ubuntu-hello/src --cov-append tests/e2e/
   # Recorded-footage tier: compare.py's real scan loop and the real nod stamp on
   # per-frame signals. CI has no camera and no real face, so this runs on the
   # committed synthetic set; the same tests run on real recordings on a laptop.
-  UH_REAL_DLIB=1 pytest --cov=ubuntu-hello --cov-append tests/footage/
+  UH_REAL_DLIB=1 pytest --cov=ubuntu-hello/src --cov-append tests/footage/
   # The floor is enforced once on the combined data (pytest-cov rounds its printed %).
   python3 -m coverage report --data-file="${COVERAGE_FILE}" --precision=2 --fail-under=90
   # Cobertura XML for SonarQube Cloud (scripts/ci-sonar.sh reads this path).
@@ -316,8 +331,17 @@ run_pytest_compat() {
 }
 
 run_meson_tests() {
-  echo "==> meson test pam-aes-gcm-uh1 pam-face-skip"
-  meson test -C "${BUILD_DIR}" pam-aes-gcm-uh1 pam-face-skip --print-errorlogs --verbose
+  echo "==> meson test pam-aes-gcm-uh1 pam-face-skip pam-main"
+  meson test -C "${BUILD_DIR}" pam-aes-gcm-uh1 pam-face-skip pam-main --print-errorlogs --verbose
+}
+
+run_cpp_coverage() {
+  # gcov data from run_meson_tests, as SonarQube generic coverage XML
+  # (scripts/ci-sonar.sh / sonar.coverageReportPaths read this path).
+  echo "==> gcovr: PAM module C++ coverage -> artifacts/coverage/cpp-coverage.xml"
+  mkdir -p artifacts/coverage
+  gcovr --root . --filter 'ubuntu-hello/src/pam/' \
+    --sonarqube artifacts/coverage/cpp-coverage.xml --txt - "${BUILD_DIR}"
 }
 
 run_inside() {
@@ -336,6 +360,7 @@ run_inside() {
       meson_build
       run_pytest_coverage
       run_meson_tests
+      run_cpp_coverage
       ;;
     compat)
       meson_build

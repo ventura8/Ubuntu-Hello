@@ -22,7 +22,7 @@
     <property name="child">
       <object class="GtkCenterBox" id="slidecontainer">
         <property name="orientation">vertical</property>
-        <property name="start-widget">
+        <child type="start">
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
@@ -820,14 +820,14 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
               </object>
             </child>
           </object>
-        </property>
-        <property name="end-widget">
+        </child>
+        <child type="end">
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkCenterBox" id="navigationbar">
                 <property name="margin-bottom">10</property>
-                <property name="start-widget">
+                <child type="start">
                   <object class="GtkBox">
                     <child>
                       <object class="GtkButton" id="cancelbutton">
@@ -880,8 +880,8 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
                       <placeholder />
                     </child>
                   </object>
-                </property>
-                <property name="end-widget">
+                </child>
+                <child type="end">
                   <object class="GtkBox">
                     <child>
                       <object class="GtkButton" id="finishbutton">
@@ -939,11 +939,11 @@ You can open the Ubuntu Hello Configurator later on to change more advanced sett
                       </object>
                     </child>
                   </object>
-                </property>
+                </child>
               </object>
             </child>
           </object>
-        </property>
+        </child>
       </object>
     </property>
   </object>

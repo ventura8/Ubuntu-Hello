@@ -8,11 +8,14 @@ from __future__ import annotations
 
 import atexit
 import os
-import re
 import subprocess
 import sys
 import threading
 from typing import Optional
+
+# One desktop classifier for theme probes and wallet labels. init.py puts the
+# core dir (wallet_backend.py) on sys.path before any GTK module loads.
+from wallet_backend import detect_desktop
 
 
 # Repeated schema ids, config paths and filenames, named once so a typo cannot
@@ -24,34 +27,6 @@ _GTK4_DIR = "gtk-4.0"
 _SCHEMA_GNOME = "org.gnome.desktop.interface"
 _SCHEMA_CINNAMON = "org.cinnamon.desktop.interface"
 _SCHEMA_MATE = "org.mate.interface"
-
-
-
-def detect_desktop(environ: Optional[dict] = None) -> str:
-	"""Return a normalized DE id: gnome, kde, xfce, cinnamon, mate, budgie, lxqt, or unknown."""
-	env = environ if environ is not None else os.environ
-	raw = (env.get("XDG_CURRENT_DESKTOP") or env.get("DESKTOP_SESSION") or "").lower()
-	tokens = [t for t in re.split(r"[:\s;,]+", raw) if t]
-	joined = " ".join(tokens)
-
-	def has(*names: str) -> bool:
-		return any(n in tokens or n in joined for n in names)
-
-	if has("kde", "plasma"):
-		return "kde"
-	if has("xfce", "xubuntu"):
-		return "xfce"
-	if has("cinnamon"):
-		return "cinnamon"
-	if has("mate"):
-		return "mate"
-	if has("budgie"):
-		return "budgie"
-	if has("lxqt", "lubuntu"):
-		return "lxqt"
-	if has("gnome", "ubuntu", "unity", "pop"):
-		return "gnome"
-	return "unknown"
 
 
 def _user_home(user: str) -> str:

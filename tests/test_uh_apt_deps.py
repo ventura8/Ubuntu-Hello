@@ -30,7 +30,6 @@ def test_runtime_deps_include_gtk_babel_and_de_tools():
         "dconf-cli",
         "libglib2.0-bin",
         "xfconf",
-        "libkf6config-bin",
         "libpam-gnome-keyring",
         "libpam-kwallet5",
         "pkexec",
@@ -41,6 +40,9 @@ def test_runtime_deps_include_gtk_babel_and_de_tools():
         "ninja-build",
     ):
         assert required in pkgs, f"missing {required}"
+    # KF6 where apt offers it, KF5 on Ubuntu 22.04 (uh_apt_resolve_package): exactly one.
+    kde_config = pkgs & {"libkf6config-bin", "libkf5config-bin"}
+    assert len(kde_config) == 1, kde_config
 
 
 def test_never_remove_includes_python3():
@@ -115,3 +117,36 @@ done <<<"$planned"
     assert "auto:libxfconf-0-3" in out
     assert "manual:libpam-kwallet5" in out
     assert "manual:xfconf" in out
+
+
+def _fake_apt_cache(available: tuple[str, ...]) -> str:
+    """Bash function standing in for apt-cache policy with *available* packages."""
+    lines = [
+        "apt-cache() {",
+        '  echo "$2:"',
+        '  case "$2" in',
+    ]
+    for name in available:
+        lines.append(f'    {name}) echo "  Candidate: 1.0" ;;')
+    lines.append('    *) echo "  Candidate: (none)" ;;')
+    lines += ["  esac", "}"]
+    return "\n".join(lines)
+
+
+def _resolve(package: str, available: tuple[str, ...]) -> str:
+    return _bash_eval(_fake_apt_cache(available) + f"\nuh_apt_resolve_package {package}").strip()
+
+
+def test_kreadconfig_falls_back_to_kf5_on_ubuntu_22_04():
+    """Jammy ships KF5 only: kreadconfig5 (theme_detect tries kreadconfig6, then 5)."""
+    assert _resolve("libkf6config-bin", ("libkf5config-bin",)) == "libkf5config-bin"
+    pkgs = _bash_eval(_fake_apt_cache(("libkf5config-bin",)) + "\nuh_apt_unique_packages").split()
+    assert "libkf5config-bin" in pkgs
+    assert "libkf6config-bin" not in pkgs
+
+
+def test_kreadconfig_stays_kf6_when_available_or_lists_are_missing():
+    assert _resolve("libkf6config-bin", ("libkf6config-bin", "libkf5config-bin")) == "libkf6config-bin"
+    # No apt lists at all (fresh container): keep the default rather than guess.
+    assert _resolve("libkf6config-bin", ()) == "libkf6config-bin"
+    assert _resolve("xfconf", ()) == "xfconf"

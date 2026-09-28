@@ -2,7 +2,7 @@
 # Sourced from a clone (scripts/uh-apt-deps.sh). Do not execute directly.
 #
 # Covers build + runtime needs for GNOME, KDE/Plasma, XFCE, Cinnamon, MATE,
-# Budgie, and LXQt on Ubuntu 26.04 (theme probes, GTK Settings, wallet PAM).
+# Budgie, and LXQt on Ubuntu 22.04+ (theme probes, GTK Settings, wallet PAM).
 
 # Packages we installed that were not already present (one name per line).
 UH_APT_MARKER="${UH_APT_MARKER:-/var/lib/ubuntu-hello/apt-packages-added.list}"
@@ -60,7 +60,8 @@ UH_APT_RUNTIME_DEPS=(
 	v4l-utils
 	tpm2-tools
 	# Theme probes (GNOME/Budgie/Cinnamon/MATE use gsettings+dconf; XFCE xfconf;
-	# Plasma kreadconfig6; LXQt reads config files — no extra package).
+	# Plasma kreadconfig6, or kreadconfig5 on 22.04 via uh_apt_resolve_package;
+	# LXQt reads config files — no extra package).
 	dconf-cli
 	libglib2.0-bin
 	xfconf
@@ -90,11 +91,28 @@ uh_apt_never_remove() {
 	return 1
 }
 
+uh_apt_has_candidate() {
+	# True when apt can install *pkg* on this release.
+	apt-cache policy "$1" </dev/null 2>/dev/null | grep -q 'Candidate: [^(]'
+}
+
+uh_apt_resolve_package() {
+	# Ubuntu 22.04 has no KF6: install kreadconfig5 (theme_detect tries 6, then 5).
+	# Only when apt knows KF5 and not KF6, so stale/missing lists keep the default.
+	if [ "$1" = "libkf6config-bin" ] && ! uh_apt_has_candidate libkf6config-bin &&
+		uh_apt_has_candidate libkf5config-bin; then
+		echo libkf5config-bin
+		return
+	fi
+	echo "$1"
+}
+
 uh_apt_unique_packages() {
 	# Print unique package names from BUILD + RUNTIME (stable order).
 	local -A seen=()
 	local p
 	for p in "${UH_APT_BUILD_DEPS[@]}" "${UH_APT_RUNTIME_DEPS[@]}"; do
+		p="$(uh_apt_resolve_package "$p")"
 		if [ -z "${seen[$p]:-}" ]; then
 			seen[$p]=1
 			printf '%s\n' "$p"
@@ -124,6 +142,9 @@ uh_apt_install_all() {
 	local -a missing=()
 	local -a all=()
 	local p
+	export DEBIAN_FRONTEND=noninteractive
+	# Refresh first: uh_apt_resolve_package picks KF5 vs KF6 from apt's candidates.
+	apt-get update -qq
 	mapfile -t all < <(uh_apt_unique_packages)
 	for p in "${all[@]}"; do
 		if ! uh_apt_is_installed "$p"; then
@@ -131,8 +152,6 @@ uh_apt_install_all() {
 		fi
 	done
 
-	export DEBIAN_FRONTEND=noninteractive
-	apt-get update -qq
 	apt-get install -y -qq "${all[@]}" 2>&1 | tail -5
 
 	if [ "${#missing[@]}" -gt 0 ]; then

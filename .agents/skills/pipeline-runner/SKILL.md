@@ -77,8 +77,8 @@ UH_CI_STAGE=compat UH_CI_DE=baseline ./scripts/ci-docker.sh 2>&1 | tee logs/ci-b
 | Stage | Image / driver | Runs |
 |---|---|---|
 | `lint` | `ubuntu-hello-ci-lint:26.04` | meson/ninja, clang-tidy (PAM C++), `py_compile`, `scripts/i18n-lint.py`, `scripts/no-suppressions-lint.py`, `shellcheck` (packaging scripts) |
-| `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip` |
-| `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip` |
+| `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` |
+| `compat` | `ubuntu-hello-ci-<de>:26.04`; `ubuntu-hello-ci-jammy:22.04` (Ubuntu 22.04 cell) | meson/ninja, `py_compile`, pytest (no cov floors), Settings E2E under xvfb, `meson test pam-aes-gcm-uh1 pam-face-skip pam-main` |
 | `packaging` | format release images via `ci-packaging-cell.sh` | build artifact → `packaging-smoke-verify.sh` → live E2E install/upgrade/remove/reinstall (`packaging-e2e-install.sh`; Snap E2E inside `ci-snap-build.sh`) |
 
 Coverage DBs use `COVERAGE_FILE=${BUILD_DIR}/.coverage` (coverage stage only).
@@ -86,7 +86,7 @@ Coverage DBs use `COVERAGE_FILE=${BUILD_DIR}/.coverage` (coverage stage only).
 Hard rules (also in [AGENTS.md](../../../AGENTS.md) §4.7.1 / §4.8):
 
 * Dockerfiles under `docker/` — keep the repo root clean
-* `FROM ubuntu:26.04` only — never a floating/`latest` alias
+* `FROM ubuntu:26.04` only (the `jammy` compat cell alone uses `ubuntu:22.04`, to test the oldest supported release) — never a floating/`latest` alias
 * One Dockerfile/image per DE for compat — never serialize the matrix
 * Packaging: GHA and local use the **same** `ci-packaging-cell.sh` — never leave packaging GHA-only
 * After packaging: **scan** `logs/ci-packaging/*.log` for real ERROR/WARNING product issues and fix them (not only cell exit codes)

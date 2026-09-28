@@ -618,12 +618,10 @@ if __name__ == "__main__":
 		# All values combined for percentage calculation
 		hist_total = np.sum(hist)
 
-		# Calculate frame darkness
-		darkness = (hist[0] / hist_total * 100)
-
-		# If the image is fully black due to a bad camera read,
-		# skip to the next frame
-		if (hist_total == 0) or (darkness == 100):
+		# If the image is empty or fully black due to a bad camera read,
+		# skip to the next frame (checked before dividing by hist_total)
+		darkness = 100 if hist_total == 0 else (hist[0] / hist_total * 100)
+		if darkness == 100:
 			black_tries += 1
 			continue
 
