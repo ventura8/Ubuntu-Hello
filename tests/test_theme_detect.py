@@ -472,3 +472,66 @@ def test_watcher_callback_errors_are_reported_not_raised(monkeypatch, capsys):
 	w._schedule()
 	assert "apply failed" in capsys.readouterr().err
 	assert w._pending is False
+
+
+class TestUncoveredFallbacks:
+	"""The light/None answers and the watcher's defensive error paths."""
+
+	def test_kdeglobals_light_and_missing(self, monkeypatch):
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: "/home/alice")
+		monkeypatch.setattr(theme_detect, "_read_file_text", lambda *a, **k: "[General]\nColorScheme=BreezeLight\n")
+		assert theme_detect._kde_theme("alice") == "light"
+		monkeypatch.setattr(theme_detect, "_read_file_text", lambda *a, **k: "")
+		assert theme_detect._kde_theme("alice") is None
+
+	def test_xfce_and_mate_without_a_value(self, monkeypatch):
+		monkeypatch.setattr(theme_detect, "_run_cmd", lambda *a, **k: "")
+		assert theme_detect._xfce_theme("alice") is None
+		assert theme_detect._mate_theme("alice") is None
+
+	def test_lxqt_skips_other_keys_and_blank_theme(self, monkeypatch):
+		monkeypatch.setattr(
+			theme_detect, "_read_file_text", lambda *a, **k: "[General]\nno separator\nicon_theme=x\ntheme=\n",
+		)
+		assert theme_detect._lxqt_theme_in("/x/lxqt.conf", "alice") is None
+
+	def test_icon_theme_from_gtk_ini_absent(self, monkeypatch):
+		monkeypatch.setattr(theme_detect, "_user_home", lambda user: "/home/alice")
+		monkeypatch.setattr(theme_detect, "_read_file_text", lambda *a, **k: "[Settings]\ngtk-theme-name=Yaru\n")
+		assert theme_detect._icon_theme_from_gtk_ini("alice") == ""
+
+	def test_watcher_read_loop_swallows_stream_errors(self):
+		class Broken:
+			@property
+			def stdout(self):
+				raise OSError("closed")
+
+		watcher = theme_detect.ThemeWatcher("alice", lambda: None, file_monitor=False)
+		watcher._read_loop(Broken())
+		assert watcher.events == 0
+
+	def test_watcher_start_survives_popen_oserror(self, monkeypatch):
+		def refuse(*a, **k):
+			raise OSError("no gsettings")
+
+		monkeypatch.setattr(theme_detect, "theme_monitor_command", lambda *a, **k: ["gsettings", "monitor"])
+		monkeypatch.setattr(theme_detect.atexit, "register", lambda fn: fn)
+		watcher = theme_detect.ThemeWatcher("alice", lambda: None, popen=refuse, file_monitor=False).start()
+		assert watcher.process is None
+		assert watcher.thread is None
+
+	def test_watcher_stop_ignores_terminate_and_cancel_errors(self):
+		class Stubborn:
+			def terminate(self):
+				raise ProcessLookupError
+
+			def cancel(self):
+				raise RuntimeError
+
+		watcher = theme_detect.ThemeWatcher("alice", lambda: None, file_monitor=False)
+		watcher.process = Stubborn()
+		watcher.monitors = [Stubborn()]
+		watcher.stop()
+		assert watcher.process is None
+		assert watcher.monitors == []

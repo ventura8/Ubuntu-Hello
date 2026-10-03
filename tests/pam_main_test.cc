@@ -22,6 +22,19 @@ void check(bool condition, const char *what) {
   }
 }
 
+// ---- libevdev uinput stubs -------------------------------------------------
+// The test binary's definitions take precedence over libevdev's, so
+// EnterDevice runs without /dev/uinput and each failure path can be forced.
+struct UinputStub {
+  int create_result = 0;
+  int fail_write_at = -1;  // 0-based write index that fails, -1 = never
+  int writes = 0;
+  int destroyed = 0;
+  std::vector<std::array<int, 3>> events;  // type, code, value per write
+};
+UinputStub uinput_stub;
+int uinput_dummy = 0;
+
 // ---- libpam stubs ----------------------------------------------------------
 struct PamStub {
   int get_user_result = PAM_SUCCESS;
@@ -68,6 +81,29 @@ auto pam_get_authtok(pam_handle_t * /*pamh*/, int /*item*/,
                      const char **authtok, const char * /*prompt*/) -> int {
   *authtok = nullptr;
   return PAM_AUTHTOK_ERR;
+}
+}
+
+extern "C" {
+auto libevdev_uinput_create_from_device(const struct libevdev * /*dev*/, int /*uinput_fd*/,
+                                        struct libevdev_uinput **uinput_dev) -> int {
+  if (uinput_stub.create_result != 0) {
+    return uinput_stub.create_result;
+  }
+  *uinput_dev = reinterpret_cast<struct libevdev_uinput *>(&uinput_dummy);
+  return 0;
+}
+
+auto libevdev_uinput_write_event(const struct libevdev_uinput * /*uinput_dev*/,
+                                 unsigned int type, unsigned int code,
+                                 int value) -> int {
+  uinput_stub.events.push_back(
+      {static_cast<int>(type), static_cast<int>(code), value});
+  return uinput_stub.writes++ == uinput_stub.fail_write_at ? -EIO : 0;
+}
+
+void libevdev_uinput_destroy(struct libevdev_uinput * /*uinput_dev*/) {
+  uinput_stub.destroyed++;
 }
 }
 
@@ -417,6 +453,41 @@ void test_pam_entry_points() {
   }
 }
 
+void test_enter_device() {
+  uinput_stub.create_result = -EACCES;
+  bool thrown = false;
+  try {
+    const EnterDevice refused;
+  } catch (const EnterDeviceError &error) {
+    thrown = std::string(error.what()).find("create device") != std::string::npos;
+  }
+  check(thrown, "uinput refused: EnterDeviceError");
+  uinput_stub.create_result = 0;
+
+  {
+    const EnterDevice device;
+    device.send_enter_press();
+    const std::vector<std::array<int, 3>> expected = {
+        {EV_KEY, KEY_ENTER, 1}, {EV_KEY, KEY_ENTER, 0}, {EV_SYN, SYN_REPORT, 0}};
+    check(uinput_stub.events == expected, "Enter down, Enter up, then SYN_REPORT");
+  }
+  check(uinput_stub.destroyed == 1, "uinput device destroyed with EnterDevice");
+
+  for (const int failing : {0, 1, 2}) {
+    uinput_stub.writes = 0;
+    uinput_stub.fail_write_at = failing;
+    const EnterDevice device;
+    bool write_failed = false;
+    try {
+      device.send_enter_press();
+    } catch (const EnterDeviceError &error) {
+      write_failed = std::string(error.what()).find("write event") != std::string::npos;
+    }
+    check(write_failed && uinput_stub.writes == failing + 1, "failed write stops the press");
+  }
+  uinput_stub.fail_write_at = -1;
+}
+
 } // namespace
 
 auto main(int argc, char **argv) -> int {
@@ -440,6 +511,7 @@ auto main(int argc, char **argv) -> int {
   test_optional_task();
   test_face_skip_and_dismiss();
   test_pam_entry_points();
+  test_enter_device();
 
   if (failures != 0) {
     std::cerr << failures << " check(s) failed\n";

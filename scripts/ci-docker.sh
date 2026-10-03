@@ -338,9 +338,14 @@ run_meson_tests() {
 run_cpp_coverage() {
   # gcov data from run_meson_tests, as SonarQube generic coverage XML
   # (scripts/ci-sonar.sh / sonar.coverageReportPaths read this path).
+  # Branch coverage leaves out the compiler-generated exception-unwinding edges
+  # (every call that may throw gets one) and edges gcc proves unreachable: they
+  # are not decisions in the source, and counting them reported ~300 conditions
+  # no test can choose to take.
   echo "==> gcovr: PAM module C++ coverage -> artifacts/coverage/cpp-coverage.xml"
   mkdir -p artifacts/coverage
   gcovr --root . --filter 'ubuntu-hello/src/pam/' \
+    --exclude-throw-branches --exclude-unreachable-branches \
     --sonarqube artifacts/coverage/cpp-coverage.xml --txt - "${BUILD_DIR}"
 }
 

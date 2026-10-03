@@ -1,3 +1,14 @@
+ubuntu-hello (1.2.4-1ppa1) resolute; urgency=medium
+
+  * Build: SonarQube Cloud coverage above 90% (was 87%). The C++ coverage
+    report leaves out gcc's exception-unwinding and unreachable branches,
+    which no test can take.
+  * Tests: the PAM module's Enter-key uinput device (enter_device.cc) is
+    now unit-tested with libevdev stubbed, including every failure path;
+    more theme detection fallbacks and ThemeWatcher error paths.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Sat, 03 Oct 2026 12:54:31 +0300
+
 ubuntu-hello (1.2.3-1ppa1) resolute; urgency=medium
 
   * New: Ubuntu 22.04 (jammy) support. The PPA publishes a jammy build
