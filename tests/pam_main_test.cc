@@ -30,6 +30,7 @@ struct UinputStub {
   int fail_write_at = -1;  // 0-based write index that fails, -1 = never
   int writes = 0;
   int destroyed = 0;
+  std::vector<std::array<int, 3>> events;  // type, code, value per write
 };
 UinputStub uinput_stub;
 int uinput_dummy = 0;
@@ -94,8 +95,10 @@ auto libevdev_uinput_create_from_device(const struct libevdev * /*dev*/, int /*u
 }
 
 auto libevdev_uinput_write_event(const struct libevdev_uinput * /*uinput_dev*/,
-                                 unsigned int /*type*/, unsigned int /*code*/,
-                                 int /*value*/) -> int {
+                                 unsigned int type, unsigned int code,
+                                 int value) -> int {
+  uinput_stub.events.push_back(
+      {static_cast<int>(type), static_cast<int>(code), value});
   return uinput_stub.writes++ == uinput_stub.fail_write_at ? -EIO : 0;
 }
 
@@ -464,7 +467,9 @@ void test_enter_device() {
   {
     const EnterDevice device;
     device.send_enter_press();
-    check(uinput_stub.writes == 3, "press, release and sync written");
+    const std::vector<std::array<int, 3>> expected = {
+        {EV_KEY, KEY_ENTER, 1}, {EV_KEY, KEY_ENTER, 0}, {EV_SYN, SYN_REPORT, 0}};
+    check(uinput_stub.events == expected, "Enter down, Enter up, then SYN_REPORT");
   }
   check(uinput_stub.destroyed == 1, "uinput device destroyed with EnterDevice");
 
