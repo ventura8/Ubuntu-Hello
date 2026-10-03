@@ -518,7 +518,8 @@ class TestUncoveredFallbacks:
 		monkeypatch.setattr(theme_detect, "theme_monitor_command", lambda *a, **k: ["gsettings", "monitor"])
 		monkeypatch.setattr(theme_detect.atexit, "register", lambda fn: fn)
 		watcher = theme_detect.ThemeWatcher("alice", lambda: None, popen=refuse, file_monitor=False).start()
-		assert watcher.process is None and watcher.thread is None
+		assert watcher.process is None
+		assert watcher.thread is None
 
 	def test_watcher_stop_ignores_terminate_and_cancel_errors(self):
 		class Stubborn:
@@ -532,4 +533,5 @@ class TestUncoveredFallbacks:
 		watcher.process = Stubborn()
 		watcher.monitors = [Stubborn()]
 		watcher.stop()
-		assert watcher.process is None and watcher.monitors == []
+		assert watcher.process is None
+		assert watcher.monitors == []
