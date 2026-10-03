@@ -55,9 +55,8 @@ def main():
                 url,
                 headers={'User-Agent': 'Mozilla/5.0'}
             )
-            with urllib.request.urlopen(req) as response:
-                with open(temp_path, 'wb') as f_temp:
-                    shutil.copyfileobj(response, f_temp)
+            with urllib.request.urlopen(req) as response, open(temp_path, 'wb') as f_temp:
+                shutil.copyfileobj(response, f_temp)
             
             print(f"Decompressing {temp_path} to {target_path}...")
             with bz2.BZ2File(temp_path) as fr, open(target_path, 'wb') as fw:
