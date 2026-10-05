@@ -1,3 +1,16 @@
+ubuntu-hello (1.2.5-1ppa1) resolute; urgency=high
+
+  * Security: the PAM module's keyring helpers (TPM unseal after face auth,
+    and keyring enable in pam_sm_setcred) ran /bin/sh as root with the
+    caller's environment, so LD_PRELOAD / PYTHONPATH from su or sudo gave
+    root code execution to a user with keyring unlocking enabled. All root
+    helpers now use posix_spawn with an absolute path, a fixed argv, no
+    shell and a scrubbed environment; Python helpers run with -E -s.
+  * Tests: environment scrubbing, the TPM unseal chain and keyring enable
+    are covered in pam_main_test.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Mon, 05 Oct 2026 16:20:00 +0300
+
 ubuntu-hello (1.2.4-1ppa1) resolute; urgency=medium
 
   * Build: SonarQube Cloud coverage above 90% (was 87%). The C++ coverage
