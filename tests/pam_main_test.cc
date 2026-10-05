@@ -228,12 +228,125 @@ void test_read_first_line_and_popen() {
   check(read_first_line(empty).empty(), "empty input");
   fclose(empty);
 
-  FILE *pipe = popen_as_root("echo from-helper", "r");
-  check(pipe != nullptr, "popen_as_root opens a pipe");
-  if (pipe != nullptr) {
-    check(read_first_line(pipe) == "from-helper", "popen_as_root output");
-    pclose(pipe);
-  }
+  std::string output;
+  check(run_root_helper({"/bin/echo", "from-helper", nullptr}, nullptr, &output) == 0,
+        "run_root_helper exit status");
+  check(output == "from-helper", "run_root_helper output");
+
+  output.clear();
+  check(run_root_helper({"/bin/head", "-n1", nullptr}, "piped-in", &output) == 0,
+        "run_root_helper with stdin");
+  check(output == "piped-in", "run_root_helper stdin reaches the child");
+
+  // The caller's environment must never reach a root helper.
+  setenv("LD_PRELOAD", "/nonexistent/evil.so", 1);
+  setenv("PYTHONPATH", "/tmp/evil", 1);
+  output.clear();
+  run_root_helper({"/bin/sh", "-c", "echo \"[$LD_PRELOAD][$PYTHONPATH]\"", nullptr},
+                  nullptr, &output);
+  check(output == "[][]", "run_root_helper scrubs LD_PRELOAD / PYTHONPATH");
+  unsetenv("LD_PRELOAD");
+  unsetenv("PYTHONPATH");
+
+  check(run_root_helper({"/nonexistent/helper", nullptr}, nullptr, nullptr) != 0,
+        "run_root_helper reports a missing binary");
+  output = "unchanged";
+  check(run_root_helper({"/nonexistent/helper", nullptr}, "input", &output) == -1,
+        "run_root_helper missing binary with pipes");
+  check(output == "unchanged", "no output from a missing binary");
+}
+
+void write_script(const std::string &path, const std::string &body) {
+  write_file(path, "#!/bin/sh\n" + body);
+  chmod(path.c_str(), 0700);
+}
+
+void test_unseal_and_cache_keyring(const std::string &dir) {
+  // Fake tpm2_* tools: each records its argv and creates its -c context file,
+  // so the test sees the exact chain and that the contexts are cleaned up.
+  const std::string tools = dir + "/tpm-tools";
+  mkdir(tools.c_str(), 0700);
+  const std::string calls = dir + "/tpm-calls";
+  unlink(calls.c_str());
+  write_script(tools + "/tpm2_createprimary",
+               "echo \"createprimary $*\" >> " + calls + "\ntouch \"$4\"\n");
+  write_script(tools + "/tpm2_load",
+               "echo \"load $*\" >> " + calls + "\ntouch \"$8\"\n");
+  write_script(tools + "/tpm2_unseal", "echo sealed-secret\necho second-line\n");
+  const std::string p_ctx = dir + "/p.ctx";
+  const std::string s_ctx = dir + "/s.ctx";
+
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv") == "sealed-secret",
+        "TPM unseal returns the first line");
+  std::ifstream log(calls);
+  std::string line;
+  std::getline(log, line);
+  check(line == "createprimary -C o -c " + p_ctx, "createprimary argv");
+  std::getline(log, line);
+  check(line == "load -C " + p_ctx + " -u pub -r priv -c " + s_ctx, "load argv");
+  struct stat ctx_stat{};
+  check(stat(p_ctx.c_str(), &ctx_stat) != 0 && stat(s_ctx.c_str(), &ctx_stat) != 0,
+        "TPM context files removed");
+
+  // A failing step stops the chain and yields no password.
+  write_script(tools + "/tpm2_load", "exit 1\n");
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv").empty(),
+        "TPM unseal fails when tpm2_load fails");
+  check(stat(p_ctx.c_str(), &ctx_stat) != 0, "context removed after failure");
+  write_script(tools + "/tpm2_createprimary", "exit 1\n");
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv").empty(),
+        "TPM unseal fails when tpm2_createprimary fails");
+
+  // Fake cli.py: exits 0 only for the expected argv and the password on stdin.
+  const std::string cli = dir + "/fake-cli.py";
+  write_file(cli,
+             "import sys\n"
+             "ok = sys.argv[1:] == ['keyring', 'enable', '-U', 'alice']\n"
+             "ok = ok and sys.stdin.readline() == 's3cret\\n'\n"
+             "sys.exit(0 if ok else 3)\n");
+  check(cache_keyring_password(PYTHON_EXECUTABLE_PATH, cli.c_str(), "alice", "s3cret") == 0,
+        "keyring enable gets argv and password");
+  check(cache_keyring_password(PYTHON_EXECUTABLE_PATH, cli.c_str(), "bob", "s3cret") != 0,
+        "keyring enable failure is reported");
+
+  // try_set_keyring_authtok against a fake /etc/ubuntu-hello tree.
+  const std::string etc = dir + "/etc-uh";
+  mkdir(etc.c_str(), 0700);
+  mkdir((etc + "/tpm-keys").c_str(), 0700);
+  mkdir((etc + "/keyring-keys").c_str(), 0700);
+  auto *pamh = static_cast<pam_handle_t *>(nullptr);
+
+  // Software fallback: missing, empty and undecryptable blobs set nothing.
+  pam_stub.set_item_calls = 0;
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  write_file(etc + "/keyring-keys/carol", "");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  write_file(etc + "/keyring-keys/carol", "UH1:not-valid\n");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 0, "unusable software blob: PAM_AUTHTOK not set");
+
+  // TPM path: a failed unseal sets nothing, a good one sets PAM_AUTHTOK.
+  write_file(etc + "/tpm-keys/carol.pub", "pub");
+  write_file(etc + "/tpm-keys/carol.priv", "priv");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 0, "failed TPM unseal: PAM_AUTHTOK not set");
+  write_script(tools + "/tpm2_createprimary", "touch \"$4\"\n");
+  write_script(tools + "/tpm2_load", "touch \"$8\"\n");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 1, "TPM unseal sets PAM_AUTHTOK");
+  pam_stub.set_item_calls = 0;
+
+  // report_keyring_cache: only a successful seal clears the pending marker.
+  const std::string pending = dir + "/carol.pending";
+  write_file(pending, "");
+  report_keyring_cache(256, true, pending, "carol");
+  report_keyring_cache(-1, true, pending, "carol");
+  struct stat pending_stat{};
+  check(stat(pending.c_str(), &pending_stat) == 0, "failed seal keeps pending marker");
+  report_keyring_cache(0, false, pending, "carol");
+  check(stat(pending.c_str(), &pending_stat) == 0, "refresh keeps pending marker");
+  report_keyring_cache(0, true, pending, "carol");
+  check(stat(pending.c_str(), &pending_stat) != 0, "first seal removes pending marker");
 }
 
 void test_any_lid_closed(const std::string &dir) {
@@ -504,6 +617,7 @@ auto main(int argc, char **argv) -> int {
   test_ubuntu_hello_status(dir);
   test_read_first_line_and_popen();
   test_any_lid_closed(dir);
+  test_unseal_and_cache_keyring(dir);
   test_helper_argv_and_env();
   test_check_enabled(dir);
   test_identify_preflight(dir);

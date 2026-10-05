@@ -180,32 +180,6 @@ auto ubuntu_hello_status(char *username, int status, const INIReader &config,
  * @param pamh      PAM handle
  * @param username  Authenticated username
  */
-auto popen_as_root(const std::string &cmd, const char *type) -> FILE * {
-  uid_t ruid = getuid();
-  uid_t euid = geteuid();
-  bool altered = false;
-
-  if (euid == 0 && ruid != 0) {
-    if (setreuid(0, 0) == 0) {
-      altered = true;
-    } else {
-      syslog(LOG_ERR, "Failed to setreuid(0, 0): %s (%d)", strerror(errno), errno);
-    }
-  }
-
-  FILE *file_pipe = popen(cmd.c_str(), type);
-
-  if (altered && setreuid(ruid, euid) != 0) {
-    syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
-    if (file_pipe != nullptr) {
-      pclose(file_pipe);
-    }
-    return nullptr;
-  }
-
-  return file_pipe;
-}
-
 // Read the first line from *file_pipe* (the unsealed password), without the
 // trailing newline. Prefer fread over fgets so clang-analyzer does not flag a
 // blocking fgets while identify()'s mutex is still (falsely) considered held.
@@ -238,71 +212,6 @@ auto read_first_line(FILE *file_pipe) -> std::string {
   return line;
 }
 
-void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
-  std::string tpm_pub = "/etc/ubuntu-hello/tpm-keys/" + std::string(username) + ".pub";
-  std::string tpm_priv = "/etc/ubuntu-hello/tpm-keys/" + std::string(username) + ".priv";
-  
-  std::string password;
-  struct stat pub_stat{};
-  struct stat priv_stat{};
-  
-  if (stat(tpm_pub.c_str(), &pub_stat) == 0 && stat(tpm_priv.c_str(), &priv_stat) == 0) {
-    // TPM keys exist, unseal password from TPM
-    pid_t pid = getpid();
-    std::string p_ctx = "/etc/ubuntu-hello/tpm-keys/p_" + std::to_string(pid) + ".ctx";
-    std::string s_ctx = "/etc/ubuntu-hello/tpm-keys/s_" + std::to_string(pid) + ".ctx";
-    
-    std::string cmd = "tpm2_createprimary -C o -c " + p_ctx + " 2>/dev/null && "
-                      "tpm2_load -C " + p_ctx + " -u " + tpm_pub + " -r " + tpm_priv + " -c " + s_ctx + " 2>/dev/null && "
-                      "tpm2_unseal -c " + s_ctx + " 2>/dev/null; "
-                      "rm -f " + p_ctx + " " + s_ctx + " 2>/dev/null";
-                      
-    FILE *file_pipe = popen_as_root(cmd, "r");
-    if (file_pipe != nullptr) {
-      password = read_first_line(file_pipe);
-      pclose(file_pipe);
-    }
-    
-    if (password.empty()) {
-      syslog(LOG_ERR, "Failed to unseal keyring password from TPM");
-      return;
-    }
-  } else {
-    // Software fallback: AES-256-GCM (UH1:) with root-only master key
-    std::string key_file = "/etc/ubuntu-hello/keyring-keys/" + std::string(username);
-    std::ifstream ifs(key_file);
-    if (!ifs.is_open()) {
-      return;
-    }
-
-    std::string ciphertext;
-    std::getline(ifs, ciphertext);
-    if (ciphertext.empty()) {
-      return;
-    }
-
-    password = aes_gcm_decrypt_uh1(ciphertext);
-    if (password.empty()) {
-      return;
-    }
-  }
-
-  int pam_err = pam_set_item(pamh, PAM_AUTHTOK, password.c_str());
-  if (pam_err == PAM_SUCCESS) {
-    syslog(LOG_INFO, "PAM_AUTHTOK set successfully for keyring unlocking");
-  } else {
-    syslog(LOG_ERR, "Failed to set PAM_AUTHTOK: %s", pam_strerror(pamh, pam_err));
-  }
-}
-
-/**
- * Check if Ubuntu Hello should be enabled according to the configuration and the
- * environment.
- * @param  config INI configuration
- * @param  username Username
- * @return        Returns PAM_AUTHINFO_UNAVAIL if it shouldn't be enabled,
- * PAM_SUCCESS otherwise
- */
 /**
  * True when every byte of *text* is alphanumeric or one of *extra*.
  * Used to sanitise the few strings the root helper receives from PAM's
@@ -349,6 +258,246 @@ auto helper_environment() -> std::vector<std::string> {
   return env;
 }
 
+/**
+ * Run a root helper without a shell and without the caller's environment.
+ * PAM modules run inside setuid binaries (su, sudo, ...) whose environ is
+ * attacker-controlled, and after setreuid(0, 0) the child is a plain uid-0
+ * process, so LD_PRELOAD / PYTHONPATH would be honoured. Only *argv* (an
+ * absolute path in argv[0]) and helper_environment() reach the child.
+ * @param argv      Null-terminated argument vector; argv[0] is executed
+ * @param input     Written to the child's stdin (nullptr: /dev/null)
+ * @param output    When non-null, receives the first line of stdout
+ * @return          The waitpid status, or -1 if the helper could not run
+ */
+auto run_root_helper(const std::vector<const char *> &argv, const char *input,
+                     std::string *output) -> int {
+  std::vector<std::string> env_storage = helper_environment();
+  std::vector<char *> envp;
+  envp.reserve(env_storage.size() + 1);
+  for (auto &entry : env_storage) {
+    envp.push_back(entry.data());
+  }
+  envp.push_back(nullptr);
+
+  std::array<int, 2> in_pipe{-1, -1};
+  std::array<int, 2> out_pipe{-1, -1};
+  if ((input != nullptr && pipe2(in_pipe.data(), O_CLOEXEC) != 0) ||
+      (output != nullptr && pipe2(out_pipe.data(), O_CLOEXEC) != 0)) {
+    syslog(LOG_ERR, "Failed to create helper pipe: %s (%d)", strerror(errno), errno);
+    for (int pipe_fd : {in_pipe[0], in_pipe[1], out_pipe[0], out_pipe[1]}) {
+      if (pipe_fd >= 0) {
+        close(pipe_fd);
+      }
+    }
+    return -1;
+  }
+
+  posix_spawn_file_actions_t actions;
+  posix_spawn_file_actions_init(&actions);
+  if (input != nullptr) {
+    posix_spawn_file_actions_adddup2(&actions, in_pipe[0], 0);
+  } else {
+    posix_spawn_file_actions_addopen(&actions, 0, "/dev/null", O_RDONLY, 0);
+  }
+  if (output != nullptr) {
+    posix_spawn_file_actions_adddup2(&actions, out_pipe[1], 1);
+  } else {
+    posix_spawn_file_actions_addopen(&actions, 1, "/dev/null", O_WRONLY, 0);
+  }
+  posix_spawn_file_actions_addopen(&actions, 2, "/dev/null", O_WRONLY, 0);
+
+  // Become fully root so helpers that check the real uid (the CLI) accept us;
+  // safe now because nothing from the caller's environment is passed on.
+  uid_t ruid = getuid();
+  uid_t euid = geteuid();
+  bool altered = false;
+  if (euid == 0 && ruid != 0) {
+    if (setreuid(0, 0) == 0) {
+      altered = true;
+    } else {
+      syslog(LOG_ERR, "Failed to setreuid(0, 0): %s (%d)", strerror(errno), errno);
+    }
+  }
+
+  pid_t child_pid = -1;
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+                              const_cast<char *const *>(argv.data()), envp.data());
+  posix_spawn_file_actions_destroy(&actions);
+
+  bool restore_failed = altered && setreuid(ruid, euid) != 0;
+  if (restore_failed) {
+    syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
+  }
+
+  if (input != nullptr) {
+    close(in_pipe[0]);
+  }
+  if (output != nullptr) {
+    close(out_pipe[1]);
+  }
+
+  if (spawn_err != 0) {
+    syslog(LOG_ERR, "Can't spawn %s: %s (%d)", argv[0], strerror(spawn_err), spawn_err);
+    if (input != nullptr) {
+      close(in_pipe[1]);
+    }
+    if (output != nullptr) {
+      close(out_pipe[0]);
+    }
+    return -1;
+  }
+
+  if (input != nullptr) {
+    FILE *in_file = fdopen(in_pipe[1], "w");
+    if (in_file != nullptr) {
+      fputs(input, in_file);
+      fputc('\n', in_file);
+      fclose(in_file);
+    } else {
+      close(in_pipe[1]);
+    }
+  }
+  if (output != nullptr) {
+    FILE *out_file = fdopen(out_pipe[0], "r");
+    if (out_file != nullptr) {
+      *output = read_first_line(out_file);
+      fclose(out_file);
+    } else {
+      close(out_pipe[0]);
+    }
+  }
+
+  int status = 0;
+  pid_t waited = -1;
+  do {
+    waited = waitpid(child_pid, &status, 0);
+  } while (waited < 0 && errno == EINTR);
+  return (restore_failed || waited < 0) ? -1 : status;
+}
+
+/**
+ * Unseal the keyring password from the TPM with the tpm2_* tools in
+ * *tool_dir*. Each step runs without a shell and with a scrubbed environment
+ * (see run_root_helper); only tpm2_unseal's stdout is read. The transient
+ * context files are always removed.
+ * @return The unsealed password, or "" on any failure
+ */
+auto unseal_tpm_password(const std::string &tool_dir, const std::string &p_ctx,
+                         const std::string &s_ctx, const std::string &tpm_pub,
+                         const std::string &tpm_priv) -> std::string {
+  const std::string createprimary = tool_dir + "/tpm2_createprimary";
+  const std::string load = tool_dir + "/tpm2_load";
+  const std::string unseal = tool_dir + "/tpm2_unseal";
+  std::string password;
+  int status = run_root_helper({createprimary.c_str(), "-C", "o", "-c",
+                                p_ctx.c_str(), nullptr},
+                               nullptr, nullptr);
+  if (status == 0) {
+    status = run_root_helper({load.c_str(), "-C", p_ctx.c_str(), "-u",
+                              tpm_pub.c_str(), "-r", tpm_priv.c_str(), "-c",
+                              s_ctx.c_str(), nullptr},
+                             nullptr, nullptr);
+  }
+  if (status == 0) {
+    run_root_helper({unseal.c_str(), "-c", s_ctx.c_str(), nullptr}, nullptr,
+                    &password);
+  }
+  unlink(p_ctx.c_str());
+  unlink(s_ctx.c_str());
+  return password;
+}
+
+/**
+ * Seal *password* for *username* via `cli.py keyring enable`, run with
+ * *python* -E -s straight on *cli_script*: no /bin/sh wrapper, no caller
+ * environment, no user site-packages (see run_root_helper).
+ * @return The helper's waitpid status, or -1 if it could not run
+ */
+auto cache_keyring_password(const char *python, const char *cli_script,
+                            const char *username, const char *password) -> int {
+  return run_root_helper({python, "-E", "-s", cli_script, "keyring", "enable",
+                          "-U", username, nullptr},
+                         password, nullptr);
+}
+
+/**
+ * Log the outcome of cache_keyring_password() and, on success, drop the
+ * "pending" marker that asked for the first seal.
+ */
+void report_keyring_cache(int status, bool is_pending,
+                          const std::string &pending_file, const char *username) {
+  if (status == 0) {
+    if (is_pending) {
+      unlink(pending_file.c_str());
+      syslog(LOG_INFO, "Automatically cached and sealed keyring password for user %s", username);
+    } else {
+      syslog(LOG_INFO, "Automatically updated keyring password cache for user %s", username);
+    }
+  } else if (status == -1) {
+    syslog(LOG_ERR, "Failed to run keyring helper to cache password");
+  } else {
+    syslog(LOG_ERR, "Failed to cache/seal password: ubuntu-hello keyring command exited with status %d", status);
+  }
+}
+
+void try_set_keyring_authtok(pam_handle_t *pamh, const char *username,
+                             const std::string &etc_dir = "/etc/ubuntu-hello",
+                             const std::string &tool_dir = "/usr/bin") {
+  std::string tpm_pub = etc_dir + "/tpm-keys/" + std::string(username) + ".pub";
+  std::string tpm_priv = etc_dir + "/tpm-keys/" + std::string(username) + ".priv";
+  
+  std::string password;
+  struct stat pub_stat{};
+  struct stat priv_stat{};
+  
+  if (stat(tpm_pub.c_str(), &pub_stat) == 0 && stat(tpm_priv.c_str(), &priv_stat) == 0) {
+    // TPM keys exist, unseal password from TPM
+    pid_t pid = getpid();
+    std::string p_ctx = etc_dir + "/tpm-keys/p_" + std::to_string(pid) + ".ctx";
+    std::string s_ctx = etc_dir + "/tpm-keys/s_" + std::to_string(pid) + ".ctx";
+    
+    password = unseal_tpm_password(tool_dir, p_ctx, s_ctx, tpm_pub, tpm_priv);
+
+    if (password.empty()) {
+      syslog(LOG_ERR, "Failed to unseal keyring password from TPM");
+      return;
+    }
+  } else {
+    // Software fallback: AES-256-GCM (UH1:) with root-only master key
+    std::string key_file = etc_dir + "/keyring-keys/" + std::string(username);
+    std::ifstream ifs(key_file);
+    if (!ifs.is_open()) {
+      return;
+    }
+
+    std::string ciphertext;
+    std::getline(ifs, ciphertext);
+    if (ciphertext.empty()) {
+      return;
+    }
+
+    password = aes_gcm_decrypt_uh1(ciphertext);
+    if (password.empty()) {
+      return;
+    }
+  }
+
+  int pam_err = pam_set_item(pamh, PAM_AUTHTOK, password.c_str());
+  if (pam_err == PAM_SUCCESS) {
+    syslog(LOG_INFO, "PAM_AUTHTOK set successfully for keyring unlocking");
+  } else {
+    syslog(LOG_ERR, "Failed to set PAM_AUTHTOK: %s", pam_strerror(pamh, pam_err));
+  }
+}
+
+/**
+ * Check if Ubuntu Hello should be enabled according to the configuration and the
+ * environment.
+ * @param  config INI configuration
+ * @param  username Username
+ * @return        Returns PAM_AUTHINFO_UNAVAIL if it shouldn't be enabled,
+ * PAM_SUCCESS otherwise
+ */
 auto check_enabled(const INIReader &config, const char *username) -> int {
   // Stop executing if Ubuntu Hello has been disabled in the config
   if (config.GetBoolean("core", "disabled", false)) {
@@ -868,9 +1017,6 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
     return PAM_IGNORE;
   }
   
-  std::string cmd =
-      "/usr/bin/ubuntu-hello keyring enable -U " + std::string(username);
-
   // Migrate legacy XOR software blobs (and refresh UH1/TPM) when PAM_AUTHTOK is available
   if (is_key) {
     std::ifstream kifs(key_file);
@@ -885,24 +1031,9 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
     }
   }
 
-  FILE *file_pipe = popen_as_root(cmd, "w");
-  if (file_pipe != nullptr) {
-    fputs(password, file_pipe);
-    fputc('\n', file_pipe);
-    int status = pclose(file_pipe);
-    if (status == 0) {
-      if (is_pending) {
-        unlink(pending_file.c_str());
-        syslog(LOG_INFO, "Automatically cached and sealed keyring password for user %s", username);
-      } else {
-        syslog(LOG_INFO, "Automatically updated keyring password cache for user %s", username);
-      }
-    } else {
-      syslog(LOG_ERR, "Failed to cache/seal password: ubuntu-hello keyring command exited with status %d", status);
-    }
-  } else {
-    syslog(LOG_ERR, "Failed to run keyring helper to cache password");
-  }
+  int status = cache_keyring_password(PYTHON_EXECUTABLE_PATH, CLI_SCRIPT_PATH,
+                                      username, password);
+  report_keyring_cache(status, is_pending, pending_file, username);
   
   return PAM_IGNORE;
 }

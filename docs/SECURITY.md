@@ -23,23 +23,17 @@ graph TD
 
 ### 2.1 privilege Isolation and Least Privilege
 - **Privilege boundary**: PAM runs inside the authenticating process (`sudo`, `gdm-password`, `polkit-agent-helper-1`, …), which has effective uid 0, so `pam_ubuntu_hello.so` spawns `compare.py` **as root** — it must read the root-owned models under `/etc/ubuntu-hello` and the camera device. `compare.py` never takes on more than that: it inherits no environment (see 2.2), spawns children only by absolute path, and drops to the *target user's* uid/gid for the only child that touches user-owned resources (the `gdbus` notification call on the user's session bus). The Settings GUI (`ubuntu-hello-gtk`) elevates through polkit (`auth_admin`) and runs as root for the same reason; it forwards only the display/locale environment and runs per-user probes (`gsettings`, browser hand-off) as the user via `sudo -u`.
-- **Strictly Scoped PAM Elevation**: When the PAM module needs to communicate with the TPM (which requires root access to read `/dev/tpmrm0`), it temporarily elevates the real UID using `setreuid(0, 0)` immediately before invoking the tool, and drops it back to the original UID immediately after process instantiation:
+- **Strictly Scoped PAM Elevation**: When the PAM module needs to run a root helper (the TPM, which requires root access to read `/dev/tpmrm0`, or `cli.py keyring enable`), `run_root_helper()` temporarily raises the real UID with `setreuid(0, 0)`. It does this immediately before `posix_spawn` and lowers it again right after the spawn. No shell is involved, and the child gets only `helper_environment()`:
   ```cpp
   if (euid == 0 && ruid != 0) {
     if (setreuid(0, 0) == 0) {
       altered = true;
     }
   }
-  FILE *file_pipe = popen(cmd.c_str(), type);
-  if (altered) {
-    if (setreuid(ruid, euid) != 0) {
-      // Abort execution to prevent running under elevated privileges if dropping fails
-      if (file_pipe != nullptr) {
-        pclose(file_pipe);
-      }
-      return nullptr;
-    }
-  }
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+                              const_cast<char *const *>(argv.data()), envp.data());
+  bool restore_failed = altered && setreuid(ruid, euid) != 0;
+  // restore_failed -> the helper's result is treated as failure (-1)
   ```
 
 ### 2.2 Input Sanitization & Command Injection Prevention
@@ -59,6 +53,7 @@ graph TD
 - **Hardware TPM Sealing**: When a TPM is active, credentials used for downstream PAM auto-unlocking are sealed inside the TPM using `tpm2_create` and `tpm2_unseal`. After face auth, `pam_ubuntu_hello` sets `PAM_AUTHTOK` for consumers such as **`pam_gnome_keyring`** (GNOME/Ubuntu-family) and **`pam_kwallet5`** (KDE Plasma / KWallet). The same sealed blob is used for both; there is no KWallet-specific ciphertext format.
 - **Software Fallback Cryptography**: If no TPM is available, credentials are encrypted with **AES-256-GCM** using a randomly generated 32-byte master key stored at `/etc/ubuntu-hello/keyring-master.key` (`0600`, directory `0700`). Ciphertext is stored as `UH1:` + base64(`nonce || ciphertext || tag`). Legacy XOR/`machine-id` blobs are **not decrypted** on face authentication.
 - **Legacy migration**: Re-running `ubuntu-hello keyring enable` always overwrites software blobs with `UH1:`. On password login, `pam_sm_setcred` rewrites an existing keyring key file (including legacy XOR) by piping `PAM_AUTHTOK` into `ubuntu-hello keyring enable -U <user>`, upgrading credentials in place.
+- **Root helpers never see the caller's environment**: every helper the PAM module starts (`compare.py`, the `tpm2_*` unseal steps, and `cli.py keyring enable`) is launched with `posix_spawn` using an absolute path, a fixed argv (no `/bin/sh`), and `helper_environment()` (a fixed `PATH` plus validated locale variables). Python helpers run with `-E -s`. So the caller's `PATH`, `PYTHONPATH` and `BASH_ENV` (glibc already removes loader variables such as `LD_PRELOAD` for setuid programs) never reach a uid-0 child.
 - **Desktop coverage**: Face auth through `common-auth` is DE-agnostic. Wallet unlock depends on the PAM stack shipping an AUTHTOK consumer (`pam_gnome_keyring` and/or `pam_kwallet5`). Packaging **Depends** on both `libpam-gnome-keyring` and `libpam-kwallet5` so every supported DE can unlock the session wallet after face auth.
 - **Uninstall restore**: `uninstall.sh` and `debian/ubuntu-hello.prerm` call `timeout 120 ubuntu-hello keyring restore --all` **before** deleting `/etc/ubuntu-hello`. The helper decrypts each user’s sealed login password (TPM or `UH1:`) and re-asserts it as the GNOME Keyring master password (`ChangeWithMasterPassword`, old=new=`P`) or verifies KWallet via `pamOpen` (does not change the KWallet password). `ChangeWithMasterPassword` needs the **current** wallet password; Ubuntu Hello only has sealed `P`, so restore succeeds when the wallet already unlocks with `P` and **cannot** discover a divergent wallet password. Failures warn and **do not** abort removal. The password is never logged. Manual recovery remains Seahorse / KDE Wallet settings. `ubuntu-hello keyring disable` deletes seals without restoring.
 
@@ -88,7 +83,7 @@ Neither setting defends against a video replay of the user's face. That is the d
 |---|---|---|
 | **Malicious Username Injection** | Enforced whitelist checking in C++ (`is_safe_username`), Python CLI, and `compare.py` | Verified via `pytest` suite |
 | **Unauthorized GUI settings access** | Polkit configuration restricts access to admin authorization (`auth_admin`) | Verified in system integration |
-| **Privilege Leaks to Subprocesses** | Explicit privilege drops immediately after `popen` initialization | Verified via custom regression tests |
+| **Privilege Leaks to Subprocesses** | Explicit privilege drops immediately after `posix_spawn`; no shell and no inherited environment (`run_root_helper`) | Verified via custom regression tests |
 | **Unauthorized file access** | Enforced `umask 077` on file/directory creation and strict `0700`/`0600` Unix ACL permissions | Verified in `install.sh` and tests |
 | **Privileged postinstall lock/log hijack** | Lock and log live under `/run/ubuntu-hello` (`0700`), opened with `O_NOFOLLOW` (and `O_EXCL` after dropping foreign leftovers); dpkg postinst does not append to `/tmp` | Verified in `tests/test_run_after_install.py` |
 | **GDM greeter login lockout** | Never force greeter `pam_get_authtok` when `workaround=off` | Documented HARD RULE; recover via TTY + comment `pam_ubuntu_hello.so` |
