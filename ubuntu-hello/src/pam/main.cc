@@ -420,9 +420,31 @@ auto cache_keyring_password(const char *python, const char *cli_script,
                          password, nullptr);
 }
 
-void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
-  std::string tpm_pub = "/etc/ubuntu-hello/tpm-keys/" + std::string(username) + ".pub";
-  std::string tpm_priv = "/etc/ubuntu-hello/tpm-keys/" + std::string(username) + ".priv";
+/**
+ * Log the outcome of cache_keyring_password() and, on success, drop the
+ * "pending" marker that asked for the first seal.
+ */
+void report_keyring_cache(int status, bool is_pending,
+                          const std::string &pending_file, const char *username) {
+  if (status == 0) {
+    if (is_pending) {
+      unlink(pending_file.c_str());
+      syslog(LOG_INFO, "Automatically cached and sealed keyring password for user %s", username);
+    } else {
+      syslog(LOG_INFO, "Automatically updated keyring password cache for user %s", username);
+    }
+  } else if (status == -1) {
+    syslog(LOG_ERR, "Failed to run keyring helper to cache password");
+  } else {
+    syslog(LOG_ERR, "Failed to cache/seal password: ubuntu-hello keyring command exited with status %d", status);
+  }
+}
+
+void try_set_keyring_authtok(pam_handle_t *pamh, const char *username,
+                             const std::string &etc_dir = "/etc/ubuntu-hello",
+                             const std::string &tool_dir = "/usr/bin") {
+  std::string tpm_pub = etc_dir + "/tpm-keys/" + std::string(username) + ".pub";
+  std::string tpm_priv = etc_dir + "/tpm-keys/" + std::string(username) + ".priv";
   
   std::string password;
   struct stat pub_stat{};
@@ -431,10 +453,10 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
   if (stat(tpm_pub.c_str(), &pub_stat) == 0 && stat(tpm_priv.c_str(), &priv_stat) == 0) {
     // TPM keys exist, unseal password from TPM
     pid_t pid = getpid();
-    std::string p_ctx = "/etc/ubuntu-hello/tpm-keys/p_" + std::to_string(pid) + ".ctx";
-    std::string s_ctx = "/etc/ubuntu-hello/tpm-keys/s_" + std::to_string(pid) + ".ctx";
+    std::string p_ctx = etc_dir + "/tpm-keys/p_" + std::to_string(pid) + ".ctx";
+    std::string s_ctx = etc_dir + "/tpm-keys/s_" + std::to_string(pid) + ".ctx";
     
-    password = unseal_tpm_password("/usr/bin", p_ctx, s_ctx, tpm_pub, tpm_priv);
+    password = unseal_tpm_password(tool_dir, p_ctx, s_ctx, tpm_pub, tpm_priv);
 
     if (password.empty()) {
       syslog(LOG_ERR, "Failed to unseal keyring password from TPM");
@@ -442,7 +464,7 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
     }
   } else {
     // Software fallback: AES-256-GCM (UH1:) with root-only master key
-    std::string key_file = "/etc/ubuntu-hello/keyring-keys/" + std::string(username);
+    std::string key_file = etc_dir + "/keyring-keys/" + std::string(username);
     std::ifstream ifs(key_file);
     if (!ifs.is_open()) {
       return;
@@ -1011,18 +1033,7 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
 
   int status = cache_keyring_password(PYTHON_EXECUTABLE_PATH, CLI_SCRIPT_PATH,
                                       username, password);
-  if (status == 0) {
-    if (is_pending) {
-      unlink(pending_file.c_str());
-      syslog(LOG_INFO, "Automatically cached and sealed keyring password for user %s", username);
-    } else {
-      syslog(LOG_INFO, "Automatically updated keyring password cache for user %s", username);
-    }
-  } else if (status == -1) {
-    syslog(LOG_ERR, "Failed to run keyring helper to cache password");
-  } else {
-    syslog(LOG_ERR, "Failed to cache/seal password: ubuntu-hello keyring command exited with status %d", status);
-  }
+  report_keyring_cache(status, is_pending, pending_file, username);
   
   return PAM_IGNORE;
 }

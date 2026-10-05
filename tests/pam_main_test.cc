@@ -308,6 +308,45 @@ void test_unseal_and_cache_keyring(const std::string &dir) {
         "keyring enable gets argv and password");
   check(cache_keyring_password(PYTHON_EXECUTABLE_PATH, cli.c_str(), "bob", "s3cret") != 0,
         "keyring enable failure is reported");
+
+  // try_set_keyring_authtok against a fake /etc/ubuntu-hello tree.
+  const std::string etc = dir + "/etc-uh";
+  mkdir(etc.c_str(), 0700);
+  mkdir((etc + "/tpm-keys").c_str(), 0700);
+  mkdir((etc + "/keyring-keys").c_str(), 0700);
+  auto *pamh = static_cast<pam_handle_t *>(nullptr);
+
+  // Software fallback: missing, empty and undecryptable blobs set nothing.
+  pam_stub.set_item_calls = 0;
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  write_file(etc + "/keyring-keys/carol", "");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  write_file(etc + "/keyring-keys/carol", "UH1:not-valid\n");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 0, "unusable software blob: PAM_AUTHTOK not set");
+
+  // TPM path: a failed unseal sets nothing, a good one sets PAM_AUTHTOK.
+  write_file(etc + "/tpm-keys/carol.pub", "pub");
+  write_file(etc + "/tpm-keys/carol.priv", "priv");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 0, "failed TPM unseal: PAM_AUTHTOK not set");
+  write_script(tools + "/tpm2_createprimary", "touch \"$4\"\n");
+  write_script(tools + "/tpm2_load", "touch \"$8\"\n");
+  try_set_keyring_authtok(pamh, "carol", etc, tools);
+  check(pam_stub.set_item_calls == 1, "TPM unseal sets PAM_AUTHTOK");
+  pam_stub.set_item_calls = 0;
+
+  // report_keyring_cache: only a successful seal clears the pending marker.
+  const std::string pending = dir + "/carol.pending";
+  write_file(pending, "");
+  report_keyring_cache(256, true, pending, "carol");
+  report_keyring_cache(-1, true, pending, "carol");
+  struct stat pending_stat{};
+  check(stat(pending.c_str(), &pending_stat) == 0, "failed seal keeps pending marker");
+  report_keyring_cache(0, false, pending, "carol");
+  check(stat(pending.c_str(), &pending_stat) == 0, "refresh keeps pending marker");
+  report_keyring_cache(0, true, pending, "carol");
+  check(stat(pending.c_str(), &pending_stat) != 0, "first seal removes pending marker");
 }
 
 void test_any_lid_closed(const std::string &dir) {
