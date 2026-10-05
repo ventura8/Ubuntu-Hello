@@ -23,23 +23,17 @@ graph TD
 
 ### 2.1 privilege Isolation and Least Privilege
 - **Privilege boundary**: PAM runs inside the authenticating process (`sudo`, `gdm-password`, `polkit-agent-helper-1`, …), which has effective uid 0, so `pam_ubuntu_hello.so` spawns `compare.py` **as root** — it must read the root-owned models under `/etc/ubuntu-hello` and the camera device. `compare.py` never takes on more than that: it inherits no environment (see 2.2), spawns children only by absolute path, and drops to the *target user's* uid/gid for the only child that touches user-owned resources (the `gdbus` notification call on the user's session bus). The Settings GUI (`ubuntu-hello-gtk`) elevates through polkit (`auth_admin`) and runs as root for the same reason; it forwards only the display/locale environment and runs per-user probes (`gsettings`, browser hand-off) as the user via `sudo -u`.
-- **Strictly Scoped PAM Elevation**: When the PAM module needs to communicate with the TPM (which requires root access to read `/dev/tpmrm0`), it temporarily elevates the real UID using `setreuid(0, 0)` immediately before invoking the tool, and drops it back to the original UID immediately after process instantiation:
+- **Strictly Scoped PAM Elevation**: When the PAM module needs to run a root helper (the TPM, which requires root access to read `/dev/tpmrm0`, or `cli.py keyring enable`), `run_root_helper()` temporarily raises the real UID with `setreuid(0, 0)`. It does this immediately before `posix_spawn` and lowers it again right after the spawn. No shell is involved, and the child gets only `helper_environment()`:
   ```cpp
   if (euid == 0 && ruid != 0) {
     if (setreuid(0, 0) == 0) {
       altered = true;
     }
   }
-  FILE *file_pipe = popen(cmd.c_str(), type);
-  if (altered) {
-    if (setreuid(ruid, euid) != 0) {
-      // Abort execution to prevent running under elevated privileges if dropping fails
-      if (file_pipe != nullptr) {
-        pclose(file_pipe);
-      }
-      return nullptr;
-    }
-  }
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+                              const_cast<char *const *>(argv.data()), envp.data());
+  bool restore_failed = altered && setreuid(ruid, euid) != 0;
+  // restore_failed -> the helper's result is treated as failure (-1)
   ```
 
 ### 2.2 Input Sanitization & Command Injection Prevention
@@ -89,7 +83,7 @@ Neither setting defends against a video replay of the user's face. That is the d
 |---|---|---|
 | **Malicious Username Injection** | Enforced whitelist checking in C++ (`is_safe_username`), Python CLI, and `compare.py` | Verified via `pytest` suite |
 | **Unauthorized GUI settings access** | Polkit configuration restricts access to admin authorization (`auth_admin`) | Verified in system integration |
-| **Privilege Leaks to Subprocesses** | Explicit privilege drops immediately after `popen` initialization | Verified via custom regression tests |
+| **Privilege Leaks to Subprocesses** | Explicit privilege drops immediately after `posix_spawn`; no shell and no inherited environment (`run_root_helper`) | Verified via custom regression tests |
 | **Unauthorized file access** | Enforced `umask 077` on file/directory creation and strict `0700`/`0600` Unix ACL permissions | Verified in `install.sh` and tests |
 | **Privileged postinstall lock/log hijack** | Lock and log live under `/run/ubuntu-hello` (`0700`), opened with `O_NOFOLLOW` (and `O_EXCL` after dropping foreign leftovers); dpkg postinst does not append to `/tmp` | Verified in `tests/test_run_after_install.py` |
 | **GDM greeter login lockout** | Never force greeter `pam_get_authtok` when `workaround=off` | Documented HARD RULE; recover via TTY + comment `pam_ubuntu_hello.so` |
