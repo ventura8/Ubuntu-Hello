@@ -228,12 +228,28 @@ void test_read_first_line_and_popen() {
   check(read_first_line(empty).empty(), "empty input");
   fclose(empty);
 
-  FILE *pipe = popen_as_root("echo from-helper", "r");
-  check(pipe != nullptr, "popen_as_root opens a pipe");
-  if (pipe != nullptr) {
-    check(read_first_line(pipe) == "from-helper", "popen_as_root output");
-    pclose(pipe);
-  }
+  std::string output;
+  check(run_root_helper({"/bin/echo", "from-helper", nullptr}, nullptr, &output) == 0,
+        "run_root_helper exit status");
+  check(output == "from-helper", "run_root_helper output");
+
+  output.clear();
+  check(run_root_helper({"/bin/head", "-n1", nullptr}, "piped-in", &output) == 0,
+        "run_root_helper with stdin");
+  check(output == "piped-in", "run_root_helper stdin reaches the child");
+
+  // The caller's environment must never reach a root helper.
+  setenv("LD_PRELOAD", "/nonexistent/evil.so", 1);
+  setenv("PYTHONPATH", "/tmp/evil", 1);
+  output.clear();
+  run_root_helper({"/bin/sh", "-c", "echo \"[$LD_PRELOAD][$PYTHONPATH]\"", nullptr},
+                  nullptr, &output);
+  check(output == "[][]", "run_root_helper scrubs LD_PRELOAD / PYTHONPATH");
+  unsetenv("LD_PRELOAD");
+  unsetenv("PYTHONPATH");
+
+  check(run_root_helper({"/nonexistent/helper", nullptr}, nullptr, nullptr) != 0,
+        "run_root_helper reports a missing binary");
 }
 
 void test_any_lid_closed(const std::string &dir) {
