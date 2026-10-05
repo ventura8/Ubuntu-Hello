@@ -368,12 +368,56 @@ auto run_root_helper(const std::vector<const char *> &argv, const char *input,
   }
 
   int status = 0;
-  while (waitpid(child_pid, &status, 0) < 0) {
-    if (errno != EINTR) {
-      return -1;
-    }
+  pid_t waited = -1;
+  do {
+    waited = waitpid(child_pid, &status, 0);
+  } while (waited < 0 && errno == EINTR);
+  return (restore_failed || waited < 0) ? -1 : status;
+}
+
+/**
+ * Unseal the keyring password from the TPM with the tpm2_* tools in
+ * *tool_dir*. Each step runs without a shell and with a scrubbed environment
+ * (see run_root_helper); only tpm2_unseal's stdout is read. The transient
+ * context files are always removed.
+ * @return The unsealed password, or "" on any failure
+ */
+auto unseal_tpm_password(const std::string &tool_dir, const std::string &p_ctx,
+                         const std::string &s_ctx, const std::string &tpm_pub,
+                         const std::string &tpm_priv) -> std::string {
+  const std::string createprimary = tool_dir + "/tpm2_createprimary";
+  const std::string load = tool_dir + "/tpm2_load";
+  const std::string unseal = tool_dir + "/tpm2_unseal";
+  std::string password;
+  int status = run_root_helper({createprimary.c_str(), "-C", "o", "-c",
+                                p_ctx.c_str(), nullptr},
+                               nullptr, nullptr);
+  if (status == 0) {
+    status = run_root_helper({load.c_str(), "-C", p_ctx.c_str(), "-u",
+                              tpm_pub.c_str(), "-r", tpm_priv.c_str(), "-c",
+                              s_ctx.c_str(), nullptr},
+                             nullptr, nullptr);
   }
-  return restore_failed ? -1 : status;
+  if (status == 0) {
+    run_root_helper({unseal.c_str(), "-c", s_ctx.c_str(), nullptr}, nullptr,
+                    &password);
+  }
+  unlink(p_ctx.c_str());
+  unlink(s_ctx.c_str());
+  return password;
+}
+
+/**
+ * Seal *password* for *username* via `cli.py keyring enable`, run with
+ * *python* -E -s straight on *cli_script*: no /bin/sh wrapper, no caller
+ * environment, no user site-packages (see run_root_helper).
+ * @return The helper's waitpid status, or -1 if it could not run
+ */
+auto cache_keyring_password(const char *python, const char *cli_script,
+                            const char *username, const char *password) -> int {
+  return run_root_helper({python, "-E", "-s", cli_script, "keyring", "enable",
+                          "-U", username, nullptr},
+                         password, nullptr);
 }
 
 void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
@@ -390,23 +434,7 @@ void try_set_keyring_authtok(pam_handle_t *pamh, const char *username) {
     std::string p_ctx = "/etc/ubuntu-hello/tpm-keys/p_" + std::to_string(pid) + ".ctx";
     std::string s_ctx = "/etc/ubuntu-hello/tpm-keys/s_" + std::to_string(pid) + ".ctx";
     
-    // Each step runs without a shell and with a scrubbed environment (see
-    // run_root_helper); only tpm2_unseal's stdout is read.
-    int status = run_root_helper({"/usr/bin/tpm2_createprimary", "-C", "o", "-c",
-                                  p_ctx.c_str(), nullptr},
-                                 nullptr, nullptr);
-    if (status == 0) {
-      status = run_root_helper({"/usr/bin/tpm2_load", "-C", p_ctx.c_str(), "-u",
-                                tpm_pub.c_str(), "-r", tpm_priv.c_str(), "-c",
-                                s_ctx.c_str(), nullptr},
-                               nullptr, nullptr);
-    }
-    if (status == 0) {
-      run_root_helper({"/usr/bin/tpm2_unseal", "-c", s_ctx.c_str(), nullptr},
-                      nullptr, &password);
-    }
-    unlink(p_ctx.c_str());
-    unlink(s_ctx.c_str());
+    password = unseal_tpm_password("/usr/bin", p_ctx, s_ctx, tpm_pub, tpm_priv);
 
     if (password.empty()) {
       syslog(LOG_ERR, "Failed to unseal keyring password from TPM");
@@ -981,11 +1009,8 @@ PAM_EXTERN auto pam_sm_setcred(pam_handle_t *pamh, int flags, int argc,
     }
   }
 
-  // Python with -E -s straight on cli.py: no /bin/sh wrapper, no caller
-  // environment, no user site-packages (see run_root_helper).
-  int status = run_root_helper({PYTHON_EXECUTABLE_PATH, "-E", "-s", CLI_SCRIPT_PATH,
-                                "keyring", "enable", "-U", username, nullptr},
-                               password, nullptr);
+  int status = cache_keyring_password(PYTHON_EXECUTABLE_PATH, CLI_SCRIPT_PATH,
+                                      username, password);
   if (status == 0) {
     if (is_pending) {
       unlink(pending_file.c_str());

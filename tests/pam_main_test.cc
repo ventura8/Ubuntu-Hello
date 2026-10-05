@@ -250,6 +250,64 @@ void test_read_first_line_and_popen() {
 
   check(run_root_helper({"/nonexistent/helper", nullptr}, nullptr, nullptr) != 0,
         "run_root_helper reports a missing binary");
+  output = "unchanged";
+  check(run_root_helper({"/nonexistent/helper", nullptr}, "input", &output) == -1,
+        "run_root_helper missing binary with pipes");
+  check(output == "unchanged", "no output from a missing binary");
+}
+
+void write_script(const std::string &path, const std::string &body) {
+  write_file(path, "#!/bin/sh\n" + body);
+  chmod(path.c_str(), 0700);
+}
+
+void test_unseal_and_cache_keyring(const std::string &dir) {
+  // Fake tpm2_* tools: each records its argv and creates its -c context file,
+  // so the test sees the exact chain and that the contexts are cleaned up.
+  const std::string tools = dir + "/tpm-tools";
+  mkdir(tools.c_str(), 0700);
+  const std::string calls = dir + "/tpm-calls";
+  unlink(calls.c_str());
+  write_script(tools + "/tpm2_createprimary",
+               "echo \"createprimary $*\" >> " + calls + "\ntouch \"$4\"\n");
+  write_script(tools + "/tpm2_load",
+               "echo \"load $*\" >> " + calls + "\ntouch \"$8\"\n");
+  write_script(tools + "/tpm2_unseal", "echo sealed-secret\necho second-line\n");
+  const std::string p_ctx = dir + "/p.ctx";
+  const std::string s_ctx = dir + "/s.ctx";
+
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv") == "sealed-secret",
+        "TPM unseal returns the first line");
+  std::ifstream log(calls);
+  std::string line;
+  std::getline(log, line);
+  check(line == "createprimary -C o -c " + p_ctx, "createprimary argv");
+  std::getline(log, line);
+  check(line == "load -C " + p_ctx + " -u pub -r priv -c " + s_ctx, "load argv");
+  struct stat ctx_stat{};
+  check(stat(p_ctx.c_str(), &ctx_stat) != 0 && stat(s_ctx.c_str(), &ctx_stat) != 0,
+        "TPM context files removed");
+
+  // A failing step stops the chain and yields no password.
+  write_script(tools + "/tpm2_load", "exit 1\n");
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv").empty(),
+        "TPM unseal fails when tpm2_load fails");
+  check(stat(p_ctx.c_str(), &ctx_stat) != 0, "context removed after failure");
+  write_script(tools + "/tpm2_createprimary", "exit 1\n");
+  check(unseal_tpm_password(tools, p_ctx, s_ctx, "pub", "priv").empty(),
+        "TPM unseal fails when tpm2_createprimary fails");
+
+  // Fake cli.py: exits 0 only for the expected argv and the password on stdin.
+  const std::string cli = dir + "/fake-cli.py";
+  write_file(cli,
+             "import sys\n"
+             "ok = sys.argv[1:] == ['keyring', 'enable', '-U', 'alice']\n"
+             "ok = ok and sys.stdin.readline() == 's3cret\\n'\n"
+             "sys.exit(0 if ok else 3)\n");
+  check(cache_keyring_password(PYTHON_EXECUTABLE_PATH, cli.c_str(), "alice", "s3cret") == 0,
+        "keyring enable gets argv and password");
+  check(cache_keyring_password(PYTHON_EXECUTABLE_PATH, cli.c_str(), "bob", "s3cret") != 0,
+        "keyring enable failure is reported");
 }
 
 void test_any_lid_closed(const std::string &dir) {
@@ -520,6 +578,7 @@ auto main(int argc, char **argv) -> int {
   test_ubuntu_hello_status(dir);
   test_read_first_line_and_popen();
   test_any_lid_closed(dir);
+  test_unseal_and_cache_keyring(dir);
   test_helper_argv_and_env();
   test_check_enabled(dir);
   test_identify_preflight(dir);
