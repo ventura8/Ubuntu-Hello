@@ -250,10 +250,13 @@ void test_read_first_line_and_popen() {
 
   check(run_root_helper({"/nonexistent/helper", nullptr}, nullptr, nullptr) != 0,
         "run_root_helper reports a missing binary");
-  output = "unchanged";
-  check(run_root_helper({"/nonexistent/helper", nullptr}, "input", &output) == -1,
+  // glibc reports the failed exec from posix_spawn (-1 here); under qemu-user
+  // (the arm64 release build) the child starts and exits 127 instead. Either
+  // way the helper must fail and yield no output.
+  output.clear();
+  check(run_root_helper({"/nonexistent/helper", nullptr}, "input", &output) != 0,
         "run_root_helper missing binary with pipes");
-  check(output == "unchanged", "no output from a missing binary");
+  check(output.empty(), "no output from a missing binary");
 }
 
 void write_script(const std::string &path, const std::string &body) {
