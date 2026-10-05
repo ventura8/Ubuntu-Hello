@@ -284,9 +284,9 @@ auto run_root_helper(const std::vector<const char *> &argv, const char *input,
   if ((input != nullptr && pipe2(in_pipe.data(), O_CLOEXEC) != 0) ||
       (output != nullptr && pipe2(out_pipe.data(), O_CLOEXEC) != 0)) {
     syslog(LOG_ERR, "Failed to create helper pipe: %s (%d)", strerror(errno), errno);
-    for (int fd : {in_pipe[0], in_pipe[1], out_pipe[0], out_pipe[1]}) {
-      if (fd >= 0) {
-        close(fd);
+    for (int pipe_fd : {in_pipe[0], in_pipe[1], out_pipe[0], out_pipe[1]}) {
+      if (pipe_fd >= 0) {
+        close(pipe_fd);
       }
     }
     return -1;
