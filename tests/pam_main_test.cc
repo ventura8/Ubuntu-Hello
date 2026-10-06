@@ -287,6 +287,32 @@ void test_read_first_line_and_popen() {
   check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
         "printing helper is killed promptly");
 
+  // The timeout kills the helper's whole process group, not just the helper:
+  // a background child it started must be gone too.
+  output.clear();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 30 & echo $!; wait", nullptr}, nullptr,
+                        &output, short_timeout) == -1,
+        "helper with a child times out");
+  const pid_t grandchild = output.empty() ? 0 : static_cast<pid_t>(std::stol(output));
+  check(grandchild > 0, "helper reported its child's pid");
+  if (grandchild > 0) {
+    // The grandchild was reparented to init (or a subreaper), so it may
+    // linger briefly as a zombie; wait until it is reaped or gone.
+    bool gone = false;
+    for (int attempt = 0; attempt < 100 && !gone; ++attempt) {
+      std::ifstream stat_file("/proc/" + std::to_string(grandchild) + "/stat");
+      std::string stat_line;
+      std::getline(stat_file, stat_line);
+      const size_t state_at = stat_line.rfind(") ");
+      gone = !stat_file.is_open() ||
+             (state_at != std::string::npos && stat_line[state_at + 2] == 'Z');
+      if (!gone) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+      }
+    }
+    check(gone, "timeout kills the helper's process group");
+  }
+
   output.clear();
   started = std::chrono::steady_clock::now();
   check(run_root_helper({"/bin/sh", "-c", "sleep 30 & printf no-newline", nullptr}, nullptr,
