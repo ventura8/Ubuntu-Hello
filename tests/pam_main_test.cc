@@ -7,6 +7,8 @@
 // a camera or root.
 #include "main.cc"
 
+#include <sys/resource.h>
+
 #include <csignal>
 #include <iostream>
 #include <utility>
@@ -257,6 +259,32 @@ void test_read_first_line_and_popen() {
   check(run_root_helper({"/nonexistent/helper", nullptr}, "input", &output) != 0,
         "run_root_helper missing binary with pipes");
   check(output.empty(), "no output from a missing binary");
+
+  // fdopen failure: feed_helper / read_helper just close the fd and leave
+  // the output untouched.
+  int bad_fd = -1;
+  feed_helper(bad_fd, "ignored");
+  check(bad_fd == -1, "feed_helper with an invalid fd");
+  output = "unchanged";
+  read_helper(bad_fd, output);
+  check(output == "unchanged", "read_helper with an invalid fd");
+
+  // pipe2 failure: with no free descriptors, open_helper_pipes fails and
+  // run_root_helper reports -1 without spawning.
+  struct rlimit saved_limit{};
+  getrlimit(RLIMIT_NOFILE, &saved_limit);
+  struct rlimit tight_limit = saved_limit;
+  tight_limit.rlim_cur = 0;
+  if (setrlimit(RLIMIT_NOFILE, &tight_limit) == 0) {
+    HelperPipes pipes;
+    const bool opened = open_helper_pipes(true, true, pipes);
+    const int status = run_root_helper({"/bin/true", nullptr}, "input", &output);
+    setrlimit(RLIMIT_NOFILE, &saved_limit);
+    check(!opened, "open_helper_pipes fails without free descriptors");
+    check(pipes.stdin_pipe[0] == -1 && pipes.stdout_pipe[0] == -1,
+          "failed open_helper_pipes leaves no pipe open");
+    check(status == -1, "run_root_helper reports a pipe failure");
+  }
 }
 
 void write_script(const std::string &path, const std::string &body) {
