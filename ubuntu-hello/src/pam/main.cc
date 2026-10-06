@@ -7,6 +7,7 @@
 
 #include <glob.h>
 #include <libintl.h>
+#include <poll.h>
 #include <pthread.h>
 #include <spawn.h>
 #include <stdexcept>
@@ -18,6 +19,7 @@
 #include <syslog.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <array>
 #include <chrono>
 #include <condition_variable>
@@ -27,6 +29,7 @@
 #include <future>
 #include <mutex>
 #include <string>
+#include <thread>
 #include <tuple>
 #include <vector>
 
@@ -49,6 +52,14 @@ const auto CHILD_TERM_TIMEOUT =
 const auto DEFAULT_TIMEOUT =
     std::chrono::duration<int, std::chrono::milliseconds::period>(100);
 const auto MAX_RETRIES = 5;
+
+// How long one root helper (a tpm2_* step, cli.py keyring enable) may run
+// before it is killed, so a hung TPM or resource manager cannot hang login.
+// Sealing with a slow TPM takes a few seconds; this leaves a wide margin.
+const auto ROOT_HELPER_TIMEOUT = std::chrono::milliseconds(30000);
+const auto ROOT_HELPER_POLL_INTERVAL = std::chrono::milliseconds(10);
+
+using HelperDeadline = std::chrono::steady_clock::time_point;
 
 #define S(msg) gettext(msg)
 
@@ -328,9 +339,15 @@ auto spawn_with_root_uid(const std::vector<const char *> &argv,
     }
   }
 
-  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+  // Own process group, so a timeout can kill the helper and its children.
+  posix_spawnattr_t spawn_attr;
+  posix_spawnattr_init(&spawn_attr);
+  posix_spawnattr_setflags(&spawn_attr, POSIX_SPAWN_SETPGROUP);
+  posix_spawnattr_setpgroup(&spawn_attr, 0);
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, &spawn_attr,
                               const_cast<char *const *>(argv.data()),
                               envp.data());
+  posix_spawnattr_destroy(&spawn_attr);
 
   restore_failed = altered && setreuid(ruid, euid) != 0;
   if (restore_failed) {
@@ -352,25 +369,73 @@ void feed_helper(int &in_fd, const char *input) {
   fclose(in_file);
 }
 
-// Read the first line of the helper's stdout into *output*, then close it.
-void read_helper(int &out_fd, std::string &output) {
-  FILE *out_file = fdopen(out_fd, "r");
-  if (out_file == nullptr) {
-    close_fd(out_fd);
-    return;
-  }
-  out_fd = -1;
-  output = read_first_line(out_file);
-  fclose(out_file);
+// Milliseconds left until *deadline*, never negative.
+auto ms_until(HelperDeadline deadline) -> int {
+  const auto left = std::chrono::duration_cast<std::chrono::milliseconds>(
+      deadline - std::chrono::steady_clock::now());
+  return left.count() > 0 ? static_cast<int>(left.count()) : 0;
 }
 
-// waitpid, retried on EINTR. Returns the waitpid result.
-auto wait_for_helper(pid_t child_pid, int &status) -> pid_t {
-  pid_t waited = -1;
+// Read up to one chunk from *out_fd* before *deadline*. Returns the bytes
+// read; 0 on EOF, error or timeout.
+auto read_chunk(int out_fd, std::array<char, 256> &buf, HelperDeadline deadline)
+    -> ssize_t {
+  struct pollfd ready_fd = {.fd = out_fd, .events = POLLIN, .revents = 0};
+  int ready = 0;
   do {
-    waited = waitpid(child_pid, &status, 0);
-  } while (waited < 0 && errno == EINTR);
-  return waited;
+    ready = poll(&ready_fd, 1, ms_until(deadline));
+  } while (ready < 0 && errno == EINTR);
+  if (ready <= 0) {
+    return 0;
+  }
+  ssize_t got = 0;
+  do {
+    got = read(out_fd, buf.data(), buf.size());
+  } while (got < 0 && errno == EINTR);
+  return got > 0 ? got : 0;
+}
+
+// Read the first line of the helper's stdout into *output* (at most 255
+// bytes, like read_first_line), giving up at *deadline*; then close it.
+void read_helper(int &out_fd, std::string &output, HelperDeadline deadline) {
+  if (out_fd < 0) {
+    return;
+  }
+  std::string data;
+  std::array<char, 256> buf{};
+  while (data.size() < buf.size() - 1 && data.find('\n') == std::string::npos) {
+    const ssize_t got = read_chunk(out_fd, buf, deadline);
+    if (got == 0) {
+      break;
+    }
+    data.append(buf.data(), static_cast<size_t>(got));
+  }
+  close_fd(out_fd);
+  data.resize(std::min(data.size(), buf.size() - 1));
+  output = data.substr(0, data.find('\n'));
+}
+
+/**
+ * Reap the helper, retrying on EINTR. If it is still running at *deadline*,
+ * kill its process group (SIGKILL) and reap it.
+ * @return The waitpid result, or -1 when the helper timed out
+ */
+auto wait_for_helper(pid_t child_pid, int &status, HelperDeadline deadline) -> pid_t {
+  while (true) {
+    const pid_t waited = waitpid(child_pid, &status, WNOHANG);
+    const bool interrupted = waited < 0 && errno == EINTR;
+    if (waited != 0 && !interrupted) {
+      return waited;
+    }
+    if (waited == 0 && std::chrono::steady_clock::now() >= deadline) {
+      syslog(LOG_ERR, "Root helper %d timed out, killing it", child_pid);
+      kill(-child_pid, SIGKILL);
+      while (waitpid(child_pid, &status, 0) < 0 && errno == EINTR) {
+      }
+      return -1;
+    }
+    std::this_thread::sleep_for(ROOT_HELPER_POLL_INTERVAL);
+  }
 }
 
 /**
@@ -382,10 +447,13 @@ auto wait_for_helper(pid_t child_pid, int &status) -> pid_t {
  * @param argv      Null-terminated argument vector; argv[0] is executed
  * @param input     Written to the child's stdin (nullptr: /dev/null)
  * @param output    When non-null, receives the first line of stdout
- * @return          The waitpid status, or -1 if the helper could not run
+ * @param timeout   How long the helper may run before it is killed
+ * @return          The waitpid status, or -1 if the helper could not run or
+ *                  timed out
  */
 auto run_root_helper(const std::vector<const char *> &argv, const char *input,
-                     std::string *output) -> int {
+                     std::string *output,
+                     std::chrono::milliseconds timeout = ROOT_HELPER_TIMEOUT) -> int {
   std::vector<std::string> env_storage = helper_environment();
   std::vector<char *> envp;
   envp.reserve(env_storage.size() + 1);
@@ -418,15 +486,16 @@ auto run_root_helper(const std::vector<const char *> &argv, const char *input,
     return -1;
   }
 
+  const HelperDeadline deadline = std::chrono::steady_clock::now() + timeout;
   if (input != nullptr) {
     feed_helper(pipes.stdin_pipe[1], input);
   }
   if (output != nullptr) {
-    read_helper(pipes.stdout_pipe[0], *output);
+    read_helper(pipes.stdout_pipe[0], *output, deadline);
   }
 
   int status = 0;
-  pid_t waited = wait_for_helper(child_pid, status);
+  pid_t waited = wait_for_helper(child_pid, status, deadline);
   return (restore_failed || waited < 0) ? -1 : status;
 }
 

@@ -266,8 +266,67 @@ void test_read_first_line_and_popen() {
   feed_helper(bad_fd, "ignored");
   check(bad_fd == -1, "feed_helper with an invalid fd");
   output = "unchanged";
-  read_helper(bad_fd, output);
+  read_helper(bad_fd, output, std::chrono::steady_clock::now());
   check(output == "unchanged", "read_helper with an invalid fd");
+
+  // Timeouts: a helper that never exits, or exits but keeps stdout open via
+  // a child, is killed at the deadline instead of hanging the PAM stack.
+  const auto short_timeout = std::chrono::milliseconds(300);
+  auto started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sleep", "30", nullptr}, nullptr, nullptr, short_timeout) == -1,
+        "hung helper times out");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "hung helper is killed promptly");
+
+  output.clear();
+  started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sh", "-c", "echo partial; exec sleep 30", nullptr}, nullptr,
+                        &output, short_timeout) == -1,
+        "helper that prints then hangs times out");
+  check(output == "partial", "output read before the timeout is kept");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "printing helper is killed promptly");
+
+  // The timeout kills the helper's whole process group, not just the helper:
+  // a background child it started must be gone too.
+  output.clear();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 30 & echo $!; wait", nullptr}, nullptr,
+                        &output, short_timeout) == -1,
+        "helper with a child times out");
+  const pid_t grandchild = output.empty() ? 0 : static_cast<pid_t>(std::stol(output));
+  check(grandchild > 0, "helper reported its child's pid");
+  if (grandchild > 0) {
+    // The grandchild was reparented to init (or a subreaper), so it may
+    // linger briefly as a zombie; wait until it is reaped or gone.
+    bool gone = false;
+    for (int attempt = 0; attempt < 100 && !gone; ++attempt) {
+      std::ifstream stat_file("/proc/" + std::to_string(grandchild) + "/stat");
+      std::string stat_line;
+      std::getline(stat_file, stat_line);
+      const size_t state_at = stat_line.rfind(") ");
+      gone = !stat_file.is_open() ||
+             (state_at != std::string::npos && stat_line[state_at + 2] == 'Z');
+      if (!gone) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+      }
+    }
+    check(gone, "timeout kills the helper's process group");
+  }
+
+  output.clear();
+  started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 30 & printf no-newline", nullptr}, nullptr,
+                        &output, short_timeout) == 0,
+        "helper whose child holds stdout still reports its own status");
+  check(output == "no-newline", "output without newline is read up to the deadline");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "stdout held by a grandchild does not hang");
+
+  // The default timeout leaves normal helpers alone.
+  output.clear();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 0.2; echo late", nullptr}, nullptr, &output) == 0,
+        "slow helper within the default timeout succeeds");
+  check(output == "late", "slow helper output");
 
   // pipe2 failure: with no free descriptors, open_helper_pipes fails and
   // run_root_helper reports -1 without spawning.

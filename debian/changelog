@@ -1,3 +1,12 @@
+ubuntu-hello (1.2.7-1ppa1) resolute; urgency=medium
+
+  * PAM: root keyring helpers (tpm2_* unseal, keyring enable) run in their
+    own process group with a 30 s limit; a hung TPM or resource manager is
+    killed instead of hanging login. Face auth itself is unaffected.
+  * Tests: hung, print-then-hang, held-stdout and slow helpers.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Tue, 06 Oct 2026 13:41:30 +0300
+
 ubuntu-hello (1.2.6-1ppa1) resolute; urgency=medium
 
   * PAM: split run_root_helper() into small helpers to clear SonarCloud's
