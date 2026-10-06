@@ -23,14 +23,17 @@ graph TD
 
 ### 2.1 privilege Isolation and Least Privilege
 - **Privilege boundary**: PAM runs inside the authenticating process (`sudo`, `gdm-password`, `polkit-agent-helper-1`, …), which has effective uid 0, so `pam_ubuntu_hello.so` spawns `compare.py` **as root** — it must read the root-owned models under `/etc/ubuntu-hello` and the camera device. `compare.py` never takes on more than that: it inherits no environment (see 2.2), spawns children only by absolute path, and drops to the *target user's* uid/gid for the only child that touches user-owned resources (the `gdbus` notification call on the user's session bus). The Settings GUI (`ubuntu-hello-gtk`) elevates through polkit (`auth_admin`) and runs as root for the same reason; it forwards only the display/locale environment and runs per-user probes (`gsettings`, browser hand-off) as the user via `sudo -u`.
-- **Strictly Scoped PAM Elevation**: When the PAM module needs to run a root helper (the TPM, which requires root access to read `/dev/tpmrm0`, or `cli.py keyring enable`), `run_root_helper()` temporarily raises the real UID with `setreuid(0, 0)`. It does this immediately before `posix_spawn` and lowers it again right after the spawn. No shell is involved, and the child gets only `helper_environment()`:
+- **Strictly Scoped PAM Elevation**: When the PAM module needs to run a root helper (the TPM, which requires root access to read `/dev/tpmrm0`, or `cli.py keyring enable`), `run_root_helper()` (through `spawn_with_root_uid()`) temporarily raises the real UID with `setreuid(0, 0)`. It does this immediately before `posix_spawn` and lowers it again right after the spawn. The helper gets its own process group, so the 30 s timeout can kill it and any children. No shell is involved, and the child gets only `helper_environment()`:
   ```cpp
   if (euid == 0 && ruid != 0) {
     if (setreuid(0, 0) == 0) {
       altered = true;
     }
   }
-  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+  // Own process group, so a timeout can kill the helper and its children.
+  posix_spawnattr_setflags(&spawn_attr, POSIX_SPAWN_SETPGROUP);
+  posix_spawnattr_setpgroup(&spawn_attr, 0);
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, &spawn_attr,
                               const_cast<char *const *>(argv.data()), envp.data());
   bool restore_failed = altered && setreuid(ruid, euid) != 0;
   // restore_failed -> the helper's result is treated as failure (-1)
