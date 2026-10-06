@@ -258,11 +258,126 @@ auto helper_environment() -> std::vector<std::string> {
   return env;
 }
 
+// Close *pipe_fd* if open and mark it closed.
+void close_fd(int &pipe_fd) {
+  if (pipe_fd >= 0) {
+    close(pipe_fd);
+    pipe_fd = -1;
+  }
+}
+
+// The helper's stdin/stdout pipes; -1 marks an end that is not in use.
+struct HelperPipes {
+  std::array<int, 2> stdin_pipe{-1, -1};
+  std::array<int, 2> stdout_pipe{-1, -1};
+
+  void close_all() {
+    for (auto *pipe_pair : {&stdin_pipe, &stdout_pipe}) {
+      for (int &pipe_fd : *pipe_pair) {
+        close_fd(pipe_fd);
+      }
+    }
+  }
+};
+
+// Create the pipes the caller asked for. On failure every pipe is closed.
+auto open_helper_pipes(bool want_in, bool want_out, HelperPipes &pipes) -> bool {
+  if ((want_in && pipe2(pipes.stdin_pipe.data(), O_CLOEXEC) != 0) ||
+      (want_out && pipe2(pipes.stdout_pipe.data(), O_CLOEXEC) != 0)) {
+    syslog(LOG_ERR, "Failed to create helper pipe: %s (%d)", strerror(errno), errno);
+    pipes.close_all();
+    return false;
+  }
+  return true;
+}
+
+// stdin/stdout come from the pipes when open, otherwise /dev/null; stderr is
+// always /dev/null.
+void add_helper_stdio(posix_spawn_file_actions_t &actions, const HelperPipes &pipes) {
+  if (pipes.stdin_pipe[0] >= 0) {
+    posix_spawn_file_actions_adddup2(&actions, pipes.stdin_pipe[0], 0);
+  } else {
+    posix_spawn_file_actions_addopen(&actions, 0, "/dev/null", O_RDONLY, 0);
+  }
+  if (pipes.stdout_pipe[1] >= 0) {
+    posix_spawn_file_actions_adddup2(&actions, pipes.stdout_pipe[1], 1);
+  } else {
+    posix_spawn_file_actions_addopen(&actions, 1, "/dev/null", O_WRONLY, 0);
+  }
+  posix_spawn_file_actions_addopen(&actions, 2, "/dev/null", O_WRONLY, 0);
+}
+
+/**
+ * posix_spawn *argv* with the real uid raised to 0 for the spawn only, so
+ * helpers that check the real uid (the CLI) accept us; safe because nothing
+ * from the caller's environment is passed on.
+ * @param restore_failed Set when the original uids could not be restored
+ * @return The posix_spawn error (0 on success)
+ */
+auto spawn_with_root_uid(const std::vector<const char *> &argv,
+                         const posix_spawn_file_actions_t &actions,
+                         const std::vector<char *> &envp, pid_t &child_pid,
+                         bool &restore_failed) -> int {
+  uid_t ruid = getuid();
+  uid_t euid = geteuid();
+  bool altered = false;
+  if (euid == 0 && ruid != 0) {
+    altered = setreuid(0, 0) == 0;
+    if (!altered) {
+      syslog(LOG_ERR, "Failed to setreuid(0, 0): %s (%d)", strerror(errno), errno);
+    }
+  }
+
+  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
+                              const_cast<char *const *>(argv.data()),
+                              envp.data());
+
+  restore_failed = altered && setreuid(ruid, euid) != 0;
+  if (restore_failed) {
+    syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
+  }
+  return spawn_err;
+}
+
+// Write *input* plus a newline to the helper's stdin, then close it.
+void feed_helper(int &in_fd, const char *input) {
+  FILE *in_file = fdopen(in_fd, "w");
+  if (in_file == nullptr) {
+    close_fd(in_fd);
+    return;
+  }
+  in_fd = -1;
+  fputs(input, in_file);
+  fputc('\n', in_file);
+  fclose(in_file);
+}
+
+// Read the first line of the helper's stdout into *output*, then close it.
+void read_helper(int &out_fd, std::string &output) {
+  FILE *out_file = fdopen(out_fd, "r");
+  if (out_file == nullptr) {
+    close_fd(out_fd);
+    return;
+  }
+  out_fd = -1;
+  output = read_first_line(out_file);
+  fclose(out_file);
+}
+
+// waitpid, retried on EINTR. Returns the waitpid result.
+auto wait_for_helper(pid_t child_pid, int &status) -> pid_t {
+  pid_t waited = -1;
+  do {
+    waited = waitpid(child_pid, &status, 0);
+  } while (waited < 0 && errno == EINTR);
+  return waited;
+}
+
 /**
  * Run a root helper without a shell and without the caller's environment.
  * PAM modules run inside setuid binaries (su, sudo, ...) whose environ is
  * attacker-controlled, and after setreuid(0, 0) the child is a plain uid-0
- * process, so LD_PRELOAD / PYTHONPATH would be honoured. Only *argv* (an
+ * process, so PATH / PYTHONPATH / BASH_ENV would be honoured. Only *argv* (an
  * absolute path in argv[0]) and helper_environment() reach the child.
  * @param argv      Null-terminated argument vector; argv[0] is executed
  * @param input     Written to the child's stdin (nullptr: /dev/null)
@@ -279,99 +394,39 @@ auto run_root_helper(const std::vector<const char *> &argv, const char *input,
   }
   envp.push_back(nullptr);
 
-  std::array<int, 2> in_pipe{-1, -1};
-  std::array<int, 2> out_pipe{-1, -1};
-  if ((input != nullptr && pipe2(in_pipe.data(), O_CLOEXEC) != 0) ||
-      (output != nullptr && pipe2(out_pipe.data(), O_CLOEXEC) != 0)) {
-    syslog(LOG_ERR, "Failed to create helper pipe: %s (%d)", strerror(errno), errno);
-    for (int pipe_fd : {in_pipe[0], in_pipe[1], out_pipe[0], out_pipe[1]}) {
-      if (pipe_fd >= 0) {
-        close(pipe_fd);
-      }
-    }
+  HelperPipes pipes;
+  if (!open_helper_pipes(input != nullptr, output != nullptr, pipes)) {
     return -1;
   }
 
   posix_spawn_file_actions_t actions;
   posix_spawn_file_actions_init(&actions);
-  if (input != nullptr) {
-    posix_spawn_file_actions_adddup2(&actions, in_pipe[0], 0);
-  } else {
-    posix_spawn_file_actions_addopen(&actions, 0, "/dev/null", O_RDONLY, 0);
-  }
-  if (output != nullptr) {
-    posix_spawn_file_actions_adddup2(&actions, out_pipe[1], 1);
-  } else {
-    posix_spawn_file_actions_addopen(&actions, 1, "/dev/null", O_WRONLY, 0);
-  }
-  posix_spawn_file_actions_addopen(&actions, 2, "/dev/null", O_WRONLY, 0);
-
-  // Become fully root so helpers that check the real uid (the CLI) accept us;
-  // safe now because nothing from the caller's environment is passed on.
-  uid_t ruid = getuid();
-  uid_t euid = geteuid();
-  bool altered = false;
-  if (euid == 0 && ruid != 0) {
-    if (setreuid(0, 0) == 0) {
-      altered = true;
-    } else {
-      syslog(LOG_ERR, "Failed to setreuid(0, 0): %s (%d)", strerror(errno), errno);
-    }
-  }
+  add_helper_stdio(actions, pipes);
 
   pid_t child_pid = -1;
-  int spawn_err = posix_spawn(&child_pid, argv[0], &actions, nullptr,
-                              const_cast<char *const *>(argv.data()), envp.data());
+  bool restore_failed = false;
+  int spawn_err = spawn_with_root_uid(argv, actions, envp, child_pid, restore_failed);
   posix_spawn_file_actions_destroy(&actions);
 
-  bool restore_failed = altered && setreuid(ruid, euid) != 0;
-  if (restore_failed) {
-    syslog(LOG_ERR, "Failed to restore UIDs to %d/%d: %s (%d)", ruid, euid, strerror(errno), errno);
-  }
-
-  if (input != nullptr) {
-    close(in_pipe[0]);
-  }
-  if (output != nullptr) {
-    close(out_pipe[1]);
-  }
+  // The child's ends belong to the child now.
+  close_fd(pipes.stdin_pipe[0]);
+  close_fd(pipes.stdout_pipe[1]);
 
   if (spawn_err != 0) {
     syslog(LOG_ERR, "Can't spawn %s: %s (%d)", argv[0], strerror(spawn_err), spawn_err);
-    if (input != nullptr) {
-      close(in_pipe[1]);
-    }
-    if (output != nullptr) {
-      close(out_pipe[0]);
-    }
+    pipes.close_all();
     return -1;
   }
 
   if (input != nullptr) {
-    FILE *in_file = fdopen(in_pipe[1], "w");
-    if (in_file != nullptr) {
-      fputs(input, in_file);
-      fputc('\n', in_file);
-      fclose(in_file);
-    } else {
-      close(in_pipe[1]);
-    }
+    feed_helper(pipes.stdin_pipe[1], input);
   }
   if (output != nullptr) {
-    FILE *out_file = fdopen(out_pipe[0], "r");
-    if (out_file != nullptr) {
-      *output = read_first_line(out_file);
-      fclose(out_file);
-    } else {
-      close(out_pipe[0]);
-    }
+    read_helper(pipes.stdout_pipe[0], *output);
   }
 
   int status = 0;
-  pid_t waited = -1;
-  do {
-    waited = waitpid(child_pid, &status, 0);
-  } while (waited < 0 && errno == EINTR);
+  pid_t waited = wait_for_helper(child_pid, status);
   return (restore_failed || waited < 0) ? -1 : status;
 }
 
