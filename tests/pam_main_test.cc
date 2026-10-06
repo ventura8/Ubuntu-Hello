@@ -266,8 +266,41 @@ void test_read_first_line_and_popen() {
   feed_helper(bad_fd, "ignored");
   check(bad_fd == -1, "feed_helper with an invalid fd");
   output = "unchanged";
-  read_helper(bad_fd, output);
+  read_helper(bad_fd, output, std::chrono::steady_clock::now());
   check(output == "unchanged", "read_helper with an invalid fd");
+
+  // Timeouts: a helper that never exits, or exits but keeps stdout open via
+  // a child, is killed at the deadline instead of hanging the PAM stack.
+  const auto short_timeout = std::chrono::milliseconds(300);
+  auto started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sleep", "30", nullptr}, nullptr, nullptr, short_timeout) == -1,
+        "hung helper times out");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "hung helper is killed promptly");
+
+  output.clear();
+  started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sh", "-c", "echo partial; exec sleep 30", nullptr}, nullptr,
+                        &output, short_timeout) == -1,
+        "helper that prints then hangs times out");
+  check(output == "partial", "output read before the timeout is kept");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "printing helper is killed promptly");
+
+  output.clear();
+  started = std::chrono::steady_clock::now();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 30 & printf no-newline", nullptr}, nullptr,
+                        &output, short_timeout) == 0,
+        "helper whose child holds stdout still reports its own status");
+  check(output == "no-newline", "output without newline is read up to the deadline");
+  check(std::chrono::steady_clock::now() - started < std::chrono::seconds(5),
+        "stdout held by a grandchild does not hang");
+
+  // The default timeout leaves normal helpers alone.
+  output.clear();
+  check(run_root_helper({"/bin/sh", "-c", "sleep 0.2; echo late", nullptr}, nullptr, &output) == 0,
+        "slow helper within the default timeout succeeds");
+  check(output == "late", "slow helper output");
 
   // pipe2 failure: with no free descriptors, open_helper_pipes fails and
   // run_root_helper reports -1 without spawning.
