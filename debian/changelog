@@ -1,3 +1,15 @@
+ubuntu-hello (1.2.8-1ppa1) resolute; urgency=medium
+
+  * CLI: new `ubuntu-hello keyring repair` reseals the login password and
+    sets a login keyring that rejects it aside (renamed, never deleted), so
+    the next login creates a fresh keyring.
+  * GTK: Keyring tab warns when the login keyring is still locked in the
+    session and offers Repair Keyring.
+  * PAM: EINTR retry factored into waitpid_no_eintr (SonarCloud fixes).
+  * i18n: 9 new strings in all 98 languages.
+
+ -- ventura8 <alexandrescu.sergiu@gmail.com>  Thu, 08 Oct 2026 21:00:00 +0300
+
 ubuntu-hello (1.2.7-1ppa1) resolute; urgency=medium
 
   * PAM: root keyring helpers (tpm2_* unseal, keyring enable) run in their
