@@ -8,6 +8,7 @@
 #include "main.cc"
 
 #include <sys/resource.h>
+#include <sys/time.h>
 
 #include <csignal>
 #include <iostream>
@@ -693,6 +694,35 @@ void test_enter_device() {
 
 } // namespace
 
+// A signal without SA_RESTART interrupts a blocking waitpid with EINTR;
+// waitpid_no_eintr must retry and still reap the child.
+void ignore_alarm(int /*signum*/) {}
+
+void test_waitpid_no_eintr() {
+  struct sigaction alarm_action{};
+  struct sigaction previous{};
+  alarm_action.sa_handler = ignore_alarm;
+  sigemptyset(&alarm_action.sa_mask);
+  alarm_action.sa_flags = 0;  // no SA_RESTART: waitpid fails with EINTR
+  sigaction(SIGALRM, &alarm_action, &previous);
+
+  const pid_t child = fork();
+  if (child == 0) {
+    usleep(300000);
+    _exit(7);
+  }
+  struct itimerval timer{};
+  timer.it_value.tv_usec = 50000;
+  setitimer(ITIMER_REAL, &timer, nullptr);
+
+  int status = 0;
+  check(waitpid_no_eintr(child, status, 0) == child, "waitpid retried after EINTR");
+  check(WIFEXITED(status) && WEXITSTATUS(status) == 7, "interrupted wait still reaps the child");
+  check(waitpid_no_eintr(child, status, WNOHANG) < 0, "reaped child is gone");
+
+  sigaction(SIGALRM, &previous, nullptr);
+}
+
 auto main(int argc, char **argv) -> int {
   if (argc < 2) {
     std::cerr << "usage: pam_main_test <tmpdir>\n";
@@ -716,6 +746,7 @@ auto main(int argc, char **argv) -> int {
   test_face_skip_and_dismiss();
   test_pam_entry_points();
   test_enter_device();
+  test_waitpid_no_eintr();
 
   if (failures != 0) {
     std::cerr << failures << " check(s) failed\n";

@@ -4,6 +4,7 @@ import sys
 import ctypes
 import configparser
 import subprocess
+from types import SimpleNamespace
 from unittest.mock import patch, MagicMock, mock_open
 import pytest
 
@@ -893,3 +894,80 @@ class TestAuthHelper:
 
             mock_libpam.pam_authenticate.side_effect = pam_authenticate_side_effect
             auth_helper.verify_user_password("testuser", "testpass")
+
+
+# ── broken login keyring / on_keyring_repair ────────────────────────
+
+class TestKeyringRepair:
+    def _self(self):
+        mock = MagicMock()
+        mock.active_user = "testuser"
+        mock.userlist.items = 1
+        mock.keyring_status_label.get_label.return_value = "Enabled"
+        return mock
+
+    def test_status_shows_repair_when_locked(self):
+        mock = self._self()
+        with patch("os.path.exists", side_effect=lambda p: ".pub" in p), \
+             patch("tab_keyring.login_keyring_locked", return_value=True):
+            tab_keyring.update_keyring_status(mock)
+        mock.keyring_repair_button.set_visible.assert_called_with(True)
+        assert "did not accept" in mock.keyring_status_label.set_markup.call_args[0][0]
+
+    def test_status_hides_repair_when_unlocked_or_unknown(self):
+        for state in (False, None):
+            mock = self._self()
+            with patch("os.path.exists", side_effect=lambda p: ".pub" in p), \
+                 patch("tab_keyring.login_keyring_locked", return_value=state):
+                tab_keyring.update_keyring_status(mock)
+            mock.keyring_repair_button.set_visible.assert_called_with(False)
+
+    def test_status_skips_probe_when_disabled(self):
+        mock = self._self()
+        mock.keyring_disable_button.get_sensitive.return_value = False
+        with patch("os.path.exists", return_value=False), \
+             patch("tab_keyring.login_keyring_locked") as probe:
+            tab_keyring.update_keyring_status(mock)
+        probe.assert_not_called()
+        mock.keyring_repair_button.set_visible.assert_called_with(False)
+
+    def test_repair_no_user_and_cancel(self):
+        mock = self._self()
+        mock.active_user = ""
+        tab_keyring.on_keyring_repair(mock, MagicMock())
+        mock = self._self()
+        with patch("tab_keyring.gtk4compat.alert", return_value=0), \
+             patch("tab_keyring.subprocess.run") as run:
+            tab_keyring.on_keyring_repair(mock, MagicMock())
+        run.assert_not_called()
+
+    def _run_repair(self, mock, password="pw", verified=True, response=None, result=None):
+        from gi.repository import Gtk as gtk
+        with patch("tab_keyring.gtk4compat.alert", return_value=1) as alert, \
+             patch("tab_keyring.KeyringPasswordDialog") as dialog_cls, \
+             patch("tab_keyring.gtk4compat.run_dialog",
+                   return_value=response if response is not None else gtk.ResponseType.OK), \
+             patch("tab_keyring.auth_helper.verify_user_password", return_value=verified), \
+             patch("tab_keyring.subprocess.run", return_value=result) as run:
+            dialog_cls.return_value.entry1.get_text.return_value = password
+            tab_keyring.on_keyring_repair(mock, MagicMock())
+        return alert, run
+
+    def test_repair_success_runs_cli(self):
+        mock = self._self()
+        alert, run = self._run_repair(mock, result=SimpleNamespace(returncode=0, stdout="Saved as X\n", stderr=""))
+        assert run.call_args[0][0] == ["ubuntu-hello", "keyring", "repair", "-U", "testuser"]
+        assert run.call_args[1]["input"] == "pw\n"
+        assert alert.call_args[0][1] == "Saved as X"
+        mock.update_keyring_status.assert_called_once()
+
+    def test_repair_cli_failure_alerts(self):
+        mock = self._self()
+        alert, _run = self._run_repair(mock, result=SimpleNamespace(returncode=1, stdout="", stderr="boom"))
+        assert "boom" in alert.call_args[0][1]
+
+    def test_repair_rejects_empty_wrong_or_cancelled(self):
+        from gi.repository import Gtk as gtk
+        for kwargs in ({"password": ""}, {"verified": False}, {"response": gtk.ResponseType.CANCEL}):
+            _alert, run = self._run_repair(self._self(), **kwargs)
+            run.assert_not_called()

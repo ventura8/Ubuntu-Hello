@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "Сәтсіздік, күту уақыты аяқталды"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "Бетті анықтау кескіні тым күңгірт"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "Белгісіз қате:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "Анықталған бет %s"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
@@ -41,13 +41,13 @@ msgstr ""
 "Enter пернесін жіберуге рұқсаттар жеткіліксіз, оның орнына пайдаланушы оны "
 "басқанша күтуде"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Enter пернесін жіберу мүмкін болмады, оның орнына пайдаланушы оны басуын "
 "күтуде"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "Бет аутентификациясына әрекеттену"
 
@@ -184,36 +184,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Орташа қараңғылық: {avg}, шегі: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "Өткізілген уақыт"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "Іске қосу"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Камераны ашыңыз + жүктеу дискілері: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "Камераны ашу"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "Тану кітапханаларын импорттау"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "Белгілі бет ізделуде"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "Жалпы уақыт"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -221,17 +221,17 @@ msgstr ""
 "\n"
 "Ажыратымдылық"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "Жергілікті: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "Қолданылған: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -240,27 +240,27 @@ msgstr ""
 "\n"
 "Ізденген кадрлар: %d (%.2f кадр/сек)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "Қара жақтаулар еленбеді: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Қараңғы жақтаулар еленбеді: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Жеңімпаз кадрдың сенімділігі: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Жеңімпаз модель: %d («%s»)"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "СӘТТІ"
 
@@ -575,56 +575,56 @@ msgstr ""
 "Егер сіз осы пәрменді sudo көмегімен іске қосып жатсаңыз, EDITOR айнымалы "
 "мәнін сақтау үшін «sudo -E ubuntu-hello config» қолданып көріңіз."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "Аргумент ретінде 0 (қосу) немесе 1 (өшіру) қосыңыз"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "Аргумент ретінде тек 0 (қосу) немесе 1 (өшіру) пайдаланыңыз"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "Өшіру опциясы әлдеқашан орнатылған"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello өшірілді"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello қосылды"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "Қолданылуы:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "{} ({}) құлпын ашу үшін {} пайдаланушысының құпия сөзін енгізіңіз:"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "Құпия сөз бос болмауы керек"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) құлпын ашу үшін {} пайдаланушысының құпия сөзін енгізіңіз:"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "Құпия сөзді Растау:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "Құпия сөздер сәйкес келмейді"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr ""
 "TPM аппараттық құралы анықталды. tpm2-tools автоматты түрде орнатылуда..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM аппараттық құралы белсенді. TPM жүйесінде құпия сөзді мөрлеу..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -632,17 +632,17 @@ msgstr ""
 "Кілт/KWallet құлпын ашу TPM (әмиян: {}) арқылы {} пайдаланушысы үшін сәтті "
 "қосылды."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPM құпия сөзін жабу мүмкін болмады: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
 "Белсенді TPM жоқ. Бағдарламаға негізделген тіркелгі деректерін кэштеуді "
 "пайдалану..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -650,36 +650,36 @@ msgstr ""
 "Keyring/KWallet құлпын ашу {} пайдаланушысы үшін сәтті қосылды "
 "(Бағдарламалық құралды кэштеу, әмиян: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Кілттердің құлпын ашуды қосу мүмкін болмады: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Кілттердің құлпын ашу өшірілмеді: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Кілт/KWallet құлпын ашу {} пайдаланушысы үшін өшірілген."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Кілт/KWallet құлпын ашу {} пайдаланушысы үшін қосылмаған."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Мөрленген кіру құпиясөздері табылмады; қалпына келтіретін ештеңе жоқ."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} пайдаланушының кіру әмиянының құпиясөзі қалпына келтірілді."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
 "{} пайдаланушының кіру әмиянының құпиясөзін қалпына келтіру мүмкін болмады."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -687,16 +687,46 @@ msgstr ""
 "Сұраулар жалғасса, Seahorse / Жүйе параметрлерінде кіру кілттерінің немесе "
 "KWallet құпиясөзін орнатыңыз."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "{} пайдаланушысының кіру әмиянының құпиясөзі қалпына келтірілді."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr ""
 "{} пайдаланушысының кіру әмиянының құпиясөзін қалпына келтіру мүмкін болмады."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"Жөндеу тек GNOME Keyring үшін қолданылады. KWallet құпиясөзін Жүйе "
+"баптауларында орнатыңыз."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr "Кіру кілттер жинағы табылмады; ол келесі кіруіңізде жасалады."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "Кіру кілттер жинағын басқа орынға жылжыту мүмкін болмады: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "Ескі кіру кілттер жинағы {} ретінде сақталды."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"Жүйеден шығып, қайта кіріңіз: жаңа кіру кілттер жинағы жасалып, автоматты "
+"түрде ашылады. Ескі жинақта сақталған құпиясөздерді қайта енгізу қажет "
+"болады."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "Жарамсыз әрекет. Келесілердің бірін қолданыңыз:"
 
@@ -829,11 +859,11 @@ msgstr "ҚАРА ЖАҚТАУ"
 msgid "SCAN FRAME"
 msgstr "ЖАҢАДЫ СКАНЕРУ"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "сәйкестік жоқ"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -841,25 +871,25 @@ msgstr ""
 "\n"
 "Терезені жабу"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "Резеңке штамптағы ішкі қате:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Резеңке штамп ережесін талдау қатесі: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "Мөр орнатылмаған: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "Мөр қатесі: {} класы табылмады"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Резеңке штамп конфигурациясының декларациясындағы ішкі қате:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "Резеңке штамптағы ішкі қате:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -880,21 +910,21 @@ msgstr ""
 msgid "Authentication aborted"
 msgstr "Аутентификация тоқтатылды"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "Растау үшін басын изеді"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "Аборт жасау үшін басыңызды шайқаңыз"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "Расталған аутентификация"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "Аутентификация тоқтатылды"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "Растау үшін басын изеді"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "Аборт жасау үшін басыңызды шайқаңыз"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -904,7 +934,7 @@ msgstr "ffmpeg модулі жоқ, іске қосыңыз:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 модулі жоқ, іске қосыңыз:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -912,7 +942,7 @@ msgstr ""
 "Ubuntu Hello конфигурация файлында көрсетілген жолда камера құрылғысын таба "
 "алмады."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -920,7 +950,7 @@ msgstr ""
 "Жол дұрыс конфигурацияланбаған болуы әбден мүмкін, 'device_path' "
 "конфигурация мәнін келесіні іске қосу арқылы өңдеңіз:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

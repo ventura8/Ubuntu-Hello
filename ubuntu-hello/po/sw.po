@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "Imeshindwa, muda umeisha"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "Picha ya utambuzi wa nyuso nyeusi sana"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "Hitilafu isiyojulikana:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "Uso uliotambuliwa kama %s"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
@@ -41,12 +41,12 @@ msgstr ""
 "Ruhusa haitoshi kutuma bonyeza Enter, ikisubiri mtumiaji kuibonyeza badala "
 "yake"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Imeshindwa kutuma bonyeza Enter, ikisubiri mtumiaji kuibonyeza badala yake"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "Jaribio la uthibitishaji wa uso"
 
@@ -183,36 +183,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Wastani wa giza: {avg}, Kizingiti: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "Muda uliotumika"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "Kuanzia"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Fungua cam + pakia libs: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "Kufungua kamera"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "Inaingiza vifaa vya utambuzi"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "Inatafuta uso unaojulikana"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "Jumla ya muda"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -220,17 +220,17 @@ msgstr ""
 "\n"
 "Azimio"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "Asili: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "Imetumika: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -239,27 +239,27 @@ msgstr ""
 "\n"
 "Fremu zilizotafutwa: %d (%.2f ramprogrammen)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "Fremu nyeusi zimepuuzwa: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Fremu za giza zimepuuzwa: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Uhakika wa fremu ya kushinda: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Muundo ulioshinda: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "IMEFANIKIWA"
 
@@ -572,55 +572,55 @@ msgstr ""
 "Ikiwa unaendesha amri hii na sudo, jaribu 'sudo -E ubuntu-hello config' ili "
 "kuhifadhi utofauti wako wa EDITOR."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "Tafadhali ongeza 0 (wezesha) au 1 (lemaza) kama hoja"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "Tafadhali tumia tu 0 (wezesha) au 1 (lemaza) kama hoja"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "Chaguo la kuzima tayari limewekwa"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello imezimwa"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello imewashwa"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "Matumizi:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Weka nenosiri la mtumiaji {} ili kufungua {} ({}):"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "Nenosiri haliwezi kuwa tupu"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Weka nenosiri la mtumiaji {} ili kufungua {} ({}):"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "Thibitisha nenosiri:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "Manenosiri hayalingani"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "Maunzi ya TPM yamegunduliwa. Inasakinisha kiotomatiki tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "maunzi ya TPM yanatumika. Inafunga nenosiri katika TPM..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -628,17 +628,17 @@ msgstr ""
 "Ufunguo/KWallet ufunguaji umewezeshwa kwa mtumiaji {} kwa kutumia TPM "
 "(mkoba: {})."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "Imeshindwa kufunga nenosiri kwa TPM: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
 "Hakuna TPM inayotumika. Kwa kutumia uhifadhi wa kitambulisho kulingana na "
 "programu..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -646,37 +646,37 @@ msgstr ""
 "Uwekaji ufunguo/KWallet ufunguaji umewezeshwa kwa mtumiaji {} (Uhifadhi wa "
 "Programu, pochi: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Imeshindwa kuwezesha ufunguaji wa vitufe: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Imeshindwa kuzima ufunguaji wa vitufe: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Ufunguo/KWallet kufungua kumezimwa kwa mtumiaji {}."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Uwekaji kitufe/KWallet kufungua hakujawashwa kwa mtumiaji {}."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
 "Hakuna manenosiri ya kuingia yaliyofungwa yaliyopatikana; hakuna cha "
 "kurejesha."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Nenosiri la pochi ya kuingia limerejeshwa kwa watumiaji {}."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Imeshindwa kurejesha nenosiri la pochi ya kuingia kwa watumiaji {}."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -684,15 +684,47 @@ msgstr ""
 "Ikiwa vidokezo vitaendelea, weka nenosiri la keyring ya kuingia au KWallet "
 "katika Seahorse / Mipangilio ya Mfumo."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "Nenosiri la pochi ya kuingia limerejeshwa kwa mtumiaji {}."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "Imeshindwa kurejesha nenosiri la pochi ya kuingia kwa mtumiaji {}."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"Urekebishaji unatumika kwa GNOME Keyring pekee. Weka nenosiri la KWallet "
+"katika Mipangilio ya Mfumo."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr ""
+"Hakuna mnyororo wa funguo za kuingia uliopatikana; mpya utaundwa "
+"utakapoingia tena."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "Imeshindwa kuweka kando mnyororo wa funguo za kuingia: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "Mnyororo wa funguo za kuingia wa zamani umehifadhiwa kama {}."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"Toka kisha uingie tena: mnyororo mpya wa funguo za kuingia utaundwa na "
+"kufunguliwa kiotomatiki. Manenosiri yaliyohifadhiwa katika mnyororo wa "
+"zamani yatahitaji kuingizwa tena."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "Kitendo batili. Tumia mojawapo ya haya:"
 
@@ -826,11 +858,11 @@ msgstr "MFUMO WA GIZA"
 msgid "SCAN FRAME"
 msgstr "CHANGANUA FRAME"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "hakuna inayolingana"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -838,25 +870,25 @@ msgstr ""
 "\n"
 "Kufunga dirisha"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "Hitilafu ya ndani katika rubberstamp:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Hitilafu katika kuchanganua sheria ya rubberstamp: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "Muhuri haijasakinishwa: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "Hitilafu ya stempu: Hatari {} haijapatikana"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Hitilafu ya ndani katika tamko la usanidi wa rubberstamp:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "Hitilafu ya ndani katika rubberstamp:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -875,21 +907,21 @@ msgstr "Bonyeza {abort_key} ili kutoa mimba, {confirm_key} ili kuidhinisha"
 msgid "Authentication aborted"
 msgstr "Uthibitishaji umekatizwa"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "Nod kuthibitisha"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "Tikisa kichwa ili kutoa mimba"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "Uthibitishaji uliothibitishwa"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "Uthibitishaji ulioghairiwa"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "Nod kuthibitisha"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "Tikisa kichwa ili kutoa mimba"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -899,7 +931,7 @@ msgstr "ffmpeg moduli haipo, tafadhali endesha:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Moduli ya pyv4l2 haipo, tafadhali endesha:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -907,7 +939,7 @@ msgstr ""
 "Ubuntu Hello haikuweza kupata kifaa cha kamera kwenye njia iliyobainishwa "
 "kwenye faili ya usanidi."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -915,7 +947,7 @@ msgstr ""
 "Kuna uwezekano mkubwa kwamba njia haijasanidiwa ipasavyo, tafadhali hariri "
 "thamani ya usanidi ya 'device_path' kwa kuendesha:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "Stovnað"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "Merki"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "Sjálvvirkandi"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "Andlitsmodell tíni verða løgd afturat"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -51,16 +51,16 @@ msgstr ""
 "skeggi ella aðrari lýsing — og hon ger, at Ubuntu Hello kennir teg aftur við "
 "enn størri vissu, hvørja tíð á degnum tað so er."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Hygg vinarliga beint inn í myndatólið"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Byrja andlitsskanning"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -68,11 +68,11 @@ msgstr ""
 "Dátufílurnar eru longu niðurtiknar!\n"
 "Klikk á Næsta fyri at halda fram"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "Villa við niðurtøku av dátufílum"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -80,19 +80,19 @@ msgstr ""
 "Liðugt!\n"
 "Klikk á Næsta fyri at halda fram"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "Villa við innflutningi av OpenCV2"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "Royn at seta cv2 upp av nýggjum"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "Eingi vevmyndatól funnin í skipanini"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
@@ -100,39 +100,39 @@ msgstr ""
 "Set vinarliga myndatólið upp sjálvur, um tú ert vísur í, at eitt samsvarandi "
 "myndatól er tilsluttað"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "Nei, myndatólið kann ikki latast upp"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "Nei, ikki eitt infrareytt myndatól"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "Ja, eitt samsvarandi infrareytt myndatól"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "Nei, ikki eitt infrareytt myndatól"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "Eyðkenni ella leið á myndatólinum"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "Viðmælt"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "Villa við vali av myndatóli"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "Tað valda myndatólið kann ikki latast upp"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "Royn at velja eitt annað"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -144,27 +144,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "fyri at virkja ir-sendaran hjá tær"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "Uppsetingarlýsing 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "Uppsetingarlýsing 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "Kann ikki goyma andlitsmodellið"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "Skanna annað modellið"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "Kundi ikki taka upp annað modellið"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -175,11 +175,11 @@ msgstr ""
 "heldur lýsingina enn at sløkkja hana — og royn so aftur, ella loyp uppum og "
 "legg eitt modell afturat seinni í Stillingum."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "Onnur skanning: gleraugu, skegg ella onnur lýsing"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -195,7 +195,7 @@ msgstr ""
 "sløkk eina lampu, flyt teg burtur frá vindeyganum. Hav andlitið væl sjónligt "
 "og trýst á Skanna aftur; so kemur sama stutta, leidda upptøkan."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -207,7 +207,7 @@ msgstr ""
 "\n"
 "<b>TPM-støða:</b> Kannar TPM-tólbúnað og -amboð..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -221,7 +221,7 @@ msgstr ""
 "<b>TPM-støða:</b> TPM-tólbúnaður funnin. Setur <i>tpm2-tools</i> upp "
 "sjálvvirkandi..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -235,7 +235,7 @@ msgstr ""
 "<b>TPM-støða:</b> TPM 2.0 í tólbúnaðinum er virkin. Loyniorðið hjá tær "
 "verður trygt innsiglað inni í TPM."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -252,7 +252,7 @@ msgstr ""
 "code>. Fellur aftur til software-baseraða mellumgoymslu av "
 "innritanarupplýsingum."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -266,63 +266,63 @@ msgstr ""
 "<b>TPM-støða:</b> Eingin TPM-tólbúnaður funnin. Brúkar software-baseraða "
 "mellumgoymslu av innritanarupplýsingum (AES-256-GCM)."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Fekk ikki tikið upplæsing av lyklaringi úr gildi: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr ""
-"Kundi ikki eyðmerkja ein skipanarbrúkara, sum ikki er root, til upplæsing av "
-"lyklaringi"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "Loyniorðið kann ikki vera tómt"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "Skeivt loyniorð hjá brúkaranum {}"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "ókend villa"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Fekk ikki sett upplæsing av lyklaringi í gildi: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr ""
 "Fekk ikki sett upplæsing av lyklaringi í gildi: forritið ubuntu-hello varð "
 "ikki funnið"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "Fekk ikki sett upplæsing av lyklaringi í gildi: tíðin rann út, meðan bíðað "
 "varð eftir keyring enable"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Fekk ikki sett upplæsing av lyklaringi í gildi: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "ókend villa"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Kundi ikki eyðmerkja ein skipanarbrúkara, sum ikki er root, til upplæsing av "
+"lyklaringi"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "Villa við upplæsing av lyklaringi"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "Villa við lesing av valknøttum"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
 "Kundi ikki goyma trygdarstillingarnar, men uppsetingin er annars liðug."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "Innlesur...  "
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello-váttan"
 
@@ -330,8 +330,8 @@ msgstr "Ubuntu Hello-váttan"
 msgid "Confirm Model Creation"
 msgstr "Vátta stovning av modelli"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "Ógilda"
 
@@ -410,74 +410,101 @@ msgstr "Halla høkuna eitt sindur niður"
 msgid "Recording… {count} of {total}"
 msgstr "Tekur upp… {count} av {total}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "Kann ikki lata myndatólið upp"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "Kann ikki innflyta OpenCV2"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "Ókent"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Virkja upplæsing av lyklaringi/KWallet"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "Í lagi"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Skriva loyniorðið hjá brúkaranum <b>{}</b> fyri at læsa {} upp ({}):"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "Loyniorð"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>Eingin brúkari valdur</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Virkjað (TPM-tólbúnaður)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Virkjað (software-mellumgoymsla)</b></span> — {}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Virkjað (bíðar eftir loyniorði)</b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Óvirkjað</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>Innritanarlyklaringurin tók ikki við loyniorði "
+"tínum.</b></span> Umvæling stovnar ein nýggjan lyklaring; loyniorð, ið eru "
+"goymd í tí gamla, mugu skrivast inn aftur."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "Upplæsing av lyklaringi/KWallet er sett í gildi hjá brúkaranum {}."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
 "Ert tú vísur í, at tú vilt taka upplæsing av lyklaringi/KWallet úr gildi hjá "
 "brúkaranum {}?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "Óvirkja sjálvvirkandi upplæsing"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Upplæsing av lyklaringi/KWallet er tikin úr gildi hjá brúkaranum {}."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"Umvæla innritanarlyklaringin hjá brúkaranum {}? Gamli lyklaringurin verður "
+"varðveittur sum trygdarfíla, og ein nýggjur verður stovnaður næstu ferð tú "
+"ritar inn."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "Umvæl lyklaring"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "Miseydnaðist at umvæla innritanarlyklaringin: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -684,44 +711,44 @@ msgstr "Kannar..."
 msgid "Enable Auto-Unlock"
 msgstr "Virkja sjálvvirkandi upplæsing"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "Lyklaringur"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "Vísingarmál"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Sjálvvirkandi fylgir skipanarmálinum. Broytingar verða settar í gildi "
 "beinanvegin."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "Mál"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Andlitsváttan til Linux"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "Ókend útgáva"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Lat GitHub-leinkjuna "
 "upp</a> "
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -729,7 +756,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Boða frá einum "
 "trupulleika ella stinga upp á eina nýggja funktión</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "Um"
 

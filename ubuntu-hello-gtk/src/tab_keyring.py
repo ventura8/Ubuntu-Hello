@@ -7,6 +7,7 @@ import gtk4compat
 from i18n import _
 import auth_helper
 from wallet_backend import wallet_backend_label, wallet_unlock_phrase
+from keyring_restore import login_keyring_locked
 
 
 KEYRING_KEYS_DIR = "/etc/ubuntu-hello/keyring-keys"
@@ -37,6 +38,7 @@ def update_keyring_status(self):
 		self.keyring_status_label.set_markup(_("<i>No user selected</i>"))
 		self.keyring_enable_button.set_sensitive(False)
 		self.keyring_disable_button.set_sensitive(False)
+		self.keyring_repair_button.set_visible(False)
 		return
 
 	keyring_keys_dir = KEYRING_KEYS_DIR
@@ -65,39 +67,64 @@ def update_keyring_status(self):
 		self.keyring_enable_button.set_sensitive(True)
 		self.keyring_disable_button.set_sensitive(False)
 
-def on_keyring_enable(self, button):
-	if not self.active_user:
-		return
+	# Auto-unlock is on, yet the login keyring is still locked in the user's
+	# running session: the keyring rejected the sealed password (damaged file
+	# or a keyring password that no longer matches the login password).
+	broken = self.keyring_disable_button.get_sensitive() and login_keyring_locked(self.active_user) is True
+	self.keyring_repair_button.set_visible(broken)
+	if broken:
+		self.keyring_status_label.set_markup(
+			self.keyring_status_label.get_label() + "\n" +
+			_("<span foreground='red'><b>Your login keyring did not accept your password.</b></span> Repair creates a new keyring; passwords saved in the old one will need to be entered again."))
 
+def _ask_verified_password(self):
+	"""Prompt for the active user's password; return it once verified, else None."""
 	dialog = KeyringPasswordDialog(self.window, self.active_user)
 	response = gtk4compat.run_dialog(dialog)
-
 	passwd1 = dialog.entry1.get_text()
 	dialog.destroy()
 
 	if response != gtk.ResponseType.OK:
-		return
+		return None
 
 	if not passwd1:
 		gtk4compat.alert(self.window, _("Password cannot be empty"))
-		return
+		return None
 
 	if not auth_helper.verify_user_password(self.active_user, passwd1):
 		gtk4compat.alert(self.window, _("Incorrect password for user {}").format(self.active_user))
+		return None
+	return passwd1
+
+
+def _run_keyring_cli(action, user, password):
+	"""Run ``ubuntu-hello keyring <action>`` with *password* on stdin.
+
+	Returns its stdout; raises RuntimeError with the CLI's message on failure.
+	"""
+	res = subprocess.run(
+		["ubuntu-hello", "keyring", action, "-U", user],
+		input=password + "\n",
+		capture_output=True,
+		text=True,
+		timeout=120,
+	)
+	if res.returncode != 0:
+		detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
+		raise RuntimeError(detail)
+	return res.stdout
+
+
+def on_keyring_enable(self, button):
+	if not self.active_user:
+		return
+
+	passwd1 = _ask_verified_password(self)
+	if passwd1 is None:
 		return
 
 	try:
-		res = subprocess.run(
-			["ubuntu-hello", "keyring", "enable", "-U", self.active_user],
-			input=passwd1 + "\n",
-			capture_output=True,
-			text=True,
-			timeout=120,
-		)
-		if res.returncode != 0:
-			detail = (res.stderr or res.stdout or "").strip() or _("unknown error")
-			raise RuntimeError(detail)
-
+		_run_keyring_cli("enable", self.active_user, passwd1)
 		gtk4compat.alert(self.window, _("Keyring/KWallet unlocking enabled successfully for user {}.").format(self.active_user))
 	except Exception as e:
 		gtk4compat.alert(self.window, _("Failed to enable keyring unlocking: {}").format(str(e)))
@@ -132,5 +159,28 @@ def on_keyring_disable(self, button):
 		gtk4compat.alert(self.window, _("Keyring/KWallet unlocking disabled for user {}.").format(self.active_user))
 	except Exception as e:
 		gtk4compat.alert(self.window, _("Failed to disable keyring unlocking: {}").format(str(e)))
+
+	self.update_keyring_status()
+
+def on_keyring_repair(self, button):
+	if not self.active_user:
+		return
+
+	choice = gtk4compat.alert(
+		self.window,
+		_("Repair the login keyring for user {}? The old keyring is kept as a backup file, and a new one is created at your next login.").format(self.active_user),
+		buttons=(_("Cancel"), _("Repair Keyring")), default=1, cancel=0)
+	if choice != 1:
+		return
+
+	passwd1 = _ask_verified_password(self)
+	if passwd1 is None:
+		return
+
+	try:
+		output = _run_keyring_cli("repair", self.active_user, passwd1)
+		gtk4compat.alert(self.window, output.strip())
+	except Exception as e:
+		gtk4compat.alert(self.window, _("Failed to repair the login keyring: {}").format(str(e)))
 
 	self.update_keyring_status()

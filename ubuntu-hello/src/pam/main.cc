@@ -415,23 +415,29 @@ void read_helper(int &out_fd, std::string &output, HelperDeadline deadline) {
   output = data.substr(0, data.find('\n'));
 }
 
+// waitpid, retried while a signal interrupts it. Returns the waitpid result.
+auto waitpid_no_eintr(pid_t child_pid, int &status, int options) -> pid_t {
+  pid_t waited = -1;
+  do {
+    waited = waitpid(child_pid, &status, options);
+  } while (waited < 0 && errno == EINTR);
+  return waited;
+}
+
 /**
- * Reap the helper, retrying on EINTR. If it is still running at *deadline*,
- * kill its process group (SIGKILL) and reap it.
+ * Reap the helper. If it is still running at *deadline*, kill its process
+ * group (SIGKILL) and reap it.
  * @return The waitpid result, or -1 when the helper timed out
  */
 auto wait_for_helper(pid_t child_pid, int &status, HelperDeadline deadline) -> pid_t {
   while (true) {
-    const pid_t waited = waitpid(child_pid, &status, WNOHANG);
-    const bool interrupted = waited < 0 && errno == EINTR;
-    if (waited != 0 && !interrupted) {
+    if (const pid_t waited = waitpid_no_eintr(child_pid, status, WNOHANG); waited != 0) {
       return waited;
     }
-    if (waited == 0 && std::chrono::steady_clock::now() >= deadline) {
+    if (std::chrono::steady_clock::now() >= deadline) {
       syslog(LOG_ERR, "Root helper %d timed out, killing it", child_pid);
       kill(-child_pid, SIGKILL);
-      while (waitpid(child_pid, &status, 0) < 0 && errno == EINTR) {
-      }
+      waitpid_no_eintr(child_pid, status, 0);
       return -1;
     }
     std::this_thread::sleep_for(ROOT_HELPER_POLL_INTERVAL);

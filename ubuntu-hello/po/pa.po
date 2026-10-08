@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "ਅਸਫਲਤਾ, ਸਮਾਂ ਸਮਾਪਤ ਹੋ ਗਿਆ"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "ਚਿਹਰਾ ਪਛਾਣ ਚਿੱਤਰ ਬਹੁਤ ਗੂੜ੍ਹਾ ਹੈ"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "ਅਗਿਆਤ ਤਰੁੱਟੀ:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "%s ਵਜੋਂ ਪਛਾਣਿਆ ਚਿਹਰਾ"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
 msgstr ""
 "ਐਂਟਰ ਦਬਾਓ ਭੇਜਣ ਲਈ ਨਾਕਾਫ਼ੀ ਅਨੁਮਤੀਆਂ, ਇਸਦੀ ਬਜਾਏ ਉਪਭੋਗਤਾ ਨੂੰ ਦਬਾਉਣ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "ਐਂਟਰ ਦਬਾਓ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ, ਇਸਦੀ ਬਜਾਏ ਉਪਭੋਗਤਾ ਇਸਨੂੰ ਦਬਾਉਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "ਚਿਹਰੇ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
@@ -177,36 +177,36 @@ msgstr "ਸਾਰੇ ਫਰੇਮ ਬਹੁਤ ਹਨੇਰੇ ਸਨ, ਕਿਰ
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ਔਸਤ ਹਨੇਰਾ: {avg}, ਥ੍ਰੈਸ਼ਹੋਲਡ: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "ਸਮਾਂ ਬਿਤਾਇਆ"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "ਕੈਮ + ਲੋਡ ਲਿਬਸ ਖੋਲ੍ਹੋ: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "ਕੈਮਰਾ ਖੋਲ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "ਮਾਨਤਾ libs ਨੂੰ ਆਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "ਜਾਣੇ-ਪਛਾਣੇ ਚਿਹਰੇ ਦੀ ਖੋਜ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "ਕੁੱਲ ਸਮਾਂ"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -214,17 +214,17 @@ msgstr ""
 "\n"
 "ਮਤਾ"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "ਮੂਲ: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "ਵਰਤਿਆ ਗਿਆ: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -233,27 +233,27 @@ msgstr ""
 "\n"
 "ਫ੍ਰੇਮ ਖੋਜੇ ਗਏ: %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "ਕਾਲੇ ਫਰੇਮਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕੀਤਾ ਗਿਆ: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "ਗੂੜ੍ਹੇ ਫਰੇਮਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕੀਤਾ ਗਿਆ: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "ਫਰੇਮ ਜਿੱਤਣ ਦੀ ਨਿਸ਼ਚਿਤਤਾ: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "ਜੇਤੂ ਮਾਡਲ: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "ਸਫਲ"
 
@@ -563,55 +563,55 @@ msgstr ""
 "ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਕਮਾਂਡ ਨੂੰ sudo ਨਾਲ ਚਲਾ ਰਹੇ ਹੋ, ਤਾਂ ਆਪਣੇ EDITOR ਵੇਰੀਏਬਲ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ "
 "'sudo -E ubuntu-hello config' ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਆਰਗੂਮੈਂਟ ਵਜੋਂ 0 (ਯੋਗ) ਜਾਂ 1 (ਅਯੋਗ) ਸ਼ਾਮਲ ਕਰੋ"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਦਲੀਲ ਦੇ ਤੌਰ 'ਤੇ ਸਿਰਫ਼ 0 (ਯੋਗ) ਜਾਂ 1 (ਅਯੋਗ) ਦੀ ਵਰਤੋਂ ਕਰੋ"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "ਅਯੋਗ ਵਿਕਲਪ ਪਹਿਲਾਂ ਹੀ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੈ"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello ਨੂੰ ਅਯੋਗ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ਨੂੰ ਸਮਰੱਥ ਬਣਾਇਆ ਗਿਆ ਹੈ"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "ਵਰਤੋਂ:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "{} ({}) ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਵਰਤੋਂਕਾਰ {} ਲਈ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ:"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "ਪਾਸਵਰਡ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਵਰਤੋਂਕਾਰ {} ਲਈ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ:"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "ਪਾਸਵਰਡ ਪੱਕਾ ਕਰੋ:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM ਹਾਰਡਵੇਅਰ ਖੋਜਿਆ ਗਿਆ। ਆਟੋ-ਇੰਸਟਾਲ ਹੋ ਰਿਹਾ ਹੈ tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM ਹਾਰਡਵੇਅਰ ਕਿਰਿਆਸ਼ੀਲ ਹੈ। TPM ਵਿੱਚ ਪਾਸਵਰਡ ਸੀਲ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -619,15 +619,15 @@ msgstr ""
 "TPM (ਵਾਲਿਟ: {}) ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ ਉਪਭੋਗਤਾ {} ਲਈ ਕੀਰਿੰਗ/KWallet ਅਨਲੌਕਿੰਗ ਸਫਲਤਾਪੂਰਵਕ "
 "ਸਮਰਥਿਤ ਹੈ।"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPM ਲਈ ਪਾਸਵਰਡ ਸੀਲ ਕਰਨ ਵਿੱਚ ਅਸਫਲ: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "ਕੋਈ TPM ਕਿਰਿਆਸ਼ੀਲ ਨਹੀਂ ਹੈ। ਸੌਫਟਵੇਅਰ-ਅਧਾਰਿਤ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਕੈਚਿੰਗ ਦੀ ਵਰਤੋਂ ਕਰਨਾ..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -635,35 +635,35 @@ msgstr ""
 "ਕੀਰਿੰਗ/KWallet ਅਨਲੌਕਿੰਗ ਉਪਭੋਗਤਾ {} (ਸਾਫਟਵੇਅਰ ਕੈਚਿੰਗ, ਵਾਲਿਟ: {}) ਲਈ ਸਫਲਤਾਪੂਰਵਕ ਸਮਰਥਿਤ "
 "ਹੈ।"
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "ਕੀਰਿੰਗ ਅਨਲੌਕਿੰਗ ਨੂੰ ਸਮਰੱਥ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "ਕੀਰਿੰਗ ਅਨਲੌਕਿੰਗ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "ਵਰਤੋਂਕਾਰ {} ਲਈ ਕੀਰਿੰਗ/KWallet ਅਨਲੌਕਿੰਗ ਅਸਮਰੱਥ ਹੈ।"
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ਕੀਰਿੰਗ/KWallet ਅਨਲੌਕਿੰਗ ਉਪਭੋਗਤਾ {} ਲਈ ਸਮਰੱਥ ਨਹੀਂ ਸੀ।"
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "ਕੋਈ ਸੀਲ ਕੀਤੇ ਲਾਗਇਨ ਪਾਸਵਰਡ ਨਹੀਂ ਮਿਲੇ; ਬਹਾਲ ਕਰਨ ਲਈ ਕੁਝ ਨਹੀਂ।"
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} ਵਰਤੋਂਕਾਰ(ਾਂ) ਲਈ ਲਾਗਇਨ ਵਾਲਿਟ ਪਾਸਵਰਡ ਬਹਾਲ ਕੀਤਾ ਗਿਆ।"
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} ਵਰਤੋਂਕਾਰ(ਾਂ) ਲਈ ਲਾਗਇਨ ਵਾਲਿਟ ਪਾਸਵਰਡ ਬਹਾਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।"
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -671,15 +671,43 @@ msgstr ""
 "ਜੇ ਪ੍ਰੋਂਪਟ ਜਾਰੀ ਰਹਿਣ, ਤਾਂ Seahorse / ਸਿਸਟਮ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਲਾਗਇਨ ਕੀਰਿੰਗ ਜਾਂ KWallet "
 "ਪਾਸਵਰਡ ਸੈੱਟ ਕਰੋ।"
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "ਵਰਤੋਂਕਾਰ {} ਲਈ ਲਾਗਇਨ ਵਾਲਿਟ ਪਾਸਵਰਡ ਬਹਾਲ ਕੀਤਾ ਗਿਆ।"
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "ਵਰਤੋਂਕਾਰ {} ਲਈ ਲਾਗਇਨ ਵਾਲਿਟ ਪਾਸਵਰਡ ਬਹਾਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।"
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"ਮੁਰੰਮਤ ਸਿਰਫ਼ GNOME Keyring 'ਤੇ ਲਾਗੂ ਹੁੰਦੀ ਹੈ। KWallet ਪਾਸਵਰਡ ਸਿਸਟਮ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਸੈੱਟ ਕਰੋ।"
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr "ਕੋਈ ਲੌਗਇਨ ਕੀਰਿੰਗ ਨਹੀਂ ਮਿਲੀ; ਤੁਹਾਡੇ ਅਗਲੇ ਲੌਗਇਨ 'ਤੇ ਇੱਕ ਬਣਾਈ ਜਾਵੇਗੀ।"
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "ਲੌਗਇਨ ਕੀਰਿੰਗ ਨੂੰ ਪਾਸੇ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "ਪੁਰਾਣੀ ਲੌਗਇਨ ਕੀਰਿੰਗ {} ਵਜੋਂ ਸੰਭਾਲੀ ਗਈ।"
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"ਲੌਗ ਆਉਟ ਕਰੋ ਅਤੇ ਮੁੜ ਲੌਗ ਇਨ ਕਰੋ: ਇੱਕ ਨਵੀਂ ਲੌਗਇਨ ਕੀਰਿੰਗ ਬਣਾਈ ਜਾਵੇਗੀ ਅਤੇ ਆਪਣੇ-ਆਪ ਅਨਲੌਕ ਹੋ "
+"ਜਾਵੇਗੀ। ਪੁਰਾਣੀ ਕੀਰਿੰਗ ਵਿੱਚ ਸੰਭਾਲੇ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਰਜ ਕਰਨੇ ਪੈਣਗੇ।"
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "ਗਲਤ ਕਾਰਵਾਈ। ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਇੱਕ ਵਰਤੋ:"
 
@@ -812,11 +840,11 @@ msgstr "ਗੂੜ੍ਹਾ ਫਰੇਮ"
 msgid "SCAN FRAME"
 msgstr "ਫਰੇਮ ਸਕੈਨ ਕਰੋ"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "ਕੋਈ ਮੇਲ ਨਹੀਂ"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -824,25 +852,25 @@ msgstr ""
 "\n"
 "ਵਿੰਡੋ ਬੰਦ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "ਰਬਰਸਟੈਂਪ ਵਿੱਚ ਅੰਦਰੂਨੀ ਗਲਤੀ:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "ਰਬਰਸਟੈਂਪ ਨਿਯਮ ਨੂੰ ਪਾਰਸ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "ਸਟੈਂਪ ਸਥਾਪਤ ਨਹੀਂ ਹੈ: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "ਸਟੈਂਪ ਗਲਤੀ: ਕਲਾਸ {} ਨਹੀਂ ਮਿਲੀ"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "ਰਬਰਸਟੈਂਪ ਕੌਂਫਿਗਰੇਸ਼ਨ ਘੋਸ਼ਣਾ ਵਿੱਚ ਅੰਦਰੂਨੀ ਗਲਤੀ:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "ਰਬਰਸਟੈਂਪ ਵਿੱਚ ਅੰਦਰੂਨੀ ਗਲਤੀ:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -861,21 +889,21 @@ msgstr "ਅਧੂਰਾ ਛੱਡਣ ਲਈ {abort_key}, ਅਧਿਕਾਰਤ �
 msgid "Authentication aborted"
 msgstr "ਪ੍ਰਮਾਣੀਕਰਨ ਅਧੂਰਾ ਛੱਡਿਆ ਗਿਆ"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਨਾਂਹ ਕਰੋ"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "ਅਧੂਰਾ ਛੱਡਣ ਲਈ ਆਪਣਾ ਸਿਰ ਹਿਲਾਓ"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਪੁਸ਼ਟੀ ਕੀਤੀ"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਛੱਡ ਦਿੱਤੀ ਗਈ"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਨਾਂਹ ਕਰੋ"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "ਅਧੂਰਾ ਛੱਡਣ ਲਈ ਆਪਣਾ ਸਿਰ ਹਿਲਾਓ"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -885,13 +913,13 @@ msgstr "ffmpeg ਮੋਡੀਊਲ ਗੁੰਮ ਹੈ, ਕਿਰਪਾ ਕਰਕ
 msgid "Missing pyv4l2 module, please run:"
 msgstr "ਗੁੰਮ pyv4l2 ਮੋਡੀਊਲ, ਕਿਰਪਾ ਕਰਕੇ ਚਲਾਓ:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
 msgstr "Ubuntu Hello ਸੰਰਚਨਾ ਫਾਇਲ ਵਿੱਚ ਦਿੱਤੇ ਮਾਰਗ 'ਤੇ ਕੈਮਰਾ ਜੰਤਰ ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -899,7 +927,7 @@ msgstr ""
 "ਇਹ ਬਹੁਤ ਸੰਭਾਵਨਾ ਹੈ ਕਿ ਮਾਰਗ ਨੂੰ ਸਹੀ ਢੰਗ ਨਾਲ ਸੰਰਚਿਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਚਲਾ ਕੇ "
 "'device_path' ਸੰਰਚਨਾ ਮੁੱਲ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

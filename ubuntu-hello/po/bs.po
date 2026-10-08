@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -17,24 +17,24 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "Greška, isteklo je vremensko ograničenje"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "Slika detekcije lica pretamna"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "nepoznata greška:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "Identificirano lice kao %s"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
@@ -42,13 +42,13 @@ msgstr ""
 "Nedovoljne dozvole za slanje Enter pritisnite, čeka se da ga korisnik "
 "umjesto toga pritisne"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Nije uspjelo slanje pritisnite Enter, čeka se da ga korisnik umjesto toga "
 "pritisne"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "Pokušaj autentifikacije lica"
 
@@ -184,36 +184,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Prosječna tama: {avg}, prag: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "Vrijeme provedeno"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "Pokretanje"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Otvoreni cam + load libs: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "Otvaranje kamere"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "Uvoz biblioteka za prepoznavanje"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "Traganje za poznatim licem"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "Ukupno vrijeme"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -221,17 +221,17 @@ msgstr ""
 "\n"
 "Rezolucija"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "Izvorno: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "Korišteno: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -240,27 +240,27 @@ msgstr ""
 "\n"
 "Traženi okviri: %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "Crni okviri zanemareni: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Tamni okviri zanemareni: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Sigurnost pobjedničkog okvira: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Pobjednički model: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "USPJEŠNO"
 
@@ -574,55 +574,55 @@ msgstr ""
 "Ako ovu naredbu izvodite sa sudo, pokušajte sa 'sudo -E ubuntu-hello config' "
 "da sačuvate svoju EDITOR varijablu."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "Molimo dodajte 0 (omogući) ili 1 (onemogući) kao argument"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "Molimo koristite samo 0 (omogući) ili 1 (onemogući) kao argument"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "Opcija onemogućavanja je već postavljena na"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello je onemogućen"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello je omogućeno"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "Upotreba:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Unesite lozinku za korisnika {} za otključavanje {} ({}):"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "Lozinka ne može biti prazna"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Unesite lozinku za korisnika {} za otključavanje {} ({}):"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "Potvrdite lozinku:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "Lozinke se ne podudaraju"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "Otkriven je TPM hardver. Automatska instalacija tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM hardver aktivan. Zatvaranje lozinke u TPM-u..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -630,15 +630,15 @@ msgstr ""
 "Otključavanje ključeva/KWallet uspješno je omogućeno za korisnika {} koji "
 "koristi TPM (novčanik: {})."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "Nije uspjelo zatvaranje lozinke za TPM: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Nije aktivan TPM. Korišćenje softverskog keširanja akreditiva..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -646,36 +646,36 @@ msgstr ""
 "Otključavanje ključeva/KWallet uspješno omogućeno za korisnika {} (Keširanje "
 "softvera, novčanik: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Omogućavanje otključavanja privjeska za ključeve nije uspjelo: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Nije uspjelo onemogućiti otključavanje privjeska za ključeve: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr ""
 "Privezak za ključeve/KWallet otključavanje onemogućeno za korisnika {}."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "Otključavanje privjeska/KWallet nije bilo omogućeno za korisnika {}."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "Nisu pronađene zapečaćene lozinke za prijavu; nema šta vratiti."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "Lozinka novčanika za prijavu vraćena za {} korisnika."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "Nije moguće vratiti lozinku novčanika za prijavu za {} korisnika."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -683,15 +683,47 @@ msgstr ""
 "Ako se upiti nastave, postavite lozinku privjeska za prijavu ili KWallet u "
 "Seahorse / Postavkama sistema."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "Lozinka novčanika za prijavu vraćena za korisnika {}."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "Nije moguće vratiti lozinku novčanika za prijavu za korisnika {}."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"Popravka se odnosi samo na GNOME Keyring. Lozinku za KWallet postavite u "
+"Postavkama sistema."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr ""
+"Nije pronađen privjesak ključeva za prijavu; bit će kreiran pri vašoj "
+"sljedećoj prijavi."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "Nije moguće skloniti privjesak ključeva za prijavu: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "Stari privjesak ključeva za prijavu sačuvan je kao {}."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"Odjavite se i ponovo prijavite: novi privjesak ključeva za prijavu bit će "
+"kreiran i automatski otključan. Lozinke sačuvane u starom privjesku morat "
+"ćete ponovo unijeti."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "Nevažeća radnja. Koristite jednu od sljedećih:"
 
@@ -826,11 +858,11 @@ msgstr "TAMNI OKVIR"
 msgid "SCAN FRAME"
 msgstr "OKVIR SKENIRANJA"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "nema podudaranja"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -838,25 +870,25 @@ msgstr ""
 "\n"
 "Zatvaranje prozora"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "Unutrašnja greška u gumenom pečatu:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Greška pri raščlanjivanju pravila gumenog pečata: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "Pečat nije instaliran: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "Greška pečata: Klasa {} nije pronađena"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Interna greška u deklaraciji konfiguracije gumenog pečata:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "Unutrašnja greška u gumenom pečatu:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -875,21 +907,21 @@ msgstr "Pritisnite {abort_key} za prekid, {confirm_key} za autorizaciju"
 msgid "Authentication aborted"
 msgstr "Autentifikacija je prekinuta"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "Klimnite da potvrdite"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "Odmahnite glavom da prekinete"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "Potvrđena autentifikacija"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "Prekinuta autentifikacija"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "Klimnite da potvrdite"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "Odmahnite glavom da prekinete"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -899,7 +931,7 @@ msgstr "Nedostaje ffmpeg modul, pokrenite:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Nedostaje modul pyv4l2, pokrenite:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -907,7 +939,7 @@ msgstr ""
 "Ubuntu Hello nije mogao pronaći uređaj kamere na putanji navedenoj u "
 "konfiguracijskoj datoteci."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -915,7 +947,7 @@ msgstr ""
 "Vrlo je vjerovatno da putanja nije ispravno konfigurirana, molimo uredite "
 "konfiguracijsku vrijednost 'device_path' tako što ćete pokrenuti:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

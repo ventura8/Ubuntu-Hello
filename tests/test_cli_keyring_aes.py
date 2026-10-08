@@ -442,3 +442,68 @@ def test_restore_rejects_restore_local_user_flag():
         keyring_mod.run_keyring("alice", ["restore", "-U", "bob"])
     assert exc.value.code == 1
 
+
+
+# ── keyring repair ──────────────────────────────────────────────────
+
+def _repair(user="alice"):
+    keyring_mod.run_keyring(user, ["repair"])
+
+
+def test_repair_seals_then_sets_keyring_aside(key_env, tmp_path, capsys):
+    keyrings = tmp_path / "home" / ".local" / "share" / "keyrings"
+    keyrings.mkdir(parents=True)
+    (keyrings / "login.keyring").write_text("old")
+    calls = []
+    with patch.object(keyring_mod, "detect_wallet_backend", return_value="gnome-keyring"), \
+         patch.object(keyring_mod.pwd, "getpwnam", return_value=SimpleNamespace(pw_dir=str(tmp_path / "home"))), \
+         patch.object(keyring_mod, "_keyring_enable", side_effect=lambda *a: calls.append(
+             (keyrings / "login.keyring").exists())):
+        _repair()
+    # The keyring was still in place while sealing, and is moved afterwards.
+    assert calls == [True]
+    assert not (keyrings / "login.keyring").exists()
+    backups = list(keyrings.glob("login.keyring.broken-*"))
+    assert len(backups) == 1
+    assert backups[0].read_text() == "old"
+    assert str(backups[0]) in capsys.readouterr().out
+
+
+def test_repair_failed_seal_leaves_keyring(key_env, tmp_path):
+    keyrings = tmp_path / "home" / ".local" / "share" / "keyrings"
+    keyrings.mkdir(parents=True)
+    (keyrings / "login.keyring").write_text("old")
+    with patch.object(keyring_mod, "detect_wallet_backend", return_value="gnome-keyring"), \
+         patch.object(keyring_mod.pwd, "getpwnam", return_value=SimpleNamespace(pw_dir=str(tmp_path / "home"))), \
+         patch.object(keyring_mod, "_keyring_enable", side_effect=SystemExit(1)), \
+         pytest.raises(SystemExit):
+        _repair()
+    assert (keyrings / "login.keyring").read_text() == "old"
+
+
+def test_repair_without_keyring_or_user(key_env, capsys):
+    with patch.object(keyring_mod, "detect_wallet_backend", return_value="gnome-keyring"), \
+         patch.object(keyring_mod, "_keyring_enable"), \
+         patch.object(keyring_mod.pwd, "getpwnam", side_effect=KeyError("ghost")):
+        _repair("ghost")
+    assert "next login" in capsys.readouterr().out
+
+
+def test_repair_rename_failure_exits(key_env, tmp_path):
+    keyrings = tmp_path / "home" / ".local" / "share" / "keyrings"
+    keyrings.mkdir(parents=True)
+    (keyrings / "login.keyring").write_text("old")
+    with patch.object(keyring_mod, "detect_wallet_backend", return_value="gnome-keyring"), \
+         patch.object(keyring_mod.pwd, "getpwnam", return_value=SimpleNamespace(pw_dir=str(tmp_path / "home"))), \
+         patch.object(keyring_mod, "_keyring_enable"), \
+         patch.object(keyring_mod.os, "rename", side_effect=OSError("read-only")), \
+         pytest.raises(SystemExit):
+        _repair()
+
+
+def test_repair_refuses_kwallet(key_env):
+    with patch.object(keyring_mod, "detect_wallet_backend", return_value="kwallet"), \
+         patch.object(keyring_mod, "_keyring_enable") as enable, \
+         pytest.raises(SystemExit):
+        _repair()
+    enable.assert_not_called()

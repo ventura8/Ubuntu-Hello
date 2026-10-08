@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "ವೈಫಲ್ಯ, ಸಮಯ ಮೀರಿದೆ"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "ಮುಖ ಪತ್ತೆ ಚಿತ್ರ ತುಂಬಾ ಗಾಢವಾಗಿದೆ"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "ಅಜ್ಞಾತ ದೋಷ:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "ಮುಖವನ್ನು %s ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
@@ -41,13 +41,13 @@ msgstr ""
 "Enter ಪ್ರೆಸ್ ಅನ್ನು ಕಳುಹಿಸಲು ಸಾಕಷ್ಟು ಅನುಮತಿಗಳಿಲ್ಲ, ಬದಲಿಗೆ ಬಳಕೆದಾರರು ಅದನ್ನು ಒತ್ತಲು "
 "ಕಾಯುತ್ತಿದ್ದಾರೆ"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Enter ಪ್ರೆಸ್ ಅನ್ನು ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ, ಬದಲಿಗೆ ಬಳಕೆದಾರರು ಅದನ್ನು ಒತ್ತಲು "
 "ಕಾಯುತ್ತಿದ್ದಾರೆ"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "ಮುಖದ ದೃಢೀಕರಣವನ್ನು ಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ"
 
@@ -184,36 +184,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ಸರಾಸರಿ ಕತ್ತಲೆ: {avg}, ಮಿತಿ: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "ಸಮಯ ಕಳೆದಿದೆ"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "ಓಪನ್ ಕ್ಯಾಮ್ + ಲೋಡ್ ಲಿಬ್ಸ್: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "ಕ್ಯಾಮರಾ ತೆರೆಯಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "ಗುರುತಿಸುವಿಕೆ ಲಿಬ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "ಪರಿಚಿತ ಮುಖವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "ಒಟ್ಟು ಸಮಯ"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -221,17 +221,17 @@ msgstr ""
 "\n"
 "ರೆಸಲ್ಯೂಶನ್"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "ಸ್ಥಳೀಯ: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "ಬಳಸಲಾಗಿದೆ: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -240,27 +240,27 @@ msgstr ""
 "\n"
 "ಚೌಕಟ್ಟುಗಳನ್ನು ಹುಡುಕಲಾಗಿದೆ: %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "ಕಪ್ಪು ಚೌಕಟ್ಟುಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "ಡಾರ್ಕ್ ಫ್ರೇಮ್‌ಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "ಗೆಲ್ಲುವ ಚೌಕಟ್ಟಿನ ಖಚಿತತೆ: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "ವಿಜೇತ ಮಾದರಿ: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "ಯಶಸ್ವಿಯಾಗಿದೆ"
 
@@ -576,55 +576,55 @@ msgstr ""
 "ನೀವು ಈ ಆಜ್ಞೆಯನ್ನು sudo ನೊಂದಿಗೆ ಚಲಾಯಿಸುತ್ತಿದ್ದರೆ, ನಿಮ್ಮ EDITOR ವೇರಿಯೇಬಲ್ ಅನ್ನು "
 "ಸಂರಕ್ಷಿಸಲು 'sudo -E ubuntu-hello config' ಅನ್ನು ಪ್ರಯತ್ನಿಸಿ."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "ದಯವಿಟ್ಟು 0 (ಸಕ್ರಿಯಗೊಳಿಸು) ಅಥವಾ 1 (ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು) ಅನ್ನು ವಾದವಾಗಿ ಸೇರಿಸಿ"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "ದಯವಿಟ್ಟು 0 (ಸಕ್ರಿಯಗೊಳಿಸು) ಅಥವಾ 1 (ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು) ಅನ್ನು ವಾದವಾಗಿ ಮಾತ್ರ ಬಳಸಿ"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ಆಯ್ಕೆಯನ್ನು ಈಗಾಗಲೇ ಹೊಂದಿಸಲಾಗಿದೆ"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "ಬಳಕೆ:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "{} ({}) ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಬಳಕೆದಾರರಿಗಾಗಿ {} ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "ಪಾಸ್ವರ್ಡ್ ಖಾಲಿ ಇರುವಂತಿಲ್ಲ"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({}) ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಬಳಕೆದಾರರಿಗಾಗಿ {} ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "ಪಾಸ್ವರ್ಡ್ ದೃಢೀಕರಿಸಿ:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM ಹಾರ್ಡ್‌ವೇರ್ ಪತ್ತೆಯಾಗಿದೆ. ಸ್ವಯಂ-ಸ್ಥಾಪನೆ tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM ಹಾರ್ಡ್‌ವೇರ್ ಸಕ್ರಿಯವಾಗಿದೆ. TPM ನಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಮುಚ್ಚಲಾಗುತ್ತಿದೆ..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -632,17 +632,17 @@ msgstr ""
 "TPM (ವ್ಯಾಲೆಟ್: {}) ಬಳಸಿಕೊಂಡು ಬಳಕೆದಾರರಿಗೆ {} ಕೀರಿಂಗ್/KWallet ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು "
 "ಯಶಸ್ವಿಯಾಗಿ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPM ಗೆ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಮುಚ್ಚಲು ವಿಫಲವಾಗಿದೆ: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
 "ಯಾವುದೇ TPM ಸಕ್ರಿಯವಾಗಿಲ್ಲ. ಸಾಫ್ಟ್‌ವೇರ್ ಆಧಾರಿತ ರುಜುವಾತು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವಿಕೆಯನ್ನು "
 "ಬಳಸುವುದು..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -650,35 +650,35 @@ msgstr ""
 "ಬಳಕೆದಾರರಿಗಾಗಿ ಕೀರಿಂಗ್/KWallet ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ {} "
 "(ಸಾಫ್ಟ್‌ವೇರ್ ಕ್ಯಾಶಿಂಗ್, ವ್ಯಾಲೆಟ್: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "ಕೀರಿಂಗ್ ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "ಕೀರಿಂಗ್ ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "ಬಳಕೆದಾರರಿಗಾಗಿ ಕೀರಿಂಗ್/KWallet ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ {}."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ಬಳಕೆದಾರ {} ಗಾಗಿ ಕೀರಿಂಗ್/KWallet ಅನ್‌ಲಾಕಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿಲ್ಲ."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "ಯಾವುದೇ ಸೀಲ್ ಮಾಡಿದ ಲಾಗಿನ್ ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಸಿಗಲಿಲ್ಲ; ಮರುಸ್ಥಾಪಿಸಲು ಏನೂ ಇಲ್ಲ."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} ಬಳಕೆದಾರ(ರು)ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} ಬಳಕೆದಾರ(ರು)ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಲಿಲ್ಲ."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -686,15 +686,44 @@ msgstr ""
 "ಪ್ರಾಂಪ್ಟ್‌ಗಳು ಮುಂದುವರಿದರೆ, Seahorse / ಸಿಸ್ಟಂ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಲಾಗಿನ್ ಕೀರಿಂಗ್ ಅಥವಾ "
 "KWallet ಪಾಸ್‌ವರ್ಡ್ ಹೊಂದಿಸಿ."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "ಬಳಕೆದಾರ {} ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "ಬಳಕೆದಾರ {} ಗಾಗಿ ಲಾಗಿನ್ ವಾಲೆಟ್ ಪಾಸ್‌ವರ್ಡ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಲಿಲ್ಲ."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"ದುರಸ್ತಿ GNOME Keyring ಗೆ ಮಾತ್ರ ಅನ್ವಯಿಸುತ್ತದೆ. KWallet ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಸಿಸ್ಟಮ್ "
+"ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹೊಂದಿಸಿ."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr "ಲಾಗಿನ್ ಕೀರಿಂಗ್ ಕಂಡುಬಂದಿಲ್ಲ; ನಿಮ್ಮ ಮುಂದಿನ ಲಾಗಿನ್‌ನಲ್ಲಿ ಒಂದನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "ಲಾಗಿನ್ ಕೀರಿಂಗ್ ಅನ್ನು ಬದಿಗೆ ಸರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "ಹಳೆಯ ಲಾಗಿನ್ ಕೀರಿಂಗ್ ಅನ್ನು {} ಆಗಿ ಉಳಿಸಲಾಗಿದೆ."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"ಲಾಗ್ ಔಟ್ ಮಾಡಿ ಮತ್ತೆ ಲಾಗ್ ಇನ್ ಮಾಡಿ: ಹೊಸ ಲಾಗಿನ್ ಕೀರಿಂಗ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಚಿಸಲ್ಪಟ್ಟು ಅನ್‌ಲಾಕ್ "
+"ಆಗುತ್ತದೆ. ಹಳೆಯ ಕೀರಿಂಗ್‌ನಲ್ಲಿ ಉಳಿಸಿದ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಮತ್ತೆ ನಮೂದಿಸಬೇಕಾಗುತ್ತದೆ."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "ಅಮಾನ್ಯ ಕ್ರಿಯೆ. ಈ ಕೆಳಗಿನವುಗಳಲ್ಲಿ ಒಂದನ್ನು ಬಳಸಿ:"
 
@@ -829,11 +858,11 @@ msgstr "ಡಾರ್ಕ್ ಫ್ರೇಮ್"
 msgid "SCAN FRAME"
 msgstr "ಚೌಕಟ್ಟನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -841,25 +870,25 @@ msgstr ""
 "\n"
 "ವಿಂಡೋವನ್ನು ಮುಚ್ಚಲಾಗುತ್ತಿದೆ"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "ರಬ್ಬರ್‌ಸ್ಟ್ಯಾಂಪ್‌ನಲ್ಲಿ ಆಂತರಿಕ ದೋಷ:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "ರಬ್ಬರ್‌ಸ್ಟ್ಯಾಂಪ್ ನಿಯಮವನ್ನು ಪಾರ್ಸಿಂಗ್ ಮಾಡುವಲ್ಲಿ ದೋಷ: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "ಸ್ಟಾಂಪ್ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "ಸ್ಟ್ಯಾಂಪ್ ದೋಷ: ವರ್ಗ {} ಕಂಡುಬಂದಿಲ್ಲ"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "ರಬ್ಬರ್‌ಸ್ಟ್ಯಾಂಪ್ ಕಾನ್ಫಿಗರೇಶನ್ ಘೋಷಣೆಯಲ್ಲಿ ಆಂತರಿಕ ದೋಷ:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "ರಬ್ಬರ್‌ಸ್ಟ್ಯಾಂಪ್‌ನಲ್ಲಿ ಆಂತರಿಕ ದೋಷ:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -878,21 +907,21 @@ msgstr "ಸ್ಥಗಿತಗೊಳಿಸಲು {abort_key}, ದೃಢೀಕರ�
 msgid "Authentication aborted"
 msgstr "ದೃಢೀಕರಣವನ್ನು ಸ್ಥಗಿತಗೊಳಿಸಲಾಗಿದೆ"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "ದೃಢೀಕರಿಸಲು ತಲೆಯಾಡಿಸಿ"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "ಗರ್ಭಪಾತ ಮಾಡಲು ನಿಮ್ಮ ತಲೆ ಅಲ್ಲಾಡಿಸಿ"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "ದೃಢೀಕರಿಸಿದ ದೃಢೀಕರಣ"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "ದೃಢೀಕರಣವನ್ನು ಸ್ಥಗಿತಗೊಳಿಸಲಾಗಿದೆ"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "ದೃಢೀಕರಿಸಲು ತಲೆಯಾಡಿಸಿ"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "ಗರ್ಭಪಾತ ಮಾಡಲು ನಿಮ್ಮ ತಲೆ ಅಲ್ಲಾಡಿಸಿ"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -902,7 +931,7 @@ msgstr "ffmpeg ಮಾಡ್ಯೂಲ್ ಕಾಣೆಯಾಗಿದೆ, ದಯ�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 ಮಾಡ್ಯೂಲ್ ಕಾಣೆಯಾಗಿದೆ, ದಯವಿಟ್ಟು ರನ್ ಮಾಡಿ:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -910,7 +939,7 @@ msgstr ""
 "Ubuntu Hello ಸಂರಚನಾ ಕಡತದಲ್ಲಿ ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ ಮಾರ್ಗದಲ್ಲಿ ಕ್ಯಾಮರಾ ಸಾಧನವನ್ನು "
 "ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -918,7 +947,7 @@ msgstr ""
 "ಮಾರ್ಗವನ್ನು ಸರಿಯಾಗಿ ಕಾನ್ಫಿಗರ್ ಮಾಡದಿರುವ ಸಾಧ್ಯತೆಯಿದೆ, ದಯವಿಟ್ಟು ಚಾಲನೆ ಮಾಡುವ ಮೂಲಕ "
 "'device_path' ಸಂರಚನಾ ಮೌಲ್ಯವನ್ನು ಸಂಪಾದಿಸಿ:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

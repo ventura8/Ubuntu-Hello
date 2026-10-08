@@ -3,19 +3,21 @@ import sys
 import os
 import builtins
 import getpass
+import pwd
+import time
 import shutil
 import subprocess
 from i18n import _
 from keyring_crypto import encrypt_password
 from keyring_restore import restore_all_users, restore_user
-from wallet_backend import wallet_backend_label, wallet_unlock_phrase
+from wallet_backend import detect_wallet_backend, wallet_backend_label, wallet_unlock_phrase
 
 KEYRING_KEYS_DIR = "/etc/ubuntu-hello/keyring-keys"
 TPM_KEYS_DIR = "/etc/ubuntu-hello/tpm-keys"
 PENDING_DIR = "/etc/ubuntu-hello/keyring-caching-pending"
 
 
-_USAGE = "keyring [enable|disable|restore [--all]]"
+_USAGE = "keyring [enable|disable|restore [--all]|repair]"
 
 
 def _print_usage_and_exit():
@@ -202,6 +204,52 @@ def _keyring_restore(user, arguments):
 		sys.exit(1)
 
 
+def _login_keyring_path(user):
+	"""*user*'s GNOME login keyring file, or None when the user is unknown."""
+	try:
+		home = pwd.getpwnam(user).pw_dir
+	except KeyError:
+		return None
+	return os.path.join(home, ".local", "share", "keyrings", "login.keyring")
+
+
+def _set_broken_keyring_aside(keyring_file):
+	"""Rename *keyring_file* out of gnome-keyring's way, never deleting it.
+
+	The suffix keeps it off the ``*.keyring`` glob gnome-keyring loads, and
+	the old secrets stay recoverable if its password turns up later.
+	Returns the backup path.
+	"""
+	backup = keyring_file + ".broken-" + time.strftime("%Y%m%d-%H%M%S")
+	os.rename(keyring_file, backup)
+	return backup
+
+
+def _keyring_repair(user, wallet, backend_label, key_file, pub_file, priv_file):
+	"""Recover from a login keyring that no longer accepts the login password.
+
+	Seals the current login password, then sets the old keyring file aside so
+	the next login creates a fresh one locked with that password. The keyring
+	is moved only after the seal succeeded: a failed seal leaves it untouched.
+	"""
+	if detect_wallet_backend() == "kwallet":
+		print(_("Repair only applies to GNOME Keyring. Set the KWallet password in System Settings."))
+		sys.exit(1)
+	_keyring_enable(user, wallet, backend_label, key_file, pub_file, priv_file)
+
+	keyring_file = _login_keyring_path(user)
+	if keyring_file is None or not os.path.exists(keyring_file):
+		print(_("No login keyring found; one will be created at your next login."))
+		return
+	try:
+		backup = _set_broken_keyring_aside(keyring_file)
+	except OSError as e:
+		print(_("Could not move the login keyring aside: {}").format(e))
+		sys.exit(1)
+	print(_("The old login keyring was saved as {}.").format(backup))
+	print(_("Log out and log back in: a new login keyring will be created and unlocked automatically. Passwords saved in the old keyring will need to be entered again."))
+
+
 def run_keyring(user=None, arguments=None):
 	"""Enable/disable keyring unlocking for *user*.
 
@@ -231,10 +279,13 @@ def run_keyring(user=None, arguments=None):
 		_keyring_disable(user, (key_file, pub_file, priv_file, pending_file))
 	elif action == "restore":
 		_keyring_restore(user, arguments)
+	elif action == "repair":
+		_keyring_repair(user, wallet_unlock_phrase(), wallet_backend_label(),
+						key_file, pub_file, priv_file)
 	else:
 		# Same reasoning as the usage line above: the three words in quotes are
 		# what the user types, so they stay out of the translatable part.
-		print(_("Invalid action. Use one of:") + " 'enable', 'disable', 'restore'.")
+		print(_("Invalid action. Use one of:") + " 'enable', 'disable', 'restore', 'repair'.")
 		sys.exit(1)
 
 
