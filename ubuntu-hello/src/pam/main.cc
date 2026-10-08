@@ -423,14 +423,15 @@ void read_helper(int &out_fd, std::string &output, HelperDeadline deadline) {
 auto wait_for_helper(pid_t child_pid, int &status, HelperDeadline deadline) -> pid_t {
   while (true) {
     const pid_t waited = waitpid(child_pid, &status, WNOHANG);
-    const bool interrupted = waited < 0 && errno == EINTR;
-    if (waited != 0 && !interrupted) {
+    if (const bool interrupted = waited < 0 && errno == EINTR;
+        waited != 0 && !interrupted) {
       return waited;
     }
     if (waited == 0 && std::chrono::steady_clock::now() >= deadline) {
       syslog(LOG_ERR, "Root helper %d timed out, killing it", child_pid);
       kill(-child_pid, SIGKILL);
       while (waitpid(child_pid, &status, 0) < 0 && errno == EINTR) {
+        // Interrupted by a signal: retry until the killed helper is reaped.
       }
       return -1;
     }
