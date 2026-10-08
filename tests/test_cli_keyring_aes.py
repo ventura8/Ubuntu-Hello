@@ -464,7 +464,8 @@ def test_repair_seals_then_sets_keyring_aside(key_env, tmp_path, capsys):
     assert calls == [True]
     assert not (keyrings / "login.keyring").exists()
     backups = list(keyrings.glob("login.keyring.broken-*"))
-    assert len(backups) == 1 and backups[0].read_text() == "old"
+    assert len(backups) == 1
+    assert backups[0].read_text() == "old"
     assert str(backups[0]) in capsys.readouterr().out
 
 
