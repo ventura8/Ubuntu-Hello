@@ -431,8 +431,7 @@ auto waitpid_no_eintr(pid_t child_pid, int &status, int options) -> pid_t {
  */
 auto wait_for_helper(pid_t child_pid, int &status, HelperDeadline deadline) -> pid_t {
   while (true) {
-    const pid_t waited = waitpid_no_eintr(child_pid, status, WNOHANG);
-    if (waited != 0) {
+    if (const pid_t waited = waitpid_no_eintr(child_pid, status, WNOHANG); waited != 0) {
       return waited;
     }
     if (std::chrono::steady_clock::now() >= deadline) {
