@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "yaradılmışdır"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "Etiket"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "Avtomatik"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "Üz modellərinizin əlavə edilməsi"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -50,16 +50,16 @@ msgstr ""
 "isteğe bağlı skan — eynəklə, fərqli saqqalla və ya başqa işıqda — tanınmanı "
 "günün istənilən vaxtında daha da etibarlı edir."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Zəhmət olmasa birbaşa kameraya baxın"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Üz skanına başlayın"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -67,11 +67,11 @@ msgstr ""
 "Məlumat faylları artıq endirilib!\n"
 "Davam etmək üçün Next klikləyin"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "Məlumat fayllarını endirərkən xəta baş verdi"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -79,19 +79,19 @@ msgstr ""
 "Bitdi!\n"
 "Davam etmək üçün Next klikləyin"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "OpenCV2 idxal edərkən xəta baş verdi"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "cv2-i yenidən quraşdırmağa cəhd edin"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "Sistemdə veb-kamera tapılmadı"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
@@ -99,39 +99,39 @@ msgstr ""
 "Uyğun kameranın qoşulduğundan əminsinizsə, kameranızı özünüz konfiqurasiya "
 "edin"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "Xeyr, kamera açıla bilməz"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "Xeyr, infraqırmızı kamera deyil"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "Bəli, uyğun infraqırmızı kamera"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "Xeyr, infraqırmızı kamera deyil"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "Kamera identifikatoru və ya yolu"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "Tövsiyə olunur"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "Kamera seçilərkən xəta baş verdi"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "Seçilmiş kamera açıla bilməz"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "Başqa birini seçməyə çalışın"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -143,27 +143,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "ir emitentinizi işə salmaq üçün"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "İşıqlandırmanın qurulması 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "İşıqlandırmanın qurulması 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "Üz modelini yadda saxlamaq mümkün deyil"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "İkinci modeli skan edin"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "İkinci modeli qeyd etmək mümkün olmadı"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -174,11 +174,11 @@ msgstr ""
 "əvəzinə işığı dəyişdirin - sonra yenidən cəhd edin və ya keçin və sonra "
 "Parametrlərdən model əlavə edin."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "İkinci skan: eynək, saqqal və ya fərqli işıq"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -193,7 +193,7 @@ msgstr ""
 "söndürün, pəncərədən uzaqlaşın. Üzünüzü aydın görünən saxlayın və yenidən "
 "Skan düyməsini basın; eyni qısa yönləndirilmiş yazma izləyir."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -205,7 +205,7 @@ msgstr ""
 "\n"
 "<b>TPM Status:</b> TPM aparatı və alətləri yoxlanılır..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -219,7 +219,7 @@ msgstr ""
 "<b>TPM Status:</b> TPM aparatı aşkarlandı. <i>tpm2-tools</i> avtomatik "
 "quraşdırılır..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -233,7 +233,7 @@ msgstr ""
 "<b>TPM Status:</b> Avadanlıq TPM 2.0 aktivdir. Parolunuz TPM daxilində "
 "etibarlı şəkildə möhürlənəcək."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -249,7 +249,7 @@ msgstr ""
 "avtomatik quraşdırılması uğursuz oldu. <code>sudo apt install tpm2-tools</"
 "code> proqramını işə salın. Proqrama əsaslanan etimadnamə keşinə qayıdın."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -263,63 +263,63 @@ msgstr ""
 "<b>TPM Status:</b> Heç bir TPM aparatı aşkarlanmadı. Proqram əsaslı "
 "etimadnamə keşindən istifadə (AES-256-GCM)."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Açarların kiliddən çıxarılmasını söndürmək alınmadı: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr ""
-"Açarların kilidini açmaq üçün root olmayan sistem istifadəçisini müəyyən "
-"etmək mümkün olmadı"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "Parol boş ola bilməz"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "İstifadəçi {} üçün səhv parol"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "naməlum xəta"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Açarların kilidini açmaq mümkün olmadı: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr ""
 "Açarların kilidini açmaq mümkün olmadı: ubuntu-hello icra olunan tapılmadı"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "Açarların kilidini açmaq mümkün olmadı: açarın aktivləşdirilməsini gözləmə "
 "vaxtı bitdi (keyring enable)"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Açarların kilidini açmaq mümkün olmadı: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "naməlum xəta"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Açarların kilidini açmaq üçün root olmayan sistem istifadəçisini müəyyən "
+"etmək mümkün olmadı"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "Açarların kilidini açma xətası"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "Radio düymələrini oxumaq xətası"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
 "Təhlükəsizlik ayarlarını saxlamaq mümkün olmadı, lakin quraşdırma digər "
 "cəhətdən tamamlandı."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "Yüklənir..."
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Doğrulama"
 
@@ -327,8 +327,8 @@ msgstr "Ubuntu Hello Doğrulama"
 msgid "Confirm Model Creation"
 msgstr "Modelin yaradılmasını təsdiqləyin"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "Ləğv et"
 
@@ -406,78 +406,104 @@ msgstr "Çənənizi bir az aşağı endirin"
 msgid "Recording… {count} of {total}"
 msgstr "Yazılır… {count} / {total}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "Kameranı açmaq mümkün deyil"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "OpenCV2 idxal etmək mümkün deyil"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "Naməlum"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Açarlanma/KWallet Kilidi Açmağı aktivləşdirin"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "Tamam"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr ""
 "{} ({}) kilidini açmaq üçün <b>{}</b> istifadəçi üçün parol daxil edin:"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "parol"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>Heç bir istifadəçi seçilmədi</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Aktivdir (TPM Hardware)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Aktivdir (Proqram Təminatı Keşləmə)</b></span> — "
 "{}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Aktivdir (Parolun daxil edilməsini gözləyir)</"
 "b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Deaktivdir</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>Giriş açar dəstiniz parolunuzu qəbul etmədi.</b></"
+"span> Təmir yeni açar dəsti yaradır; köhnəsində saxlanılan parolları yenidən "
+"daxil etməli olacaqsınız."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
 "Açarlanma/KWallet kilidin açılması istifadəçi {} üçün uğurla aktivləşdirildi."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
 "İstifadəçi {} üçün açarlıq/KWallet kilidinin açılmasını deaktiv etmək "
 "istədiyinizə əminsiniz?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "Avtomatik kiliddən çıxarmağı deaktiv edin"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Açarlanma/KWallet kilidin açılması istifadəçi {} üçün deaktiv edilib."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"{} istifadəçisi üçün giriş açar dəsti təmir edilsin? Köhnə açar dəsti "
+"ehtiyat fayl kimi saxlanılır və növbəti girişinizdə yenisi yaradılır."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "Açar dəstini təmir et"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "Giriş açar dəstini təmir etmək alınmadı: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -681,41 +707,41 @@ msgstr "Yoxlanır..."
 msgid "Enable Auto-Unlock"
 msgstr "Avtomatik kiliddən çıxarmağı aktivləşdirin"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "Açarlıq"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "Ekran dili"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Avtomatik sistem dilini izləyir. Dəyişikliklər dərhal tətbiq olunur."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "Dil"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Linux üçün üz identifikasiyası"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "Versiya naməlum"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub linkini açın</a>"
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -723,7 +749,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Problemi "
 "bildirin və ya funksiya təklif edin</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "Haqqında"
 

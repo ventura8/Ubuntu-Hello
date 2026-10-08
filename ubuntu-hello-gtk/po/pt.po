@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "Criado"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "Etiqueta"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "Automático"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "Adicionando seus modelos de rosto"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -51,16 +51,16 @@ msgstr ""
 "barba ou outra iluminação — torna o reconhecimento ainda mais fiável a "
 "qualquer hora do dia."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Olhe diretamente para a câmara"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Iniciar digitalização facial"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -68,11 +68,11 @@ msgstr ""
 "Os ficheiros de dados já foram transferidos!\n"
 "Clique em Seguinte para continuar"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "Erro ao transferir os ficheiros de dados"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -80,19 +80,19 @@ msgstr ""
 "Concluído!\n"
 "Clique em Seguinte para continuar"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "Erro ao importar o OpenCV2"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "Tente reinstalar o cv2"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "Nenhuma webcam encontrada no sistema"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
@@ -100,39 +100,39 @@ msgstr ""
 "Configure a câmara manualmente se tiver a certeza de que está ligada uma "
 "câmara compatível"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "Não, a câmara não pode ser aberta"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "Não, não é uma câmara de infravermelhos"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "Sim, câmara de infravermelhos compatível"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "Não, não é uma câmara de infravermelhos"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "Identificador ou caminho da câmara"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "Recomendada"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "Erro ao selecionar a câmara"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "Não é possível abrir a câmara selecionada"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "Tente selecionar outra"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -144,27 +144,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "para ativar o emissor IR"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "Configuração iluminação 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "Configuração iluminação 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "Não é possível guardar o modelo facial"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "Digitalizar segundo modelo"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "Não foi possível gravar o segundo modelo"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -175,11 +175,11 @@ msgstr ""
 "de desligá-la – e tente novamente ou pule e adicione um modelo mais tarde em "
 "Configurações."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "Segunda leitura: óculos, barba ou iluminação diferente"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -194,7 +194,7 @@ msgstr ""
 "ou apague um candeeiro, afaste-se da janela. Mantenha o rosto bem visível e "
 "carregue novamente em Ler; segue-se a mesma breve captura guiada."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -206,7 +206,7 @@ msgstr ""
 "\n"
 "<b>Estado do TPM:</b> A verificar hardware e ferramentas TPM…"
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -220,7 +220,7 @@ msgstr ""
 "<b>Estado do TPM:</b> Hardware TPM detetado. A instalar <i>tpm2-tools</i> "
 "automaticamente…"
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -234,7 +234,7 @@ msgstr ""
 "<b>Estado do TPM:</b> TPM 2.0 de hardware ativo. A palavra-passe será selada "
 "em segurança no TPM."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -250,7 +250,7 @@ msgstr ""
 "<i>tpm2-tools</i> falhou. Execute <code>sudo apt install tpm2-tools</code>. "
 "A usar cache de credenciais por software."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -264,64 +264,64 @@ msgstr ""
 "<b>Estado do TPM:</b> Nenhum hardware TPM detetado. A usar cache de "
 "credenciais por software (AES-256-GCM)."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Falha ao desativar o desbloqueio do keyring: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr ""
-"Não foi possível identificar um utilizador de sistema não root para "
-"desbloquear o keyring"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "A palavra-passe não pode estar vazia"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "Palavra-passe incorreta para o utilizador {}"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "erro desconhecido"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Falha ao ativar o desbloqueio do keyring: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr ""
 "Não foi possível ativar o desbloqueio do chaveiro: executável ubuntu-hello "
 "não encontrado"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "Não foi possível ativar o desbloqueio do chaveiro: tempo esgotado à espera "
 "da ativação (keyring enable)"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Falha ao ativar o desbloqueio do keyring: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "erro desconhecido"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Não foi possível identificar um utilizador de sistema não root para "
+"desbloquear o keyring"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "Erro de desbloqueio do keyring"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "Erro ao ler os botões de opção"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
 "Não foi possível guardar as definições de segurança, mas a configuração está "
 "concluída."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "A carregar…  "
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Autenticação do Ubuntu Hello"
 
@@ -329,8 +329,8 @@ msgstr "Autenticação do Ubuntu Hello"
 msgid "Confirm Model Creation"
 msgstr "Confirmar criação do modelo"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -408,74 +408,101 @@ msgstr "Baixe um pouco o queixo"
 msgid "Recording… {count} of {total}"
 msgstr "A gravar… {count} de {total}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "Não é possível abrir a câmara"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "Não é possível importar o OpenCV2"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Ativar desbloqueio do Keyring/KWallet"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "Aceitar"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr ""
 "Introduza a palavra-passe do utilizador <b>{}</b> para desbloquear {} ({}):"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "Palavra-passe"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>Nenhum utilizador selecionado</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>Ativado (hardware TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Ativado (cache por software)</b></span> — {}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Ativado (palavra-passe pendente)</b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Desativado</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>O seu chaveiro de início de sessão não aceitou a "
+"sua palavra-passe.</b></span> A reparação cria um novo chaveiro; as palavras-"
+"passe guardadas no antigo terão de ser introduzidas novamente."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
 "Desbloqueio do Keyring/KWallet ativado com sucesso para o utilizador {}."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr "Desativar o desbloqueio do Keyring/KWallet para o utilizador {}?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "Desativar desbloqueio automático"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Desbloqueio do Keyring/KWallet desativado para o utilizador {}."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"Reparar o chaveiro de início de sessão do utilizador {}? O chaveiro antigo é "
+"mantido como ficheiro de cópia de segurança e é criado um novo no próximo "
+"início de sessão."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "Reparar chaveiro"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "Falha ao reparar o chaveiro de início de sessão: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -680,43 +707,43 @@ msgstr "A verificar…"
 msgid "Enable Auto-Unlock"
 msgstr "Ativar desbloqueio automático"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "Porta-chaves"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "Idioma de exibição"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Automático segue o idioma do sistema. As alterações aplicam-se imediatamente."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "Idioma"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Autenticação facial para Linux"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "Versão desconhecida"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Abrir ligação do "
 "GitHub</a> "
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -724,7 +751,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Relate um "
 "problema ou sugira um recurso</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "Acerca"
 

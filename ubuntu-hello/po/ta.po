@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "தோல்வி, காலக்கெடுவை அடைந்தது"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "முகம் கண்டறிதல் படம் மிகவும் இருட்டாக உள்ளது"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "அறியப்படாத பிழை:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "%s என அடையாளம் காணப்பட்ட முகம்"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
@@ -41,13 +41,13 @@ msgstr ""
 "Enter விசையை அனுப்ப போதுமான அனுமதிகள் இல்லை, அதற்கு பதிலாக பயனர் அதை அழுத்தும் வரை "
 "காத்திருக்கிறது"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr ""
 "Enter விசையை அனுப்புவதில் தோல்வி, அதற்கு பதிலாக பயனர் அதை அழுத்தும் வரை "
 "காத்திருக்கிறது"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "முக அங்கீகரிப்பு முயற்சி"
 
@@ -185,36 +185,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "சராசரி இருள்: {avg}, வரம்பு: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "செலவழித்த நேரம்"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "தொடங்குதல்"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "கேம் + லோட் லிப்களைத் திற: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "கேமராவைத் திறக்கிறது"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "அங்கீகார லிப்களை இறக்குமதி செய்கிறது"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "தெரிந்த முகத்தைத் தேடுகிறது"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "மொத்த நேரம்"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -222,17 +222,17 @@ msgstr ""
 "\n"
 "தீர்மானம்"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "பூர்வீகம்: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "பயன்படுத்தப்பட்டது: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -241,27 +241,27 @@ msgstr ""
 "\n"
 "தேடப்பட்ட பிரேம்கள்: %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "கருப்பு சட்டங்கள் புறக்கணிக்கப்பட்டது: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "டார்க் பிரேம்கள் புறக்கணிக்கப்பட்டது: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "வெற்றி பெறும் சட்டத்தின் உறுதி: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "வென்ற மாதிரி: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "வெற்றிகரமானது"
 
@@ -574,55 +574,55 @@ msgstr ""
 "நீங்கள் இந்த கட்டளையை sudo உடன் இயக்கினால், உங்கள் EDITOR மாறியைப் பாதுகாக்க 'sudo -E "
 "ubuntu-hello config' ஐ முயற்சிக்கவும்."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "0 (இயக்க) அல்லது 1 (முடக்கு) ஐ ஒரு வாதமாகச் சேர்க்கவும்"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "0 (இயக்கு) அல்லது 1 (முடக்கு) ஐ மட்டும் வாதமாகப் பயன்படுத்தவும்"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "முடக்கு விருப்பம் ஏற்கனவே அமைக்கப்பட்டுள்ளது"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello முடக்கப்பட்டுள்ளது"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello இயக்கப்பட்டது"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "பயன்பாடு:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "{} ({})ஐத் திறக்க, பயனரின் கடவுச்சொல்லை உள்ளிடவும் {}:"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "கடவுச்சொல் காலியாக இருக்கக்கூடாது"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "{} ({})ஐத் திறக்க, பயனரின் கடவுச்சொல்லை உள்ளிடவும் {}:"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "கடவுச்சொற்கள் பொருந்தவில்லை"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM வன்பொருள் கண்டறியப்பட்டது. தானாக நிறுவுகிறது tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM வன்பொருள் செயலில் உள்ளது. TPM இல் கடவுச்சொல்லை சீல் செய்கிறது..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -630,16 +630,16 @@ msgstr ""
 "TPM (வாலட்: {}) ஐப் பயன்படுத்தி {} பயனருக்கு கீரிங்/KWallet திறத்தல் வெற்றிகரமாக "
 "இயக்கப்பட்டது."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "TPMக்கான கடவுச்சொல்லை சீல் செய்ய முடியவில்லை: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr ""
 "TPM செயலில் இல்லை. மென்பொருள் அடிப்படையிலான நற்சான்றிதழ் தேக்ககத்தைப் பயன்படுத்துதல்..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -647,35 +647,35 @@ msgstr ""
 "பயனருக்கு கீரிங்/KWallet திறத்தல் வெற்றிகரமாக இயக்கப்பட்டது {} (மென்பொருள் கேச்சிங், "
 "வாலட்: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "கீரிங் திறப்பதை இயக்குவதில் தோல்வி: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "கீரிங் திறப்பதை முடக்குவதில் தோல்வி: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "பயனருக்கு கீரிங்/KWallet திறப்பது முடக்கப்பட்டுள்ளது {}."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "{} பயனருக்கு கீரிங்/KWallet திறத்தல் இயக்கப்படவில்லை."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "முத்திரையிடப்பட்ட உள்நுழைவு கடவுச்சொற்கள் இல்லை; மீட்டமைக்க எதுவும் இல்லை."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "{} பயனர்(கள்)க்கான உள்நுழைவு வாலெட் கடவுச்சொல் மீட்டமைக்கப்பட்டது."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "{} பயனர்(கள்)க்கான உள்நுழைவு வாலெட் கடவுச்சொல்லை மீட்டமைக்க முடியவில்லை."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -683,15 +683,47 @@ msgstr ""
 "தூண்டுதல்கள் தொடர்ந்தால், Seahorse / கணினி அமைப்புகளில் உள்நுழைவு கீரிங் அல்லது KWallet "
 "கடவுச்சொல்லை அமைக்கவும்."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "பயனர் {}க்கான உள்நுழைவு வாலெட் கடவுச்சொல் மீட்டமைக்கப்பட்டது."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "பயனர் {}க்கான உள்நுழைவு வாலெட் கடவுச்சொல்லை மீட்டமைக்க முடியவில்லை."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"பழுதுநீக்கம் GNOME Keyring-க்கு மட்டுமே பொருந்தும். KWallet கடவுச்சொல்லை கணினி "
+"அமைப்புகளில் அமைக்கவும்."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr ""
+"உள்நுழைவு சாவிக்கொத்து எதுவும் கிடைக்கவில்லை; உங்கள் அடுத்த உள்நுழைவில் ஒன்று "
+"உருவாக்கப்படும்."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "உள்நுழைவு சாவிக்கொத்தை ஒதுக்கி நகர்த்த முடியவில்லை: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "பழைய உள்நுழைவு சாவிக்கொத்து {} ஆகச் சேமிக்கப்பட்டது."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"வெளியேறி மீண்டும் உள்நுழையவும்: புதிய உள்நுழைவு சாவிக்கொத்து உருவாக்கப்பட்டுத் தானாகவே "
+"திறக்கப்படும். பழைய சாவிக்கொத்தில் சேமிக்கப்பட்ட கடவுச்சொற்களை மீண்டும் உள்ளிட "
+"வேண்டியிருக்கும்."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "செல்லாத செயல். இவற்றில் ஒன்றைப் பயன்படுத்தவும்:"
 
@@ -824,11 +856,11 @@ msgstr "இருண்ட சட்டகம்"
 msgid "SCAN FRAME"
 msgstr "ஃபிரேமை ஸ்கேன் செய்யவும்"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "பொருத்தம் இல்லை"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -836,25 +868,25 @@ msgstr ""
 "\n"
 "சாளரத்தை மூடுகிறது"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "ரப்பர்ஸ்டாம்பில் உள் பிழை:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "ரப்பர்ஸ்டாம்ப் விதியை அலசுவதில் பிழை: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "முத்திரை நிறுவப்படவில்லை: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "முத்திரை பிழை: வகுப்பு {} கண்டறியப்படவில்லை"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "ரப்பர்ஸ்டாம்ப் உள்ளமைவு அறிவிப்பில் உள்ளகப் பிழை:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "ரப்பர்ஸ்டாம்பில் உள் பிழை:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -873,21 +905,21 @@ msgstr "நிறுத்துவதற்கு {abort_key}ஐயும், �
 msgid "Authentication aborted"
 msgstr "அங்கீகாரம் நிறுத்தப்பட்டது"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "உறுதிப்படுத்த தலையசைக்கவும்"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "கருக்கலைப்பு செய்ய உங்கள் தலையை அசைக்கவும்"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "உறுதிப்படுத்தப்பட்ட அங்கீகாரம்"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "நிறுத்தப்பட்ட அங்கீகாரம்"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "உறுதிப்படுத்த தலையசைக்கவும்"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "கருக்கலைப்பு செய்ய உங்கள் தலையை அசைக்கவும்"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -897,7 +929,7 @@ msgstr "ffmpeg தொகுதி காணவில்லை, தயவுச�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 தொகுதி இல்லை, தயவுசெய்து இயக்கவும்:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -905,7 +937,7 @@ msgstr ""
 "கட்டமைப்பு கோப்பில் குறிப்பிடப்பட்டுள்ள பாதையில் Ubuntu Hello கேமரா சாதனத்தைக் கண்டறிய "
 "முடியவில்லை."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -913,7 +945,7 @@ msgstr ""
 "பாதை சரியாக உள்ளமைக்கப்படவில்லை, இயக்குவதன் மூலம் 'device_path' கட்டமைப்பு மதிப்பைத் "
 "திருத்தவும்:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

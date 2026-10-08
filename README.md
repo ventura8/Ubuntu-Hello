@@ -173,6 +173,8 @@ Code contributions are also very welcome. If you want to port Ubuntu Hello to an
 
 Any Python errors get logged directly into the console and should indicate what went wrong. If authentication still fails but no errors are printed, you could take a look at the last lines in `/var/log/auth.log` to see if anything has been reported there.
 
+**Face login works but the keyring keeps asking for a password.** Log in once with your typed password. If the keyring rejects that too (`journalctl -b | grep gkr-pam` shows `the password for the login keyring was invalid`), the keyring file itself is damaged or its password no longer matches your login password. Face login is not the cause. Run `sudo ubuntu-hello keyring repair` (or **Repair Keyring** in the Keyring tab, which appears when this is detected), then log out and back in. The old keyring is kept as `login.keyring.broken-<date>`, and passwords saved in it need to be entered again.
+
 Please first check the [wiki on common issues](https://github.com/ventura8/ubuntu-hello/wiki/Common-issues) and 
 if you encounter an error that hasn't been reported yet, don't be afraid to open a new issue.
 

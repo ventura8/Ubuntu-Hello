@@ -739,3 +739,43 @@ def test_restore_kwallet_empty_services_with_home(monkeypatch):
     assert kr.restore_login_wallet_password(
         "alice", "pw", environ=env, call_dbus=lambda *a, **k: None, variant=lambda s, v: v
     ) is False
+
+
+# ── login_keyring_locked ────────────────────────────────────────────
+
+_GNOME_ENV = {"DBUS_SESSION_BUS_ADDRESS": "unix:path=/bus", "XDG_CURRENT_DESKTOP": "GNOME"}
+
+
+def _locked_reply(value):
+    def call_dbus(bus, path, iface, method, params, timeout, environ):
+        assert (path, method) == ("/org/freedesktop/secrets/collection/login", "Get")
+        return _Reply(value)
+    return call_dbus
+
+
+def test_login_keyring_locked_true_and_false():
+    for value in (True, False):
+        assert kr.login_keyring_locked(
+            "alice", environ=_GNOME_ENV, call_dbus=_locked_reply(value), variant=lambda s, v: v
+        ) is value
+
+
+def test_login_keyring_locked_unknown_without_bus():
+    assert kr.login_keyring_locked("alice", environ={}) is None
+    with patch.object(kr, "session_bus_env", return_value=None):
+        assert kr.login_keyring_locked("alice") is None
+
+
+def test_login_keyring_locked_skips_kwallet():
+    env = dict(_GNOME_ENV, XDG_CURRENT_DESKTOP="KDE")
+    with patch.object(kr, "detect_wallet_backend", return_value="kwallet"):
+        assert kr.login_keyring_locked("alice", environ=env, call_dbus=MagicMock()) is None
+
+
+def test_login_keyring_locked_dbus_error_and_odd_reply():
+    def failing(*_args):
+        raise kr.RestoreError("no collection")
+    assert kr.login_keyring_locked(
+        "alice", environ=_GNOME_ENV, call_dbus=failing, variant=lambda s, v: v) is None
+    assert kr.login_keyring_locked(
+        "alice", environ=_GNOME_ENV, call_dbus=_locked_reply("yes"), variant=lambda s, v: v) is None

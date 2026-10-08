@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "已创建"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "标签"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "自动的"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "添加您的脸部模型"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -48,16 +48,16 @@ msgstr ""
 "并按照提示操作（正视、稍微左右转头、抬起和低下下巴）。之后可选的第二次扫描"
 "（戴眼镜、不同的胡须或不同的光线）能让识别在一天中的任何时候都更加可靠。"
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "请直视相机"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "开始面部扫描"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -65,11 +65,11 @@ msgstr ""
 "数据文件已经下载！\n"
 "单击“下一步”继续"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "下载数据文件时出错"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -77,57 +77,57 @@ msgstr ""
 "完毕！\n"
 "单击“下一步”继续"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "导入OpenCV2时出错"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "尝试重新安装cv2"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "系统中未找到网络摄像头"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
 msgstr "如果您确定连接了兼容的相机，请自行配置您的相机"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "不，相机无法打开"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "不，不是红外摄像机"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "是的，兼容红外摄像头"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "不，不是红外摄像机"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "相机标识符或路径"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "受到推崇的"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "选择相机时出错"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "无法打开所选相机"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "尝试选择另一个"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -139,27 +139,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "启用您的红外发射器"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "设置 光线 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "设置 光线 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "无法保存脸部模型"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "扫描第二个模型"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "无法录制第二个模型"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -168,11 +168,11 @@ msgstr ""
 "您的第一个模型已保存，因此面部登录已经可以使用。房间必须仍然足够明亮才能看到"
 "您的脸 - 改变灯光而不是关闭它 - 然后重试，或跳过并稍后从“设置”添加模型。"
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "第二次扫描：眼镜、胡须或不同光线"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -186,7 +186,7 @@ msgstr ""
 "灯、离开窗边）。保持面部清晰可见，再次按下“扫描”，随后会进行同样简短的引导采"
 "集。"
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -197,7 +197,7 @@ msgstr ""
 "\n"
 "<b>TPM 状态：</b> 检查 TPM 硬件和工具..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -209,7 +209,7 @@ msgstr ""
 "\n"
 "<b>TPM 状态：</b> 检测到 TPM 硬件。正在自动安装<i>tpm2-tools</i>..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -221,7 +221,7 @@ msgstr ""
 "\n"
 "<b>TPM 状态：</b> 硬件 TPM 2.0 处于活动状态。您的密码将安全地密封在 TPM 内。"
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -235,7 +235,7 @@ msgstr ""
 "<b>TPM 状态：</b> 检测到 TPM 硬件，但<i>tpm2-tools</i> 自动安装失败。运行 "
 "<code>sudo apt install tpm2-tools</code>。回到基于软件的凭证缓存。"
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -247,56 +247,56 @@ msgstr ""
 "\n"
 "<b>TPM 状态：</b> 未检测到 TPM 硬件。使用基于软件的凭证缓存 (AES-256-GCM)。"
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "禁用钥匙圈解锁失败：{}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "无法识别用于密钥环解锁的非 root 系统用户"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "密码不能为空"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "用户{}密码错误"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "未知错误"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "钥匙圈解锁失败：{}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr "无法启用密钥环解锁：未找到可执行文件 ubuntu-hello"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr "无法启用密钥环解锁：等待启用超时 (keyring enable)"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "钥匙圈解锁失败：{}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "未知错误"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "无法识别用于密钥环解锁的非 root 系统用户"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "钥匙圈解锁错误"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "读取单选按钮时出错"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr "无法保存安全设置，但其余设置已完成。"
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "加载中..."
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello 身份验证"
 
@@ -304,8 +304,8 @@ msgstr "Ubuntu Hello 身份验证"
 msgid "Confirm Model Creation"
 msgstr "确认模型创建"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "取消"
 
@@ -381,70 +381,95 @@ msgstr "请稍微低下下巴"
 msgid "Recording… {count} of {total}"
 msgstr "录制中… 第 {count} 个，共 {total} 个"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "无法打开相机"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "无法导入OpenCV2"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "未知"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "启用钥匙圈/KWallet解锁"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "好的"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "输入用户<b>{}</b>的密码来解锁{}（{}）："
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "密码"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>未选择任何用户</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>已启用（TPM 硬件）</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr "<span foreground='green'><b>启用（软件缓存）</b></span> — {}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr "<span foreground='orange'><b>已启用（待输入密码）</b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>已禁用</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>您的登录密钥环未接受您的密码。</b></span> 修复将创"
+"建一个新的密钥环；保存在旧密钥环中的密码需要重新输入。"
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "成功为用户{}启用钥匙圈/KWallet解锁。"
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr "您确定要禁用用户{}的钥匙圈/KWallet解锁吗？"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "禁用自动解锁"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "用户{}禁用钥匙圈/KWallet解锁。"
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"要修复用户 {} 的登录密钥环吗？旧密钥环将保留为备份文件，并会在您下次登录时创"
+"建新的密钥环。"
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "修复密钥环"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "修复登录密钥环失败：{}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -635,41 +660,41 @@ msgstr "检查..."
 msgid "Enable Auto-Unlock"
 msgstr "启用自动解锁"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "钥匙圈"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "显示语言"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "自动跟随系统语言。更改会立即生效。"
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "语言"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Linux 下的面部认证"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "版本未知"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">打开 GitHub 链接</a>"
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -677,7 +702,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">报告问题或建议功"
 "能</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "关于"
 

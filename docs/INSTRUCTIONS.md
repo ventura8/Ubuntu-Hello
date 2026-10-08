@@ -440,6 +440,7 @@ sudo ubuntu-hello clear
 sudo ubuntu-hello keyring enable   # login keyring / KWallet via PAM_AUTHTOK
 sudo ubuntu-hello keyring restore --all  # every sealed user (uninstall uses this)
 sudo ubuntu-hello -U alice keyring restore  # one selected user
+sudo ubuntu-hello keyring repair   # reseal + set a broken login keyring aside
 sudo ubuntu-hello test
 ```
 

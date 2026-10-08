@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,34 +16,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "አለመሳካት፣ ጊዜው አልቋል"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "የፊት ለይቶ ማወቅ ምስል በጣም ጨለማ ነው።"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "ያልታወቀ ስህተት፡-"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "ተለይቶ የሚታወቅ ፊት ​​%s"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
 msgstr "አስገባን ለመላክ በቂ ያልሆኑ ፈቃዶች፣ በምትኩ ተጠቃሚው እንዲጫን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "አስገባን መላክ አልተሳካም፣ በምትኩ ተጠቃሚው እስኪጭን በመጠበቅ ላይ"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "የፊት ማረጋገጥን በመሞከር ላይ"
 
@@ -175,36 +175,36 @@ msgstr "ሁሉም ክፈፎች በጣም ጨለማዎች ነበሩ፣እባክ�
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "አማካይ ጨለማ፡ {avg}፣ ገደብ፡ {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "የጠፋው ጊዜ"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "በመጀመር ላይ"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "ካሜራ ክፈት + ሎድ ሊብስ፡ %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "ካሜራውን በመክፈት ላይ"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "የማወቂያ libs በማስመጣት ላይ"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "የሚታወቅ ፊት ​​በመፈለግ ላይ"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "ጠቅላላ ጊዜ"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -212,17 +212,17 @@ msgstr ""
 "\n"
 "ጥራት"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "ቤተኛ፡ %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "ጥቅም ላይ የዋለ: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -231,27 +231,27 @@ msgstr ""
 "\n"
 "ፍሬሞች ተፈልገው፡ %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "ጥቁር ፍሬሞች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "ጨለማ ክፈፎች ችላ ተብለዋል፡ %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "የማሸነፍ እርግጠኝነት፡ %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "አሸናፊ ሞዴል፡ %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "ተሳክቷል።"
 
@@ -561,103 +561,103 @@ msgstr ""
 "ይህን ትእዛዝ በ sudo እያስኬዱ ከሆነ፣ የእርስዎን የEDITOR ተለዋዋጭ ለማቆየት 'sudo -E ubuntu-hello "
 "config' ይሞክሩ።"
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "እባክህ 0 (አንቃ) ወይም 1 ጨምር (አሰናክል) እንደ ክርክር"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "እባክህ 0 ብቻ ተጠቀም (አንቃ) ወይም 1 (አሰናክል) እንደ መከራከሪያ"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "የማሰናከል አማራጭ አስቀድሞ ተቀናብሯል።"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello ተሰናክሏል።"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello ነቅቷል።"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "አጠቃቀም፦"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "ለመክፈት ለተጠቃሚ {} የይለፍ ቃል ያስገቡ {} ({}):"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "የይለፍ ቃል ባዶ ሊሆን አይችልም።"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "ለመክፈት ለተጠቃሚ {} የይለፍ ቃል ያስገቡ {} ({}):"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "የይለፍ ቃል አረጋግጥ፡"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "የይለፍ ቃሎች አይዛመዱም።"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM ሃርድዌር ተገኝቷል። በራስ-ሰር በመጫን ላይ tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM ሃርድዌር ንቁ። በTPM ውስጥ የይለፍ ቃል በማተም ላይ..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
 msgstr "TPM (የኪስ ቦርሳ፡ {}) በመጠቀም ለተጠቃሚ {} ቁልፍ ማድረግ/KWallet መክፈት በተሳካ ሁኔታ ነቅቷል።"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "በTPM ላይ የይለፍ ቃል ማተም አልተሳካም፡ {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "ምንም TPM ገቢር የለም። በሶፍትዌር ላይ የተመሰረተ ምስክርነት መሸጎጫ በመጠቀም..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
 msgstr "ለተጠቃሚ {} የ Keyring/KWallet መክፈት በተሳካ ሁኔታ ነቅቷል (የሶፍትዌር መሸጎጫ፣ ቦርሳ፦ {})።"
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "የቁልፍ መክፈቻን ማንቃት አልተሳካም፦ {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "የቁልፍ መክፈቻን ማሰናከል አልተሳካም: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "ለተጠቃሚ {} ቁልፍ መደወል/KWallet መክፈት ተሰናክሏል።"
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "ኪይንግ/KWallet መክፈት ለተጠቃሚ {} አልነቃም።"
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "የታሸጉ የመግቢያ የይለፍ ቃሎች አልተገኙም፤ የሚመለስ ነገር የለም።"
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "የመግቢያ የኪስ ቦርሳ የይለፍ ቃል ለ {} ተጠቃሚ(ዎች) ተመልሷል።"
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "ለ {} ተጠቃሚ(ዎች) የመግቢያ የኪስ ቦርሳ የይለፍ ቃል መመለስ አልተቻለም።"
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -665,15 +665,43 @@ msgstr ""
 "ጥያቄዎች ከቀጠሉ፣ በ Seahorse / የስርዓት ቅንብሮች ውስጥ የመግቢያ ቁልፍ ቀለበት ወይም KWallet የይለፍ ቃል "
 "ያዘጋጁ።"
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "የመግቢያ የኪስ ቦርሳ የይለፍ ቃል ለተጠቃሚ {} ተመልሷል።"
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "ለተጠቃሚ {} የመግቢያ የኪስ ቦርሳ የይለፍ ቃል መመለስ አልተቻለም።"
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"ጥገናው የሚመለከተው GNOME Keyring ብቻ ነው። የKWallet የይለፍ ቃልን በስርዓት ቅንብሮች ውስጥ ያዘጋጁ።"
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr "የመግቢያ ቁልፍ ቀለበት አልተገኘም፤ በሚቀጥለው መግቢያዎ ላይ አዲስ ይፈጠራል።"
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "የመግቢያ ቁልፍ ቀለበቱን ወደ ጎን ማንቀሳቀስ አልተቻለም፦ {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "የድሮው የመግቢያ ቁልፍ ቀለበት እንደ {} ተቀምጧል።"
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"ይውጡ እና እንደገና ይግቡ፦ አዲስ የመግቢያ ቁልፍ ቀለበት በራስ-ሰር ይፈጠራል እና ይከፈታል። በድሮው ቁልፍ ቀለበት "
+"ውስጥ የተቀመጡ የይለፍ ቃላት እንደገና መግባት አለባቸው።"
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "ልክ ያልሆነ ተግባር። ከሚከተሉት አንዱን ይጠቀሙ፦"
 
@@ -804,11 +832,11 @@ msgstr "ጨለማ ፍሬም"
 msgid "SCAN FRAME"
 msgstr "ፍሬም ይቃኙ"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "ተዛማጅ የለም"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -816,25 +844,25 @@ msgstr ""
 "\n"
 "የመዝጊያ መስኮት"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "በላስቲክ ማህተም ውስጥ የውስጥ ስህተት;"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "የላስቲክ ማህተም ህግን በመተንተን ላይ ስህተት፡ {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "ማህተም አልተጫነም: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "የቴምብር ስህተት፡ ክፍል {} አልተገኘም።"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "የጎማ ስታምፕ ውቅር መግለጫ ላይ የውስጥ ስህተት፡-"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "በላስቲክ ማህተም ውስጥ የውስጥ ስህተት;"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -853,21 +881,21 @@ msgstr "ለማስወረድ {abort_key} ይጫኑ፡ {confirm_key} ፍቃድ ለ�
 msgid "Authentication aborted"
 msgstr "ማረጋገጫ ተቋርጧል"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "ለማረጋገጥ አንቃ"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "ለማስወረድ ጭንቅላትዎን ይነቅንቁ"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "የተረጋገጠ ማረጋገጫ"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "የተቋረጠ ማረጋገጫ"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "ለማረጋገጥ አንቃ"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "ለማስወረድ ጭንቅላትዎን ይነቅንቁ"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -877,20 +905,20 @@ msgstr "የffmpeg ሞጁል ይጎድላል፣ እባክዎን ያሂዱ፡-"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "የጠፋ pyv4l2 ሞጁል፣ እባክዎን ያሂዱ፡"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
 msgstr "Ubuntu Hello በማዋቀር ፋይሉ ላይ በተጠቀሰው መንገድ የካሜራ መሳሪያ ማግኘት አልቻለም።"
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
 msgstr ""
 "መንገዱ በትክክል ያልተዋቀረ ሳይሆን አይቀርም፣ እባክዎን የሚከተለውን በማሄድ 'device_path' ውቅር ዋጋን ያርትዑ:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr "በ'device_path' ውቅር አማራጭ ውስጥ የተገለጸውን ካሜራ ማንበብ አልተሳካም፣ ማቋረጥ"

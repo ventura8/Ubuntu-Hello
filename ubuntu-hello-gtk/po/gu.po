@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "બનાવ્યું"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "લેબલ"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "આપોઆપ"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "તમારા ચહેરાના મૉડલ ઉમેરી રહ્યાં છીએ"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -49,16 +49,16 @@ msgstr ""
 "અને નીચે). ત્યારબાદ બીજું, વૈકલ્પિક સ્કૅન — ચશ્માં સાથે, અલગ દાઢી-મૂછ સાથે અથવા અલગ "
 "પ્રકાશમાં — દિવસના કોઈપણ સમયે ઓળખને વધુ ભરોસાપાત્ર બનાવે છે."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "કૃપા કરીને સીધા કેમેરામાં જુઓ"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "ચહેરો સ્કેન શરૂ કરો"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -66,11 +66,11 @@ msgstr ""
 "ડેટાફાઈલ્સ પહેલેથી જ ડાઉનલોડ થઈ ગઈ છે!\n"
 "ચાલુ રાખવા માટે આગળ ક્લિક કરો"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "ડેટાફાઈલ્સ ડાઉનલોડ કરતી વખતે ભૂલ"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -78,58 +78,58 @@ msgstr ""
 "થઈ ગયું!\n"
 "ચાલુ રાખવા માટે આગળ ક્લિક કરો"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "OpenCV2 આયાત કરતી વખતે ભૂલ"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "cv2 પુનઃસ્થાપિત કરવાનો પ્રયાસ કરો"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "સિસ્ટમ પર કોઈ વેબકૅમ્સ મળ્યા નથી"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
 msgstr ""
 "જો તમને ખાતરી હોય કે સુસંગત કૅમેરો જોડાયેલ છે, તો કૃપા કરીને તમારા કૅમેરાને જાતે ગોઠવો"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "ના, કૅમેરો ખોલી શકાતો નથી"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "ના, ઇન્ફ્રારેડ કેમેરા નથી"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "હા, સુસંગત ઇન્ફ્રારેડ કેમેરા"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "ના, ઇન્ફ્રારેડ કેમેરા નથી"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "કૅમેરા ઓળખકર્તા અથવા પાથ"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "ભલામણ કરેલ"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "કૅમેરા પસંદ કરવામાં ભૂલ"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "પસંદ કરેલ કૅમેરો ખોલી શકાતો નથી"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "બીજું પસંદ કરવાનો પ્રયાસ કરો"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -141,27 +141,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "તમારા IR ઉત્સર્જકને સક્ષમ કરવા માટે"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "સેટઅપ પ્રકાશ 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "સેટઅપ પ્રકાશ 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "ચહેરાનું મૉડલ સાચવી શકાતું નથી"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "બીજું મોડેલ સ્કેન કરો"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "બીજું મોડેલ રેકોર્ડ કરી શકાયું નથી"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -171,11 +171,11 @@ msgstr ""
 "તમારો ચહેરો જોવા માટે પૂરતો તેજસ્વી હોવો જોઈએ — તેને બંધ કરવાને બદલે પ્રકાશ બદલો — પછી "
 "ફરીથી પ્રયાસ કરો, અથવા છોડી દો અને પછીથી સેટિંગમાંથી મોડલ ઉમેરો."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "બીજું સ્કૅન: ચશ્માં, દાઢી-મૂછ અથવા અલગ પ્રકાશ"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -189,7 +189,7 @@ msgstr ""
 "રેકોર્ડ કરો અને પ્રકાશ બદલો — લેમ્પ ચાલુ કે બંધ કરો, બારીથી દૂર જાઓ. ચહેરો સ્પષ્ટ દેખાય તેમ "
 "રાખો અને ફરીથી સ્કૅન દબાવો; એ જ ટૂંકું માર્ગદર્શિત રેકોર્ડિંગ થશે."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -201,7 +201,7 @@ msgstr ""
 "\n"
 "<b>TPM સ્થિતિ:</b> TPM હાર્ડવેર અને સાધનો તપાસી રહ્યું છે..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -214,7 +214,7 @@ msgstr ""
 "\n"
 "<b>TPM સ્થિતિ:</b> TPM હાર્ડવેર મળ્યું. <i>tpm2-tools</i> આપમેળે ઇન્સ્ટોલ થઈ રહ્યું છે..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -228,7 +228,7 @@ msgstr ""
 "<b>TPM સ્થિતિ:</b> હાર્ડવેર TPM 2.0 સક્રિય. તમારો પાસવર્ડ TPM ની અંદર સુરક્ષિત રીતે "
 "સીલ કરવામાં આવશે."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -244,7 +244,7 @@ msgstr ""
 "નિષ્ફળ થયું. <code>sudo apt install tpm2-tools</code> ચલાવો. સૉફ્ટવેર-આધારિત "
 "ઓળખપત્ર કેશીંગ પર પાછા આવવું."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -258,58 +258,58 @@ msgstr ""
 "<b>TPM સ્થિતિ:</b> કોઈ TPM હાર્ડવેર મળ્યું નથી. સોફ્ટવેર-આધારિત ઓળખપત્ર કેશીંગ (AES-256-"
 "GCM) નો ઉપયોગ કરવો."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "કીરીંગ અનલોકીંગને અક્ષમ કરવામાં નિષ્ફળ: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr "કીરીંગ અનલોકીંગ માટે બિન-root સિસ્ટમ યુઝરને ઓળખી શકાયું નથી"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "પાસવર્ડ ખાલી હોઈ શકતો નથી"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "વપરાશકર્તા માટે ખોટો પાસવર્ડ {}"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "અજાણી ભૂલ"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "કીરીંગ અનલોકીંગ સક્ષમ કરવામાં નિષ્ફળ: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr "કીરિંગ અનલોક સક્ષમ કરી શકાયું નથી: ubuntu-hello એક્ઝિક્યુટેબલ મળ્યું નથી"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "કીરિંગ અનલોક સક્ષમ કરી શકાયું નથી: સક્ષમ થવાની રાહ જોતાં સમય પૂરો થયો (keyring "
 "enable)"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "કીરીંગ અનલોકીંગ સક્ષમ કરવામાં નિષ્ફળ: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "અજાણી ભૂલ"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr "કીરીંગ અનલોકીંગ માટે બિન-root સિસ્ટમ યુઝરને ઓળખી શકાયું નથી"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "કીરીંગ અનલોકીંગ ભૂલ"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "રેડિયો બટનો વાંચવામાં ભૂલ"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr "સુરક્ષા સેટિંગ્સ સાચવી શકાઈ નથી, પરંતુ સેટઅપ અન્યથા પૂર્ણ છે."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "લોડ કરી રહ્યું છે..."
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello પ્રમાણીકરણ"
 
@@ -317,8 +317,8 @@ msgstr "Ubuntu Hello પ્રમાણીકરણ"
 msgid "Confirm Model Creation"
 msgstr "મોડેલ બનાવવાની પુષ્ટિ કરો"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "રદ કરો"
 
@@ -394,70 +394,95 @@ msgstr "દાઢી થોડી નીચે કરો"
 msgid "Recording… {count} of {total}"
 msgstr "રેકોર્ડ થઈ રહ્યું છે… {total} માંથી {count}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "કૅમેરો ખોલી શકાતો નથી"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "OpenCV2 આયાત કરી શકાતું નથી"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "અજ્ઞાત"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "કીરીંગ/KWallet અનલોકીંગ સક્ષમ કરો"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "ઠીક છે"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "{} ({}) અનલૉક કરવા માટે <b>{}</b> વપરાશકર્તા માટે પાસવર્ડ દાખલ કરો:"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "પાસવર્ડ"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>કોઈ વપરાશકર્તા પસંદ કર્યો નથી</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr "<span foreground='green'><b>સક્ષમ (TPM હાર્ડવેર)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr "<span foreground='green'><b>સક્ષમ (સોફ્ટવેર કેશીંગ)</b></span> — {}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr "<span foreground='orange'><b>સક્ષમ (બાકી પાસવર્ડ એન્ટ્રી)</b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>અક્ષમ કરેલ</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>તમારી લૉગિન કીરિંગે તમારો પાસવર્ડ સ્વીકાર્યો નથી.</b></"
+"span> સમારકામ નવી કીરિંગ બનાવે છે; જૂનીમાં સાચવેલા પાસવર્ડ ફરીથી દાખલ કરવા પડશે."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "વપરાશકર્તા {} માટે કીરીંગ/KWallet અનલોકીંગ સફળતાપૂર્વક સક્ષમ."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr "શું તમે ખરેખર વપરાશકર્તા {} માટે કીરીંગ/KWallet અનલોકીંગને અક્ષમ કરવા માંગો છો?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "ઓટો-અનલૉક અક્ષમ કરો"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "વપરાશકર્તા {} માટે કીરીંગ/KWallet અનલોકીંગ અક્ષમ છે."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"વપરાશકર્તા {} માટે લૉગિન કીરિંગનું સમારકામ કરવું છે? જૂની કીરિંગ બેકઅપ ફાઇલ તરીકે "
+"રાખવામાં આવશે, અને તમારા આગલા લૉગિન પર નવી બનાવવામાં આવશે."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "કીરિંગનું સમારકામ કરો"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "લૉગિન કીરિંગનું સમારકામ કરવામાં નિષ્ફળ: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -657,41 +682,41 @@ msgstr "તપાસી રહ્યું છે..."
 msgid "Enable Auto-Unlock"
 msgstr "સ્વતઃ-અનલૉક સક્ષમ કરો"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "કીરીંગ"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "પ્રદર્શન ભાષા"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "આપોઆપ સિસ્ટમની ભાષા અનુસરે છે. ફેરફારો તરત લાગુ થાય છે."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "ભાષા"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Linux માટે ચહેરાના પ્રમાણીકરણ"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "સંસ્કરણ અજ્ઞાત"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">GitHub લિંક ખોલો</a>"
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -699,7 +724,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">સમસ્યાની જાણ કરો "
 "અથવા કોઈ સુવિધા સૂચવો</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "વિશે"
 

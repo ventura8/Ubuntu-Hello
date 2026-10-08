@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "Krouet"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "Skritell"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "Emgefreek"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "Ouzhpennañ ho patromoù dremm"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -51,16 +51,16 @@ msgstr ""
 "barv disheñvel pe ur sklêrijenn all — lakaat an anavezout da vezañ c'hoazh "
 "fizidikoc'h da bep eur eus an deiz."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Sellit war-eeun ouzh ar gamera, mar plij"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Kregiñ gant skannañ an dremm"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -68,11 +68,11 @@ msgstr ""
 "Pellgarget eo bet restroù ar roadennoù dija!\n"
 "Klikit war War-lerc'h evit kenderc'hel"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "Fazi e-pad pellgargañ restroù ar roadennoù"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -80,58 +80,58 @@ msgstr ""
 "Echu!\n"
 "Klikit war War-lerc'h evit kenderc'hel"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "Fazi e-pad enporzhiañ OpenCV2"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "Klaskit adstaliañ cv2"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "N'eus bet kavet kamera web ebet war ar reizhiad"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
 msgstr ""
 "Kefluniit ho kamera ho-unan ma'z oc'h sur ez eus ur gamera keverlec'h kevreet"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "Nann, n'haller ket digeriñ ar gamera"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "Nann, n'eo ket ur gamera isruz"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "Ya, kamera isruz keverlec'h"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "Nann, n'eo ket ur gamera isruz"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "Naoudi pe hent ar gamera"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "Erbedet"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "Fazi en ur ziuzañ ar gamera"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "N'haller ket digeriñ ar gamera diuzet"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "Klaskit diuzañ unan all"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -143,27 +143,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "evit gweredekaat ho skigner ir"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "Sklêrijenn staliañ 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "Sklêrijenn staliañ 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "N'haller ket enrollañ ar patrom dremm"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "Skannañ an eil patrom"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "N'eus ket bet gallet enrollañ an eil patrom"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -174,11 +174,11 @@ msgstr ""
 "cheñchit ar gouloù kentoc'h eget e lazhañ — ha klaskit en-dro neuze, pe "
 "tremenit ha ouzhpennit ur patrom diwezhatoc'h dre an Arventennoù."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "Eil skannadenn: lunedoù, barv pe sklêrijenn disheñvel"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -194,7 +194,7 @@ msgstr ""
 "ar prenestr. Dalc'hit ho tremm war wel splann ha pouezit war Skannañ en-dro; "
 "heuliañ a raio ar memes pakadur berr heñchet."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -206,7 +206,7 @@ msgstr ""
 "\n"
 "<b>Stad an TPM:</b> O wiriañ periantel ha binvioù TPM..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -220,7 +220,7 @@ msgstr ""
 "<b>Stad an TPM:</b> Periantel TPM dinoet. O staliañ <i>tpm2-tools</i> ent "
 "emgefreek..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -234,7 +234,7 @@ msgstr ""
 "<b>Stad an TPM:</b> Periantel TPM 2.0 oberiant. Siellet e vo ho ker-tremen e "
 "surentez e-barzh an TPM."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -250,7 +250,7 @@ msgstr ""
 "emgefreek <i>tpm2-tools</i>. Sevenit <code>sudo apt install tpm2-tools</"
 "code>. O tistreiñ da grubuilhañ an titouroù-dilesa dre ar meziant."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -264,64 +264,64 @@ msgstr ""
 "<b>Stad an TPM:</b> N'eus bet dinoet periantel TPM ebet. Oc'h implijout "
 "krubuilhañ an titouroù-dilesa dre ar meziant (AES-256-GCM)."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "C'hwitet eo diweredekaat dibrennañ kelc'h an alc'hwezioù: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr ""
-"N'eus ket bet gallet anavezout un implijer reizhiad nann-root evit dibrennañ "
-"kelc'h an alc'hwezioù"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "N'hall ket ar ger-tremen bezañ goullo"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "Ger-tremen faziek evit an implijer {}"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "fazi dianav"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "C'hwitet eo gweredekaat dibrennañ kelc'h an alc'hwezioù: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr ""
 "C'hwitet eo gweredekaat dibrennañ kelc'h an alc'hwezioù: n'eo ket bet kavet "
 "ar programm ubuntu-hello"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "C'hwitet eo gweredekaat dibrennañ kelc'h an alc'hwezioù: re hir eo bet ar "
 "gortoz evit keyring enable"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "C'hwitet eo gweredekaat dibrennañ kelc'h an alc'hwezioù: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "fazi dianav"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"N'eus ket bet gallet anavezout un implijer reizhiad nann-root evit dibrennañ "
+"kelc'h an alc'hwezioù"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "Fazi dibrennañ kelc'h an alc'hwezioù"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "Fazi en ur lenn ar boutonoù radio"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
 "N'eus ket bet gallet enrollañ arventennoù an diogelroez, met echu eo ar "
 "staliadur evit ar peurrest."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "O kargañ...  "
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Dilesa Ubuntu Hello"
 
@@ -329,8 +329,8 @@ msgstr "Dilesa Ubuntu Hello"
 msgid "Confirm Model Creation"
 msgstr "Kadarnaat krouidigezh ar patrom"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "Nullañ"
 
@@ -408,77 +408,103 @@ msgstr "Izelait un tamm hoc'h elgez"
 msgid "Recording… {count} of {total}"
 msgstr "Oc'h enrollañ… {count} war {total}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "N'haller ket digeriñ ar gamera"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "N'haller ket enporzhiañ OpenCV2"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "Dianav"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Gweredekaat dibrennañ Keyring/KWallet"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "Mat eo"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Merkit ger-tremen an implijer <b>{}</b> evit dibrennañ {} ({}):"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "Ger-tremen"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>Implijer ebet diuzet</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Gweredekaet (periantel TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Gweredekaet (krubuilhañ dre veziant)</b></span> "
 "— {}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Gweredekaet (o c'hortoz ar ger-tremen)</b></"
 "span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Diweredekaet</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>N'eo ket bet degemeret ho ker-tremen gant hoc'h "
+"alc'hweziri kevreañ.</b></span> An adkempenn a grou un alc'hweziri nevez; "
+"ret e vo deoc'h adskrivañ ar gerioù-tremen enrollet en hini kozh."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr "Gweredekaet eo bet dibrennañ Keyring/KWallet evit an implijer {}."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
 "Ha sur oc'h e fell deoc'h diweredekaat dibrennañ keyring/KWallet evit an "
 "implijer {}?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "Diweredekaat an dibrennañ emgefreek"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Diweredekaet eo bet dibrennañ Keyring/KWallet evit an implijer {}."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"Adkempenn alc'hweziri kevreañ an implijer {}? Miret e vo an hini kozh evel "
+"restr gwarez, hag unan nevez a vo krouet pa gevreoc'h en-dro."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "Adkempenn an alc'hweziri"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "C'hwitet eo adkempenn an alc'hweziri kevreañ: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -684,42 +710,42 @@ msgstr "O wiriañ..."
 msgid "Enable Auto-Unlock"
 msgstr "Gweredekaat an dibrennañ emgefreek"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "Alc'hwezier"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "Yezh diskouez"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr "Emgefreek a heuilh yezh ar reizhiad. Ar c’hemmoù a vez lakaet buan."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "Yezh"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Dilesa dre zremm evit Linux"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "Stumm dianav"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Digeriñ al liamm "
 "GitHub</a> "
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -727,7 +753,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Danevellañ ur "
 "gudenn pe ginnig ur keweriuster</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "Diwar-benn"
 

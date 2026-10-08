@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "Falha, tempo limite atingido"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "Imagem de detecção de rosto muito escura"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "Erro desconhecido:"
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "Rosto identificado como %s"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
 msgstr ""
 "Permissões insuficientes para enviar Enter, aguardando o usuário pressioná-lo"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Falha ao enviar Enter, aguardando o usuário pressioná-lo"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "Tentando autenticação facial"
 
@@ -182,36 +182,36 @@ msgstr ""
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "Escuridão média: {avg}, Limiar: {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "Tempo gasto"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "Iniciando"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "Abra cam + carregue bibliotecas: %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "Abrindo a câmera"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "Importando bibliotecas de reconhecimento"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "Procurando por rosto conhecido"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "Tempo total"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -219,17 +219,17 @@ msgstr ""
 "\n"
 "Resolução"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "Nativo: %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "Usado: %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -238,27 +238,27 @@ msgstr ""
 "\n"
 "Quadros pesquisados: %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "Quadros pretos ignorados: %d"
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "Quadros escuros ignorados: %d"
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "Certeza do frame vencedor: %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "Modelo vencedor: %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "BEM-SUCEDIDO"
 
@@ -571,55 +571,55 @@ msgstr ""
 "Se você estiver executando este comando com sudo, tente 'sudo -E ubuntu-"
 "hello config' para preservar sua variável EDITOR."
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "Adicione 0 (habilitar) ou 1 (desabilitar) como argumento"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "Por favor, use apenas 0 (habilitar) ou 1 (desabilitar) como argumento"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "A opção desabilitar já foi definida para"
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello foi desativado"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello foi ativado"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "Uso:"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "Digite a senha do usuário {} para desbloquear {} ({}):"
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "A senha não pode ficar vazia"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "Digite a senha do usuário {} para desbloquear {} ({}):"
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "Confirme sua senha:"
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "As senhas não coincidem"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "Hardware TPM detectado. Instalando automaticamente tpm2-tools..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "Hardware TPM ativo. Selando senha no TPM..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -627,15 +627,15 @@ msgstr ""
 "Desbloqueio de chaveiro/KWallet habilitado com sucesso para o usuário {} "
 "usando TPM (carteira: {})."
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "Falha ao selar a senha do TPM: {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "Nenhum TPM ativo. Usando cache de credenciais baseado em software..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -643,42 +643,42 @@ msgstr ""
 "Desbloqueio de chaveiro/KWallet habilitado com sucesso para o usuário {} "
 "(Cache de software, carteira: {})."
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "Falha ao ativar o desbloqueio do chaveiro: {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Falha ao desativar o desbloqueio do chaveiro: {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Desbloqueio de chaveiro/KWallet desabilitado para o usuário {}."
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr ""
 "O desbloqueio do chaveiro/KWallet não foi habilitado para o usuário {}."
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr ""
 "Nenhuma palavra-passe de início de sessão selada encontrada; nada a "
 "restaurar."
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr ""
 "Palavra-passe da carteira de início de sessão restaurada para {} "
 "utilizador(es)."
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr ""
 "Não foi possível restaurar a palavra-passe da carteira de início de sessão "
 "de {} utilizador(es)."
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -686,19 +686,51 @@ msgstr ""
 "Se os pedidos persistirem, defina a palavra-passe do chaveiro de início de "
 "sessão ou do KWallet no Seahorse / Definições do sistema."
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr ""
 "Palavra-passe da carteira de início de sessão restaurada para o utilizador "
 "{}."
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr ""
 "Não foi possível restaurar a palavra-passe da carteira de início de sessão "
 "do utilizador {}."
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"A reparação aplica-se apenas ao GNOME Keyring. Defina a palavra-passe do "
+"KWallet nas Definições do Sistema."
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr ""
+"Nenhum chaveiro de início de sessão encontrado; será criado um no próximo "
+"início de sessão."
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "Não foi possível pôr de lado o chaveiro de início de sessão: {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "O chaveiro de início de sessão antigo foi guardado como {}."
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"Termine a sessão e volte a iniciá-la: será criado um novo chaveiro de início "
+"de sessão, desbloqueado automaticamente. As palavras-passe guardadas no "
+"chaveiro antigo terão de ser introduzidas novamente."
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "Ação inválida. Use uma das seguintes:"
 
@@ -834,11 +866,11 @@ msgstr "QUADRO ESCURO"
 msgid "SCAN FRAME"
 msgstr "QUADRO DE VERIFICAÇÃO"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "sem correspondência"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -846,25 +878,25 @@ msgstr ""
 "\n"
 "Fechando janela"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "Erro interno no carimbo:"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "Erro ao analisar a regra do carimbo: {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "Carimbo não instalado: {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "Erro de carimbo: Classe {} não encontrada"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "Erro interno na declaração de configuração do carimbo de borracha:"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "Erro interno no carimbo:"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -883,21 +915,21 @@ msgstr "Pressione {abort_key} para abortar, {confirm_key} para autorizar"
 msgid "Authentication aborted"
 msgstr "Autenticação abortada"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "Acene para confirmar"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "Balançar a cabeça para abortar"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "Autenticação confirmada"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "Autenticação abortada"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "Acene para confirmar"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "Balançar a cabeça para abortar"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -907,7 +939,7 @@ msgstr "Módulo ffmpeg ausente, execute:"
 msgid "Missing pyv4l2 module, please run:"
 msgstr "Módulo pyv4l2 ausente, execute:"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
@@ -915,7 +947,7 @@ msgstr ""
 "Ubuntu Hello não conseguiu encontrar um dispositivo de câmera no caminho "
 "especificado no arquivo de configuração."
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -923,7 +955,7 @@ msgstr ""
 "É muito provável que o caminho não esteja configurado corretamente. Edite o "
 "valor de configuração 'device_path' executando:"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr ""

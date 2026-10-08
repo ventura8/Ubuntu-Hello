@@ -323,6 +323,43 @@ def _glib_variant(signature: str, value):
     return GLib.Variant(signature, value)
 
 
+def login_keyring_locked(
+    user: str,
+    environ: Optional[dict[str, str]] = None,
+    call_dbus: Optional[Callable] = None,
+    variant: Optional[Callable] = None,
+) -> Optional[bool]:
+    """True when *user*'s GNOME login keyring is locked in their session.
+
+    Face login hands the sealed password to pam_gnome_keyring, so a login
+    keyring still locked inside a running session means the keyring did not
+    accept it: the keyring file was damaged or its password drifted away
+    from the login password. ``None`` when it cannot tell (no session bus,
+    KWallet, no login collection).
+    """
+    env = environ if environ is not None else session_bus_env(user)
+    if not env or "DBUS_SESSION_BUS_ADDRESS" not in env:
+        return None
+    if detect_wallet_backend(env) == "kwallet":
+        return None
+    dbus_call = call_dbus or _gio_call
+    make_variant = variant or _glib_variant
+    try:
+        reply = dbus_call(
+            _SECRETS_BUS,
+            "/org/freedesktop/secrets/collection/login",
+            "org.freedesktop.DBus.Properties",
+            "Get",
+            make_variant("(ss)", ("org.freedesktop.Secret.Collection", "Locked")),
+            5000,
+            env,
+        )
+        locked = _dbus_index(reply, 0, "Get Locked")
+    except Exception:
+        return None
+    return locked if isinstance(locked, bool) else None
+
+
 def _kwallet_salt_path(home: str) -> str:
     return os.path.join(home, ".local", "share", "kwalletd", "kdewallet.salt")
 

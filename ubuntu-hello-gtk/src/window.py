@@ -264,6 +264,7 @@ class MainWindow(gtk.Window):
 		self.keyring_status_label = self.builder.get_object("keyring_status_label")
 		self.keyring_enable_button = self.builder.get_object("keyring_enable_button")
 		self.keyring_disable_button = self.builder.get_object("keyring_disable_button")
+		self.keyring_repair_button = self.builder.get_object("keyring_repair_button")
 
 		self.version_label = self.builder.get_object("version_label")
 		if self.version_label:
@@ -1052,6 +1053,7 @@ import tab_keyring
 MainWindow.update_keyring_status = tab_keyring.update_keyring_status
 MainWindow.on_keyring_enable = tab_keyring.on_keyring_enable
 MainWindow.on_keyring_disable = tab_keyring.on_keyring_disable
+MainWindow.on_keyring_repair = tab_keyring.on_keyring_repair
 
 
 def _launch():

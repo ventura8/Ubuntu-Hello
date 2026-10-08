@@ -849,6 +849,14 @@
                         </style>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkButton" id="keyring_repair_button">
+                        <property name="label" translatable="1">Repair Keyring</property>
+                        <property name="focusable">1</property>
+                        <property name="visible">0</property>
+                        <signal name="clicked" handler="on_keyring_repair" swapped="no" />
+                      </object>
+                    </child>
                   </object>
                 </child>
                   </object>

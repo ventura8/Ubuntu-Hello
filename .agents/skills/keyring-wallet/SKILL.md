@@ -35,7 +35,10 @@ sudo ubuntu-hello keyring enable
 sudo ubuntu-hello keyring disable
 sudo ubuntu-hello -U alice keyring restore      # selected user only
 sudo ubuntu-hello keyring restore --all         # every sealed user (uninstall/prerm)
+sudo ubuntu-hello keyring repair                # reseal, then set login.keyring aside
 ```
+
+`repair` is for a login keyring that rejects even the typed login password (damaged file, or a keyring password that drifted from the login password). `ChangeWithMasterPassword` cannot help there because nobody knows the current keyring password. It seals the password first, then renames `login.keyring` to `login.keyring.broken-<timestamp>` (off gnome-keyring's `*.keyring` glob, never deleted), so the next login creates a fresh keyring locked with the sealed password. A failed seal leaves the keyring untouched. GNOME Keyring only; KWallet exits with a hint. The Settings Keyring tab probes `keyring_restore.login_keyring_locked()` (collection `Locked` over the user's session bus) and shows **Repair Keyring** only when auto-unlock is on and the login keyring is still locked in a running session.
 
 Bare `restore` (no flags) restores **only** the CLI-selected user (`-U` / elevation). Uninstall and `apt remove` use `restore --all` with a `timeout` bound.
 

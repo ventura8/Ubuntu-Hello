@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello 1.2.1\n"
+"Project-Id-Version: ubuntu-hello 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/pam/main.cc:109
+#: src/pam/main.cc:120
 msgid "Failure, timeout reached"
 msgstr "ཕམ་ཉེས། དུས་ཡོལ་སླེབས་སོང་།"
 
-#: src/pam/main.cc:116
+#: src/pam/main.cc:127
 msgid "Face detection image too dark"
 msgstr "གདོང་པ་ཚོར་འཛིན་གྱི་པར་རིས་མུན་ནག་དྲགས།"
 
-#: src/pam/main.cc:125
+#: src/pam/main.cc:138
 msgid "Unknown error: "
 msgstr "མི་ཤེས་པའི་ནོར་འཁྲུལ། "
 
-#: src/pam/main.cc:161
+#: src/pam/main.cc:174
 #, c-format
 msgid "Identified face as %s"
 msgstr "གདོང་པ་ %s ཡིན་པར་ངོས་འཛིན་བྱུང་།"
 
-#: src/pam/main.cc:446
+#: src/pam/main.cc:733
 msgid ""
 "Insufficient permissions to send Enter press, waiting for user to press it "
 "instead"
 msgstr ""
 "Enter མནོན་པའི་བརྡ་བསྐུར་བའི་དབང་ཚད་མི་འདང་། དེའི་ཚབ་ཏུ་སྤྱོད་མཁན་གྱིས་མནོན་པར་སྒུག་བཞིན་པ།"
 
-#: src/pam/main.cc:465 src/pam/main.cc:470
+#: src/pam/main.cc:752 src/pam/main.cc:757
 msgid "Failed to send Enter press, waiting for user to press it instead"
 msgstr "Enter མནོན་པའི་བརྡ་བསྐུར་མ་ཐུབ། དེའི་ཚབ་ཏུ་སྤྱོད་མཁན་གྱིས་མནོན་པར་སྒུག་བཞིན་པ།"
 
-#: src/pam/main.cc:596
+#: src/pam/main.cc:908
 msgid "Attempting facial authentication"
 msgstr "གདོང་པའི་ར་སྤྲོད་ཚོད་ལྟ་བྱེད་བཞིན་པ།"
 
@@ -178,36 +178,36 @@ msgstr "པར་ངོས་ཚང་མ་མུན་ནག་དྲགས་
 msgid "Average darkness: {avg}, Threshold: {threshold}"
 msgstr "ཆ་སྙོམས་མུན་ཚད། {avg}། ཚད་མཚམས། {threshold}"
 
-#: src/compare.py:709
+#: src/compare.py:707
 msgid "Time spent"
 msgstr "སོང་བའི་དུས་ཚོད།"
 
-#: src/compare.py:710
+#: src/compare.py:708
 msgid "Starting up"
 msgstr "འགོ་འཛུགས་བཞིན་པ།"
 
-#: src/compare.py:711
+#: src/compare.py:709
 #, python-format
 msgid "  Open cam + load libs: %dms"
 msgstr "  པར་ཆས་འབྱེད་པ + དཔེ་མཛོད་འཇུག་པ། %dms"
 
-#: src/compare.py:712
+#: src/compare.py:710
 msgid "  Opening the camera"
 msgstr "  པར་ཆས་འབྱེད་བཞིན་པ།"
 
-#: src/compare.py:713
+#: src/compare.py:711
 msgid "  Importing recognition libs"
 msgstr "  ངོས་འཛིན་དཔེ་མཛོད་ནང་འདྲེན་བཞིན་པ།"
 
-#: src/compare.py:714
+#: src/compare.py:712
 msgid "Searching for known face"
 msgstr "ཤེས་ཟིན་པའི་གདོང་པ་འཚོལ་བཞིན་པ།"
 
-#: src/compare.py:715
+#: src/compare.py:713
 msgid "Total time"
 msgstr "དུས་ཚོད་བསྡོམས།"
 
-#: src/compare.py:717
+#: src/compare.py:715
 msgid ""
 "\n"
 "Resolution"
@@ -215,17 +215,17 @@ msgstr ""
 "\n"
 "གསལ་ཚད།"
 
-#: src/compare.py:719
+#: src/compare.py:717
 #, python-format
 msgid "  Native: %dx%d"
 msgstr "  རང་ལྡན། %dx%d"
 
-#: src/compare.py:722
+#: src/compare.py:720
 #, python-format
 msgid "  Used: %dx%d"
 msgstr "  བེད་སྤྱོད་བྱས་པ། %dx%d"
 
-#: src/compare.py:725
+#: src/compare.py:723
 #, python-format
 msgid ""
 "\n"
@@ -234,27 +234,27 @@ msgstr ""
 "\n"
 "བཤེར་བའི་པར་ངོས། %d (%.2f fps)"
 
-#: src/compare.py:726
+#: src/compare.py:724
 #, python-format
 msgid "Black frames ignored: %d "
 msgstr "སྣང་མེད་དུ་བཞག་པའི་པར་ངོས་ནག་པོ། %d "
 
-#: src/compare.py:727
+#: src/compare.py:725
 #, python-format
 msgid "Dark frames ignored: %d "
 msgstr "སྣང་མེད་དུ་བཞག་པའི་པར་ངོས་མུན་ནག %d "
 
-#: src/compare.py:728
+#: src/compare.py:726
 #, python-format
 msgid "Certainty of winning frame: %.3f"
 msgstr "རྒྱལ་བའི་པར་ངོས་ཀྱི་ངེས་ཚད། %.3f"
 
-#: src/compare.py:730
+#: src/compare.py:728
 #, python-format
 msgid "Winning model: %d (\"%s\")"
 msgstr "རྒྱལ་བའི་དཔེ་དབྱིབས། %d (\"%s\")"
 
-#: src/compare.py:745
+#: src/compare.py:743
 msgid "SUCCESSFUL"
 msgstr "ལེགས་གྲུབ་བྱུང་།"
 
@@ -564,55 +564,55 @@ msgstr ""
 "གལ་ཏེ་ཁྱེད་ཀྱིས་བརྡ་སྦྱོར་འདི་ sudo དང་མཉམ་དུ་སྤྱོད་བཞིན་ཡོད་ན། ཁྱེད་ཀྱི་ EDITOR འགྱུར་ཚད་ཉར་ཚགས་"
 "བྱེད་ཆེད་ 'sudo -E ubuntu-hello config' ཚོད་ལྟ་བྱོས།"
 
-#: src/cli/disable.py:22
+#: src/cli/disable.py:16
 msgid "Please add a 0 (enable) or a 1 (disable) as an argument"
 msgstr "ཆ་རྐྱེན་དུ་ 0 (སྤྱོད་རུང་) ངམ་ 1 (སྤྱོད་མེད་) སྣོན་རོགས།"
 
-#: src/cli/disable.py:35
+#: src/cli/disable.py:29
 msgid "Please only use 0 (enable) or 1 (disable) as an argument"
 msgstr "ཆ་རྐྱེན་དུ་ 0 (སྤྱོད་རུང་) ངམ་ 1 (སྤྱོད་མེད་) ཁོ་ན་སྤྱོད་རོགས།"
 
-#: src/cli/disable.py:40
+#: src/cli/disable.py:37
 msgid "The disable option has already been set to "
 msgstr "སྤྱོད་མེད་ཀྱི་འདེམས་གཞི་སྔར་ནས་འདིར་སྒྲིག་འགོད་བྱས་ཟིན། "
 
-#: src/cli/disable.py:49
+#: src/cli/disable.py:47
 msgid "Ubuntu Hello has been disabled"
 msgstr "Ubuntu Hello སྤྱོད་མེད་བཟོས་ཟིན།"
 
-#: src/cli/disable.py:51
+#: src/cli/disable.py:49
 msgid "Ubuntu Hello has been enabled"
 msgstr "Ubuntu Hello སྤྱོད་རུང་བཟོས་ཟིན།"
 
-#: src/cli/keyring.py:36 src/cli/keyring.py:156
+#: src/cli/keyring.py:28
 msgid "Usage:"
 msgstr "བེད་སྤྱོད་ཚུལ།"
 
-#: src/cli/keyring.py:53
-msgid "Enter password for user {} to unlock {} ({}): "
-msgstr "སྤྱོད་མཁན་ {} ཡི་གསང་ཚིག་འཇུག་ནས་ {} ({}) སྒོ་འབྱེད་རོགས། "
-
-#: src/cli/keyring.py:55
+#: src/cli/keyring.py:40 src/cli/keyring.py:46
 msgid "Password cannot be empty"
 msgstr "གསང་ཚིག་སྟོང་པ་ཡིན་མི་ཆོག"
 
-#: src/cli/keyring.py:58
+#: src/cli/keyring.py:44
+msgid "Enter password for user {} to unlock {} ({}): "
+msgstr "སྤྱོད་མཁན་ {} ཡི་གསང་ཚིག་འཇུག་ནས་ {} ({}) སྒོ་འབྱེད་རོགས། "
+
+#: src/cli/keyring.py:49
 msgid "Confirm password: "
 msgstr "གསང་ཚིག་གཏན་འཁེལ། "
 
-#: src/cli/keyring.py:60
+#: src/cli/keyring.py:50
 msgid "Passwords do not match"
 msgstr "གསང་ཚིག་གཉིས་མི་མཐུན།"
 
-#: src/cli/keyring.py:69
+#: src/cli/keyring.py:74
 msgid "TPM hardware detected. Auto-installing tpm2-tools..."
 msgstr "TPM སྲ་ཆས་ཚོར་བྱུང་། tpm2-tools རང་འགུལ་གྱིས་སྒྲིག་འཇུག་བྱེད་བཞིན་པ..."
 
-#: src/cli/keyring.py:78
+#: src/cli/keyring.py:83
 msgid "TPM hardware active. Sealing password in TPM..."
 msgstr "TPM སྲ་ཆས་ལས་འགུལ་ཅན་ཡིན། གསང་ཚིག་ TPM ནང་རྒྱས་འདེབས་བཞིན་པ..."
 
-#: src/cli/keyring.py:104
+#: src/cli/keyring.py:112
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} using TPM "
 "(wallet: {})."
@@ -620,15 +620,15 @@ msgstr ""
 "སྤྱོད་མཁན་ {} ཡི་ཆེད་ TPM སྤྱད་དེ་ ལྡེ་མིག་སྒྲོག/KWallet སྒོ་འབྱེད་ལེགས་པར་སྤྱོད་རུང་བཟོས་ཟིན། (སྒམ་"
 "ཆུང་། {})"
 
-#: src/cli/keyring.py:106
+#: src/cli/keyring.py:114
 msgid "Failed to seal password to TPM: {}"
 msgstr "གསང་ཚིག་ TPM ནང་རྒྱས་བཏབ་མ་ཐུབ། {}"
 
-#: src/cli/keyring.py:110
+#: src/cli/keyring.py:120
 msgid "No TPM active. Using software-based credential caching..."
 msgstr "TPM ལས་འགུལ་ཅན་མི་འདུག མཉེན་ཆས་ལ་བརྟེན་པའི་དཔང་ཡིག་གནས་སྐབས་གསོག་འཇོག་སྤྱོད་བཞིན་པ..."
 
-#: src/cli/keyring.py:126
+#: src/cli/keyring.py:139
 msgid ""
 "Keyring/KWallet unlocking enabled successfully for user {} (Software "
 "Caching, wallet: {})."
@@ -636,35 +636,35 @@ msgstr ""
 "སྤྱོད་མཁན་ {} ཡི་ཆེད་ ལྡེ་མིག་སྒྲོག/KWallet སྒོ་འབྱེད་ལེགས་པར་སྤྱོད་རུང་བཟོས་ཟིན། (མཉེན་ཆས་གནས་སྐབས་"
 "གསོག་འཇོག སྒམ་ཆུང་། {})"
 
-#: src/cli/keyring.py:128
+#: src/cli/keyring.py:141
 msgid "Failed to enable keyring unlocking: {}"
 msgstr "ལྡེ་མིག་སྒྲོག་སྒོ་འབྱེད་སྤྱོད་རུང་བཟོ་མ་ཐུབ། {}"
 
-#: src/cli/keyring.py:139
+#: src/cli/keyring.py:162
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "ལྡེ་མིག་སྒྲོག་སྒོ་འབྱེད་སྤྱོད་མེད་བཟོ་མ་ཐུབ། {}"
 
-#: src/cli/keyring.py:142
+#: src/cli/keyring.py:166
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "སྤྱོད་མཁན་ {} ཡི་ཆེད་ ལྡེ་མིག་སྒྲོག/KWallet སྒོ་འབྱེད་སྤྱོད་མེད་བཟོས་ཟིན།"
 
-#: src/cli/keyring.py:144
+#: src/cli/keyring.py:168
 msgid "Keyring/KWallet unlocking was not enabled for user {}."
 msgstr "སྤྱོད་མཁན་ {} ཡི་ཆེད་ ལྡེ་མིག་སྒྲོག/KWallet སྒོ་འབྱེད་སྤྱོད་རུང་བཟོས་མེད།"
 
-#: src/cli/keyring.py:161
+#: src/cli/keyring.py:174
 msgid "No sealed login passwords found; nothing to restore."
 msgstr "ནང་འཛུལ་གསང་གྲངས་རྒྱ་སྦྱར་མ་རྙེད། བསྐྱར་གསོ་བྱ་རྒྱུ་མེད།"
 
-#: src/cli/keyring.py:163
+#: src/cli/keyring.py:176
 msgid "Restored login wallet password for {} user(s)."
 msgstr "སྤྱོད་མཁན {} ལ་ནང་འཛུལ་ཤོད་དེབ་གསང་གྲངས་བསྐྱར་གསོ་བྱས།"
 
-#: src/cli/keyring.py:165
+#: src/cli/keyring.py:178
 msgid "Could not restore login wallet password for {} user(s)."
 msgstr "སྤྱོད་མཁན {} ལ་ནང་འཛུལ་ཤོད་དེབ་གསང་གྲངས་བསྐྱར་གསོ་བྱེད་མ་ཐུབ།"
 
-#: src/cli/keyring.py:166
+#: src/cli/keyring.py:179
 msgid ""
 "If prompts persist, set the login keyring or KWallet password in Seahorse / "
 "System Settings."
@@ -672,15 +672,44 @@ msgstr ""
 "འདྲི་བ་མུ་མཐུད་ན་ Seahorse / རྒྱུད་ཁོངས་སྒྲིག་འགོད་ནང་ནང་འཛུལ་ལྡེ་མིག་ཕྲེང་ངམ KWallet གསང་གྲངས་"
 "སྒྲིག"
 
-#: src/cli/keyring.py:169
+#: src/cli/keyring.py:201
 msgid "Restored login wallet password for user {}."
 msgstr "སྤྱོད་མཁན {} གི་ནང་འཛུལ་ཤོད་དེབ་གསང་གྲངས་བསྐྱར་གསོ་བྱས།"
 
-#: src/cli/keyring.py:171
+#: src/cli/keyring.py:203
 msgid "Could not restore login wallet password for user {}."
 msgstr "སྤྱོད་མཁན {} གི་ནང་འཛུལ་ཤོད་དེབ་གསང་གྲངས་བསྐྱར་གསོ་བྱེད་མ་ཐུབ།"
 
-#: src/cli/keyring.py:177
+#: src/cli/keyring.py:236
+msgid ""
+"Repair only applies to GNOME Keyring. Set the KWallet password in System "
+"Settings."
+msgstr ""
+"བཅོས་སྒྲིག་འདི་ GNOME Keyring ཁོ་ནར་འཇུག་གི་ཡོད། KWallet གི་གསང་ཨང་དེ་མ་ལག་གི་སྒྲིག་འགོད་ནང་"
+"གཏན་འཁེལ་གནང་།"
+
+#: src/cli/keyring.py:242
+msgid "No login keyring found; one will be created at your next login."
+msgstr "ནང་འཛུལ་ལྡེ་མིག་ཚོགས་མ་རྙེད། ཁྱེད་ཀྱི་ནང་འཛུལ་རྗེས་མར་གཅིག་གསར་བཟོ་བྱེད་ངེས།"
+
+#: src/cli/keyring.py:247
+msgid "Could not move the login keyring aside: {}"
+msgstr "ནང་འཛུལ་ལྡེ་མིག་ཚོགས་ཟུར་དུ་སྤོ་མ་ཐུབ། {}"
+
+#: src/cli/keyring.py:249
+msgid "The old login keyring was saved as {}."
+msgstr "ནང་འཛུལ་ལྡེ་མིག་ཚོགས་རྙིང་པ་དེ་ {} ཞེས་ཉར་ཚགས་བྱས་ཟིན།"
+
+#: src/cli/keyring.py:250
+msgid ""
+"Log out and log back in: a new login keyring will be created and unlocked "
+"automatically. Passwords saved in the old keyring will need to be entered "
+"again."
+msgstr ""
+"ཕྱིར་ཐོན་ནས་ཡང་བསྐྱར་ནང་འཛུལ་གནང་། ནང་འཛུལ་ལྡེ་མིག་ཚོགས་གསར་པ་ཞིག་གསར་བཟོ་བྱས་ནས་རང་འགུལ་གྱིས་"
+"སྒོ་འབྱེད་ངེས། ལྡེ་མིག་ཚོགས་རྙིང་པའི་ནང་ཉར་བའི་གསང་ཨང་རྣམས་ཡང་བསྐྱར་འཇུག་དགོས།"
+
+#: src/cli/keyring.py:288
 msgid "Invalid action. Use one of:"
 msgstr "བྱ་བ་ནོར་འཁྲུལ། གཤམ་གྱི་གང་རུང་ཞིག་སྤྱོད་རོགས།"
 
@@ -813,11 +842,11 @@ msgstr "པར་ངོས་མུན་ནག"
 msgid "SCAN FRAME"
 msgstr "ཞིབ་བཤེར་པར་ངོས།"
 
-#: src/cli/test.py:212
+#: src/cli/test.py:213
 msgid "no match"
 msgstr "མཐུན་པ་མི་འདུག"
 
-#: src/cli/test.py:247
+#: src/cli/test.py:248
 msgid ""
 "\n"
 "Closing window"
@@ -825,25 +854,25 @@ msgstr ""
 "\n"
 "སྒེའུ་ཁུང་སྒོ་རྒྱག་བཞིན་པ།"
 
-#: src/rubberstamps/__init__.py:109
+#: src/rubberstamps/__init__.py:117
+msgid "Internal error in rubberstamp:"
+msgstr "rubberstamp ནང་ནང་ཁུལ་གྱི་ནོར་འཁྲུལ།"
+
+#: src/rubberstamps/__init__.py:157
 msgid "Error parsing rubberstamp rule: {}"
 msgstr "rubberstamp གྱི་སྒྲིག་གཞི་དབྱེ་ཞིབ་སྐབས་ནོར་འཁྲུལ་བྱུང་། {}"
 
-#: src/rubberstamps/__init__.py:119
+#: src/rubberstamps/__init__.py:167
 msgid "Stamp not installed: {}"
 msgstr "Stamp སྒྲིག་འཇུག་མ་བྱས། {}"
 
-#: src/rubberstamps/__init__.py:129
+#: src/rubberstamps/__init__.py:177
 msgid "Stamp error: Class {} not found"
 msgstr "Stamp ནོར་འཁྲུལ། Class {} རྙེད་མ་བྱུང་།"
 
-#: src/rubberstamps/__init__.py:156
+#: src/rubberstamps/__init__.py:204
 msgid "Internal error in rubberstamp configuration declaration:"
 msgstr "rubberstamp གྱི་སྒྲིག་འགོད་གསལ་བསྒྲགས་ནང་ནང་ཁུལ་གྱི་ནོར་འཁྲུལ།"
-
-#: src/rubberstamps/__init__.py:195
-msgid "Internal error in rubberstamp:"
-msgstr "rubberstamp ནང་ནང་ཁུལ་གྱི་ནོར་འཁྲུལ།"
 
 #: src/rubberstamps/hotkey.py:21
 msgid "Aborting authorisation in {}"
@@ -862,21 +891,21 @@ msgstr "མཚམས་འཇོག་བྱེད་ན་ {abort_key} དང�
 msgid "Authentication aborted"
 msgstr "ར་སྤྲོད་ལ་མཚམས་བཅད་སོང་།"
 
-#: src/rubberstamps/nod.py:30
-msgid "Nod to confirm"
-msgstr "གཏན་འཁེལ་ཆེད་མགོ་སྒུར།"
-
-#: src/rubberstamps/nod.py:31
-msgid "Shake your head to abort"
-msgstr "མཚམས་འཇོག་བྱེད་ན་མགོ་གཡོ།"
-
-#: src/rubberstamps/nod.py:97
+#: src/rubberstamps/nod.py:48
 msgid "Confirmed authentication"
 msgstr "ར་སྤྲོད་གཏན་འཁེལ་བྱུང་།"
 
-#: src/rubberstamps/nod.py:100
+#: src/rubberstamps/nod.py:50
 msgid "Aborted authentication"
 msgstr "ར་སྤྲོད་མཚམས་བཅད་པ།"
+
+#: src/rubberstamps/nod.py:71
+msgid "Nod to confirm"
+msgstr "གཏན་འཁེལ་ཆེད་མགོ་སྒུར།"
+
+#: src/rubberstamps/nod.py:72
+msgid "Shake your head to abort"
+msgstr "མཚམས་འཇོག་བྱེད་ན་མགོ་གཡོ།"
 
 #: src/recorders/ffmpeg_reader.py:16
 msgid "Missing ffmpeg module, please run:"
@@ -886,14 +915,14 @@ msgstr "ffmpeg ཚན་པ་མི་འདུག གཤམ་གསལ་ས�
 msgid "Missing pyv4l2 module, please run:"
 msgstr "pyv4l2 ཚན་པ་མི་འདུག གཤམ་གསལ་སྤྱོད་རོགས།"
 
-#: src/recorders/video_capture.py:57
+#: src/recorders/video_capture.py:47
 msgid ""
 "Ubuntu Hello could not find a camera device at the path specified in the "
 "config file."
 msgstr ""
 "Ubuntu Hello ཡིས་སྒྲིག་འགོད་ཡིག་ཆའི་ནང་གསལ་བའི་ལམ་ཐིག་དེར་པར་ཆས་ཀྱི་སྒྲིག་ཆས་ཤིག་རྙེད་མ་བྱུང་།"
 
-#: src/recorders/video_capture.py:58
+#: src/recorders/video_capture.py:48
 msgid ""
 "It is very likely that the path is not configured correctly, please edit the "
 "'device_path' config value by running:"
@@ -901,7 +930,7 @@ msgstr ""
 "ལམ་ཐིག་ཡང་དག་པར་སྒྲིག་འགོད་མ་བྱས་པའི་ཉེན་ཁ་ཆེ། གཤམ་གསལ་སྤྱད་དེ་ 'device_path' སྒྲིག་འགོད་ཀྱི་"
 "ཐོབ་གྲངས་རྩོམ་སྒྲིག་བྱེད་རོགས།"
 
-#: src/recorders/video_capture.py:118
+#: src/recorders/video_capture.py:131
 msgid ""
 "Failed to read camera specified in the 'device_path' config option, aborting"
 msgstr "'device_path' སྒྲིག་འགོད་འདེམས་གཞིའི་ནང་གསལ་བའི་པར་ཆས་ཀློག་མ་ཐུབ་པས་མཚམས་འཇོག་བྱེད།"

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-hello-gtk 1.2.1\n"
+"Project-Id-Version: ubuntu-hello-gtk 1.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/ventura8/ubuntu-hello/issues\n"
-"POT-Creation-Date: 2026-09-21 15:03+0300\n"
+"POT-Creation-Date: 2026-10-08 19:51+0300\n"
 "PO-Revision-Date: 2026-08-12 03:20+0300\n"
 "Last-Translator: Ubuntu Hello contributors\n"
 "Language-Team: Ubuntu Hello\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != "
 "11) ? 2 : 3;\n"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "ID"
 msgstr "ID"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Created"
 msgstr "Wedi creu"
 
-#: src/window.py:155
+#: src/window.py:293
 msgid "Label"
 msgstr "Enw"
 
-#: src/window.py:261
+#: src/window.py:365
 msgid "Automatic"
 msgstr "Awtomatig"
 
-#: src/onboarding.py:206 src/onboarding.ui:293
+#: src/onboarding.py:297 src/onboarding.ui:293
 msgid "Adding your face models"
 msgstr "Ychwanegu modelau eich wyneb"
 
-#: src/onboarding.py:209 src/onboarding.ui:309
+#: src/onboarding.py:300 src/onboarding.ui:309
 msgid ""
 "Ubuntu Hello records your face from a few angles in about a minute: keep "
 "your face inside the preview and follow the prompts (look straight, turn "
@@ -52,16 +52,16 @@ msgstr ""
 "oleuo arall — yn gwneud adnabod hyd yn oed yn fwy dibynadwy ar unrhyw adeg "
 "o'r dydd."
 
-#: src/onboarding.py:212 src/onboarding.py:652 src/onboarding.py:757
+#: src/onboarding.py:303 src/onboarding.py:672 src/onboarding.py:785
 #: src/onboarding.ui:335
 msgid "Please look directly into the camera"
 msgstr "Edrychwch yn syth i mewn i'r camera"
 
-#: src/onboarding.py:215 src/onboarding.py:705 src/onboarding.ui:370
+#: src/onboarding.py:306 src/onboarding.py:714 src/onboarding.ui:370
 msgid "Start face scan"
 msgstr "Dechrau sgan wyneb"
 
-#: src/onboarding.py:279
+#: src/onboarding.py:377
 msgid ""
 "Datafiles have already been downloaded!\n"
 "Click Next to continue"
@@ -69,11 +69,11 @@ msgstr ""
 "Ffeiliau data eisoes wedi'u llwytho i lawr!\n"
 "Cliciwch Nesaf i barhau"
 
-#: src/onboarding.py:316
+#: src/onboarding.py:414
 msgid "Error while downloading datafiles"
 msgstr "Gwall wrth lawrlwytho ffeiliau data"
 
-#: src/onboarding.py:319
+#: src/onboarding.py:417
 msgid ""
 "Done!\n"
 "Click Next to continue"
@@ -81,19 +81,19 @@ msgstr ""
 "Wedi'i wneud!\n"
 "Cliciwch Nesaf i barhau"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Error while importing OpenCV2"
 msgstr "Gwall wrth fewnforio OpenCV2"
 
-#: src/onboarding.py:371 src/onboarding.py:564
+#: src/onboarding.py:469 src/onboarding.py:584
 msgid "Try reinstalling cv2"
 msgstr "Ceisiwch ailosod cv2"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid "No webcams found on system"
 msgstr "Ni chanfuwyd gwe-gamerâu ar y system"
 
-#: src/onboarding.py:382
+#: src/onboarding.py:474
 msgid ""
 "Please configure your camera yourself if you are sure a compatible camera is "
 "connected"
@@ -101,39 +101,39 @@ msgstr ""
 "Ffurfweddwch eich camera eich hun os ydych chi'n siŵr bod camera cydnaws "
 "wedi'i gysylltu"
 
-#: src/onboarding.py:455
+#: src/onboarding.py:485
 msgid "No, camera can't be opened"
 msgstr "Na, ni ellir agor y camera"
 
-#: src/onboarding.py:467
-msgid "No, not an infrared camera"
-msgstr "Na, nid camera isgoch"
-
-#: src/onboarding.py:471
+#: src/onboarding.py:489
 msgid "Yes, compatible infrared camera"
 msgstr "Ie, camera isgoch gydnaws"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:491
+msgid "No, not an infrared camera"
+msgstr "Na, nid camera isgoch"
+
+#: src/onboarding.py:508
 msgid "Camera identifier or path"
 msgstr "Dynodwr camera neu lwybr"
 
-#: src/onboarding.py:488
+#: src/onboarding.py:508
 msgid "Recommended"
 msgstr "Argymhellir"
 
-#: src/onboarding.py:568 src/onboarding.py:607
+#: src/onboarding.py:588 src/onboarding.py:627
 msgid "Error selecting camera"
 msgstr "Gwall wrth ddewis camera"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "The selected camera cannot be opened"
 msgstr "Nid oes modd agor y camera a ddewiswyd"
 
-#: src/onboarding.py:582
+#: src/onboarding.py:602
 msgid "Try to select another one"
 msgstr "Ceisiwch ddewis un arall"
 
-#: src/onboarding.py:597
+#: src/onboarding.py:617
 msgid ""
 "Please visit\n"
 "<a href=\"https://github.com/EmixamPP/linux-enable-ir-emitter\">https://"
@@ -145,27 +145,27 @@ msgstr ""
 "github.com/EmixamPP/linux-enable-ir-emitter</a>\n"
 "i alluogi eich allyrrydd ir"
 
-#: src/onboarding.py:665
+#: src/onboarding.py:685
 msgid "Setup lighting 1"
 msgstr "Gosodiad goleuo 1"
 
-#: src/onboarding.py:666
+#: src/onboarding.py:686
 msgid "Setup lighting 2"
 msgstr "Gosodiad goleuo 2"
 
-#: src/onboarding.py:707
+#: src/onboarding.py:716
 msgid "Can't save face model"
 msgstr "Methu arbed model wyneb"
 
-#: src/onboarding.py:712 src/onboarding.py:759
+#: src/onboarding.py:723 src/onboarding.py:787
 msgid "Scan second model"
 msgstr "Sganio ail fodel"
 
-#: src/onboarding.py:718
+#: src/onboarding.py:730
 msgid "Couldn't record the second model"
 msgstr "Methwyd recordio'r ail fodel"
 
-#: src/onboarding.py:719
+#: src/onboarding.py:731
 msgid ""
 "Your first model is saved, so face login already works. The room must still "
 "be bright enough to see your face — change the light rather than turning it "
@@ -176,11 +176,11 @@ msgstr ""
 "newidiwch y golau yn hytrach na'i ddiffodd - yna ceisiwch eto, neu sgipiwch "
 "ac ychwanegwch fodel yn ddiweddarach o'r Gosodiadau."
 
-#: src/onboarding.py:753
+#: src/onboarding.py:781
 msgid "Second scan: glasses, facial hair or different lighting"
 msgstr "Ail sgan: sbectol, blew wyneb neu oleuo gwahanol"
 
-#: src/onboarding.py:755
+#: src/onboarding.py:783
 msgid ""
 "First model saved: face login already works. A second model makes "
 "recognition more reliable when something changes: put on the glasses you "
@@ -197,7 +197,7 @@ msgstr ""
 "glir i'w weld a phwyswch Sganio eto; mae'r un cipio byr dan arweiniad yn "
 "dilyn."
 
-#: src/onboarding.py:797
+#: src/onboarding.py:825
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -209,7 +209,7 @@ msgstr ""
 "\n"
 "<b>Statws TPM:</b> Wrthi'n gwirio caledwedd ac offer TPM..."
 
-#: src/onboarding.py:817
+#: src/onboarding.py:845
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -223,7 +223,7 @@ msgstr ""
 "<b>Statws TPM:</b> Wedi canfod caledwedd TPM. Yn gosod <i>tpm2-tools</i> yn "
 "awtomatig..."
 
-#: src/onboarding.py:829
+#: src/onboarding.py:857
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -237,7 +237,7 @@ msgstr ""
 "<b>Statws TPM:</b> Caledwedd TPM 2.0 yn weithredol. Bydd eich cyfrinair yn "
 "cael ei selio'n ddiogel y tu mewn i'r TPM."
 
-#: src/onboarding.py:831
+#: src/onboarding.py:859
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -253,7 +253,7 @@ msgstr ""
 "tools</i> yn awtomatig. Rhedeg <code>sudo apt install tpm2-tools</code>. "
 "Syrthio'n ôl i caching credential seiliedig ar feddalwedd."
 
-#: src/onboarding.py:833
+#: src/onboarding.py:861
 msgid ""
 "Ubuntu Hello can automatically unlock your {} using face authentication "
 "(detected wallet: {}).\n"
@@ -267,63 +267,63 @@ msgstr ""
 "<b>Statws TPM:</b> Dim caledwedd TPM wedi'i ganfod. Defnyddio caching "
 "credential seiliedig ar feddalwedd (AES-256-GCM)."
 
-#: src/onboarding.py:895 src/tab_keyring.py:134
+#: src/onboarding.py:907 src/tab_keyring.py:146
 msgid "Failed to disable keyring unlocking: {}"
 msgstr "Wedi methu ag analluogi datgloi cylch allweddi: {}"
 
-#: src/onboarding.py:901
-msgid "Could not identify non-root system user for keyring unlocking"
-msgstr ""
-"Methu â nodi defnyddiwr system nad yw'n root ar gyfer datgloi cylch bysell"
-
-#: src/onboarding.py:914 src/tab_keyring.py:82
+#: src/onboarding.py:922 src/tab_keyring.py:94 src/tab_keyring.py:169
 msgid "Password cannot be empty"
 msgstr "Ni all cyfrinair fod yn wag"
 
-#: src/onboarding.py:918 src/tab_keyring.py:86
+#: src/onboarding.py:926 src/tab_keyring.py:98 src/tab_keyring.py:173
 msgid "Incorrect password for user {}"
 msgstr "Cyfrinair anghywir ar gyfer defnyddiwr {}"
 
-#: src/onboarding.py:930 src/tab_keyring.py:98
-msgid "unknown error"
-msgstr "gwall anhysbys"
-
-#: src/onboarding.py:931 src/onboarding.py:940 src/tab_keyring.py:103
-msgid "Failed to enable keyring unlocking: {}"
-msgstr "Wedi methu â galluogi datgloi cylch allweddi: {}"
-
-#: src/onboarding.py:934
+#: src/onboarding.py:942
 msgid "Failed to enable keyring unlocking: ubuntu-hello executable not found"
 msgstr ""
 "Methwyd galluogi datgloi'r cylch allweddi: ni chanfuwyd y ffeil weithredadwy "
 "ubuntu-hello"
 
-#: src/onboarding.py:937
+#: src/onboarding.py:945
 msgid ""
 "Failed to enable keyring unlocking: timed out waiting for keyring enable"
 msgstr ""
 "Methwyd galluogi datgloi'r cylch allweddi: daeth yr amser aros am alluogi i "
 "ben (keyring enable)"
 
-#: src/onboarding.py:946
+#: src/onboarding.py:948 src/onboarding.py:953 src/tab_keyring.py:115
+msgid "Failed to enable keyring unlocking: {}"
+msgstr "Wedi methu â galluogi datgloi cylch allweddi: {}"
+
+#: src/onboarding.py:952 src/tab_keyring.py:110 src/tab_keyring.py:185
+msgid "unknown error"
+msgstr "gwall anhysbys"
+
+#: src/onboarding.py:964
+msgid "Could not identify non-root system user for keyring unlocking"
+msgstr ""
+"Methu â nodi defnyddiwr system nad yw'n root ar gyfer datgloi cylch bysell"
+
+#: src/onboarding.py:974
 msgid "Keyring Unlocking Error"
 msgstr "Gwall Datgloi Cylch Bysellu"
 
-#: src/onboarding.py:957
+#: src/onboarding.py:985
 msgid "Error reading radio buttons"
 msgstr "Gwall wrth ddarllen botymau radio"
 
-#: src/onboarding.py:1021
+#: src/onboarding.py:1049
 msgid "Could not save the security settings, but setup is otherwise complete."
 msgstr ""
 "Methu â chadw'r gosodiadau diogelwch, ond mae gweddill y broses osod wedi'i "
 "chwblhau."
 
-#: src/authsticky.py:110
+#: src/authsticky.py:88
 msgid "Loading...  "
 msgstr "Wrthi'n llwytho..."
 
-#: src/authsticky.py:128
+#: src/authsticky.py:106
 msgid "Ubuntu Hello Authentication"
 msgstr "Ubuntu Hello Dilysu"
 
@@ -331,8 +331,8 @@ msgstr "Ubuntu Hello Dilysu"
 msgid "Confirm Model Creation"
 msgstr "Cadarnhau Creu Model"
 
-#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:17
-#: src/tab_keyring.py:114 src/onboarding.ui:848
+#: src/tab_models.py:23 src/tab_models.py:89 src/tab_keyring.py:18
+#: src/tab_keyring.py:126 src/tab_keyring.py:157 src/onboarding.ui:848
 msgid "Cancel"
 msgstr "Canslo"
 
@@ -410,78 +410,105 @@ msgstr "Gostyngwch eich gên ychydig"
 msgid "Recording… {count} of {total}"
 msgstr "Yn recordio… {count} o {total}"
 
-#: src/tab_video.py:66
+#: src/tab_video.py:40
 msgid "Can't open camera"
 msgstr "Methu agor camera"
 
-#: src/tab_video.py:85
+#: src/tab_video.py:93
 msgid "Can't import OpenCV2"
 msgstr "Methu mewnforio OpenCV2"
 
-#: src/tab_video.py:160
+#: src/tab_video.py:172
 msgid "Unknown"
 msgstr "Anhysbys"
 
-#: src/tab_keyring.py:16
+#: src/tab_keyring.py:17
 msgid "Enable Keyring/KWallet Unlocking"
 msgstr "Galluogi Cylch Bysell/KWallet Datgloi"
 
-#: src/tab_keyring.py:18
+#: src/tab_keyring.py:19
 msgid "OK"
 msgstr "iawn"
 
-#: src/tab_keyring.py:23
+#: src/tab_keyring.py:24
 msgid "Enter password for user <b>{}</b> to unlock {} ({}):"
 msgstr "Rhowch gyfrinair ar gyfer defnyddiwr <b>{}</b> i ddatgloi {} ({}):"
 
-#: src/tab_keyring.py:30 src/onboarding.ui:808
+#: src/tab_keyring.py:31 src/onboarding.ui:808
 msgid "Password"
 msgstr "Cyfrinair"
 
-#: src/tab_keyring.py:37
+#: src/tab_keyring.py:38
 msgid "<i>No user selected</i>"
 msgstr "<i>Dim defnyddiwr wedi'i ddewis</i>"
 
-#: src/tab_keyring.py:52
+#: src/tab_keyring.py:54
 msgid "<span foreground='green'><b>Enabled (TPM Hardware)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Wedi'i alluogi (Caledwedd TPM)</b></span> — {}"
 
-#: src/tab_keyring.py:56
+#: src/tab_keyring.py:58
 msgid "<span foreground='green'><b>Enabled (Software Caching)</b></span> — {}"
 msgstr ""
 "<span foreground='green'><b>Wedi Galluogi (Caching Meddalwedd)</b></span> — "
 "{}"
 
-#: src/tab_keyring.py:60
+#: src/tab_keyring.py:62
 msgid ""
 "<span foreground='orange'><b>Enabled (Pending Password Entry)</b></span> — {}"
 msgstr ""
 "<span foreground='orange'><b>Wedi Galluogi (Yn Aros Mewn Mewnbynnu "
 "Cyfrinair)</b></span> — {}"
 
-#: src/tab_keyring.py:64
+#: src/tab_keyring.py:66
 msgid "<span foreground='red'><b>Disabled</b></span> — {}"
 msgstr "<span foreground='red'><b>Analluogi</b></span> — {}"
 
-#: src/tab_keyring.py:101
+#: src/tab_keyring.py:78
+msgid ""
+"<span foreground='red'><b>Your login keyring did not accept your password.</"
+"b></span> Repair creates a new keyring; passwords saved in the old one will "
+"need to be entered again."
+msgstr ""
+"<span foreground='red'><b>Ni dderbyniodd eich cylch allweddi mewngofnodi "
+"eich cyfrinair.</b></span> Mae trwsio yn creu cylch allweddi newydd; bydd "
+"angen rhoi'r cyfrineiriau a gadwyd yn yr hen un eto."
+
+#: src/tab_keyring.py:113
 msgid "Keyring/KWallet unlocking enabled successfully for user {}."
 msgstr ""
 "Cylch allweddi/KWallet wedi'i alluogi'n llwyddiannus ar gyfer defnyddiwr {}."
 
-#: src/tab_keyring.py:113
+#: src/tab_keyring.py:125
 msgid "Are you sure you want to disable keyring/KWallet unlocking for user {}?"
 msgstr ""
 "Ydych chi'n siŵr eich bod am analluogi cylch allweddi/KWallet datgloi ar "
 "gyfer defnyddiwr {}?"
 
-#: src/tab_keyring.py:114 src/main.ui:844
+#: src/tab_keyring.py:126 src/main.ui:844
 msgid "Disable Auto-Unlock"
 msgstr "Analluogi Auto-Datgloi"
 
-#: src/tab_keyring.py:132
+#: src/tab_keyring.py:144
 msgid "Keyring/KWallet unlocking disabled for user {}."
 msgstr "Cylch allweddi/KWallet wedi'i analluogi ar gyfer y defnyddiwr {}."
+
+#: src/tab_keyring.py:156
+msgid ""
+"Repair the login keyring for user {}? The old keyring is kept as a backup "
+"file, and a new one is created at your next login."
+msgstr ""
+"Trwsio'r cylch allweddi mewngofnodi ar gyfer y defnyddiwr {}? Cedwir yr hen "
+"gylch allweddi fel ffeil wrth gefn, a chrëir un newydd y tro nesaf y byddwch "
+"yn mewngofnodi."
+
+#: src/tab_keyring.py:157 src/main.ui:854
+msgid "Repair Keyring"
+msgstr "Trwsio'r Cylch Allweddi"
+
+#: src/tab_keyring.py:189
+msgid "Failed to repair the login keyring: {}"
+msgstr "Methwyd trwsio'r cylch allweddi mewngofnodi: {}"
 
 #: src/tab_notifications.py:60
 msgid "Could not save the notification setting"
@@ -689,43 +716,43 @@ msgstr "Wrthi'n gwirio..."
 msgid "Enable Auto-Unlock"
 msgstr "Galluogi Auto-Datgloi"
 
-#: src/main.ui:862
+#: src/main.ui:870
 msgid "Keyring"
 msgstr "Cylch allweddi"
 
-#: src/main.ui:898
+#: src/main.ui:906
 msgid "Display language"
 msgstr "Iaith arddangos"
 
-#: src/main.ui:913
+#: src/main.ui:921
 msgid "Automatic follows the system language. Changes apply immediately."
 msgstr ""
 "Awtomatig yn dilyn iaith y system. Mae newidiadau’n cael eu cymhwyso ar "
 "unwaith."
 
-#: src/main.ui:936 src/main.ui:956
+#: src/main.ui:944 src/main.ui:964
 msgid "Language"
 msgstr "Iaith"
 
-#: src/main.ui:977
+#: src/main.ui:985
 msgid "Ubuntu Hello"
 msgstr "Ubuntu Hello"
 
-#: src/main.ui:990
+#: src/main.ui:998
 msgid "Facial authentication for Linux"
 msgstr "Dilysu wyneb ar gyfer Linux"
 
-#: src/main.ui:999
+#: src/main.ui:1007
 msgid "Version unknown"
 msgstr "Fersiwn anhysbys"
 
-#: src/main.ui:1013
+#: src/main.ui:1021
 msgid ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Open GitHub link</a> "
 msgstr ""
 "<a href=\"https://github.com/ventura8/ubuntu-hello\">Agor dolen GitHub</a>"
 
-#: src/main.ui:1020
+#: src/main.ui:1028
 msgid ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Report a problem "
 "or suggest a feature</a>"
@@ -733,7 +760,7 @@ msgstr ""
 "<a href=\"https://github.com/ventura8/Ubuntu-Hello/issues\">Rhoi gwybod am "
 "broblem neu awgrymu nodwedd</a>"
 
-#: src/main.ui:1032
+#: src/main.ui:1040
 msgid "About"
 msgstr "Ynghylch"
 
