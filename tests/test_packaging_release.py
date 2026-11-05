@@ -362,6 +362,9 @@ def test_release_publish_cannot_move_stable_backward() -> None:
     assert "group: snap-store-stable" in job
     assert "cancel-in-progress: false" in job
     assert job.index("sort -V") < job.index("snapcraft upload")
+    # A failed lookup must stop the publish, not read as "nothing on stable yet".
+    assert "no snap found" in job
+    assert "|| true)\"" not in job[job.index("LC_ALL=C snap info") :]
 
 
 @pytest.mark.parametrize("owner_exit,expected", [(0, 0), (1, 1)])
@@ -372,8 +375,8 @@ def test_snap_detects_native_package_ownership(tmp_path: Path, owner_exit: int, 
     stub.chmod(0o755)
     state = REPO / "packaging/snap/host-state.sh"
     # Stub after sourcing: host-state.sh resets PATH to the host's own directories.
-    script = f'. "{state}"; export PATH="{tmp_path}"; uh_native_package_owns_host'
-    result = subprocess.run(["/bin/bash", "-c", script], check=False)
+    script = '. "$1"; export PATH="$2"; uh_native_package_owns_host'
+    result = subprocess.run(["/bin/bash", "-c", script, "bash", str(state), str(tmp_path)], check=False)
     assert result.returncode == expected
 
 

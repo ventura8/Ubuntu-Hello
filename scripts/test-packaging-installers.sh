@@ -86,6 +86,7 @@ export UH_PACKAGE_CONFIGURE_DRY_RUN=1
 echo "==> Snap configure hook leaves the host alone before host-install"
 SNAP_MARKER="${HOST_ROOT}/var/lib/ubuntu-hello/.snap-host-install"
 rm -f "${SNAP_MARKER}" "${HOST_ROOT}/usr/bin/ubuntu-hello"
+rm -rf "${HOST_ROOT}/etc/ubuntu-hello"
 UH_HOST_ROOT="${HOST_ROOT}" \
 	UH_SKIP_CONFIGURE=1 \
 	UH_INSTALL_LOG="${BUILD_DIR}/snap-wrapper.log" \
@@ -93,6 +94,15 @@ UH_HOST_ROOT="${HOST_ROOT}" \
 	bash packaging/snap/hooks/configure
 [[ ! -e "${HOST_ROOT}/usr/bin/ubuntu-hello" ]] \
 	|| { echo "error: Snap configure hook installed to the host without opt-in" >&2; exit 1; }
+
+echo "==> Snap install-wrapper refuses a host copy it does not own"
+mkdir -p "${HOST_ROOT}/etc/ubuntu-hello/models"
+if UH_HOST_ROOT="${HOST_ROOT}" SNAP="${BUNDLE}" bash packaging/snap/install-wrapper.sh --install 2>/dev/null; then
+	echo "error: Snap install-wrapper adopted a host copy it does not own" >&2
+	exit 1
+fi
+[[ ! -e "${SNAP_MARKER}" ]] || { echo "error: refused install still wrote the snap marker" >&2; exit 1; }
+rm -rf "${HOST_ROOT}/etc/ubuntu-hello"
 
 echo "==> Snap install-wrapper --install (delegates to install-host.sh)"
 UH_HOST_ROOT="${HOST_ROOT}" \

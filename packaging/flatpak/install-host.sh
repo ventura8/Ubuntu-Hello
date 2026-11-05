@@ -16,7 +16,8 @@ uh_host_path() {
 }
 
 uh_log() {
-	echo "$*" | tee -a "$UH_INSTALL_LOG"
+	# A log that cannot be written must not abort an install or uninstall halfway.
+	echo "$*" | tee -a "$UH_INSTALL_LOG" || true
 }
 
 uh_fatal() {

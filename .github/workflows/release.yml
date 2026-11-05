@@ -461,6 +461,8 @@ jobs:
     # Serialized, and an older tag never moves stable backward (see the version check).
     concurrency:
       group: snap-store-stable
+      # The default keeps one pending job, so a queued re-run could cancel a newer publish.
+      queue: max
       cancel-in-progress: false
     needs:
       - build-snap
@@ -490,7 +492,15 @@ jobs:
             echo "::error::SNAPCRAFT_STORE_CREDENTIALS is not set; cannot publish to the Snap Store"
             exit 1
           fi
-          stable="$(snap info linux-ubuntu-hello 2>/dev/null | awk '$1 ~ /\/stable:$/ { print $2; exit }' || true)"
+          # Only a snap that is not published yet may skip the check: any other lookup
+          # failure must stop here, or an older tag could move stable backward.
+          stable=""
+          if info="$(LC_ALL=C snap info linux-ubuntu-hello 2>&1)"; then
+            stable="$(printf '%s\n' "${info}" | awk '$1 ~ /\/stable:$/ { print $2; exit }')"
+          elif [[ "${info}" != *"no snap found"* ]]; then
+            echo "::error::Could not read the current stable version: ${info}"
+            exit 1
+          fi
           if [[ "${stable}" =~ ^[0-9] && "${stable}" != "${VERSION}" ]] \
             && [ "$(printf '%s\n%s\n' "${stable}" "${VERSION}" | sort -V | tail -n1)" = "${stable}" ]; then
             echo "::notice::Stable is already ${stable}; not releasing older ${VERSION}"

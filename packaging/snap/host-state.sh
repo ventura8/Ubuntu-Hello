@@ -32,6 +32,15 @@ uh_native_package_owns_host() {
 	command -v pacman >/dev/null 2>&1 && pacman -Qo "${path}" >/dev/null 2>&1
 }
 
+# True for a host copy this snap has no marker for (AppImage, Flatpak, source build, or
+# data a removed package left behind). Adopting it would let a later `snap remove`
+# delete someone else's config and enrolled face models.
+uh_unowned_host_copy() {
+	local root="${UH_HOST_ROOT:-}"
+	[[ ! -f "$(uh_snap_marker)" ]] || return 1
+	[[ -e "${root}/usr/bin/ubuntu-hello" || -e "${root}/etc/ubuntu-hello/config.ini" || -d "${root}/etc/ubuntu-hello/models" ]]
+}
+
 uh_snap_forget_host_copy() {
 	local marker
 	marker="$(uh_snap_marker)"
