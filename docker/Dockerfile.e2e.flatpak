@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1.28.0
+# Flatpak E2E on a machine with none of our build or runtime dependencies. Keep this
+# minimal: docker/Dockerfile.release has them all, which is what hid missing host deps.
+# python3 is on every supported desktop; the E2E script itself needs it and unsquashfs.
+FROM ubuntu:26.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates python3 squashfs-tools flatpak \
+    && rm -rf /var/lib/apt/lists/*
+
+# The bundle's runtime is always downloaded by a real install; baked in to save CI time.
+RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
+    && flatpak install -y flathub org.freedesktop.Platform//26.08
+
+WORKDIR /src

@@ -83,10 +83,16 @@ export UH_PACKAGE_CONFIGURE_DRY_RUN=1
 	uh_package_configure
 )
 
-echo "==> Snap configure hook (package-configure dry-run)"
-SNAP="${BUNDLE}" \
-	UH_PACKAGE_CONFIGURE_DRY_RUN=1 \
+echo "==> Snap configure hook leaves the host alone before host-install"
+SNAP_MARKER="${HOST_ROOT}/var/lib/ubuntu-hello/.snap-host-install"
+rm -f "${SNAP_MARKER}" "${HOST_ROOT}/usr/bin/ubuntu-hello"
+UH_HOST_ROOT="${HOST_ROOT}" \
+	UH_SKIP_CONFIGURE=1 \
+	UH_INSTALL_LOG="${BUILD_DIR}/snap-wrapper.log" \
+	SNAP="${BUNDLE}" \
 	bash packaging/snap/hooks/configure
+[[ ! -e "${HOST_ROOT}/usr/bin/ubuntu-hello" ]] \
+	|| { echo "error: Snap configure hook installed to the host without opt-in" >&2; exit 1; }
 
 echo "==> Snap install-wrapper --install (delegates to install-host.sh)"
 UH_HOST_ROOT="${HOST_ROOT}" \
@@ -95,6 +101,32 @@ UH_HOST_ROOT="${HOST_ROOT}" \
 	SNAP="${BUNDLE}" \
 	bash packaging/snap/install-wrapper.sh --install
 
+uh_assert_host_file "/usr/bin/ubuntu-hello"
+[[ -f "${SNAP_MARKER}" ]] || { echo "error: host-install did not record the snap marker" >&2; exit 1; }
+
+echo "==> Snap configure hook refreshes the host copy after host-install"
+rm -f "${HOST_ROOT}/usr/bin/ubuntu-hello"
+UH_HOST_ROOT="${HOST_ROOT}" \
+	UH_SKIP_CONFIGURE=1 \
+	UH_INSTALL_LOG="${BUILD_DIR}/snap-wrapper.log" \
+	SNAP="${BUNDLE}" \
+	bash packaging/snap/hooks/configure
+uh_assert_host_file "/usr/bin/ubuntu-hello"
+
+echo "==> Snap remove hook uninstalls the host copy"
+UH_HOST_ROOT="${HOST_ROOT}" \
+	UH_INSTALL_LOG="${BUILD_DIR}/snap-wrapper.log" \
+	SNAP="${BUNDLE}" \
+	bash packaging/snap/hooks/remove
+[[ ! -e "${HOST_ROOT}/usr/bin/ubuntu-hello" && ! -e "${SNAP_MARKER}" ]] \
+	|| { echo "error: Snap remove hook left the host copy behind" >&2; exit 1; }
+
+echo "==> Snap install-wrapper --install again for the checks below"
+UH_HOST_ROOT="${HOST_ROOT}" \
+	UH_SKIP_CONFIGURE=1 \
+	UH_INSTALL_LOG="${BUILD_DIR}/snap-wrapper.log" \
+	SNAP="${BUNDLE}" \
+	bash packaging/snap/install-wrapper.sh --install
 uh_assert_host_file "/usr/bin/ubuntu-hello"
 
 echo "==> RPM spec post-install hooks are present"

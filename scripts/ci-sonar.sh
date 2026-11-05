@@ -26,7 +26,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SCANNER_IMAGE="${UH_SONAR_IMAGE:-sonarsource/sonar-scanner-cli:12.2.0.4256_8.1.0}"
+SCANNER_IMAGE="${UH_SONAR_IMAGE:-sonarsource/sonar-scanner-cli:12.3.1.4302_8.3.1}"
 COVERAGE_XML="${ROOT}/artifacts/coverage/coverage.xml"
 CPP_COVERAGE_XML="${ROOT}/artifacts/coverage/cpp-coverage.xml"
 SONAR_HOST="https://sonarcloud.io"

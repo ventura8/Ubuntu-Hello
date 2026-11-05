@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.27.0
+# syntax=docker/dockerfile:1.28.0
 # CI image for Ubuntu Hello — Ubuntu 26.04 Cinnamon theme/probe tools
 # Image tag: ubuntu-hello-ci-cinnamon:26.04
 # Compat stage only (UH_CI_STAGE=compat UH_CI_DE=cinnamon).
@@ -29,9 +29,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install --break-system-packages \
-    pytest==9.1.1 \
+    pytest==9.2.0 \
     pytest-cov==7.1.0 \
-    coverage==7.16.1 \
+    coverage==7.17.1 \
     keyboard==0.13.5
 
 WORKDIR /src

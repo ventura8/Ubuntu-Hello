@@ -17,28 +17,28 @@ modules:
     sources:
       - type: git
         url: https://github.com/benhoyt/inih.git
-        tag: r58
+        tag: r63
     config-opts:
       - -Dwith_INIReader=true
 
   - name: linux-pam
-    buildsystem: autotools
+    # Linux-PAM dropped autotools in 1.7; headers now install to include/security.
+    buildsystem: meson
     config-opts:
-      - --disable-doc
-      - --disable-nis
-      - --disable-audit
-      - --disable-selinux
-      - --disable-examples
-      - --disable-Werror
+      - -Ddocs=disabled
+      - -Dnis=disabled
+      - -Daudit=disabled
+      - -Dselinux=disabled
+      - -Dlogind=disabled
+      - -Delogind=disabled
+      - -Dexamples=false
+      - -Dvendordir=/app/share/pam
+      - -Dsconfigdir=/app/etc/security
+      - -Dsystemdunitdir=/app/lib/systemd/system
     sources:
       - type: git
         url: https://github.com/linux-pam/linux-pam.git
-        tag: v1.6.1
-    post-install:
-      - mkdir -p /app/include/security
-      - mv /app/include/_pam_compat.h /app/include/_pam_macros.h /app/include/_pam_types.h
-        /app/include/pam_appl.h /app/include/pam_modules.h /app/include/pam_ext.h
-        /app/include/pam_modutil.h /app/include/security/
+        tag: v1.7.3
 
   - name: libevdev
     buildsystem: meson
@@ -48,7 +48,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/libevdev/libevdev.git
-        tag: libevdev-1.13.3
+        tag: libevdev-1.14.0
 
   - name: ubuntu-hello
     # buildsystem: meson would configure/install with --prefix=/app directly

@@ -51,7 +51,10 @@ build_snap() {
 	# Stale part state (e.g. from a previous failed run) can hide source or
 	# option changes behind snapcraft's "already ran" pull/build cache.
 	rm -rf parts stage prime overlay
-	snapcraft pack --destructive-mode --output "${UH_ARTIFACTS_DIR}/ubuntu-hello_${VERSION}_amd64.snap"
+	# snapcraft 9 refuses an --output path outside the project directory.
+	local snap_file="linux-ubuntu-hello_${VERSION}_amd64.snap"
+	snapcraft pack --destructive-mode --output "${snap_file}"
+	mv -f "${snap_file}" "${UH_ARTIFACTS_DIR}/${snap_file}"
 	cd "${UH_REPO_ROOT}"
 	rm -f "${snap_tarball}"
 }

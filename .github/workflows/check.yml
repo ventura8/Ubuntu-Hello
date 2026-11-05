@@ -99,7 +99,7 @@ jobs:
       # context. Skipped on fork PRs, which cannot read the secret.
       - name: SonarQube Cloud scan
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-        uses: SonarSource/sonarqube-scan-action@v8.2.2
+        uses: SonarSource/sonarqube-scan-action@v8.4.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -222,7 +222,7 @@ jobs:
           python3 -m pytest tests/vm/ -v --tb=short
       - name: Keep the scenario logs
         if: always()
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: vm-scenario-results-${{ matrix.distro }}
           path: |

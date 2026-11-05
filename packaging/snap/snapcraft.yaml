@@ -1,22 +1,37 @@
-name: ubuntu-hello
+name: linux-ubuntu-hello
+title: Ubuntu Hello
 base: core24
 adopt-info: ubuntu-hello
+license: MIT
+website: https://github.com/ventura8/ubuntu-hello
+source-code: https://github.com/ventura8/ubuntu-hello
+issues: https://github.com/ventura8/ubuntu-hello/issues
+contact: https://github.com/ventura8/ubuntu-hello/issues
 summary: Windows Hello style facial authentication for Linux
 description: |
   Ubuntu Hello provides Windows Hello style authentication for Linux using
   PAM, facial recognition, and optional GTK settings. Using the central
   authentication system (PAM), this works everywhere you would otherwise
   need your password: login, lock screen, sudo, su, etc.
+
+  After installing, enable it with: sudo linux-ubuntu-hello.host-install
+  This copies the PAM module onto the system, which is why this snap needs classic
+  confinement. Your password keeps working. Removing the snap undoes it.
+
+  Ubuntu Hello is an independent community project, not affiliated with Canonical.
 grade: stable
 confinement: classic
 
 apps:
   ubuntu-hello:
-    command: usr/bin/ubuntu-hello
+    command: meta/launch.sh ubuntu-hello
   ubuntu-hello-gtk:
-    command: usr/bin/ubuntu-hello-gtk
+    command: meta/launch.sh ubuntu-hello-gtk
+    desktop: meta/ubuntu-hello-gtk.desktop
   host-install:
     command: meta/install-wrapper.sh --install
+  host-uninstall:
+    command: meta/install-wrapper.sh --uninstall
 
 parts:
   ubuntu-hello:
@@ -84,3 +99,8 @@ parts:
       craftctl default
       install -Dm755 "$CRAFT_PROJECT_DIR/install-wrapper.sh" "$CRAFT_PRIME/meta/install-wrapper.sh"
       install -Dm755 "$CRAFT_PROJECT_DIR/hooks/configure" "$CRAFT_PRIME/meta/hooks/configure"
+      install -Dm755 "$CRAFT_PROJECT_DIR/hooks/remove" "$CRAFT_PRIME/meta/hooks/remove"
+      install -Dm755 "$CRAFT_PROJECT_DIR/launch.sh" "$CRAFT_PRIME/meta/launch.sh"
+      install -Dm644 "$CRAFT_PRIME/usr/share/icons/hicolor/scalable/apps/ubuntu-hello-gtk.svg" "$CRAFT_PRIME/meta/gui/icon.svg"
+      # A snap-only copy: install-host.sh puts the original on the host, where ${SNAP} means nothing.
+      sed 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.svg|' "$CRAFT_PRIME/usr/share/applications/ubuntu-hello-gtk.desktop" > "$CRAFT_PRIME/meta/ubuntu-hello-gtk.desktop"

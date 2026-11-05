@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
-set -e
-if [ -f "$SNAP/usr/share/ubuntu-hello/package-configure.sh" ]; then
-	# dlib is pre-bundled at snap build time (override-build in snapcraft.yaml);
-	# skip the pip install step inside the configure hook to avoid the 5-minute
-	# snapd hook timeout that occurs when building dlib from source at install time.
-	export UH_DLIB_PIP_SKIP=1
-	# shellcheck source=/dev/null
-	. "$SNAP/usr/share/ubuntu-hello/package-configure.sh"
-	uh_package_configure
-fi
-if [ -f "$SNAP/usr/share/ubuntu-hello/package-gtk-onboard.sh" ]; then
-	# shellcheck source=/dev/null
-	. "$SNAP/usr/share/ubuntu-hello/package-gtk-onboard.sh"
-	uh_package_gtk_onboard "snap.configure"
-fi
+# Runs on snap install and every refresh. A store install must not touch PAM on its
+# own: the host is only changed after the user runs `sudo linux-ubuntu-hello.host-install`.
+# From then on this is what delivers refreshes to the host copy that PAM actually loads.
+set -euo pipefail
+
+marker="${UH_HOST_ROOT:-}/var/lib/ubuntu-hello/.snap-host-install"
+[[ -f "${marker}" ]] || exit 0
+
+# Host tools only: the snap's own python3 and libraries must not stand in for them.
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+# Hooks have a timeout and no session, so no package installs, no dlib source
+# build and no setup wizard.
+export UH_SKIP_HOST_DEPS=1
+export UH_DLIB_PIP_SKIP=1
+export UH_SKIP_ONBOARD=1
+"${SNAP}/usr/share/ubuntu-hello/install-host.sh" --install

@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.27.0
+# syntax=docker/dockerfile:1.28.0
 # CI image for Ubuntu Hello — Ubuntu 22.04 (jammy), the oldest release the PPA builds for:
 # meson 0.61, GTK 4.6, PyGObject 3.42, Python 3.10 (see gtk4compat.py for the
 # GTK < 4.10 fallbacks this cell keeps honest). GNOME theme probe tools.
@@ -28,7 +28,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Python 3.10: pip has no externally-managed guard, so no --break-system-packages.
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install \
-    pytest==9.1.1 \
+    pytest==9.2.0 \
     pytest-cov==7.1.0 \
     coverage==7.16.1 \
     keyboard==0.13.5
