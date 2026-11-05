@@ -46,7 +46,9 @@ uh_start_container() {
 	echo "==> waiting for systemd inside ${CONTAINER} to become ready"
 	ready=0
 	for _ in $(seq 1 60); do
-		if docker exec "${CONTAINER}" systemctl is-system-running 2>/dev/null | grep -qE '^(running|degraded)$'; then
+		# is-system-running exits non-zero for degraded, so no pipeline under pipefail.
+		state="$(docker exec "${CONTAINER}" systemctl is-system-running 2>/dev/null || true)"
+		if [[ "${state}" == "running" || "${state}" == "degraded" ]]; then
 			ready=1
 			break
 		fi

@@ -315,7 +315,7 @@ Target OS for CI is fixed **Ubuntu 26.04**. Quality work is split into **lint**,
 * Compat-only parallel matrix: `./scripts/ci-matrix.sh` → `logs/ci-matrix/<de>.log`
 * GHA: lint + coverage + `compat` DE matrix + `packaging` format matrix start immediately (no `needs` gates); both matrices use `fail-fast: false` / `max-parallel: 20`; packaging cells build + smoke-verify + live E2E install/upgrade/remove/reinstall; Buildx + `UH_CI_DOCKER_CACHE=gha` on quality stages; packaging skips fork PRs
 * Caching: BuildKit apt/pip mounts in Dockerfiles; local `.cache/docker-ci/`; digest-label image reuse
-* Pins: Actions/runners → version tags only (`ubuntu-26.04`, `@v7.0.1`, …); pip → `==` versions; Docker → `ubuntu:26.04` + `dockerfile:1.26.0`; never SHAs; never a `latest` alias
+* Pins: Actions/runners → version tags only (`ubuntu-26.04`, `@v7.0.1`, …); pip → `==` versions; Docker → `ubuntu:26.04` + `dockerfile:1.28.0`; never SHAs; never a `latest` alias
 * PPA image: `docker/Dockerfile.ppa` / `scripts/ppa-docker.sh` (no DE packaging matrix)
 * Root clean: Dockerfiles stay under `docker/` ([AGENTS.md](../../AGENTS.md) §4.7.1)
 

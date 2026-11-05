@@ -458,6 +458,10 @@ jobs:
   # continue-on-error: a missing secret or a failed upload must turn the run red.
   publish-snap-store:
     runs-on: ubuntu-26.04
+    # Serialized, and an older tag never moves stable backward (see the version check).
+    concurrency:
+      group: snap-store-stable
+      cancel-in-progress: false
     needs:
       - build-snap
       - github-release
@@ -485,5 +489,11 @@ jobs:
           if [ -z "${SNAPCRAFT_STORE_CREDENTIALS}" ]; then
             echo "::error::SNAPCRAFT_STORE_CREDENTIALS is not set; cannot publish to the Snap Store"
             exit 1
+          fi
+          stable="$(snap info linux-ubuntu-hello 2>/dev/null | awk '$1 ~ /\/stable:$/ { print $2; exit }' || true)"
+          if [[ "${stable}" =~ ^[0-9] && "${stable}" != "${VERSION}" ]] \
+            && [ "$(printf '%s\n%s\n' "${stable}" "${VERSION}" | sort -V | tail -n1)" = "${stable}" ]; then
+            echo "::notice::Stable is already ${stable}; not releasing older ${VERSION}"
+            exit 0
           fi
           /snap/bin/snapcraft upload --release=stable "snap-artifact/linux-ubuntu-hello_${VERSION}_amd64.snap"

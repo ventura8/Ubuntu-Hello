@@ -17,6 +17,7 @@ PACKAGING_PATHS = [
     "packaging/rpm/opensuse/ubuntu-hello.spec",
     "packaging/snap/snapcraft.yaml",
     "packaging/snap/SNAPCRAFT_REVISION",
+    "packaging/snap/host-state.sh",
     "packaging/snap/install-wrapper.sh",
     "packaging/snap/hooks/configure",
     "packaging/snap/hooks/remove",
@@ -340,6 +341,40 @@ def test_host_install_declares_host_dependencies() -> None:
     for manager in ("apt-get", "dnf", "zypper", "pacman"):
         assert f"command -v {manager}" in text, manager
     assert "UH_SKIP_HOST_DEPS=1" in _read_repo("packaging/snap/hooks/configure")
+
+
+def test_snap_host_install_tracks_files_before_copying_them() -> None:
+    """A failure after the copy must not leave host files the snap has no record of."""
+    text = _read_repo("packaging/flatpak/install-host.sh")
+    install = text[text.index("uh_host_install() {") :]
+    marker = install.index('touch "${UH_HOST_INSTALL_MARKER}"')
+    assert install.index("uh_install_host_dependencies") < marker < install.index("uh_install_tree")
+
+
+def test_snap_remove_hook_keeps_marker_when_uninstall_fails() -> None:
+    text = _read_repo("packaging/snap/hooks/remove")
+    assert "--uninstall; then\n\tuh_snap_forget_host_copy\nelse" in text
+
+
+def test_release_publish_cannot_move_stable_backward() -> None:
+    job = _read_repo(".github/workflows/release.yml")
+    job = job[job.index("  publish-snap-store:") :]
+    assert "group: snap-store-stable" in job
+    assert "cancel-in-progress: false" in job
+    assert job.index("sort -V") < job.index("snapcraft upload")
+
+
+@pytest.mark.parametrize("owner_exit,expected", [(0, 0), (1, 1)])
+def test_snap_detects_native_package_ownership(tmp_path: Path, owner_exit: int, expected: int) -> None:
+    """The snap must not overwrite or delete host files a native package owns."""
+    stub = tmp_path / "dpkg-query"
+    stub.write_text(f"#!/bin/sh\nexit {owner_exit}\n")
+    stub.chmod(0o755)
+    state = REPO / "packaging/snap/host-state.sh"
+    # Stub after sourcing: host-state.sh resets PATH to the host's own directories.
+    script = f'. "{state}"; export PATH="{tmp_path}"; uh_native_package_owns_host'
+    result = subprocess.run(["/bin/bash", "-c", script], check=False)
+    assert result.returncode == expected
 
 
 def test_pkgbuild_reads_version_via_script() -> None:

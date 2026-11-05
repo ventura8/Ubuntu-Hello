@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Records that the host copy belongs to this snap, so the configure hook keeps it
-# current across store refreshes and the remove hook can take it away again.
-marker="${UH_HOST_ROOT:-}/var/lib/ubuntu-hello/.snap-host-install"
+# shellcheck source=/dev/null
+. "$(dirname "${BASH_SOURCE[0]}")/host-state.sh"
 
-# Host tools only: the snap's own python3 and libraries must not stand in for them.
-export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+uh_snap_lock
 
+if uh_native_package_owns_host; then
+	echo "error: Ubuntu Hello is already installed by a system package; remove that package first." >&2
+	exit 1
+fi
+
+UH_HOST_INSTALL_MARKER="$(uh_snap_marker)"
+export UH_HOST_INSTALL_MARKER
 "${SNAP}/usr/share/ubuntu-hello/install-host.sh" "$@"
 
-case "${1:-}" in
-	--install)
-		mkdir -p "$(dirname "${marker}")"
-		touch "${marker}"
-		;;
-	--uninstall)
-		rm -f "${marker}"
-		rmdir --ignore-fail-on-non-empty "$(dirname "${marker}")" 2>/dev/null || true
-		;;
-esac
+if [[ "${1:-}" == "--uninstall" ]]; then
+	uh_snap_forget_host_copy
+fi

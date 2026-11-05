@@ -2,13 +2,20 @@
 # `snap remove` must not leave the PAM module on the host with no snap left to manage it.
 set -euo pipefail
 
-marker="${UH_HOST_ROOT:-}/var/lib/ubuntu-hello/.snap-host-install"
-[[ -f "${marker}" ]] || exit 0
+# shellcheck source=/dev/null
+. "$(dirname "${BASH_SOURCE[0]}")/../host-state.sh"
 
-# Host tools only: the snap's own python3 and libraries must not stand in for them.
-export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+uh_snap_lock
 
-"${SNAP}/usr/share/ubuntu-hello/install-host.sh" --uninstall \
-	|| echo "WARNING: host uninstall failed; see /var/log/ubuntu-hello-host-install.log" >&2
-rm -f "${marker}"
-rmdir --ignore-fail-on-non-empty "$(dirname "${marker}")" 2>/dev/null || true
+[[ -f "$(uh_snap_marker)" ]] || exit 0
+if uh_native_package_owns_host; then
+	uh_snap_forget_host_copy
+	exit 0
+fi
+
+# Keep the marker on failure: the host copy still exists and still belongs to us.
+if "${SNAP}/usr/share/ubuntu-hello/install-host.sh" --uninstall; then
+	uh_snap_forget_host_copy
+else
+	echo "WARNING: host uninstall failed; see /var/log/ubuntu-hello-host-install.log" >&2
+fi

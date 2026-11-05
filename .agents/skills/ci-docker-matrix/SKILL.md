@@ -82,7 +82,7 @@ Packaging-only parallel matrix (local; same cells as GHA):
 * GHA runners: `runs-on: ubuntu-26.04`
 * GHA actions: explicit version tags only (e.g. `@v7.0.1`, `@v4.4.1`) — never commit SHAs, never a `latest` alias
 * Docker: `FROM ubuntu:26.04` (`jammy` cell: `ubuntu:22.04`); `# syntax=docker/dockerfile:1.28.0`
-* Pip in CI images: exact pins (`pytest==9.2.0`, `pytest-cov==7.1.0`, `coverage==7.17.1`, `keyboard==0.13.5`)
+* Pip in CI images: exact pins (`pytest==9.2.0`, `pytest-cov==7.1.0`, `coverage==7.17.1`, `keyboard==0.13.5`); `jammy` cell keeps `coverage==7.16.1` (Python 3.10)
 * Apt: distro-locked by the base image (`FROM ubuntu:26.04`; `ubuntu:22.04` for `jammy`) (document; do not add unpinned URL installers)
 
 ## Caching

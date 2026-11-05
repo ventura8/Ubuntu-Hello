@@ -287,6 +287,11 @@ uh_host_install() {
 	destdir_root="$(uh_resolve_destdir_root)"
 	uh_log ">>> Installing Ubuntu Hello to host from ${destdir_root}"
 	uh_install_host_dependencies
+	# Before the copy: a failure from here on still leaves files the caller must track.
+	if [[ -n "${UH_HOST_INSTALL_MARKER:-}" ]]; then
+		mkdir -p "$(dirname "${UH_HOST_INSTALL_MARKER}")"
+		touch "${UH_HOST_INSTALL_MARKER}"
+	fi
 	uh_install_tree "$destdir_root"
 	uh_install_host_polkit
 	if [[ "${UH_SKIP_CONFIGURE:-0}" != "1" ]]; then

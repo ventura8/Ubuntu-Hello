@@ -202,8 +202,9 @@ The store name is **`linux-ubuntu-hello`** because `ubuntu-hello` is reserved; e
 - Check a build before tagging with `review-tools.snap-review --allow-classic <file>` (the store's own checks).
 - Apps run through `packaging/snap/launch.sh`, which execs the host copy; the desktop launcher offers host-install first.
 - `host-install` goes through `install-host.sh`, which installs host deps first (see below). Snap E2E runs in a fresh container so missing deps fail CI.
+- `packaging/snap/host-state.sh` holds the marker, a lock shared by the wrapper and hooks, and the native-package check: the snap refuses `host-install`, and never overwrites or deletes, when a `.deb`, `.rpm` or pacman package owns the host paths.
 - `snap install` alone never changes the host. `host-install` copies the payload and writes the marker
-  `/var/lib/ubuntu-hello/.snap-host-install`; with it, the configure hook re-copies on every refresh
+  `/var/lib/ubuntu-hello/.snap-host-install` (just before copying, so a later failure is still tracked); with it, the configure hook re-copies on every refresh
   (this is how updates reach the PAM module the host loads) and the remove hook uninstalls.
 
 ## Metadata paths

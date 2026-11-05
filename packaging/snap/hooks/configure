@@ -4,11 +4,15 @@
 # From then on this is what delivers refreshes to the host copy that PAM actually loads.
 set -euo pipefail
 
-marker="${UH_HOST_ROOT:-}/var/lib/ubuntu-hello/.snap-host-install"
-[[ -f "${marker}" ]] || exit 0
+# shellcheck source=/dev/null
+. "$(dirname "${BASH_SOURCE[0]}")/../host-state.sh"
 
-# Host tools only: the snap's own python3 and libraries must not stand in for them.
-export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+uh_snap_lock
+
+[[ -f "$(uh_snap_marker)" ]] || exit 0
+if uh_native_package_owns_host; then
+	exit 0
+fi
 
 # Hooks have a timeout and no session, so no package installs, no dlib source
 # build and no setup wizard.

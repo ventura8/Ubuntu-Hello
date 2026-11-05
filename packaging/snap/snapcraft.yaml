@@ -101,6 +101,7 @@ parts:
       install -Dm755 "$CRAFT_PROJECT_DIR/hooks/configure" "$CRAFT_PRIME/meta/hooks/configure"
       install -Dm755 "$CRAFT_PROJECT_DIR/hooks/remove" "$CRAFT_PRIME/meta/hooks/remove"
       install -Dm755 "$CRAFT_PROJECT_DIR/launch.sh" "$CRAFT_PRIME/meta/launch.sh"
+      install -Dm644 "$CRAFT_PROJECT_DIR/host-state.sh" "$CRAFT_PRIME/meta/host-state.sh"
       install -Dm644 "$CRAFT_PRIME/usr/share/icons/hicolor/scalable/apps/ubuntu-hello-gtk.svg" "$CRAFT_PRIME/meta/gui/icon.svg"
       # A snap-only copy: install-host.sh puts the original on the host, where ${SNAP} means nothing.
       sed 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.svg|' "$CRAFT_PRIME/usr/share/applications/ubuntu-hello-gtk.desktop" > "$CRAFT_PRIME/meta/ubuntu-hello-gtk.desktop"
