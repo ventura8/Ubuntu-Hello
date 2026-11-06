@@ -200,7 +200,7 @@ The store name is **`linux-ubuntu-hello`** because `ubuntu-hello` is reserved; e
 - `scripts/snap-store-setup.sh` creates the `SNAPCRAFT_STORE_CREDENTIALS` secret. Re-run it yearly.
 - The store rejects uploads until classic confinement is approved for the snap (forum `store-requests`).
 - Check a build before tagging with `review-tools.snap-review --allow-classic <file>` (the store's own checks).
-- Apps run through `packaging/snap/launch.sh`, which execs the host copy; the desktop launcher offers host-install first.
+- Apps run through `packaging/snap/launch.sh`, which execs the host copy, or tells the user to run host-install. It must not call pkexec: store policy lists direct pkexec access as unsupported for classic snaps.
 - `host-install` goes through `install-host.sh`, which installs host deps first (see below). Snap E2E runs in a fresh container so missing deps fail CI.
 - `packaging/snap/host-state.sh` holds the marker, a lock shared by the wrapper and hooks, and the native-package check: the snap refuses `host-install`, and never overwrites or deletes, when a `.deb`, `.rpm` or pacman package owns the host paths. It also refuses a host copy with no marker (AppImage, Flatpak, source build, leftover data), so a later `snap remove` cannot delete data it did not create.
 - `snap install` alone never changes the host. `host-install` copies the payload and writes the marker
