@@ -16,7 +16,8 @@ uh_host_path() {
 }
 
 uh_log() {
-	echo "$*" | tee -a "$UH_INSTALL_LOG"
+	# A log that cannot be written must not abort an install or uninstall halfway.
+	echo "$*" | tee -a "$UH_INSTALL_LOG" || true
 }
 
 uh_fatal() {
@@ -240,10 +241,58 @@ uh_remove_host_polkit() {
 	rm -f "$(uh_host_path "/usr/share/polkit-1/actions/com.github.ventura8.UbuntuHello.install.policy")" 2>/dev/null || true
 }
 
+# The host copy runs on the host's libraries and Python, not the bundle's, so it
+# needs what each distro's native package declares. Runs before anything is copied:
+# if the package manager fails, PAM stays untouched.
+uh_install_host_dependencies() {
+	[[ -z "${UH_HOST_ROOT:-}" && "${UH_SKIP_HOST_DEPS:-0}" != "1" ]] || return 0
+	uh_log ">>> Installing host dependencies"
+	if command -v apt-get >/dev/null 2>&1; then
+		# A broken third-party repo must not block packages the other repos can serve.
+		apt-get update -qq || true
+		DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+			libinih-dev libevdev2 \
+			python3 python3-numpy python3-opencv python3-pil python3-cryptography python3-babel \
+			python3-gi python3-gi-cairo gir1.2-gtk-4.0 \
+			curl bzip2 v4l-utils tpm2-tools libglib2.0-bin pkexec \
+			python3-dev python3-pip cmake make g++
+	elif command -v dnf >/dev/null 2>&1; then
+		dnf install -y \
+			inih inih-cpp libevdev \
+			python3 python3-numpy python3-opencv python3-pillow python3-cryptography python3-babel \
+			python3-gobject python3-cairo gtk4 opencv \
+			curl bzip2 v4l-utils tpm2-tools glib2 polkit authselect \
+			python3-devel python3-pip cmake make gcc-c++
+	elif command -v zypper >/dev/null 2>&1; then
+		zypper --non-interactive install \
+			libinih0 libevdev2 \
+			python313 python313-numpy python313-opencv python313-Pillow python313-cryptography python313-Babel \
+			python313-gobject python313-pycairo gtk4 opencv \
+			curl bzip2 v4l-utils tpm2.0-tools glib2-tools polkit \
+			python313-devel python313-pip cmake make gcc-c++
+	elif command -v pacman >/dev/null 2>&1; then
+		# No -y: syncing without upgrading is a partial upgrade, which Arch does not support.
+		pacman -S --needed --noconfirm \
+			libinih libevdev \
+			python python-numpy python-opencv python-pillow python-cryptography python-babel \
+			python-gobject python-cairo gtk4 opencv \
+			curl bzip2 v4l-utils tpm2-tools glib2 polkit \
+			python-pip cmake make gcc
+	else
+		uh_log "WARNING: no supported package manager; install libinih, libevdev, OpenCV for Python, NumPy, Pillow, cryptography, PyGObject and GTK 4 yourself."
+	fi
+}
+
 uh_host_install() {
 	local destdir_root
 	destdir_root="$(uh_resolve_destdir_root)"
 	uh_log ">>> Installing Ubuntu Hello to host from ${destdir_root}"
+	uh_install_host_dependencies
+	# Before the copy: a failure from here on still leaves files the caller must track.
+	if [[ -n "${UH_HOST_INSTALL_MARKER:-}" ]]; then
+		mkdir -p "$(dirname "${UH_HOST_INSTALL_MARKER}")"
+		touch "${UH_HOST_INSTALL_MARKER}"
+	fi
 	uh_install_tree "$destdir_root"
 	uh_install_host_polkit
 	if [[ "${UH_SKIP_CONFIGURE:-0}" != "1" ]]; then

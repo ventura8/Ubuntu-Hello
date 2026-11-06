@@ -3,6 +3,19 @@ import os
 from pathlib import PurePath
 from unittest.mock import MagicMock
 
+
+class ModuleMock(MagicMock):
+	"""Mock for a whole module, shared by every test in the session.
+
+	monkeypatch undoes a patch of an attribute it did not find in the instance
+	__dict__ by deleting it, and deleting a MagicMock attribute is permanent: the
+	next test to patch that name would get AttributeError. Forget it instead.
+	"""
+
+	def __delattr__(self, name):
+		super().__delattr__(name)
+		self._mock_children.pop(name, None)
+
 # Define paths dynamically relative to conftest.py
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 UBUNTU_HELLO_SRC = os.path.join(PROJECT_ROOT, "ubuntu-hello", "src")
@@ -25,7 +38,7 @@ UH_REAL_GTK = os.environ.get("UH_REAL_GTK") == "1"
 UH_REAL_DLIB = os.environ.get("UH_REAL_DLIB") == "1"
 
 # Create mock for paths module (point at source tree for E2E Glade assets).
-mock_paths = MagicMock()
+mock_paths = ModuleMock()
 mock_paths.config_dir = PurePath("/etc/ubuntu-hello")
 mock_paths.dlib_data_dir = PurePath("/usr/share/ubuntu-hello/dlib-data")
 mock_paths.user_models_dir = PurePath("/etc/ubuntu-hello/models")
@@ -55,19 +68,19 @@ _i18n.original_locale_env = lambda: {}
 sys.modules["i18n"] = _i18n
 
 # Create mock for keyboard module
-sys.modules["keyboard"] = MagicMock()
+sys.modules["keyboard"] = ModuleMock()
 
 # Create mock for pyv4l2
-mock_pyv4l2 = MagicMock()
+mock_pyv4l2 = ModuleMock()
 sys.modules["pyv4l2"] = mock_pyv4l2
-sys.modules["pyv4l2.frame"] = MagicMock()
+sys.modules["pyv4l2.frame"] = ModuleMock()
 
 # Create mock for ffmpeg
-sys.modules["ffmpeg"] = MagicMock()
+sys.modules["ffmpeg"] = ModuleMock()
 
 if not (UH_REAL_GTK or UH_REAL_DLIB):
 	# Create mock for cv2
-	mock_cv2 = MagicMock()
+	mock_cv2 = ModuleMock()
 	mock_cv2.CAP_PROP_FRAME_WIDTH = 3
 	mock_cv2.CAP_PROP_FRAME_HEIGHT = 4
 	mock_cv2.CAP_PROP_FPS = 5
@@ -78,14 +91,14 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 	sys.modules["cv2.cv2"] = mock_cv2
 
 	# Create mock for cairo
-	sys.modules["cairo"] = MagicMock()
+	sys.modules["cairo"] = ModuleMock()
 
 	# Create mock for gi and gi.repository
-	mock_gi = MagicMock()
+	mock_gi = ModuleMock()
 	mock_gi.version_info = (3, 50, 0)  # a PyGObject with Gtk.Expression support
 	sys.modules["gi"] = mock_gi
 
-	mock_gtk = MagicMock()
+	mock_gtk = ModuleMock()
 	# Set ResponseType constants
 	mock_gtk.ResponseType.OK = 1
 	mock_gtk.ResponseType.CANCEL = 2
@@ -113,13 +126,13 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 	             "SearchEntry", "Picture", "Image", "Notebook", "ScrolledWindow", "CheckButton", "Switch"):
 		setattr(mock_gtk, _cls, type(_cls, (MockGtkWidget,), {}))
 
-	mock_gdk = MagicMock()
-	mock_gobject = MagicMock()
-	mock_pango = MagicMock()
-	mock_glib = MagicMock()
-	mock_gio = MagicMock()
+	mock_gdk = ModuleMock()
+	mock_gobject = ModuleMock()
+	mock_pango = ModuleMock()
+	mock_glib = ModuleMock()
+	mock_gio = ModuleMock()
 
-	mock_repository = MagicMock()
+	mock_repository = ModuleMock()
 	mock_repository.Gtk = mock_gtk
 	mock_repository.Gdk = mock_gdk
 	mock_repository.GObject = mock_gobject
@@ -139,7 +152,7 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 	sys.modules["gi.repository.Gio"] = mock_gio
 
 	# GdkPixbuf mock for tab_video
-	mock_pixbuf = MagicMock()
+	mock_pixbuf = ModuleMock()
 	sys.modules["gi.repository.GdkPixbuf"] = mock_pixbuf
 	mock_repository.GdkPixbuf = mock_pixbuf
 
@@ -160,4 +173,4 @@ if not (UH_REAL_GTK or UH_REAL_DLIB):
 # Create mock for dlib. The footage tier is the one place the real library runs:
 # every other test shape either does not touch recognition or scripts its result.
 if not UH_REAL_DLIB:
-	sys.modules["dlib"] = MagicMock()
+	sys.modules["dlib"] = ModuleMock()

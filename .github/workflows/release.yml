@@ -14,9 +14,9 @@ env:
   MAINTAINER_NAME: "ventura8"
   MAINTAINER_EMAIL: "alexandrescu.sergiu@gmail.com"
   PPA_IMAGE: "ubuntu-hello-ppa:26.04"
-  RPM_FEDORA_IMAGE: "ubuntu-hello-rpm-fedora:44"
+  RPM_FEDORA_IMAGE: "ubuntu-hello-rpm-fedora:45"
   RPM_OPENSUSE_IMAGE: "ubuntu-hello-rpm-opensuse:16.0"
-  ARCH_IMAGE: "ubuntu-hello-arch:base-devel-20260816.0.574111"
+  ARCH_IMAGE: "ubuntu-hello-arch:base-devel-20261101.0.620205"
   RELEASE_IMAGE: "ubuntu-hello-release:26.04"
 
 jobs:
@@ -107,7 +107,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh deb
 
       - name: Upload deb artifacts
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: deb-${{ matrix.arch }}
           path: artifacts/*.deb
@@ -161,7 +161,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh rpm-fedora
 
       - name: Upload Fedora RPM artifacts
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: rpm-fedora-${{ matrix.arch }}
           path: artifacts/*.rpm
@@ -215,7 +215,7 @@ jobs:
             ./scripts/packaging-e2e-install.sh rpm-opensuse
 
       - name: Upload openSUSE RPM artifacts
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: rpm-opensuse-${{ matrix.arch }}
           path: artifacts/*.rpm
@@ -248,7 +248,7 @@ jobs:
             ./scripts/release-arch.sh
 
       - name: Upload Arch artifacts
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: arch
           path: artifacts/*.pkg.tar.zst
@@ -272,7 +272,7 @@ jobs:
           ./scripts/ci-snap-build.sh
 
       - name: Upload Snap artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: snap
           path: artifacts/*.snap
@@ -319,17 +319,18 @@ jobs:
             --privileged \
             "${RELEASE_IMAGE}-${{ matrix.arch }}" \
             ./scripts/packaging-smoke-verify.sh appimage
+          docker build --platform "linux/${{ matrix.arch }}" -f docker/Dockerfile.e2e.appimage -t "ubuntu-hello-e2e-appimage:26.04-${{ matrix.arch }}" .
           docker run --rm --platform "linux/${{ matrix.arch }}" \
             -e VERSION \
             -e UH_SKIP_ONBOARD=1 \
             -v "$PWD:/src:rw" \
             -w /src \
             --privileged \
-            "${RELEASE_IMAGE}-${{ matrix.arch }}" \
+            "ubuntu-hello-e2e-appimage:26.04-${{ matrix.arch }}" \
             ./scripts/packaging-e2e-install.sh appimage
 
       - name: Upload AppImage artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: appimage-${{ matrix.arch }}
           path: artifacts/*.AppImage
@@ -367,7 +368,7 @@ jobs:
             ./scripts/release-portable.sh flatpak
 
       - name: Upload Flatpak artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: flatpak
           path: artifacts/*.flatpak
@@ -406,7 +407,7 @@ jobs:
         run: ./scripts/release-verify-tag-version.sh
 
       - name: Download all build artifacts
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           path: release-artifacts
           merge-multiple: true
@@ -451,3 +452,58 @@ jobs:
             release-artifacts/*
           draft: false
           prerelease: false
+
+  # Every release also goes to the Snap Store (Ubuntu App Center), stable channel.
+  # Runs last so a store rejection cannot hold back the GitHub Release, and has no
+  # continue-on-error: a missing secret or a failed upload must turn the run red.
+  publish-snap-store:
+    runs-on: ubuntu-26.04
+    # Serialized, and an older tag never moves stable backward (see the version check).
+    concurrency:
+      group: snap-store-stable
+      # The default keeps one pending job, so a queued re-run could cancel a newer publish.
+      queue: max
+      cancel-in-progress: false
+    needs:
+      - build-snap
+      - github-release
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Extract version from tag
+        run: ./scripts/release-verify-tag-version.sh
+
+      - name: Download Snap artifact
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: snap
+          path: snap-artifact
+
+      - name: Install pinned snapcraft
+        run: sudo snap install snapcraft --classic --revision="$(cat packaging/snap/SNAPCRAFT_REVISION)"
+
+      - name: Upload and release to the stable channel
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        run: |
+          if [ -z "${SNAPCRAFT_STORE_CREDENTIALS}" ]; then
+            echo "::error::SNAPCRAFT_STORE_CREDENTIALS is not set; cannot publish to the Snap Store"
+            exit 1
+          fi
+          # Only a snap that is not published yet may skip the check: any other lookup
+          # failure must stop here, or an older tag could move stable backward.
+          stable=""
+          if info="$(LC_ALL=C snap info linux-ubuntu-hello 2>&1)"; then
+            stable="$(printf '%s\n' "${info}" | awk '$1 ~ /\/stable:$/ { print $2; exit }')"
+          elif [[ "${info}" != *"no snap found"* ]]; then
+            echo "::error::Could not read the current stable version: ${info}"
+            exit 1
+          fi
+          if [[ "${stable}" =~ ^[0-9] && "${stable}" != "${VERSION}" ]] \
+            && [ "$(printf '%s\n%s\n' "${stable}" "${VERSION}" | sort -V | tail -n1)" = "${stable}" ]; then
+            echo "::notice::Stable is already ${stable}; not releasing older ${VERSION}"
+            exit 0
+          fi
+          /snap/bin/snapcraft upload --release=stable "snap-artifact/linux-ubuntu-hello_${VERSION}_amd64.snap"

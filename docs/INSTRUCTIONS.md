@@ -224,11 +224,11 @@ which requires Linux user namespaces — broken under QEMU user-mode emulation (
 | Format | Install (from Release assets) |
 |--------|-------------------------------|
 | **Debian `.deb`** | `sudo apt install ./ubuntu-hello_*_$(dpkg --print-architecture).deb ./ubuntu-hello-gtk_*_$(dpkg --print-architecture).deb` |
-| **Fedora RPM** | `sudo dnf install ./ubuntu-hello-[0-9]*fc44*.$(uname -m).rpm ./ubuntu-hello-gtk-*fc44*.$(uname -m).rpm` |
+| **Fedora RPM** | `sudo dnf install ./ubuntu-hello-[0-9]*fc45*.$(uname -m).rpm ./ubuntu-hello-gtk-*fc45*.$(uname -m).rpm` |
 | **openSUSE RPM** | `sudo zypper install ./ubuntu-hello-[0-9]*lp160*.$(uname -m).rpm ./ubuntu-hello-gtk-*lp160*.$(uname -m).rpm` |
 | **AppImage** | `chmod +x Ubuntu-Hello-*-$(uname -m).AppImage && ./Ubuntu-Hello-*-$(uname -m).AppImage --install` |
 | **Arch** (amd64 only) | `sudo pacman -U ./ubuntu-hello-[0-9]*.pkg.tar.zst ./ubuntu-hello-gtk-*.pkg.tar.zst` |
-| **Snap** (amd64 only) | `sudo snap install --dangerous --classic ubuntu-hello_*_amd64.snap && sudo snap run ubuntu-hello.host-install` |
+| **Snap** (amd64 only; store name `linux-ubuntu-hello`) | `sudo snap install --dangerous --classic linux-ubuntu-hello_*_amd64.snap && sudo snap run linux-ubuntu-hello.host-install` (remove with `sudo snap remove linux-ubuntu-hello`, which also cleans the host) |
 | **Flatpak** (amd64 only) | `flatpak install --user ./com.github.ventura8.UbuntuHello-*.flatpak && flatpak run --command=ubuntu-hello-host-install com.github.ventura8.UbuntuHello && flatpak run com.github.ventura8.UbuntuHello` |
 
 Local rebuild: [`.agents/skills/release-packaging/SKILL.md`](../.agents/skills/release-packaging/SKILL.md) and `scripts/release-*.sh` with Docker images under `docker/Dockerfile.{ppa,rpm.fedora,rpm.opensuse,arch,release}`.
@@ -352,7 +352,7 @@ CI is split into fail-fast stages on Ubuntu **26.04** (see [AGENTS.md](../AGENTS
 | `coverage` | `ubuntu-hello-ci-coverage:26.04` | meson/ninja, pytest ≥ 90%, keyring coverage 100%, `meson test pam-aes-gcm-uh1` |
 | `compat` | `ubuntu-hello-ci-<de>:26.04` | meson/ninja, `py_compile`, pytest (no cov floors), `meson test pam-aes-gcm-uh1` |
 | `packaging` | `ci-packaging-cell.sh` (same as GHA) | build + smoke-verify + live E2E install/upgrade/remove/reinstall |
-| `sonar` | `sonar-scanner-cli:12.2.0.4256_8.1.0` (local) / scan action (CI step in `coverage`) | SonarQube Cloud static analysis + Python coverage upload |
+| `sonar` | `sonar-scanner-cli:12.3.1.4302_8.3.1` (local) / scan action (CI step in `coverage`) | SonarQube Cloud static analysis + Python coverage upload |
 
 Commands:
 
@@ -395,7 +395,7 @@ image, so nothing is installed on the host. It needs a token:
 **In CI** — the scan is a step at the end of the **`coverage` job** in
 `.github/workflows/check.yml`, not a separate job: `check.yml` permits no job
 dependency gates (see AGENTS.md §4.8), and `coverage.xml` is already on disk there.
-It scans with `SonarSource/sonarqube-scan-action@v8.2.2` (the action, not
+It scans with `SonarSource/sonarqube-scan-action@v8.4.1` (the action, not
 `ci-sonar.sh`, because it derives pull-request decoration parameters from the
 Actions context). It needs a `SONAR_TOKEN` repository secret; fork PRs are skipped
 because they cannot read it.
@@ -420,7 +420,7 @@ clang-tidy conflict (`modernize-use-trailing-return-type` vs `cpp:S3574`).
 
 Caching: BuildKit is on by default for image builds; set `UH_CI_DOCKER_CACHE=local` (default), `gha` (GitHub Actions), or `none`. Unchanged Dockerfiles reuse the tagged image (digest label); `UH_CI_FORCE_BUILD=1` forces a rebuild.
 
-Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`, `docker/setup-buildx-action@v4.4.1`); CI pip packages are exact (`pytest==9.1.1`, `pytest-cov==7.1.0`, `coverage==7.16.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` (the `jammy` compat cell alone uses `ubuntu:22.04`) + `# syntax=docker/dockerfile:1.27.0`. Never pin by commit SHA; never use a `latest` alias.
+Pins: GHA `runs-on: ubuntu-26.04`; actions use explicit version tags (e.g. `@v7.0.1`, `docker/setup-buildx-action@v4.4.1`); CI pip packages are exact (`pytest==9.2.0`, `pytest-cov==7.1.0`, `coverage==7.17.1`, `keyboard==0.13.5`); Docker `ubuntu:26.04` (the `jammy` compat cell alone uses `ubuntu:22.04`) + `# syntax=docker/dockerfile:1.28.0`. Never pin by commit SHA; never use a `latest` alias.
 
 Logs: `logs/ci-lint.log`, `logs/ci-coverage.log`, `logs/ci-pipeline.log`, `logs/ci-matrix/<de>.log`, `logs/ci-packaging/<format>.log` (see [logs/README.md](../logs/README.md)).
 

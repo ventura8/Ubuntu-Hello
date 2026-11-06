@@ -1,0 +1,13 @@
+# syntax=docker/dockerfile:1.28.0
+# AppImage E2E on a machine with none of our build or runtime dependencies. Keep this
+# minimal: docker/Dockerfile.release has them all, which is what hid missing host deps.
+# python3 is on every supported desktop; the E2E script itself needs it and unsquashfs.
+FROM ubuntu:26.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates python3 squashfs-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src

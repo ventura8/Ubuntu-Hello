@@ -350,27 +350,27 @@ uh_e2e_flatpak_remove() {
 
 uh_e2e_snap_install_host() {
 	local snap_file
-	snap_file="$(compgen -G "${ART}/ubuntu-hello_${VERSION}_*.snap" | head -n1 || true)"
+	snap_file="$(compgen -G "${ART}/linux-ubuntu-hello_${VERSION}_*.snap" | head -n1 || true)"
 	[[ -n "$snap_file" ]] || uh_e2e_fail "Snap artifact missing"
-	if snap list ubuntu-hello >/dev/null 2>&1; then
+	if snap list linux-ubuntu-hello >/dev/null 2>&1; then
 		# Same local snap revision cannot refresh; re-run host overlay for upgrade.
 		echo ">>> Snap already installed; re-running install-host.sh (upgrade)"
 	else
 		snap install --dangerous --classic "${snap_file}"
+		# A store install must leave PAM alone until the user opts in.
+		[[ ! -e /usr/share/pam-configs/ubuntu-hello ]] \
+			|| uh_e2e_fail "snap install changed the host before host-install"
+		local before_host_install
+		before_host_install="$(snap run linux-ubuntu-hello.ubuntu-hello --help 2>&1 || true)"
+		[[ "${before_host_install}" == *host-install* ]] \
+			|| uh_e2e_fail "snap app does not explain host-install before the host copy exists"
 	fi
-	# Host install via classic snap payload (copies PAM/CLI onto /)
-	UH_SKIP_ONBOARD=1 bash /snap/ubuntu-hello/current/usr/share/ubuntu-hello/install-host.sh --install
+	UH_SKIP_ONBOARD=1 snap run linux-ubuntu-hello.host-install
 }
 
 uh_e2e_snap_remove_host_and_snap() {
-	if [[ -f /snap/ubuntu-hello/current/usr/share/ubuntu-hello/install-host.sh ]]; then
-		bash /snap/ubuntu-hello/current/usr/share/ubuntu-hello/install-host.sh --uninstall || true
-	elif [[ -f /usr/share/ubuntu-hello/install-host.sh ]]; then
-		bash /usr/share/ubuntu-hello/install-host.sh --uninstall || true
-	fi
-	if snap list ubuntu-hello >/dev/null 2>&1; then
-		snap remove ubuntu-hello || true
-	fi
+	# The remove hook alone must clean the host; uh_e2e_assert_removed checks it.
+	snap remove linux-ubuntu-hello
 }
 
 uh_e2e_run_cycle() {

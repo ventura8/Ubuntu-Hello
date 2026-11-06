@@ -31,7 +31,7 @@ case "${FORMAT}" in
 		compgen -G "${ART}/ubuntu-hello-gtk-${VERSION}-*.pkg.tar.zst" >/dev/null
 		;;
 	snap)
-		compgen -G "${ART}/ubuntu-hello_${VERSION}_*.snap" >/dev/null
+		compgen -G "${ART}/linux-ubuntu-hello_${VERSION}_*.snap" >/dev/null
 		;;
 	appimage)
 		compgen -G "${ART}/Ubuntu-Hello-${VERSION}-*.AppImage" >/dev/null

@@ -56,11 +56,11 @@ All drivers write to **`artifacts/`** (gitignored). Tag releases upload these vi
 | Format | Script / Docker | Output example |
 |--------|-----------------|----------------|
 | Debian | `docker/Dockerfile.ppa` + `scripts/release-deb.sh` | `ubuntu-hello_*_amd64.deb` / `ubuntu-hello_*_arm64.deb` |
-| Fedora RPM | `docker/Dockerfile.rpm.fedora` + `scripts/release-rpm.sh fedora` | `ubuntu-hello-*-1.fc44.x86_64.rpm` / `...aarch64.rpm` |
+| Fedora RPM | `docker/Dockerfile.rpm.fedora` + `scripts/release-rpm.sh fedora` | `ubuntu-hello-*-1.fc45.x86_64.rpm` / `...aarch64.rpm` |
 | openSUSE RPM | `docker/Dockerfile.rpm.opensuse` + `scripts/release-rpm.sh opensuse` | `ubuntu-hello-*-1.lp160.x86_64.rpm` / `...aarch64.rpm` |
 | AppImage | `docker/Dockerfile.release` + `scripts/release-portable.sh appimage` | `Ubuntu-Hello-*-x86_64.AppImage` / `...-aarch64.AppImage` |
 | Arch | `docker/Dockerfile.arch` + `scripts/release-arch.sh` | `*.pkg.tar.zst` (split packages, **amd64 only** — no official arm64 `archlinux` image) |
-| Snap | `docker/Dockerfile.snap` + `scripts/ci-snap-build.sh` | `.snap` (**amd64 only** — deferred: systemd+snapd under QEMU emulation is unreliable, not attempted) |
+| Snap | `docker/Dockerfile.snap` + `scripts/ci-snap-build.sh` | `linux-ubuntu-hello_*_amd64.snap` (**amd64 only** — deferred: systemd+snapd under QEMU emulation is unreliable, not attempted) |
 | Flatpak | `docker/Dockerfile.release` + `scripts/release-portable.sh flatpak` | `.flatpak` (**amd64 only** — `flatpak-builder` always sandboxes each module build with `bwrap`, which requires Linux user namespaces; `unshare --user` fails under QEMU user-mode emulation with "Invalid argument", and `flatpak-builder` has no flag to disable sandboxing) |
 
 `release.yml` builds Debian, both RPM formats, and AppImage for **amd64 and arm64**
@@ -97,16 +97,16 @@ docker build -f docker/Dockerfile.ppa -t ubuntu-hello-ppa:26.04 .
 docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-ppa:26.04 ./scripts/release-deb.sh
 
 # Fedora RPM
-docker build -f docker/Dockerfile.rpm.fedora -t ubuntu-hello-rpm-fedora:44 .
-docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-rpm-fedora:44 ./scripts/release-rpm.sh fedora
+docker build -f docker/Dockerfile.rpm.fedora -t ubuntu-hello-rpm-fedora:45 .
+docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-rpm-fedora:45 ./scripts/release-rpm.sh fedora
 
 # openSUSE RPM
 docker build -f docker/Dockerfile.rpm.opensuse -t ubuntu-hello-rpm-opensuse:16.0 .
 docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-rpm-opensuse:16.0 ./scripts/release-rpm.sh opensuse
 
 # Arch
-docker build -f docker/Dockerfile.arch -t ubuntu-hello-arch:base-devel-20260816.0.574111 .
-docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-arch:base-devel-20260816.0.574111 ./scripts/release-arch.sh
+docker build -f docker/Dockerfile.arch -t ubuntu-hello-arch:base-devel-20261101.0.620205 .
+docker run --rm -v "$PWD:/src:rw" -w /src ubuntu-hello-arch:base-devel-20261101.0.620205 ./scripts/release-arch.sh
 
 # Portable formats (AppImage + Flatpak in release image; Snap in Ubuntu 24.04 image — core24 base)
 docker build -f docker/Dockerfile.release -t ubuntu-hello-release:26.04 .
@@ -156,11 +156,11 @@ Same pattern for other formats (image + `packaging-e2e-install.sh` argument):
 | Format | Image | Command |
 |--------|-------|---------|
 | `deb` | `ubuntu-hello-ppa:26.04` | `./scripts/packaging-e2e-install.sh deb` |
-| `rpm-fedora` | `ubuntu-hello-rpm-fedora:44` | `./scripts/packaging-e2e-install.sh rpm-fedora` |
+| `rpm-fedora` | `ubuntu-hello-rpm-fedora:45` | `./scripts/packaging-e2e-install.sh rpm-fedora` |
 | `rpm-opensuse` | `ubuntu-hello-rpm-opensuse:16.0` | `./scripts/packaging-e2e-install.sh rpm-opensuse` |
-| `arch` | `ubuntu-hello-arch:base-devel-20260816.0.574111` | `./scripts/packaging-e2e-install.sh arch` |
-| `appimage` | `ubuntu-hello-release:26.04` (use `--privileged`) | `./scripts/packaging-e2e-install.sh appimage` |
-| `flatpak` | `ubuntu-hello-release:26.04` (`--privileged --device /dev/fuse`) | `./scripts/packaging-e2e-install.sh flatpak` |
+| `arch` | `ubuntu-hello-arch:base-devel-20261101.0.620205` | `./scripts/packaging-e2e-install.sh arch` |
+| `appimage` | `ubuntu-hello-e2e-appimage:26.04` (use `--privileged`) | `./scripts/packaging-e2e-install.sh appimage` |
+| `flatpak` | `ubuntu-hello-e2e-flatpak:26.04` (`--privileged --device /dev/fuse`) | `./scripts/packaging-e2e-install.sh flatpak` |
 | `snap` | (systemd snap container) | included in `./scripts/ci-snap-build.sh` after the build (`UH_SKIP_ONBOARD=1`) |
 
 CI runs smoke verify + E2E after every packaging matrix cell via [`scripts/ci-packaging-cell.sh`](../../../scripts/ci-packaging-cell.sh) (GHA [`check.yml`](../../../.github/workflows/check.yml) and local [`ci-pipeline.sh`](../../../scripts/ci-pipeline.sh) / [`ci-packaging-matrix.sh`](../../../scripts/ci-packaging-matrix.sh)). E2E cycle: install → in-place upgrade (live `config.ini` marker must survive) → remove → reinstall (fresh template, marker gone).
@@ -190,6 +190,23 @@ Post-install logic is centralized:
 Installed to `/usr/share/ubuntu-hello/` by Meson. Debian postinst sources them;
 RPM `%post`, Snap configure hook, and AppImage/Flatpak `install-host.sh` call the same helpers.
 
+## Snap Store (Ubuntu App Center)
+
+The store name is **`linux-ubuntu-hello`** because `ubuntu-hello` is reserved; everything else
+(CLI, PAM module, other formats, `/etc/ubuntu-hello`) stays `ubuntu-hello`. Commands are
+`linux-ubuntu-hello.ubuntu-hello`, `.ubuntu-hello-gtk`, `.host-install`, `.host-uninstall`.
+
+- Every `v*` tag publishes to `stable` through the `publish-snap-store` job in `release.yml`.
+- `scripts/snap-store-setup.sh` creates the `SNAPCRAFT_STORE_CREDENTIALS` secret. Re-run it yearly.
+- The store rejects uploads until classic confinement is approved for the snap (forum `store-requests`).
+- Check a build before tagging with `review-tools.snap-review --allow-classic <file>` (the store's own checks).
+- Apps run through `packaging/snap/launch.sh`, which execs the host copy, or tells the user to run host-install. It must not call pkexec: store policy lists direct pkexec access as unsupported for classic snaps.
+- `host-install` goes through `install-host.sh`, which installs host deps first (see below). Snap E2E runs in a fresh container so missing deps fail CI.
+- `packaging/snap/host-state.sh` holds the marker, a lock shared by the wrapper and hooks, and the native-package check: the snap refuses `host-install`, and never overwrites or deletes, when a `.deb`, `.rpm` or pacman package owns the host paths. It also refuses a host copy with no marker (AppImage, Flatpak, source build, leftover data), so a later `snap remove` cannot delete data it did not create.
+- `snap install` alone never changes the host. `host-install` copies the payload and writes the marker
+  `/var/lib/ubuntu-hello/.snap-host-install` (just before copying, so a later failure is still tracked); with it, the configure hook re-copies on every refresh
+  (this is how updates reach the PAM module the host loads) and the remove hook uninstalls.
+
 ## Metadata paths
 
 | Path | Role |
@@ -208,6 +225,14 @@ RPM `%post`, Snap configure hook, and AppImage/Flatpak `install-host.sh` call th
 Full multi-format gate runs on tag push via `release.yml`.
 
 ## AppImage / Flatpak host install
+
+`install-host.sh` installs the host's runtime deps first, because the host copy cannot use a
+bundle's Python or libraries: `uh_install_host_dependencies` has lists for apt, dnf, zypper and
+pacman (`pacman -S` without `-y`, so sync first on a stale database). `UH_SKIP_HOST_DEPS=1` skips
+it, as the snap's refresh hook does. E2E for both formats runs on `docker/Dockerfile.e2e.appimage`
+and `docker/Dockerfile.e2e.flatpak`, not the release image. Keep those images free of build and
+runtime deps: `docker/Dockerfile.release` having them is what hid this. New PAM link dependencies
+go in those four lists too.
 
 Portable artifacts bundle Meson output but **PAM requires a one-time elevated
 install** on the host:

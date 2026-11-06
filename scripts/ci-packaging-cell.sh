@@ -63,7 +63,7 @@ case "${FORMAT}" in
 	rpm-fedora)
 		KIND=docker
 		DOCKERFILE=docker/Dockerfile.rpm.fedora
-		IMAGE=ubuntu-hello-rpm-fedora:44
+		IMAGE=ubuntu-hello-rpm-fedora:45
 		SCRIPT=(./scripts/release-rpm.sh fedora)
 		DOCKER_FLAGS=()
 		;;
@@ -77,7 +77,7 @@ case "${FORMAT}" in
 	arch)
 		KIND=docker
 		DOCKERFILE=docker/Dockerfile.arch
-		IMAGE=ubuntu-hello-arch:base-devel-20260816.0.574111
+		IMAGE=ubuntu-hello-arch:base-devel-20261101.0.620205
 		SCRIPT=(./scripts/release-arch.sh)
 		DOCKER_FLAGS=()
 		;;
@@ -93,6 +93,8 @@ case "${FORMAT}" in
 		DOCKERFILE=docker/Dockerfile.release
 		IMAGE=ubuntu-hello-release:26.04
 		SCRIPT=(./scripts/release-portable.sh appimage)
+		E2E_DOCKERFILE=docker/Dockerfile.e2e.appimage
+		E2E_IMAGE=ubuntu-hello-e2e-appimage:26.04
 		DOCKER_FLAGS=(--privileged)
 		;;
 	flatpak)
@@ -100,6 +102,8 @@ case "${FORMAT}" in
 		DOCKERFILE=docker/Dockerfile.release
 		IMAGE=ubuntu-hello-release:26.04
 		SCRIPT=(./scripts/release-portable.sh flatpak)
+		E2E_DOCKERFILE=docker/Dockerfile.e2e.flatpak
+		E2E_IMAGE=ubuntu-hello-e2e-flatpak:26.04
 		DOCKER_FLAGS=(--privileged --device /dev/fuse)
 		;;
 	*)
@@ -126,12 +130,17 @@ fi
 
 if [[ "${KIND}" != "snap" ]]; then
 	# Live install → upgrade (config preserve) → remove → reinstall on /
-	# inside the format image (PAM + config.ini).
+	# inside the format image (PAM + config.ini). Portable formats install onto
+	# hosts they did not build on, so they get a clean image instead.
+	E2E_IMAGE="${E2E_IMAGE:-${IMAGE}}"
+	if [[ -n "${E2E_DOCKERFILE:-}" ]]; then
+		docker build -f "${E2E_DOCKERFILE}" -t "${E2E_IMAGE}" .
+	fi
 	docker run --rm "${DOCKER_FLAGS[@]}" \
 		-e UH_SKIP_ONBOARD=1 \
 		-e "UH_ARTIFACTS_DIR=${ART_IN_CONTAINER}" \
 		-v "${ROOT}:/src:rw" "${ARTIFACT_EXTRA_MOUNTS[@]}" -w /src \
-		"${IMAGE}" ./scripts/packaging-e2e-install.sh "${FORMAT}"
+		"${E2E_IMAGE}" ./scripts/packaging-e2e-install.sh "${FORMAT}"
 fi
 
 echo "==> packaging cell OK: ${FORMAT}"

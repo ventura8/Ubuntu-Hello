@@ -36,31 +36,41 @@ trap cleanup EXIT
 
 docker build -f docker/Dockerfile.snap -t "${IMAGE}" .
 
-docker run -d --name "${CONTAINER}" --privileged --cgroupns=host \
-	-e "UH_ARTIFACTS_DIR=${ART_IN_CONTAINER}" \
-	-v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-	-v /sys/kernel/security:/sys/kernel/security:rw \
-	-v "${ROOT}:/src:rw" "${ARTIFACT_EXTRA_MOUNTS[@]}" -w /src "${IMAGE}" >/dev/null
+uh_start_container() {
+	docker run -d --name "${CONTAINER}" --privileged --cgroupns=host \
+		-e "UH_ARTIFACTS_DIR=${ART_IN_CONTAINER}" \
+		-v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+		-v /sys/kernel/security:/sys/kernel/security:rw \
+		-v "${ROOT}:/src:rw" "${ARTIFACT_EXTRA_MOUNTS[@]}" -w /src "${IMAGE}" >/dev/null
 
-echo "==> waiting for systemd inside ${CONTAINER} to become ready"
-ready=0
-for _ in $(seq 1 60); do
-	if docker exec "${CONTAINER}" systemctl is-system-running 2>/dev/null | grep -qE '^(running|degraded)$'; then
-		ready=1
-		break
+	echo "==> waiting for systemd inside ${CONTAINER} to become ready"
+	ready=0
+	for _ in $(seq 1 60); do
+		# is-system-running exits non-zero for degraded, so no pipeline under pipefail.
+		state="$(docker exec "${CONTAINER}" systemctl is-system-running 2>/dev/null || true)"
+		if [[ "${state}" == "running" || "${state}" == "degraded" ]]; then
+			ready=1
+			break
+		fi
+		sleep 1
+	done
+	if [[ "${ready}" -ne 1 ]]; then
+		echo "error: systemd did not become ready inside ${CONTAINER}" >&2
+		docker logs "${CONTAINER}" --tail 50 || true
+		exit 1
 	fi
-	sleep 1
-done
-if [[ "${ready}" -ne 1 ]]; then
-	echo "error: systemd did not become ready inside ${CONTAINER}" >&2
-	docker logs "${CONTAINER}" --tail 50 || true
-	exit 1
-fi
+}
+
+uh_start_container
 
 docker exec -w /src -e "UH_ARTIFACTS_DIR=${ART_IN_CONTAINER}" "${CONTAINER}" \
 	/usr/local/bin/snap-entrypoint.sh ./scripts/release-portable.sh snap
 
 if [[ "${RUN_E2E}" == "1" ]]; then
+	# A clean container, as a store user would have: destructive-mode left the
+	# build-packages installed in the build container, which hides missing host deps.
+	cleanup
+	uh_start_container
 	echo "==> Snap packaging E2E install/upgrade/remove/reinstall"
 	docker exec -w /src -e UH_SKIP_ONBOARD=1 -e "UH_ARTIFACTS_DIR=${ART_IN_CONTAINER}" \
 		"${CONTAINER}" bash ./scripts/packaging-e2e-install.sh snap

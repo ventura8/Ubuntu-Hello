@@ -17,8 +17,11 @@ PACKAGING_PATHS = [
     "packaging/rpm/opensuse/ubuntu-hello.spec",
     "packaging/snap/snapcraft.yaml",
     "packaging/snap/SNAPCRAFT_REVISION",
+    "packaging/snap/host-state.sh",
     "packaging/snap/install-wrapper.sh",
     "packaging/snap/hooks/configure",
+    "packaging/snap/hooks/remove",
+    "packaging/snap/launch.sh",
     "packaging/appimage/build-appimage.sh",
     "packaging/flatpak/com.github.ventura8.UbuntuHello.yml",
     "packaging/flatpak/install-host.sh",
@@ -51,6 +54,8 @@ DOCKER_RELEASE_IMAGES = [
     "docker/Dockerfile.rpm.opensuse",
     "docker/Dockerfile.arch",
     "docker/Dockerfile.release",
+    "docker/Dockerfile.e2e.appimage",
+    "docker/Dockerfile.e2e.flatpak",
 ]
 
 CI_PACKAGING_FORMATS = [
@@ -82,10 +87,13 @@ SHELLCHECK_PATHS = [
     "scripts/test-split-install-adapter.sh",
     "scripts/test-packaging-installers.sh",
     "scripts/ci-matrix.sh",
+    "scripts/snap-store-setup.sh",
     "packaging/appimage/build-appimage.sh",
     "packaging/flatpak/install-host.sh",
     "packaging/snap/install-wrapper.sh",
     "packaging/snap/hooks/configure",
+    "packaging/snap/hooks/remove",
+    "packaging/snap/launch.sh",
     "docker/snap-entrypoint.sh",
     "debian/ubuntu-hello.postinst",
     "debian/ubuntu-hello-gtk.postinst",
@@ -301,6 +309,84 @@ def test_release_workflow_exists() -> None:
     assert "release-verify-tag-version.sh" in text
 
 
+def test_release_workflow_publishes_snap_to_store() -> None:
+    """A release must reach the Snap Store, and a failed publish must not pass silently."""
+    text = _read_repo(".github/workflows/release.yml")
+    job = text[text.index("  publish-snap-store:") :]
+    assert "- github-release" in job
+    assert "SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}" in job
+    assert "snapcraft upload --release=stable" in job
+    assert "packaging/snap/SNAPCRAFT_REVISION" in job
+    assert "continue-on-error" not in job
+    assert "if: " not in job
+
+
+def test_portable_e2e_runs_on_clean_images() -> None:
+    """Build dependencies in the E2E image hide libraries a real host would be missing."""
+    cell = _read_repo("scripts/ci-packaging-cell.sh")
+    assert '"${E2E_IMAGE}" ./scripts/packaging-e2e-install.sh "${FORMAT}"' in cell
+    for fmt in ("appimage", "flatpak"):
+        assert f"E2E_DOCKERFILE=docker/Dockerfile.e2e.{fmt}" in cell
+        dockerfile = _read_repo(f"docker/Dockerfile.e2e.{fmt}")
+        for build_dep in ("libinih", "libevdev", "python3-opencv", "python3-pip", "cmake", "curl"):
+            assert build_dep not in dockerfile, build_dep
+    assert "docker/Dockerfile.e2e.appimage" in _read_repo(".github/workflows/release.yml")
+
+
+def test_host_install_declares_host_dependencies() -> None:
+    """install-host.sh must provide what the PAM module links before copying it."""
+    text = _read_repo("packaging/flatpak/install-host.sh")
+    install = text[text.index("uh_host_install() {") :]
+    assert install.index("uh_install_host_dependencies") < install.index("uh_install_tree")
+    for manager in ("apt-get", "dnf", "zypper", "pacman"):
+        assert f"command -v {manager}" in text, manager
+    assert "UH_SKIP_HOST_DEPS=1" in _read_repo("packaging/snap/hooks/configure")
+
+
+def test_snap_host_install_tracks_files_before_copying_them() -> None:
+    """A failure after the copy must not leave host files the snap has no record of."""
+    text = _read_repo("packaging/flatpak/install-host.sh")
+    install = text[text.index("uh_host_install() {") :]
+    marker = install.index('touch "${UH_HOST_INSTALL_MARKER}"')
+    assert install.index("uh_install_host_dependencies") < marker < install.index("uh_install_tree")
+
+
+def test_snap_remove_hook_keeps_marker_when_uninstall_fails() -> None:
+    text = _read_repo("packaging/snap/hooks/remove")
+    assert "--uninstall; then\n\tuh_snap_forget_host_copy\nelse" in text
+
+
+def test_release_publish_cannot_move_stable_backward() -> None:
+    job = _read_repo(".github/workflows/release.yml")
+    job = job[job.index("  publish-snap-store:") :]
+    assert "group: snap-store-stable" in job
+    assert "cancel-in-progress: false" in job
+    assert job.index("sort -V") < job.index("snapcraft upload")
+    # A failed lookup must stop the publish, not read as "nothing on stable yet".
+    assert "no snap found" in job
+    assert "|| true)\"" not in job[job.index("LC_ALL=C snap info") :]
+
+
+@pytest.mark.parametrize("owner_exit,expected", [(0, 0), (1, 1)])
+def test_snap_detects_native_package_ownership(tmp_path: Path, owner_exit: int, expected: int) -> None:
+    """The snap must not overwrite or delete host files a native package owns."""
+    stub = tmp_path / "dpkg-query"
+    stub.write_text(f"#!/bin/sh\nexit {owner_exit}\n")
+    stub.chmod(0o755)
+    state = REPO / "packaging/snap/host-state.sh"
+    # Stub after sourcing: host-state.sh resets PATH to the host's own directories.
+    script = '. "$1"; export PATH="$2"; uh_native_package_owns_host'
+    result = subprocess.run(["/bin/bash", "-c", script, "bash", str(state), str(tmp_path)], check=False)
+    assert result.returncode == expected
+
+
+def test_vm_tier_boots_the_fedora_release_the_rpm_is_built_for() -> None:
+    """An fc45 package does not install on a Fedora 44 VM, which fails every scenario."""
+    dockerfile = _read_repo("docker/Dockerfile.rpm.fedora")
+    release = next(line.split(":")[1].strip() for line in dockerfile.splitlines() if line.startswith("FROM fedora:"))
+    assert f'SERIES="${{UH_VM_SERIES:-{release}}}"' in _read_repo("scripts/vm/vm.sh")
+
+
 def test_pkgbuild_reads_version_via_script() -> None:
     pkgbuild = _read_repo("packaging/arch/ubuntu-hello/PKGBUILD")
     assert "read-version.py" in pkgbuild
@@ -438,8 +524,8 @@ def test_docker_release_images_use_pinned_bases() -> None:
 @pytest.mark.parametrize("fmt,files", [
     ("deb", ["ubuntu-hello_{v}_1ppa1_amd64.deb", "ubuntu-hello-gtk_{v}_1ppa1_all.deb"]),
     ("rpm-fedora", [
-        "ubuntu-hello-{v}-1.fc44.x86_64.rpm",
-        "ubuntu-hello-gtk-{v}-1.fc44.x86_64.rpm",
+        "ubuntu-hello-{v}-1.fc45.x86_64.rpm",
+        "ubuntu-hello-gtk-{v}-1.fc45.x86_64.rpm",
     ]),
     ("rpm-opensuse", [
         "ubuntu-hello-{v}-1.lp160.x86_64.rpm",
@@ -449,7 +535,7 @@ def test_docker_release_images_use_pinned_bases() -> None:
         "ubuntu-hello-{v}-1-x86_64.pkg.tar.zst",
         "ubuntu-hello-gtk-{v}-1-x86_64.pkg.tar.zst",
     ]),
-    ("snap", ["ubuntu-hello_{v}_amd64.snap"]),
+    ("snap", ["linux-ubuntu-hello_{v}_amd64.snap"]),
     ("appimage", ["Ubuntu-Hello-{v}-x86_64.AppImage"]),
     ("flatpak", ["com.github.ventura8.UbuntuHello-{v}-x86_64.flatpak"]),
 ])
