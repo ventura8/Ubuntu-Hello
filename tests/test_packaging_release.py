@@ -380,6 +380,13 @@ def test_snap_detects_native_package_ownership(tmp_path: Path, owner_exit: int, 
     assert result.returncode == expected
 
 
+def test_vm_tier_boots_the_fedora_release_the_rpm_is_built_for() -> None:
+    """An fc45 package does not install on a Fedora 44 VM, which fails every scenario."""
+    dockerfile = _read_repo("docker/Dockerfile.rpm.fedora")
+    release = next(line.split(":")[1].strip() for line in dockerfile.splitlines() if line.startswith("FROM fedora:"))
+    assert f'SERIES="${{UH_VM_SERIES:-{release}}}"' in _read_repo("scripts/vm/vm.sh")
+
+
 def test_pkgbuild_reads_version_via_script() -> None:
     pkgbuild = _read_repo("packaging/arch/ubuntu-hello/PKGBUILD")
     assert "read-version.py" in pkgbuild

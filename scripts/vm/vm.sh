@@ -14,7 +14,7 @@
 #
 # Environment:
 #   UH_VM_DISTRO   ubuntu (default) | fedora | arch       UH_VM_CPUS / UH_VM_MEM_MB
-#   UH_VM_SERIES   ubuntu: series (resolute); fedora: release (44); arch: latest
+#   UH_VM_SERIES   ubuntu: series (resolute); fedora: release (45); arch: latest
 #   UH_VM_DIR      work dir (default: .cache/vm)           UH_VM_PPA (default: ppa:ventura8/ubuntu-hello)
 #   UH_VM_KEEP=1   leave the VM running after the run      UH_VM_SSH_PORT (default: 2222/2223/2224 per distro)
 #   UH_VM_REUSE=1  run scenarios against the guest left running by a previous UH_VM_KEEP=1
@@ -41,9 +41,10 @@ case "$DISTRO" in
 		GUEST_PACKAGES="openssh-server, jq, tpm2-tools, polkitd"
 		SSH_UNIT=ssh ;;
 	fedora)
-		SERIES="${UH_VM_SERIES:-44}"; PORT="${UH_VM_SSH_PORT:-2223}"
-		# The GA image name carries a compose number; -1.7 is Fedora 44's.
-		IMAGE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${SERIES}/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-${SERIES}-1.7.x86_64.qcow2"
+		SERIES="${UH_VM_SERIES:-45}"; PORT="${UH_VM_SSH_PORT:-2223}"
+		# The GA image name carries a compose number; -1.4 is Fedora 45's. Keep this release in step
+		# with docker/Dockerfile.rpm.fedora: an fc45 package does not install on Fedora 44.
+		IMAGE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${SERIES}/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-${SERIES}-1.4.x86_64.qcow2"
 		GUEST_PACKAGES="openssh-server, jq, tpm2-tools, polkit"
 		SSH_UNIT=sshd ;;
 	arch)
